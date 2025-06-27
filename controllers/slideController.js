@@ -5,6 +5,9 @@ const {
 } = require("../services/fetchYouTubeTranscript");
 const { generateSlideText } = require("../services/generateSlideText");
 const { generateImage } = require("../services/generateImage");
+const {
+  generateInfographicFromText,
+} = require("../services/generateInfographic"); // ✅ NEW
 
 async function generateSlidesHandler(req, res) {
   const errors = validationResult(req);
@@ -23,11 +26,17 @@ async function generateSlidesHandler(req, res) {
       rawText = textContent;
     }
 
-    const slides = await generateSlideText(rawText);
-    // const slidesWithImages = await Promise.all(
-    //   slides.map((slide, index) => generateImage(slide, index))
-    // );
+    let slides = [];
 
+    // ✅ Check for infographic keywords
+    if (rawText.toLowerCase().includes("infographic")) {
+      const result = await generateInfographicFromText(rawText);
+      slides = result.slides;
+    } else {
+      slides = await generateSlideText(rawText);
+    }
+
+    // ✅ Generate images for each slide
     const slidesWithImages = await Promise.all(
       slides.map(async (slide, index) => {
         try {

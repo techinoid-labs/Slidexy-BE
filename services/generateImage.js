@@ -2,7 +2,9 @@ const { imageGenLimiter } = require("../utils/limiter");
 const { imageGenModel } = require("../utils/geminiModels");
 
 async function generateImage(slide, index) {
-  const prompt = `Generate a high-quality image for "${slide.slide_title.text}"...`;
+  const prompt =
+    slide.imagePrompt ||
+    `Generate a high-quality image for "${slide.slide_title.text}"...`;
   const response = await imageGenLimiter.schedule(() =>
     imageGenModel.generateContent({
       contents: [{ role: "user", parts: [{ text: prompt }] }],
@@ -18,7 +20,7 @@ async function generateImage(slide, index) {
     if (part.inlineData?.mimeType?.startsWith("image/")) {
       imageUrl = `data:${part.inlineData.mimeType};base64,${part.inlineData.data}`;
     }
-  }
+  } 
 
   return {
     ...slide,
