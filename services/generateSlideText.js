@@ -1,13 +1,41 @@
 const { textGenModel } = require("../utils/geminiModels");
 
-async function generateSlideText(rawText) {
-  const isInfographic = /infographic/i.test(rawText); // keyword check
+async function generateSlideText(rawText, isInfographicMode) {
+  console.log(
+    "✅ generateSlideText running with isInfographicMode =",
+    isInfographicMode
+  );
   
-  const prompt = isInfographic
-    ? `
-You are an expert in designing infographic-style presentation slides.
+  const prompt = isInfographicMode
 
-Convert the following content into exactly 3 slides using this strict JSON format:
+    ? `
+You are an expert infographic presentation designer trained in the clean, pastel, flat-icon style of Napkin.AI.
+
+🎯 TASK:
+Turn the following content into exactly **3 infographic slides**, each with a meaningful **visual chart or diagram**.
+
+✅ EVERY SLIDE MUST INCLUDE:
+- A clear and concise title
+- A **chart-style infographic visual** (e.g., flowchart, pie chart, bar chart, timeline, matrix, cycle, quadrant)
+- 2–4 short bullet points (15 words max, aligned to the visual content)
+
+🎨 VISUAL REQUIREMENTS:
+- Visual layout must be a proper infographic type (not illustrations or metaphors)
+- Style must mimic Napkin.AI: large pastel icons, white background, minimal text, structured layout, clean fonts, soft shadows
+- Avoid clutter, clipart, or realistic rendering
+
+🧠 LOGIC:
+Each image must clearly map to a layout like:
+- flowchart (for sequences/processes),
+- pie chart (for percentages),
+- bar chart (for comparisons),
+- timeline (for progression),
+- matrix/grid (for categories),
+- radial diagram (for relationships),
+- step diagram (for instructional content)
+
+📤 FORMAT:
+Return exactly 3 slide objects in a **valid JSON array** with the following format (no markdown or extra text):
 
 [
   {
@@ -16,23 +44,23 @@ Convert the following content into exactly 3 slides using this strict JSON forma
       "text": "Slide title here",
       "konva_component": "Konva.Text",
       "properties": {
-        "fontSize": 48,
+        "fontSize": 38,
         "fontFamily": "Inter",
         "fill": "#333",
         "fontStyle": "bold"
       }
     },
-    "visual_description": "Brief description of the infographic-style visual layout.",
-    "imagePrompt": "A specific infographic prompt like: bar chart comparing cloud providers",
+    "visual_description": "Describe the infographic layout, e.g., '3-step process with icons and arrows in a horizontal flowchart'",
+    "imagePrompt": "Create a high-resolution, flat infographic using a white background, pastel colors, large vector icons, and soft typography. Use layout type: [flowchart, pie chart, bar chart, timeline, matrix, radial diagram, quadrant]. Follow Napkin.AI's style: crystal-clear visuals, minimal labels, soft shadows, no visual noise, structured content, modern design.",
     "image_url": null,
     "image_caption": "",
     "elements": [
       {
         "element_type": "bullet_point",
-        "text": "Bullet point 1 (max 15 words)",
+        "text": "Short bullet point 1 (max 10 words)",
         "konva_component": "Konva.Text",
         "properties": {
-          "fontSize": 26,
+          "fontSize": 20,
           "fontFamily": "Inter",
           "fill": "#444",
           "fontStyle": "normal"
@@ -40,10 +68,10 @@ Convert the following content into exactly 3 slides using this strict JSON forma
       },
       {
         "element_type": "bullet_point",
-        "text": "Bullet point 2 (max 15 words)",
+        "text": "Short bullet point 2 (max 10 words)",
         "konva_component": "Konva.Text",
         "properties": {
-          "fontSize": 26,
+          "fontSize": 20,
           "fontFamily": "Inter",
           "fill": "#444",
           "fontStyle": "normal"
@@ -53,16 +81,16 @@ Convert the following content into exactly 3 slides using this strict JSON forma
   }
 ]
 
-⚠️ Requirements:
-- Return exactly 3 slide objects in a valid JSON array
-- Use keys: "slide_title", "elements", "visual_description", "imagePrompt", "image_url", "image_caption"
-- Do NOT use keys like "title" or "bulletPoints"
-- All bullet points should be concise (max 15 words)
-- Ensure JSON is fully valid (no markdown, no explanation, no extra text)
+📌 NOTE:
+- Output must only include this valid JSON array
+- Every imagePrompt must describe a proper infographic layout
+- All visuals should support and map to the bullet point content
+- No abstract illustrations, no extra commentary
 
-Content:
+CONTENT TO TRANSFORM:
 """${rawText}"""
 `
+
     : `
 You are an expert slide creator. Based on the following content, generate a professional presentation broken into multiple slides.
 
@@ -72,7 +100,7 @@ Important Instructions:
 - If the content appears limited, create multiple slides by expanding, elaborating, or repeating key ideas with different perspectives.
 - Each slide must contain:
   - Title (max 8 words)
-  - 3 to 5 bullet points (max 15 words each)
+  - max 2 to 3 bullet points (max 10 words each)
 - Use this exact JSON format:
 
 [
@@ -82,7 +110,7 @@ Important Instructions:
       "text": "Title of the slide",
       "konva_component": "Konva.Text",
       "properties": {
-        "fontSize": 48,
+        "fontSize": 38,
         "fontFamily": "Inter",
         "fill": "#333",
         "fontStyle": "bold"
@@ -94,7 +122,7 @@ Important Instructions:
         "text": "Bullet point text",
         "konva_component": "Konva.Text",
         "properties": {
-          "fontSize": 26,
+          "fontSize": 18,
           "fontFamily": "Inter",
           "fill": "#444",
           "fontStyle": "normal"
@@ -109,6 +137,8 @@ Return valid PURE JSON only. DO NOT include any markdown, explanations or code f
 Content:
 """${rawText}"""
 `;
+
+console.log("Prompt:",prompt);
 
   const result = await textGenModel.generateContent(prompt);
   const raw = result.response.text();

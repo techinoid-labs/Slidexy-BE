@@ -14,7 +14,18 @@ async function generateSlidesHandler(req, res) {
   if (!errors.isEmpty())
     return res.status(400).json({ errors: errors.array() });
 
-  const { source, inputUrl, textContent, inputWebsiteUrl } = req.body;
+  const {
+    source,
+    inputUrl,
+    textContent,
+    inputWebsiteUrl,
+    isInfographicMode, // ✅ 1. Extract from body
+  } = req.body;
+
+  // ✅ 2. Coerce string "true"/"false" to boolean
+  const useInfographic =
+    isInfographicMode === true || isInfographicMode === "true";
+
   let rawText = "";
 
   try {
@@ -28,13 +39,8 @@ async function generateSlidesHandler(req, res) {
 
     let slides = [];
 
-    // ✅ Check for infographic keywords
-    if (rawText.toLowerCase().includes("infographic")) {
-      const result = await generateInfographicFromText(rawText);
-      slides = result.slides;
-    } else {
-      slides = await generateSlideText(rawText);
-    }
+    // ✅ 3. Use checkbox value instead of keyword match
+    slides = await generateSlideText(rawText, useInfographic);
 
     // ✅ Generate images for each slide
     const slidesWithImages = await Promise.all(
@@ -61,5 +67,6 @@ async function generateSlidesHandler(req, res) {
     res.status(500).json({ error: err.message || "Slide generation failed." });
   }
 }
+
 
 module.exports = { generateSlidesHandler };
