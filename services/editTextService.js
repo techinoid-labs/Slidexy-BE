@@ -14,11 +14,19 @@ const promptMap = {
     `Make this text sound more professional or business-like. Provide 3 versions:\n"${text}"`,
   summarize: (text) =>
     `Summarize this text into 3 different brief versions:\n"${text}"`,
+  custom: (text, customPrompt) => `${customPrompt}\n"${text}"`,
 };
 
-async function generateTextEdits(text, action) {
-  const prompt = promptMap[action]?.(text);
-  if (!prompt) throw new Error("Invalid action type.");
+async function generateTextEdits(text, action, customPrompt = "") {
+  let prompt;
+
+  if (action === "custom") {
+    if (!customPrompt.trim()) throw new Error("Custom prompt is required.");
+    prompt = promptMap["custom"](text, customPrompt);
+  } else {
+    prompt = promptMap[action]?.(text);
+    if (!prompt) throw new Error("Invalid action type.");
+  }
 
   const result = await textGenModel.generateContent(prompt);
   const output = await result.response.text();

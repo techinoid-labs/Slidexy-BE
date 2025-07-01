@@ -5,9 +5,8 @@ async function generateSlideText(rawText, isInfographicMode) {
     "✅ generateSlideText running with isInfographicMode =",
     isInfographicMode
   );
-  
-  const prompt = isInfographicMode
 
+  const prompt = isInfographicMode
     ? `
 You are an expert infographic presentation designer trained in the clean, pastel, flat-icon style of Napkin.AI.
 
@@ -17,7 +16,9 @@ Turn the following content into exactly **3 infographic slides**, each with a me
 ✅ EVERY SLIDE MUST INCLUDE:
 - A clear and concise title
 - A **chart-style infographic visual** (e.g., flowchart, pie chart, bar chart, timeline, matrix, cycle, quadrant)
+- ALL TEXT inside the infographic image must be in correct, readable English with no spelling or grammar errors
 - 2–4 short bullet points (15 words max, aligned to the visual content)
+- Don't use any watermark in the slides.
 
 🎨 VISUAL REQUIREMENTS:
 - Visual layout must be a proper infographic type (not illustrations or metaphors)
@@ -82,15 +83,15 @@ Return exactly 3 slide objects in a **valid JSON array** with the following form
 ]
 
 📌 NOTE:
-- Output must only include this valid JSON array
-- Every imagePrompt must describe a proper infographic layout
-- All visuals should support and map to the bullet point content
-- No abstract illustrations, no extra commentary
+- All image content must be in correct English
+- All visuals or image should be crystal clear and it should not be blurred.
+- Do not use non-English text or placeholder gibberish in any visual label
+- All visuals must directly support the bullet content
+- Output must only include the JSON array — no commentary
 
 CONTENT TO TRANSFORM:
 """${rawText}"""
 `
-
     : `
 You are an expert slide creator. Based on the following content, generate a professional presentation broken into multiple slides.
 
@@ -138,7 +139,7 @@ Content:
 """${rawText}"""
 `;
 
-console.log("Prompt:",prompt);
+  console.log("Prompt:", prompt);
 
   const result = await textGenModel.generateContent(prompt);
   const raw = result.response.text();
