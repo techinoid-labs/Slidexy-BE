@@ -73,6 +73,11 @@ Format:
             secondaryColor: json.secondaryColor || themeData.secondaryColor,
             backgroundColor: json.backgroundColor || themeData.backgroundColor,
           };
+
+          // ✅ Handle image from image_base64 inside JSON
+          if (json.image_base64) {
+            themeData.image_url = `data:image/png;base64,${json.image_base64}`;
+          }
         } else {
           console.warn("No JSON block found in text part:", part.text);
         }
@@ -93,14 +98,45 @@ Format:
   return themeData;
 }
 
+// async function generateMultipleThemes(promptText, count = 3) {
+//   const results = [];
+
+//   for (let i = 0; i < count; i++) {
+//     try {
+//       const theme = await generateSingleTheme(`${promptText} variant ${i + 1}`);
+
+//       // ✅ Ensure image_url is not empty/null/undefined
+//       if (theme.image_url) {
+//         console.log("Valid Theme:", theme.image_url);
+//         results.push(theme);
+//       } else {
+//         console.warn("Skipped theme due to missing image_url.");
+//       }
+//     } catch (error) {
+//       console.warn(`Theme ${i + 1} failed:`, error.message);
+//     }
+//   }
+
+//   return results;
+// }
+
 async function generateMultipleThemes(promptText, count = 3) {
-  const results = [];
-  for (let i = 0; i < count; i++) {
-    const theme = await generateSingleTheme(`${promptText} variant ${i + 1}`);
-    results.push(theme);
-  }
-  return results;
+  const themePromises = Array.from({ length: count }, (_, i) =>
+    generateSingleTheme(`${promptText} variant ${i + 1}`)
+      .then((theme) => (theme?.image_url ? theme : null))
+      .catch((err) => {
+        console.warn(`Theme ${i + 1} failed:`, err.message);
+        return null;
+      })
+  );
+
+  const allResults = await Promise.all(themePromises);
+
+  // Filter out nulls (failed or missing image_url)
+  return allResults.filter(Boolean);
 }
+
+
 
 module.exports = {
   generateThemeImage: generateSingleTheme,

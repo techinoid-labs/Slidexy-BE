@@ -22,7 +22,7 @@ Turn the following content into exactly **3 infographic slides**, each with a me
 
 🎨 VISUAL REQUIREMENTS:
 - Visual layout must be a proper infographic type (not illustrations or metaphors)
-- Style must mimic Napkin.AI: large pastel icons, white background, minimal text, structured layout, clean fonts, soft shadows
+- Style must mimic Napkin.AI: large pastel icons, minimal text, structured layout, clean fonts.
 - Avoid clutter, clipart, or realistic rendering
 
 🧠 LOGIC:
