@@ -20,6 +20,7 @@ async function generateSlidesHandler(req, res) {
     textContent,
     inputWebsiteUrl,
     isInfographicMode, // ✅ 1. Extract from body
+    meta = {}, // ✅ fallback to empty object
   } = req.body;
 
   // ✅ 2. Coerce string "true"/"false" to boolean
@@ -40,7 +41,8 @@ async function generateSlidesHandler(req, res) {
     let slides = [];
 
     // ✅ 3. Use checkbox value instead of keyword match
-    slides = await generateSlideText(rawText, useInfographic);
+    // slides = await generateSlideText(rawText, useInfographic);
+    slides = await generateSlideText(rawText, useInfographic, meta);
 
     // ✅ Generate images for each slide
     const slidesWithImages = await Promise.all(
@@ -67,6 +69,5 @@ async function generateSlidesHandler(req, res) {
     res.status(500).json({ error: err.message || "Slide generation failed." });
   }
 }
-
 
 module.exports = { generateSlidesHandler };
