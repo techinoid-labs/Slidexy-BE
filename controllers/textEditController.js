@@ -1,13 +1,15 @@
 const { generateTextEdits } = require("../services/editTextService");
 
 async function editTextHandler(req, res) {
-  const { text, action, customPrompt } = req.body;
+  const { title, bullets, action, customPrompt } = req.body;
 
-  if (!text || !action) {
-    return res.status(400).json({ error: "Text and action are required." });
+  // ✅ Validation
+  if (!title || !Array.isArray(bullets) || bullets.length === 0 || !action) {
+    return res.status(400).json({
+      error: "Missing required fields: title, bullets, or action.",
+    });
   }
 
-  // Custom prompt must be provided for 'custom' action
   if (action === "custom" && (!customPrompt || !customPrompt.trim())) {
     return res
       .status(400)
@@ -15,7 +17,13 @@ async function editTextHandler(req, res) {
   }
 
   try {
-    const suggestions = await generateTextEdits(text, action, customPrompt);
+    const suggestions = await generateTextEdits({
+      title,
+      bullets,
+      action,
+      customPrompt,
+    });
+
     res.json({ suggestions });
   } catch (err) {
     console.error("Error editing text:", err);
