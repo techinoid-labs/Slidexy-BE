@@ -6,7 +6,7 @@ async function generateThemeImageHandler(req, res) {
   if (!errors.isEmpty())
     return res.status(400).json({ errors: errors.array() });
 
-  const { prompt, count = 3 } = req.body;
+  const { prompt, count = 2 } = req.body;
 
   try {
     const themes = await generateMultipleThemes(prompt, count);

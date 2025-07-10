@@ -20,7 +20,7 @@ async function generateImage(slide, index) {
     if (part.inlineData?.mimeType?.startsWith("image/")) {
       imageUrl = `data:${part.inlineData.mimeType};base64,${part.inlineData.data}`;
     }
-  } 
+  }
 
   return {
     ...slide,
