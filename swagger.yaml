@@ -1,0 +1,287 @@
+openapi: 3.0.3
+info:
+  title: Presentation Slide Generator API
+  description: API for generating presentation slides, themes, image suggestions, and text edits using AI.
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:5000
+    description: Local development server
+
+paths:
+  /generate-image-suggestions:
+    post:
+      summary: Generate AI-based image suggestions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - prompt
+              properties:
+                prompt:
+                  type: string
+                  example: "A team working together in an office"
+                count:
+                  type: integer
+                  default: 1
+      responses:
+        "200":
+          description: Successfully generated images
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  imageUrls:
+                    type: array
+                    items:
+                      type: string
+                      format: uri
+        "400":
+          description: Missing or invalid prompt
+        "500":
+          description: Failed to generate image suggestions
+
+  /generate-slides:
+    post:
+      summary: Generate presentation slides from text, website, or YouTube
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - source
+              properties:
+                source:
+                  type: string
+                  enum: [text, website, youtube]
+                textContent:
+                  type: string
+                  description: Required if source is 'text'
+                inputUrl:
+                  type: string
+                  description: Required if source is 'youtube'
+                inputWebsiteUrl:
+                  type: string
+                  description: Required if source is 'website'
+                isInfographicMode:
+                  type: boolean
+                  default: false
+                meta:
+                  type: object
+                  properties:
+                    goal:
+                      type: string
+                    tone:
+                      type: string
+                    audience:
+                      type: string
+                    length:
+                      type: string
+      responses:
+        "200":
+          description: Slide generation successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  slides:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Slide"
+        "400":
+          description: Validation failed
+        "500":
+          description: Slide generation failed
+
+  /edit-text:
+    post:
+      summary: Suggest edits to slide title and bullet points
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - title
+                - bullets
+                - action
+              properties:
+                title:
+                  type: string
+                bullets:
+                  type: array
+                  items:
+                    type: string
+                action:
+                  type: string
+                  enum:
+                    [
+                      longer,
+                      shorter,
+                      rewriteSlide,
+                      bulletsFormat,
+                      listFormat,
+                      regenerateImages,
+                      custom,
+                    ]
+                customPrompt:
+                  type: string
+                  description: Required if action is "custom"
+      responses:
+        "200":
+          description: Text suggestions returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  suggestions:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/SuggestedSlide"
+        "400":
+          description: Invalid input
+        "500":
+          description: Failed to generate suggestions
+
+  /generate-theme-image:
+    post:
+      summary: Generate themed slide styles and background image
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - prompt
+              properties:
+                prompt:
+                  type: string
+                count:
+                  type: integer
+                  default: 2
+      responses:
+        "200":
+          description: Theme images generated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  themes:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Theme"
+        "400":
+          description: Validation error
+        "500":
+          description: Theme generation failed
+
+components:
+  schemas:
+    Slide:
+      type: object
+      properties:
+        slide_id:
+          type: string
+          example: slide-1
+        slide_title:
+          $ref: "#/components/schemas/KonvaText"
+        image_url:
+          type: string
+          format: uri
+          nullable: true
+        image_caption:
+          type: string
+        imagePrompt:
+          type: string
+        visual_description:
+          type: string
+        elements:
+          type: array
+          items:
+            $ref: "#/components/schemas/SlideElement"
+
+    KonvaText:
+      type: object
+      properties:
+        text:
+          type: string
+        konva_component:
+          type: string
+          example: Konva.Text
+        properties:
+          type: object
+          properties:
+            fontSize:
+              type: integer
+            fontFamily:
+              type: string
+            fill:
+              type: string
+            fontStyle:
+              type: string
+
+    SlideElement:
+      type: object
+      properties:
+        element_type:
+          type: string
+          enum: [bullet_point]
+        text:
+          type: string
+        konva_component:
+          type: string
+        properties:
+          type: object
+          properties:
+            fontSize:
+              type: integer
+            fontFamily:
+              type: string
+            fill:
+              type: string
+            fontStyle:
+              type: string
+
+    SuggestedSlide:
+      type: object
+      properties:
+        title:
+          type: string
+        bullets:
+          type: array
+          items:
+            type: string
+
+    Theme:
+      type: object
+      properties:
+        image_base64:
+          type: string
+          description: Base64-encoded image with MIME type
+          example: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...
+        font:
+          type: string
+          example: Inter
+        primaryColor:
+          type: string
+          format: hex
+          example: "#333333"
+        secondaryColor:
+          type: string
+          format: hex
+          example: "#666666"
+        backgroundColor:
+          type: string
+          format: hex
+          example: "#f4f4f4"

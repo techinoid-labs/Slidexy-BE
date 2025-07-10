@@ -20,6 +20,9 @@
     "express": "^5.1.0",
     "express-validator": "^7.2.1",
     "node-fetch": "^3.3.2",
+    "swagger": "^0.7.5",
+    "swagger-ui-express": "^5.0.1",
+    "yamljs": "^0.3.0",
     "youtube-transcript": "^1.2.1"
   }
 }
