@@ -4,6 +4,10 @@ const cors = require("cors");
 const { validate } = require("./middlewares/validateInput");
 const { generateSlidesHandler } = require("./controllers/slideController");
 const { generateThemeImageHandler } = require("./controllers/themeController");
+const  customSuggestionsHandler  = require("./controllers/customSuggestionsController");
+
+
+
 const {
   validateThemeImageInput,
 } = require("./middlewares/validateThemeImageInput");
@@ -34,5 +38,7 @@ app.post(
 );
 app.post("/edit-text", editTextHandler);
 app.post("/generate-image-suggestions", generateImageSuggestionsHandler);
+app.post("/custom-suggestions", customSuggestionsHandler);
+
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
