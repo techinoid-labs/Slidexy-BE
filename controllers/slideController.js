@@ -8,6 +8,7 @@ const { generateImage } = require("../services/generateImage");
 const {
   generateInfographicFromText,
 } = require("../services/generateInfographic"); // ✅ NEW
+const { fetchYouTubeMeta } = require("../services/fetchYouTubeMeta");
 
 async function generateSlidesHandler(req, res) {
   const errors = validationResult(req);
@@ -31,7 +32,29 @@ async function generateSlidesHandler(req, res) {
 
   try {
     if (source === "youtube") {
-      rawText = await fetchYouTubeTranscript(inputUrl);
+      // Extract video ID from inputUrl
+      const urlObj = new URL(inputUrl);
+      const videoId = urlObj.searchParams.get("v") || inputUrl.split("/").pop();
+      let transcript = null;
+      try {
+        transcript = await fetchYouTubeTranscript(inputUrl);
+      } catch (err) {
+        // Transcript not available, will fall back to metadata
+      }
+      if (transcript && transcript.trim().length > 0) {
+        rawText = transcript;
+      } else {
+        const metaData = await fetchYouTubeMeta(videoId);
+        rawText = `Title: ${metaData.title}\nDescription: ${
+          metaData.description
+        }\nThumbnail: ${metaData.thumbnail}\nPublish Date: ${
+          metaData.publishDate
+        }\nChannel: ${metaData.channelName}\nChannel URL: ${
+          metaData.channelUrl
+        }\nView Count: ${metaData.viewCount}\nDuration: ${
+          metaData.duration
+        }\nTags: ${metaData.tags.join(", ")}`;
+      }
     } else if (source === "website") {
       rawText = await fetchWebsiteText(inputWebsiteUrl);
     } else {
