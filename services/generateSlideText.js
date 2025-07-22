@@ -139,6 +139,7 @@ CANVAS DIMENSIONS:
         "fontSize": 38,
         "fontFamily": "Inter",
         "fill": "#333",
+       "fontWeight": "bold",
         "fontStyle": "bold"
       }
     },

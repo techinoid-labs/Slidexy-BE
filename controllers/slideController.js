@@ -9,6 +9,7 @@ const {
   generateInfographicFromText,
 } = require("../services/generateInfographic"); // ✅ NEW
 const { fetchYouTubeMeta } = require("../services/fetchYouTubeMeta");
+const { v4: uuidv4 } = require("uuid");
 
 async function generateSlidesHandler(req, res) {
   const errors = validationResult(req);
@@ -63,15 +64,63 @@ async function generateSlidesHandler(req, res) {
 
     let slides = [];
 
-    // ✅ 3. Use checkbox value instead of keyword match
-    // slides = await generateSlideText(rawText, useInfographic);
     slides = await generateSlideText(rawText, useInfographic, meta);
 
     // ✅ Generate images for each slide
+    // const slidesWithImages = await Promise.all(
+    //   slides.map(async (slide, index) => {
+    //     try {
+    //       return await generateImage(slide, index);
+    //     } catch (err) {
+    //       console.error(
+    //         `Image generation failed for slide ${index + 1}:`,
+    //         err.message
+    //       );
+    //       return {
+    //         ...slide,
+    //         image_url: null,
+    //         image_caption: "",
+    //       };
+    //     }
+    //   })
+    // );
+
     const slidesWithImages = await Promise.all(
       slides.map(async (slide, index) => {
         try {
-          return await generateImage(slide, index);
+          const imageSlide = await generateImage(slide, index);
+          const imageUrl = imageSlide.image_url;
+
+          // Remove text elements (e.g., title or paragraph)
+          const elementsWithoutText = slide.elements.filter(
+            (el) => el.element_type !== "text"
+          );
+
+          const elementsWithOnlyImage = [
+            ...elementsWithoutText,
+            {
+              element_type: "image",
+              konva_component: "Konva.Image",
+              element_id: uuidv4(),
+              properties: {
+                imageSrc: imageUrl,
+                x: 440,
+                y: 15,
+                width: 500,
+                height: 400,
+              },
+            },
+          ];
+
+          return {
+            ...slide,
+            slide_title: {
+              ...slide.slide_title,
+              text: slide.slide_title?.text,
+            },
+            image_url: imageUrl,
+            elements: elementsWithOnlyImage,
+          };
         } catch (err) {
           console.error(
             `Image generation failed for slide ${index + 1}:`,
@@ -80,13 +129,28 @@ async function generateSlidesHandler(req, res) {
           return {
             ...slide,
             image_url: null,
-            image_caption: "",
+            elements: slide.elements,
           };
         }
       })
     );
 
+    // const slidesWithElementIds = slidesWithImages.map((slide) => {
+    //   const elementsWithIds = slide.elements.map((el) => ({
+    //     ...el,
+    //     element_id: el.element_id || uuidv4(),
+    //   }));
+
+    //   return {
+    //     ...slide,
+    //     elements: elementsWithIds,
+    //   };
+    // });
+
+    const imgSlides = slidesWithImages;
+
     res.json({ slides: slidesWithImages });
+    // res.json({ slides: slidesWithElementIds });
   } catch (err) {
     console.error("Error in generate-slides:", err);
     res.status(500).json({ error: err.message || "Slide generation failed." });
