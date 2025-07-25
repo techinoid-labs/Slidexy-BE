@@ -5,8 +5,8 @@ info:
   version: 1.0.0
 
 servers:
-  - url: http://localhost:5000
-    description: Local development server
+  - url: https://dev.slidexy.net
+    description: production server
 
 paths:
   /generate-image-suggestions:
