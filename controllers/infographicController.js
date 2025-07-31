@@ -1,28 +1,29 @@
 const {
-  generatePosterTemplateImage,
+  generatePosterTemplateWithContent,
 } = require("../services/infographicService");
 
 async function getPosterTemplate(req, res) {
   try {
-    const { topic } = req.body || {}; // Use req.query if using GET instead
+    const { topic, paragraphs } = req.body;
 
     if (!topic) {
-      return res.status(400).json({
-        message: "Missing 'topic' in request body.",
-      });
+      return res.status(400).json({ message: "Missing 'topic'." });
     }
 
-    const imageData = await generatePosterTemplateImage(topic);
+    const { imageUrl, textLayout } = await generatePosterTemplateWithContent(
+      topic,
+      paragraphs
+    );
 
     res.status(200).json({
-      message: "Poster template image generated successfully.",
-      imageUrl: imageData,
+      message: "Poster generated successfully.",
+      imageUrl,
+      textLayout,
     });
   } catch (error) {
-    console.error("❌ Error in getPosterTemplate:", error);
-
+    console.error("❌ Poster generation failed:", error);
     res.status(500).json({
-      message: "Failed to generate poster template image.",
+      message: "Poster generation failed.",
       error: error.message,
     });
   }
