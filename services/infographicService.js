@@ -8,29 +8,48 @@ const { imageGenModel } = require("../utils/geminiModels");
  * @param {string} topic - The topic for which to generate related visual elements in the corners.
  * @returns {Promise<string>} The URL (base64 or direct URI) of the generated image.
  */
+
 async function generatePosterTemplateImage(topic) {
   if (!topic) {
     throw new Error("Topic is required for poster generation.");
   }
 
   const posterTemplatePrompt = `
-Create a high-quality poster design with detailed and artistic visual elements strictly positioned around the **four corners** of the poster canvas. 
-The illustrations and decorations should be related to the topic: "${topic}".
+Design a **high-resolution**, **photo-realistic**, and visually appealing **poster or vertical banner background**.
 
-🟩 BLANK CENTER:
-- Keep the entire center area completely blank or minimal.
-- Do NOT place any text, graphics, logos, or illustrations in the center.
+🎯 TOPIC:
+- All visuals should be based on the topic: "${topic}".
+- Use detailed, realistic, and artistic illustrations or photo-based elements.
 
-🔲 EDGE PLACEMENT:
-- Focus all visual elements only in the four corners of the image.
-- Leave the edges between corners light or empty.
+📐 LAYOUT:
+- Keep the entire **center area completely blank** — do NOT place any text, artwork, patterns, or background fills in the center.
+- The central area should be visually clean (white or light background), and intended for **editable text** or user content.
+
+🖼️ CORNER IMAGE PLACEMENT:
+- Place small **clusters or blocks of visuals ONLY in the four corners**:
+  - 🔹 Top-left
+  - 🔹 Top-right
+  - 🔹 Bottom-left
+  - 🔹 Bottom-right
+- Each corner should have a compact, balanced group of related images or tiles.
+- Do **not** place images along the side edges, top edge, or bottom edge — **only in the corners**.
 
 🎨 STYLE:
-- Use a modern, artistic, and clean design style.
-- Avoid adding title text or labels — only visual design.
+- Use a **modern**, **3D**, and **photo-realistic** design style.
+- Make visuals vivid, sharp, and creative — but localized to the corners only.
+- Do not add any title text or labels — the design should serve as a background.
 
-Output should be visually balanced and suitable as a poster background with corner visuals only.
+📸 QUALITY:
+- Render at high resolution with sharp detail, realistic lighting, and artistic composition.
+- Make sure the poster looks clean, professional, and perfect for overlaying custom text in the center.
+
+🧠 IMPORTANT:
+- Do **not** fill the entire poster with artwork.
+- **Only decorate the four corners** — keep the rest of the canvas blank and clean.
+
+The final design should look like a **polished poster template** with small, creative visual clusters in the top-left, top-right, bottom-left, and bottom-right corners — and a **blank, editable center**.
 `;
+
 
 
   // Logging for debugging
