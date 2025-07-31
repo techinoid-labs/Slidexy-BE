@@ -4,17 +4,16 @@ const cors = require("cors");
 const { validate } = require("./middlewares/validateInput");
 const { generateSlidesHandler } = require("./controllers/slideController");
 const { generateThemeImageHandler } = require("./controllers/themeController");
-const  customSuggestionsHandler  = require("./controllers/customSuggestionsController");
-
-
-
+const customSuggestionsHandler = require("./controllers/customSuggestionsController");
 const {
   validateThemeImageInput,
 } = require("./middlewares/validateThemeImageInput");
+const {
+  createFullInfographic,
+} = require("./controllers/infographicController");
 const path = require("path");
 const swaggerUi = require("swagger-ui-express");
 const YAML = require("yamljs");
-
 const { editTextHandler } = require("./controllers/textEditController");
 const {
   generateImageSuggestionsHandler,
@@ -39,6 +38,6 @@ app.post(
 app.post("/edit-text", editTextHandler);
 app.post("/generate-image-suggestions", generateImageSuggestionsHandler);
 app.post("/custom-suggestions", customSuggestionsHandler);
-
+app.post("/generate-infographic", validate, createFullInfographic);
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
