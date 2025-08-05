@@ -11,30 +11,53 @@ const { imageGenModel } = require("../utils/geminiModels");
 async function generatePosterTemplateWithContent(topic, paragraphs = []) {
   if (!topic) throw new Error("Topic is required.");
 
-  const posterTemplatePrompt = `
-Design a **high-resolution**, **photo-realistic** poster layout for the topic "${topic}".
+  const posterTemplatePrompt = {
+    description:
+      "Generate a high-resolution, complex, and aesthetically-pleasing vertical poster or banner template with a sophisticated and appealing design. The visual theme and color palette should be intricately and clearly related to the topic.",
+    topicPlaceholder: "${topic}",
+    requirements: {
+      noText:
+        "The image must not contain any text, letters, numbers, or words of any kind.",
+      contentPlaceholders:
+        "All content placeholders must be abstract, dynamic, and visually interesting shapes and boxes.",
+      leftSectionDesign:
+        "The left section of the template should feature a visually complex with a nuanced color palette, inspired by the provided image.",
+    },
+    layoutDetails: {
+      composition: "The template must be a single vertical composition.",
+      rightSideSections: {
+        arrangement: "Several distinct, stacked horizontal sections.",
+        backgroundColor:
+          "The background color of each section should be a different, carefully chosen, muted pastel shade that contributes to the overall aesthetic.",
+      },
+      rightSidePlaceholders: {
+        type: "Visually prominent circular placeholder.",
+        content:
+          "A sharp, clear, symbolic illustration that is abstract yet powerfully evocative of the topic.",
+      },
+    },
+  };
 
-Layout Instructions:
-- Keep the center area completely blank and white for editable text.
-- Add small, creative **visual clusters only in the four corners**:
-  - 🔹 Top-left
-  - 🔹 Top-right
-  - 🔹 Bottom-left
-  - 🔹 Bottom-right
-- Each corner should reflect the topic visually but avoid clutter.
-- No images or patterns outside of corners.
-- Do NOT include any text in the visuals. Only image design.
-- The center must remain empty — clean background only.
+  // Dynamically construct the prompt string from the JSON object.
+  // This ensures the JSON is the single source of truth for the prompt's content.
+  const promptText = `
+    ${posterTemplatePrompt.description} The topic is: "${topic}".
+    
+    STRICT REQUIREMENTS:
+    - ${posterTemplatePrompt.requirements.noText}
+    - ${posterTemplatePrompt.requirements.contentPlaceholders}
+    - ${posterTemplatePrompt.requirements.leftSectionDesign}
 
-Style:
-- Modern, artistic, high-quality.
-- Clean white center.
-- Vivid visuals in corners only.
-`;
+    Layout Details:
+    - ${posterTemplatePrompt.layoutDetails.composition}
+    - ${posterTemplatePrompt.layoutDetails.rightSideSections.arrangement}
+    - ${posterTemplatePrompt.layoutDetails.rightSideSections.backgroundColor}
+    - On the right side of each section, there must be a ${posterTemplatePrompt.layoutDetails.rightSidePlaceholders.type} containing a sharp, clear, symbolic illustration that is abstract yet powerfully evocative of the "${topic}".
+  `;
 
   const response = await imageGenLimiter.schedule(() =>
     imageGenModel.generateContent({
-      contents: [{ role: "user", parts: [{ text: posterTemplatePrompt }] }],
+      contents: [{ role: "user", parts: [{ text: promptText }] }],
       generationConfig: { responseModalities: ["IMAGE", "TEXT"] },
     })
   );
