@@ -5,9 +5,6 @@ const {
 } = require("../services/fetchYouTubeTranscript");
 const { generateSlideText } = require("../services/generateSlideText");
 const { generateImage } = require("../services/generateImage");
-const {
-  generateInfographicFromText,
-} = require("../services/generateInfographic"); // ✅ NEW
 const { fetchYouTubeMeta } = require("../services/fetchYouTubeMeta");
 const { v4: uuidv4 } = require("uuid");
 
@@ -21,19 +18,14 @@ async function generateSlidesHandler(req, res) {
     inputUrl,
     textContent,
     inputWebsiteUrl,
-    isInfographicMode, // ✅ 1. Extract from body
-    meta = {}, // ✅ fallback to empty object
+    meta = {},
+    slideCount = 3,
   } = req.body;
-
-  // ✅ 2. Coerce string "true"/"false" to boolean
-  const useInfographic =
-    isInfographicMode === true || isInfographicMode === "true";
 
   let rawText = "";
 
   try {
     if (source === "youtube") {
-      // Extract video ID from inputUrl
       const urlObj = new URL(inputUrl);
       const videoId = urlObj.searchParams.get("v") || inputUrl.split("/").pop();
       let transcript = null;
@@ -64,26 +56,7 @@ async function generateSlidesHandler(req, res) {
 
     let slides = [];
 
-    slides = await generateSlideText(rawText, useInfographic, meta);
-
-    // ✅ Generate images for each slide
-    // const slidesWithImages = await Promise.all(
-    //   slides.map(async (slide, index) => {
-    //     try {
-    //       return await generateImage(slide, index);
-    //     } catch (err) {
-    //       console.error(
-    //         `Image generation failed for slide ${index + 1}:`,
-    //         err.message
-    //       );
-    //       return {
-    //         ...slide,
-    //         image_url: null,
-    //         image_caption: "",
-    //       };
-    //     }
-    //   })
-    // );
+    slides = await generateSlideText(rawText, meta, slideCount);
 
     const slidesWithImages = await Promise.all(
       slides.map(async (slide, index) => {

@@ -8,9 +8,6 @@ const customSuggestionsHandler = require("./controllers/customSuggestionsControl
 const {
   validateThemeImageInput,
 } = require("./middlewares/validateThemeImageInput");
-// const { // Removed createFullInfographic import if no longer used anywhere else
-//   createFullInfographic,
-// } = require("./controllers/infographicController");
 const path = require("path");
 const swaggerUi = require("swagger-ui-express");
 const YAML = require("yamljs");
@@ -41,7 +38,6 @@ app.post(
 app.post("/edit-text", editTextHandler);
 app.post("/generate-image-suggestions", generateImageSuggestionsHandler);
 app.post("/custom-suggestions", customSuggestionsHandler);
-// app.post("/generate-infographic", validate, createFullInfographic); // <-- REMOVED THIS LINE
 
 // Add the new route for the poster template image generation
 app.post("/generate-poster-template", getPosterTemplate);
