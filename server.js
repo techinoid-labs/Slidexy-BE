@@ -16,6 +16,13 @@ const {
   generateImageSuggestionsHandler,
 } = require("./controllers/regenerateImageController");
 
+const {
+  generatePptTemplateHandler,
+} = require("./controllers/templateGenerateController");
+const {
+  validateTemplateInput,
+} = require("./middlewares/validateTemplateInput");
+
 // Import the new poster template controller
 const { getPosterTemplate } = require("./controllers/infographicController");
 
@@ -41,5 +48,10 @@ app.post("/custom-suggestions", customSuggestionsHandler);
 
 // Add the new route for the poster template image generation
 app.post("/generate-poster-template", getPosterTemplate);
+app.post(
+  "/generate-ppt-template",
+  validateTemplateInput,
+  generatePptTemplateHandler
+);
 
 app.listen(port, () => console.log(`Server running on port ${port}`));

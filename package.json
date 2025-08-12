@@ -27,6 +27,7 @@
     "node-fetch": "^3.3.2",
     "node-llama-cpp": "^3.10.0",
     "openai": "^5.10.2",
+    "pptxgenjs": "^4.0.1",
     "replicate": "^1.0.1",
     "swagger": "^0.7.5",
     "swagger-ui-express": "^5.0.1",
