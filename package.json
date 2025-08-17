@@ -25,6 +25,7 @@
     "express-validator": "^7.2.1",
     "json5": "^2.2.3",
     "mermaid": "^11.9.0",
+    "mongoose": "^8.17.1",
     "node-fetch": "^3.3.2",
     "node-llama-cpp": "^3.10.0",
     "openai": "^5.10.2",
@@ -36,5 +37,13 @@
     "winston": "^3.17.0",
     "yamljs": "^0.3.0",
     "youtube-transcript": "^1.2.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/techinoid-labs/neuro-engine.git"
+  },
+  "bugs": {
+    "url": "https://github.com/techinoid-labs/neuro-engine/issues"
+  },
+  "homepage": "https://github.com/techinoid-labs/neuro-engine#readme"
 }
