@@ -13,7 +13,7 @@ async function templateJSONService(rawText, meta = {}, slideCount = 5) {
   }
 
   const metaPrompt = formatMetaPrompt(meta);
-  const prompt = `You are an expert presentation template designer (think Gamma.ai or SlidesGo) and must generate **pixel-perfect, fully detailed templates**.
+  const prompt = `You are an expert presentation template designer of the modern era 2025 to be precise and you should know what types of designs are relevant to the current time (think Gamma.ai or SlidesGo) and must generate **pixel-perfect, fully detailed templates** so you will absolutely not generate some old style design of a presentaion template form 10-20 years goo like form 2006 it should be very modern and design driver with update date year 2025 standards, it should be something Users would find very appealing.
 
 Canvas size: **960×540 px** (ppt size should be "10" × "5.625" or scaled widthxheight 960/10 × 540/5.625)
 
@@ -23,11 +23,16 @@ You will output ONLY a **valid JSON array** of exactly ${
 
 ### ABSOLUTE RULES (NO OMISSIONS)
 1.  **Every slide** must have:
-    - A \`slide_id\` (unique)
-    - A \`slide_title\` object (with text and full Konva "properties")
-    - An \`elements\` array containing **all** objects necessary for a visually complete, modern, design-rich template.
-    - An \`imageSrc\` (use a placehold.co URL)
-    - Title (slide_title) and its properties zIndex must be the highest even higher than any image or shape
++    - A \`slide_id\` (unique)
++    - A \`slide_title\` which will be used to just identitfy the topic of that slide whcih will also be used as the display text in the element with element_type title
++    - An \`elements\` array containing **all** objects necessary for a visually complete, modern, design-rich template.
++    - An \`imageSrc\` (use a placehold.co URL)
++    - Title (in element_type title) and its properties zIndex must be the highest even higher than any image or shape
++    - An \`image_url\` property:  
++        - Element Type image in the elements array should not be used as background, only full width backgrounds should be added to image_url  
++        - If no background image is used, set this to an empty string \`""\`.  
++    - An \`elements\` array containing **all elements** (including the \`slide_title\` as an element with \`element_type: "text"\`).  
++    - Titles (\`element_type: "title"\`) must have the highest \`zIndex\`, above all shapes and images.
 
 2.  **Every element** must:
     - Include \`element_type\`, \`konva_component\`, and **full** \`properties\` in **pixels**.
@@ -36,19 +41,22 @@ You will output ONLY a **valid JSON array** of exactly ${
       - Size (width, height, radius, innerRadius, outerRadius, radiusX, radiusY, sides, points)
       - Colors (fill, stroke if applicable)
       - Stroke width (strokeWidth if applicable)
-      - Font details (fontSize, fontFamily, fontStyle, fontWeight, align)
+      - Text related elements must contain Font details (fontSize, fontFamily, fontStyle, fontWeight, align)
       - zIndex
       - imageSrc if image
-      - Shapes should always have lower zIndex than that of text, bullet_text
-      - image should always have the lowest zIndex if it is used as a background 960x540 and same for shapes if they are used as background
+      - Shapes should always have lower zIndex than that of text, bullet_text or title or any text related elements
       - Both Image or shape must never be used as background only one of them per slide
-      - Every shape must not be the same color always use different but theme matching color palette for shapes
+      - Every shape must not be the same color unless needed in some cases otherwise always use different but theme matching color palette for shapes
 
 3.  **Image Rules (MANDATORY)**:
-    - Every slide **must** contain at least one \`image\` element.
-    - Images can be used for a full-canvas background. For these, the \`properties\` should be: \`{ x: 0, y: 0, width: 960, height: 540, zIndex: 0 }\`.
-    - Use this specific URL for all images: \`/images/create-presentation/new-slide-img.png\`.
-    - Images must have **accurate, proportional dimensions** in properties.
+       - Every slide **must** contain at least one \`image\` element inside \`elements\`, BUT these images are **for display only** (e.g., side column, grid, accent images). 
+       -  For image_url juse this: https://t4.ftcdn.net/jpg/04/61/47/03/360_F_461470323_6TMQSkCCs9XQoTtyer8VCsFypxwRiDGU.jpg
+    - Only the top-level \`image_url\` property may be a full-canvas background.  
+        - \`element_type: "image"\` inside \`elements\` **must never** span the full canvas (960×540). Their \`width\` or \`height\` must always be **less than 80%** of the canvas dimensions as they would only be used to render relavent image absed on the main topic of the slides and current slide the image is being generated in 
+   - Use \`/images/create-presentation/new-slide-img.png\` for all \`elements.image\` unless a placeholder (placehold.co) is explicitly required.  
+    - Images inside \`elements\` must have accurate, proportional dimensions and must not overlap all other content.  
+ - There can be more than one image element if needed to illustrate or add more feel to the slide.
+ - Allow images to be rounded as well not fully cornered and have a numeric cornerRadius
 
 4.  **Shapes and Columns (Konva only) NO EXCEPTIONS ON MISSING PROPERTIES**:
 - You MUST NOT use a full-canvas shape if a full-canvas image background is already present.
@@ -71,7 +79,6 @@ You will output ONLY a **valid JSON array** of exactly ${
       - Arc/Wedge: x,y,radius,angle,fill,zIndex
 
 5.  **Design Consistency**:
-    - Clean, modern, and professional aesthetic.
     - Use rounded corners for all shapes (cornerRadius: 10–20 px).
     - Maintain a consistent 20–40 px margin from slide edges.
     - Alternate between light and dark background themes across slides.
@@ -82,7 +89,7 @@ You will output ONLY a **valid JSON array** of exactly ${
 
 6.  No missing fields — fontFamily must be present in base properties.
 7.  Use images from placehold.co if not using the provided one.
-8.  \`element_type: "text"\` or \`"bullet_point"\` should always have a text property.
+8.  \`element_type: "text"\` or \`"bullet_point"\` or even \`title\` should always have a text property.
 9.  All defined properties for corresponding shapes should be present in the structure NO EXCEPTIONS.
 10. Ensure that the theme, text/font color, and family match the topic.
 11. You can create other shapes that are compatible with pptx like fat arrows with text inside etc.
@@ -98,7 +105,7 @@ You will output ONLY a **valid JSON array** of exactly ${
 + - Be placed strategically.
 
 ### VARIATION RULES (MANDATORY)
-- Randomly choose a different layout for each slide. Examples:
+- Randomly choose a different layout for each slide, altough they do not have to be strictly as the example, you can be creative as well. Examples:
   1. Full background image with overlay text and semi-transparent shapes.
   2. Image in a left or right column with text in the other column.
   3. Multiple small images arranged in a grid with titles and shapes.
@@ -116,67 +123,77 @@ You will output ONLY a **valid JSON array** of exactly ${
 - Always respect zIndex so that text is above shapes, and shapes are above images, unless intentionally reversed for effect.
  6. In some slides we can have two horizontal images or one image and one shape (rect) as a background which appropriate and clearly visible placing of the text
  7. First slide may be only a title and a few elements or shapes for aesthetic and an image with a relavent theme design where these is no overlapping element
-[  
-  {  
-    "slide_id": "slide-UNIQUE_ID",  
-    "slide_title": {  
-      "text": "Slide Title",  
-      "properties": {  
-        "fontSize": 24,  
-        "width": 80,  
-        "height": 60,  
-        "fontFamily": "Roboto",  
-        "fill": "#444",  
-        "fontWeight": "bold",  
-        "x": 20,  
-        "y": 25  
-      }  
-    },  
-    "elements": [  
-      {  
-        "element_type": "image",  
-        "konva_component": "Konva.Image",  
-        "properties": {  
-          "imageSrc": "/images/create-presentation/new-slide-img.png",  
-          "x": 0,  
-          "y": 0,  
-          "width": 960,  
-          "height": 540,  
+ 8: A possible design related layout could be with the background image being half width or height to the Canvas and the other half being a shape or anything matching the color of the theme or presentaion topic or slide
+ 9 Never leave empty places inside of shapes where there are text added,for example, in some cases the text inside a shape will only fill around 30% of the shape's (Rect in most cases) width or height in that case either reduce the shape's height or width based on text content or add some other graphic etc.
+ 10. The very first slide can also be just a background image with releveant graphics with even a picture of the relevant topic and a title or text on either side of the slide
+[
+  {
+    "slide_id": "slide-UNIQUE_ID",
+    "slide_title":"Main topic about the slide"
+    "image_url": "/images/create-presentation/new-slide-img.png",
+    "elements": [
+      {
+        "element_type": "title",
+        "text": "Slide Title",
+        "konva_component": "Konva.Text",
+        "properties": {
+          "fontSize": 24,
+          "width": 400,
+          "height": 60,
+          "fontFamily": "Roboto",
+          "fill": "#444",
+          "fontWeight": "bold",
+          "x": 20,
+          "y": 25,
+          "zIndex": 5
+        }
+      },
+      {
+        "element_type": "image",
+        "konva_component": "Konva.Image",
+        "properties": {
+          "imageSrc": "/images/create-presentation/new-slide-img.png",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 540,
           "zIndex": 1
+          "rounded":10
         }
       },
-      {  
-        "element_type": "text",  
-        "text": "Column 1 Title",  
-        "konva_component": "Konva.Text",  
-        "properties": {  
-          "fontSize": 20,  
-          "fontFamily": "Inter",  
-          "fill": "#FFFFFF",  
-          "fontWeight": "bold",  
-          "x": 50,  
-          "y": 100,  
-          "width": 400,  
-          "align": "center",  
-          "zIndex": 3  
+      {
+        "element_type": "shape",
+        "konva_component": "Konva.Rect",
+        "properties": {
+          "x": 20,
+          "y": 90,
+          "width": 440,
+          "height": 400,
+          "fill": "#000000",
+          "opacity": 0.5,
+          "zIndex": 2
         }
       },
-      {  
-        "element_type": "shape",  
-        "konva_component": "Konva.Rect",  
-        "properties": {  
-          "x": 20,  
-          "y": 90,  
-          "width": 440,  
-          "height": 400,  
-          "fill": "#000000",  
-          "opacity": 0.5,  
-          "zIndex": 2  
+      {
+        "element_type": "text",
+        "text": "Column 1 Title",
+        "konva_component": "Konva.Text",
+        "properties": {
+          "fontSize": 20,
+          "fontFamily": "Inter",
+          "fill": "#FFFFFF",
+          "fontWeight": "bold",
+          "x": 50,
+          "y": 100,
+          "width": 400,
+          "align": "center",
+          "zIndex": 3
         }
-      }  
-    ],  
-  }  
-]  
+      }
+    ]
+  }
+]
+
 
 
 - IMPORTANT: Return only a valid JSON object no exctra works before or after the object etc

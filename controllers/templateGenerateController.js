@@ -2,7 +2,7 @@ const crypto = require("crypto");
 const { templateJSONService } = require("../services/templateJSONService");
 const {
   generateTemplateImageService,
-} = require("../services/generateTemplateImageService"); // new service
+} = require("../services/generateTemplateImageService");
 
 const generatePptTemplateHandler = async (req, res) => {
   try {
@@ -19,60 +19,59 @@ const generatePptTemplateHandler = async (req, res) => {
       return res.status(500).json({ error: "Invalid template format from AI" });
     }
 
-    // 2. Generate images for only `image` elements
+    // Step 2: Generate images (background + element images)
     for (const slide of slidesArray) {
+      // Background
+      if (slide.image_url) {
+        const bgPrompt = `Background image for slide on topic "${topic}"`;
+        const aiBgBase64 = await generateTemplateImageService(
+          bgPrompt,
+          crypto.randomUUID(),
+          { slide, element: null }
+        );
+        slide.image_url = aiBgBase64;
+      }
+
+      // Image elements
       for (const el of slide.elements || []) {
         if (el.element_type === "image") {
-          // Build a richer prompt from the whole slide
+          const titleEl = slide.elements.find((e) => e.role === "title");
           const promptParts = [
             `Topic: ${topic}`,
-            slide.slide_title?.text ? `Title: ${slide.slide_title.text}` : "",
+            titleEl?.text ? `Title: ${titleEl.text}` : "",
           ].filter(Boolean);
 
           const prompt = promptParts.join(" | ");
 
-          // Pass full slide + element so service can use more context if needed
           const aiImageBase64 = await generateTemplateImageService(
             prompt,
             crypto.randomUUID(),
             { slide, element: el }
           );
 
-          // Replace imageSrc with the base64 image string
           el.properties.imageSrc = aiImageBase64;
         }
       }
     }
 
-    // Step 3: Map into your final presentation structure
+    // Step 3: Map into final presentation structure
     const presentation = {
       slides: slidesArray.map((slide) => ({
         slide_id: slide.slide_id || crypto.randomUUID(),
-        slide_title: {
-          text: slide.slide_title?.text || "",
-          properties: {
-            zIndex: slide.slide_title?.properties?.zIndex ?? 200,
-            fontSize: slide.slide_title?.properties?.fontSize || 24,
-            width: slide.slide_title?.properties?.width || 600,
-            height: slide.slide_title?.properties?.height || 50,
-            fontFamily: slide.slide_title?.properties?.fontFamily || "Arial",
-            fill: slide.slide_title?.properties?.fill || "#000000",
-            fontWeight: slide.slide_title?.properties?.fontWeight || "normal",
-            x: slide.slide_title?.properties?.x || 0,
-            y: slide.slide_title?.properties?.y || 0,
-            align: slide.slide_title?.properties?.align || "left",
-          },
-        },
+        slide_title: slide.slide_title,
+        image_url: slide.image_url || "",
         elements: (slide.elements || []).map((el) => {
           const base = {
             element_id: crypto.randomUUID(),
             element_type: el.element_type,
             konva_component: el.konva_component,
+            role: el.role, // keep track if it's a title
           };
 
           if (
             el.element_type === "text" ||
-            el.element_type === "bullet_point"
+            el.element_type === "bullet_point" ||
+            el.element_type === "title"
           ) {
             return {
               ...base,
@@ -130,13 +129,13 @@ const generatePptTemplateHandler = async (req, res) => {
                 y: el.properties?.y || 0,
                 width: el.properties?.width || 100,
                 height: el.properties?.height || 100,
+                rounded: el.properties?.rounded || 1,
               },
             };
           }
 
           return base;
         }),
-        image_url: slide.image_url || "",
       })),
     };
 
