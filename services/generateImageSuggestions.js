@@ -1,8 +1,6 @@
 const { imageGenModel } = require("../utils/geminiModels");
 const { imageGenLimiter } = require("../utils/limiter");
 
-const API_KEY = process.env.API_KEY || "";
-
 async function generateImageSuggestions(prompt, count) {
   const imageUrls = [];
 

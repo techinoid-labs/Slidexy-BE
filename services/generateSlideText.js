@@ -21,7 +21,7 @@ async function generateSlideText(rawText, meta = {}, slideCount = 3) {
 You are an expert slide creator. Based on the following content, generate a professional presentation broken into multiple slides.
 
 Important Instructions:
-- You MUST generate exactly ${slideCount} slides, however give importance to how many slides based on the "${rawText}" has mentioned in the prompt within the quotation.
+- You MUST generate exactly ${slideCount} slides, however give importance to how many slides based on the "prompt:${rawText}" has mentioned in the prompt within the quotation.
 - DO NOT summarize the content into fewer slides even if the content seems short.
 - If the content appears limited, create multiple slides by expanding, elaborating, or repeating key ideas with different perspectives.
 
@@ -30,7 +30,7 @@ CANVAS DIMENSIONS:
 
 - Each slide must contain:
   - Title (max 8 words)
-  - max 2 to 3 bullet points (max 10 words each)
+  - max 3 to 5 bullet points (min 5 and max 10 words each)
 
 - Match the generated text content to be matching the the below meta object like tone, audience etc:
  - ${metaPrompt}
