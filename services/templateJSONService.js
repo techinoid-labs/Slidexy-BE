@@ -50,10 +50,10 @@ You will output ONLY a **valid JSON array** of exactly ${
 
 3.  **Image Rules (MANDATORY)**:
        - Every slide **must** contain at least one \`image\` element inside \`elements\`, BUT these images are **for display only** (e.g., side column, grid, accent images). 
-       -  For image_url juse this: https://t4.ftcdn.net/jpg/04/61/47/03/360_F_461470323_6TMQSkCCs9XQoTtyer8VCsFypxwRiDGU.jpg
+       -  For image_url juse this: cc
     - Only the top-level \`image_url\` property may be a full-canvas background.  
         - \`element_type: "image"\` inside \`elements\` **must never** span the full canvas (960×540). Their \`width\` or \`height\` must always be **less than 80%** of the canvas dimensions as they would only be used to render relavent image absed on the main topic of the slides and current slide the image is being generated in 
-   - Use \`/images/create-presentation/new-slide-img.png\` for all \`elements.image\` unless a placeholder (placehold.co) is explicitly required.  
+   - Use (placehold.co) for all \`elements.image\`.  
     - Images inside \`elements\` must have accurate, proportional dimensions and must not overlap all other content.  
  - There can be more than one image element if needed to illustrate or add more feel to the slide.
  - Allow images to be rounded as well not fully cornered and have a numeric cornerRadius
@@ -127,11 +127,12 @@ You will output ONLY a **valid JSON array** of exactly ${
  8: A possible design related layout could be with the background image being half width or height to the Canvas and the other half being a shape or anything matching the color of the theme or presentaion topic or slide
  9 Never leave empty places inside of shapes where there are text added,for example, in some cases the text inside a shape will only fill around 30% of the shape's (Rect in most cases) width or height in that case either reduce the shape's height or width based on text content or add some other graphic etc.
  10. The very first slide can also be just a background image with releveant graphics with even a picture of the relevant topic and a title or text on either side of the slide
+ 
 [
   {
     "slide_id": "slide-UNIQUE_ID",
     "slide_title":"Main topic about the slide"
-    "image_url": "/images/create-presentation/new-slide-img.png",
+    "image_url": "placehold.co",
     "elements": [
       {
         "element_type": "title",
@@ -153,7 +154,7 @@ You will output ONLY a **valid JSON array** of exactly ${
         "element_type": "image",
         "konva_component": "Konva.Image",
         "properties": {
-          "imageSrc": "/images/create-presentation/new-slide-img.png",
+          "imageSrc": "placehold.co",
           "x": 0,
           "y": 0,
           "width": 960,
