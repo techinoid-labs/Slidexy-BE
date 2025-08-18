@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const swaggerUi = require("swagger-ui-express");
 const YAML = require("yamljs");
+const User = require("./models/WaitingUser");
 
 const {
   generatePptTemplateHandler,
@@ -15,13 +16,6 @@ const {
 
 // Import the new poster template controller
 // ====== MongoDB Connection ======
-mongoose
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("Connected to MongoDB Atlas"))
-  .catch((err) => console.error("MongoDB connection error:", err));
 
 // ====== Import Middlewares & Controllers ======
 const { validate } = require("./middlewares/validateInput");
@@ -41,6 +35,19 @@ const { getPosterTemplate } = require("./controllers/infographicController");
 const swaggerDocument = YAML.load(path.join(__dirname, "swagger.yaml"));
 
 // ====== Initialize App ======
+
+mongoose
+  .connect(
+    process.env.MONGO_URI ||
+      "mongodb+srv://fizaamjadtechinoid:55b7HRbchKvsQoFV@cluster0.sjg81ks.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
+  .then(() => console.log("Connected to MongoDB Atlas"))
+  .catch((err) => console.error("MongoDB connection error:", err));
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -64,8 +71,6 @@ app.post(
   validateTemplateInput,
   generatePptTemplateHandler
 );
-
-const User = require("./models/WaitingUser");
 
 app.post("/join-waitlist", async (req, res) => {
   try {
