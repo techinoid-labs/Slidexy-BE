@@ -38,6 +38,8 @@ You are an expert presentation template designer of the modern era 2025 to be pr
 
 So basically based on the above the image generated here should be very strictly relevant to what is needed based on the ${topicOfImage}
 
+IMPORTANT NOTE: Generated images needs to be precisely based on the underleying topic and theme not just basic stuff or minimalist graphics and needs to match what the ${topicOfImage} is talking about.
+
 Structure where the images would be added
 
 object structure for sldies: {

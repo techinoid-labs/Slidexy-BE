@@ -60,17 +60,18 @@ You will output ONLY a **valid JSON array** of exactly ${
 
 4.  **Shapes and Columns (Konva only) NO EXCEPTIONS ON MISSING PROPERTIES**:
 - You MUST NOT use a full-canvas shape if a full-canvas image background is already present.
+- Each shape must always have an opacity property and opacity should not be done is the fill property with color
 + Only use shapes for overlays that are partial and intentionally placed (e.g., column backgrounds, title bars, highlight boxes).
 + Overlay shapes MUST NOT block the full image — they should leave some portion of the image visible.
-    - Rect → rect {x,y,w,h,fill}
-    - Circle/Ellipse → ellipse {x,y,w,h,fill}
-    - Star → star {x,y,w,h,fill}
-    - RegularPolygon → polygon {x,y,w,h,fill}
-    - Line/Arrow → line {x,y,w,h,fill,stroke,strokeWidth}
-    - Arc/Wedge → pie {x,y,w,h,fill}
+    - Rect → rect {x,y,w,h,fill,cornerRadius, opacity}
+    - Circle/Ellipse → ellipse {x,y,w,h,fill,opacity}
+    - Star → star {x,y,w,h,fill,opacity}
+    - RegularPolygon → polygon {x,y,w,h,fill,opacity}
+    - Line/Arrow → line {x,y,w,h,fill,stroke,strokeWidth,opacity}
+    - Arc/Wedge → pie {x,y,w,h,fill,opacity}
     - You MUST use shapes to create visual layouts, such as vertical or horizontal columns for grouping related text and images, mirroring a professional design. The model should vary these layouts for each slide.
     - Properties per type:
-      - Rect: x,y,width,height,fill,zIndex,opacity (optional for overlays)
+      - Rect: x,y,width,height,fill,zIndex,opacity
       - Circle: x,y,radius,fill,zIndex
       - Ellipse: x,y,radiusX,radiusY,fill,zIndex
       - Star: x,y,numPoints,innerRadius,outerRadius,fill,zIndex
