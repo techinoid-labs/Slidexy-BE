@@ -1,16 +1,20 @@
 const { imageGenLimiter } = require("../utils/limiter");
 const { imageGenModel } = require("../utils/geminiModels");
+const { extractTopicAndParagraphs } = require("../utils/extract");
 
 /**
- * Generates a poster with visuals in the four corners and maps given content paragraphs to each zone.
+ * Generates a poster with visuals in the four corners and maps extracted content paragraphs to each zone.
  *
- * @param {string} topic - The topic to generate poster visuals for.
- * @param {string[]} paragraphs - Array of up to 5 paragraphs (top-left, top-right, bottom-left, bottom-right, center).
- * @returns {Promise<{ imageUrl: string, textLayout: object }>}
+ * @param {string} rawPrompt - The user-provided topic or description.
+ * @returns {Promise<{ topic: string, imageUrl: string, textLayout: object, paragraphs: string[] }>}
  */
-async function generatePosterTemplateWithContent(topic, paragraphs = []) {
-  if (!topic) throw new Error("Topic is required.");
+async function generatePosterTemplateWithContent(rawPrompt) {
+  if (!rawPrompt) throw new Error("Prompt is required.");
 
+  // ✅ Step 1: Extract topic + paragraphs
+  const { topic, paragraphs } = await extractTopicAndParagraphs(rawPrompt);
+
+  // ✅ Step 2: Build the poster template prompt
   const posterTemplatePrompt = {
     description: `Design a clean, vertical infographic-style poster template with four stacked sections. Each section must include an empty content block and a cartoon-style symbolic illustration. The sections should be connected visually with curved arrows to indicate a step-by-step or timeline progression. The overall design should be soft, friendly, modern, and directly reflect the topic "${topic}".`,
 
@@ -44,13 +48,6 @@ All illustrations must be clear, unique per section, and styled consistently. Av
     },
   };
 
-
-
-
-
-
-  // Dynamically construct the prompt string from the JSON object.
-  // This ensures the JSON is the single source of truth for the prompt's content.
   const promptText = `
     ${posterTemplatePrompt.description} The topic is: "${topic}".
     
@@ -58,7 +55,6 @@ All illustrations must be clear, unique per section, and styled consistently. Av
     - ${posterTemplatePrompt.requirements.noText}
     - ${posterTemplatePrompt.requirements.contentPlaceholders}
     - ${posterTemplatePrompt.requirements.leftSectionDesign}
-    - ${posterTemplatePrompt.requirements.resolution}
 
     Layout Details:
     - ${posterTemplatePrompt.layoutDetails.composition}
@@ -67,6 +63,7 @@ All illustrations must be clear, unique per section, and styled consistently. Av
     - On the right side of each section, there must be a ${posterTemplatePrompt.layoutDetails.rightSidePlaceholders.type} containing a sharp, clear, symbolic illustration that is abstract yet powerfully evocative of the "${topic}".
   `;
 
+  // ✅ Step 3: Generate poster image
   const response = await imageGenLimiter.schedule(() =>
     imageGenModel.generateContent({
       contents: [{ role: "user", parts: [{ text: promptText }] }],
@@ -87,11 +84,9 @@ All illustrations must be clear, unique per section, and styled consistently. Av
     }
   }
 
-  if (!imageUrl) {
-    throw new Error("No image found in Gemini response.");
-  }
+  if (!imageUrl) throw new Error("No image found in Gemini response.");
 
-  // Map paragraphs to locations
+  // ✅ Step 4: Map paragraphs into textLayout
   const locations = [
     "topLeft",
     "topRight",
@@ -100,12 +95,16 @@ All illustrations must be clear, unique per section, and styled consistently. Av
     "center",
   ];
   const textLayout = {};
-
   paragraphs.slice(0, 5).forEach((text, i) => {
     textLayout[locations[i]] = text;
   });
 
-  return { imageUrl, textLayout };
+  return {
+    topic,
+    imageUrl,
+    textLayout,
+    paragraphs,
+  };
 }
 
 module.exports = { generatePosterTemplateWithContent };
