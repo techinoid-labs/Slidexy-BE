@@ -1,8 +1,7 @@
 const crypto = require("crypto");
 const { templateJSONService } = require("../services/templateJSONService");
-const {
-  generateTemplateImageService,
-} = require("../services/generateTemplateImageService");
+const { generateTemplateImageService } = require("../services/generateTemplateImageService");
+const { bridgeTemplate } = require("../services/templateBridgeServices"); 
 
 const generatePptTemplateHandler = async (req, res) => {
   try {
@@ -12,15 +11,16 @@ const generatePptTemplateHandler = async (req, res) => {
       return res.status(400).json({ error: "Topic is required" });
     }
 
-    // Step 1: Generate slide JSON from AI
     const slidesArray = await templateJSONService(topic, meta, slideCount);
-
     if (!Array.isArray(slidesArray)) {
       return res.status(500).json({ error: "Invalid template format from AI" });
     }
 
-    // Step 2: Generate images (background + element images)
-    for (const slide of slidesArray) {
+
+    const normalizedSlides = bridgeTemplate(slidesArray);
+
+    // Step 3: Generate images (background + element images)
+    for (const slide of normalizedSlides) {
       // Background
       if (slide.image_url) {
         const bgPrompt = `Background image for slide on topic "${topic}"`;
@@ -54,9 +54,9 @@ const generatePptTemplateHandler = async (req, res) => {
       }
     }
 
-    // Step 3: Map into final presentation structure
+    // Step 4: Map into final presentation structure
     const presentation = {
-      slides: slidesArray.map((slide) => ({
+      slides: normalizedSlides.map((slide) => ({
         slide_id: slide.slide_id || crypto.randomUUID(),
         slide_title: slide.slide_title,
         image_url: slide.image_url || "",
@@ -65,14 +65,10 @@ const generatePptTemplateHandler = async (req, res) => {
             element_id: crypto.randomUUID(),
             element_type: el.element_type,
             konva_component: el.konva_component,
-            role: el.role, // keep track if it's a title
+            role: el.role,
           };
 
-          if (
-            el.element_type === "text" ||
-            el.element_type === "bullet_point" ||
-            el.element_type === "title"
-          ) {
+          if (["text", "bullet_point", "title"].includes(el.element_type)) {
             return {
               ...base,
               text: el.text || "Text here",
