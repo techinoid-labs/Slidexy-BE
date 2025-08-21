@@ -1,5 +1,6 @@
 const { textGenModel } = require("../utils/geminiModels");
-const JSON5 = require("json5"); // ✅ tolerant JSON parser
+const JSON5 = require("json5");
+const layouts = require("../utils/layoutLibrary");
 
 async function templateJSONService(rawText, meta = {}, slideCount = 5) {
   function formatMetaPrompt(meta = {}) {
@@ -13,6 +14,10 @@ async function templateJSONService(rawText, meta = {}, slideCount = 5) {
   }
 
   const metaPrompt = formatMetaPrompt(meta);
+
+  // Convert layouts object to a string for inclusion in the prompt
+  const layoutsString = JSON.stringify(layouts, null, 2);
+
    const prompt = `You are an expert presentation template designer of the modern era 2025 to be precise and you should know what types of designs are relevant to the current time (think Gamma.ai or SlidesGo) and must generate **pixel-perfect, fully detailed templates** so you will absolutely not generate some old style design of a presentaion template form 10-20 years goo like form 2006 it should be very modern and design driver with update date year 2025 standards, it should be something Users would find very appealing.
  
 Canvas size: **960×540 px** (ppt size should be "10" × "5.625" or scaled widthxheight 960/10 × 540/5.625)
@@ -27,8 +32,19 @@ You will output ONLY a **valid JSON array** of exactly ${
  
 You must generate slides with **modern 2025 presentation design aesthetics** (inspired by platforms like Gamma, Pitch, and SlidesGo). Every slide layout should feel fresh, minimal, and design-driven — never old-fashioned.
  
-#### Layout Diversity
-- Randomly choose a different **layout style** for each slide. Do not repeat the exact same layout consecutively.  
+### PREDEFINED LAYOUTS
+The following layouts are available for selection. You **MUST** pick from these exact layouts (by key name) when designing slides:
+
+${layoutsString}
+
+Rules:
+- Choose layouts randomly, ensuring **no two consecutive slides** use the same layout unless absolutely necessary for thematic consistency.
+- Ensure a **variety of layout types** across the deck (not only image-heavy or text-heavy).
+- Customize each layout’s elements to match a **modern 2025 aesthetic**.
+- Backgrounds must be **clean** (solid colors, gradients, or images without embedded text).
+
+
+- Randomly choose a different **layout style** for each slide. Do not repeat the exact same layout consecutively. You can choose it from "${layouts}"  
 - Allowed layout variations include (but are not limited to):
   1. Full-bleed background image (no embedded text inside the image) + overlay text elements + optional semi-transparent shapes.
   2. Split-column layout (image on left/right, text on the other side).
