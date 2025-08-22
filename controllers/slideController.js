@@ -8,6 +8,34 @@ const { generateImage } = require("../services/generateImage");
 const { fetchYouTubeMeta } = require("../services/fetchYouTubeMeta");
 const { v4: uuidv4 } = require("uuid");
 
+function extractYouTubeVideoId(url) {
+  try {
+    const parsedUrl = new URL(url);
+    let videoId = null;
+
+    if (parsedUrl.hostname.includes("youtu.be")) {
+      videoId = parsedUrl.pathname.slice(1);
+    } else if (parsedUrl.pathname.startsWith("/shorts/")) {
+      videoId = parsedUrl.pathname.split("/")[2];
+    } else if (parsedUrl.pathname.startsWith("/embed/")) {
+      videoId = parsedUrl.pathname.split("/")[2];
+    } else {
+      videoId = parsedUrl.searchParams.get("v");
+    }
+
+    // remove extra query params if still attached
+    if (videoId) {
+      videoId = videoId.split("&")[0].split("?")[0];
+    }
+
+    if (!videoId) throw new Error("Invalid YouTube URL");
+
+    return videoId;
+  } catch (err) {
+    throw new Error("Invalid YouTube URL format: " + url);
+  }
+}
+
 async function generateSlidesHandler(req, res) {
   const errors = validationResult(req);
   if (!errors.isEmpty())
@@ -27,7 +55,8 @@ async function generateSlidesHandler(req, res) {
   try {
     if (source === "youtube") {
       const urlObj = new URL(inputUrl);
-      const videoId = urlObj.searchParams.get("v") || inputUrl.split("/").pop();
+      // const videoId = urlObj.searchParams.get("v") || inputUrl.split("/").pop();
+      const videoId = extractYouTubeVideoId(inputUrl);
       let transcript = null;
       try {
         transcript = await fetchYouTubeTranscript(inputUrl);
