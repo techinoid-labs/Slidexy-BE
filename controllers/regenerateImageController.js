@@ -10,7 +10,14 @@ exports.generateImageSuggestionsHandler = async (req, res) => {
   }
 
   try {
-    const imageUrls = await generateImageSuggestions(prompt, count);
+    const finalPrompt = `${prompt}
+
+STRICT RULE:
+
+- Ensure that the geenrated image does not have any embeded text or any letters characters in them only use the prompt as a raeference on what the image should be about, under no circumstances should the out put of the image contain any embedded Textual data
+`;
+
+    const imageUrls = await generateImageSuggestions(finalPrompt, count);
 
     if (imageUrls.length > 0) {
       res.json({ imageUrls });
