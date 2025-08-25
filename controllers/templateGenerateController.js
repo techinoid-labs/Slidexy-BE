@@ -1,6 +1,8 @@
 const crypto = require("crypto");
 const { templateJSONService } = require("../services/templateJSONService");
-const { generateTemplateImageService } = require("../services/generateTemplateImageService");
+const {
+  generateTemplateImageService,
+} = require("../services/generateTemplateImageService");
 const { bridgeTemplate } = require("../services/templateBridgeServices");
 const { generateMultipleThemes } = require("../services/generateThemeImage");
 
@@ -13,15 +15,16 @@ const generatePptTemplateHandler = async (req, res) => {
     }
 
     // Step 1: Generate themes to ensure consistency
-    const themes = await generateMultipleThemes(topic, 2);
-    if (!themes || themes.length === 0) {
-      return res.status(500).json({ error: "Failed to generate themes" });
-    }
+    // const themes = await generateMultipleThemes(topic, 2);
+    // if (!themes || themes.length === 0) {
+    //   return res.status(500).json({ error: "Failed to generate themes" });
+    // }
     // Select the first theme for consistency
-    const selectedTheme = themes[0];
+    // const selectedTheme = themes[0];
 
     // Step 2: Pass theme to templateJSONService for consistent slide generation
-    const slidesArray = await templateJSONService(topic, { ...meta, theme: selectedTheme }, slideCount);
+    const slidesArray = await templateJSONService(topic, meta, slideCount);
+
     if (!Array.isArray(slidesArray)) {
       return res.status(500).json({ error: "Invalid template format from AI" });
     }
@@ -32,29 +35,18 @@ const generatePptTemplateHandler = async (req, res) => {
     // Step 4: Generate images for backgrounds and elements, passing the theme
     for (const slide of normalizedSlides) {
       if (slide.image_url) {
-        const bgPrompt = `Background image for slide on topic "${topic}"`;
         const aiBgBase64 = await generateTemplateImageService(
-          bgPrompt,
           crypto.randomUUID(),
-          { slide, element: null, theme: selectedTheme }
+          { slide, element: null }
         );
         slide.image_url = aiBgBase64;
       }
 
       for (const el of slide.elements || []) {
         if (el.element_type === "image") {
-          const titleEl = slide.elements.find((e) => e.role === "title");
-          const promptParts = [
-            `Topic: ${topic}`,
-            titleEl?.text ? `Title: ${titleEl.text}` : "",
-          ].filter(Boolean);
-
-          const prompt = promptParts.join(" | ");
-
           const aiImageBase64 = await generateTemplateImageService(
-            prompt,
             crypto.randomUUID(),
-            { slide, element: el, theme: selectedTheme }
+            { slide, element: el }
           );
 
           el.properties.imageSrc = aiImageBase64;
@@ -64,13 +56,6 @@ const generatePptTemplateHandler = async (req, res) => {
 
     // Step 5: Build final response structure
     const presentation = {
-      theme: {
-        font: selectedTheme.font,
-        primaryColor: selectedTheme.primaryColor,
-        secondaryColor: selectedTheme.secondaryColor,
-        backgroundColor: selectedTheme.backgroundColor,
-        textColor: selectedTheme.textColor,
-      },
       slides: normalizedSlides.map((slide) => ({
         slide_id: slide.slide_id || crypto.randomUUID(),
         slide_title: slide.slide_title,
@@ -90,8 +75,8 @@ const generatePptTemplateHandler = async (req, res) => {
               properties: {
                 zIndex: el.properties?.zIndex ?? 200,
                 fontSize: el.properties?.fontSize || 16,
-                fontFamily: el.properties?.fontFamily || selectedTheme.font || "Arial",
-                fill: el.properties?.fill || selectedTheme.textColor || "#000000",
+                fontFamily: el.properties?.fontFamily || "Arial",
+                fill: el.properties?.fill || "#000000",
                 fontStyle: el.properties?.fontStyle,
                 fontWeight: el.properties?.fontWeight,
                 x: el.properties?.x || 0,
@@ -108,7 +93,7 @@ const generatePptTemplateHandler = async (req, res) => {
               ...base,
               properties: {
                 ...el.properties,
-                fill: el.properties?.fill || selectedTheme.secondaryColor || "#000000",
+                fill: el.properties?.fill || "#000000",
               },
             };
           }

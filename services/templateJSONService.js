@@ -7,14 +7,14 @@ async function templateJSONService(rawText, meta = {}, slideCount = 5) {
     if (meta.goal) lines.push(`- Goal: ${meta.goal}`);
     if (meta.tone) lines.push(`- Tone: ${meta.tone}`);
     if (meta.audience) lines.push(`- Audience: ${meta.audience}`);
-    if (meta.theme) {
-      lines.push(`- Theme: Use the following colors and font for consistency:`);
-      lines.push(`  - Font: ${meta.theme.font}`);
-      lines.push(`  - Primary Color: ${meta.theme.primaryColor}`);
-      lines.push(`  - Secondary Color: ${meta.theme.secondaryColor}`);
-      lines.push(`  - BACKGROUND Color: ${meta.theme.backgroundColor}`);
-      lines.push(`  - Text Color: ${meta.theme.textColor}`);
-    }
+    // if (meta.theme) {
+    //   lines.push(`- Theme: Use the following colors and font for consistency:`);
+    //   lines.push(`  - Font: ${meta.theme.font}`);
+    //   lines.push(`  - Primary Color: ${meta.theme.primaryColor}`);
+    //   lines.push(`  - Secondary Color: ${meta.theme.secondaryColor}`);
+    //   lines.push(`  - BACKGROUND Color: ${meta.theme.backgroundColor}`);
+    //   lines.push(`  - Text Color: ${meta.theme.textColor}`);
+    // }
     return lines.length > 0
       ? `\n📌 CONTEXTUAL PREFERENCES:\n${lines.join("\n")}\n`
       : "";
@@ -26,7 +26,9 @@ You are an expert presentation template designer of the modern era 2025 to be pr
 
 Canvas size: **960×540 px** (ppt size should be "10" × "5.625" or scaled widthxheight 960/10 × 540/5.625)
 
-You will output ONLY a **valid JSON array** of exactly ${slideCount || 5} slides in the EXACT structure provided below.
+You will output ONLY a **valid JSON array** of exactly ${
+    slideCount || 5
+  } slides in the EXACT structure provided below.
 
 ### VARIATION & DESIGN RULES (MANDATORY)
 
@@ -181,85 +183,102 @@ You must generate slides with **modern 2025 presentation design aesthetics** (in
 
 ---
 
-${JSON.stringify([
-  {
-    slide_id: "slide-UNIQUE_ID",
-    slide_title: "Main topic about the slide",
-    image_url: "https://placehold.co/960x540",
-    elements: [
-      {
-        element_type: "title",
-        text: "Slide Title",
-        konva_component: "Konva.Text",
-        properties: {
-          fontSize: 24,
-          width: 400,
-          height: 60,
-          fontFamily: meta.theme?.font || "Roboto",
-          fill: meta.theme?.textColor || "#444",
-          fontWeight: "bold",
-          x: 20,
-          y: 25,
-          zIndex: 5
-        }
-      },
-      {
-        element_type: "image",
-        konva_component: "Konva.Image",
-        properties: {
-          imageSrc: "https://placehold.co/300x200",
-          x: 0,
-          y: 0,
-          width: 300,
-          height: 200,
-          zIndex: 1,
-          cornerRadius: 10,
-          opacity: 0.5
-        }
-      },
-      {
-        element_type: "shape",
-        konva_component: "Konva.Rect",
-        properties: {
-          x: 20,
-          y: 90,
-          width: 440,
-          height: 400,
-          fill: meta.theme?.secondaryColor || "#000000",
-          opacity: 0.5,
-          zIndex: 2,
-          cornerRadius: 15
-        }
-      },
-      {
-        element_type: "shape",
-        konva_component: "Konva.Circle",
-        properties: { x: 100, y: 300, radius: 60, fill: meta.theme?.primaryColor || "#FFAAAA", opacity: 0.7, zIndex: 1 }
-      },
-      {
-        element_type: "shape",
-        konva_component: "Konva.Line",
-        properties: { points: [20, 400, 200, 500], stroke: meta.theme?.primaryColor || "#222", strokeWidth: 3, opacity: 0.8, zIndex: 3 }
-      },
-      {
-        element_type: "text",
-        text: "Column 1 Title",
-        konva_component: "Konva.Text",
-        properties: {
-          fontSize: 20,
-          fontFamily: meta.theme?.font || "Inter",
-          fill: meta.theme?.textColor || "#FFFFFF",
-          fontWeight: "bold",
-          x: 50,
-          y: 100,
-          width: 400,
-          align: "center",
-          zIndex: 3
-        }
-      }
-    ]
-  }
-], null, 2).replace(/"/g, '\\"')}
+${JSON.stringify(
+  [
+    {
+      slide_id: "slide-UNIQUE_ID",
+      slide_title: "Main topic about the slide",
+      image_url: "https://placehold.co/960x540",
+      elements: [
+        {
+          element_type: "title",
+          text: "Slide Title",
+          konva_component: "Konva.Text",
+          properties: {
+            fontSize: 24,
+            width: 400,
+            height: 60,
+            fontFamily: meta.theme?.font || "Roboto",
+            fill: meta.theme?.textColor || "#444",
+            fontWeight: "bold",
+            x: 20,
+            y: 25,
+            zIndex: 5,
+          },
+        },
+        {
+          element_type: "image",
+          konva_component: "Konva.Image",
+          properties: {
+            imageSrc: "https://placehold.co/300x200",
+            x: 0,
+            y: 0,
+            width: 300,
+            height: 200,
+            zIndex: 1,
+            cornerRadius: 10,
+            opacity: 0.5,
+          },
+        },
+        {
+          element_type: "shape",
+          konva_component: "Konva.Rect",
+          properties: {
+            x: 20,
+            y: 90,
+            width: 440,
+            height: 400,
+            fill: meta.theme?.secondaryColor || "#000000",
+            opacity: 0.5,
+            zIndex: 2,
+            cornerRadius: 15,
+          },
+        },
+        {
+          element_type: "shape",
+          konva_component: "Konva.Circle",
+          properties: {
+            x: 100,
+            y: 300,
+            radius: 60,
+            fill: meta.theme?.primaryColor || "#FFAAAA",
+            opacity: 0.7,
+            zIndex: 1,
+          },
+        },
+        {
+          element_type: "shape",
+          konva_component: "Konva.Line",
+          properties: {
+            points: [20, 400, 200, 500],
+            stroke: meta.theme?.primaryColor || "#222",
+            strokeWidth: 3,
+            opacity: 0.8,
+            zIndex: 3,
+          },
+        },
+        {
+          element_type: "text",
+          text: "Column 1 Title",
+          konva_component: "Konva.Text",
+          properties: {
+            fontSize: 20,
+            fontFamily: meta.theme?.font || "Inter",
+            fill: meta.theme?.textColor || "#FFFFFF",
+            fontWeight: "bold",
+            x: 50,
+            y: 100,
+            width: 400,
+            align: "center",
+            zIndex: 3,
+          },
+        },
+      ],
+    },
+  ],
+  null,
+  2
+).replace(/"/g, '\\"')}
 
 ${metaPrompt}
 
@@ -273,7 +292,10 @@ Content:
   const raw = result.response.text();
 
   // Remove code fences & trim
-  let cleaned = raw.replace(/```json/g, "").replace(/```/g, "").trim();
+  let cleaned = raw
+    .replace(/```json/g, "")
+    .replace(/```/g, "")
+    .trim();
 
   // Slice strictly between first [ and last ]
   const start = cleaned.indexOf("[");
