@@ -37,14 +37,10 @@ const swaggerDocument = YAML.load(path.join(__dirname, "swagger.yaml"));
 // ====== Initialize App ======
 
 mongoose
-  .connect(
-    process.env.MONGO_URI ||
-      "mongodb+srv://fizaamjadtechinoid:55b7HRbchKvsQoFV@cluster0.sjg81ks.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }
-  )
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => console.log("Connected to MongoDB Atlas"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
