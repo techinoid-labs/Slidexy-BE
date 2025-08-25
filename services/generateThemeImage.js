@@ -79,7 +79,6 @@ async function generateSingleTheme(promptText) {
     - ${presentationThemePrompt.strictRequirements.layoutGuidance}
     - ${presentationThemePrompt.strictRequirements.composition}
     - ${presentationThemePrompt.strictRequirements.contentPlaceholders}
-    - ${presentationThemePrompt.visualExamplesToAvoid}
 
     ${presentationThemePrompt.outputDetails.jsonFormat}
     ${presentationThemePrompt.outputDetails.colorAndFontMatching}
@@ -115,7 +114,7 @@ async function generateSingleTheme(promptText) {
     primaryColor: "#2A2A2A",
     secondaryColor: "#7F8C8D",
     backgroundColor: "#F8F8F8",
-    textColor: "#111111", // Default fallback
+    textColor: "#111111",
   };
 
   let imageMimeType = null;
@@ -164,6 +163,7 @@ async function generateSingleTheme(promptText) {
 
   if (themeData.image_base64 && imageMimeType) {
     themeData.image_base64 = `data:${imageMimeType};base64,${themeData.image_base64}`;
+ 
   } else {
     throw new Error(
       "No complete image data (base64 and MIME type) found in the model's response for the theme."

@@ -1,20 +1,20 @@
-// bridgeTemplate.js
 const Ajv = require("ajv");
 const schema = require("../utils/slideSchema");
-const { layouts, selectLayout } = require('./layoutTemplate');
+const { templateJSONService } = require("./templateJSONService");
+const fetch = (...args) => import("node-fetch").then(({ default: fetch }) => fetch(...args));
+
 const ajv = new Ajv({ allErrors: true });
 
-const DEFAULT_FONT = "Roboto, Inter, sans-serif";
-const TITLE_FONT_SIZE = 32;
+const DEFAULT_FONT = "Montserrat, sans-serif";
+const TITLE_FONT_SIZE = 36;
 const BODY_FONT_SIZE = 18;
-const MARGIN = 20;
-const MAX_IMAGE_WIDTH = 768; // 80% of 960
-const MAX_IMAGE_HEIGHT = 432; // 80% of 540
+const MARGIN = 40;
+const MAX_IMAGE_WIDTH = 768;
+const MAX_IMAGE_HEIGHT = 432;
 
 function normalizeElement(el, idx, slide) {
   const baseZ = (idx + 1) * 10;
 
-  // Title
   if (el.element_type === "title") {
     el.text = el.text || slide.slide_title || "Untitled Slide";
     el.properties = {
@@ -22,46 +22,44 @@ function normalizeElement(el, idx, slide) {
       fontSize: el.properties?.fontSize || TITLE_FONT_SIZE,
       fontFamily: el.properties?.fontFamily || DEFAULT_FONT,
       fontWeight: el.properties?.fontWeight || "bold",
-      fill: el.properties?.fill || "#222222",
+      fill: el.properties?.fill || "#1F2937",
       align: el.properties?.align || "center",
       zIndex: 9999,
       x: el.properties?.x ?? MARGIN,
       y: el.properties?.y ?? MARGIN,
       width: el.properties?.width ?? 960 - 2 * MARGIN,
-      height: el.properties?.height ?? 60,
+      height: el.properties?.height ?? 80,
     };
     return el;
   }
 
-  // Text or Bullet Point
   if (["text", "bullet_point"].includes(el.element_type)) {
-    el.text = el.text || "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+    el.text = el.text || "Lorem ipsum dolor sit amet.";
     el.properties = {
       ...el.properties,
       fontSize: el.properties?.fontSize || BODY_FONT_SIZE,
       fontFamily: el.properties?.fontFamily || DEFAULT_FONT,
-      fill: el.properties?.fill || "#444444",
+      fill: el.properties?.fill || "#4B5563",
       align: el.properties?.align || "left",
       zIndex: el.properties?.zIndex || baseZ + 1000,
       x: el.properties?.x ?? MARGIN + 20,
-      y: el.properties?.y ?? MARGIN + 80,
+      y: el.properties?.y ?? MARGIN + 100,
       width: el.properties?.width ?? 400,
       height: el.properties?.height ?? 100,
     };
     return el;
   }
 
-  // Shape
   if (el.element_type === "shape") {
     const shapeType = el.konva_component?.split(".")[1] || "Rect";
     el.properties = {
       ...el.properties,
-      fill: el.properties?.fill || "#E0E0E0",
-      opacity: el.properties?.opacity ?? 0.5,
+      fill: el.properties?.fill || "#E5E7EB",
+      opacity: el.properties?.opacity ?? 0.7,
       cornerRadius: shapeType === "Rect" ? (el.properties?.cornerRadius ?? 15) : undefined,
       zIndex: el.properties?.zIndex || baseZ + 100,
       x: el.properties?.x ?? MARGIN,
-      y: el.properties?.y ?? MARGIN + 80,
+      y: el.properties?.y ?? MARGIN + 100,
       width: el.properties?.width ?? 400,
       height: el.properties?.height ?? 300,
     };
@@ -72,7 +70,6 @@ function normalizeElement(el, idx, slide) {
     return el;
   }
 
-  // Image
   if (el.element_type === "image") {
     el.properties = {
       ...el.properties,
@@ -81,7 +78,7 @@ function normalizeElement(el, idx, slide) {
       width: Math.min(el.properties?.width || 300, MAX_IMAGE_WIDTH),
       height: Math.min(el.properties?.height || 200, MAX_IMAGE_HEIGHT),
       x: el.properties?.x ?? 960 - (el.properties?.width || 300) - MARGIN,
-      y: el.properties?.y ?? MARGIN + 80,
+      y: el.properties?.y ?? MARGIN + 100,
       cornerRadius: el.properties?.cornerRadius ?? 15,
     };
     return el;
@@ -91,16 +88,10 @@ function normalizeElement(el, idx, slide) {
 }
 
 function normalizeSlide(slide, slideIndex) {
-  // IDs
   slide.slide_id = slide.slide_id || `slide-${Date.now()}-${slideIndex}`;
   slide.image_url = slide.image_url || "";
-  const layoutKey = selectLayout(slide);
-  return layouts[layoutKey](slide);
-
-  // Ensure elements array
   slide.elements = slide.elements || [];
 
-  // Ensure title exists
   if (!slide.elements.find((e) => e.element_type === "title")) {
     slide.elements.unshift({
       element_type: "title",
@@ -110,43 +101,49 @@ function normalizeSlide(slide, slideIndex) {
         fontSize: TITLE_FONT_SIZE,
         fontFamily: DEFAULT_FONT,
         fontWeight: "bold",
-        fill: "#222222",
+        fill: "#1F2937",
         x: MARGIN,
         y: MARGIN,
         width: 960 - 2 * MARGIN,
-        height: 60,
+        height: 80,
         align: "center",
         zIndex: 9999,
       },
     });
   }
 
-  // Normalize elements
   slide.elements = slide.elements.map((el, idx) => normalizeElement(el, idx, slide));
-
-  // Adjust shape sizes to fit text
-  slide.elements.forEach((el, idx) => {
-    if (el.element_type === "shape" && slide.elements.some((e) => ["text", "bullet_point"].includes(e.element_type))) {
-      const textEls = slide.elements.filter((e) => ["text", "bullet_point"].includes(e.element_type) && e.properties.x >= el.properties.x && e.properties.y >= el.properties.y);
-      if (textEls.length) {
-        const maxTextWidth = Math.max(...textEls.map((e) => e.properties.width));
-        const maxTextHeight = Math.max(...textEls.map((e) => e.properties.height));
-        el.properties.width = Math.max(el.properties.width, maxTextWidth + 40);
-        el.properties.height = Math.max(el.properties.height, maxTextHeight + 40);
-      }
-    }
-  });
 
   return slide;
 }
 
-function bridgeTemplate(slides) {
+
+async function refineWithGemini(slides, topic, meta) {
+  const prompt = createGeminiPrompt(slides, topic, meta);
+  const refinedSlides = await templateJSONService(topic, meta, slides.length, prompt);
+  return refinedSlides;
+}
+
+
+async function bridgeTemplate(slides, topic, meta) {
   const validate = ajv.compile(schema);
   if (!validate(slides)) {
     console.warn("Schema validation failed, fixing...", validate.errors);
   }
 
-  return slides.map((s, i) => normalizeSlide(s, i));
+  // Step 1: Normalize
+  let normalizedSlides = slides.map((s, i) => normalizeSlide(s, i));
+
+  // Step 2: Gemini refinement
+  //let refinedSlides = await refineWithGemini(normalizedSlides, topic, meta);
+
+  // Step 3: Normalize again
+  refinedSlides = normalizedSlides.map((s, i) => normalizeSlide(s, i));
+
+  // Step 5: Final normalize
+  finalSlides = normalizedSlides.map((s, i) => normalizeSlide(s, i));
+
+  return finalSlides;
 }
 
 module.exports = { bridgeTemplate };
