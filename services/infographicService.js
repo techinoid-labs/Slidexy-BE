@@ -44,11 +44,6 @@ All illustrations must be clear, unique per section, and styled consistently. Av
     },
   };
 
-
-
-
-
-
   // Dynamically construct the prompt string from the JSON object.
   // This ensures the JSON is the single source of truth for the prompt's content.
   const promptText = `

@@ -163,7 +163,6 @@ async function generateSingleTheme(promptText) {
 
   if (themeData.image_base64 && imageMimeType) {
     themeData.image_base64 = `data:${imageMimeType};base64,${themeData.image_base64}`;
- 
   } else {
     throw new Error(
       "No complete image data (base64 and MIME type) found in the model's response for the theme."
