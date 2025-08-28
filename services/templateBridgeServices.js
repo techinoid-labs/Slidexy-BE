@@ -92,11 +92,14 @@ function normalizeSlide(slide, slideIndex) {
   slide.image_url = slide.image_url || "";
   slide.elements = slide.elements || [];
 
+  // Log slide_title for debugging
+  console.log("Normalizing slide_title:", slide.slide_title);
+
   if (!slide.elements.find((e) => e.element_type === "title")) {
     slide.elements.unshift({
       element_type: "title",
       konva_component: "Konva.Text",
-      text: slide.slide_title || `Slide ${slideIndex + 1}`,
+      text: slide.slide_title?.text || `Slide ${slideIndex + 1}`, // Use text from slide_title if object
       properties: {
         fontSize: TITLE_FONT_SIZE,
         fontFamily: DEFAULT_FONT,
