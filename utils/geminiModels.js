@@ -96,6 +96,10 @@ const apiKeys = [
   process.env.API_KEY12,
 ].filter(Boolean); // filter out undefined
 
+// const genAI = new GoogleGenerativeAI(
+//   process.env.API_KEY
+// );
+
 if (apiKeys.length === 0) {
   throw new Error("No API keys configured!");
 }

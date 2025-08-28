@@ -13,11 +13,9 @@ const {
 const {
   validateTemplateInput,
 } = require("./middlewares/validateTemplateInput");
+const { getPresentationHandler } = require("./controllers/presentationController"); // Add this import
 
-// Import the new poster template controller
-// ====== MongoDB Connection ======
-
-// ====== Import Middlewares & Controllers ======
+// Import Middlewares & Controllers
 const { validate } = require("./middlewares/validateInput");
 const {
   validateThemeImageInput,
@@ -31,11 +29,10 @@ const {
 } = require("./controllers/regenerateImageController");
 const { getPosterTemplate } = require("./controllers/infographicController");
 
-// ====== Load Swagger Docs ======
+// Load Swagger Docs
 const swaggerDocument = YAML.load(path.join(__dirname, "swagger.yaml"));
 
-// ====== Initialize App ======
-
+// MongoDB Connection
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
@@ -44,14 +41,15 @@ mongoose
   .then(() => console.log("Connected to MongoDB Atlas"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
+// Initialize App
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// ====== API Docs ======
+// API Docs
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-// ====== Existing Routes ======
+// Existing Routes
 app.post("/generate-slides", validate, generateSlidesHandler);
 app.post(
   "/generate-theme-image",
@@ -67,26 +65,26 @@ app.post(
   validateTemplateInput,
   generatePptTemplateHandler
 );
+app.get("/presentation/:presentation_id", getPresentationHandler); 
 
+// Waitlist Route
 app.post("/join-waitlist", async (req, res) => {
   try {
     const { email } = req.body;
-
     if (!email) {
       return res.status(400).json({ error: "Email is required" });
     }
-
     const user = new User({ email });
     await user.save();
-
-    res.status(201).json({ message: "User added to waitlist" });
+    return res.status(201).json({ message: "User added to waitlist" });
   } catch (error) {
     if (error.code === 11000) {
       return res.status(400).json({ error: "Email already exists" });
     }
-    res.status(500).json({ error: error.message });
+    return res.status(500).json({ error: error.message });
   }
 });
 
+// Start Server
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`🚀 Server running on port ${port}`));
