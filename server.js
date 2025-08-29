@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 const path = require("path");
 const swaggerUi = require("swagger-ui-express");
 const YAML = require("yamljs");
+const { MongoClient, GridFSBucket, ObjectId } = require("mongodb");
+
 const User = require("./models/WaitingUser");
 
 const {
@@ -13,7 +15,9 @@ const {
 const {
   validateTemplateInput,
 } = require("./middlewares/validateTemplateInput");
-const { getPresentationHandler } = require("./controllers/presentationController"); // Add this import
+const {
+  getPresentationHandler,
+} = require("./controllers/presentationController");
 
 // Import Middlewares & Controllers
 const { validate } = require("./middlewares/validateInput");
@@ -32,13 +36,13 @@ const { getPosterTemplate } = require("./controllers/infographicController");
 // Load Swagger Docs
 const swaggerDocument = YAML.load(path.join(__dirname, "swagger.yaml"));
 
-// MongoDB Connection
+// MongoDB Connection (Mongoose for ODM)
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log("Connected to MongoDB Atlas"))
+  .then(() => console.log(" Connected to MongoDB Atlas"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
 // Initialize App
@@ -49,7 +53,8 @@ app.use(express.json());
 // API Docs
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-// Existing Routes
+
+// Slide/Presentation APIs
 app.post("/generate-slides", validate, generateSlidesHandler);
 app.post(
   "/generate-theme-image",
@@ -65,7 +70,7 @@ app.post(
   validateTemplateInput,
   generatePptTemplateHandler
 );
-app.get("/presentation/:presentation_id", getPresentationHandler); 
+app.get("/presentation/:presentation_id", getPresentationHandler);
 
 // Waitlist Route
 app.post("/join-waitlist", async (req, res) => {
@@ -85,6 +90,36 @@ app.post("/join-waitlist", async (req, res) => {
   }
 });
 
+app.get("/images/:id", async (req, res) => {
+  try {
+    const client = new MongoClient(process.env.MONGO_URI);
+    await client.connect();
+    const db = client.db("test"); 
+
+    const bucket = new GridFSBucket(db, { bucketName: "slides" });
+    const fileId = new ObjectId(req.params.id);
+
+    // Ensure file exists in metadata
+    const file = await db.collection("slides.files").findOne({ _id: fileId });
+    if (!file) {
+      return res.status(404).json({ error: "File not found" });
+    }
+
+    res.set("Content-Type", file.contentType || "application/octet-stream");
+
+    const downloadStream = bucket.openDownloadStream(fileId);
+    downloadStream.on("error", (err) => {
+      console.error("GridFS Stream error:", err);
+      res.status(500).json({ error: "Error streaming file" });
+    });
+
+    downloadStream.pipe(res);
+  } catch (err) {
+    console.error("Error fetching image:", err);
+    res.status(500).json({ error: "Failed to fetch image" });
+  }
+});
+
 // Start Server
 const port = process.env.PORT || 5000;
-app.listen(port, () => console.log(`🚀 Server running on port ${port}`));
+app.listen(port, () => console.log(`Server running on port ${port}`));

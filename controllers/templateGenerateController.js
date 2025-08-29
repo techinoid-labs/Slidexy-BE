@@ -132,10 +132,14 @@ const { getTitlesService } = require("../services/unit-services/getTitlesService
 const { getBulletsService } = require("../services/unit-services/getBulletsService");
 const { getImagesService } = require("../services/unit-services/getImagesService");
 const { bridgeTemplate } = require("../services/templateBridgeServices");
+const { MongoClient } = require("mongodb");
 const Presentation = require("../models/Presentation");
 const crypto = require("crypto");
 
 const generatePptTemplateHandler = async (req, res) => {
+  const client = new MongoClient(process.env.MONGO_URI);
+  await client.connect();
+  const db = client.db("test");
   try {
     const { topic, slideCount = 5, meta = {} } = req.body;
     if (!topic) return res.status(400).json({ error: "Topic is required" });
@@ -147,7 +151,7 @@ const generatePptTemplateHandler = async (req, res) => {
     const bulletsPerSlide = await getBulletsService(topic, titles, meta);
 
     // Step 3: Get images (backgrounds, captions, element images as KonvaComponents)
-    const imagesPerSlide = await getImagesService(topic, titles, meta);
+    const imagesPerSlide = await getImagesService(topic, titles, meta, db);
 
     // Step 4: Combine into Slide array
     const slides = titles.map((title, index) => {
