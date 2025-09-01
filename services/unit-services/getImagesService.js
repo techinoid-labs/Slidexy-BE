@@ -3,13 +3,14 @@ const crypto = require("crypto");
 const { textGenModel } = require("../../utils/geminiModels");
 const JSON5 = require("json5");
 const { GridFSBucket } = require("mongodb");
+const connectMongo = require("../../db"); 
 
-// Save base64 image to GridFS
+
 async function saveImageToGridFS(db, base64, filename) {
   if (!base64) return null;
 
   const matches = base64.match(/^data:([A-Za-z-+/]+);base64,(.+)$/);
-  const ext = matches ? matches[1].split("/")[1] : "png"; // e.g. "png", "jpeg"
+  const ext = matches ? matches[1].split("/")[1] : "png"; 
   const data = matches ? matches[2] : base64;
 
   return new Promise((resolve, reject) => {
@@ -21,23 +22,17 @@ async function saveImageToGridFS(db, base64, filename) {
 
       uploadStream.end(Buffer.from(data, "base64"));
 
-      uploadStream.on("finish", () => {
-        resolve(uploadStream.id); // ObjectId reference
-      });
-
-      uploadStream.on("error", (err) => {
-        reject(err);
-      });
+      uploadStream.on("finish", () => resolve(uploadStream.id));
+      uploadStream.on("error", reject);
     } catch (err) {
       reject(err);
     }
   });
 }
 
-async function getImagesService(topic, titles, meta = {}, db) {
-  if (!db) throw new Error("MongoDB database instance (db) is required for GridFS");
+async function getImagesService(topic, titles, meta = {}) {
+  const db = await connectMongo(); // 👈 fetch global db
 
-  // Use Gemini to generate descriptions
   const prompt = `
 You are a visual designer for 2025 presentations (Canva/Gamma: high-res, abstract, no text in images, modern aesthetics like gradients/subtle patterns).
 For topic "${topic}" and slide titles ${JSON.stringify(titles)}, generate:
@@ -56,13 +51,13 @@ One object per slide.
   const jsonString = cleaned.slice(start, end + 1);
   const API_BASE_URL = process.env.API_BASE_URL || "http://localhost:5000";
   let imageData;
+
   try {
     imageData = JSON5.parse(jsonString);
   } catch (err) {
     throw new Error("Failed to parse image data from AI");
   }
 
-  // Generate actual images
   const slidesImages = [];
   for (let i = 0; i < titles.length; i++) {
     const slideData =
@@ -71,14 +66,14 @@ One object per slide.
     // Background (save to GridFS)
     const bgBase64 = await generateTemplateImageService(crypto.randomUUID(), {
       slide: { slide_title: titles[i], description: slideData.backgroundDesc },
-      element: null, // background
+      element: null,
     });
 
     const bgFileId = bgBase64
       ? await saveImageToGridFS(db, bgBase64, `background_${crypto.randomUUID()}`)
       : null;
 
-    // Element images (keep base64 for frontend rendering)
+    // Element images
     const elementImages = [];
     for (const desc of slideData.elementDescs) {
       const elBase64 = await generateTemplateImageService(crypto.randomUUID(), {
@@ -105,7 +100,6 @@ One object per slide.
         },
       });
     }
-
 
     slidesImages.push({
       image_url: bgFileId ? `${API_BASE_URL}/images/${bgFileId}` : null,
