@@ -9,18 +9,24 @@ const connectMongo = require("../../db");
 async function saveImageToGridFS(db, base64, filename) {
   if (!base64) return null;
 
+  // Extract extension + base64 payload
   const matches = base64.match(/^data:([A-Za-z-+/]+);base64,(.+)$/);
-  const ext = matches ? matches[1].split("/")[1] : "png"; 
+  const ext = matches ? matches[1].split("/")[1] : "png";
   const data = matches ? matches[2] : base64;
+
+ 
+  const buffer = Buffer.from(data, "base64");
 
   return new Promise((resolve, reject) => {
     try {
       const bucket = new GridFSBucket(db, { bucketName: "slides" });
+
       const uploadStream = bucket.openUploadStream(`${filename}.${ext}`, {
         contentType: `image/${ext}`,
       });
 
-      uploadStream.end(Buffer.from(data, "base64"));
+      // ✅ Write raw PNG data directly into GridFS
+      uploadStream.end(buffer);
 
       uploadStream.on("finish", () => resolve(uploadStream.id));
       uploadStream.on("error", reject);
@@ -30,8 +36,10 @@ async function saveImageToGridFS(db, base64, filename) {
   });
 }
 
+
+
 async function getImagesService(topic, titles, meta = {}) {
-  const db = await connectMongo(); // 👈 fetch global db
+  const db = await connectMongo(); 
 
   const prompt = `
 You are a visual designer for 2025 presentations (Canva/Gamma: high-res, abstract, no text in images, modern aesthetics like gradients/subtle patterns).
