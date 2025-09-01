@@ -132,14 +132,10 @@ const { getTitlesService } = require("../services/unit-services/getTitlesService
 const { getBulletsService } = require("../services/unit-services/getBulletsService");
 const { getImagesService } = require("../services/unit-services/getImagesService");
 const { bridgeTemplate } = require("../services/templateBridgeServices");
-const { MongoClient } = require("mongodb");
 const Presentation = require("../models/Presentation");
 const crypto = require("crypto");
 
 const generatePptTemplateHandler = async (req, res) => {
-  const client = new MongoClient(process.env.MONGO_URI);
-  await client.connect();
-  const db = client.db("test");
   try {
     const { topic, slideCount = 5, meta = {} } = req.body;
     if (!topic) return res.status(400).json({ error: "Topic is required" });
@@ -147,11 +143,11 @@ const generatePptTemplateHandler = async (req, res) => {
     // Step 1: Get titles
     const titles = await getTitlesService(topic, slideCount, meta);
 
-    // Step 2: Get bullets (as arrays of KonvaComponents)
-    const bulletsPerSlide = await getBulletsService(topic, titles, meta);
-
-    // Step 3: Get images (backgrounds, captions, element images as KonvaComponents)
-    const imagesPerSlide = await getImagesService(topic, titles, meta, db);
+    // Step 2 + 3: Get bullets and images in parallel
+    const [bulletsPerSlide, imagesPerSlide] = await Promise.all([
+      getBulletsService(topic, titles, meta),
+      getImagesService(topic, titles, meta), 
+    ]);
 
     // Step 4: Combine into Slide array
     const slides = titles.map((title, index) => {
@@ -173,8 +169,8 @@ const generatePptTemplateHandler = async (req, res) => {
       };
 
       const elements = [
-        ...bulletsPerSlide[index], // Bullets
-        ...imagesPerSlide[index].elementImages, // Image elements
+        ...bulletsPerSlide[index],
+        ...imagesPerSlide[index].elementImages,
         {
           konva_component: "Konva.Rect",
           element_type: "shape",
@@ -193,8 +189,8 @@ const generatePptTemplateHandler = async (req, res) => {
 
       return {
         slide_id: `slide-${crypto.randomUUID()}`,
-        slide_title: titleComponent, // Keep as KonvaComponent
-        elements, // Ensure titleComponent is not duplicated here
+        slide_title: titleComponent,
+        elements,
         image_url: imagesPerSlide[index].image_url,
         image_caption: imagesPerSlide[index].image_caption,
         titleBlock: { elements: [titleComponent], width: 960, height: 100 },
@@ -203,10 +199,10 @@ const generatePptTemplateHandler = async (req, res) => {
       };
     });
 
-    // Step 5: Normalize (using bridgeTemplate)
+    // Step 5: Normalize
     const normalizedSlides = await bridgeTemplate(slides, topic, meta);
 
-    // Step 6: Store in DB
+    // Step 6: Store in DB via mongoose
     const presentation = new Presentation({
       topic,
       meta,
@@ -214,10 +210,12 @@ const generatePptTemplateHandler = async (req, res) => {
     });
     await presentation.save();
 
-    // Return the presentation
-    return res.json({ presentation_id: presentation.presentation_id, slides: presentation.slides });
+    return res.json({
+      presentation_id: presentation.presentation_id,
+      slides: presentation.slides,
+    });
   } catch (err) {
-    console.error("Error:", err.message);
+    console.error("Error in generatePptTemplateHandler:", err);
     return res.status(500).json({ error: err.message });
   }
 };
