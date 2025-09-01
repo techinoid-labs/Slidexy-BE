@@ -47,11 +47,20 @@ mongoose
 
 // Initialize App
 const app = express();
+// const corsOptions = {
+//   // origin: "https://slides-x-fe-xi.vercel.app",
+//   origin: (origin, callback) => {
+//     callback(null, true);
+//   },
+//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+//   allowedHeaders: ["Content-Type", "Authorization"],
+//   credentials: true,
+// };
+
+// app.use(cors(corsOptions));
+
 const corsOptions = {
-  // origin: "https://slides-x-fe-xi.vercel.app",
-  origin: (origin, callback) => {
-    callback(null, true);
-  },
+  origin: "https://slides-x-fe-xi.vercel.app",
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
