@@ -48,20 +48,21 @@ mongoose
 // Initialize App
 const app = express();
 const corsOptions = {
-  origin: "https://slides-x-fe-xi.vercel.app",
+  // origin: "https://slides-x-fe-xi.vercel.app",
+  origin: (origin, callback) => {
+    callback(null, true);
+  },
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true, 
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
-
 
 app.use(express.json());
 
 // API Docs
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
 
 // Slide/Presentation APIs
 app.post("/generate-slides", validate, generateSlidesHandler);
@@ -103,7 +104,7 @@ app.get("/images/:id", async (req, res) => {
   try {
     const client = new MongoClient(process.env.MONGO_URI);
     await client.connect();
-    const db = client.db("test"); 
+    const db = client.db("test");
 
     const bucket = new GridFSBucket(db, { bucketName: "slides" });
     const fileId = new ObjectId(req.params.id);
