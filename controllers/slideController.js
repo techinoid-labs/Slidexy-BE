@@ -160,7 +160,6 @@
 // }
 
 // module.exports = { generateSlidesHandler };
-
 const { validationResult } = require("express-validator");
 const { fetchWebsiteText } = require("../services/fetchWebsiteText");
 const {
@@ -339,6 +338,14 @@ async function generateSlidesHandler(req, res) {
       res.write(`data: ${JSON.stringify(data)}\n\n`);
     };
 
+    // heartbeat to avoid frontend staying at 0
+    sendUpdate({ percent: 1, message: "Starting..." });
+
+    // keep-alive heartbeat every 5s (for long ops like transcript fetch)
+    const heartbeat = setInterval(() => {
+      res.write(": keep-alive\n\n");
+    }, 5000);
+
     try {
       sendUpdate({ percent: 5, message: "Fetching input content..." });
 
@@ -385,14 +392,16 @@ async function generateSlidesHandler(req, res) {
           slidesWithImages.push({ ...slides[i], image_url: null });
         }
 
-        stopImgDrift(); // stop drift AFTER image is finished
+        stopImgDrift();
       }
 
       sendUpdate({ percent: 100, complete: true, slides: slidesWithImages });
+      clearInterval(heartbeat);
       res.end();
     } catch (err) {
       console.error("Error in generate-slides (SSE):", err);
       sendUpdate({ error: err.message || "Slide generation failed." });
+      clearInterval(heartbeat);
       res.end();
     }
   } else {
