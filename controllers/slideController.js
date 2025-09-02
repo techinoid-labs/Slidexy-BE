@@ -226,7 +226,7 @@ async function generateSlidesHandler(req, res) {
     };
 
     // Initial message
-    sendUpdate({ percent: 1, message: "Initializing..." });
+    sendUpdate({ percent: 8, message: "Initializing..." });
 
     const heartbeat = setInterval(() => {
       res.write(": keep-alive\n\n");
@@ -234,7 +234,7 @@ async function generateSlidesHandler(req, res) {
 
     try {
       // Step 1: Fetch input
-      sendUpdate({ percent: 8, message: "Analyzing data..." });
+      sendUpdate({ percent: 18, message: "Analyzing data..." });
 
       let rawText;
       if (source === "youtube") {
@@ -252,7 +252,7 @@ async function generateSlidesHandler(req, res) {
       }
 
       // Step 2: Generate slide text
-      sendUpdate({ percent: 24, message: "Generating text..." });
+      sendUpdate({ percent: 34, message: "Generating text..." });
       const slides = await generateSlideText(rawText, meta, slideCount);
 
       // Step 3: Generate images
