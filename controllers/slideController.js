@@ -160,6 +160,7 @@
 // }
 
 // module.exports = { generateSlidesHandler };
+
 const { validationResult } = require("express-validator");
 const { fetchWebsiteText } = require("../services/fetchWebsiteText");
 const {
@@ -259,7 +260,7 @@ async function generateSlidesHandler(req, res) {
       let slidesWithImages = [];
       for (let i = 0; i < slides.length; i++) {
         sendUpdate({
-          percent: 43 + Math.floor((i / slides.length) * 25),
+          percent: 72 + Math.floor((i / slides.length) * 25),
           message: `Generating images... (${i + 1}/${slides.length})`,
         });
 
