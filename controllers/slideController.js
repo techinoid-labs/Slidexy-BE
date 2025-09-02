@@ -160,6 +160,7 @@
 // }
 
 // module.exports = { generateSlidesHandler };
+
 const { validationResult } = require("express-validator");
 const { fetchWebsiteText } = require("../services/fetchWebsiteText");
 const {
@@ -200,17 +201,22 @@ function extractYouTubeVideoId(url) {
 // --- Helper: smooth drifting progress (only used in SSE mode) ---
 function driftProgress(sendUpdate, start, end, message) {
   let current = start;
+  let active = true;
+
   const tick = () => {
-    if (current < end - 1) {
-      current += Math.random() * 2;
-      current = Math.min(current, end - 1);
-      sendUpdate({ percent: Math.round(current), message });
-      setTimeout(tick, 200 + Math.random() * 400);
-    }
+    if (!active || current >= end - 1) return;
+
+    current += Math.random() * 1.5;
+    current = Math.min(current, end - 1);
+
+    sendUpdate({ percent: Math.round(current), message });
+    setTimeout(tick, 300 + Math.random() * 300);
   };
+
   tick();
+
   return () => {
-    current = end;
+    active = false;
     sendUpdate({ percent: end, message: message + " done" });
   };
 }
@@ -374,13 +380,12 @@ async function generateSlidesHandler(req, res) {
         try {
           const imageSlide = await generateImage(slides[i], i);
           const imageUrl = imageSlide.image_url;
-
           slidesWithImages.push({ ...slides[i], image_url: imageUrl });
         } catch {
           slidesWithImages.push({ ...slides[i], image_url: null });
         }
 
-        stopImgDrift();
+        stopImgDrift(); // stop drift AFTER image is finished
       }
 
       sendUpdate({ percent: 100, complete: true, slides: slidesWithImages });
