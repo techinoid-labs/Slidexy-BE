@@ -216,7 +216,6 @@ async function generateSlidesHandler(req, res) {
   const wantsStreaming = req.headers["accept"] === "text/event-stream";
 
   if (wantsStreaming) {
-    // --- Streaming SSE mode ---
     res.setHeader("Content-Type", "text/event-stream");
     res.setHeader("Cache-Control", "no-cache");
     res.setHeader("Connection", "keep-alive");
@@ -226,8 +225,7 @@ async function generateSlidesHandler(req, res) {
       res.write(`data: ${JSON.stringify(data)}\n\n`);
     };
 
-    // Initial message
-    sendUpdate({ percent: 8, message: "Initializing..." });
+    sendUpdate({ percent: 2, message: "Starting..." });
 
     const heartbeat = setInterval(() => {
       res.write(": keep-alive\n\n");
@@ -235,7 +233,7 @@ async function generateSlidesHandler(req, res) {
 
     try {
       // Step 1: Fetch input
-      sendUpdate({ percent: 18, message: "Analyzing data..." });
+      sendUpdate({ percent: 5, message: "Analyzing input..." });
 
       let rawText;
       if (source === "youtube") {
@@ -251,17 +249,31 @@ async function generateSlidesHandler(req, res) {
       } else {
         rawText = textContent;
       }
+      sendUpdate({ percent: 20, message: "Input analysis complete." });
 
-      // Step 2: Generate slide text
-      sendUpdate({ percent: 34, message: "Generating text..." });
+      // Step 2: Generate slide text (simulate increments)
+      sendUpdate({ percent: 25, message: "Generating text..." });
+
       const slides = await generateSlideText(rawText, meta, slideCount);
+
+      // simulate incremental updates while processing text
+      for (let p = 26; p <= 50; p += 4) {
+        await new Promise((r) => setTimeout(r, 200));
+        sendUpdate({ percent: p, message: "Working on text..." });
+      }
+
+      sendUpdate({ percent: 55, message: "Text generation done." });
 
       // Step 3: Generate images
       let slidesWithImages = [];
       for (let i = 0; i < slides.length; i++) {
+        const basePercent = 60;
+        const progressRange = 35; // 60 → 95 during images
+        const progressStep = Math.floor((i / slides.length) * progressRange);
+
         sendUpdate({
-          percent: 72 + Math.floor((i / slides.length) * 25),
-          message: `Generating images... (${i + 1}/${slides.length})`,
+          percent: basePercent + progressStep,
+          message: `Generating image ${i + 1}/${slides.length}...`,
         });
 
         try {
@@ -299,6 +311,7 @@ async function generateSlidesHandler(req, res) {
 
       // Final
       sendUpdate({ percent: 100, complete: true, slides: slidesWithImages });
+      res.write("data: [DONE]\n\n");
       clearInterval(heartbeat);
       res.end();
     } catch (err) {
@@ -310,7 +323,6 @@ async function generateSlidesHandler(req, res) {
   } else {
     // --- Legacy JSON mode ---
     try {
-      // fallback: do all steps directly
       let rawText;
       if (source === "youtube") {
         const videoId = extractYouTubeVideoId(inputUrl);
