@@ -197,119 +197,6 @@ function extractYouTubeVideoId(url) {
   }
 }
 
-// --- Helper: smooth drifting progress (only used in SSE mode) ---
-function driftProgress(sendUpdate, start, end, message) {
-  let current = start;
-  let active = true;
-
-  const tick = () => {
-    if (!active || current >= end - 1) return;
-
-    current += Math.random() * 1.5;
-    current = Math.min(current, end - 1);
-
-    sendUpdate({ percent: Math.round(current), message });
-    setTimeout(tick, 300 + Math.random() * 300);
-  };
-
-  tick();
-
-  return () => {
-    active = false;
-    sendUpdate({ percent: end, message: message + " done" });
-  };
-}
-
-// --- Shared business logic (no response writing here) ---
-async function buildSlides({
-  source,
-  inputUrl,
-  textContent,
-  inputWebsiteUrl,
-  meta,
-  slideCount,
-}) {
-  let rawText = "";
-
-  // Step 1: Fetch input text
-  if (source === "youtube") {
-    const videoId = extractYouTubeVideoId(inputUrl);
-    let transcript = null;
-    try {
-      transcript = await fetchYouTubeTranscript(inputUrl);
-    } catch (err) {
-      // fallback if no transcript
-    }
-    if (transcript && transcript.trim().length > 0) {
-      rawText = transcript;
-    } else {
-      const metaData = await fetchYouTubeMeta(videoId);
-      rawText = `Title: ${metaData.title}\nDescription: ${
-        metaData.description
-      }\nThumbnail: ${metaData.thumbnail}\nPublish Date: ${
-        metaData.publishDate
-      }\nChannel: ${metaData.channelName}\nChannel URL: ${
-        metaData.channelUrl
-      }\nView Count: ${metaData.viewCount}\nDuration: ${
-        metaData.duration
-      }\nTags: ${metaData.tags.join(", ")}`;
-    }
-  } else if (source === "website") {
-    rawText = await fetchWebsiteText(inputWebsiteUrl);
-  } else {
-    rawText = textContent;
-  }
-
-  // Step 2: Generate slide text
-  const slides = await generateSlideText(rawText, meta, slideCount);
-
-  // Step 3: Generate images
-  const slidesWithImages = [];
-  for (let i = 0; i < slides.length; i++) {
-    try {
-      const imageSlide = await generateImage(slides[i], i);
-      const imageUrl = imageSlide.image_url;
-
-      const elementsWithoutText = slides[i].elements.filter(
-        (el) => el.element_type !== "text"
-      );
-
-      slidesWithImages.push({
-        ...slides[i],
-        slide_title: {
-          ...slides[i].slide_title,
-          text: slides[i].slide_title?.text,
-        },
-        image_url: imageUrl,
-        elements: [
-          ...elementsWithoutText,
-          {
-            element_type: "image",
-            konva_component: "Konva.Image",
-            element_id: uuidv4(),
-            properties: {
-              imageSrc: imageUrl,
-              x: 440,
-              y: 15,
-              width: 500,
-              height: 400,
-            },
-          },
-        ],
-      });
-    } catch (err) {
-      console.error(`Image generation failed for slide ${i + 1}:`, err.message);
-      slidesWithImages.push({
-        ...slides[i],
-        image_url: null,
-        elements: slides[i].elements,
-      });
-    }
-  }
-
-  return slidesWithImages;
-}
-
 // --- Main controller ---
 async function generateSlidesHandler(req, res) {
   const errors = validationResult(req);
@@ -338,16 +225,16 @@ async function generateSlidesHandler(req, res) {
       res.write(`data: ${JSON.stringify(data)}\n\n`);
     };
 
-    // heartbeat to avoid frontend staying at 0
-    sendUpdate({ percent: 1, message: "Starting..." });
+    // Initial message
+    sendUpdate({ percent: 1, message: "Initializing..." });
 
-    // keep-alive heartbeat every 5s (for long ops like transcript fetch)
     const heartbeat = setInterval(() => {
       res.write(": keep-alive\n\n");
     }, 5000);
 
     try {
-      sendUpdate({ percent: 5, message: "Fetching input content..." });
+      // Step 1: Fetch input
+      sendUpdate({ percent: 8, message: "Analyzing data..." });
 
       let rawText;
       if (source === "youtube") {
@@ -364,37 +251,52 @@ async function generateSlidesHandler(req, res) {
         rawText = textContent;
       }
 
-      sendUpdate({ percent: 20, message: "Input content ready" });
-
-      const stopTextDrift = driftProgress(
-        sendUpdate,
-        40,
-        60,
-        "Generating slide text..."
-      );
+      // Step 2: Generate slide text
+      sendUpdate({ percent: 24, message: "Generating text..." });
       const slides = await generateSlideText(rawText, meta, slideCount);
-      stopTextDrift();
 
+      // Step 3: Generate images
       let slidesWithImages = [];
       for (let i = 0; i < slides.length; i++) {
-        const stopImgDrift = driftProgress(
-          sendUpdate,
-          60 + Math.floor((i / slides.length) * 30),
-          60 + Math.floor(((i + 1) / slides.length) * 30),
-          `Generating image for slide ${i + 1}/${slides.length}...`
-        );
+        sendUpdate({
+          percent: 43 + Math.floor((i / slides.length) * 25),
+          message: `Generating images... (${i + 1}/${slides.length})`,
+        });
 
         try {
           const imageSlide = await generateImage(slides[i], i);
           const imageUrl = imageSlide.image_url;
-          slidesWithImages.push({ ...slides[i], image_url: imageUrl });
+
+          const elementsWithoutText = slides[i].elements.filter(
+            (el) => el.element_type !== "text"
+          );
+
+          slidesWithImages.push({
+            ...slides[i],
+            slide_title: { ...slides[i].slide_title },
+            image_url: imageUrl,
+            elements: [
+              ...elementsWithoutText,
+              {
+                element_type: "image",
+                konva_component: "Konva.Image",
+                element_id: uuidv4(),
+                properties: {
+                  imageSrc: imageUrl,
+                  x: 440,
+                  y: 15,
+                  width: 500,
+                  height: 400,
+                },
+              },
+            ],
+          });
         } catch {
           slidesWithImages.push({ ...slides[i], image_url: null });
         }
-
-        stopImgDrift();
       }
 
+      // Final
       sendUpdate({ percent: 100, complete: true, slides: slidesWithImages });
       clearInterval(heartbeat);
       res.end();
@@ -407,14 +309,34 @@ async function generateSlidesHandler(req, res) {
   } else {
     // --- Legacy JSON mode ---
     try {
-      const slidesWithImages = await buildSlides({
-        source,
-        inputUrl,
-        textContent,
-        inputWebsiteUrl,
-        meta,
-        slideCount,
-      });
+      // fallback: do all steps directly
+      let rawText;
+      if (source === "youtube") {
+        const videoId = extractYouTubeVideoId(inputUrl);
+        try {
+          rawText = await fetchYouTubeTranscript(inputUrl);
+        } catch {
+          const metaData = await fetchYouTubeMeta(videoId);
+          rawText = metaData.description || metaData.title;
+        }
+      } else if (source === "website") {
+        rawText = await fetchWebsiteText(inputWebsiteUrl);
+      } else {
+        rawText = textContent;
+      }
+
+      const slides = await generateSlideText(rawText, meta, slideCount);
+
+      let slidesWithImages = [];
+      for (let i = 0; i < slides.length; i++) {
+        try {
+          const imageSlide = await generateImage(slides[i], i);
+          const imageUrl = imageSlide.image_url;
+          slidesWithImages.push({ ...slides[i], image_url: imageUrl });
+        } catch {
+          slidesWithImages.push({ ...slides[i], image_url: null });
+        }
+      }
 
       res.json({ slides: slidesWithImages });
     } catch (err) {
