@@ -8,6 +8,8 @@ const YAML = require("yamljs");
 const { MongoClient, GridFSBucket, ObjectId } = require("mongodb");
 
 const User = require("./models/WaitingUser");
+const userRoutes = require("./routes/user");
+const presentationRoutes = require("./routes/presentation");
 
 const {
   generatePptTemplateHandler,
@@ -48,16 +50,20 @@ mongoose
 // Initialize App
 const app = express();
 const corsOptions = {
-  origin: "https://slides-x-fe-xi.vercel.app",
-
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  origin: [
+    "https://slides-x-fe-xi.vercel.app",
+    "http://localhost:3000",             
+  ],
+  methods: ["GET", "POST", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true, 
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
 
 app.use(express.json());
+app.use("/api/users", userRoutes);
+app.use("/api/presentations", presentationRoutes);
 
 // API Docs
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
@@ -103,7 +109,7 @@ app.get("/images/:id", async (req, res) => {
   try {
     const client = new MongoClient(process.env.MONGO_URI);
     await client.connect();
-    const db = client.db("test"); 
+    const db = client.db("test");
 
     const bucket = new GridFSBucket(db, { bucketName: "slides" });
     const fileId = new ObjectId(req.params.id);
@@ -132,3 +138,5 @@ app.get("/images/:id", async (req, res) => {
 // Start Server
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server running on port ${port}`));
+
+module.exports = app;
