@@ -143,6 +143,8 @@ const { MongoClient, GridFSBucket, ObjectId } = require("mongodb");
 
 // Models
 const User = require("./models/WaitingUser");
+const userRoutes = require("./routes/user");
+const presentationRoutes = require("./routes/presentation");
 
 // Controllers
 const {
@@ -205,6 +207,9 @@ app.use((req, res, next) => {
     express.json()(req, res, next);
   }
 });
+app.use(express.json());
+app.use("/api/users", userRoutes);
+app.use("/api/presentations", presentationRoutes);
 
 // --- API Docs ---
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
@@ -280,4 +285,6 @@ app.get("/images/:id", async (req, res) => {
 
 // --- Start Server ---
 const port = process.env.PORT || 5000;
-app.listen(port, () => console.log(`🚀 Server running on port ${port}`));
+app.listen(port, () => console.log(`Server running on port ${port}`));
+
+module.exports = app;
