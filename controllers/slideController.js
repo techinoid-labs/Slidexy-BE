@@ -170,6 +170,8 @@ const { generateSlideText } = require("../services/generateSlideText");
 const { generateImage } = require("../services/generateImage");
 const { fetchYouTubeMeta } = require("../services/fetchYouTubeMeta");
 const { v4: uuidv4 } = require("uuid");
+const Presentation = require("../models/Presentation");
+const crypto = require("crypto");
 
 // --- Helper: YouTube video ID extractor ---
 function extractYouTubeVideoId(url) {
@@ -249,6 +251,25 @@ async function generateSlidesHandler(req, res) {
       } else {
         rawText = textContent;
       }
+      let topic;
+      if (source === "youtube") {
+        const videoId = extractYouTubeVideoId(inputUrl);
+        try {
+          rawText = await fetchYouTubeTranscript(inputUrl);
+          const metaData = await fetchYouTubeMeta(videoId);
+          topic = metaData.title || "YouTube Presentation";
+        } catch {
+          const metaData = await fetchYouTubeMeta(videoId);
+          rawText = metaData.description || metaData.title;
+          topic = metaData.title || "YouTube Presentation";
+        }
+      } else if (source === "website") {
+        rawText = await fetchWebsiteText(inputWebsiteUrl);
+        topic = inputWebsiteUrl || "Website Presentation";
+      } else {
+        rawText = textContent;
+        topic = textContent?.slice(0, 50) || "Untitled Presentation"; // first few chars as title
+      }
       sendUpdate({ percent: 20, message: "Input analysis complete." });
 
       // Step 2: Generate slide text (simulate increments)
@@ -310,10 +331,27 @@ async function generateSlidesHandler(req, res) {
       }
 
       // Final
-      sendUpdate({ percent: 100, complete: true, slides: slidesWithImages });
+      // Step 4: Save to Mongo
+      const presentation = new Presentation({
+        topic,
+        meta,
+        slides: slidesWithImages,
+      });
+      await presentation.save();
+
+      // Step 5: Send final update with presentation_id
+      sendUpdate({
+        percent: 100,
+        complete: true,
+        slides: slidesWithImages,
+        presentation_id: presentation.presentation_id,
+      });
+
       res.write("data: [DONE]\n\n");
       clearInterval(heartbeat);
       res.end();
+
+
     } catch (err) {
       console.error("Error in generate-slides (SSE):", err);
       sendUpdate({ error: err.message || "Slide generation failed." });
@@ -350,13 +388,20 @@ async function generateSlidesHandler(req, res) {
           slidesWithImages.push({ ...slides[i], image_url: null });
         }
       }
-
-      res.json({ slides: slidesWithImages });
+      const presentation = new Presentation({
+        topic,
+        meta,
+        slides: slidesWithImages,
+      });
+      await presentation.save();
+      // Step 5: Respond with id + slides
+      return res.json({
+        presentation_id: presentation.presentation_id,
+        slides: presentation.slides,
+      });
     } catch (err) {
-      console.error("Error in generate-slides (JSON):", err);
-      res
-        .status(500)
-        .json({ error: err.message || "Slide generation failed." });
+      console.error("Error in generate-slides:", err);
+      res.status(500).json({ error: err.message || "Slide generation failed." });
     }
   }
 }

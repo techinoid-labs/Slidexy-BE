@@ -268,6 +268,11 @@ app.get("/images/:id", async (req, res) => {
       return res.status(404).json({ error: "File not found" });
     }
 
+    // ✅ Explicitly allow CORS for image responses
+    res.set("Access-Control-Allow-Origin", "*");
+    res.set("Access-Control-Allow-Methods", "GET,OPTIONS");
+    res.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
     res.set("Content-Type", file.contentType || "application/octet-stream");
 
     const downloadStream = bucket.openDownloadStream(fileId);
@@ -282,6 +287,7 @@ app.get("/images/:id", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch image" });
   }
 });
+
 
 // --- Start Server ---
 const port = process.env.PORT || 5000;
