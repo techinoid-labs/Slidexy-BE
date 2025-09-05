@@ -30,6 +30,8 @@ async function createCheckoutSessionHandler(req, res) {
  * Stripe Webhook
  */
 async function webhookHandler(req, res) {
+  console.log("➡️ Stripe webhook received:", req.headers["stripe-signature"]);
+
   try {
     const event = verifyWebhookSignature(req);
 
@@ -46,7 +48,7 @@ async function webhookHandler(req, res) {
 
     res.json({ received: true });
   } catch (err) {
-    console.error("Webhook signature verification failed:", err);
+    console.error("❌ Webhook signature verification failed:", err.message);
     res.status(400).send(`Webhook Error: ${err.message}`);
   }
 }
@@ -73,5 +75,5 @@ async function getSessionHandler(req, res) {
 module.exports = {
   createCheckoutSessionHandler,
   webhookHandler,
-  getSessionHandler, // ✅ export
+  getSessionHandler,
 };

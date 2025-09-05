@@ -19,7 +19,7 @@ async function createCheckoutSession(priceId) {
 function verifyWebhookSignature(req) {
   const sig = req.headers["stripe-signature"];
   return stripe.webhooks.constructEvent(
-    req.rawBody,
+    req.body, // raw buffer provided by express.raw
     sig,
     process.env.STRIPE_WEBHOOK_SECRET
   );
