@@ -1,166 +1,3 @@
-// const { validationResult } = require("express-validator");
-// const { fetchWebsiteText } = require("../services/fetchWebsiteText");
-// const {
-//   fetchYouTubeTranscript,
-// } = require("../services/fetchYouTubeTranscript");
-// const { generateSlideText } = require("../services/generateSlideText");
-// const { generateImage } = require("../services/generateImage");
-// const { fetchYouTubeMeta } = require("../services/fetchYouTubeMeta");
-// const { v4: uuidv4 } = require("uuid");
-
-// function extractYouTubeVideoId(url) {
-//   try {
-//     const parsedUrl = new URL(url);
-//     let videoId = null;
-
-//     if (parsedUrl.hostname.includes("youtu.be")) {
-//       videoId = parsedUrl.pathname.slice(1);
-//     } else if (parsedUrl.pathname.startsWith("/shorts/")) {
-//       videoId = parsedUrl.pathname.split("/")[2];
-//     } else if (parsedUrl.pathname.startsWith("/embed/")) {
-//       videoId = parsedUrl.pathname.split("/")[2];
-//     } else {
-//       videoId = parsedUrl.searchParams.get("v");
-//     }
-
-//     // remove extra query params if still attached
-//     if (videoId) {
-//       videoId = videoId.split("&")[0].split("?")[0];
-//     }
-
-//     if (!videoId) throw new Error("Invalid YouTube URL");
-
-//     return videoId;
-//   } catch (err) {
-//     throw new Error("Invalid YouTube URL format: " + url);
-//   }
-// }
-
-// async function generateSlidesHandler(req, res) {
-//   const errors = validationResult(req);
-//   if (!errors.isEmpty())
-//     return res.status(400).json({ errors: errors.array() });
-
-//   const {
-//     source,
-//     inputUrl,
-//     textContent,
-//     inputWebsiteUrl,
-//     meta = {},
-//     slideCount = 3,
-//   } = req.body;
-
-//   let rawText = "";
-
-//   try {
-//     if (source === "youtube") {
-//       const urlObj = new URL(inputUrl);
-//       // const videoId = urlObj.searchParams.get("v") || inputUrl.split("/").pop();
-//       const videoId = extractYouTubeVideoId(inputUrl);
-//       let transcript = null;
-//       try {
-//         transcript = await fetchYouTubeTranscript(inputUrl);
-//       } catch (err) {
-//         // Transcript not available, will fall back to metadata
-//       }
-//       if (transcript && transcript.trim().length > 0) {
-//         rawText = transcript;
-//       } else {
-//         const metaData = await fetchYouTubeMeta(videoId);
-//         rawText = `Title: ${metaData.title}\nDescription: ${
-//           metaData.description
-//         }\nThumbnail: ${metaData.thumbnail}\nPublish Date: ${
-//           metaData.publishDate
-//         }\nChannel: ${metaData.channelName}\nChannel URL: ${
-//           metaData.channelUrl
-//         }\nView Count: ${metaData.viewCount}\nDuration: ${
-//           metaData.duration
-//         }\nTags: ${metaData.tags.join(", ")}`;
-//       }
-//     } else if (source === "website") {
-//       rawText = await fetchWebsiteText(inputWebsiteUrl);
-//     } else {
-//       rawText = textContent;
-//     }
-
-//     let slides = [];
-
-//     slides = await generateSlideText(rawText, meta, slideCount);
-
-//     const slidesWithImages = await Promise.all(
-//       slides.map(async (slide, index) => {
-//         try {
-//           const imageSlide = await generateImage(slide, index);
-//           const imageUrl = imageSlide.image_url;
-
-//           // Remove text elements (e.g., title or paragraph)
-//           const elementsWithoutText = slide.elements.filter(
-//             (el) => el.element_type !== "text"
-//           );
-
-//           const elementsWithOnlyImage = [
-//             ...elementsWithoutText,
-//             {
-//               element_type: "image",
-//               konva_component: "Konva.Image",
-//               element_id: uuidv4(),
-//               properties: {
-//                 imageSrc: imageUrl,
-//                 x: 440,
-//                 y: 15,
-//                 width: 500,
-//                 height: 400,
-//               },
-//             },
-//           ];
-
-//           return {
-//             ...slide,
-//             slide_title: {
-//               ...slide.slide_title,
-//               text: slide.slide_title?.text,
-//             },
-//             image_url: imageUrl,
-//             elements: elementsWithOnlyImage,
-//           };
-//         } catch (err) {
-//           console.error(
-//             `Image generation failed for slide ${index + 1}:`,
-//             err.message
-//           );
-//           return {
-//             ...slide,
-//             image_url: null,
-//             elements: slide.elements,
-//           };
-//         }
-//       })
-//     );
-
-//     // const slidesWithElementIds = slidesWithImages.map((slide) => {
-//     //   const elementsWithIds = slide.elements.map((el) => ({
-//     //     ...el,
-//     //     element_id: el.element_id || uuidv4(),
-//     //   }));
-
-//     //   return {
-//     //     ...slide,
-//     //     elements: elementsWithIds,
-//     //   };
-//     // });
-
-//     const imgSlides = slidesWithImages;
-
-//     res.json({ slides: slidesWithImages });
-//     // res.json({ slides: slidesWithElementIds });
-//   } catch (err) {
-//     console.error("Error in generate-slides:", err);
-//     res.status(500).json({ error: err.message || "Slide generation failed." });
-//   }
-// }
-
-// module.exports = { generateSlidesHandler };
-
 const { validationResult } = require("express-validator");
 const { fetchWebsiteText } = require("../services/fetchWebsiteText");
 const {
@@ -172,6 +9,8 @@ const { fetchYouTubeMeta } = require("../services/fetchYouTubeMeta");
 const { v4: uuidv4 } = require("uuid");
 const Presentation = require("../models/Presentation");
 const crypto = require("crypto");
+const User = require("../models/User");
+const { checkTrialLimits } = require("../utils/checkTrialLimits");
 
 // --- Helper: YouTube video ID extractor ---
 function extractYouTubeVideoId(url) {
@@ -213,7 +52,24 @@ async function generateSlidesHandler(req, res) {
     inputWebsiteUrl,
     meta = {},
     slideCount = 3,
+    userData,
   } = req.body;
+
+  // ✅ If logged in → run trial check
+  let user = null;
+  if (userData?._id) {
+    user = await User.findById(userData._id);
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Run trial/plan check
+    const { allowed, message } = await checkTrialLimits(user);
+    if (!allowed) {
+      return res.status(403).json({ error: message });
+    }
+  }
 
   const wantsStreaming = req.headers["accept"] === "text/event-stream";
 
@@ -350,8 +206,6 @@ async function generateSlidesHandler(req, res) {
       res.write("data: [DONE]\n\n");
       clearInterval(heartbeat);
       res.end();
-
-
     } catch (err) {
       console.error("Error in generate-slides (SSE):", err);
       sendUpdate({ error: err.message || "Slide generation failed." });
@@ -360,20 +214,73 @@ async function generateSlidesHandler(req, res) {
     }
   } else {
     // --- Legacy JSON mode ---
+    // try {
+    //   let rawText;
+    //   if (source === "youtube") {
+    //     const videoId = extractYouTubeVideoId(inputUrl);
+    //     try {
+    //       rawText = await fetchYouTubeTranscript(inputUrl);
+    //     } catch {
+    //       const metaData = await fetchYouTubeMeta(videoId);
+    //       rawText = metaData.description || metaData.title;
+    //     }
+    //   } else if (source === "website") {
+    //     rawText = await fetchWebsiteText(inputWebsiteUrl);
+    //   } else {
+    //     rawText = textContent;
+    //   }
+
+    //   const slides = await generateSlideText(rawText, meta, slideCount);
+
+    //   let slidesWithImages = [];
+    //   for (let i = 0; i < slides.length; i++) {
+    //     try {
+    //       const imageSlide = await generateImage(slides[i], i);
+    //       const imageUrl = imageSlide.image_url;
+    //       slidesWithImages.push({ ...slides[i], image_url: imageUrl });
+    //     } catch {
+    //       slidesWithImages.push({ ...slides[i], image_url: null });
+    //     }
+    //   }
+    //   const presentation = new Presentation({
+    //     topic,
+    //     meta,
+    //     slides: slidesWithImages,
+    //   });
+    //   await presentation.save();
+    //   // Step 5: Respond with id + slides
+    //   return res.json({
+    //     presentation_id: presentation.presentation_id,
+    //     slides: presentation.slides,
+    //   });
+    // } catch (err) {
+    //   console.error("Error in generate-slides:", err);
+    //   res
+    //     .status(500)
+    //     .json({ error: err.message || "Slide generation failed." });
+    // }
+    // --- Legacy JSON mode ---
     try {
       let rawText;
+      let topic;
+
       if (source === "youtube") {
         const videoId = extractYouTubeVideoId(inputUrl);
         try {
           rawText = await fetchYouTubeTranscript(inputUrl);
+          const metaData = await fetchYouTubeMeta(videoId);
+          topic = metaData.title || "YouTube Presentation";
         } catch {
           const metaData = await fetchYouTubeMeta(videoId);
           rawText = metaData.description || metaData.title;
+          topic = metaData.title || "YouTube Presentation";
         }
       } else if (source === "website") {
         rawText = await fetchWebsiteText(inputWebsiteUrl);
+        topic = inputWebsiteUrl || "Website Presentation";
       } else {
         rawText = textContent;
+        topic = textContent?.slice(0, 50) || "Untitled Presentation"; // first few chars as title
       }
 
       const slides = await generateSlideText(rawText, meta, slideCount);
@@ -388,12 +295,14 @@ async function generateSlidesHandler(req, res) {
           slidesWithImages.push({ ...slides[i], image_url: null });
         }
       }
+
       const presentation = new Presentation({
         topic,
         meta,
         slides: slidesWithImages,
       });
       await presentation.save();
+
       // Step 5: Respond with id + slides
       return res.json({
         presentation_id: presentation.presentation_id,
@@ -401,7 +310,9 @@ async function generateSlidesHandler(req, res) {
       });
     } catch (err) {
       console.error("Error in generate-slides:", err);
-      res.status(500).json({ error: err.message || "Slide generation failed." });
+      res
+        .status(500)
+        .json({ error: err.message || "Slide generation failed." });
     }
   }
 }

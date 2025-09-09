@@ -1,11 +1,16 @@
 // utils/checkTrialLimits.js
 const User = require("../models/User");
+const FR_URL = process.env.FRONTEND_URL;
+async function checkTrialLimits(user) {
+  // If user has a paid plan, skip limits
+  if (user.pricingPlan) {
+    return { allowed: true };
+  }
 
-async function checkTrialLimits(userId) {
-  const user = await User.findById(userId);
-
-  // If user has a pricing plan (paid), skip trial limits
-  if (user.pricingPlan) return;
+  // Initialize trialStart if missing
+  if (!user.trialStart) {
+    user.trialStart = new Date();
+  }
 
   // Set trialEnd if not set yet
   if (!user.trialEnd) {
@@ -16,7 +21,10 @@ async function checkTrialLimits(userId) {
 
   // Expired trial?
   if (Date.now() > user.trialEnd.getTime()) {
-    throw new Error("Trial expired. Please upgrade to continue.");
+    return {
+      allowed: false,
+      message: `Your trial has expired, You can join our waiting list for upcomming news and feature, pricing updates:`,
+    };
   }
 
   // Reset daily counter if it's a new day
@@ -32,14 +40,17 @@ async function checkTrialLimits(userId) {
 
   // Check daily limit
   if (user.presentationsCreatedToday >= 10) {
-    throw new Error(
-      "Daily trial limit reached. Try again tomorrow or upgrade your plan."
-    );
+    return {
+      allowed: false,
+      message: `Daily trial limit reached. Try again tomorrow, You can also join our waiting list for upcomming news and feature: `,
+    };
   }
 
   // Increment counter
   user.presentationsCreatedToday += 1;
   await user.save();
+
+  return { allowed: true };
 }
 
-module.exports = checkTrialLimits;
+module.exports = { checkTrialLimits };
