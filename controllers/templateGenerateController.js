@@ -221,7 +221,6 @@ const generatePptTemplateHandler = async (req, res) => {
       topic,
       meta,
       slides: normalizedSlides,
-      ...(userData?._id && { user: userData._id }), // ✅ only attach if logged in
     });
     await presentation.save();
 
