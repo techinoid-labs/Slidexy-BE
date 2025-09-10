@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4 Factors Infographic Template</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f8f8;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            max-width: 900px;
+            width: 100%;
+        }
+        
+        .left-content {
+            flex: 1;
+            padding-right: 60px;
+        }
+        
+        .title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 25px;
+            line-height: 1.1;
+        }
+        
+        .description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .right-content {
+            flex: 1;
+            position: relative;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .semicircle {
+            position: relative;
+            width: 320px;
+            height: 320px;
+        }
+        
+        .segment {
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            background: #FFB800;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .segment-01 {
+            top: 0;
+            left: 0;
+            border-radius: 160px 0 0 0;
+        }
+        
+        .segment-02 {
+            top: 0;
+            right: 0;
+            border-radius: 0 160px 0 0;
+        }
+        
+        .segment-03 {
+            bottom: 0;
+            right: 0;
+            border-radius: 0 0 160px 0;
+        }
+        
+        .segment-04 {
+            bottom: 0;
+            left: 0;
+            border-radius: 0 0 0 160px;
+        }
+        
+        .segment-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .segment-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .gear-icon, .people-icon, .chart-icon, .network-icon {
+            width: 35px;
+            height: 35px;
+            fill: #333;
+        }
+        
+        .callout {
+            position: absolute;
+            background: white;
+            padding: 12px 18px;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            font-size: 13px;
+            color: #333;
+            width: 180px;
+            z-index: 10;
+        }
+        
+        .callout-title {
+            font-weight: bold;
+            color: #FFB800;
+            margin-bottom: 4px;
+        }
+        
+        .callout-01 {
+            top: -80px;
+            left: 40px;
+        }
+        
+        .callout-02 {
+            top: -80px;
+            right: 40px;
+        }
+        
+        .callout-03 {
+            bottom: -80px;
+            right: 40px;
+        }
+        
+        .callout-04 {
+            bottom: -80px;
+            left: 40px;
+        }
+        
+        .callout::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+        
+        .callout-01::after {
+            bottom: -10px;
+            left: 30px;
+            border-width: 10px 10px 0 10px;
+            border-color: white transparent transparent transparent;
+        }
+        
+        .callout-02::after {
+            bottom: -10px;
+            right: 30px;
+            border-width: 10px 10px 0 10px;
+            border-color: white transparent transparent transparent;
+        }
+        
+        .callout-03::after {
+            top: -10px;
+            right: 30px;
+            border-width: 0 10px 10px 10px;
+            border-color: transparent transparent white transparent;
+        }
+        
+        .callout-04::after {
+            top: -10px;
+            left: 30px;
+            border-width: 0 10px 10px 10px;
+            border-color: transparent transparent white transparent;
+        }
+        
+        .connector-line {
+            position: absolute;
+            width: 2px;
+            background: #ccc;
+            z-index: 5;
+        }
+        
+        .line-01 {
+            height: 30px;
+            top: -50px;
+            left: 70px;
+        }
+        
+        .line-02 {
+            height: 30px;
+            top: -50px;
+            right: 70px;
+        }
+        
+        .line-03 {
+            height: 30px;
+            bottom: -50px;
+            right: 70px;
+        }
+        
+        .line-04 {
+            height: 30px;
+            bottom: -50px;
+            left: 70px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                padding: 30px;
+            }
+            
+            .left-content {
+                padding-right: 0;
+                padding-bottom: 30px;
+                text-align: center;
+            }
+            
+            .right-content {
+                height: 400px;
+            }
+            
+            .semicircle {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .segment {
+                width: 140px;
+                height: 140px;
+            }
+            
+            .segment-01, .segment-02, .segment-03, .segment-04 {
+                border-radius: 140px 0 0 0;
+            }
+            
+            .segment-02 { border-radius: 0 140px 0 0; }
+            .segment-03 { border-radius: 0 0 140px 0; }
+            .segment-04 { border-radius: 0 0 0 140px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-content">
+            <h1 class="title">4 FACTORS<br>INFOGRAPHIC<br>TEMPLATE</h1>
+            <p class="description">
+                Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+        </div>
+        
+        <div class="right-content">
+            <div class="semicircle">
+                <div class="segment segment-01">
+                    <div class="segment-number">01</div>
+                    <div class="segment-icon">
+                        <svg class="gear-icon" viewBox="0 0 24 24">
+                            <path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.22,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.22,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.68 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="segment segment-02">
+                    <div class="segment-number">02</div>
+                    <div class="segment-icon">
+                        <svg class="people-icon" viewBox="0 0 24 24">
+                            <path d="M16,4C18.21,4 20,5.79 20,8C20,10.21 18.21,12 16,12C13.79,12 12,10.21 12,8C12,5.79 13.79,4 16,4M16,14C20.42,14 24,15.79 24,18V20H8V18C8,15.79 11.58,14 16,14M8,4C10.21,4 12,5.79 12,8C12,10.21 10.21,12 8,12C5.79,12 4,10.21 4,8C4,5.79 5.79,4 8,4M8,14C12.42,14 16,15.79 16,18V20H0V18C0,15.79 3.58,14 8,14Z"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="segment segment-03">
+                    <div class="segment-number">03</div>
+                    <div class="segment-icon">
+                        <svg class="chart-icon" viewBox="0 0 24 24">
+                            <path d="M22,21H2V3H4V19H6V17H10V19H12V16H16V19H18V17H22V21Z"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="segment segment-04">
+                    <div class="segment-number">04</div>
+                    <div class="segment-icon">
+                        <svg class="network-icon" viewBox="0 0 24 24">
+                            <path d="M17,12C19.21,12 21,10.21 21,8C21,5.79 19.21,4 17,4C14.79,4 13,5.79 13,8C13,8.35 13.06,8.69 13.14,9.02L8.84,12.02C8.32,11.72 7.69,11.53 7,11.53C4.79,11.53 3,13.32 3,15.53C3,17.74 4.79,19.53 7,19.53C9.21,19.53 11,17.74 11,15.53C11,15.19 10.94,14.85 10.86,14.52L15.16,11.52C15.68,11.82 16.31,12 17,12Z"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                <!-- Connector lines -->
+                <div class="connector-line line-01"></div>
+                <div class="connector-line line-02"></div>
+                <div class="connector-line line-03"></div>
+                <div class="connector-line line-04"></div>
+                
+                <!-- Callouts -->
+                <div class="callout callout-01">
+                    <div class="callout-title">Lorem Ipsum Dolor</div>
+                    <div>amet consectetur adipiscing elit</div>
+                </div>
+                
+                <div class="callout callout-02">
+                    <div class="callout-title">Lorem Ipsum Dolor</div>
+                    <div>amet consectetur adipiscing elit</div>
+                </div>
+                
+                <div class="callout callout-03">
+                    <div class="callout-title">Lorem Ipsum Dolor</div>
+                    <div>amet consectetur adipiscing elit</div>
+                </div>
+                
+                <div class="callout callout-04">
+                    <div class="callout-title">Lorem Ipsum Dolor</div>
+                    <div>amet consectetur adipiscing elit</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Process Steps</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: url('https://www.transparenttextures.com/patterns/world-map.png') repeat;
+            background-size: cover;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 150px;
+        }
+        .circle {
+            width: 120px;
+            height: 120px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .step1 .circle { background: #ff4d4d; }
+        .step2 .circle { background: #8a4af3; }
+        .step3 .circle { background: #00c4cc; }
+        .step4 .circle { background: #1e3a8a; }
+        .icon {
+            font-size: 40px;
+            color: #fff;
+        }
+        .text {
+            margin-top: 10px;
+            color: #333;
+        }
+        .arrow {
+            width: 50px;
+            height: 2px;
+            background: #ccc;
+            position: relative;
+        }
+        .arrow::after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: -5px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid #ccc;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="step step1">
+            <div class="circle"><span class="icon">💡</span></div>
+            <div class="text">Step 01<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dignissim pretium.</div>
+        </div>
+        <div class="arrow"></div>
+        <div class="step step2">
+            <div class="circle"><span class="icon">📧</span></div>
+            <div class="text">Step 02<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dignissim pretium.</div>
+        </div>
+        <div class="arrow"></div>
+        <div class="step step3">
+            <div class="circle"><span class="icon">❓</span></div>
+            <div class="text">Step 03<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dignissim pretium.</div>
+        </div>
+        <div class="arrow"></div>
+        <div class="step step4">
+            <div class="circle"><span class="icon">✅</span></div>
+            <div class="text">Step 04<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dignissim pretium.</div>
+        </div>
+    </div>
+</body>
+</html>

@@ -6,11 +6,11 @@ const path = require("path");
 const swaggerUi = require("swagger-ui-express");
 const YAML = require("yamljs");
 const { MongoClient, GridFSBucket, ObjectId } = require("mongodb");
-
+const infographicRoute = require("./routes/infographics");
 // Models
 const User = require("./models/WaitingUser");
 const userRoutes = require("./routes/user");
-const presentationRoutes = require("./routes/presentation");
+
 
 // Controllers
 const {
@@ -27,7 +27,7 @@ const {
   generateImageSuggestionsHandler,
 } = require("./controllers/regenerateImageController");
 const { getPosterTemplate } = require("./controllers/infographicController");
-
+const presentationRoutes = require("./routes/presentation");
 // Middlewares
 const {
   validateTemplateInput,
@@ -76,7 +76,7 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use("/api/users", userRoutes);
 app.use("/api/presentations", presentationRoutes);
-
+app.use("/api/infographic", infographicRoute);
 // --- API Docs ---
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
