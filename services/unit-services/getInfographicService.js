@@ -436,12 +436,21 @@ const getRandomTemplate = (type) => {
     const templates = DESIGN_TEMPLATES[type] || DESIGN_TEMPLATES.comparison;
     return templates[Math.floor(Math.random() * templates.length)];
 };
+const getRandomeTimelineTemplate = () => {
+    const templates = DESIGN_TEMPLATES.timeline;
+    return templates[Math.floor(Math.random() * templates.length)];
+}
 
 const createSystemPrompt = (userPrompt) => {
     const colorScheme = getRandomColorScheme();
     const schemeData = JSON.stringify(colorScheme, null, 2);
     const randomTemplate = getRandomTemplate("");
     const randomProcessTemplate = getRandomProcessTemplate();
+    const randomTimelineTemplate = getRandomeTimelineTemplate();
+    const randomChartTemplate = getRandomTemplate("chart");
+    const randomComparisonTemplate = getRandomTemplate("comparison");
+    const randomRadialTemplate = getRandomTemplate("radial");
+    const randomFlowTemplate = getRandomTemplate("process");
 
     return `You are an expert infographic generator and web designer specializing in STUNNING, UNIQUE designs, now including interactive charts.
 
@@ -450,6 +459,11 @@ TASK: Analyze this user request and generate TWO outputs:
 2. HTML snippet (to render the infographic with beautiful CSS styling in style="..." format).
 3- Make sure the width is 1200px and height is 600px (2:1 ratio).
 4- Also use @keyframes and CSS transitions for animations.
+5- Use relevant emojis and svgs to enhance the design inside the infographics.
+6- Make sure there are not empty spaces in the generated infographics HTML.
+7- Please ensure that you follow the color scheme provided in ${randomTemplate.template(colorScheme, {})}.
+8- Please do not use infographic HTML with oklch colors that can cause potesntial errors.
+9- MAKE SURE THERE IS NO OVERLAPPING OF TEXTS, IMAGES AND EMOJIS. EVERYTHING MUST BE CLEARLY VISIBLE.
 USER REQUEST:
 "${userPrompt}"
 
@@ -461,6 +475,21 @@ ${randomTemplate.template(colorScheme, {})}
 
 For inspiration, here's an example template structure for process infographics (adapt and make unique):
 ${randomProcessTemplate.template(colorScheme, {})}
+
+For inspiration, here's an example template structure for timeline infographics (adapt and make unique):
+${randomTimelineTemplate.template(colorScheme, {})}
+
+For inspiration, here's an example template structure for chart infographics (adapt and make unique):
+${randomChartTemplate.template(colorScheme, {})}
+
+For inspiration, here's an example template structure for comparison infographics (adapt and make unique):
+${randomComparisonTemplate.template(colorScheme, {})}
+
+For inspiration, here's an example template structure for radial infographics (adapt and make unique):
+${randomRadialTemplate.template(colorScheme, {})}
+
+For inspiration, here's an example template structure for flow/process infographics (adapt and make unique):
+${randomFlowTemplate.template(colorScheme, {})}
 
 RULES:
 - Return ONLY a JSON object with exactly two top-level keys: "json" and "html".
@@ -479,7 +508,7 @@ RULES:
 JSON SCHEMA:
 {
   "title": "Main headline",
-  "subtitle": "Supporting description" (Compulsory),
+  "subtitle": "Supporting description" (Compulsory) , should be detailed and relevant,
   "type": "process | comparison | radial | timeline | chart",
   "subtype": "If type=chart, required: bar | line | pie | scatter | area" ,
   "data": {
