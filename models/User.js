@@ -23,6 +23,7 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   name: String,
+  admin: Boolean,
   presentations: [{ type: String }],
   currentPresentationId: { type: String, default: null },
   pricingPlan: {

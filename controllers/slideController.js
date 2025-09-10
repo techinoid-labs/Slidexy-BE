@@ -56,18 +56,20 @@ async function generateSlidesHandler(req, res) {
   } = req.body;
 
   // ✅ If logged in → run trial check
-  let user = null;
-  if (userData?._id) {
-    user = await User.findById(userData._id);
+  if (!userData.admin) {
+    let user = null;
+    if (userData?._id) {
+      user = await User.findById(userData._id);
 
-    if (!user) {
-      return res.status(404).json({ error: "User not found" });
-    }
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
 
-    // Run trial/plan check
-    const { allowed, message } = await checkTrialLimits(user);
-    if (!allowed) {
-      return res.status(403).json({ error: message });
+      // Run trial/plan check
+      const { allowed, message } = await checkTrialLimits(user);
+      if (!allowed) {
+        return res.status(403).json({ error: message });
+      }
     }
   }
 
@@ -213,53 +215,6 @@ async function generateSlidesHandler(req, res) {
       res.end();
     }
   } else {
-    // --- Legacy JSON mode ---
-    // try {
-    //   let rawText;
-    //   if (source === "youtube") {
-    //     const videoId = extractYouTubeVideoId(inputUrl);
-    //     try {
-    //       rawText = await fetchYouTubeTranscript(inputUrl);
-    //     } catch {
-    //       const metaData = await fetchYouTubeMeta(videoId);
-    //       rawText = metaData.description || metaData.title;
-    //     }
-    //   } else if (source === "website") {
-    //     rawText = await fetchWebsiteText(inputWebsiteUrl);
-    //   } else {
-    //     rawText = textContent;
-    //   }
-
-    //   const slides = await generateSlideText(rawText, meta, slideCount);
-
-    //   let slidesWithImages = [];
-    //   for (let i = 0; i < slides.length; i++) {
-    //     try {
-    //       const imageSlide = await generateImage(slides[i], i);
-    //       const imageUrl = imageSlide.image_url;
-    //       slidesWithImages.push({ ...slides[i], image_url: imageUrl });
-    //     } catch {
-    //       slidesWithImages.push({ ...slides[i], image_url: null });
-    //     }
-    //   }
-    //   const presentation = new Presentation({
-    //     topic,
-    //     meta,
-    //     slides: slidesWithImages,
-    //   });
-    //   await presentation.save();
-    //   // Step 5: Respond with id + slides
-    //   return res.json({
-    //     presentation_id: presentation.presentation_id,
-    //     slides: presentation.slides,
-    //   });
-    // } catch (err) {
-    //   console.error("Error in generate-slides:", err);
-    //   res
-    //     .status(500)
-    //     .json({ error: err.message || "Slide generation failed." });
-    // }
-    // --- Legacy JSON mode ---
     try {
       let rawText;
       let topic;

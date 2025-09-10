@@ -32,6 +32,7 @@ exports.register = async (req, res) => {
     const user = new User({
       email,
       password: hashedPassword,
+      admin: false,
       presentations: presentationId ? [presentationId] : [],
       currentPresentationId: presentationId || null,
       trialStart: new Date(),
@@ -158,6 +159,7 @@ exports.getProfile = async (req, res) => {
       _id: user._id,
       email: user.email,
       name: user.name,
+      admin: user.admin,
       presentations: user.presentations,
       currentPresentationId: user.currentPresentationId,
       pricingPlan: user.pricingPlan,

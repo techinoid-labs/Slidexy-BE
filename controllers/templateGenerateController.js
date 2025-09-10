@@ -1,126 +1,106 @@
-// const crypto = require("crypto");
-// const { templateJSONService } = require("../services/templateJSONService");
+// // controllers/templateGenerateController.js
 // const {
-//   generateTemplateImageService,
-// } = require("../services/generateTemplateImageService");
+//   getTitlesService,
+// } = require("../services/unit-services/getTitlesService");
+// const {
+//   getBulletsService,
+// } = require("../services/unit-services/getBulletsService");
+// const {
+//   getImagesService,
+// } = require("../services/unit-services/getImagesService");
 // const { bridgeTemplate } = require("../services/templateBridgeServices");
-// const { generateMultipleThemes } = require("../services/generateThemeImage");
+// const Presentation = require("../models/Presentation");
+// const crypto = require("crypto");
 
 // const generatePptTemplateHandler = async (req, res) => {
 //   try {
-//     const { topic, slideCount = 3, meta = {} } = req.body;
+//     const { topic, slideCount = 5, meta = {}, userData } = req.body;
+//     if (!topic) return res.status(400).json({ error: "Topic is required" });
 
-//     if (!topic) {
-//       return res.status(400).json({ error: "Topic is required" });
-//     }
+//     // Step 1: Get titles
+//     const titles = await getTitlesService(topic, slideCount, meta);
 
-//     // Step 1: Generate themes to ensure consistency
-//     // const themes = await generateMultipleThemes(topic, 2);
-//     // if (!themes || themes.length === 0) {
-//     //   return res.status(500).json({ error: "Failed to generate themes" });
-//     // }
-//     // Select the first theme for consistency
-//     // const selectedTheme = themes[0];
+//     // Step 2 + 3: Get bullets and images in parallel
+//     const [bulletsPerSlide, imagesPerSlide] = await Promise.all([
+//       getBulletsService(topic, titles, meta),
+//       getImagesService(topic, titles, meta),
+//     ]);
 
-//     // Step 2: Pass theme to templateJSONService for consistent slide generation
-//     const slidesArray = await templateJSONService(topic, meta, slideCount);
+//     // Step 4: Combine into Slide array
+//     const slides = titles.map((title, index) => {
+//       const titleComponent = {
+//         konva_component: "Konva.Text",
+//         element_type: "title",
+//         text: title,
+//         properties: {
+//           fontSize: 36,
+//           fontFamily: "Montserrat, sans-serif",
+//           fill: "#1F2937",
+//           x: 40,
+//           y: 40,
+//           width: 880,
+//           height: 80,
+//           align: "center",
+//           zIndex: 9999,
+//         },
+//       };
 
-//     if (!Array.isArray(slidesArray)) {
-//       return res.status(500).json({ error: "Invalid template format from AI" });
-//     }
+//       const elements = [
+//         ...bulletsPerSlide[index],
+//         ...imagesPerSlide[index].elementImages,
+//         {
+//           konva_component: "Konva.Rect",
+//           element_type: "shape",
+//           properties: {
+//             x: 40,
+//             y: 140,
+//             width: 880,
+//             height: 360,
+//             fill: "#E5E7EB",
+//             opacity: 0.7,
+//             cornerRadius: 15,
+//             zIndex: 100,
+//           },
+//         },
+//       ];
 
-//     // Step 3: Normalize slides
-//     const normalizedSlides = await bridgeTemplate(slidesArray, topic, meta);
+//       return {
+//         slide_id: `slide-${crypto.randomUUID()}`,
+//         slide_title: titleComponent,
+//         elements,
+//         image_url: imagesPerSlide[index].image_url,
+//         image_caption: imagesPerSlide[index].image_caption,
+//         titleBlock: { elements: [titleComponent], width: 960, height: 100 },
+//         textBlock: {
+//           elements: bulletsPerSlide[index],
+//           width: 400,
+//           height: 300,
+//         },
+//         imageBlock: {
+//           elements: imagesPerSlide[index].elementImages,
+//           width: 500,
+//           height: 400,
+//         },
+//       };
+//     });
 
-//     // Step 4: Generate images for backgrounds and elements, passing the theme
-//     for (const slide of normalizedSlides) {
-//       if (slide.image_url) {
-//         const aiBgBase64 = await generateTemplateImageService(
-//           crypto.randomUUID(),
-//           { slide, element: null }
-//         );
-//         slide.image_url = aiBgBase64;
-//       }
+//     // Step 5: Normalize
+//     const normalizedSlides = await bridgeTemplate(slides, topic, meta);
 
-//       for (const el of slide.elements || []) {
-//         if (el.element_type === "image") {
-//           const aiImageBase64 = await generateTemplateImageService(
-//             crypto.randomUUID(),
-//             { slide, element: el }
-//           );
+//     // Step 6: Store in DB via mongoose
+//     const presentation = new Presentation({
+//       topic,
+//       meta,
+//       slides: normalizedSlides,
+//     });
+//     await presentation.save();
 
-//           el.properties.imageSrc = aiImageBase64;
-//         }
-//       }
-//     }
-
-//     // Step 5: Build final response structure
-//     const presentation = {
-//       slides: normalizedSlides.map((slide) => ({
-//         slide_id: slide.slide_id || crypto.randomUUID(),
-//         slide_title: slide.slide_title,
-//         image_url: slide.image_url || "",
-//         elements: (slide.elements || []).map((el) => {
-//           const base = {
-//             element_id: crypto.randomUUID(),
-//             element_type: el.element_type,
-//             konva_component: el.konva_component,
-//             role: el.role,
-//           };
-
-//           if (["text", "bullet_point", "title"].includes(el.element_type)) {
-//             return {
-//               ...base,
-//               text: el.text || "Text here",
-//               properties: {
-//                 zIndex: el.properties?.zIndex ?? 200,
-//                 fontSize: el.properties?.fontSize || 16,
-//                 fontFamily: el.properties?.fontFamily || "Arial",
-//                 fill: el.properties?.fill || "#000000",
-//                 fontStyle: el.properties?.fontStyle,
-//                 fontWeight: el.properties?.fontWeight,
-//                 x: el.properties?.x || 0,
-//                 y: el.properties?.y || 0,
-//                 width: el.properties?.width || 200,
-//                 height: el.properties?.height,
-//                 align: el.properties?.align || "left",
-//               },
-//             };
-//           }
-
-//           if (el.element_type === "shape") {
-//             return {
-//               ...base,
-//               properties: {
-//                 ...el.properties,
-//                 fill: el.properties?.fill || "#000000",
-//               },
-//             };
-//           }
-
-//           if (el.element_type === "image") {
-//             return {
-//               ...base,
-//               properties: {
-//                 zIndex: el.properties?.zIndex ?? 1,
-//                 imageSrc: el.properties?.imageSrc || "",
-//                 x: el.properties?.x || 0,
-//                 y: el.properties?.y || 0,
-//                 width: el.properties?.width || 100,
-//                 height: el.properties?.height || 100,
-//                 rounded: el.properties?.rounded || 10,
-//               },
-//             };
-//           }
-
-//           return base;
-//         }),
-//       })),
-//     };
-
-//     return res.json(presentation);
+//     return res.json({
+//       presentation_id: presentation.presentation_id,
+//       slides: presentation.slides,
+//     });
 //   } catch (err) {
-//     console.error("Error generating PPT template:", err.message);
+//     console.error("Error in generatePptTemplateHandler:", err);
 //     return res.status(500).json({ error: err.message });
 //   }
 // };
@@ -128,25 +108,51 @@
 // module.exports = { generatePptTemplateHandler };
 
 // controllers/templateGenerateController.js
-const { getTitlesService } = require("../services/unit-services/getTitlesService");
-const { getBulletsService } = require("../services/unit-services/getBulletsService");
-const { getImagesService } = require("../services/unit-services/getImagesService");
+const {
+  getTitlesService,
+} = require("../services/unit-services/getTitlesService");
+const {
+  getBulletsService,
+} = require("../services/unit-services/getBulletsService");
+const {
+  getImagesService,
+} = require("../services/unit-services/getImagesService");
 const { bridgeTemplate } = require("../services/templateBridgeServices");
 const Presentation = require("../models/Presentation");
 const crypto = require("crypto");
+const { checkTrialLimits } = require("../utils/checkTrialLimits");
+const User = require("../models/User");
 
 const generatePptTemplateHandler = async (req, res) => {
   try {
-    const { topic, slideCount = 5, meta = {} } = req.body;
+    const { topic, slideCount = 5, meta = {}, userData } = req.body;
     if (!topic) return res.status(400).json({ error: "Topic is required" });
 
+    // ✅ Step 0: If logged in, enforce trial limits
+    // ✅ If logged in → run trial check
+    if (!userData.admin) {
+      let user = null;
+      if (userData?._id) {
+        user = await User.findById(userData._id);
+
+        if (!user) {
+          return res.status(404).json({ error: "User not found" });
+        }
+
+        // Run trial/plan check
+        const { allowed, message } = await checkTrialLimits(user);
+        if (!allowed) {
+          return res.status(403).json({ error: message });
+        }
+      }
+    }
     // Step 1: Get titles
     const titles = await getTitlesService(topic, slideCount, meta);
 
     // Step 2 + 3: Get bullets and images in parallel
     const [bulletsPerSlide, imagesPerSlide] = await Promise.all([
       getBulletsService(topic, titles, meta),
-      getImagesService(topic, titles, meta), 
+      getImagesService(topic, titles, meta),
     ]);
 
     // Step 4: Combine into Slide array
@@ -194,8 +200,16 @@ const generatePptTemplateHandler = async (req, res) => {
         image_url: imagesPerSlide[index].image_url,
         image_caption: imagesPerSlide[index].image_caption,
         titleBlock: { elements: [titleComponent], width: 960, height: 100 },
-        textBlock: { elements: bulletsPerSlide[index], width: 400, height: 300 },
-        imageBlock: { elements: imagesPerSlide[index].elementImages, width: 500, height: 400 },
+        textBlock: {
+          elements: bulletsPerSlide[index],
+          width: 400,
+          height: 300,
+        },
+        imageBlock: {
+          elements: imagesPerSlide[index].elementImages,
+          width: 500,
+          height: 400,
+        },
       };
     });
 
@@ -207,6 +221,7 @@ const generatePptTemplateHandler = async (req, res) => {
       topic,
       meta,
       slides: normalizedSlides,
+      ...(userData?._id && { user: userData._id }), // ✅ only attach if logged in
     });
     await presentation.save();
 
