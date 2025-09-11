@@ -130,7 +130,7 @@ const generatePptTemplateHandler = async (req, res) => {
 
     // ✅ Step 0: If logged in, enforce trial limits
     // ✅ If logged in → run trial check
-    if (!userData.admin) {
+    if (!userData?.admin) {
       let user = null;
       if (userData?._id) {
         user = await User.findById(userData._id);
