@@ -442,6 +442,8 @@ const getRandomeTimelineTemplate = () => {
 }
 
 const createSystemPrompt = (userPrompt) => {
+    const infographicHeight = 600;
+    const infographicWidth = 1200;
     const colorScheme = getRandomColorScheme();
     const schemeData = JSON.stringify(colorScheme, null, 2);
     const randomTemplate = getRandomTemplate("");
@@ -494,9 +496,11 @@ ${randomFlowTemplate.template(colorScheme, {})}
 RULES:
 - Return ONLY a JSON object with exactly two top-level keys: "json" and "html".
 - Do NOT include explanations, markdown, or code fences.
+- Follow the width and height requirements strictly. ${infographicWidth}px width and ${infographicHeight}px height.
 - The "json" key must contain structured data as per the JSON SCHEMA below.
 - The "html" key must contain a string of valid HTML using ONLY inline style="..." attributes and SVG for charts.
 - HTML must NOT include <html>, <head>, <body>, or external CSS/JS references.
+- For Timeline type, use flexbox/grid for layout. Add arrows, dots, or icons to indicate time progression and it should look like a timeline graph.
 - For charts, use SVG elements (<rect>, <polyline>, <path>, <circle>) to render data visually. Scale values proportionally (e.g., max height=300 for bars). Add tooltips via title attributes and hover effects with CSS :hover.
 - Create STUNNING, PROFESSIONAL designs with:
   * Modern gradients, glassmorphism (backdrop-filter: blur()), shadows, and depth.
