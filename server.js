@@ -120,39 +120,39 @@ app.post("/join-waitlist", async (req, res) => {
 });
 
 // --- Image Fetching Route ---
-app.get("/images/:id", async (req, res) => {
-  try {
-    const client = new MongoClient(process.env.MONGO_URI);
-    await client.connect();
-    const db = client.db("test");
+// app.get("/images/:id", async (req, res) => {
+//   try {
+//     const client = new MongoClient(process.env.MONGO_URI);
+//     await client.connect();
+//     const db = client.db("test");
 
-    const bucket = new GridFSBucket(db, { bucketName: "slides" });
-    const fileId = new ObjectId(req.params.id);
+//     const bucket = new GridFSBucket(db, { bucketName: "slides" });
+//     const fileId = new ObjectId(req.params.id);
 
-    const file = await db.collection("slides.files").findOne({ _id: fileId });
-    if (!file) {
-      return res.status(404).json({ error: "File not found" });
-    }
+//     const file = await db.collection("slides.files").findOne({ _id: fileId });
+//     if (!file) {
+//       return res.status(404).json({ error: "File not found" });
+//     }
 
-    // ✅ Explicitly allow CORS for image responses
-    res.set("Access-Control-Allow-Origin", "*");
-    res.set("Access-Control-Allow-Methods", "GET,OPTIONS");
-    res.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+//     // ✅ Explicitly allow CORS for image responses
+//     res.set("Access-Control-Allow-Origin", "*");
+//     res.set("Access-Control-Allow-Methods", "GET,OPTIONS");
+//     res.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
-    res.set("Content-Type", file.contentType || "application/octet-stream");
+//     res.set("Content-Type", file.contentType || "application/octet-stream");
 
-    const downloadStream = bucket.openDownloadStream(fileId);
-    downloadStream.on("error", (err) => {
-      console.error("GridFS Stream error:", err);
-      res.status(500).json({ error: "Error streaming file" });
-    });
+//     const downloadStream = bucket.openDownloadStream(fileId);
+//     downloadStream.on("error", (err) => {
+//       console.error("GridFS Stream error:", err);
+//       res.status(500).json({ error: "Error streaming file" });
+//     });
 
-    downloadStream.pipe(res);
-  } catch (err) {
-    console.error("Error fetching image:", err);
-    res.status(500).json({ error: "Failed to fetch image" });
-  }
-});
+//     downloadStream.pipe(res);
+//   } catch (err) {
+//     console.error("Error fetching image:", err);
+//     res.status(500).json({ error: "Failed to fetch image" });
+//   }
+// });
 
 // --- Start Server ---
 const port = process.env.PORT || 5000;

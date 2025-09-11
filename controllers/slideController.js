@@ -56,7 +56,7 @@ async function generateSlidesHandler(req, res) {
   } = req.body;
 
   // ✅ If logged in → run trial check
-  if (!userData.admin) {
+  if (!userData?.admin) {
     let user = null;
     if (userData?._id) {
       user = await User.findById(userData._id);
