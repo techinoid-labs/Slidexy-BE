@@ -4,28 +4,80 @@ const User = require("../models/User");
 const Presentation = require("../models/Presentation");
 
 // Register
+// exports.register = async (req, res) => {
+//   try {
+//     const { email, password, presentationId } = req.body;
+
+//     const existing = await User.findOne({ email });
+//     if (existing)
+//       return res.status(400).json({ message: "User already exists" });
+
+//     const hashedPassword = await bcrypt.hash(password, 10);
+
+//     const user = new User({
+//       email,
+//       password: hashedPassword,
+//       admin: false,
+//       presentations: presentationId ? [presentationId] : [],
+//       currentPresentationId: presentationId || null,
+//       trialStart: new Date(),
+//       trialEnd: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), //  7 days from now
+//     });
+//     await user.save();
+
+//     // Update Presentation with user ID if presentationId is provided
+//     if (presentationId) {
+//       await User.findByIdAndUpdate(
+//         user._id,
+//         {
+//           $addToSet: { presentations: presentationId },
+//           $set: { currentPresentationId: presentationId },
+//         },
+//         { new: true }
+//       );
+//       await Presentation.findOneAndUpdate(
+//         { presentation_id: presentationId },
+//         { user: user._id }
+//       );
+//     }
+
+//     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+//       expiresIn: "1y",
+//     });
+
+//     res.json({ token, userId: user._id, presentationId });
+//   } catch (err) {
+//     console.error("Register error:", err.message);
+//     res.status(500).json({ message: "Server error" });
+//   }
+// };
+
+// Register
 exports.register = async (req, res) => {
-  // try {
-  //     const { email, password, presentationId } = req.body; // Add presentationId to request body
-
-  //     const existing = await User.findOne({ email });
-  //     if (existing) return res.status(400).json({ message: "User already exists" });
-
-  //     const hashedPassword = await bcrypt.hash(password, 10);
-
-  //     const user = new User({
-  //         email,
-  //         password: hashedPassword,
-  //         presentations: presentationId ? [presentationId] : [], // Add presentationId if provided
-  //         currentPresentationId: presentationId || null,
-  //     });
-  //     await user.save();
   try {
-    const { email, password, presentationId } = req.body;
+    const { email, password, presentationId, fingerprint } = req.body;
+    const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
 
+    if (!fingerprint) {
+      return res.status(400).json({ message: "Missing device fingerprint" });
+    }
+
+    // Block if email already exists
     const existing = await User.findOne({ email });
-    if (existing)
+    if (existing) {
       return res.status(400).json({ message: "User already exists" });
+    }
+
+    // Block if fingerprint already used for trial
+    const existingFingerprint = await User.findOne({
+      fingerprint,
+      pricingPlan: null,
+    });
+    if (existingFingerprint) {
+      return res.status(403).json({
+        message: `A free trial has already been used on this device. Please sign in using the registered email.`,
+      });
+    }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -33,14 +85,16 @@ exports.register = async (req, res) => {
       email,
       password: hashedPassword,
       admin: false,
+      fingerprint,
+      ipAddress: ip,
       presentations: presentationId ? [presentationId] : [],
       currentPresentationId: presentationId || null,
       trialStart: new Date(),
-      trialEnd: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), //  7 days from now
+      trialEnd: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days
     });
     await user.save();
 
-    // Update Presentation with user ID if presentationId is provided
+    // If presentationId is provided, link it
     if (presentationId) {
       await User.findByIdAndUpdate(
         user._id,
@@ -107,15 +161,7 @@ exports.login = async (req, res) => {
 };
 
 // Get Profile
-// exports.getProfile = async (req, res) => {
-//   try {
-//     const user = await User.findById(req.userId).select("-password");
-//     res.json(user);
-//   } catch (err) {
-//     res.status(500).json({ error: "Server error" });
-//   }
-// };
-// controllers/userController.js
+
 exports.getProfile = async (req, res) => {
   try {
     const user = await User.findById(req.userId).select("-password");
