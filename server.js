@@ -10,7 +10,7 @@ const infographicRoute = require("./routes/infographics");
 // Models
 const User = require("./models/WaitingUser");
 const userRoutes = require("./routes/user");
-
+const aiChatRoutes = require("./routes/aiChatRoutes");
 
 // Controllers
 const {
@@ -82,6 +82,9 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // --- Stripe API ---
 app.use("/api/stripe", stripeRoutes);
+
+// AI CHAT
+app.use("/api/chat", aiChatRoutes);
 
 // --- Slide/Presentation APIs ---
 app.post("/generate-slides", validate, generateSlidesHandler);
