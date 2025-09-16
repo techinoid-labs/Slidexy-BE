@@ -35,7 +35,7 @@ async function generateImage(slide, index) {
     }
 
 
-    const key = `slide_${crypto.randomUUID()}.png`;
+    const key = `slide_${crypto.randomUUID()}`;
     let fileUrl;
     try {
       fileUrl = await uploadToSpaces(imageBase64, key);
