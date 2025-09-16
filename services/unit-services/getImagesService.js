@@ -45,7 +45,7 @@ One object per slide.
          });
    
          if (bgBase64) {
-           bgKey = `background_${crypto.randomUUID()}.png`;
+           bgKey = `background_${crypto.randomUUID()}`;
            bgUrl = await uploadToSpaces(bgBase64, bgKey);
          }
        } catch (err) {
@@ -66,7 +66,7 @@ One object per slide.
             });
     
             if (elBase64) {
-              elKey = `element_${crypto.randomUUID()}.png`;
+              elKey = `element_${crypto.randomUUID()}`;
               elUrl = await uploadToSpaces(elBase64, elKey);
             }
           } catch (err) {
