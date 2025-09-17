@@ -9,8 +9,11 @@ const { MongoClient, GridFSBucket, ObjectId } = require("mongodb");
 const infographicRoute = require("./routes/infographics");
 // Models
 const User = require("./models/WaitingUser");
+
+//Routes
 const userRoutes = require("./routes/user");
 const aiChatRoutes = require("./routes/aiChatRoutes");
+const contactRoutes = require("./routes/contact");
 
 // Controllers
 const {
@@ -85,6 +88,10 @@ app.use("/api/stripe", stripeRoutes);
 
 // AI CHAT
 app.use("/api/chat", aiChatRoutes);
+
+// Contact
+
+app.use("/api/contact", contactRoutes);
 
 // --- Slide/Presentation APIs ---
 app.post("/generate-slides", validate, generateSlidesHandler);
