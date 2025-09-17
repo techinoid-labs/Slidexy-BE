@@ -7,7 +7,8 @@ async function generateImage(slide, index) {
   try {
     const prompt =
       slide.imagePrompt ||
-      `Generate a high-quality image based on the following topic or information: "${slide.slide_title?.text || slide.slide_title
+      `Generate a high-quality image based on the following topic or information: "${
+        slide.slide_title?.text || slide.slide_title
       }" Absolutely do not include any text data in the image.`;
 
     // Call Gemini with rate-limiter
@@ -33,7 +34,6 @@ async function generateImage(slide, index) {
     if (!imageBase64) {
       throw new Error("No image data returned by model");
     }
-
 
     const key = `slide_${crypto.randomUUID()}`;
     let fileUrl;

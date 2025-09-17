@@ -12,7 +12,6 @@ const s3 = new S3Client({
 });
 
 async function uploadToSpaces(base64, filename) {
-
   if (!base64) return null;
 
   // Extract extension + base64 payload
@@ -33,14 +32,17 @@ async function uploadToSpaces(base64, filename) {
 
   await s3.send(new PutObjectCommand(uploadParams));
 
-  return `https://${process.env.DO_SPACES_BUCKET}.sfo3.digitaloceanspaces.com/${key}`;
+  // return `https://${process.env.DO_SPACES_BUCKET}.sfo3.digitaloceanspaces.com/${key}`;
+  return `https://${process.env.DO_SPACES_URL}/${key}`;
 }
 async function deleteFromSpaces(filename) {
   try {
-    await s3.send(new DeleteObjectCommand({
-      Bucket: process.env.DO_SPACES_BUCKET,
-      Key: filename,
-    }));
+    await s3.send(
+      new DeleteObjectCommand({
+        Bucket: process.env.DO_SPACES_BUCKET,
+        Key: filename,
+      })
+    );
     console.log(`Deleted from Spaces: ${filename}`);
   } catch (err) {
     console.error("Failed to delete from Spaces:", err.message);
