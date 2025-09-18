@@ -4,21 +4,18 @@ const {
   getSession,
 } = require("../services/stripe/stripeService");
 
-const PRICE_LOOKUP = {
-  basic: process.env.STRIPE_PRICE_BASIC,
-  platinum: process.env.STRIPE_PRICE_PLATINUM,
-  exclusive: process.env.STRIPE_PRICE_EXCLUSIVE,
-};
+const PricingPlan = require("../models/PricingPlan");
 
 async function createCheckoutSessionHandler(req, res) {
   try {
     const { plan } = req.body;
 
-    if (!plan || !PRICE_LOOKUP[plan]) {
-      return res.status(400).json({ error: "Invalid or missing plan" });
+    const dbPlan = await PricingPlan.findOne({ name: plan, isActive: true });
+    if (!dbPlan) {
+      return res.status(400).json({ error: "Invalid or inactive plan" });
     }
 
-    const session = await createCheckoutSession(PRICE_LOOKUP[plan]);
+    const session = await createCheckoutSession(dbPlan.stripePriceId);
     return res.json({ url: session.url });
   } catch (err) {
     console.error("Error creating Checkout Session:", err);
