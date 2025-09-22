@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
 const pricingPlanSchema = new mongoose.Schema({
-  name: { type: String, required: true, unique: true }, // Basic, Exclusive, Platinum
-  stripePriceId: { type: String, required: true }, // Stripe price_xxx
-  price: { type: Number, required: true }, // 5, 9.99, 60
+  name: { type: String, required: true, unique: true },
+  stripePriceId: { type: String, required: true },
+  price: { type: Number, required: true },
   currency: { type: String, default: "USD" },
   billingPeriod: {
     type: String,

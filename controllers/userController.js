@@ -3,54 +3,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const Presentation = require("../models/Presentation");
 
-// Register
-// exports.register = async (req, res) => {
-//   try {
-//     const { email, password, presentationId } = req.body;
-
-//     const existing = await User.findOne({ email });
-//     if (existing)
-//       return res.status(400).json({ message: "User already exists" });
-
-//     const hashedPassword = await bcrypt.hash(password, 10);
-
-//     const user = new User({
-//       email,
-//       password: hashedPassword,
-//       admin: false,
-//       presentations: presentationId ? [presentationId] : [],
-//       currentPresentationId: presentationId || null,
-//       trialStart: new Date(),
-//       trialEnd: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), //  7 days from now
-//     });
-//     await user.save();
-
-//     // Update Presentation with user ID if presentationId is provided
-//     if (presentationId) {
-//       await User.findByIdAndUpdate(
-//         user._id,
-//         {
-//           $addToSet: { presentations: presentationId },
-//           $set: { currentPresentationId: presentationId },
-//         },
-//         { new: true }
-//       );
-//       await Presentation.findOneAndUpdate(
-//         { presentation_id: presentationId },
-//         { user: user._id }
-//       );
-//     }
-
-//     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-//       expiresIn: "1y",
-//     });
-
-//     res.json({ token, userId: user._id, presentationId });
-//   } catch (err) {
-//     console.error("Register error:", err.message);
-//     res.status(500).json({ message: "Server error" });
-//   }
-// };
+const Subscription = require("../models/Subscription");
 
 // Register
 exports.register = async (req, res) => {
@@ -162,31 +115,119 @@ exports.login = async (req, res) => {
 
 // Get Profile
 
+// exports.getProfile = async (req, res) => {
+//   try {
+//     const user = await User.findById(req.userId).select("-password");
+
+//     if (!user) {
+//       return res.status(404).json({ error: "User not found" });
+//     }
+
+//     // Trial calculations
+//     let trialActive = false;
+//     let daysLeft = 0;
+//     let presentationsLeftToday = 0;
+
+//     if (!user.pricingPlan) {
+//       // if no subscription, trial is relevant
+//       const now = new Date();
+
+//       if (user.trialEnd && now <= user.trialEnd) {
+//         trialActive = true;
+
+//         // days left until trialEnd
+//         const diffTime = user.trialEnd.getTime() - now.getTime();
+//         daysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+//         // reset daily counter
+//         const today = new Date().toDateString();
+//         const lastDate = user.lastPresentationDate
+//           ? user.lastPresentationDate.toDateString()
+//           : null;
+
+//         let createdToday = user.presentationsCreatedToday;
+//         if (today !== lastDate) {
+//           createdToday = 0;
+//         }
+
+//         presentationsLeftToday = Math.max(10 - createdToday, 0);
+//       }
+//     }
+
+//     res.json({
+//       _id: user._id,
+//       email: user.email,
+//       name: user.name,
+//       admin: user.admin,
+//       presentations: user.presentations,
+//       currentPresentationId: user.currentPresentationId,
+//       pricingPlan: user.pricingPlan,
+//       trialActive,
+//       trialStart: user.trialStart,
+//       trialEnd: user.trialEnd,
+//       daysLeft,
+//       presentationsLeftToday,
+//     });
+//   } catch (err) {
+//     res.status(500).json({ error: "Server error" });
+//   }
+// };
+
 exports.getProfile = async (req, res) => {
   try {
-    const user = await User.findById(req.userId).select("-password");
+    const user = await User.findById(req.userId)
+      .select("-password")
+      .populate("pricingPlan");
 
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
 
-    // Trial calculations
+    const subscription = await Subscription.findOne({ user: user._id })
+      .populate("plan")
+      .sort({ createdAt: -1 });
+
+    // Defaults
     let trialActive = false;
     let daysLeft = 0;
     let presentationsLeftToday = 0;
 
-    if (!user.pricingPlan) {
-      // if no subscription, trial is relevant
-      const now = new Date();
+    const now = new Date();
 
+    if (subscription && subscription.status === "active") {
+      // ✅ User has an active plan, so ignore trial
+      const plan = subscription.planSnapshot || subscription.plan;
+
+      // Example: check if your PricingPlan schema defines daily limits
+      const dailyLimit = plan.dailyLimit || 9999;
+
+      // reset daily counter if date changed
+      const today = new Date().toDateString();
+      const lastDate = user.lastPresentationDate
+        ? user.lastPresentationDate.toDateString()
+        : null;
+
+      let createdToday = user.presentationsCreatedToday;
+      if (today !== lastDate) {
+        createdToday = 0;
+      }
+
+      presentationsLeftToday = Math.max(dailyLimit - createdToday, 0);
+
+      // Remaining days in current billing period
+      if (subscription.currentPeriodEnd) {
+        const diffTime =
+          new Date(subscription.currentPeriodEnd).getTime() - now.getTime();
+        daysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      }
+    } else {
+      // ✅ No active subscription, so fallback to trial
       if (user.trialEnd && now <= user.trialEnd) {
         trialActive = true;
 
-        // days left until trialEnd
         const diffTime = user.trialEnd.getTime() - now.getTime();
         daysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-        // reset daily counter
         const today = new Date().toDateString();
         const lastDate = user.lastPresentationDate
           ? user.lastPresentationDate.toDateString()
@@ -208,7 +249,24 @@ exports.getProfile = async (req, res) => {
       admin: user.admin,
       presentations: user.presentations,
       currentPresentationId: user.currentPresentationId,
+
       pricingPlan: user.pricingPlan,
+
+      subscription: subscription
+        ? {
+            _id: subscription._id,
+            stripeId: subscription.stripeSubscriptionId,
+            status: subscription.status,
+            plan: subscription.plan,
+            planSnapshot: subscription.planSnapshot,
+            startDate: subscription.startDate,
+            currentPeriodStart: subscription.currentPeriodStart,
+            currentPeriodEnd: subscription.currentPeriodEnd,
+            cancelAtPeriodEnd: subscription.cancelAtPeriodEnd,
+            endDate: subscription.endDate,
+          }
+        : null,
+
       trialActive,
       trialStart: user.trialStart,
       trialEnd: user.trialEnd,
@@ -216,6 +274,7 @@ exports.getProfile = async (req, res) => {
       presentationsLeftToday,
     });
   } catch (err) {
+    console.error("Profile error:", err);
     res.status(500).json({ error: "Server error" });
   }
 };

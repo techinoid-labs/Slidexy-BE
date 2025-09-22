@@ -12,9 +12,18 @@ const subscriptionSchema = new mongoose.Schema({
     ref: "PricingPlan",
     required: true,
   },
+  planSnapshot: {
+    name: String,
+    price: Number,
+    currency: String,
+    billingPeriod: String,
+    description: String,
+    features: [String],
+  },
+
   stripeSubscriptionId: { type: String, required: true, unique: true },
-  stripeCustomerId: { type: String }, // store customer for lookup
-  stripePriceId: { type: String }, // which price they subscribed to
+  stripeCustomerId: { type: String },
+  stripePriceId: { type: String },
 
   status: {
     type: String,
@@ -30,7 +39,6 @@ const subscriptionSchema = new mongoose.Schema({
     default: "active",
   },
 
-  // period details (used for frontend restrictions)
   startDate: { type: Date, default: Date.now },
   currentPeriodStart: { type: Date },
   currentPeriodEnd: { type: Date },
