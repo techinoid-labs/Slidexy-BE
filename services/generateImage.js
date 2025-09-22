@@ -33,8 +33,8 @@ async function generateImage(slide, index) {
       imageGenModel.generateContent({
         contents: [{ role: "user", parts: [{ text: prompt }] }],
         generationConfig: {
-          responseModalities: ["IMAGE", "TEXT"],
-          candidateCount: 2, // request multiple candidates for higher chance of relevance
+          responseModalities: ["TEXT", "IMAGE"], // only request IMAGE
+          candidateCount: 1,             // multiple candidates not supported
         },
       })
     );
