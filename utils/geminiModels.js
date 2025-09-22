@@ -76,7 +76,25 @@ async function safeGenerateContent(modelName, config, tried = new Set()) {
     throw error;
   }
 }
-
+function createModelWrapper(modelName) {
+  return {
+    async generateContent(content, config = {}) {
+      let contentParts;
+      
+      if (typeof content === 'string') {
+        contentParts = [{ text: content }];
+      } else if (Array.isArray(content)) {
+        contentParts = content;
+      } else if (content && typeof content === 'object') {
+        contentParts = [content];
+      } else {
+        throw new Error('Invalid content format provided to generateContent');
+      }
+      
+      return await safeGenerateContent(modelName, contentParts, config.generationConfig || {});
+    }
+  };
+}
 // Expose models
 const textGenModel = {
   generateContent: (config) => safeGenerateContent("gemini-2.0-flash", config),
@@ -87,4 +105,4 @@ const imageGenModel = {
     safeGenerateContent("gemini-2.0-flash-preview-image-generation", config),
 };
 
-module.exports = { textGenModel, imageGenModel };
+module.exports = { textGenModel, imageGenModel, safeGenerateContent };

@@ -1,30 +1,51 @@
 const express = require("express");
 const router = express.Router();
+const path = require("path");
 const { getInfographicService } = require("../services/unit-services/getInfographicService");
 const Infographic = require("../models/Infographics");
 router.post("/", async (req, res) => {
   try {
-    const { prompt } = req.body;
-    if (!prompt) return res.status(400).json({ error: "Prompt is required" });
+    const { prompt, useReferences = true } = req.body;
+    if (!prompt) {
+      return res.status(400).json({ error: "Prompt is required" });
+    }
 
-    const result = await getInfographicService(prompt);
+    // Build full paths to your static images
+    let referenceImagePaths = [];
+    if (useReferences) {
+      referenceImagePaths = [
+        path.resolve(__dirname, "../images/reference-image-1.jpg"),
+        path.resolve(__dirname, "../images/reference-image-2.jpg"),
+        path.resolve(__dirname, "../images/reference-image-3.jpg"),
+        path.resolve(__dirname, "../images/reference-image-4.jpg"),
+      ];
+    }
 
-    const infographic = await Infographic.create({
+    // 1. Generate infographic
+    const result = await getInfographicService(prompt, { referenceImagePaths });
+
+    // 2. Save infographic in MongoDB
+    const newInfographic = new Infographic({
       prompt,
-      title: result.data.title,
-      subtitle: result.data.subtitle,
-      type: result.data.type,
-      data: result.data.data,
-      html: result.html, 
-      meta: { ...result.meta, source: "AI Generated" },
+      type: result.data?.type || "generic", // fallback if Gemini doesn't return type
+      title: result.data?.title || "Untitled",
+      subtitle: result.data?.subtitle || "",
+      data: result.data,
+      html: result.html,
+      meta: result.meta,
     });
 
-    res.status(201).json({ success: true, infographic });
-  } catch (error) {
-    console.error("Infographic POST error:", error);
-    res.status(500).json({ error: error.message });
+    await newInfographic.save();
+
+    // 3. Respond with saved doc
+    return res.json({ success: true, infographic: newInfographic });
+
+  } catch (err) {
+    console.error("Infographic generation failed:", err);
+    return res.status(500).json({ error: err.message });
   }
 });
+
 
 
 // GET /api/infographic/:id → fetch by ID
