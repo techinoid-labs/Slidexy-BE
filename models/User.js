@@ -6,21 +6,20 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   name: String,
   admin: Boolean,
+  // stripeCustomerId: String,
+  // stripeSubscriptionId: String,
   presentations: [{ type: String }],
   currentPresentationId: { type: String, default: null },
-  pricingPlan: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "PricingPlan",
-    default: null,
-  },
-
-  // Trial fields
+  // pricingPlan: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: "PricingPlan",
+  //   default: null,
+  // },
   trialStart: { type: Date, default: Date.now },
   trialEnd: { type: Date },
   presentationsCreatedToday: { type: Number, default: 0 },
   lastPresentationDate: { type: Date },
 
-  // Anti-abuse
   fingerprint: { type: String, index: true },
   ipAddress: String,
 

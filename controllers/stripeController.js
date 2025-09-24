@@ -26,9 +26,6 @@ async function createCheckoutSessionHandler(req, res) {
     const session = await createCheckoutSession(dbPlan.stripePriceId, {
       userId,
       priceId: dbPlan.stripePriceId,
-      // billingPeriod: dbPlan.billingPeriod,
-      // name: dbPlan.name,
-      // price: dbPlan.price,
     });
 
     return res.json({ url: session.url });
@@ -96,7 +93,9 @@ async function webhookHandler(req, res) {
 
         const subscription = await Subscription.create(createdSubData);
 
-        user.pricingPlan = plan._id;
+        // user.pricingPlan = plan._id;
+        // user.stripeCustomerId = stripeCustomerId;
+        // user.stripeSubscriptionId = stripeSubscriptionId;
         await user.save();
 
         console.log("✅ Subscription created with snapshot:", subscription._id);
@@ -105,39 +104,115 @@ async function webhookHandler(req, res) {
 
       case "customer.subscription.created": {
         const stripeSub = event.data.object;
+        console.log("ℹ️ customer.subscription.created:", stripeSub.id);
 
-        await Subscription.create({
-          user: user._id, // you’ll need to map customer → user here
-          plan: plan._id,
-          stripeSubscriptionId: stripeSub.id,
-          stripeCustomerId: stripeSub.customer,
-          stripePriceId: stripeSub.items.data[0].price.id,
-          status: stripeSub.status,
-          startDate: startDate ? new Date(startDate * 1000) : undefined,
-          currentPeriodStart: currentPeriodStart
-            ? new Date(currentPeriodStart * 1000)
-            : undefined,
-          currentPeriodEnd: currentPeriodEnd
-            ? new Date(currentPeriodEnd * 1000)
-            : undefined,
-          cancelAtPeriodEnd: stripeSub.cancel_at_period_end,
-          endDate: stripeSub.cancel_at
-            ? new Date(stripeSub.cancel_at * 1000)
-            : undefined,
-        });
+        // (Skip DB writes for now until customer→user mapping is fixed)
+        break;
+      }
 
+      case "invoice.payment_succeeded": {
+        const invoice = event.data.object;
+        console.log("✅ Invoice payment succeeded:", invoice.id);
+
+        await Subscription.findOneAndUpdate(
+          { stripeSubscriptionId: invoice.subscription },
+          {
+            status: "active",
+            currentPeriodStart: new Date(
+              invoice.lines.data[0].period.start * 1000
+            ),
+            currentPeriodEnd: new Date(invoice.lines.data[0].period.end * 1000),
+          }
+        );
+        break;
+      }
+
+      case "invoice.payment_failed": {
+        const invoice = event.data.object;
+        console.log("❌ Invoice payment failed:", invoice.id);
+
+        await Subscription.findOneAndUpdate(
+          { stripeSubscriptionId: invoice.subscription },
+          { status: "past_due" }
+        );
+        break;
+      }
+
+      case "customer.subscription.updated": {
+        const stripeSub = event.data.object;
+        console.log("ℹ️ Subscription updated:", stripeSub.id);
+
+        await Subscription.findOneAndUpdate(
+          { stripeSubscriptionId: stripeSub.id },
+          {
+            status: stripeSub.status,
+            cancelAtPeriodEnd: stripeSub.cancel_at_period_end,
+            currentPeriodStart: new Date(stripeSub.current_period_start * 1000),
+            currentPeriodEnd: new Date(stripeSub.current_period_end * 1000),
+          }
+        );
         break;
       }
 
       case "customer.subscription.deleted": {
         const subscription = event.data.object;
+        console.log("❌ Subscription canceled:", subscription.id);
 
         await Subscription.findOneAndUpdate(
           { stripeSubscriptionId: subscription.id },
           { status: "canceled", endDate: new Date() }
         );
+        break;
+      }
 
-        console.log("❌ Subscription canceled:", subscription.id);
+      // 🆕 Extra logging-only events
+      case "invoice.created": {
+        console.log("📝 Invoice created:", event.data.object.id);
+        break;
+      }
+
+      case "invoice.finalized": {
+        console.log("📌 Invoice finalized:", event.data.object.id);
+        break;
+      }
+
+      case "invoice.paid": {
+        console.log("💰 Invoice paid:", event.data.object.id);
+        break;
+      }
+
+      case "invoice.upcoming": {
+        console.log("📅 Upcoming invoice:", event.data.object.id);
+        break;
+      }
+
+      case "charge.succeeded": {
+        console.log("💳 Charge succeeded:", event.data.object.id);
+        break;
+      }
+
+      case "payment_intent.created": {
+        console.log("⚡ PaymentIntent created:", event.data.object.id);
+        break;
+      }
+
+      case "payment_intent.succeeded": {
+        console.log("✅ PaymentIntent succeeded:", event.data.object.id);
+        break;
+      }
+
+      case "payment_method.attached": {
+        console.log("🔗 Payment method attached:", event.data.object.id);
+        break;
+      }
+
+      case "customer.created": {
+        console.log("👤 Customer created:", event.data.object.id);
+        break;
+      }
+
+      case "customer.updated": {
+        console.log("🔄 Customer updated:", event.data.object.id);
         break;
       }
 

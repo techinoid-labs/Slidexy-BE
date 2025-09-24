@@ -114,70 +114,10 @@ exports.login = async (req, res) => {
 };
 
 // Get Profile
-
-// exports.getProfile = async (req, res) => {
-//   try {
-//     const user = await User.findById(req.userId).select("-password");
-
-//     if (!user) {
-//       return res.status(404).json({ error: "User not found" });
-//     }
-
-//     // Trial calculations
-//     let trialActive = false;
-//     let daysLeft = 0;
-//     let presentationsLeftToday = 0;
-
-//     if (!user.pricingPlan) {
-//       // if no subscription, trial is relevant
-//       const now = new Date();
-
-//       if (user.trialEnd && now <= user.trialEnd) {
-//         trialActive = true;
-
-//         // days left until trialEnd
-//         const diffTime = user.trialEnd.getTime() - now.getTime();
-//         daysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-//         // reset daily counter
-//         const today = new Date().toDateString();
-//         const lastDate = user.lastPresentationDate
-//           ? user.lastPresentationDate.toDateString()
-//           : null;
-
-//         let createdToday = user.presentationsCreatedToday;
-//         if (today !== lastDate) {
-//           createdToday = 0;
-//         }
-
-//         presentationsLeftToday = Math.max(10 - createdToday, 0);
-//       }
-//     }
-
-//     res.json({
-//       _id: user._id,
-//       email: user.email,
-//       name: user.name,
-//       admin: user.admin,
-//       presentations: user.presentations,
-//       currentPresentationId: user.currentPresentationId,
-//       pricingPlan: user.pricingPlan,
-//       trialActive,
-//       trialStart: user.trialStart,
-//       trialEnd: user.trialEnd,
-//       daysLeft,
-//       presentationsLeftToday,
-//     });
-//   } catch (err) {
-//     res.status(500).json({ error: "Server error" });
-//   }
-// };
-
 exports.getProfile = async (req, res) => {
   try {
-    const user = await User.findById(req.userId)
-      .select("-password")
-      .populate("pricingPlan");
+    const user = await User.findById(req.userId).select("-password");
+    // .populate("pricingPlan");
 
     if (!user) {
       return res.status(404).json({ error: "User not found" });
@@ -250,7 +190,7 @@ exports.getProfile = async (req, res) => {
       presentations: user.presentations,
       currentPresentationId: user.currentPresentationId,
 
-      pricingPlan: user.pricingPlan,
+      pricingPlan: subscription.stripePriceId,
 
       subscription: subscription
         ? {
