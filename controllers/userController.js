@@ -123,7 +123,14 @@ exports.getProfile = async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    const subscription = await Subscription.findOne({ user: user._id })
+    // const subscription = await Subscription.findOne({ user: user._id })
+    //   .populate("plan")
+    //   .sort({ createdAt: -1 });
+
+    const subscription = await Subscription.findOne({
+      user: user._id,
+      status: "active",
+    })
       .populate("plan")
       .sort({ createdAt: -1 });
 

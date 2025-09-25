@@ -45,6 +45,58 @@ async function webhookHandler(req, res) {
     const event = verifyWebhookSignature(req);
 
     switch (event.type) {
+      // case "checkout.session.completed": {
+      //   const session = event.data.object;
+      //   const userId = session.metadata?.userId;
+      //   const stripePriceId = session.metadata?.priceId;
+      //   const stripeSubscriptionId = session.subscription;
+      //   const stripeCustomerId = session.customer;
+
+      //   const user = await User.findById(userId);
+      //   const plan = await PricingPlan.findOne({ stripePriceId });
+
+      //   if (!user || !plan) break;
+
+      //   const stripeSub = await stripe.subscriptions.retrieve(
+      //     stripeSubscriptionId
+      //   );
+
+      // const startDate = stripeSub.items.data[0].created;
+      // const currentPeriodStart = stripeSub.items.data[0].current_period_start;
+      // const currentPeriodEnd = stripeSub.items.data[0].current_period_end;
+
+      //   const createdSubData = {
+      //     user: user._id,
+      //     plan: plan._id,
+      //     planSnapshot: {
+      //       name: plan.name,
+      //       price: plan.price,
+      //       currency: plan.currency,
+      //       billingPeriod: plan.billingPeriod,
+      //     },
+      //     stripeSubscriptionId,
+      //     stripeCustomerId,
+      //     stripePriceId,
+      //     status: stripeSub.status,
+      //     startDate: startDate ? new Date(startDate * 1000) : undefined,
+      //     currentPeriodStart: currentPeriodStart
+      //       ? new Date(currentPeriodStart * 1000)
+      //       : undefined,
+      //     currentPeriodEnd: currentPeriodEnd
+      //       ? new Date(currentPeriodEnd * 1000)
+      //       : undefined,
+      //     cancelAtPeriodEnd: stripeSub.cancel_at_period_end,
+      //     endDate: stripeSub.cancel_at
+      //       ? new Date(stripeSub.cancel_at * 1000)
+      //       : undefined,
+      //   };
+
+      //   const subscription = await Subscription.create(createdSubData);
+
+      //   console.log("✅ Subscription created with snapshot:", subscription._id);
+      //   break;
+      // }
+
       case "checkout.session.completed": {
         const session = event.data.object;
         const userId = session.metadata?.userId;
@@ -57,6 +109,38 @@ async function webhookHandler(req, res) {
 
         if (!user || !plan) break;
 
+        // 🔍 1. Cancel any existing active subscriptions for this user
+        const existingSubs = await Subscription.find({
+          user: user._id,
+          status: { $in: ["active", "trialing", "past_due", "incomplete"] },
+        });
+
+        for (const sub of existingSubs) {
+          try {
+            // Cancel on Stripe
+            await stripe.subscriptions.update(sub.stripeSubscriptionId, {
+              cancel_at_period_end: false,
+            });
+            await stripe.subscriptions.cancel(sub.stripeSubscriptionId);
+
+            // Update DB
+            await Subscription.findByIdAndUpdate(sub._id, {
+              status: "canceled",
+              endDate: new Date(),
+            });
+
+            console.log(
+              `❌ Canceled old subscription ${sub.stripeSubscriptionId}`
+            );
+          } catch (err) {
+            console.error(
+              `⚠️ Failed to cancel old subscription ${sub.stripeSubscriptionId}:`,
+              err.message
+            );
+          }
+        }
+
+        // 🔗 2. Create the new subscription in DB
         const stripeSub = await stripe.subscriptions.retrieve(
           stripeSubscriptionId
         );
@@ -93,12 +177,7 @@ async function webhookHandler(req, res) {
 
         const subscription = await Subscription.create(createdSubData);
 
-        // user.pricingPlan = plan._id;
-        // user.stripeCustomerId = stripeCustomerId;
-        // user.stripeSubscriptionId = stripeSubscriptionId;
-        await user.save();
-
-        console.log("✅ Subscription created with snapshot:", subscription._id);
+        console.log("✅ New subscription created:", subscription._id);
         break;
       }
 
