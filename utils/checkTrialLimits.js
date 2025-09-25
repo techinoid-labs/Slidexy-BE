@@ -39,7 +39,7 @@ async function checkTrialLimits(user) {
   }
 
   // Check daily limit
-  if (user.presentationsCreatedToday >= 10) {
+  if (user.presentationsCreatedToday >= 3) {
     return {
       allowed: false,
       message: `Daily trial limit reached. Try again tomorrow, You can also join our waiting list for upcomming news and feature: `,

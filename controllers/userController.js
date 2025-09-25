@@ -178,7 +178,7 @@ exports.getProfile = async (req, res) => {
           createdToday = 0;
         }
 
-        presentationsLeftToday = Math.max(10 - createdToday, 0);
+        presentationsLeftToday = Math.max(3 - createdToday, 0);
       }
     }
 
@@ -190,7 +190,7 @@ exports.getProfile = async (req, res) => {
       presentations: user.presentations,
       currentPresentationId: user.currentPresentationId,
 
-      pricingPlan: subscription.stripePriceId,
+      // pricingPlan: subscription.stripePriceId,
 
       subscription: subscription
         ? {
