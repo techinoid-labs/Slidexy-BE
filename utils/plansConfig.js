@@ -1,7 +1,17 @@
 // planConfig.js
 module.exports = {
+  free: {
+    decksPerDay: 3,
+    imageDecks: 1,
+    predefinedDecks: 2,
+    features: {
+      deepResearch: false,
+      aiAgent: false,
+      presentationAgent: false,
+    },
+  },
   weekly: {
-    decksPerDay: 10,
+    decksPerDay: 15,
     imageDecks: 5,
     predefinedDecks: 10,
     features: {
@@ -11,7 +21,7 @@ module.exports = {
     },
   },
   monthly: {
-    decksPerDay: 15,
+    decksPerDay: 20,
     imageDecks: 5,
     predefinedDecks: 15,
     features: {
@@ -21,7 +31,7 @@ module.exports = {
     },
   },
   yearly: {
-    decksPerDay: 15,
+    decksPerDay: 20,
     imageDecks: 5,
     predefinedDecks: 15,
     features: {

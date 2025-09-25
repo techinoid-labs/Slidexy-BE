@@ -2,7 +2,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const Presentation = require("../models/Presentation");
-
+const planConfig = require("../utils/plansConfig");
 const Subscription = require("../models/Subscription");
 
 // Register
@@ -117,15 +117,9 @@ exports.login = async (req, res) => {
 exports.getProfile = async (req, res) => {
   try {
     const user = await User.findById(req.userId).select("-password");
-    // .populate("pricingPlan");
-
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
-
-    // const subscription = await Subscription.findOne({ user: user._id })
-    //   .populate("plan")
-    //   .sort({ createdAt: -1 });
 
     const subscription = await Subscription.findOne({
       user: user._id,
@@ -134,61 +128,123 @@ exports.getProfile = async (req, res) => {
       .populate("plan")
       .sort({ createdAt: -1 });
 
-    // Defaults
-    let trialActive = false;
-    let daysLeft = 0;
-    let presentationsLeftToday = 0;
-
     const now = new Date();
 
+    // Defaults
+    let trialActive = false;
+    let trialDaysLeft = 0;
+    let trialPresentationsLeftToday = 0;
+    let trialImageDecksLeftToday = 0;
+    let trialPredefinedDecksLeftToday = 0;
+    let trialPlanConfig = null;
+
+    let subscriptionActive = false;
+    let subDaysLeft = 0;
+    let subPresentationsLeftToday = 0;
+    let subImageDecksLeftToday = 0;
+    let subPredefinedDecksLeftToday = 0;
+    let activePlanConfig = null;
+
+    // -------------------------
+    // Subscription logic
+    // -------------------------
     if (subscription && subscription.status === "active") {
-      // ✅ User has an active plan, so ignore trial
+      subscriptionActive = true;
+
       const plan = subscription.planSnapshot || subscription.plan;
+      activePlanConfig = planConfig[plan.billingPeriod] || {};
 
-      // Example: check if your PricingPlan schema defines daily limits
-      const dailyLimit = plan.dailyLimit || 9999;
-
-      // reset daily counter if date changed
       const today = new Date().toDateString();
       const lastDate = user.lastPresentationDate
         ? user.lastPresentationDate.toDateString()
         : null;
 
-      let createdToday = user.presentationsCreatedToday;
+      // reset counters if new day
+      let createdToday = user.presentationsCreatedToday || 0;
+      let imageDecksUsed = user.imageDecksUsedToday || 0;
+      let predefinedDecksUsed = user.predefinedDecksUsedToday || 0;
       if (today !== lastDate) {
         createdToday = 0;
+        imageDecksUsed = 0;
+        predefinedDecksUsed = 0;
       }
 
-      presentationsLeftToday = Math.max(dailyLimit - createdToday, 0);
+      // total decks left (main bucket)
+      subPresentationsLeftToday = Math.max(
+        (activePlanConfig.decksPerDay || 0) - createdToday,
+        0
+      );
 
-      // Remaining days in current billing period
+      // sub-limits — but capped by total decks left
+      subImageDecksLeftToday = Math.min(
+        subPresentationsLeftToday,
+        Math.max((activePlanConfig.imageDecks || 0) - imageDecksUsed, 0)
+      );
+
+      subPredefinedDecksLeftToday = Math.min(
+        subPresentationsLeftToday,
+        Math.max(
+          (activePlanConfig.predefinedDecks || 0) - predefinedDecksUsed,
+          0
+        )
+      );
+
       if (subscription.currentPeriodEnd) {
         const diffTime =
           new Date(subscription.currentPeriodEnd).getTime() - now.getTime();
-        daysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      }
-    } else {
-      // ✅ No active subscription, so fallback to trial
-      if (user.trialEnd && now <= user.trialEnd) {
-        trialActive = true;
-
-        const diffTime = user.trialEnd.getTime() - now.getTime();
-        daysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-        const today = new Date().toDateString();
-        const lastDate = user.lastPresentationDate
-          ? user.lastPresentationDate.toDateString()
-          : null;
-
-        let createdToday = user.presentationsCreatedToday;
-        if (today !== lastDate) {
-          createdToday = 0;
-        }
-
-        presentationsLeftToday = Math.max(3 - createdToday, 0);
+        subDaysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
       }
     }
 
+    // -------------------------
+    // Trial logic (free plan)
+    // -------------------------
+    if (!subscriptionActive && user.trialEnd && now <= user.trialEnd) {
+      trialActive = true;
+      trialPlanConfig = planConfig.free || {};
+
+      const diffTime = user.trialEnd.getTime() - now.getTime();
+      trialDaysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+      const today = new Date().toDateString();
+      const lastDate = user.lastPresentationDate
+        ? user.lastPresentationDate.toDateString()
+        : null;
+
+      // reset counters if new day
+      let createdToday = user.presentationsCreatedToday || 0;
+      let imageDecksUsed = user.imageDecksUsedToday || 0;
+      let predefinedDecksUsed = user.predefinedDecksUsedToday || 0;
+      if (today !== lastDate) {
+        createdToday = 0;
+        imageDecksUsed = 0;
+        predefinedDecksUsed = 0;
+      }
+
+      // total decks left
+      trialPresentationsLeftToday = Math.max(
+        (trialPlanConfig.decksPerDay || 0) - createdToday,
+        0
+      );
+
+      // sub-limits — capped by total decks left
+      trialImageDecksLeftToday = Math.min(
+        trialPresentationsLeftToday,
+        Math.max((trialPlanConfig.imageDecks || 0) - imageDecksUsed, 0)
+      );
+
+      trialPredefinedDecksLeftToday = Math.min(
+        trialPresentationsLeftToday,
+        Math.max(
+          (trialPlanConfig.predefinedDecks || 0) - predefinedDecksUsed,
+          0
+        )
+      );
+    }
+
+    // -------------------------
+    // Response
+    // -------------------------
     res.json({
       _id: user._id,
       email: user.email,
@@ -196,8 +252,6 @@ exports.getProfile = async (req, res) => {
       admin: user.admin,
       presentations: user.presentations,
       currentPresentationId: user.currentPresentationId,
-
-      // pricingPlan: subscription.stripePriceId,
 
       subscription: subscription
         ? {
@@ -214,11 +268,27 @@ exports.getProfile = async (req, res) => {
           }
         : null,
 
-      trialActive,
-      trialStart: user.trialStart,
-      trialEnd: user.trialEnd,
-      daysLeft,
-      presentationsLeftToday,
+      // Trial data
+      trial: {
+        active: trialActive,
+        start: user.trialStart,
+        end: user.trialEnd,
+        daysLeft: trialDaysLeft,
+        presentationsLeftToday: trialPresentationsLeftToday,
+        imageDecksLeftToday: trialImageDecksLeftToday,
+        predefinedDecksLeftToday: trialPredefinedDecksLeftToday,
+        config: trialPlanConfig,
+      },
+
+      // Subscription data
+      subscriptionUsage: {
+        active: subscriptionActive,
+        daysLeft: subDaysLeft,
+        presentationsLeftToday: subPresentationsLeftToday,
+        imageDecksLeftToday: subImageDecksLeftToday,
+        predefinedDecksLeftToday: subPredefinedDecksLeftToday,
+        config: activePlanConfig,
+      },
     });
   } catch (err) {
     console.error("Profile error:", err);

@@ -18,6 +18,8 @@ const userSchema = new mongoose.Schema({
   trialStart: { type: Date, default: Date.now },
   trialEnd: { type: Date },
   presentationsCreatedToday: { type: Number, default: 0 },
+  imageDecksUsedToday: { type: Number, default: 0 },
+  predefinedDecksUsedToday: { type: Number, default: 0 },
   lastPresentationDate: { type: Date },
 
   fingerprint: { type: String, index: true },
