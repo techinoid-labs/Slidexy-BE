@@ -66,7 +66,7 @@ async function generateSlidesHandler(req, res) {
       }
 
       // Run trial/plan check
-      const { allowed, message } = await checkTrialLimits(user);
+      const { allowed, message, type } = await checkTrialLimits(user);
       if (!allowed) {
         return res.status(403).json({ error: message });
       }
