@@ -70,9 +70,11 @@ async function generateSlidesHandler(req, res) {
       if (!allowed) {
         return res.status(403).json({ error: message });
       }
+      req.planResponseType = type;
     }
   }
 
+  const planResponseType = req.planResponseType;
   const wantsStreaming = req.headers["accept"] === "text/event-stream";
 
   if (wantsStreaming) {
@@ -156,7 +158,11 @@ async function generateSlidesHandler(req, res) {
         });
 
         try {
-          const imageSlide = await generateImage(slides[i], i);
+          const imageSlide = await generateImage(
+            slides[i],
+            i,
+            planResponseType
+          );
           const imageUrl = imageSlide.image_url;
 
           const elementsWithoutText = slides[i].elements.filter(

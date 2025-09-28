@@ -13,7 +13,7 @@ Return 3 improved slide suggestions in this JSON format:
   {
     "title": "Slide Title",
     "bullets": ["Point A", "Point B", "Point C"],
-    "image": "A description for an image to visually represent the content"
+    "image": "A description for an image to visually represent the content making sure there is no text inside but the image should be on the context of each bullet"
   }
 ]
 
