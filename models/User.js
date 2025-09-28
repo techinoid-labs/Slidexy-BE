@@ -13,6 +13,7 @@ const userSchema = new mongoose.Schema({
     ref: "PricingPlan",
     default: null,
   },
+  isPaid: { type: Boolean, default: null },
   trialStart: { type: Date, default: Date.now },
   trialEnd: { type: Date },
   // presentationsCreatedToday: { type: Number, default: 0 },

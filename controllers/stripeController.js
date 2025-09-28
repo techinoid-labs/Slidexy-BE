@@ -45,58 +45,6 @@ async function webhookHandler(req, res) {
     const event = verifyWebhookSignature(req);
 
     switch (event.type) {
-      // case "checkout.session.completed": {
-      //   const session = event.data.object;
-      //   const userId = session.metadata?.userId;
-      //   const stripePriceId = session.metadata?.priceId;
-      //   const stripeSubscriptionId = session.subscription;
-      //   const stripeCustomerId = session.customer;
-
-      //   const user = await User.findById(userId);
-      //   const plan = await PricingPlan.findOne({ stripePriceId });
-
-      //   if (!user || !plan) break;
-
-      //   const stripeSub = await stripe.subscriptions.retrieve(
-      //     stripeSubscriptionId
-      //   );
-
-      // const startDate = stripeSub.items.data[0].created;
-      // const currentPeriodStart = stripeSub.items.data[0].current_period_start;
-      // const currentPeriodEnd = stripeSub.items.data[0].current_period_end;
-
-      //   const createdSubData = {
-      //     user: user._id,
-      //     plan: plan._id,
-      //     planSnapshot: {
-      //       name: plan.name,
-      //       price: plan.price,
-      //       currency: plan.currency,
-      //       billingPeriod: plan.billingPeriod,
-      //     },
-      //     stripeSubscriptionId,
-      //     stripeCustomerId,
-      //     stripePriceId,
-      //     status: stripeSub.status,
-      //     startDate: startDate ? new Date(startDate * 1000) : undefined,
-      //     currentPeriodStart: currentPeriodStart
-      //       ? new Date(currentPeriodStart * 1000)
-      //       : undefined,
-      //     currentPeriodEnd: currentPeriodEnd
-      //       ? new Date(currentPeriodEnd * 1000)
-      //       : undefined,
-      //     cancelAtPeriodEnd: stripeSub.cancel_at_period_end,
-      //     endDate: stripeSub.cancel_at
-      //       ? new Date(stripeSub.cancel_at * 1000)
-      //       : undefined,
-      //   };
-
-      //   const subscription = await Subscription.create(createdSubData);
-
-      //   console.log("✅ Subscription created with snapshot:", subscription._id);
-      //   break;
-      // }
-
       case "checkout.session.completed": {
         const session = event.data.object;
         const userId = session.metadata?.userId;
@@ -176,7 +124,9 @@ async function webhookHandler(req, res) {
         };
 
         const subscription = await Subscription.create(createdSubData);
-
+        user.pricingPlan = plan._id;
+        user.isPaid = true;
+        user.save();
         console.log("✅ New subscription created:", subscription._id);
         break;
       }
@@ -210,10 +160,23 @@ async function webhookHandler(req, res) {
         const invoice = event.data.object;
         console.log("❌ Invoice payment failed:", invoice.id);
 
+        const userId = invoice.metadata?.userId;
+        const stripePriceId = invoice.metadata?.priceId;
+
+        const user = await User.findById(userId);
+        const plan = await PricingPlan.findOne({ stripePriceId });
+
+        if (!user || !plan) break;
+
         await Subscription.findOneAndUpdate(
           { stripeSubscriptionId: invoice.subscription },
           { status: "past_due" }
         );
+
+        user.pricingPlan = null;
+        user.isPaid = false;
+        await user.save();
+
         break;
       }
 

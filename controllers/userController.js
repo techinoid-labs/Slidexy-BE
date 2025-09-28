@@ -114,188 +114,6 @@ exports.login = async (req, res) => {
 };
 
 // Get Profile
-// exports.getProfile = async (req, res) => {
-//   try {
-//     const user = await User.findById(req.userId).select("-password");
-//     if (!user) {
-//       return res.status(404).json({ error: "User not found" });
-//     }
-
-//     const subscription = await Subscription.findOne({
-//       user: user._id,
-//       status: "active",
-//     })
-//       .populate("plan")
-//       .sort({ createdAt: -1 });
-
-//     const now = new Date();
-
-//     // Defaults
-//     let trialActive = false;
-//     let trialDaysLeft = 0;
-//     let trialPresentationsLeftToday = 0;
-//     let trialImageDecksLeftToday = 0;
-//     let trialPredefinedDecksLeftToday = 0;
-//     let trialPlanConfig = null;
-
-//     let subscriptionActive = false;
-//     let subDaysLeft = 0;
-//     let subPresentationsLeftToday = 0;
-//     let subImageDecksLeftToday = 0;
-//     let subPredefinedDecksLeftToday = 0;
-//     let activePlanConfig = null;
-
-//     // -------------------------
-//     // Subscription logic
-//     // -------------------------
-//     if (subscription && subscription.status === "active") {
-//       subscriptionActive = true;
-
-//       const plan = subscription.planSnapshot || subscription.plan;
-//       activePlanConfig = planConfig[plan.billingPeriod] || {};
-
-//       const today = new Date().toDateString();
-//       const lastDate = user.lastPresentationDate
-//         ? user.lastPresentationDate.toDateString()
-//         : null;
-
-//       // reset counters if new day
-//       let createdToday = user.presentationsCreatedToday || 0;
-//       let imageDecksUsed = user.imageDecksUsedToday || 0;
-//       let predefinedDecksUsed = user.predefinedDecksUsedToday || 0;
-//       if (today !== lastDate) {
-//         createdToday = 0;
-//         imageDecksUsed = 0;
-//         predefinedDecksUsed = 0;
-//       }
-
-//       // total decks left (main bucket)
-//       subPresentationsLeftToday = Math.max(
-//         (activePlanConfig.decksPerDay || 0) - createdToday,
-//         0
-//       );
-
-//       // sub-limits — but capped by total decks left
-//       subImageDecksLeftToday = Math.min(
-//         subPresentationsLeftToday,
-//         Math.max((activePlanConfig.imageDecks || 0) - imageDecksUsed, 0)
-//       );
-
-//       subPredefinedDecksLeftToday = Math.min(
-//         subPresentationsLeftToday,
-//         Math.max(
-//           (activePlanConfig.predefinedDecks || 0) - predefinedDecksUsed,
-//           0
-//         )
-//       );
-
-//       if (subscription.currentPeriodEnd) {
-//         const diffTime =
-//           new Date(subscription.currentPeriodEnd).getTime() - now.getTime();
-//         subDaysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-//       }
-//     }
-
-//     // -------------------------
-//     // Trial logic (free plan)
-//     // -------------------------
-//     if (!subscriptionActive && user.trialEnd && now <= user.trialEnd) {
-//       trialActive = true;
-//       trialPlanConfig = planConfig.free || {};
-
-//       const diffTime = user.trialEnd.getTime() - now.getTime();
-//       trialDaysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-//       const today = new Date().toDateString();
-//       const lastDate = user.lastPresentationDate
-//         ? user.lastPresentationDate.toDateString()
-//         : null;
-
-//       // reset counters if new day
-//       let createdToday = user.presentationsCreatedToday || 0;
-//       let imageDecksUsed = user.imageDecksUsedToday || 0;
-//       let predefinedDecksUsed = user.predefinedDecksUsedToday || 0;
-//       if (today !== lastDate) {
-//         createdToday = 0;
-//         imageDecksUsed = 0;
-//         predefinedDecksUsed = 0;
-//       }
-
-//       // total decks left
-//       trialPresentationsLeftToday = Math.max(
-//         (trialPlanConfig.decksPerDay || 0) - createdToday,
-//         0
-//       );
-
-//       // sub-limits — capped by total decks left
-//       trialImageDecksLeftToday = Math.min(
-//         trialPresentationsLeftToday,
-//         Math.max((trialPlanConfig.imageDecks || 0) - imageDecksUsed, 0)
-//       );
-
-//       trialPredefinedDecksLeftToday = Math.min(
-//         trialPresentationsLeftToday,
-//         Math.max(
-//           (trialPlanConfig.predefinedDecks || 0) - predefinedDecksUsed,
-//           0
-//         )
-//       );
-//     }
-
-//     // -------------------------
-//     // Response
-//     // -------------------------
-//     res.json({
-//       _id: user._id,
-//       email: user.email,
-//       name: user.name,
-//       admin: user.admin,
-//       presentations: user.presentations,
-//       currentPresentationId: user.currentPresentationId,
-
-//       subscription: subscription
-//         ? {
-//             _id: subscription._id,
-//             stripeId: subscription.stripeSubscriptionId,
-//             status: subscription.status,
-//             plan: subscription.plan,
-//             planSnapshot: subscription.planSnapshot,
-//             startDate: subscription.startDate,
-//             currentPeriodStart: subscription.currentPeriodStart,
-//             currentPeriodEnd: subscription.currentPeriodEnd,
-//             cancelAtPeriodEnd: subscription.cancelAtPeriodEnd,
-//             endDate: subscription.endDate,
-//           }
-//         : null,
-
-//       // Trial data
-//       trial: {
-//         active: trialActive,
-//         start: user.trialStart,
-//         end: user.trialEnd,
-//         daysLeft: trialDaysLeft,
-//         presentationsLeftToday: trialPresentationsLeftToday,
-//         imageDecksLeftToday: trialImageDecksLeftToday,
-//         predefinedDecksLeftToday: trialPredefinedDecksLeftToday,
-//         config: trialPlanConfig,
-//       },
-
-//       // Subscription data
-//       subscriptionUsage: {
-//         active: subscriptionActive,
-//         daysLeft: subDaysLeft,
-//         presentationsLeftToday: subPresentationsLeftToday,
-//         imageDecksLeftToday: subImageDecksLeftToday,
-//         predefinedDecksLeftToday: subPredefinedDecksLeftToday,
-//         config: activePlanConfig,
-//       },
-//     });
-//   } catch (err) {
-//     console.error("Profile error:", err);
-//     res.status(500).json({ error: "Server error" });
-//   }
-// };
-
 exports.getProfile = async (req, res) => {
   try {
     const user = await User.findById(req.userId).select("-password");
@@ -328,40 +146,42 @@ exports.getProfile = async (req, res) => {
     // -------------------------
     // Subscription logic
     // -------------------------
-    if (subscription && subscription.status === "active") {
-      subscriptionActive = true;
+    if (user.isPaid && user.pricingPlan) {
+      if (subscription && subscription.status === "active") {
+        subscriptionActive = true;
 
-      const plan = subscription.planSnapshot || subscription.plan;
-      activePlanConfig = planConfig[plan.billingPeriod] || {};
+        const plan = subscription.planSnapshot || subscription.plan;
+        activePlanConfig = planConfig[plan.billingPeriod] || {};
 
-      const today = new Date().toDateString();
-      const lastDate = user.lastPresentationDate
-        ? user.lastPresentationDate.toDateString()
-        : null;
+        const today = new Date().toDateString();
+        const lastDate = user.lastPresentationDate
+          ? user.lastPresentationDate.toDateString()
+          : null;
 
-      // reset counters if new day
-      let imageDecksUsed = user.imageDecksUsedToday || 0;
-      let predefinedDecksUsed = user.predefinedDecksUsedToday || 0;
-      if (today !== lastDate) {
-        imageDecksUsed = 0;
-        predefinedDecksUsed = 0;
-      }
+        // reset counters if new day
+        let imageDecksUsed = user.imageDecksUsedToday || 0;
+        let predefinedDecksUsed = user.predefinedDecksUsedToday || 0;
+        if (today !== lastDate) {
+          imageDecksUsed = 0;
+          predefinedDecksUsed = 0;
+        }
 
-      // Remaining limits
-      subImageDecksLeftToday = Math.max(
-        (activePlanConfig.imageDecks || 0) - imageDecksUsed,
-        0
-      );
+        // Remaining limits
+        subImageDecksLeftToday = Math.max(
+          (activePlanConfig.imageDecks || 0) - imageDecksUsed,
+          0
+        );
 
-      subPredefinedDecksLeftToday = Math.max(
-        (activePlanConfig.predefinedDecks || 0) - predefinedDecksUsed,
-        0
-      );
+        subPredefinedDecksLeftToday = Math.max(
+          (activePlanConfig.predefinedDecks || 0) - predefinedDecksUsed,
+          0
+        );
 
-      if (subscription.currentPeriodEnd) {
-        const diffTime =
-          new Date(subscription.currentPeriodEnd).getTime() - now.getTime();
-        subDaysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        if (subscription.currentPeriodEnd) {
+          const diffTime =
+            new Date(subscription.currentPeriodEnd).getTime() - now.getTime();
+          subDaysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        }
       }
     }
 
@@ -417,7 +237,7 @@ exports.getProfile = async (req, res) => {
             stripeId: subscription.stripeSubscriptionId,
             status: subscription.status,
             plan: subscription.plan,
-            planSnapshot: subscription.planSnapshot,
+            // planSnapshot: subscription.planSnapshot,
             startDate: subscription.startDate,
             currentPeriodStart: subscription.currentPeriodStart,
             currentPeriodEnd: subscription.currentPeriodEnd,
