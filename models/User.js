@@ -13,14 +13,14 @@ const userSchema = new mongoose.Schema({
     ref: "PricingPlan",
     default: null,
   },
-
-  // Trial fields
+  isPaid: { type: Boolean, default: null },
   trialStart: { type: Date, default: Date.now },
   trialEnd: { type: Date },
-  presentationsCreatedToday: { type: Number, default: 0 },
+  // presentationsCreatedToday: { type: Number, default: 0 },
+  imageDecksUsedToday: { type: Number, default: 0 },
+  predefinedDecksUsedToday: { type: Number, default: 0 },
   lastPresentationDate: { type: Date },
 
-  // Anti-abuse
   fingerprint: { type: String, index: true },
   ipAddress: String,
 

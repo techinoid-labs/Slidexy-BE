@@ -11,6 +11,9 @@ const Presentation = require("../models/Presentation");
 const crypto = require("crypto");
 const User = require("../models/User");
 const { checkTrialLimits } = require("../utils/checkTrialLimits");
+const { checkPaidLimits } = require("../utils/checkPaidLimits");
+const Subscription = require("../models/Subscription");
+const planConfig = require("../utils/plansConfig");
 
 // --- Helper: YouTube video ID extractor ---
 function extractYouTubeVideoId(url) {
@@ -55,24 +58,97 @@ async function generateSlidesHandler(req, res) {
     userData,
   } = req.body;
 
-  // ✅ If logged in → run trial check
+  // If logged in then run plan check
+  // if (!userData?.admin) {
+  //   let user = null;
+  //   if (userData?._id) {
+  //     user = await User.findById(userData._id);
+  //     if (!user) {
+  //       return res.status(404).json({ error: "User not found" });
+  //     }
+
+  //     const now = new Date();
+  //     let planCheckResult;
+
+  //     // 1. Check subscription status directly
+  //     const subscription = await Subscription.findOne({
+  //       user: user._id,
+  //       status: "active",
+  //     })
+  //       .populate("plan")
+  //       .sort({ createdAt: -1 });
+
+  //     if (subscription && subscription.status === "active") {
+  //       // Paid user (subscription valid)
+  //       planCheckResult = await checkPaidLimits(user, subscription);
+  //     } else if (user.trialEnd && now <= user.trialEnd) {
+  //       //  Trial user (trial still valid)
+  //       planCheckResult = await checkTrialLimits(user);
+  //     } else {
+  //       // No valid plan or trial
+  //       return res
+  //         .status(403)
+  //         .json({ error: "No active subscription or trial" });
+  //     }
+
+  //     const { allowed, message, type } = planCheckResult;
+  //     if (!allowed) {
+  //       return res.status(403).json({ error: message });
+  //     }
+
+  //     req.planResponseType = type;
+  //   }
+  // }
+
   if (!userData?.admin) {
     let user = null;
     if (userData?._id) {
       user = await User.findById(userData._id);
-
       if (!user) {
-        return res.status(404).json({ error: "User not found" });
+        return res.status(404).json({
+          error: "USER_NOT_FOUND",
+          // code: "USER_NOT_FOUND",
+        });
       }
 
-      // Run trial/plan check
-      const { allowed, message } = await checkTrialLimits(user);
-      if (!allowed) {
-        return res.status(403).json({ error: message });
+      const now = new Date();
+      let planCheckResult;
+
+      // 1. Check subscription status directly
+      const subscription = await Subscription.findOne({
+        user: user._id,
+        status: "active",
+      })
+        .populate("plan")
+        .sort({ createdAt: -1 });
+
+      if (subscription && subscription.status === "active") {
+        // ✅ Paid user (subscription valid)
+        planCheckResult = await checkPaidLimits(user, subscription);
+      } else if (user.trialEnd && now <= user.trialEnd) {
+        // ✅ Trial user (trial still valid)
+        planCheckResult = await checkTrialLimits(user);
+      } else {
+        // ❌ No valid plan or trial
+        return res.status(403).json({
+          error: "NO_PLAN_OR_TRIAL",
+          // code: "NO_PLAN_OR_TRIAL",
+        });
       }
+
+      const { allowed, message, code, type } = planCheckResult;
+      if (!allowed) {
+        return res.status(403).json({
+          error: code || "LIMIT_REACHED",
+          // code: code || "LIMIT_REACHED",
+        });
+      }
+
+      req.planResponseType = type;
     }
   }
 
+  const planResponseType = req.planResponseType;
   const wantsStreaming = req.headers["accept"] === "text/event-stream";
 
   if (wantsStreaming) {
@@ -126,7 +202,7 @@ async function generateSlidesHandler(req, res) {
         topic = inputWebsiteUrl || "Website Presentation";
       } else {
         rawText = textContent;
-        topic = textContent?.slice(0, 50) || "Untitled Presentation"; // first few chars as title
+        topic = textContent?.slice(0, 50) || "Untitled Presentation";
       }
       sendUpdate({ percent: 20, message: "Input analysis complete." });
 
@@ -156,7 +232,11 @@ async function generateSlidesHandler(req, res) {
         });
 
         try {
-          const imageSlide = await generateImage(slides[i], i);
+          const imageSlide = await generateImage(
+            slides[i],
+            i,
+            planResponseType
+          );
           const imageUrl = imageSlide.image_url;
 
           const elementsWithoutText = slides[i].elements.filter(

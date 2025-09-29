@@ -1,56 +1,66 @@
 // utils/checkTrialLimits.js
-const User = require("../models/User");
-const FR_URL = process.env.FRONTEND_URL;
+const trialConfig = {
+  imageDecks: 1,
+  predefinedDecks: 2,
+};
+
 async function checkTrialLimits(user) {
-  // If user has a paid plan, skip limits
+  // Paid plan? no limits (just in case)
   if (user.pricingPlan) {
-    return { allowed: true };
+    return { allowed: true, code: "PAID_PLAN_BYPASS" };
   }
 
-  // Initialize trialStart if missing
+  // Initialize trial dates if missing
   if (!user.trialStart) {
     user.trialStart = new Date();
   }
-
-  // Set trialEnd if not set yet
   if (!user.trialEnd) {
     user.trialEnd = new Date(
       user.trialStart.getTime() + 7 * 24 * 60 * 60 * 1000
     );
   }
 
-  // Expired trial?
+  // Trial expired
   if (Date.now() > user.trialEnd.getTime()) {
     return {
       allowed: false,
-      message: `Your trial has expired, You can join our waiting list for upcomming news and feature, pricing updates:`,
+      message: "Your trial has expired. Please upgrade to continue.",
+      code: "TRIAL_EXPIRED",
     };
   }
 
-  // Reset daily counter if it's a new day
+  // Reset daily counters if it’s a new day
   const today = new Date().toDateString();
   const lastDate = user.lastPresentationDate
     ? user.lastPresentationDate.toDateString()
     : null;
 
   if (today !== lastDate) {
-    user.presentationsCreatedToday = 0;
+    user.imageDecksUsedToday = 0;
+    user.predefinedDecksUsedToday = 0;
     user.lastPresentationDate = new Date();
   }
 
-  // Check daily limit
-  if (user.presentationsCreatedToday >= 10) {
-    return {
-      allowed: false,
-      message: `Daily trial limit reached. Try again tomorrow, You can also join our waiting list for upcomming news and feature: `,
-    };
+  //  Image deck quota
+  if (user.imageDecksUsedToday < trialConfig.imageDecks) {
+    user.imageDecksUsedToday += 1;
+    await user.save();
+    return { allowed: true, type: "image", code: "TRIAL_IMAGE_OK" };
   }
 
-  // Increment counter
-  user.presentationsCreatedToday += 1;
-  await user.save();
+  //  Predefined deck quota
+  if (user.predefinedDecksUsedToday < trialConfig.predefinedDecks) {
+    user.predefinedDecksUsedToday += 1;
+    await user.save();
+    return { allowed: true, type: "predefined", code: "TRIAL_PREDEFINED_OK" };
+  }
 
-  return { allowed: true };
+  // Both quotas exhausted
+  return {
+    allowed: false,
+    message: "Trial daily limit reached for all deck types.",
+    code: "TRIAL_LIMIT_REACHED",
+  };
 }
 
 module.exports = { checkTrialLimits };

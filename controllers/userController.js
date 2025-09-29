@@ -2,55 +2,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const Presentation = require("../models/Presentation");
-
-// Register
-// exports.register = async (req, res) => {
-//   try {
-//     const { email, password, presentationId } = req.body;
-
-//     const existing = await User.findOne({ email });
-//     if (existing)
-//       return res.status(400).json({ message: "User already exists" });
-
-//     const hashedPassword = await bcrypt.hash(password, 10);
-
-//     const user = new User({
-//       email,
-//       password: hashedPassword,
-//       admin: false,
-//       presentations: presentationId ? [presentationId] : [],
-//       currentPresentationId: presentationId || null,
-//       trialStart: new Date(),
-//       trialEnd: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), //  7 days from now
-//     });
-//     await user.save();
-
-//     // Update Presentation with user ID if presentationId is provided
-//     if (presentationId) {
-//       await User.findByIdAndUpdate(
-//         user._id,
-//         {
-//           $addToSet: { presentations: presentationId },
-//           $set: { currentPresentationId: presentationId },
-//         },
-//         { new: true }
-//       );
-//       await Presentation.findOneAndUpdate(
-//         { presentation_id: presentationId },
-//         { user: user._id }
-//       );
-//     }
-
-//     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-//       expiresIn: "1y",
-//     });
-
-//     res.json({ token, userId: user._id, presentationId });
-//   } catch (err) {
-//     console.error("Register error:", err.message);
-//     res.status(500).json({ message: "Server error" });
-//   }
-// };
+const planConfig = require("../utils/plansConfig");
+const Subscription = require("../models/Subscription");
 
 // Register
 exports.register = async (req, res) => {
@@ -161,46 +114,115 @@ exports.login = async (req, res) => {
 };
 
 // Get Profile
-
 exports.getProfile = async (req, res) => {
   try {
     const user = await User.findById(req.userId).select("-password");
-
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
 
-    // Trial calculations
+    const subscription = await Subscription.findOne({
+      user: user._id,
+      status: "active",
+    })
+      .populate("plan")
+      .sort({ createdAt: -1 });
+
+    const now = new Date();
+
+    // Defaults
     let trialActive = false;
-    let daysLeft = 0;
-    let presentationsLeftToday = 0;
+    let trialDaysLeft = 0;
+    let trialImageDecksLeftToday = 0;
+    let trialPredefinedDecksLeftToday = 0;
+    let trialPlanConfig = null;
 
-    if (!user.pricingPlan) {
-      // if no subscription, trial is relevant
-      const now = new Date();
+    let subscriptionActive = false;
+    let subDaysLeft = 0;
+    let subImageDecksLeftToday = 0;
+    let subPredefinedDecksLeftToday = 0;
+    let activePlanConfig = null;
 
-      if (user.trialEnd && now <= user.trialEnd) {
-        trialActive = true;
+    // -------------------------
+    // Subscription logic
+    // -------------------------
+    if (user.isPaid && user.pricingPlan) {
+      if (subscription && subscription.status === "active") {
+        subscriptionActive = true;
 
-        // days left until trialEnd
-        const diffTime = user.trialEnd.getTime() - now.getTime();
-        daysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        const plan = subscription.planSnapshot || subscription.plan;
+        activePlanConfig = planConfig[plan.billingPeriod] || {};
 
-        // reset daily counter
         const today = new Date().toDateString();
         const lastDate = user.lastPresentationDate
           ? user.lastPresentationDate.toDateString()
           : null;
 
-        let createdToday = user.presentationsCreatedToday;
+        // reset counters if new day
+        let imageDecksUsed = user.imageDecksUsedToday || 0;
+        let predefinedDecksUsed = user.predefinedDecksUsedToday || 0;
         if (today !== lastDate) {
-          createdToday = 0;
+          imageDecksUsed = 0;
+          predefinedDecksUsed = 0;
         }
 
-        presentationsLeftToday = Math.max(10 - createdToday, 0);
+        // Remaining limits
+        subImageDecksLeftToday = Math.max(
+          (activePlanConfig.imageDecks || 0) - imageDecksUsed,
+          0
+        );
+
+        subPredefinedDecksLeftToday = Math.max(
+          (activePlanConfig.predefinedDecks || 0) - predefinedDecksUsed,
+          0
+        );
+
+        if (subscription.currentPeriodEnd) {
+          const diffTime =
+            new Date(subscription.currentPeriodEnd).getTime() - now.getTime();
+          subDaysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        }
       }
     }
 
+    // -------------------------
+    // Trial logic (free plan)
+    // -------------------------
+    if (!subscriptionActive && user.trialEnd && now <= user.trialEnd) {
+      trialActive = true;
+      trialPlanConfig = planConfig["free"];
+
+      const diffTime = user.trialEnd.getTime() - now.getTime();
+      trialDaysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+      const today = new Date().toDateString();
+      const lastDate = user.lastPresentationDate
+        ? user.lastPresentationDate.toDateString()
+        : null;
+
+      // reset counters if new day
+      let imageDecksUsed = user.imageDecksUsedToday || 0;
+      let predefinedDecksUsed = user.predefinedDecksUsedToday || 0;
+      if (today !== lastDate) {
+        imageDecksUsed = 0;
+        predefinedDecksUsed = 0;
+      }
+
+      // Remaining trial limits
+      trialImageDecksLeftToday = Math.max(
+        (trialPlanConfig.imageDecks || 0) - imageDecksUsed,
+        0
+      );
+
+      trialPredefinedDecksLeftToday = Math.max(
+        (trialPlanConfig.predefinedDecks || 0) - predefinedDecksUsed,
+        0
+      );
+    }
+
+    // -------------------------
+    // Response
+    // -------------------------
     res.json({
       _id: user._id,
       email: user.email,
@@ -208,14 +230,44 @@ exports.getProfile = async (req, res) => {
       admin: user.admin,
       presentations: user.presentations,
       currentPresentationId: user.currentPresentationId,
-      pricingPlan: user.pricingPlan,
-      trialActive,
-      trialStart: user.trialStart,
-      trialEnd: user.trialEnd,
-      daysLeft,
-      presentationsLeftToday,
+
+      subscription: subscription
+        ? {
+            _id: subscription._id,
+            stripeId: subscription.stripeSubscriptionId,
+            status: subscription.status,
+            plan: subscription.plan,
+            // planSnapshot: subscription.planSnapshot,
+            startDate: subscription.startDate,
+            currentPeriodStart: subscription.currentPeriodStart,
+            currentPeriodEnd: subscription.currentPeriodEnd,
+            cancelAtPeriodEnd: subscription.cancelAtPeriodEnd,
+            endDate: subscription.endDate,
+          }
+        : null,
+
+      // Trial data
+      trial: {
+        active: trialActive,
+        start: user.trialStart,
+        end: user.trialEnd,
+        daysLeft: trialDaysLeft,
+        imageDecksLeftToday: trialImageDecksLeftToday,
+        predefinedDecksLeftToday: trialPredefinedDecksLeftToday,
+        config: trialPlanConfig,
+      },
+
+      // Subscription data
+      subscriptionUsage: {
+        active: subscriptionActive,
+        daysLeft: subDaysLeft,
+        imageDecksLeftToday: subImageDecksLeftToday,
+        predefinedDecksLeftToday: subPredefinedDecksLeftToday,
+        config: activePlanConfig,
+      },
     });
   } catch (err) {
+    console.error("Profile error:", err);
     res.status(500).json({ error: "Server error" });
   }
 };

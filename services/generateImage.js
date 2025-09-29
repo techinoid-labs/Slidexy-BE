@@ -24,8 +24,18 @@ Guidelines:
 `;
 }
 
-async function generateImage(slide, index) {
+async function generateImage(slide, index, planResponseType) {
   try {
+    // Case: predefined plan → skip Gemini, return fallback directly
+    if (planResponseType === "predefined") {
+      const fallback = `https://placehold.co/960x540?text=Image+Quota+Reached+-+Using+Placeholder`;
+      return {
+        ...slide,
+        image_url: fallback,
+        image_caption: "Placeholder image (trial image quota reached)",
+      };
+    }
+
     const prompt = slide.imagePrompt || buildPrompt(slide);
 
     // Call Gemini with rate-limiter
@@ -34,7 +44,7 @@ async function generateImage(slide, index) {
         contents: [{ role: "user", parts: [{ text: prompt }] }],
         generationConfig: {
           responseModalities: ["TEXT", "IMAGE"], // only request IMAGE
-          candidateCount: 1,             // multiple candidates not supported
+          candidateCount: 1, // multiple candidates not supported
         },
       })
     );

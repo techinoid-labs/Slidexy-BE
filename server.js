@@ -15,6 +15,7 @@ const User = require("./models/WaitingUser");
 const userRoutes = require("./routes/user");
 const aiChatRoutes = require("./routes/aiChatRoutes");
 const contactRoutes = require("./routes/contact");
+const planRoutes = require("./routes/planRoutes");
 
 // Controllers
 const {
@@ -94,7 +95,8 @@ app.use("/api/chat", aiChatRoutes);
 // Contact
 
 app.use("/api/contact", contactRoutes);
-
+// Plans
+app.use("/api/plans", planRoutes);
 // --- Slide/Presentation APIs ---
 app.post("/generate-slides", validate, generateSlidesHandler);
 app.post(
