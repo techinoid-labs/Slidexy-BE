@@ -11,6 +11,9 @@ async function createCheckoutSession(priceId, metadata = {}) {
     mode: "subscription",
     payment_method_types: ["card"],
     line_items: [{ price: priceId, quantity: 1 }],
+    subscription_data: {
+      metadata,
+    },
     metadata,
     success_url: `${process.env.FRONTEND_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${process.env.FRONTEND_URL}/cancel`,
