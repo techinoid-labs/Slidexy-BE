@@ -121,38 +121,87 @@ const { bridgeTemplate } = require("../services/templateBridgeServices");
 const Presentation = require("../models/Presentation");
 const crypto = require("crypto");
 const { checkTrialLimits } = require("../utils/checkTrialLimits");
+const { checkPaidLimits } = require("../utils/checkPaidLimits");
 const User = require("../models/User");
+const Subscription = require("../models/Subscription");
 
 const generatePptTemplateHandler = async (req, res) => {
   try {
     const { topic, slideCount = 5, meta = {}, userData } = req.body;
     if (!topic) return res.status(400).json({ error: "Topic is required" });
 
-    // ✅ Step 0: If logged in, enforce trial limits
-    // ✅ If logged in → run trial check
+    // if (!userData?.admin) {
+    //   let user = null;
+    //   if (userData?._id) {
+    //     user = await User.findById(userData._id);
+
+    //     if (!user) {
+    //       return res.status(404).json({ error: "User not found" });
+    //     }
+
+    //     // Run trial/plan check
+    //     const { allowed, message } = await checkTrialLimits(user);
+    //     if (!allowed) {
+    //       return res.status(403).json({ error: message });
+    //     }
+    //   }
+    // }
+
+    // Step 0: If logged in, enforce plan/trial/subscription limits
     if (!userData?.admin) {
       let user = null;
       if (userData?._id) {
         user = await User.findById(userData._id);
-
         if (!user) {
-          return res.status(404).json({ error: "User not found" });
+          return res.status(404).json({
+            error: "USER_NOT_FOUND",
+          });
         }
 
-        // Run trial/plan check
-        const { allowed, message } = await checkTrialLimits(user);
-        if (!allowed) {
-          return res.status(403).json({ error: message });
+        const now = new Date();
+        let planCheckResult;
+
+        // 1. Check for active subscription
+        const subscription = await Subscription.findOne({
+          user: user._id,
+          status: "active",
+        })
+          .populate("plan")
+          .sort({ createdAt: -1 });
+
+        if (subscription && subscription.status === "active") {
+          // Paid user
+          planCheckResult = await checkPaidLimits(user, subscription);
+        } else if (user.trialEnd && now <= user.trialEnd) {
+          // Trial user
+          planCheckResult = await checkTrialLimits(user);
+        } else {
+          // No plan/trial
+          return res.status(403).json({
+            error: "NO_PLAN_OR_TRIAL",
+          });
         }
+
+        const { allowed, message, code, type } = planCheckResult;
+        if (!allowed) {
+          return res.status(403).json({
+            error: code || "LIMIT_REACHED",
+          });
+        }
+
+        req.planResponseType = type; // keep consistent with generateSlidesHandler
       }
     }
+
+    const planResponseType = req.planResponseType;
+
     // Step 1: Get titles
     const titles = await getTitlesService(topic, slideCount, meta);
 
     // Step 2 + 3: Get bullets and images in parallel
     const [bulletsPerSlide, imagesPerSlide] = await Promise.all([
       getBulletsService(topic, titles, meta),
-      getImagesService(topic, titles, meta),
+      getImagesService(topic, titles, meta, planResponseType),
     ]);
 
     // Step 4: Combine into Slide array
