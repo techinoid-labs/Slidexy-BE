@@ -21,6 +21,15 @@ async function createCheckoutSession(priceId, metadata = {}) {
 }
 
 /**
+ * Cancel a subscription at period end
+ */
+async function cancelSubscriptionAtPeriodEnd(stripeSubscriptionId) {
+  return await stripe.subscriptions.update(stripeSubscriptionId, {
+    cancel_at_period_end: true,
+  });
+}
+
+/**
  * Verify webhook signature
  */
 function verifyWebhookSignature(req) {
@@ -45,4 +54,5 @@ module.exports = {
   createCheckoutSession,
   verifyWebhookSignature,
   getSession,
+  cancelSubscriptionAtPeriodEnd,
 };

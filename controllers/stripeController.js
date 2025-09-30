@@ -2,6 +2,7 @@ const {
   createCheckoutSession,
   verifyWebhookSignature,
   getSession,
+  cancelSubscriptionAtPeriodEnd,
 } = require("../services/stripe/stripeService");
 const Stripe = require("stripe");
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -32,6 +33,41 @@ async function createCheckoutSessionHandler(req, res) {
   } catch (err) {
     console.error("Error creating Checkout Session:", err);
     res.status(500).json({ error: err.message });
+  }
+}
+
+/**
+ * Cancel Subscription (soft cancel)
+ */
+async function cancelSubscriptionHandler(req, res) {
+  try {
+    const { userId } = req.body;
+
+    // Find the active subscription for this user
+    const subscription = await Subscription.findOne({
+      user: userId,
+      status: "active",
+    });
+
+    if (!subscription) {
+      return res.status(404).json({ error: "No active subscription found" });
+    }
+
+    // Tell Stripe to cancel at period end
+    const cancelFeedback = await cancelSubscriptionAtPeriodEnd(
+      subscription.stripeSubscriptionId
+    );
+
+    return res.json({
+      success: true,
+      message: "Subscription set to cancel at period end",
+    });
+  } catch (err) {
+    console.error("Error canceling subscription:", err);
+    // res.status(500).json({ error: err.message });
+    res
+      .status(500)
+      .json({ error: "Failed to cancel your renewal, please try again" });
   }
 }
 
@@ -173,9 +209,9 @@ async function webhookHandler(req, res) {
           { status: "past_due" }
         );
 
-        user.pricingPlan = null;
-        user.isPaid = false;
-        await user.save();
+        // user.pricingPlan = null;
+        // user.isPaid = false;
+        // await user.save();
 
         break;
       }
@@ -184,13 +220,16 @@ async function webhookHandler(req, res) {
         const stripeSub = event.data.object;
         console.log("ℹ️ Subscription updated:", stripeSub.id);
 
+        const currentPeriodStart = stripeSub.items.data[0].current_period_start;
+        const currentPeriodEnd = stripeSub.items.data[0].current_period_end;
+
         await Subscription.findOneAndUpdate(
           { stripeSubscriptionId: stripeSub.id },
           {
             status: stripeSub.status,
             cancelAtPeriodEnd: stripeSub.cancel_at_period_end,
-            currentPeriodStart: new Date(stripeSub.current_period_start * 1000),
-            currentPeriodEnd: new Date(stripeSub.current_period_end * 1000),
+            currentPeriodStart: new Date(currentPeriodStart * 1000),
+            currentPeriodEnd: new Date(currentPeriodEnd * 1000),
           }
         );
         break;
@@ -202,59 +241,9 @@ async function webhookHandler(req, res) {
 
         await Subscription.findOneAndUpdate(
           { stripeSubscriptionId: subscription.id },
+          { cancelAtPeriodEnd: stripeSub.cancel_at_period_end },
           { status: "canceled", endDate: new Date() }
         );
-        break;
-      }
-
-      // 🆕 Extra logging-only events
-      case "invoice.created": {
-        console.log("📝 Invoice created:", event.data.object.id);
-        break;
-      }
-
-      case "invoice.finalized": {
-        console.log("📌 Invoice finalized:", event.data.object.id);
-        break;
-      }
-
-      case "invoice.paid": {
-        console.log("💰 Invoice paid:", event.data.object.id);
-        break;
-      }
-
-      case "invoice.upcoming": {
-        console.log("📅 Upcoming invoice:", event.data.object.id);
-        break;
-      }
-
-      case "charge.succeeded": {
-        console.log("💳 Charge succeeded:", event.data.object.id);
-        break;
-      }
-
-      case "payment_intent.created": {
-        console.log("⚡ PaymentIntent created:", event.data.object.id);
-        break;
-      }
-
-      case "payment_intent.succeeded": {
-        console.log("✅ PaymentIntent succeeded:", event.data.object.id);
-        break;
-      }
-
-      case "payment_method.attached": {
-        console.log("🔗 Payment method attached:", event.data.object.id);
-        break;
-      }
-
-      case "customer.created": {
-        console.log("👤 Customer created:", event.data.object.id);
-        break;
-      }
-
-      case "customer.updated": {
-        console.log("🔄 Customer updated:", event.data.object.id);
         break;
       }
 
@@ -295,4 +284,5 @@ module.exports = {
   createCheckoutSessionHandler,
   webhookHandler,
   getSessionHandler,
+  cancelSubscriptionHandler,
 };

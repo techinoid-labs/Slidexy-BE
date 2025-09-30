@@ -123,7 +123,7 @@ exports.getProfile = async (req, res) => {
 
     const subscription = await Subscription.findOne({
       user: user._id,
-      status: "active",
+      // status: "active",
     })
       .populate("plan")
       .sort({ createdAt: -1 });
@@ -147,7 +147,7 @@ exports.getProfile = async (req, res) => {
     // Subscription logic
     // -------------------------
     if (user.isPaid && user.pricingPlan) {
-      if (subscription && subscription.status === "active") {
+      if (subscription) {
         subscriptionActive = true;
 
         const plan = subscription.planSnapshot || subscription.plan;

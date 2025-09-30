@@ -58,48 +58,6 @@ async function generateSlidesHandler(req, res) {
     userData,
   } = req.body;
 
-  // If logged in then run plan check
-  // if (!userData?.admin) {
-  //   let user = null;
-  //   if (userData?._id) {
-  //     user = await User.findById(userData._id);
-  //     if (!user) {
-  //       return res.status(404).json({ error: "User not found" });
-  //     }
-
-  //     const now = new Date();
-  //     let planCheckResult;
-
-  //     // 1. Check subscription status directly
-  //     const subscription = await Subscription.findOne({
-  //       user: user._id,
-  //       status: "active",
-  //     })
-  //       .populate("plan")
-  //       .sort({ createdAt: -1 });
-
-  //     if (subscription && subscription.status === "active") {
-  //       // Paid user (subscription valid)
-  //       planCheckResult = await checkPaidLimits(user, subscription);
-  //     } else if (user.trialEnd && now <= user.trialEnd) {
-  //       //  Trial user (trial still valid)
-  //       planCheckResult = await checkTrialLimits(user);
-  //     } else {
-  //       // No valid plan or trial
-  //       return res
-  //         .status(403)
-  //         .json({ error: "No active subscription or trial" });
-  //     }
-
-  //     const { allowed, message, type } = planCheckResult;
-  //     if (!allowed) {
-  //       return res.status(403).json({ error: message });
-  //     }
-
-  //     req.planResponseType = type;
-  //   }
-  // }
-
   if (!userData?.admin) {
     let user = null;
     if (userData?._id) {
@@ -117,14 +75,25 @@ async function generateSlidesHandler(req, res) {
       // 1. Check subscription status directly
       const subscription = await Subscription.findOne({
         user: user._id,
-        status: "active",
+        // status: "active",
       })
         .populate("plan")
         .sort({ createdAt: -1 });
 
+      if (!subscription) {
+        return res.status(403).json({
+          error: "NO_PLAN_OR_TRIAL",
+        });
+      }
+
       if (subscription && subscription.status === "active") {
         // ✅ Paid user (subscription valid)
         planCheckResult = await checkPaidLimits(user, subscription);
+      } else if (subscription && subscription.status !== "active") {
+        // ❌ No valid plan or trial
+        return res.status(403).json({
+          error: "NO_PLAN_OR_TRIAL",
+        });
       } else if (user.trialEnd && now <= user.trialEnd) {
         // ✅ Trial user (trial still valid)
         planCheckResult = await checkTrialLimits(user);
@@ -132,7 +101,6 @@ async function generateSlidesHandler(req, res) {
         // ❌ No valid plan or trial
         return res.status(403).json({
           error: "NO_PLAN_OR_TRIAL",
-          // code: "NO_PLAN_OR_TRIAL",
         });
       }
 
@@ -140,7 +108,6 @@ async function generateSlidesHandler(req, res) {
       if (!allowed) {
         return res.status(403).json({
           error: code || "LIMIT_REACHED",
-          // code: code || "LIMIT_REACHED",
         });
       }
 

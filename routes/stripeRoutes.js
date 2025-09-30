@@ -4,10 +4,14 @@ const {
   createCheckoutSessionHandler,
   webhookHandler,
   getSessionHandler,
+  cancelSubscriptionHandler,
 } = require("../controllers/stripeController");
 
 // Create checkout session
 router.post("/create-checkout-session", createCheckoutSessionHandler);
+
+//Cancel subscription renewal
+router.post("/cancel-subscription", cancelSubscriptionHandler);
 
 //Route for fetching session details
 router.get("/session/:id", getSessionHandler);
