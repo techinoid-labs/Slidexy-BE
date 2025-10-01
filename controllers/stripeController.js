@@ -16,7 +16,7 @@ const Subscription = require("../models/Subscription");
  */
 async function createCheckoutSessionHandler(req, res) {
   try {
-    const { plan, userId } = req.body;
+    const { plan, userId, email } = req.body;
 
     const dbPlan = await PricingPlan.findOne({ name: plan, isActive: true });
     if (!dbPlan) {
@@ -24,7 +24,7 @@ async function createCheckoutSessionHandler(req, res) {
     }
 
     // Create checkout session with user + plan metadata
-    const session = await createCheckoutSession(dbPlan.stripePriceId, {
+    const session = await createCheckoutSession(dbPlan.stripePriceId, email, {
       userId,
       priceId: dbPlan.stripePriceId,
     });

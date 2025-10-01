@@ -4,13 +4,15 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 /**
  * Create a Checkout Session
  */
-async function createCheckoutSession(priceId, metadata = {}) {
-  console.log({ priceId, metadata });
+async function createCheckoutSession(priceId, email, metadata = {}) {
+  console.log({ priceId, metadata, email });
 
   return await stripe.checkout.sessions.create({
     mode: "subscription",
     payment_method_types: ["card"],
     line_items: [{ price: priceId, quantity: 1 }],
+    customer_email: email,
+    billing_address_collection: "auto",
     subscription_data: {
       metadata,
     },
