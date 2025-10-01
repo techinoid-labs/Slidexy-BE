@@ -11,9 +11,21 @@ async function createCheckoutSession(priceId, metadata = {}) {
     mode: "subscription",
     payment_method_types: ["card"],
     line_items: [{ price: priceId, quantity: 1 }],
+    subscription_data: {
+      metadata,
+    },
     metadata,
     success_url: `${process.env.FRONTEND_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${process.env.FRONTEND_URL}/cancel`,
+  });
+}
+
+/**
+ * Cancel a subscription at period end
+ */
+async function cancelSubscriptionAtPeriodEnd(stripeSubscriptionId) {
+  return await stripe.subscriptions.update(stripeSubscriptionId, {
+    cancel_at_period_end: true,
   });
 }
 
@@ -42,4 +54,5 @@ module.exports = {
   createCheckoutSession,
   verifyWebhookSignature,
   getSession,
+  cancelSubscriptionAtPeriodEnd,
 };

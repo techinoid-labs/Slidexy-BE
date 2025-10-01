@@ -6,7 +6,7 @@ const trialConfig = {
 
 async function checkTrialLimits(user) {
   // Paid plan? no limits (just in case)
-  if (user.pricingPlan) {
+  if (!user) {
     return { allowed: true, code: "PAID_PLAN_BYPASS" };
   }
 

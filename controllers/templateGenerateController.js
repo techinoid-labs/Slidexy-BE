@@ -130,23 +130,6 @@ const generatePptTemplateHandler = async (req, res) => {
     const { topic, slideCount = 5, meta = {}, userData } = req.body;
     if (!topic) return res.status(400).json({ error: "Topic is required" });
 
-    // if (!userData?.admin) {
-    //   let user = null;
-    //   if (userData?._id) {
-    //     user = await User.findById(userData._id);
-
-    //     if (!user) {
-    //       return res.status(404).json({ error: "User not found" });
-    //     }
-
-    //     // Run trial/plan check
-    //     const { allowed, message } = await checkTrialLimits(user);
-    //     if (!allowed) {
-    //       return res.status(403).json({ error: message });
-    //     }
-    //   }
-    // }
-
     // Step 0: If logged in, enforce plan/trial/subscription limits
     if (!userData?.admin) {
       let user = null;
@@ -159,7 +142,6 @@ const generatePptTemplateHandler = async (req, res) => {
         }
 
         const now = new Date();
-        let planCheckResult;
 
         // 1. Check for active subscription
         const subscription = await Subscription.findOne({
@@ -169,19 +151,18 @@ const generatePptTemplateHandler = async (req, res) => {
           .populate("plan")
           .sort({ createdAt: -1 });
 
-        if (subscription && subscription.status === "active") {
+        let planCheckResult;
+
+        if (subscription?.status === "active") {
           // Paid user
           planCheckResult = await checkPaidLimits(user, subscription);
         } else if (user.trialEnd && now <= user.trialEnd) {
           // Trial user
           planCheckResult = await checkTrialLimits(user);
         } else {
-          // No plan/trial
-          return res.status(403).json({
-            error: "NO_PLAN_OR_TRIAL",
-          });
+          // Neither paid nor trial
+          return res.status(403).json({ error: "NO_PLAN_OR_TRIAL" });
         }
-
         const { allowed, message, code, type } = planCheckResult;
         if (!allowed) {
           return res.status(403).json({
@@ -189,7 +170,7 @@ const generatePptTemplateHandler = async (req, res) => {
           });
         }
 
-        req.planResponseType = type; // keep consistent with generateSlidesHandler
+        req.planResponseType = type;
       }
     }
 
