@@ -233,7 +233,7 @@ async function webhookHandler(req, res) {
 
         await Subscription.findOneAndUpdate(
           { stripeSubscriptionId: subscription.id },
-          { cancelAtPeriodEnd: stripeSub.cancel_at_period_end },
+          { cancelAtPeriodEnd: subscription.cancel_at_period_end },
           { status: "canceled", endDate: new Date() }
         );
         break;
