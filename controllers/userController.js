@@ -146,44 +146,44 @@ exports.getProfile = async (req, res) => {
     // -------------------------
     // Subscription logic
     // -------------------------
-    if (user.isPaid && user.pricingPlan) {
-      if (subscription) {
-        subscriptionActive = true;
+    // if (user.isPaid && user.pricingPlan) {
+    if (subscription) {
+      subscriptionActive = true;
 
-        const plan = subscription.planSnapshot || subscription.plan;
-        activePlanConfig = planConfig[plan.billingPeriod] || {};
+      const plan = subscription.planSnapshot || subscription.plan;
+      activePlanConfig = planConfig[plan.billingPeriod] || {};
 
-        const today = new Date().toDateString();
-        const lastDate = user.lastPresentationDate
-          ? user.lastPresentationDate.toDateString()
-          : null;
+      const today = new Date().toDateString();
+      const lastDate = user.lastPresentationDate
+        ? user.lastPresentationDate.toDateString()
+        : null;
 
-        // reset counters if new day
-        let imageDecksUsed = user.imageDecksUsedToday || 0;
-        let predefinedDecksUsed = user.predefinedDecksUsedToday || 0;
-        if (today !== lastDate) {
-          imageDecksUsed = 0;
-          predefinedDecksUsed = 0;
-        }
+      // reset counters if new day
+      let imageDecksUsed = user.imageDecksUsedToday || 0;
+      let predefinedDecksUsed = user.predefinedDecksUsedToday || 0;
+      if (today !== lastDate) {
+        imageDecksUsed = 0;
+        predefinedDecksUsed = 0;
+      }
 
-        // Remaining limits
-        subImageDecksLeftToday = Math.max(
-          (activePlanConfig.imageDecks || 0) - imageDecksUsed,
-          0
-        );
+      // Remaining limits
+      subImageDecksLeftToday = Math.max(
+        (activePlanConfig.imageDecks || 0) - imageDecksUsed,
+        0
+      );
 
-        subPredefinedDecksLeftToday = Math.max(
-          (activePlanConfig.predefinedDecks || 0) - predefinedDecksUsed,
-          0
-        );
+      subPredefinedDecksLeftToday = Math.max(
+        (activePlanConfig.predefinedDecks || 0) - predefinedDecksUsed,
+        0
+      );
 
-        if (subscription.currentPeriodEnd) {
-          const diffTime =
-            new Date(subscription.currentPeriodEnd).getTime() - now.getTime();
-          subDaysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-        }
+      if (subscription.currentPeriodEnd) {
+        const diffTime =
+          new Date(subscription.currentPeriodEnd).getTime() - now.getTime();
+        subDaysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
       }
     }
+    // }
 
     // -------------------------
     // Trial logic (free plan)

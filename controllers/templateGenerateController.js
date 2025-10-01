@@ -142,40 +142,27 @@ const generatePptTemplateHandler = async (req, res) => {
         }
 
         const now = new Date();
-        let planCheckResult;
 
         // 1. Check for active subscription
         const subscription = await Subscription.findOne({
           user: user._id,
-          // status: "active",
+          status: "active",
         })
           .populate("plan")
           .sort({ createdAt: -1 });
 
-        if (!subscription) {
-          return res.status(403).json({
-            error: "NO_PLAN_OR_TRIAL",
-          });
-        }
+        let planCheckResult;
 
-        if (subscription && subscription.status === "active") {
+        if (subscription?.status === "active") {
           // Paid user
           planCheckResult = await checkPaidLimits(user, subscription);
-        } else if (subscription && subscription.status !== "active") {
-          // ❌ No valid plan or trial
-          return res.status(403).json({
-            error: "NO_PLAN_OR_TRIAL",
-          });
         } else if (user.trialEnd && now <= user.trialEnd) {
           // Trial user
           planCheckResult = await checkTrialLimits(user);
         } else {
-          // No plan/trial
-          return res.status(403).json({
-            error: "NO_PLAN_OR_TRIAL",
-          });
+          // Neither paid nor trial
+          return res.status(403).json({ error: "NO_PLAN_OR_TRIAL" });
         }
-
         const { allowed, message, code, type } = planCheckResult;
         if (!allowed) {
           return res.status(403).json({
@@ -183,7 +170,7 @@ const generatePptTemplateHandler = async (req, res) => {
           });
         }
 
-        req.planResponseType = type; // keep consistent with generateSlidesHandler
+        req.planResponseType = type;
       }
     }
 

@@ -160,21 +160,12 @@ async function webhookHandler(req, res) {
         };
 
         const subscription = await Subscription.create(createdSubData);
-        user.pricingPlan = plan._id;
-        user.isPaid = true;
-        user.save();
+        // user.pricingPlan = plan._id;
+        // user.isPaid = true;
+        // user.save();
         console.log("✅ New subscription created:", subscription._id);
         break;
       }
-
-      case "customer.subscription.created": {
-        const stripeSub = event.data.object;
-        console.log("ℹ️ customer.subscription.created:", stripeSub.id);
-
-        // (Skip DB writes for now until customer→user mapping is fixed)
-        break;
-      }
-
       case "invoice.payment_succeeded": {
         const invoice = event.data.object;
         console.log("✅ Invoice payment succeeded:", invoice.id);
@@ -187,6 +178,7 @@ async function webhookHandler(req, res) {
               invoice.lines.data[0].period.start * 1000
             ),
             currentPeriodEnd: new Date(invoice.lines.data[0].period.end * 1000),
+            cancelAtPeriodEnd: stripeSub.cancel_at_period_end,
           }
         );
         break;
@@ -223,7 +215,7 @@ async function webhookHandler(req, res) {
         const currentPeriodStart = stripeSub.items.data[0].current_period_start;
         const currentPeriodEnd = stripeSub.items.data[0].current_period_end;
 
-        await Subscription.findOneAndUpdate(
+        const updated = await Subscription.findOneAndUpdate(
           { stripeSubscriptionId: stripeSub.id },
           {
             status: stripeSub.status,

@@ -8,12 +8,12 @@ const userSchema = new mongoose.Schema({
   admin: Boolean,
   presentations: [{ type: String }],
   currentPresentationId: { type: String, default: null },
-  pricingPlan: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "PricingPlan",
-    default: null,
-  },
-  isPaid: { type: Boolean, default: null },
+  // pricingPlan: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: "PricingPlan",
+  //   default: null,
+  // },
+  // isPaid: { type: Boolean, default: null },
   trialStart: { type: Date, default: Date.now },
   trialEnd: { type: Date },
   // presentationsCreatedToday: { type: Number, default: 0 },
