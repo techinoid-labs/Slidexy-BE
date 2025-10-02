@@ -178,7 +178,7 @@ async function webhookHandler(req, res) {
               invoice.lines.data[0].period.start * 1000
             ),
             currentPeriodEnd: new Date(invoice.lines.data[0].period.end * 1000),
-            cancelAtPeriodEnd: stripeSub.cancel_at_period_end,
+            cancelAtPeriodEnd: invoice.cancel_at_period_end,
           }
         );
         break;
