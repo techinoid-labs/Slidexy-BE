@@ -160,9 +160,7 @@ async function webhookHandler(req, res) {
         };
 
         const subscription = await Subscription.create(createdSubData);
-        // user.pricingPlan = plan._id;
-        // user.isPaid = true;
-        // user.save();
+
         console.log("✅ New subscription created:", subscription._id);
         break;
       }
@@ -198,12 +196,8 @@ async function webhookHandler(req, res) {
 
         await Subscription.findOneAndUpdate(
           { stripeSubscriptionId: invoice.subscription },
-          { status: "past_due" }
+          { status: stripePriceId.status }
         );
-
-        // user.pricingPlan = null;
-        // user.isPaid = false;
-        // await user.save();
 
         break;
       }
@@ -231,10 +225,13 @@ async function webhookHandler(req, res) {
         const subscription = event.data.object;
         console.log("❌ Subscription canceled:", subscription.id);
 
-        await Subscription.findOneAndUpdate(
+        const mongoSub = await Subscription.findOneAndUpdate(
           { stripeSubscriptionId: subscription.id },
-          { cancelAtPeriodEnd: subscription.cancel_at_period_end },
-          { status: "canceled", endDate: new Date() }
+          {
+            cancelAtPeriodEnd: subscription.cancel_at_period_end,
+            status: subscription.status,
+            endDate: new Date(),
+          }
         );
         break;
       }
