@@ -58,7 +58,7 @@ async function generateSlidesHandler(req, res) {
     userData,
   } = req.body;
 
-  if (!userData?.admin) {
+  if (!userData?.admin || !userData) {
     let user = null;
     if (userData?._id) {
       user = await User.findById(userData._id);
@@ -74,7 +74,7 @@ async function generateSlidesHandler(req, res) {
       // 1. Check subscription status directly
       const subscription = await Subscription.findOne({
         user: user._id,
-        status: "active",
+        // status: "active",
       })
         .populate("plan")
         .sort({ createdAt: -1 });
@@ -82,7 +82,7 @@ async function generateSlidesHandler(req, res) {
       if (subscription?.status === "active") {
         // Paid user
         planCheckResult = await checkPaidLimits(user, subscription);
-      } else if (user.trialEnd && now <= user.trialEnd) {
+      } else if (!subscription && user.trialEnd && now <= user.trialEnd) {
         // Trial user
         planCheckResult = await checkTrialLimits(user);
       } else {

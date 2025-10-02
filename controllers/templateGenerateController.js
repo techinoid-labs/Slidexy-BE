@@ -146,7 +146,7 @@ const generatePptTemplateHandler = async (req, res) => {
         // 1. Check for active subscription
         const subscription = await Subscription.findOne({
           user: user._id,
-          status: "active",
+          // status: "active",
         })
           .populate("plan")
           .sort({ createdAt: -1 });
@@ -156,7 +156,7 @@ const generatePptTemplateHandler = async (req, res) => {
         if (subscription?.status === "active") {
           // Paid user
           planCheckResult = await checkPaidLimits(user, subscription);
-        } else if (user.trialEnd && now <= user.trialEnd) {
+        } else if (!subscription && user.trialEnd && now <= user.trialEnd) {
           // Trial user
           planCheckResult = await checkTrialLimits(user);
         } else {
