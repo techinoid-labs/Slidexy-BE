@@ -132,7 +132,7 @@ async function generateSlidesHandler(req, res) {
 
       // Step 2: Generate slide text (simulate increments)
       sendUpdate({ percent: 25, message: "Generating text..." });
-
+      
       const slides = await generateSlideText(rawText, meta, slideCount);
 
       // simulate incremental updates while processing text
@@ -156,7 +156,7 @@ async function generateSlidesHandler(req, res) {
         });
 
         try {
-          const imageSlide = await generateImage(slides[i], i);
+          const imageSlide = await generateImage(slides[i], i, rawText);
           const imageUrl = imageSlide.image_url;
 
           const elementsWithoutText = slides[i].elements.filter(
@@ -243,7 +243,7 @@ async function generateSlidesHandler(req, res) {
       let slidesWithImages = [];
       for (let i = 0; i < slides.length; i++) {
         try {
-          const imageSlide = await generateImage(slides[i], i);
+          const imageSlide = await generateImage(slides[i], i, rawText);
           const imageUrl = imageSlide.image_url;
           slidesWithImages.push({ ...slides[i], image_url: imageUrl });
         } catch {
