@@ -3,16 +3,19 @@ const { textGenModel } = require("../utils/geminiModels");
 async function generateSlideText(rawText, meta = {}, slideCount = 3) {
   function formatMetaPrompt(meta = {}) {
     const lines = [];
-
     if (meta.goal) lines.push(`- Goal: ${meta.goal}`);
     if (meta.tone) lines.push(`- Tone: ${meta.tone}`);
     if (meta.audience) lines.push(`- Audience: ${meta.audience}`);
     if (meta.length) lines.push(`- Desired Length: ${meta.length}`);
-
     return lines.length > 0
       ? `\n📌 CONTEXTUAL PREFERENCES:\n${lines.join("\n")}\n`
       : "";
   }
+
+
+let safeRawText = typeof rawText === "string"
+  ? rawText
+  : JSON.stringify(rawText, null, 2);
 
   const { goal, tone, audience, length } = meta || {};
   const metaPrompt = formatMetaPrompt({ goal, tone, audience, length });
@@ -21,22 +24,28 @@ async function generateSlideText(rawText, meta = {}, slideCount = 3) {
 You are an expert slide creator. Based on the following content, generate a professional presentation broken into multiple slides.
 
 Important Instructions:
-- You MUST generate exactly ${slideCount} slides, however give importance to how many slides based on the "prompt:${rawText}" has mentioned in the prompt within the quotation.
+- You MUST generate exactly ${slideCount} slides, unless the content explicitly specifies a different number of slides, in which case prioritize the number mentioned in the content.
 - DO NOT summarize the content into fewer slides even if the content seems short.
-- If the content appears limited, create multiple slides by expanding, elaborating, or repeating key ideas with different perspectives.
+- If the content is limited, create multiple slides by expanding, elaborating, or presenting key ideas from different perspectives.
+- Ensure the generated slides are highly relevant to the provided content, preserving its context and intent.
 
 CANVAS DIMENSIONS:
-- All slides must be designed to fit within a canvas of **960 pixels width** and **540 pixels height**. Use spacing, font sizes, and element distribution that keeps everything clean and readable.
+- All slides must fit within a canvas of **960 pixels width** and **540 pixels height**.
+- Use spacing, font sizes, and element distribution for clean, readable slides.
 
+SLIDE CONTENT REQUIREMENTS:
 - Each slide must contain:
   - Title (max 8 words)
-  - max 3 to 5 bullet points (min 5 and max 10 words each)
+  - 3 to 5 bullet points (5 to 10 words each)
+- Match the generated text to the following meta preferences:
+${metaPrompt}
+You must use this exact content to create the slides: CONTENT TO USE (do not ignore) Relevant content is marked between the triple backticks.:
+\`\`\`
+${safeRawText}
+\`\`\`
 
-- Match the generated text content to be matching the the below meta object like tone, audience etc:
- - ${metaPrompt}
-
-- Use this exact JSON format:
-
+OUTPUT FORMAT:
+- Return valid JSON in the following structure:
 [
   {
     "slide_id": "slide-1",
@@ -47,9 +56,9 @@ CANVAS DIMENSIONS:
         "fontSize": 38,
         "fontFamily": "Inter",
         "fill": "#333",
-       "fontWeight": "bold",
-       x:"based on the CANVAS dimensions",
-       y: "based on CANVAS dimensions",
+        "fontWeight": "bold",
+        "x": 30,
+        "y": 20,
         "fontStyle": "bold"
       }
     },
@@ -62,8 +71,8 @@ CANVAS DIMENSIONS:
           "fontSize": 18,
           "fontFamily": "Inter",
           "fill": "#444",
-        x:"based on the CANVAS dimensions",
-       y: "based on CANVAS dimensions",
+          "x": 50,
+          "y": 80,
           "fontStyle": "normal"
         }
       }
@@ -71,32 +80,31 @@ CANVAS DIMENSIONS:
   }
 ]
 
-Return valid PURE JSON only. DO NOT include any markdown, explanations or code fences. Do not prefix with \`\`\`.
-
-${metaPrompt}
-
-Content:
-"""${rawText}"""
 `;
 
-  console.log("Prompt:", prompt);
-
-  const result = await textGenModel.generateContent(prompt);
-  const raw = result.response.text();
-
-  const rawCleaned = raw.replace(/```json|```/g, "").trim();
-  const firstBracket = rawCleaned.indexOf("[");
-  const lastBracket = rawCleaned.lastIndexOf("]");
-  if (firstBracket === -1 || lastBracket === -1) {
-    throw new Error("No JSON array found in model response");
-  }
-  const jsonString = rawCleaned.slice(firstBracket, lastBracket + 1);
-
   try {
+    const result = await textGenModel.generateContent(prompt);
+
+    // Safely extract model text depending on SDK
+    const raw =
+      result.response?.candidates?.[0]?.content?.parts?.[0]?.text ||
+      result.response?.text?.() ||
+      "";
+
+    // Clean and extract JSON
+    const rawCleaned = raw.replace(/```json|```/g, "").trim();
+    const firstBracket = rawCleaned.indexOf("[");
+    const lastBracket = rawCleaned.lastIndexOf("]");
+    if (firstBracket === -1 || lastBracket === -1) {
+      throw new Error("No JSON array found in model response");
+    }
+    const jsonString = rawCleaned.slice(firstBracket, lastBracket + 1);
+  
+
     return JSON.parse(jsonString);
   } catch (err) {
-    console.error("JSON parsing error. Raw output:", raw);
-    throw new Error("Failed to parse model response as valid JSON.");
+    console.error("Error processing Gemini response:", err);
+    throw new Error("Failed to generate valid slide JSON.");
   }
 }
 
