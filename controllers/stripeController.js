@@ -135,6 +135,7 @@ async function webhookHandler(req, res) {
 
         const createdSubData = {
           user: user._id,
+          user_email: user.email,
           plan: plan._id,
           planSnapshot: {
             name: plan.name,
