@@ -18,11 +18,13 @@ router.post(
   ]),
   async (req, res) => {
     try {
-      const { title, content, category } = req.body;
+      const { title, content, category, tags = [] } = req.body;
 
       if (!title || !content) {
         return res.status(400).json({ error: "Title and content are required" });
       }
+
+      const tagsArray = Array.isArray(tags) ? tags.filter(Boolean) : tags ? [tags].filter(Boolean) : [];
 
       // Upload cover image
       let coverImageUrl = "";
@@ -45,6 +47,7 @@ router.post(
         title,
         content,
         category: category || "",
+        tags: tagsArray,
         coverImage: coverImageUrl,
         media: mediaUrls,
         author: req.user._id,
@@ -116,11 +119,13 @@ router.put(
   ]),
   async (req, res) => {
     try {
-      const { title, content, category } = req.body;
+      const { title, content, category, tags = [] } = req.body;
 
       if (!title || !content) {
         return res.status(400).json({ error: "Title and content are required" });
       }
+
+      const tagsArray = Array.isArray(tags) ? tags.filter(Boolean) : tags ? [tags].filter(Boolean) : [];
 
       const blog = await Blog.findById(req.params.id);
       if (!blog) {
@@ -131,6 +136,7 @@ router.put(
       blog.title = title;
       blog.content = content;
       blog.category = category || "";
+      blog.tags = tagsArray;
       blog.updatedAt = Date.now();
 
       // Upload new cover image if provided
@@ -147,7 +153,7 @@ router.put(
         blog.coverImage = await uploadBufferToSpaces(file.buffer, file.originalname, file.mimetype);
       }
 
-      // Upload new media images if provided
+      // Upload new media images if provided (append to existing)
       if (req.files.media) {
         const newMediaUrls = await Promise.all(
           req.files.media.map((file) =>
