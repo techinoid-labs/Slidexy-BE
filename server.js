@@ -7,6 +7,7 @@ const swaggerUi = require("swagger-ui-express");
 const YAML = require("yamljs");
 const { MongoClient, GridFSBucket, ObjectId } = require("mongodb");
 const infographicRoute = require("./routes/infographics");
+const dynamicInfographicRoute = require("./routes/dynamicInfographics");
 const blogRoutes = require("./routes/blogRoutes");
 // Models
 const User = require("./models/WaitingUser");
@@ -16,6 +17,7 @@ const userRoutes = require("./routes/user");
 const aiChatRoutes = require("./routes/aiChatRoutes");
 const contactRoutes = require("./routes/contact");
 const planRoutes = require("./routes/planRoutes");
+const vidGenImg = require("./routes/vidGenImg");
 
 // Controllers
 const {
@@ -82,7 +84,9 @@ app.use(express.json());
 app.use("/api/users", userRoutes);
 app.use("/api/presentations", presentationRoutes);
 app.use("/api/infographic", infographicRoute);
+app.use("/api/dynamicInfographic",dynamicInfographicRoute );
 app.use("/api/blogs", blogRoutes);
+app.use("/api/vidGenImg",vidGenImg);
 // --- API Docs ---
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
