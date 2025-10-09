@@ -13,6 +13,7 @@ const pricingPlanSchema = new mongoose.Schema({
   description: { type: String },
   features: [{ type: String }],
   isActive: { type: Boolean, default: true },
+  isTest: { type: Boolean, default: false },
   createdAt: { type: Date, default: Date.now },
 });
 
