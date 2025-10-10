@@ -254,16 +254,16 @@ BackGround Options:
 ${ALLOWED_BACKGROUNDS.join(",")}.
 
 Your task:
-1. Choose the most visually fitting "style".
-2. Suggest the infographic "type" (e.g. poster, dashboard, social-card, slide).
-3. Provide an array of 3-5 colors that best fit the topic's emotion & clarity.
-4. Choose the card type most fitting according to "style".Don't repeat.
-5. Choose background accordingly.Don't repeat.
+1. Dont Use Same Colors too often.
+2. Choose the most visually fitting "style".
+4. Provide an array of 3-5 colors that best fit the topic's emotion & clarity.
+5. Choose the card type most fitting according to "style".Don't repeat.
+6. Choose background with the colors already present in them unless change is described in user prompt accordingly.Don't repeat.
+7. Follow consistent color scheme throughout the slide
 
 Output strictly in JSON:
 {
   "style": "<one of the allowed styles>",
-  "type": "<infographic type>",
   "colors": ["#hex1", "#hex2", "#hex3"],
   "card": "<one of the allowed cards>"
   "background: "<one of the allowed backgrounds>"
@@ -314,7 +314,7 @@ const createSystemPrompt = async (userPrompt, viewMode = "landscape") => {
   const parameters = await parameterGathering(userPrompt);
   console.log(parameters);
   const cardStyle = infographicCards[parameters.card];
-  const backgroundStyle = infographicCards[parameters.background];
+  const backgroundStyle = infographicPatterns[parameters.background];
 
   return `You are an expert infographic generator and web designer who creates STUNNING, UNIQUE, and production-ready HTML/CSS infographics optimized for ${viewMode}.
   
@@ -594,4 +594,4 @@ const result = await textGenModel.generateContent(systemPrompt);
 }
 
 
-module.exports = { getDynamicInfographicService };
+module.exports = { getDynamicInfographicService }
