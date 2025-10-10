@@ -1,5 +1,4 @@
 const { textGenModel } = require("../../utils/geminiModels");
-const { COLOR_SCHEMES } = require("../../constants");
 const JSON5 = require("json5");
 const fs = require("fs");
 const path = require("path");

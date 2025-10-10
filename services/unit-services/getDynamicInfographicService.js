@@ -1,5 +1,7 @@
 const e = require("cors");
 const { textGenModel } = require("../../utils/geminiModels");
+const {infographicCards} = require("../../constants/card");
+const {infographicPatterns} = require("../../constants/background");
 const JSON5 = require("json5");
 
 const styleType = (style) => {
@@ -201,7 +203,6 @@ body {
   }
 }
 
-// Allowed visual styles for infographics
 const ALLOWED_STYLES = [
   "glassmorphism",
   "neumorphism",
@@ -211,12 +212,31 @@ const ALLOWED_STYLES = [
   "glassy-layers-shadows",
   "subtle-pattern-overlay"
 ];
+const ALLOWED_CARD_TYPES = [
+"pill",
+"diamond",
+"parallelogram",
+"glass-card",
+"chat-bubble",
+"ribbon",
+"trapezoid",
+"pentagon",
+"double-layered-card",
+"semi-ellipse",
+"circle",
+"rectangle",
+];
+const ALLOWED_BACKGROUNDS = [
+  "dotted",
+  "checkerboard",
+  "gradient",
+  "mesh-gradient",
+  "radial-gradient",
+  "subtle-pattern1",
+  "soft-gradient",
+  "subtle-pattern2",
+];
 
-/**
- * Gathers visual parameters for infographic generation
- * @param {string} userPrompt - The topic or description provided by user
- * @returns {Promise<{style: string, type: string, colors: string[]}>}
- */
 const parameterGathering = async (userPrompt) => {
   const systemPrompt = `
 You are an expert infographic style analyzer.
@@ -226,21 +246,27 @@ ${userPrompt}
 Given a topic or prompt, choose one of the following:
 Keep in mind:
 - Choose the most visually fitting style **and vary across outputs**.
-- Avoid repeating the same style for similar prompts.
-- If userPrompt suggests 'social', prefer subtle-pattern-overlay or mesh-gradient.
-- If userPrompt suggests 'data-heavy', prefer aurora-gradient or glassy-layers-shadows.
+- Avoid repeating the same options.
 ${ALLOWED_STYLES.join(", ")}.
+Card Types:
+${ALLOWED_CARD_TYPES.join(", ")}.
+BackGround Options:
+${ALLOWED_BACKGROUNDS.join(",")}.
 
 Your task:
 1. Choose the most visually fitting "style".
 2. Suggest the infographic "type" (e.g. poster, dashboard, social-card, slide).
 3. Provide an array of 3-5 colors that best fit the topic's emotion & clarity.
+4. Choose the card type most fitting according to "style".Don't repeat.
+5. Choose background accordingly.Don't repeat.
 
 Output strictly in JSON:
 {
   "style": "<one of the allowed styles>",
   "type": "<infographic type>",
-  "colors": ["#hex1", "#hex2", "#hex3"]
+  "colors": ["#hex1", "#hex2", "#hex3"],
+  "card": "<one of the allowed cards>"
+  "background: "<one of the allowed backgrounds>"
 }
 `;
 
@@ -258,13 +284,9 @@ Output strictly in JSON:
         "";
     }
 
-    // ✅ Clean markdown wrappers (Gemini sometimes returns ```json
-blocks)
-    rawText = rawText.replace(/
-```(json)?/g, "").trim();
-    rawText = rawText.replace(/^```
-|
-```$/g, "").trim();
+    // ✅ Clean markdown wrappers (Gemini sometimes returns ```jsonblocks)
+    rawText = rawText.replace(/```(json)?/g, "").trim();
+    rawText = rawText.replace(/^``````$/g, "").trim();
 
     // ✅ Attempt to parse JSON safely
     let parsed;
@@ -287,20 +309,20 @@ blocks)
   }
 };
 
+
 const createSystemPrompt = async (userPrompt, viewMode = "landscape") => {
-  console.log(ALLOWED_STYLES.join(", "));
   const parameters = await parameterGathering(userPrompt);
   console.log(parameters);
-  const styleDescription = styleType(parameters.style);
+  const cardStyle = infographicCards[parameters.card];
+  const backgroundStyle = infographicCards[parameters.background];
 
   return `You are an expert infographic generator and web designer who creates STUNNING, UNIQUE, and production-ready HTML/CSS infographics optimized for ${viewMode}.
   
   Style Guide:
-- Style: ${parameters.style}
-- Style Example: ${styleDescription}
-- Infographic Type: ${parameters.type}
-- Color Palette: ${parameters.colors.join(", ")}
-Note: dont use as it is colors of the style given and also use style only for inspiration
+- Color Palette Suggestion: ${parameters.colors.join(", ")}
+- Card Style Example:${cardStyle}
+- Background Example:${backgroundStyle}
+- ViewMode:${viewMode}
 
   USER REQUEST:
   "${userPrompt}"
@@ -346,23 +368,6 @@ Note: dont use as it is colors of the style given and also use style only for in
  14. SELF-CONTAINED — no external assets, fonts, or remote requests.
  15. Design must include important things in infographics i.e. title.
 
-  NOTE: I want you to decide the color scheme based on the kind of information and infographic you are making and 
-  consider the following rules.
-  - Follow a consistent color scheme
-  - Try to use light and Subtle background colors
-  - dont use too solid colors
-  - Use things like (Important) 
-  1. glassmorphism
-  2. Neumorphism
-  3. Gradient Layering
-  4. Aurora
-  5. Mesh Gradients
-  6. Glassy Layers + Shadows
-  7. Gradients + Glass Hybrid
-  8. Glass Borders with Gradient Text
-  9. Subtle Pattern Overlays (Noise or Grid)
-  - Use subtle inner shadows for text cards
-
   RULES:
   - Set these as CSS variables on root container: --primary, --secondary, --accent, --neutral, --background.
   - Apply gradients only to hero sections or chart backgrounds.
@@ -385,6 +390,7 @@ Note: dont use as it is colors of the style given and also use style only for in
   Do NOT include overflow: visible unless it’s part of a subtle shadow or glow.
   Do NOT animate or translate elements beyond the visible bounds.
   Do NOT create layouts requiring scrolling to reveal hidden content.
+  DO NOT OVERLAY TEXTs on one another.
   Everything must remain fully visible, scaled, and centered within the visible frame at all times.
 
   For Landscape:
@@ -473,10 +479,8 @@ const result = await textGenModel.generateContent(systemPrompt);
       }
 
       // Clean up markdown formatting
-      responseText = responseText.replace(/```
-(json)?/g, "").trim();
-      responseText = responseText.replace(/^
-```|```$/g, "").trim();
+      responseText = responseText.replace(/```(json)?/g, "").trim();
+      responseText = responseText.replace(/^```|```$/g, "").trim();
 
       console.log(`Response received (${responseText.length} characters)`);
 
@@ -581,6 +585,13 @@ const result = await textGenModel.generateContent(systemPrompt);
         throw new Error(`Failed to generate infographic after ${retries} attempts: ${error.message}`);
       }
 
-      // Progressive delay between retries
+     // Progressive delay between retries
       const delay = attempt * 1500 + Math.random() * 1000; // 1.5s, 3s, 4.5s + random
-      console.log(`⏳ Waiting ${(delay / 1000).toFixed(1)}s before retry...`);
+      console.log(`⏳ Waiting ${(delay/1000).toFixed(1)}s before retry...`);
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
+  }
+}
+
+
+module.exports = { getDynamicInfographicService };
