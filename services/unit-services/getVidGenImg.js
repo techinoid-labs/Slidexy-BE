@@ -51,59 +51,60 @@ EXAMPLE (warmPeach):
 }
 `;
 
-  return `You are an expert simple slide creator like notebook llm.
+  return `You are a professional slide creator like Notebook LLM, specialized in clean, minimal, static presentation slides (16:9 ratio).
 
-TASK: Analyze this user request and generate TWO outputs:
-FIRSTLY MAKE SURE THERE IS NO OVERLAPPING OF TEXTS, IMAGES AND EMOJIS. EVERYTHING MUST BE CLEARLY VISIBLE.
-1. Structured JSON (for data storage and reuse).
-2. HTML snippet (to render the infographic with beautiful CSS styling in style="..." format) keep minimum data.
-3- Make sure the width is 1200px and height is 600px (2:1 ratio).
-5- Use relevant emojis and svgs to enhance the design inside the infographics.
-6- Make sure there are not empty spaces in the generated infographics HTML.
-7- Please ensure that you follow the color scheme provided in the JSON below.
-8- Please do not use infographic HTML with oklch colors that can cause potential errors.
+TASK: Create TWO outputs:
+1️⃣ Structured JSON (for data storage and reuse)
+2️⃣ HTML snippet (a static 16:9 presentation slide with inline CSS only)
+
+💡 REQUIREMENTS:
+- STRICTLY STATIC — no animations, transitions, gradients with motion, or shadows that look 3D.
+- DIMENSIONS: width = 1280px, height = 720px (16:9 ratio).
+- LAYOUT:
+  * Title area at the top (centered, large font).
+  * Subtitle or key info line below it.
+  * Content area divided cleanly into 2–3 short blocks (Idea / Code / Complexity).
+  * Keep everything readable and evenly spaced.
+- Use only solid or subtle gradient backgrounds.
+- Fonts: clean sans-serif (like Inter, Helvetica, or system default).
+- Color scheme: use from ${schemeData}.
+- Avoid clutter, decoration, or overlapping content.
+- Use emojis only to visually assist (not decorate).
+- No extra margins above or below the slide — design should fill the frame.
+- NO visual style that looks like a YouTube thumbnail, poster, or infographic.
 
 USER REQUEST:
 "${userPrompt}"
 
-CURRENT COLOR SCHEME TO USE:
-${schemeData}
+📘 RULES:
+- Output exactly two keys: "json" and "html".
+- No explanations, markdown, or code fences.
+- HTML must have only inline styles, starting from <div> (no <html>/<head>/<body>).
+- Content must fit neatly within 1280×720.
+- Use consistent type hierarchy:
+  * Title: 44px–48px bold
+  * Subtitle: 26px–30px
+  * Section heading: 22px
+  * Body: 16–18px
+  * Code: monospace 14px, background #f5f5f5 or light-tinted box
+- Every block should have balanced padding (around 20–30px).
+- No outer whitespace around the main container.
 
-${colorSchemeFormat}
-RULES:
-- Return ONLY a JSON object with exactly two top-level keys: "json" and "html".
-- Do NOT include explanations, markdown, or code fences.
-- Follow the width and height requirements strictly. ${infographicWidth}px width and ${infographicHeight}px height.
-- The "json" key must contain structured data as per the JSON SCHEMA below.
-- The "html" key must contain a string of valid HTML using ONLY inline style="..." attributes and SVG for charts.
-- HTML must NOT include <html>, <head>, <body>, or external CSS/JS references.
-- For Timeline type, use flexbox/grid for layout. Add arrows, dots, or icons to indicate time progression and it should look like a timeline graph.
-- For charts, use SVG elements (<rect>, <polyline>, <path>, <circle>) to render data visually. Scale values proportionally (e.g., max height=300 for bars). Add tooltips via title attributes and hover effects with CSS :hover.
-- Create STUNNING, PROFESSIONAL designs with:
-  * Modern gradients, glassmorphism (backdrop-filter: blur()), shadows, and depth.
-  * CSS animations (@keyframes) and transitions for smooth effects (e.g., bars growing on load).
-  * Interactive hovers (scale/transform) using inline onmouseover/onmouseout or CSS :hover.
-  * Responsive: max-width: 100%; viewBox for SVG.
-  * UNIQUE elements: Add legends, axis labels, grid lines, data labels, and subtle patterns.
-
-JSON SCHEMA:
+🎨 JSON SCHEMA:
 {
   "title": "Main headline",
-  "subtitle": "Supporting description" (Compulsory) , should be detailed and relevant,
-  "type": "process | comparison | radial | timeline | chart",
-  "subtype": "If type=chart, required: bar | line | pie | scatter | area" ,
-  "data": {
-    // For chart: { labels: string[], datasets: [{ name: string, values: number[], color?: string }] }
-    // For others: existing structure
-  },
-  "meta": { "generated_at": "2025-09-09T12:00:00Z", "source": "AI Generated", "colorScheme": "schemeName" }
+  "subtitle": "Short supporting explanation",
+  "type": "process | comparison | timeline | chart | concept",
+  "data": {},
+  "meta": { "generated_at": "2025-10-08T00:00:00Z", "source": "AI Generated", "colorScheme": "schemeName" }
 }
 
-OUTPUT FORMAT:
+📤 OUTPUT FORMAT:
 {
   "json": { ... },
-  "html": "<div>STUNNING UNIQUE HTML HERE</div>"
-}`;
+  "html": "<div>STATIC CLEAN SLIDE HERE</div>"
+}
+`;
 };
 
 async function getVidGenImgService(prompt, options = {}) {
