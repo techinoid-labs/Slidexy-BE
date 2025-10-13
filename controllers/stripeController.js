@@ -68,7 +68,7 @@ async function createCheckoutSessionHandler(req, res) {
   try {
     const { plan, userId, email, coupon } = req.body;
 
-    const dbPlan = await PricingPlan.findOne({ name: plan, isTest: true });
+    const dbPlan = await PricingPlan.findOne({ name: plan, isActive: true });
     if (!dbPlan) {
       return res.status(400).json({ error: "Invalid or inactive plan" });
     }
