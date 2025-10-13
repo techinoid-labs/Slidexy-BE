@@ -1,207 +1,9 @@
 const e = require("cors");
 const { textGenModel } = require("../../utils/geminiModels");
-const {infographicCards} = require("../../constants/card");
-const {infographicPatterns} = require("../../constants/background");
+const { infographicCards } = require("../../constants/card");
+const { infographicPatterns } = require("../../constants/background");
 const JSON5 = require("json5");
 
-const styleType = (style) => {
-  if (style == "glassmorphism") {
-    return `<div class="glassmorphism">Glassmorphism</div>
-<style>
-.glassmorphism {
-  width: 300px; height: 150px;
-  background: rgba(255,255,255,0.15);
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.3);
-  color: white; font-size: 1.2rem;
-  display: flex; align-items: center; justify-content: center;
-}
-body { background: linear-gradient(135deg, #2b1055, #7597de); }</style>`
-  }
-  else if (style == "neumorphism") {
-    return `<div class="neumorphism">Neumorphism</div>
-
-<style>
-body {
-  background: #e0e0e0;
-  font-family: "Inter", sans-serif;
-}
-
-.neumorphism {
-  width: 320px; height: 160px;
-  border-radius: 20px;
-  background:
-    radial-gradient(circle at 1px 1px, rgba(0,0,0,0.05) 1px, transparent 0),
-    #e0e0e0;
-  background-size: 20px 20px; /* spacing between dots */
-  box-shadow:
-    8px 8px 16px #bebebe,
-    -8px -8px 16px #ffffff;
-  display: flex; align-items: center; justify-content: center;
-  color: #333; font-weight: 600;
-  letter-spacing: 0.5px;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
-
-/* 🌬️ Slight lift on hover */
-.neumorphism:hover {
-  transform: translateY(-3px);
-  box-shadow:
-    6px 6px 12px #bebebe,
-    -6px -6px 12px #ffffff;
-}
-</style>
-`
-  }
-  else if (style == "gradient-layering") {
-    return `<div class="gradient-layering">Gradient Layering</div>
-<style>
-.gradient-layering {
-  width: 300px; height: 150px;
-  background: linear-gradient(135deg, #ff7eb3, #ff758c),
-              linear-gradient(225deg, #42e695, #3bb2b8);
-  background-blend-mode: overlay;
-  border-radius: 20px;
-  display: flex; align-items: center; justify-content: center;
-  color: white; font-weight: 600;
-}</style>`
-  }
-  else if (style == "aurora-gradient") {
-    return `<div class="aurora-gradient">Aurora</div>
-
-<style>
-.aurora-gradient {
-  width: 340px; height: 180px;
-  border-radius: 24px;
-  background:
-    radial-gradient(circle at 25% 30%, rgba(255, 142, 251, 0.5), transparent 50%),
-    radial-gradient(circle at 80% 60%, rgba(130, 255, 248, 0.4), transparent 60%),
-    radial-gradient(circle at 60% 90%, rgba(255, 214, 165, 0.35), transparent 60%),
-    linear-gradient(135deg, #1a1b2e 0%, #0e0f1a 100%);
-  background-blend-mode: screen;
-  box-shadow: 0 8px 28px rgba(0,0,0,0.25),
-              inset 0 0 40px rgba(255,255,255,0.05);
-  display: flex; align-items: center; justify-content: center;
-  color: #ffffff;
-  font-weight: 600;
-  font-family: "Inter", sans-serif;
-  letter-spacing: 0.5px;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.3);
-  position: relative;
-  overflow: hidden;
-}
-
-/* ✨ optional: soft overlay glow */
-.aurora-gradient::after {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: radial-gradient(circle at 60% 40%, rgba(255,255,255,0.07), transparent 60%);
-  pointer-events: none;
-}
-</style>`
-  }
-  else if (style == "mesh-gradient") {
-    return `<div class="mesh-gradient">Mesh Gradient</div>
-<style>
-.mesh-gradient {
-  width: 300px; height: 150px; border-radius: 20px;
-  background: radial-gradient(circle at 10% 10%, #ff9a9e, transparent 30%),
-              radial-gradient(circle at 80% 20%, #fad0c4, transparent 30%),
-              radial-gradient(circle at 20% 80%, #a1c4fd, transparent 30%),
-              #fbc2eb;
-  background-blend-mode: screen;
-  display: flex; align-items: center; justify-content: center;
-  color: #333; font-weight: 600;
-}</style>
-`
-  }
-  else if (style == "glassy-layers-shadows") {
-    return `<div class="glassy-layer">
-  <div class="glass-card">Glassy Layer</div>
-</div>
-
-<style>
-.glassy-layer {
-  width: 340px; height: 180px;
-  background: linear-gradient(135deg, #dfe9f3 0%, #ffffff 100%);
-  border-radius: 24px;
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-}
-
-/* 🩵 Minimal glass effect */
-.glass-card {
-  background: rgba(255,255,255,0.15);
-  border: 1px solid rgba(255,255,255,0.4);
-  backdrop-filter: blur(14px) saturate(160%);
-  -webkit-backdrop-filter: blur(14px) saturate(160%);
-  border-radius: 18px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-  padding: 20px 40px;
-  color: #222;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.glass-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 28px rgba(0,0,0,0.15);
-}
-
-/* 📱 Responsive */
-@media (max-width: 500px) {
-  .glassy-layer {
-    width: 90vw; height: 45vw;
-  }
-  .glass-card {
-    padding: 16px 28px;
-    font-size: 1rem;
-  }
-}
-</style>`
-  }
-  else if (style == "subtle-pattern-overlay") {
-    return `<div class="pattern-overlay">Grid Pattern</div>
-
-<style>
-.pattern-overlay {
-  width: 320px; height: 160px;
-  background:
-    repeating-linear-gradient(0deg, rgba(0,0,0,0.05) 0 1px, transparent 1px 20px),
-    repeating-linear-gradient(90deg, rgba(0,0,0,0.05) 0 1px, transparent 1px 20px);
-  background-color: white;
-  border-radius: 20px;
-  color: #222;
-  display: flex; align-items: center; justify-content: center;
-  font-weight: bold;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-}
-</style>`
-  }
-  else
-  {
-    return `<div class="pattern-overlay">Grid Pattern</div>
-
-<style>
-.pattern-overlay {
-  width: 320px; height: 160px;
-  background:
-    repeating-linear-gradient(0deg, rgba(0,0,0,0.05) 0 1px, transparent 1px 20px),
-    repeating-linear-gradient(90deg, rgba(0,0,0,0.05) 0 1px, transparent 1px 20px);
-  background-color: white;
-  border-radius: 20px;
-  color: #222;
-  display: flex; align-items: center; justify-content: center;
-  font-weight: bold;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-}
-</style>`
-  }
-}
 
 const ALLOWED_STYLES = [
   "glassmorphism",
@@ -213,18 +15,18 @@ const ALLOWED_STYLES = [
   "subtle-pattern-overlay"
 ];
 const ALLOWED_CARD_TYPES = [
-"pill",
-"diamond",
-"parallelogram",
-"glass-card",
-"chat-bubble",
-"ribbon",
-"trapezoid",
-"pentagon",
-"double-layered-card",
-"semi-ellipse",
-"circle",
-"rectangle",
+  "pill",
+  "diamond",
+  "parallelogram",
+  "glass-card",
+  "chat-bubble",
+  "ribbon",
+  "trapezoid",
+  "pentagon",
+  "double-layered-card",
+  "semi-ellipse",
+  "circle",
+  "rectangle",
 ];
 const ALLOWED_BACKGROUNDS = [
   "dotted",
@@ -236,6 +38,64 @@ const ALLOWED_BACKGROUNDS = [
   "soft-gradient",
   "subtle-pattern2",
 ];
+
+const VIEW_MODES = {
+  "landscape": {
+    "aspectRatio": "16:9",
+    "style": "aspect-ratio: 16 / 9; width: 100%; max-width: 1280px; height: auto;",
+    "layoutGuidelines": [
+      "Use grid or flex layouts that emphasize horizontal reading flow.",
+      "Perfect for dashboards, wide timelines, and comparative visuals.",
+      "Use horizontal charts, legends on sides, and equal card proportions.",
+      ` For Landscape:
+  <div class="infographic-frame">
+  <!-- All content goes inside here -->
+  </div>
+  .infographic-frame {
+  width: 100%;
+  max-width: 1280px;        /* or 1920px for HD */
+  aspect-ratio: 16 / 9;     /* keeps consistent height-to-width ratio */
+  position: relative;
+  overflow: hidden;         /* prevents any scrollbars */
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+}
+ `
+    ]
+  },
+  "portrait": {
+    "aspectRatio": "9:16",
+    "style": "aspect-ratio: 9 / 16; width: 100%; max-width: 480px; height: auto;",
+    "layoutGuidelines": [
+      "Stack all content vertically for scroll-free fit (scale via transform if needed).",
+      "Perfect for storytelling, educational posts, or social media formats.",
+      "Use vertical timelines, stacked sections, and center-aligned callouts.",
+      `<!-- Portrait Infographic Frame -->
+<div class="infographic-frame-portrait">
+  <!-- All infographic content goes here -->
+</div>
+
+<style>
+.infographic-frame-portrait {
+  width: 100%;
+  max-width: 720px;           /* narrower max width for vertical layout */
+  aspect-ratio: 9 / 16;       /* keeps a tall vertical shape */
+  position: relative;
+  overflow: hidden;           /* hides overflow content */
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+}
+</style>
+`
+    ]
+  }
+}
 
 const parameterGathering = async (userPrompt) => {
   const systemPrompt = `
@@ -268,53 +128,65 @@ Output strictly in JSON:
   "card": "<one of the allowed cards>"
   "background: "<one of the allowed backgrounds>"
 }
+  NOTE: dont send anything excet for this json
 `;
+try {
+  // ✅ Gemini format (safe for text or structured prompts)
+  const result = await textGenModel.generateContent(systemPrompt);
 
-  try {
-    // ✅ Gemini format (safe for text or structured prompts)
-    const result = await textGenModel.generateContent(systemPrompt);
-
-    // ✅ Safely extract the response text
-    let rawText = "";
-    if (typeof result?.response?.text === "function") {
-      rawText = result.response.text().trim();
-    } else {
-      rawText =
-        result?.response?.candidates?.[0]?.content?.parts?.[0]?.text?.trim?.() ||
-        "";
-    }
-
-    // ✅ Clean markdown wrappers (Gemini sometimes returns ```jsonblocks)
-    rawText = rawText.replace(/```(json)?/g, "").trim();
-    rawText = rawText.replace(/^``````$/g, "").trim();
-
-    // ✅ Attempt to parse JSON safely
-    let parsed;
-    try {
-      parsed = JSON.parse(rawText);
-    } catch (err) {
-      console.error("⚠️ Failed to parse model output as JSON:\n", rawText);
-      throw new Error("Invalid JSON response from model");
-    }
-
-    // ✅ Validate structure
-    if (!parsed || typeof parsed !== "object") {
-      throw new Error("Response is not a valid object");
-    }
-
-    return parsed;
-  } catch (error) {
-    console.error("❌ Gemini parameter gathering failed:", error);
-    throw error;
+  // ✅ Safely extract the response text
+  let rawText = "";
+  if (typeof result?.response?.text === "function") {
+    rawText = result.response.text().trim();
+  } else {
+    rawText =
+      result?.response?.candidates?.[0]?.content?.parts?.[0]?.text?.trim?.() ||
+      "";
   }
+
+  // ✅ Clean markdown wrappers
+  rawText = rawText.replace(/```(json)?/g, "").trim();
+  rawText = rawText.replace(/^``````$/g, "").trim();
+
+  // ✅ Extract only the JSON portion between curly braces
+  const jsonMatch = rawText.match(/\{[\s\S]*\}/);
+  if (!jsonMatch) {
+    console.error("⚠️ No JSON block found in model output:\n", rawText);
+    throw new Error("Model did not return JSON structure");
+  }
+
+  const jsonText = jsonMatch[0];
+
+  // ✅ Parse JSON safely
+  let parsed;
+  try {
+    parsed = JSON.parse(jsonText);
+  } catch (err) {
+    console.error("⚠️ Failed to parse model output as JSON:\n", jsonText);
+    throw new Error("Invalid JSON response from model");
+  }
+
+  // ✅ Validate structure
+  if (!parsed || typeof parsed !== "object") {
+    throw new Error("Response is not a valid object");
+  }
+
+  return parsed;
+
+} catch (error) {
+  console.error("❌ Gemini parameter gathering failed:", error);
+  throw error;
+}
 };
 
 
-const createSystemPrompt = async (userPrompt, viewMode = "landscape") => {
+const createSystemPrompt = async (userPrompt, viewMode) => {
   const parameters = await parameterGathering(userPrompt);
   console.log(parameters);
   const cardStyle = infographicCards[parameters.card];
   const backgroundStyle = infographicPatterns[parameters.background];
+  const mode = VIEW_MODES[viewMode];
+  const layoutDetails = mode.layoutGuidelines.map(g => `• ${g}`).join("\n  ");
 
   return `You are an expert infographic generator and web designer who creates STUNNING, UNIQUE, and production-ready HTML/CSS infographics optimized for ${viewMode}.
   
@@ -323,33 +195,23 @@ const createSystemPrompt = async (userPrompt, viewMode = "landscape") => {
 - Card Style Example:${cardStyle}
 - Background Example:${backgroundStyle}
 - ViewMode:${viewMode}
+- Container Style: ${mode.style}
 
-  USER REQUEST:
-  "${userPrompt}"
-
-  TARGET VIEW MODE: ${viewMode.toUpperCase()}
+View Mode Layout Guidelines:
+  ${layoutDetails}
+Note: Must use color Palette provided and layout details are only suggesion dont use them too strictly
 
   ---
   GOAL:
   - Analyze the USER REQUEST and produce TWO outputs inside a single JSON object: "json" and "html".
   - "json": structured metadata and data following the JSON SCHEMA (see below).
-  - "html": one HTML snippets depending on viewMode.
-    - If viewMode = "landscape" → produce only "html.landscape"
-    - If viewMode = "portrait" → produce only "html.portrait"
-
-  ---
-  VIEW MODE REQUIREMENTS:
-  - **Landscape (16:9)**: fixed aspect ratio container (e.g., style="aspect-ratio: 16 / 9; width: 100%; max-width: 1280px; height: auto;").
-    * Use grid or flex layouts that emphasize horizontal reading flow.
-    * Perfect for dashboards, wide timelines, and comparative visuals.
-    * Use horizontal charts, legends on sides, and equal card proportions.
-
-  - **Portrait (9:16 standard mobile)**: style="aspect-ratio: 9 / 16; width: 100%; max-width: 480px; height: auto;"
-    * Stack all content vertically for scroll-free fit (scale via transform if needed).
-    * Perfect for storytelling, educational posts, or social media formats.
-    * Use vertical timelines, stacked sections, and center-aligned callouts.
+  - "html": the resulted html code as string.
 
   - In either case, ensure NO SCROLLBARS. Scale elements down with transform: scale() or clamp() so everything(e.g. content + design) always fits inside the visible frame.
+  - Use relative units(dont use px) so the view is same in different devices
+
+  USER REQUEST:
+ "${userPrompt}"
 
   ---
   HIGH-LEVEL DESIGN PRINCIPLES (strict):
@@ -366,7 +228,6 @@ const createSystemPrompt = async (userPrompt, viewMode = "landscape") => {
  12. INLINE STYLING ONLY — all CSS must be inline in style="" attributes.
  13. MICRO-INTERACTIONS — allowed via onmouseover/onmouseout or CSS :hover.
  14. SELF-CONTAINED — no external assets, fonts, or remote requests.
- 15. Design must include important things in infographics i.e. title.
 
   RULES:
   - Set these as CSS variables on root container: --primary, --secondary, --accent, --neutral, --background.
@@ -393,26 +254,7 @@ const createSystemPrompt = async (userPrompt, viewMode = "landscape") => {
   DO NOT OVERLAY TEXTs on one another.
   Everything must remain fully visible, scaled, and centered within the visible frame at all times.
 
-  For Landscape:
-  <div class="infographic-frame">
-  <!-- All content goes inside here -->
-  </div>
-  .infographic-frame {
-  width: 100%;
-  max-width: 1280px;        /* or 1920px for HD */
-  aspect-ratio: 16 / 9;     /* keeps consistent height-to-width ratio */
-  position: relative;
-  overflow: hidden;         /* prevents any scrollbars */
-  border-radius: 20px;
-  background: linear-gradient(135deg, #1e1e2f, #2d1b69);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
-}
-
-
-  ---
+ ---
   JSON SCHEMA (strict):
   {
     "title": "Main headline",
@@ -432,10 +274,9 @@ const createSystemPrompt = async (userPrompt, viewMode = "landscape") => {
   OUTPUT FORMAT:
   {
     "json": { /* metadata and data */ },
-    "html": {
-      <div>generated code here</div>
-        }
+    "html": <div>generated code here</div>
   }
+  Note: Strictly follow this output format
 
   ---
   HELPER HINTS:
@@ -446,13 +287,13 @@ const createSystemPrompt = async (userPrompt, viewMode = "landscape") => {
   - For portrait, center everything and scale down proportionally to fit mobile-safe aspect ratio.
 
   FINALLY:
-  - Output valid JSON only.
+  - Output valid JSON only Strictly.
   - Embed all CSS inline.
   - Respect aspect ratio and non-scroll constraints strictly.
   - Produce modern, elegant, and production-grade visuals ready to paste into web apps.`;
 };
 
-async function getDynamicInfographicService(prompt) {
+async function getDynamicInfographicService(prompt, viewMode = "portrait") {
   retries = 3
 
   for (let attempt = 1; attempt <= retries; attempt++) {
@@ -460,9 +301,9 @@ async function getDynamicInfographicService(prompt) {
       console.log(`Attempt ${attempt}/${retries} - Generating infographic for: "${prompt.substring(0, 50)}..."`);
 
       // Create the system prompt
-      const systemPrompt = await createSystemPrompt(prompt);
+      const systemPrompt = await createSystemPrompt(prompt, viewMode);
 
-const result = await textGenModel.generateContent(systemPrompt);
+      const result = await textGenModel.generateContent(systemPrompt);
 
       // Extract the response text
       // Extract the response text safely
@@ -487,7 +328,29 @@ const result = await textGenModel.generateContent(systemPrompt);
       // Parse the JSON response
       let parsed;
       try {
-        parsed = JSON5.parse(responseText);
+        // --- ✅ Extract JSON block even if model adds natural language ---
+        let jsonMatch = responseText.match(/\{[\s\S]*\}/);
+        if (!jsonMatch) {
+          console.error("❌ No JSON object found in model output");
+          console.error("Raw text preview:", responseText.substring(0, 200) + "...");
+          throw new Error("Model did not return valid JSON structure");
+        }
+
+        let jsonSegment = jsonMatch[0].trim();
+
+        try {
+          parsed = JSON5.parse(jsonSegment);
+
+          // Handle double-encoded responses
+          if (typeof parsed === "string") {
+            parsed = JSON5.parse(parsed);
+          }
+        } catch (parseError) {
+          console.error("❌ JSON parsing failed:", parseError.message);
+          console.error("Extracted JSON preview:", jsonSegment.substring(0, 200) + "...");
+          throw new Error(`Invalid JSON response from Gemini: ${parseError.message}`);
+        }
+
 
         // Handle case where response might be double-encoded
         if (typeof parsed === 'string') {
@@ -507,26 +370,8 @@ const result = await textGenModel.generateContent(systemPrompt);
       // Normalize HTML content
       let htmlContent = null;
 
-      // If `parsed.html` exists and is an object (landscape + portrait)
-      if (parsed.html && typeof parsed.html === "object") {
-        htmlContent = {
-          landscape: parsed.html.landscape || parsed.html.landscape_html || "",
-          portrait: parsed.html.portrait || parsed.html.portrait_html || "",
-        };
-      }
-      // If `parsed.html` is a string (old format)
-      else if (typeof parsed.html === "string") {
-        htmlContent = {
-          landscape: parsed.html,
-          portrait: parsed.html,
-        };
-      }
-      // Handle newer Gemini formats that may use flat keys
-      else if (parsed.landscape_html || parsed.portrait_html) {
-        htmlContent = {
-          landscape: parsed.landscape_html || "",
-          portrait: parsed.portrait_html || "",
-        };
+      if (typeof parsed.html === "string") {
+        htmlContent = parsed.html;
       }
       else {
         throw new Error("Response missing HTML content in any recognized format");
@@ -585,13 +430,12 @@ const result = await textGenModel.generateContent(systemPrompt);
         throw new Error(`Failed to generate infographic after ${retries} attempts: ${error.message}`);
       }
 
-     // Progressive delay between retries
+      // Progressive delay between retries
       const delay = attempt * 1500 + Math.random() * 1000; // 1.5s, 3s, 4.5s + random
-      console.log(`⏳ Waiting ${(delay/1000).toFixed(1)}s before retry...`);
+      console.log(`⏳ Waiting ${(delay / 1000).toFixed(1)}s before retry...`);
       await new Promise(resolve => setTimeout(resolve, delay));
     }
   }
 }
-
 
 module.exports = { getDynamicInfographicService }
