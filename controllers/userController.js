@@ -4,6 +4,7 @@ const User = require("../models/User");
 const Presentation = require("../models/Presentation");
 const planConfig = require("../utils/plansConfig");
 const Subscription = require("../models/Subscription");
+const Invoice = require("../models/Invoice"); // 🧾 Add this
 
 // Register
 exports.register = async (req, res) => {
@@ -114,23 +115,175 @@ exports.login = async (req, res) => {
 };
 
 // Get Profile
+// exports.getProfile = async (req, res) => {
+//   try {
+//     const user = await User.findById(req.userId).select("-password");
+//     if (!user) {
+//       return res.status(404).json({ error: "User not found" });
+//     }
+
+//     const subscription = await Subscription.findOne({
+//       user: user._id,
+//       // status: "active",
+//     })
+//       .populate("plan")
+//       .sort({ createdAt: -1 });
+
+//     const now = new Date();
+
+//     // Defaults
+//     let trialActive = false;
+//     let trialDaysLeft = 0;
+//     let trialImageDecksLeftToday = 0;
+//     let trialPredefinedDecksLeftToday = 0;
+//     let trialPlanConfig = null;
+
+//     let subscriptionActive = false;
+//     let subDaysLeft = 0;
+//     let subImageDecksLeftToday = 0;
+//     let subPredefinedDecksLeftToday = 0;
+//     let activePlanConfig = null;
+
+//     // -------------------------
+//     // Subscription logic
+//     // -------------------------
+//     if (subscription) {
+//       subscriptionActive = true;
+
+//       const plan = subscription.planSnapshot || subscription.plan;
+//       activePlanConfig = planConfig[plan.billingPeriod] || {};
+
+//       const today = new Date().toDateString();
+//       const lastDate = user.lastPresentationDate
+//         ? user.lastPresentationDate.toDateString()
+//         : null;
+
+//       // reset counters if new day
+//       let imageDecksUsed = user.imageDecksUsedToday || 0;
+//       let predefinedDecksUsed = user.predefinedDecksUsedToday || 0;
+//       if (today !== lastDate) {
+//         imageDecksUsed = 0;
+//         predefinedDecksUsed = 0;
+//       }
+
+//       // Remaining limits
+//       subImageDecksLeftToday = Math.max(
+//         (activePlanConfig.imageDecks || 0) - imageDecksUsed,
+//         0
+//       );
+
+//       subPredefinedDecksLeftToday = Math.max(
+//         (activePlanConfig.predefinedDecks || 0) - predefinedDecksUsed,
+//         0
+//       );
+
+//       if (subscription.currentPeriodEnd) {
+//         const diffTime =
+//           new Date(subscription.currentPeriodEnd).getTime() - now.getTime();
+//         subDaysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+//       }
+//     }
+
+//     // -------------------------
+//     // Trial logic (free plan)
+//     // -------------------------
+//     if (!subscriptionActive && user.trialEnd && now <= user.trialEnd) {
+//       trialActive = true;
+//       trialPlanConfig = planConfig["free"];
+
+//       const diffTime = user.trialEnd.getTime() - now.getTime();
+//       trialDaysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+//       const today = new Date().toDateString();
+//       const lastDate = user.lastPresentationDate
+//         ? user.lastPresentationDate.toDateString()
+//         : null;
+
+//       // reset counters if new day
+//       let imageDecksUsed = user.imageDecksUsedToday || 0;
+//       let predefinedDecksUsed = user.predefinedDecksUsedToday || 0;
+//       if (today !== lastDate) {
+//         imageDecksUsed = 0;
+//         predefinedDecksUsed = 0;
+//       }
+
+//       // Remaining trial limits
+//       trialImageDecksLeftToday = Math.max(
+//         (trialPlanConfig.imageDecks || 0) - imageDecksUsed,
+//         0
+//       );
+
+//       trialPredefinedDecksLeftToday = Math.max(
+//         (trialPlanConfig.predefinedDecks || 0) - predefinedDecksUsed,
+//         0
+//       );
+//     }
+
+//     // -------------------------
+//     // Response
+//     // -------------------------
+//     res.json({
+//       _id: user._id,
+//       email: user.email,
+//       name: user.name,
+//       admin: user.admin,
+//       presentations: user.presentations,
+//       currentPresentationId: user.currentPresentationId,
+
+//       subscription: subscription
+//         ? {
+//             _id: subscription._id,
+//             stripeId: subscription.stripeSubscriptionId,
+//             status: subscription.status,
+//             plan: subscription.plan,
+//             // planSnapshot: subscription.planSnapshot,
+//             startDate: subscription.startDate,
+//             currentPeriodStart: subscription.currentPeriodStart,
+//             currentPeriodEnd: subscription.currentPeriodEnd,
+//             cancelAtPeriodEnd: subscription.cancelAtPeriodEnd,
+//             endDate: subscription.endDate,
+//           }
+//         : null,
+
+//       // Trial data
+//       trial: {
+//         active: trialActive,
+//         start: user.trialStart,
+//         end: user.trialEnd,
+//         daysLeft: trialDaysLeft,
+//         imageDecksLeftToday: trialImageDecksLeftToday,
+//         predefinedDecksLeftToday: trialPredefinedDecksLeftToday,
+//         config: trialPlanConfig,
+//       },
+
+//       // Subscription data
+//       subscriptionUsage: {
+//         active: subscriptionActive,
+//         daysLeft: subDaysLeft,
+//         imageDecksLeftToday: subImageDecksLeftToday,
+//         predefinedDecksLeftToday: subPredefinedDecksLeftToday,
+//         config: activePlanConfig,
+//       },
+//     });
+//   } catch (err) {
+//     console.error("Profile error:", err);
+//     res.status(500).json({ error: "Server error" });
+//   }
+// };
+
 exports.getProfile = async (req, res) => {
   try {
     const user = await User.findById(req.userId).select("-password");
-    if (!user) {
-      return res.status(404).json({ error: "User not found" });
-    }
+    if (!user) return res.status(404).json({ error: "User not found" });
 
-    const subscription = await Subscription.findOne({
-      user: user._id,
-      // status: "active",
-    })
+    // Find the latest subscription
+    const subscription = await Subscription.findOne({ user: user._id })
       .populate("plan")
       .sort({ createdAt: -1 });
 
     const now = new Date();
 
-    // Defaults
+    // Default trial + subscription flags
     let trialActive = false;
     let trialDaysLeft = 0;
     let trialImageDecksLeftToday = 0;
@@ -143,10 +296,7 @@ exports.getProfile = async (req, res) => {
     let subPredefinedDecksLeftToday = 0;
     let activePlanConfig = null;
 
-    // -------------------------
-    // Subscription logic
-    // -------------------------
-    // if (user.isPaid && user.pricingPlan) {
+    // --------------- SUBSCRIPTION LOGIC ---------------
     if (subscription) {
       subscriptionActive = true;
 
@@ -158,7 +308,7 @@ exports.getProfile = async (req, res) => {
         ? user.lastPresentationDate.toDateString()
         : null;
 
-      // reset counters if new day
+      // Reset usage if new day
       let imageDecksUsed = user.imageDecksUsedToday || 0;
       let predefinedDecksUsed = user.predefinedDecksUsedToday || 0;
       if (today !== lastDate) {
@@ -166,12 +316,10 @@ exports.getProfile = async (req, res) => {
         predefinedDecksUsed = 0;
       }
 
-      // Remaining limits
       subImageDecksLeftToday = Math.max(
         (activePlanConfig.imageDecks || 0) - imageDecksUsed,
         0
       );
-
       subPredefinedDecksLeftToday = Math.max(
         (activePlanConfig.predefinedDecks || 0) - predefinedDecksUsed,
         0
@@ -183,11 +331,8 @@ exports.getProfile = async (req, res) => {
         subDaysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
       }
     }
-    // }
 
-    // -------------------------
-    // Trial logic (free plan)
-    // -------------------------
+    // --------------- TRIAL LOGIC ---------------
     if (!subscriptionActive && user.trialEnd && now <= user.trialEnd) {
       trialActive = true;
       trialPlanConfig = planConfig["free"];
@@ -200,7 +345,6 @@ exports.getProfile = async (req, res) => {
         ? user.lastPresentationDate.toDateString()
         : null;
 
-      // reset counters if new day
       let imageDecksUsed = user.imageDecksUsedToday || 0;
       let predefinedDecksUsed = user.predefinedDecksUsedToday || 0;
       if (today !== lastDate) {
@@ -208,21 +352,56 @@ exports.getProfile = async (req, res) => {
         predefinedDecksUsed = 0;
       }
 
-      // Remaining trial limits
       trialImageDecksLeftToday = Math.max(
         (trialPlanConfig.imageDecks || 0) - imageDecksUsed,
         0
       );
-
       trialPredefinedDecksLeftToday = Math.max(
         (trialPlanConfig.predefinedDecks || 0) - predefinedDecksUsed,
         0
       );
     }
 
-    // -------------------------
-    // Response
-    // -------------------------
+    // --------------- INVOICE / PAYMENT DETAILS ---------------
+    let latestInvoice = null;
+    let discountedPrice = null;
+
+    if (subscription) {
+      latestInvoice = await Invoice.findOne({
+        stripeSubscriptionId: subscription.stripeSubscriptionId,
+      })
+        .sort({ createdAt: -1 })
+        .lean();
+
+      if (latestInvoice) {
+        // Convert Stripe cents → dollars
+        const paid = latestInvoice.amountPaid;
+        const due = latestInvoice.amountDue;
+
+        // If discount applied
+        if (
+          latestInvoice.discount?.amountOff ||
+          latestInvoice.discount?.percentOff
+        ) {
+          const planPrice =
+            subscription.planSnapshot?.price || subscription.plan?.price || 0;
+          if (latestInvoice.discount.percentOff) {
+            discountedPrice =
+              planPrice - planPrice * latestInvoice.discount.percentOff;
+          } else if (latestInvoice.discount.amountOff) {
+            discountedPrice = planPrice - latestInvoice.discount.amountOff;
+          }
+          if (discountedPrice < 0) discountedPrice = 0;
+        } else {
+          discountedPrice = paid;
+        }
+
+        // Round to 2 decimals
+        discountedPrice = Number(discountedPrice.toFixed(2));
+      }
+    }
+
+    // --------------- RESPONSE ---------------
     res.json({
       _id: user._id,
       email: user.email,
@@ -237,7 +416,6 @@ exports.getProfile = async (req, res) => {
             stripeId: subscription.stripeSubscriptionId,
             status: subscription.status,
             plan: subscription.plan,
-            // planSnapshot: subscription.planSnapshot,
             startDate: subscription.startDate,
             currentPeriodStart: subscription.currentPeriodStart,
             currentPeriodEnd: subscription.currentPeriodEnd,
@@ -246,7 +424,6 @@ exports.getProfile = async (req, res) => {
           }
         : null,
 
-      // Trial data
       trial: {
         active: trialActive,
         start: user.trialStart,
@@ -257,7 +434,6 @@ exports.getProfile = async (req, res) => {
         config: trialPlanConfig,
       },
 
-      // Subscription data
       subscriptionUsage: {
         active: subscriptionActive,
         daysLeft: subDaysLeft,
@@ -265,6 +441,20 @@ exports.getProfile = async (req, res) => {
         predefinedDecksLeftToday: subPredefinedDecksLeftToday,
         config: activePlanConfig,
       },
+
+      billing: latestInvoice
+        ? {
+            latestInvoice: {
+              // id: latestInvoice.stripeInvoiceId,
+              amountPaid: latestInvoice.amountPaid,
+              currency: latestInvoice.currency.toUpperCase(),
+              date: latestInvoice.createdAt,
+              // discount: latestInvoice.discount,
+              hostedInvoiceUrl: latestInvoice.hostedInvoiceUrl,
+            },
+            discountedPrice,
+          }
+        : null,
     });
   } catch (err) {
     console.error("Profile error:", err);

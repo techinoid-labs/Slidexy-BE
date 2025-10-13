@@ -6,28 +6,80 @@ const {
 } = require("../services/stripe/stripeService");
 const Stripe = require("stripe");
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-
+const Invoice = require("../models/Invoice");
 const PricingPlan = require("../models/PricingPlan");
 const User = require("../models/User");
 const Subscription = require("../models/Subscription");
 
+async function validateCouponHandler(req, res) {
+  try {
+    const { code } = req.body;
+
+    if (!code) {
+      return res
+        .status(400)
+        .json({ valid: false, error: "Coupon code is required" });
+    }
+
+    // 🔍 Look for an active promotion code in Stripe
+    const promoList = await stripe.promotionCodes.list({
+      code,
+      active: true,
+      limit: 1,
+    });
+
+    const promo = promoList.data[0];
+
+    if (!promo) {
+      return res
+        .status(404)
+        .json({ valid: false, error: "Invalid or expired coupon" });
+    }
+
+    const coupon = promo.coupon;
+
+    // ✅ Return useful info for frontend
+    return res.json({
+      valid: true,
+      id: promo.id,
+      code: promo.code,
+      percentOff: coupon.percent_off || null,
+      amountOff: coupon.amount_off || null,
+      currency: coupon.currency || null,
+      duration: coupon.duration,
+      message: `Coupon applied: ${
+        coupon.percent_off
+          ? `${coupon.percent_off}% off`
+          : `${coupon.amount_off / 100} ${coupon.currency.toUpperCase()} off`
+      }`,
+    });
+  } catch (err) {
+    console.error("❌ Error validating coupon:", err.message);
+    return res
+      .status(500)
+      .json({ valid: false, error: "Failed to validate coupon" });
+  }
+}
+
 /**
- * Create Checkout Session
+ * 🟣 Create Checkout Session (with optional coupon)
  */
 async function createCheckoutSessionHandler(req, res) {
   try {
-    const { plan, userId, email } = req.body;
+    const { plan, userId, email, coupon } = req.body;
 
-    const dbPlan = await PricingPlan.findOne({ name: plan, isActive: true });
+    const dbPlan = await PricingPlan.findOne({ name: plan, isTest: true });
     if (!dbPlan) {
       return res.status(400).json({ error: "Invalid or inactive plan" });
     }
 
-    // Create checkout session with user + plan metadata
-    const session = await createCheckoutSession(dbPlan.stripePriceId, email, {
-      userId,
-      priceId: dbPlan.stripePriceId,
-    });
+    // ✅ Create session via the service
+    const session = await createCheckoutSession(
+      dbPlan.stripePriceId,
+      email,
+      { userId, priceId: dbPlan.stripePriceId },
+      coupon // pass optional coupon/promotion code
+    );
 
     return res.json({ url: session.url });
   } catch (err) {
@@ -169,20 +221,100 @@ async function webhookHandler(req, res) {
         const invoice = event.data.object;
         console.log("✅ Invoice payment succeeded:", invoice.id);
 
-        await Subscription.findOneAndUpdate(
-          { stripeSubscriptionId: invoice.subscription },
-          {
-            status: "active",
-            currentPeriodStart: new Date(
-              invoice.lines.data[0].period.start * 1000
-            ),
-            currentPeriodEnd: new Date(invoice.lines.data[0].period.end * 1000),
-            cancelAtPeriodEnd: invoice.cancel_at_period_end,
-          }
+        // Prevent duplicates
+        const existingInvoice = await Invoice.findOne({
+          stripeInvoiceId: invoice.id,
+        });
+        if (existingInvoice) break;
+
+        // Resolve subscription and user
+        const stripeSubscriptionId =
+          invoice.parent?.subscription_details?.subscription ||
+          invoice.lines?.data?.[0]?.parent?.subscription_item_details
+            ?.subscription ||
+          null;
+
+        const userId =
+          invoice.lines?.data?.[0]?.metadata?.userId ||
+          invoice.parent?.subscription_details?.metadata?.userId ||
+          null;
+
+        const subscription = stripeSubscriptionId
+          ? await Subscription.findOne({ stripeSubscriptionId })
+          : null;
+        const user = userId ? await User.findById(userId) : subscription?.user;
+
+        // ✅ Extract plan info
+        const stripePriceId =
+          invoice.lines?.data?.[0]?.metadata?.priceId ||
+          invoice.lines?.data?.[0]?.pricing?.price_details?.price ||
+          null;
+
+        let plan = null;
+        if (stripePriceId) {
+          plan = await PricingPlan.findOne({ stripePriceId });
+        }
+
+        // 🧾 Extract discount details safely
+        let discountData = {};
+        if (
+          invoice.total_discount_amounts &&
+          invoice.total_discount_amounts.length
+        ) {
+          const discount = invoice.total_discount_amounts[0];
+          discountData = {
+            amountOff: (discount.amount || 0) / 100,
+            percentOff: null,
+            couponId: discount.discount || null,
+          };
+        }
+
+        // 🧮 Build invoice data object
+        const invoiceData = {
+          user: user?._id,
+          subscription: subscription?._id,
+          plan: plan?._id || null, // ✅ store reference to plan
+          stripePriceId, // ✅ store Stripe price ID
+          stripeInvoiceId: invoice.id,
+          stripeCustomerId: invoice.customer,
+          stripeSubscriptionId,
+          amountDue: invoice.amount_due / 100,
+          amountPaid: invoice.amount_paid / 100,
+          currency: invoice.currency,
+          status: invoice.status,
+          discount: discountData,
+          lines: invoice.lines?.data?.map((line) => ({
+            description: line.description,
+            amount: line.amount / 100,
+            currency: line.currency,
+            periodStart: new Date(line.period.start * 1000),
+            periodEnd: new Date(line.period.end * 1000),
+          })),
+          hostedInvoiceUrl: invoice.hosted_invoice_url,
+          invoicePdf: invoice.invoice_pdf,
+        };
+
+        await Invoice.create(invoiceData);
+
+        // ✅ Update subscription info
+        if (subscription && invoice.lines?.data?.length) {
+          const firstLine = invoice.lines.data[0];
+          await Subscription.findOneAndUpdate(
+            { stripeSubscriptionId },
+            {
+              status: "active",
+              cancelAtPeriodEnd: subscription.cancel_at_period_end,
+              currentPeriodStart: new Date(firstLine.period.start * 1000),
+              currentPeriodEnd: new Date(firstLine.period.end * 1000),
+            }
+          );
+        }
+
+        console.log(
+          `🧾 Invoice saved successfully for user: ${user?.email || "Unknown"}`
         );
         break;
       }
-
       case "invoice.payment_failed": {
         const invoice = event.data.object;
         console.log("❌ Invoice payment failed:", invoice.id);
@@ -275,4 +407,5 @@ module.exports = {
   webhookHandler,
   getSessionHandler,
   cancelSubscriptionHandler,
+  validateCouponHandler,
 };
