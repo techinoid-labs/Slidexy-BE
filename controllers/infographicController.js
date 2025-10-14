@@ -21,7 +21,7 @@ async function getPosterTemplate(req, res) {
       textLayout,
     });
   } catch (error) {
-    console.error("❌ Poster generation failed:", error);
+    console.error("Poster generation failed:", error);
     res.status(500).json({
       message: "Poster generation failed.",
       error: error.message,
