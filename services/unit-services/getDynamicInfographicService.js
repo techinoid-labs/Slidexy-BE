@@ -4,7 +4,6 @@ const { infographicCards } = require("../../constants/card");
 const { infographicPatterns } = require("../../constants/background");
 const JSON5 = require("json5");
 
-
 const ALLOWED_STYLES = [
   "glassmorphism",
   "neumorphism",
@@ -12,7 +11,7 @@ const ALLOWED_STYLES = [
   "aurora-gradient",
   "mesh-gradient",
   "glassy-layers-shadows",
-  "subtle-pattern-overlay"
+  "subtle-pattern-overlay",
 ];
 const ALLOWED_CARD_TYPES = [
   "pill",
@@ -40,10 +39,11 @@ const ALLOWED_BACKGROUNDS = [
 ];
 
 const VIEW_MODES = {
-  "landscape": {
-    "aspectRatio": "16:9",
-    "style": "aspect-ratio: 16 / 9; width: 100%; max-width: 1280px; height: auto;",
-    "layoutGuidelines": [
+  landscape: {
+    aspectRatio: "16:9",
+    style:
+      "aspect-ratio: 16 / 9; width: 100%; max-width: 1280px; height: auto;",
+    layoutGuidelines: [
       "Use grid or flex layouts that emphasize horizontal reading flow.",
       "Perfect for dashboards, wide timelines, and comparative visuals.",
       "Use horizontal charts, legends on sides, and equal card proportions.",
@@ -63,13 +63,13 @@ const VIEW_MODES = {
   justify-content: center;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
 }
- `
-    ]
+ `,
+    ],
   },
-  "portrait": {
-    "aspectRatio": "9:16",
-    "style": "aspect-ratio: 9 / 16; width: 100%; max-width: 480px; height: auto;",
-    "layoutGuidelines": [
+  portrait: {
+    aspectRatio: "9:16",
+    style: "aspect-ratio: 9 / 16; width: 100%; max-width: 480px; height: auto;",
+    layoutGuidelines: [
       "Stack all content vertically for scroll-free fit (scale via transform if needed).",
       "Perfect for storytelling, educational posts, or social media formats.",
       "Use vertical timelines, stacked sections, and center-aligned callouts.",
@@ -92,10 +92,10 @@ const VIEW_MODES = {
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
 }
 </style>
-`
-    ]
-  }
-}
+`,
+    ],
+  },
+};
 
 const parameterGathering = async (userPrompt) => {
   const systemPrompt = `
@@ -130,55 +130,53 @@ Output strictly in JSON:
 }
   NOTE: dont send anything excet for this json
 `;
-try {
-  // ✅ Gemini format (safe for text or structured prompts)
-  const result = await textGenModel.generateContent(systemPrompt);
-
-  // ✅ Safely extract the response text
-  let rawText = "";
-  if (typeof result?.response?.text === "function") {
-    rawText = result.response.text().trim();
-  } else {
-    rawText =
-      result?.response?.candidates?.[0]?.content?.parts?.[0]?.text?.trim?.() ||
-      "";
-  }
-
-  // ✅ Clean markdown wrappers
-  rawText = rawText.replace(/```(json)?/g, "").trim();
-  rawText = rawText.replace(/^``````$/g, "").trim();
-
-  // ✅ Extract only the JSON portion between curly braces
-  const jsonMatch = rawText.match(/\{[\s\S]*\}/);
-  if (!jsonMatch) {
-    console.error("⚠️ No JSON block found in model output:\n", rawText);
-    throw new Error("Model did not return JSON structure");
-  }
-
-  const jsonText = jsonMatch[0];
-
-  // ✅ Parse JSON safely
-  let parsed;
   try {
-    parsed = JSON.parse(jsonText);
-  } catch (err) {
-    console.error("⚠️ Failed to parse model output as JSON:\n", jsonText);
-    throw new Error("Invalid JSON response from model");
+    // ✅ Gemini format (safe for text or structured prompts)
+    const result = await textGenModel.generateContent(systemPrompt);
+
+    // ✅ Safely extract the response text
+    let rawText = "";
+    if (typeof result?.response?.text === "function") {
+      rawText = result.response.text().trim();
+    } else {
+      rawText =
+        result?.response?.candidates?.[0]?.content?.parts?.[0]?.text?.trim?.() ||
+        "";
+    }
+
+    // ✅ Clean markdown wrappers
+    rawText = rawText.replace(/```(json)?/g, "").trim();
+    rawText = rawText.replace(/^``````$/g, "").trim();
+
+    // ✅ Extract only the JSON portion between curly braces
+    const jsonMatch = rawText.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) {
+      console.error("⚠️ No JSON block found in model output:\n", rawText);
+      throw new Error("Model did not return JSON structure");
+    }
+
+    const jsonText = jsonMatch[0];
+
+    // ✅ Parse JSON safely
+    let parsed;
+    try {
+      parsed = JSON.parse(jsonText);
+    } catch (err) {
+      console.error("⚠️ Failed to parse model output as JSON:\n", jsonText);
+      throw new Error("Invalid JSON response from model");
+    }
+
+    // ✅ Validate structure
+    if (!parsed || typeof parsed !== "object") {
+      throw new Error("Response is not a valid object");
+    }
+
+    return parsed;
+  } catch (error) {
+    console.error("❌ Gemini parameter gathering failed:", error);
+    throw error;
   }
-
-  // ✅ Validate structure
-  if (!parsed || typeof parsed !== "object") {
-    throw new Error("Response is not a valid object");
-  }
-
-  return parsed;
-
-} catch (error) {
-  console.error("❌ Gemini parameter gathering failed:", error);
-  throw error;
-}
 };
-
 
 const createSystemPrompt = async (userPrompt, viewMode) => {
   const parameters = await parameterGathering(userPrompt);
@@ -186,7 +184,7 @@ const createSystemPrompt = async (userPrompt, viewMode) => {
   const cardStyle = infographicCards[parameters.card];
   const backgroundStyle = infographicPatterns[parameters.background];
   const mode = VIEW_MODES[viewMode];
-  const layoutDetails = mode.layoutGuidelines.map(g => `• ${g}`).join("\n  ");
+  const layoutDetails = mode.layoutGuidelines.map((g) => `• ${g}`).join("\n  ");
 
   return `You are an expert infographic generator and web designer who creates STUNNING, UNIQUE, and production-ready HTML/CSS infographics optimized for ${viewMode}.
   
@@ -294,11 +292,16 @@ Note: Must use color Palette provided and layout details are only suggesion dont
 };
 
 async function getDynamicInfographicService(prompt, viewMode = "portrait") {
-  retries = 3
+  retries = 3;
 
   for (let attempt = 1; attempt <= retries; attempt++) {
     try {
-      console.log(`Attempt ${attempt}/${retries} - Generating infographic for: "${prompt.substring(0, 50)}..."`);
+      console.log(
+        `Attempt ${attempt}/${retries} - Generating infographic for: "${prompt.substring(
+          0,
+          50
+        )}..."`
+      );
 
       // Create the system prompt
       const systemPrompt = await createSystemPrompt(prompt, viewMode);
@@ -332,7 +335,10 @@ async function getDynamicInfographicService(prompt, viewMode = "portrait") {
         let jsonMatch = responseText.match(/\{[\s\S]*\}/);
         if (!jsonMatch) {
           console.error("❌ No JSON object found in model output");
-          console.error("Raw text preview:", responseText.substring(0, 200) + "...");
+          console.error(
+            "Raw text preview:",
+            responseText.substring(0, 200) + "..."
+          );
           throw new Error("Model did not return valid JSON structure");
         }
 
@@ -347,23 +353,32 @@ async function getDynamicInfographicService(prompt, viewMode = "portrait") {
           }
         } catch (parseError) {
           console.error("❌ JSON parsing failed:", parseError.message);
-          console.error("Extracted JSON preview:", jsonSegment.substring(0, 200) + "...");
-          throw new Error(`Invalid JSON response from Gemini: ${parseError.message}`);
+          console.error(
+            "Extracted JSON preview:",
+            jsonSegment.substring(0, 200) + "..."
+          );
+          throw new Error(
+            `Invalid JSON response from Gemini: ${parseError.message}`
+          );
         }
 
-
         // Handle case where response might be double-encoded
-        if (typeof parsed === 'string') {
+        if (typeof parsed === "string") {
           parsed = JSON5.parse(parsed);
         }
       } catch (parseError) {
         console.error("JSON parsing failed:", parseError.message);
-        console.error("Raw response preview:", responseText.substring(0, 200) + "...");
-        throw new Error(`Invalid JSON response from Gemini: ${parseError.message}`);
+        console.error(
+          "Raw response preview:",
+          responseText.substring(0, 200) + "..."
+        );
+        throw new Error(
+          `Invalid JSON response from Gemini: ${parseError.message}`
+        );
       }
 
       // Validate response structure
-      if (!parsed || typeof parsed !== 'object') {
+      if (!parsed || typeof parsed !== "object") {
         throw new Error("Response is not a valid object");
       }
 
@@ -372,9 +387,10 @@ async function getDynamicInfographicService(prompt, viewMode = "portrait") {
 
       if (typeof parsed.html === "string") {
         htmlContent = parsed.html;
-      }
-      else {
-        throw new Error("Response missing HTML content in any recognized format");
+      } else {
+        throw new Error(
+          "Response missing HTML content in any recognized format"
+        );
       }
 
       // --- ✅ Validate JSON data ---
@@ -406,9 +422,9 @@ async function getDynamicInfographicService(prompt, viewMode = "portrait") {
 
       console.log("✅ Infographic generated successfully!");
       console.log(
-        `Type: ${jsonData.type}, Title: "${jsonData.title}", Layouts: ${Object.keys(
-          htmlContent
-        ).join(", ")}`
+        `Type: ${jsonData.type}, Title: "${
+          jsonData.title
+        }", Layouts: ${Object.keys(htmlContent).join(", ")}`
       );
 
       // --- ✅ Return normalized structure ---
@@ -421,21 +437,22 @@ async function getDynamicInfographicService(prompt, viewMode = "portrait") {
           prompt,
         },
       };
-
     } catch (error) {
       console.error(`Attempt ${attempt}/${retries} failed:`, error.message);
 
       if (attempt === retries) {
         console.error("All attempts exhausted");
-        throw new Error(`Failed to generate infographic after ${retries} attempts: ${error.message}`);
+        throw new Error(
+          `Failed to generate infographic after ${retries} attempts: ${error.message}`
+        );
       }
 
       // Progressive delay between retries
       const delay = attempt * 1500 + Math.random() * 1000; // 1.5s, 3s, 4.5s + random
       console.log(`⏳ Waiting ${(delay / 1000).toFixed(1)}s before retry...`);
-      await new Promise(resolve => setTimeout(resolve, delay));
+      await new Promise((resolve) => setTimeout(resolve, delay));
     }
   }
 }
 
-module.exports = { getDynamicInfographicService }
+module.exports = { getDynamicInfographicService };
