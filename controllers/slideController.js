@@ -202,9 +202,11 @@ async function generateSlidesHandler(req, res) {
           );
 
           slidesWithImages.push({
-            ...slides[i],
+            ...slides[i],  // Includes existing
             slide_title: { ...slides[i].slide_title },
             image_url: imageUrl,
+            art_style: imageSlide.art_style, // From generateImage
+            art_palette: imageSlide.art_palette,
             elements: [
               ...elementsWithoutText,
               {
@@ -217,6 +219,8 @@ async function generateSlidesHandler(req, res) {
                   y: 15,
                   width: 500,
                   height: 400,
+                  // UPDATED: Tint based on palette if available
+                  filters: imageSlide.art_palette ? ["hue-rotate"] : [],
                 },
               },
             ],

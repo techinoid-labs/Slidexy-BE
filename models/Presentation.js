@@ -1,4 +1,3 @@
-// models/Presentation.js
 const mongoose = require("mongoose");
 const crypto = require("crypto");
 
@@ -25,15 +24,15 @@ const blockSchema = new mongoose.Schema(
   },
   { _id: false }
 );
-
 const slideSchema = new mongoose.Schema(
   {
-    slide_id: {
-      type: String,
-      required: true,
-      default: () => `slide-${crypto.randomUUID()}`,
-    },
-    slide_title: { type: konvaComponentSchema, required: true }, // Changed to konvaComponentSchema
+    slide_id: { type: String, required: true, default: () => `slide-${crypto.randomUUID()}` },
+    layout_type: { type: String, default: 'title-bullets' },
+    visual_suggestion: { type: String, default: '' },
+    knowledge: { type: mongoose.Schema.Types.Mixed, default: {} },
+    art_style: { type: String, default: 'abstract surrealism' }, 
+    art_palette: [{ type: String }], 
+    slide_title: { type: konvaComponentSchema, required: true },
     elements: [konvaComponentSchema],
     image_url: { type: String, default: null },
     image_caption: { type: String, default: "" },
