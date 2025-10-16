@@ -121,6 +121,7 @@ async function generateSlidesHandler(req, res) {
     textContent,
     inputWebsiteUrl,
     meta = {},
+    artStyle, // New: Extract artStyle from body
     slideCount = 3,
     userData,
   } = req.body;
@@ -265,16 +266,13 @@ async function generateSlidesHandler(req, res) {
         await new Promise((r) => setTimeout(r, 1000));
 
         try {
-          // const imageSlide = await generateImage(
-          //   slides[i],
-          //   i,
-          //   planResponseType
-          // );
+          // Updated: Pass artStyle to generateImage
           const imageSlide = await generateImage(
             slides[i],
             i,
             rawText,
-            planResponseType
+            planResponseType,
+            artStyle
           );
           const imageUrl = imageSlide.image_url;
 
@@ -376,7 +374,8 @@ async function generateSlidesHandler(req, res) {
       let slidesWithImages = [];
       for (let i = 0; i < slides.length; i++) {
         try {
-          const imageSlide = await generateImage(slides[i], i, rawText);
+          // Updated: Pass artStyle to generateImage
+          const imageSlide = await generateImage(slides[i], i, rawText, artStyle);
           const imageUrl = imageSlide.image_url;
           slidesWithImages.push({ ...slides[i], image_url: imageUrl });
         } catch {
