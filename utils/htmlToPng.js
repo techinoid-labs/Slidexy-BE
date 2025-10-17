@@ -17,8 +17,6 @@ async function htmlToPng(html, outputName, options = {}, viewMode = "landscape")
     fs.mkdirSync(outputDir, { recursive: true });
   }
 
-  const outputPath = path.join(outputDir, `${outputName}.png`);
-
   const browser = await puppeteer.launch({
     headless: true,
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
@@ -74,17 +72,13 @@ async function htmlToPng(html, outputName, options = {}, viewMode = "landscape")
     deviceScaleFactor: 2,
   });
 
-  // 📸 Capture ONLY the div area
-  await element.screenshot({
-    path: outputPath,
-  });
+  const buffer = await element.screenshot({ encoding: "binary" });
+  const base64 = buffer.toString("base64");
 
   await browser.close();
 
-  const buffer = fs.readFileSync(outputPath);
-  const base64 = buffer.toString("base64");
+  return { base64 };
 
-  return { path: outputPath, base64 };
 }
 
 module.exports = { htmlToPng };
