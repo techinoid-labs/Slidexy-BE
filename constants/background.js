@@ -1,5 +1,5 @@
 const infographicPatterns = {
-  dotted: `
+  "dotted": `
     <div style="
       width: 100%;
       height: 200px;
@@ -13,7 +13,7 @@ const infographicPatterns = {
     ">Dotted Pattern</div>
   `,
 
-  checkerboard: `
+  "checkerboard": `
     <div style="
       width: 100%;
       height: 200px;
@@ -33,7 +33,7 @@ const infographicPatterns = {
     ">Checkerboard</div>
   `,
 
-  gradient: `
+  "gradient": `
     <div style="
       width: 100%;
       height: 200px;
@@ -143,7 +143,7 @@ const infographicPatterns = {
         border-radius: 12px;
       "></div>
     </div>
-  `,
+  `
 };
 
 const styleType = (style) => {
@@ -159,8 +159,9 @@ const styleType = (style) => {
   color: white; font-size: 1.2rem;
   display: flex; align-items: center; justify-content: center;
 }
-body { background: linear-gradient(135deg, #2b1055, #7597de); }</style>`;
-  } else if (style == "neumorphism") {
+body { background: linear-gradient(135deg, #2b1055, #7597de); }</style>`
+  }
+  else if (style == "neumorphism") {
     return `<div class="neumorphism">Neumorphism</div>
 
 <style>
@@ -193,8 +194,9 @@ body {
     -6px -6px 12px #ffffff;
 }
 </style>
-`;
-  } else if (style == "gradient-layering") {
+`
+  }
+  else if (style == "gradient-layering") {
     return `<div class="gradient-layering">Gradient Layering</div>
 <style>
 .gradient-layering {
@@ -205,8 +207,9 @@ body {
   border-radius: 20px;
   display: flex; align-items: center; justify-content: center;
   color: white; font-weight: 600;
-}</style>`;
-  } else if (style == "aurora-gradient") {
+}</style>`
+  }
+  else if (style == "aurora-gradient") {
     return `<div class="aurora-gradient">Aurora</div>
 
 <style>
@@ -239,8 +242,9 @@ body {
   background: radial-gradient(circle at 60% 40%, rgba(255,255,255,0.07), transparent 60%);
   pointer-events: none;
 }
-</style>`;
-  } else if (style == "mesh-gradient") {
+</style>`
+  }
+  else if (style == "mesh-gradient") {
     return `<div class="mesh-gradient">Mesh Gradient</div>
 <style>
 .mesh-gradient {
@@ -253,8 +257,9 @@ body {
   display: flex; align-items: center; justify-content: center;
   color: #333; font-weight: 600;
 }</style>
-`;
-  } else if (style == "glassy-layers-shadows") {
+`
+  }
+  else if (style == "glassy-layers-shadows") {
     return `<div class="glassy-layer">
   <div class="glass-card">Glassy Layer</div>
 </div>
@@ -299,42 +304,45 @@ body {
     font-size: 1rem;
   }
 }
-</style>`;
-  } else if (style == "subtle-pattern-overlay") {
-    return `<div class="pattern-overlay">Grid Pattern</div>
-
-<style>
-.pattern-overlay {
-  width: 320px; height: 160px;
-  background:
-    repeating-linear-gradient(0deg, rgba(0,0,0,0.05) 0 1px, transparent 1px 20px),
-    repeating-linear-gradient(90deg, rgba(0,0,0,0.05) 0 1px, transparent 1px 20px);
-  background-color: white;
-  border-radius: 20px;
-  color: #222;
-  display: flex; align-items: center; justify-content: center;
-  font-weight: bold;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-}
-</style>`;
-  } else {
-    return `<div class="pattern-overlay">Grid Pattern</div>
-
-<style>
-.pattern-overlay {
-  width: 320px; height: 160px;
-  background:
-    repeating-linear-gradient(0deg, rgba(0,0,0,0.05) 0 1px, transparent 1px 20px),
-    repeating-linear-gradient(90deg, rgba(0,0,0,0.05) 0 1px, transparent 1px 20px);
-  background-color: white;
-  border-radius: 20px;
-  color: #222;
-  display: flex; align-items: center; justify-content: center;
-  font-weight: bold;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-}
-</style>`;
+</style>`
   }
-};
+  else if (style == "subtle-pattern-overlay") {
+    return `<div class="pattern-overlay">Grid Pattern</div>
 
-module.exports = { infographicPatterns };
+<style>
+.pattern-overlay {
+  width: 320px; height: 160px;
+  background:
+    repeating-linear-gradient(0deg, rgba(0,0,0,0.05) 0 1px, transparent 1px 20px),
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.05) 0 1px, transparent 1px 20px);
+  background-color: white;
+  border-radius: 20px;
+  color: #222;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: bold;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+</style>`
+  }
+  else
+  {
+    return `<div class="pattern-overlay">Grid Pattern</div>
+
+<style>
+.pattern-overlay {
+  width: 320px; height: 160px;
+  background:
+    repeating-linear-gradient(0deg, rgba(0,0,0,0.05) 0 1px, transparent 1px 20px),
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.05) 0 1px, transparent 1px 20px);
+  background-color: white;
+  border-radius: 20px;
+  color: #222;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: bold;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+</style>`
+  }
+}
+
+module.exports = infographicPatterns;
