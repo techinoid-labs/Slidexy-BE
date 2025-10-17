@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getVidGenImgService } = require("../services/unit-services/getVidGenImg");
+const  getVidGenImgService  = require("../services/unit-services/getVidGenImg");
 const Infographic = require("../models/Infographics");
 router.post("/", async (req, res) => {
   try {
