@@ -1,4 +1,4 @@
-export const infographicPatterns = {
+const infographicPatterns = {
   "dotted": `
     <div style="
       width: 100%;
@@ -344,3 +344,5 @@ body {
 </style>`
   }
 }
+
+module.exports = infographicPatterns;

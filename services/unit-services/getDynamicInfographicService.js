@@ -1,7 +1,7 @@
 const e = require("cors");
 const { textGenModel } = require("../../utils/geminiModels");
-const { infographicCards } = require("../../constants/card");
-const { infographicPatterns } = require("../../constants/background");
+const  infographicCards  = require("../../constants/card");
+const  infographicPatterns  = require("../../constants/background");
 const JSON5 = require("json5");
 
 

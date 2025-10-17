@@ -1,4 +1,4 @@
-export const vidGenTemp = {
+const vidGenTemp = {
   "templates": [
     "<div style=\"width:100%;aspect-ratio:16/9;background-color:#fefefe;background-image:linear-gradient(#eee 0.1rem,transparent 0.1rem),linear-gradient(90deg,#eee 0.1rem,transparent 0.1rem);background-size:2% 2%;font-family:Inter,sans-serif;display:flex;justify-content:center;align-items:center;position:relative;\"><div style=\"position:relative;width:75%;height:65%;\"><div style=\"position:absolute;top:10%;left:5%;width:30%;height:30%;background:#4f46e5;border-radius:50%;opacity:0.5;\"></div><div style=\"position:absolute;top:20%;left:25%;width:30%;height:30%;background:#10b981;border-radius:50%;opacity:0.5;\"></div><div style=\"position:absolute;top:15%;left:45%;width:30%;height:30%;background:#f59e0b;border-radius:50%;opacity:0.5;\"></div><div style=\"position:relative;width:70%;height:70%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;\"></div></div></div>",
 
@@ -13,3 +13,5 @@ export const vidGenTemp = {
     "<div style=\"width:100%;aspect-ratio:16/9;background-color:#fefefe;background-image:linear-gradient(#eee 1px,transparent 1px),linear-gradient(90deg,#eee 1px,transparent 1px);background-size:20px 20px;font-family:Inter,sans-serif;display:flex;justify-content:center;align-items:center;position:relative;\"><div style=\"position:relative;width:80%;height:65%;\"><div style=\"position:absolute;top:10%;left:0;width:30%;height:50%;background:#f5f5f5;border:2px solid #4f46e5;clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);\"></div><div style=\"position:absolute;top:20%;left:25%;width:50%;height:60%;background:#f5f5f5;border-radius:0.5rem;border:2px solid #10b981;\"></div><div style=\"position:absolute;top:35%;left:55%;width:25%;height:25%;background:#f5f5f5;border-radius:50%;border:2px solid #f59e0b;\"></div><div style=\"position:relative;width:70%;height:70%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;\"><div style=\"font-size:2rem;font-weight:bold;color:#111;\"></div><div style=\"font-size:1rem;color:#333;\"></div></div></div></div>"
   ]
 }
+
+module.exports = vidGenTemp;

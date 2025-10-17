@@ -1,5 +1,5 @@
 // Export as a named constant
-export const infographicCards = {
+const infographicCards = {
   "pill": "<div style='width:200px; height:60px; background:#009688; border-radius:30px; display:flex; justify-content:center; align-items:center; color:white; font-weight:bold; box-shadow:0 5px 15px rgba(0,0,0,0.1);'>Pill</div>",
   
   "diamond": "<div style='width:120px; height:120px; background:#607d8b; transform: rotate(45deg); display:flex; justify-content:center; align-items:center; color:white; font-weight:bold; box-shadow:0 5px 15px rgba(0,0,0,0.1);'><span style='transform: rotate(-45deg);'>Diamond</span></div>",
@@ -24,3 +24,5 @@ export const infographicCards = {
 
   "rectangle": "<div style='width:220px; height:120px; background:#f44336; display:flex; justify-content:center; align-items:center; color:white; font-weight:bold; box-shadow:0 5px 15px rgba(0,0,0,0.1); border-radius:6px;'>Rectangle</div>"
 };
+
+module.exports = infographicCards;
