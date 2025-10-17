@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { getDynamicInfographicService } = require("../services/unit-services/getDynamicInfographicService");
 const Infographic = require("../models/Infographics"); 
+const { htmlToPng } = require("../utils/htmlToPng");
 
 router.post("/", async (req, res) => {
   try {
@@ -27,10 +28,13 @@ router.post("/", async (req, res) => {
     });
 
     const savedInfographic = await newInfographic.save();
+    const { base64, path: imagePath } = await htmlToPng(result.html, savedInfographic._id.toString(),result.viewMode);
 
     return res.json({
       success: true,
       infographic: savedInfographic,
+      imageBase64: `data:image/png;base64,${base64}`,
+      imagePath,
     });
 
   } catch (err) {
