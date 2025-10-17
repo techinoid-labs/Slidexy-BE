@@ -31,7 +31,7 @@ ${templatesInfo}
 
 CRITICAL RULES:
 1. Slide 1 MUST be a cover slide (title + subtitle ONLY, no bullets)
-2. Slides 2-${slideCount - 1} should have bullets (3-5 per slide)
+2. Content slides should have the specified number of bullets per slide
 3. ${slideCount === 5 ? "Last slide MUST be a CTA slide" : "Last slide is a conclusion"}
 4. Each bullet must be 8-12 words
 5. Titles must be 6-8 words max
@@ -66,7 +66,7 @@ Generate exactly ${slideCount} slides now:`;
     const raw = result.response?.candidates?.[0]?.content?.parts?.[0]?.text || "";
     
     // Clean and parse JSON
-    const cleaned = raw.replace(/```json|```/g, "").trim();
+    const cleaned = raw.replace(/```json/g, "").replace(/```/g, "").trim();
     const firstBracket = cleaned.indexOf("[");
     const lastBracket = cleaned.lastIndexOf("]");
     
@@ -96,7 +96,8 @@ function buildTemplatePrompt(slideCount) {
   
   for (let i = 2; i < slideCount; i++) {
     const template = selectTemplate(i - 1, slideCount);
-    info += `Slide ${i}: Content (${template.name}) - Title + 3-5 bullets\n`;
+    const bulletCount = template.name === "Split Content" ? "6" : "4";
+    info += `Slide ${i}: Content (${template.name}) - Title + ${bulletCount} bullets\n`;
   }
   
   if (slideCount === 5) {
