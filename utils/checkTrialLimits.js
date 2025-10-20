@@ -6,9 +6,6 @@ const trialConfig = {
 
 async function checkTrialLimits(user) {
   // Paid plan? no limits (just in case)
-  // if (!user) {
-  //   return { allowed: true, code: "PAID_PLAN_BYPASS" };
-  // }
 
   // Initialize trial dates if missing
   if (!user.trialStart) {
@@ -16,7 +13,7 @@ async function checkTrialLimits(user) {
   }
   if (!user.trialEnd) {
     user.trialEnd = new Date(
-      user.trialStart.getTime() + 7 * 24 * 60 * 60 * 1000
+      user.trialStart.getTime() + 3 * 24 * 60 * 60 * 1000
     );
   }
 

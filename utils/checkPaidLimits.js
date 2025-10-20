@@ -19,14 +19,8 @@ async function checkPaidLimits(user, subscription) {
 
   const now = new Date();
 
-  // 🔑 Check validity period
-  // if (subscription.startDate && subscription.startDate > now) {
-  //   return {
-  //     allowed: false,
-  //     code: "SUBSCRIPTION_NOT_ACTIVE",
-  //     message: "Your subscription is not yet active.",
-  //   };
-  // }
+  //  Check validity period
+
   if (subscription.currentPeriodEnd && subscription.currentPeriodEnd < now) {
     return {
       allowed: false,
