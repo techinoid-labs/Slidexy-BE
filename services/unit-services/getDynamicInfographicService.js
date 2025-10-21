@@ -291,7 +291,7 @@ Note: Must use color Palette provided and layout details are only suggesion dont
   - Produce modern, elegant, and production-grade visuals ready to paste into web apps.`;
 };
 
-async function getDynamicInfographicService(prompt, viewMode = "portrait") {
+async function getDynamicInfographicService(prompt, viewMode) {
   retries = 3;
 
   for (let attempt = 1; attempt <= retries; attempt++) {
