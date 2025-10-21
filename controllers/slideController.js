@@ -65,12 +65,10 @@ const streamingStates = {
       detail: "Leveraging advanced language models to craft in-depth, tailored content for each slide, ensuring relevance, engagement, and alignment with your specified goals and audience. This multi-step process begins with ideation, followed by drafting, and iterative refinement to produce high-quality, professional-grade textual elements.",
     },
     outline: (current, total) => ({
-      percent: 25 + Math.floor((current / total) * 10),
       message: `📝 Creating detailed outline for slide ${current}/${total}...`,
       detail: "Developing a robust structure with main headings, subpoints, and logical progression to form the backbone of this slide's content delivery. We're mapping out key arguments, evidence placement, and visual integration points to ensure each slide contributes effectively to the overall persuasive or informative objectives.",
     }),
     content: (current, total) => ({
-      percent: 35 + Math.floor((current / total) * 15),
       message: `📚 Generating rich, comprehensive content for slide ${current}/${total}...`,
       detail: [
         "Crafting detailed, actionable bullet points with precise language and formatting for maximum readability and impact, including concise phrasing, active voice, and varied sentence structures to maintain audience interest throughout the presentation.",
@@ -80,7 +78,6 @@ const streamingStates = {
       ][current % 4],
     }),
     refining: (current, total) => ({
-      percent: 50 + Math.floor((current / total) * 10),
       message: `✨ Refining and polishing content for slide ${current}/${total}...`,
       detail: "Fine-tuning language for clarity, conciseness, and persuasive power while eliminating redundancies and enhancing overall visual and rhetorical impact. This includes sentiment analysis, readability scoring, and stylistic adjustments to match the specified tone and audience expectations perfectly.",
     }),
@@ -92,7 +89,6 @@ const streamingStates = {
       detail: "Transitioning to creative visuals: preparing generative AI pipelines to produce bespoke imagery that perfectly complements and elevates your slide content. This setup calibrates style parameters, color schemes, and compositional rules based on content analysis for harmonious integration.",
     },
     progress: (current, total) => ({
-      percent: 60 + Math.floor((current / total) * 30),
       message: `🖼️ Designing custom visual elements for slide ${current}/${total}...`,
       detail: "Harnessing diffusion models and style transfer techniques to generate high-fidelity, contextually relevant imagery, icons, and graphics that visually reinforce your narrative. Each visual is optimized for resolution, aspect ratio, and emotional resonance to maximize viewer engagement and retention.",
     }),
@@ -239,21 +235,44 @@ async function generateSlidesHandler(req, res) {
       sendUpdate(streamingStates.generating.start);
       const slides = await generateSlideText(rawText, meta, slideCount);
 
-      // Enhanced progress updates for each slide
-      for (let i = 0; i < slideCount; i++) {
+      // Enhanced progress updates for each slide with monotonic progress
+      const slideCountNum = slides.length;
+      const totalGeneratingSubsteps = 3 * slideCountNum;
+      let currentGeneratingSubstep = 0;
+
+      // Enhanced image generation progress
+      const totalImagingSubsteps = slideCountNum;
+      let currentImagingSubstep = 0;
+
+      for (let i = 0; i < slideCountNum; i++) {
         // Outline phase
         await new Promise((r) => setTimeout(r, 600));
-        sendUpdate(streamingStates.generating.outline(i + 1, slideCount));
+        const outlinePercent = 25 + Math.floor((currentGeneratingSubstep / totalGeneratingSubsteps) * 35);
+        sendUpdate({
+          ...streamingStates.generating.outline(i + 1, slideCountNum),
+          percent: outlinePercent
+        });
+        currentGeneratingSubstep++;
         await new Promise((r) => setTimeout(r, 400));
 
         // Content generation phase
         await new Promise((r) => setTimeout(r, 800));
-        sendUpdate(streamingStates.generating.content(i + 1, slideCount));
+        const contentPercent = 25 + Math.floor((currentGeneratingSubstep / totalGeneratingSubsteps) * 35);
+        sendUpdate({
+          ...streamingStates.generating.content(i + 1, slideCountNum),
+          percent: contentPercent
+        });
+        currentGeneratingSubstep++;
         await new Promise((r) => setTimeout(r, 500));
 
         // Refinement phase
         await new Promise((r) => setTimeout(r, 600));
-        sendUpdate(streamingStates.generating.refining(i + 1, slideCount));
+        const refinePercent = 25 + Math.floor((currentGeneratingSubstep / totalGeneratingSubsteps) * 35);
+        sendUpdate({
+          ...streamingStates.generating.refining(i + 1, slideCountNum),
+          percent: refinePercent
+        });
+        currentGeneratingSubstep++;
         await new Promise((r) => setTimeout(r, 400));
       }
 
@@ -262,7 +281,12 @@ async function generateSlidesHandler(req, res) {
 
       // Enhanced image generation progress
       for (let i = 0; i < slides.length; i++) {
-        sendUpdate(streamingStates.imaging.progress(i + 1, slides.length));
+        const imagingPercent = 60 + Math.floor((currentImagingSubstep / totalImagingSubsteps) * 30);
+        sendUpdate({
+          ...streamingStates.imaging.progress(i + 1, slides.length),
+          percent: imagingPercent
+        });
+        currentImagingSubstep++;
         await new Promise((r) => setTimeout(r, 1000));
 
         try {
