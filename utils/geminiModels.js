@@ -78,23 +78,16 @@ async function safeGenerateContent(modelName, config, tried = new Set()) {
 }
 function createModelWrapper(modelName) {
   return {
-    async generateContent(content, config = {}) {
-      let contentParts;
-      
-      if (typeof content === 'string') {
-        contentParts = [{ text: content }];
-      } else if (Array.isArray(content)) {
-        contentParts = content;
-      } else if (content && typeof content === 'object') {
-        contentParts = [content];
-      } else {
-        throw new Error('Invalid content format provided to generateContent');
+    async generateContent(config) {
+      // Ensure config contains `contents`
+      if (!config.contents) {
+        throw new Error('generateContent config must include contents');
       }
-      
-      return await safeGenerateContent(modelName, contentParts, config.generationConfig || {});
+      return await safeGenerateContent(modelName, config);
     }
   };
 }
+
 // Expose models
 const textGenModel = {
   generateContent: (config) => safeGenerateContent("gemini-2.0-flash", config),
