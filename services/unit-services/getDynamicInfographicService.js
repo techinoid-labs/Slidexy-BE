@@ -66,35 +66,58 @@ const VIEW_MODES = {
  `,
     ],
   },
-  portrait: {
-    aspectRatio: "9:16",
-    style: "aspect-ratio: 9 / 16; width: 100%; max-width: 480px; height: auto;",
-    layoutGuidelines: [
-      "Stack all content vertically for scroll-free fit (scale via transform if needed).",
-      "Perfect for storytelling, educational posts, or social media formats.",
-      "Use vertical timelines, stacked sections, and center-aligned callouts.",
-      `<!-- Portrait Infographic Frame -->
+  portrait:{
+  aspectRatio: "9:16",
+  style: "aspect-ratio: 9 / 16; width: 100%; max-width: 480px;",
+  layoutGuidelines: [
+    "Use an auto-scaling wrapper to ensure all content fits inside 9:16 without cropping or scrolling.",
+    "Outer frame keeps fixed ratio; inner content scales down dynamically using transform.",
+    `<!-- Portrait Infographic Frame -->
 <div class="infographic-frame-portrait">
-  <!-- All infographic content goes here -->
+  <div class="infographic-content">
+    <!-- All infographic content goes here -->
+  </div>
 </div>
 
 <style>
 .infographic-frame-portrait {
   width: 100%;
-  max-width: 720px;           /* narrower max width for vertical layout */
-  aspect-ratio: 9 / 16;       /* keeps a tall vertical shape */
+  max-width: 720px;
+  aspect-ratio: 9 / 16;
   position: relative;
-  overflow: hidden;           /* hides overflow content */
+  overflow: hidden;
   border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+  background: white;
+}
+.infographic-content {
+  transform-origin: top center;
+  transition: transform 0.2s ease;
 }
 </style>
-`,
-    ],
-  },
+
+<script>
+const frame = document.querySelector('.infographic-frame-portrait');
+const content = frame.querySelector('.infographic-content');
+function resizeContent() {
+  const frameHeight = frame.clientHeight;
+  const contentHeight = content.scrollHeight;
+  if (contentHeight > frameHeight) {
+    const scale = frameHeight / contentHeight;
+    content.style.transform = 'scale(' + scale + ')';
+  } else {
+    content.style.transform = 'scale(1)';
+  }
+}
+window.addEventListener('resize', resizeContent);
+window.addEventListener('load', resizeContent);
+</script>
+`
+  ]
+},
 };
 
 const parameterGathering = async (userPrompt) => {
