@@ -72,6 +72,7 @@ const VIEW_MODES = {
   layoutGuidelines: [
     "Use an auto-scaling wrapper to ensure all content fits inside 9:16 without cropping or scrolling.",
     "Outer frame keeps fixed ratio; inner content scales down dynamically using transform.",
+    "dont increate too much content which can cause the imae to cut of in the frame",
     `<!-- Portrait Infographic Frame -->
 <div class="infographic-frame-portrait">
   <div class="infographic-content">
