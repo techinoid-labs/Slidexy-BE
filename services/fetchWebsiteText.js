@@ -6,10 +6,10 @@ async function fetchWebsiteText(url) {
   const browser = await puppeteer.launch({
     headless: true,
     args: [
-          "--no-sandbox",
-    "--disable-setuid-sandbox",
-    "--disable-blink-features=AutomationControlled",
-    "--window-size=1280,800",
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--disable-blink-features=AutomationControlled",
+      "--window-size=1280,800",
     ],
   });
 
@@ -19,7 +19,7 @@ async function fetchWebsiteText(url) {
   await page.setRequestInterception(true);
   page.on("request", (req) => {
     const resourceType = req.resourceType();
-    if (["image", "stylesheet", "font", "media"].includes(resourceType)) {
+    if (["font", "media"].includes(resourceType)) {
       req.abort();
     } else {
       req.continue();
@@ -28,17 +28,17 @@ async function fetchWebsiteText(url) {
 
   // ✅ Visit website
   await page.goto(url, {
-    waitUntil: "domcontentloaded",
+    waitUntil: "networkidle2",
     timeout: 180000,
   });
 
   const pageText = await page.content();
-if (/Just a moment|checking your connection/i.test(pageText)) {
-  console.warn("⚠️ Cloudflare challenge detected — waiting extra time...");
-  await new Promise((r) => setTimeout(r, 8000));
-  await page.reload({ waitUntil: "networkidle2" });
-}
-await page.mouse.move(100, 100);
+  if (/Just a moment|checking your connection/i.test(pageText)) {
+    console.warn("⚠️ Cloudflare challenge detected — waiting extra time...");
+    await new Promise((r) => setTimeout(r, 8000));
+    await page.reload({ waitUntil: "networkidle2" });
+  }
+  await page.mouse.move(100, 100);
 
 
 
@@ -86,6 +86,30 @@ await page.mouse.move(100, 100);
         const text = cleanText(el.innerText);
         if (text) headings.push({ level: tag, text });
       });
+    });
+
+    const images = [];
+    document.querySelectorAll("img").forEach((img) => {
+      const src = img.src || img.getAttribute("data-src") || img.getAttribute("data-lazy-src");
+      const alt = img.alt || "";
+      const width = img.width || img.naturalWidth || null;
+      const height = img.height || img.naturalHeight || null;
+
+      // Filter out tracking pixels, icons, and very small images
+      if (src &&
+        !src.startsWith("data:image/svg") &&
+        !src.includes("pixel") &&
+        !src.includes("tracking") &&
+        (width === null || width > 50) &&
+        (height === null || height > 50)) {
+        images.push({
+          src: src,
+          alt: cleanText(alt),
+          width: width,
+          height: height,
+          title: img.title || ""
+        });
+      }
     });
 
     // ✅ Paragraphs and content blocks
@@ -139,10 +163,153 @@ await page.mouse.move(100, 100);
         url: window.location.href,
       },
       headings,
+      images: images.slice(0, 100),
       paragraphs: [...new Set(paragraphs)],
       tables,
       links: links.slice(0, 50),
       fullText: fullText.slice(0, 100000),
+    };
+  });
+  const stylesheetData = await page.evaluate(() => {
+    const stylesheets = [];
+
+    // External stylesheets
+    document.querySelectorAll('link[rel="stylesheet"]').forEach((link) => {
+      stylesheets.push({
+        type: 'external',
+        href: link.href,
+        media: link.media || 'all'
+      });
+    });
+
+    // Inline style tags
+    const inlineStyles = [];
+    document.querySelectorAll('style').forEach((style, idx) => {
+      const content = style.textContent;
+      if (content && content.trim().length > 0) {
+        inlineStyles.push({
+          index: idx,
+          content: content.slice(0, 10000) // Limit inline style size
+        });
+      }
+    });
+
+    return {
+      external: stylesheets,
+      inline: inlineStyles
+    };
+  });
+
+  // ✅ Extract computed color scheme and aesthetic properties
+  const aestheticData = await page.evaluate(() => {
+    const colors = new Set();
+    const fonts = new Set();
+    const borderRadii = new Set();
+    const shadows = new Set();
+
+    // Helper to check if color is valid
+    const isValidColor = (color) => {
+      return color &&
+        color !== 'rgba(0, 0, 0, 0)' &&
+        color !== 'transparent' &&
+        !color.includes('inherit');
+    };
+
+    // Helper to convert rgb/rgba to hex
+    const rgbToHex = (color) => {
+      if (!color || color === 'transparent') return null;
+
+      const rgb = color.match(/\d+/g);
+      if (!rgb || rgb.length < 3) return color;
+
+      const hex = '#' + rgb.slice(0, 3).map(x => {
+        const h = parseInt(x).toString(16);
+        return h.length === 1 ? '0' + h : h;
+      }).join('');
+
+      return hex;
+    };
+
+    // Sample important elements
+    const importantSelectors = [
+      'body',
+      'header',
+      'nav',
+      'main',
+      'article',
+      'section',
+      'aside',
+      'footer',
+      'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+      'p',
+      'a',
+      'button',
+      '.btn', '.button',
+      '.card',
+      '.hero',
+      '.container'
+    ];
+
+    importantSelectors.forEach(selector => {
+      const elements = document.querySelectorAll(selector);
+      elements.forEach(el => {
+        const computed = window.getComputedStyle(el);
+
+        // Colors
+        if (isValidColor(computed.color)) {
+          colors.add(rgbToHex(computed.color));
+        }
+        if (isValidColor(computed.backgroundColor)) {
+          colors.add(rgbToHex(computed.backgroundColor));
+        }
+        if (isValidColor(computed.borderColor)) {
+          colors.add(rgbToHex(computed.borderColor));
+        }
+
+        // Fonts
+        const fontFamily = computed.fontFamily;
+        if (fontFamily && fontFamily !== 'inherit') {
+          fonts.add(fontFamily.split(',')[0].replace(/['"]/g, '').trim());
+        }
+
+        // Border radius
+        const borderRadius = computed.borderRadius;
+        if (borderRadius && borderRadius !== '0px' && borderRadius !== 'inherit') {
+          borderRadii.add(borderRadius);
+        }
+
+        // Box shadows
+        const boxShadow = computed.boxShadow;
+        if (boxShadow && boxShadow !== 'none') {
+          shadows.add(boxShadow);
+        }
+      });
+    });
+
+    // Get root/body computed styles
+    const bodyStyle = window.getComputedStyle(document.body);
+    const rootStyle = window.getComputedStyle(document.documentElement);
+
+    return {
+      colors: Array.from(colors).filter(c => c).slice(0, 50),
+      fonts: Array.from(fonts).slice(0, 20),
+      borderRadii: Array.from(borderRadii).slice(0, 10),
+      shadows: Array.from(shadows).slice(0, 10),
+      rootColors: {
+        backgroundColor: rgbToHex(bodyStyle.backgroundColor),
+        color: rgbToHex(bodyStyle.color),
+        linkColor: rgbToHex(rootStyle.getPropertyValue('--link-color')) || null,
+        primaryColor: rgbToHex(rootStyle.getPropertyValue('--primary-color')) ||
+          rgbToHex(rootStyle.getPropertyValue('--primary')) || null,
+        secondaryColor: rgbToHex(rootStyle.getPropertyValue('--secondary-color')) ||
+          rgbToHex(rootStyle.getPropertyValue('--secondary')) || null,
+      },
+      typography: {
+        baseFontSize: bodyStyle.fontSize,
+        baseFontFamily: bodyStyle.fontFamily.split(',')[0].replace(/['"]/g, '').trim(),
+        baseLineHeight: bodyStyle.lineHeight,
+        baseFontWeight: bodyStyle.fontWeight,
+      }
     };
   });
 
@@ -160,10 +327,57 @@ await page.mouse.move(100, 100);
   formatted += `DESCRIPTION: ${extractedData.metadata.description}\n`;
   if (extractedData.metadata.image)
     formatted += `IMAGE: ${extractedData.metadata.image}\n`;
+ formatted += `\n=== COLOR SCHEME & AESTHETICS ===\n`;
+  formatted += `Primary Colors:\n`;
+  aestheticData.colors.slice(0, 15).forEach(color => {
+    formatted += `  ${color}\n`;
+  });
+  formatted += `\nTypography:\n`;
+  formatted += `  Base Font: ${aestheticData.typography.baseFontFamily}\n`;
+  formatted += `  Font Size: ${aestheticData.typography.baseFontSize}\n`;
+  formatted += `  Line Height: ${aestheticData.typography.baseLineHeight}\n`;
+  formatted += `\nFont Families Used:\n`;
+  aestheticData.fonts.forEach(font => {
+    formatted += `  ${font}\n`;
+  });
+  if (aestheticData.rootColors.primaryColor) {
+    formatted += `\nBrand Colors:\n`;
+    formatted += `  Primary: ${aestheticData.rootColors.primaryColor}\n`;
+    if (aestheticData.rootColors.secondaryColor) {
+      formatted += `  Secondary: ${aestheticData.rootColors.secondaryColor}\n`;
+    }
+  }
+
+  // ✅ Add stylesheet references
+  formatted += `\n=== STYLESHEETS (${stylesheetData.external.length} external) ===\n`;
+  stylesheetData.external.forEach((sheet, idx) => {
+    formatted += `${idx + 1}. ${sheet.href} (media: ${sheet.media})\n`;
+  });
+  if (stylesheetData.inline.length > 0) {
+    formatted += `\nInline Styles: ${stylesheetData.inline.length} style blocks found\n`;
+  }
+
+
+
   formatted += `\n=== HEADINGS ===\n`;
   extractedData.headings.forEach((h) => {
     formatted += `${h.level.toUpperCase()}: ${h.text}\n`;
   });
+  if (extractedData.images.length > 0) {
+    formatted += `\n=== IMAGES (${extractedData.images.length}) ===\n`;
+    extractedData.images.forEach((img, idx) => {
+      formatted += `Image ${idx + 1}:\n`;
+      formatted += `  SRC: ${img.src}\n`;
+      formatted += `  ALT: ${img.alt || "(no alt text)"}\n`;
+      if (img.width && img.height) {
+        formatted += `  SIZE: ${img.width}x${img.height}\n`;
+      }
+      if (img.title) {
+        formatted += `  TITLE: ${img.title}\n`;
+      }
+      formatted += `\n`;
+    });
+  }
 
   formatted += `\n=== MAIN CONTENT ===\n`;
   extractedData.paragraphs.slice(0, 100).forEach((p) => {
@@ -189,10 +403,16 @@ await page.mouse.move(100, 100);
   return {
     formatted,
     raw: extractedData,
+    stylesheets: stylesheetData,
+    aesthetics: aestheticData,
     stats: {
       headings: extractedData.headings.length,
+      images: extractedData.images.length,
       paragraphs: extractedData.paragraphs.length,
       tables: extractedData.tables.length,
+      stylesheets: stylesheetData.external.length,
+      inlineStyles: stylesheetData.inline.length,
+      colors: aestheticData.colors.length,
       totalChars: formatted.length,
     },
     websiteType,
