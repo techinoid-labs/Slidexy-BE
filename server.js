@@ -18,6 +18,7 @@ const aiChatRoutes = require("./routes/aiChatRoutes");
 const contactRoutes = require("./routes/contact");
 const planRoutes = require("./routes/planRoutes");
 const vidGenImg = require("./routes/vidGenImg");
+const jazzcashRoutes = require("./routes/jazzcashRoutes");
 
 // Controllers
 const {
@@ -84,14 +85,18 @@ app.use(express.json());
 app.use("/api/users", userRoutes);
 app.use("/api/presentations", presentationRoutes);
 app.use("/api/infographic", infographicRoute);
-app.use("/api/dynamicInfographic",dynamicInfographicRoute );
+app.use("/api/dynamicInfographic", dynamicInfographicRoute);
 app.use("/api/blogs", blogRoutes);
-app.use("/api/vidGenImg",vidGenImg);
+app.use("/api/vidGenImg", vidGenImg);
 // --- API Docs ---
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // --- Stripe API ---
 app.use("/api/stripe", stripeRoutes);
+
+// --- JAZZCASH API ---
+
+app.use("/api/jazzcash", jazzcashRoutes);
 
 // AI CHAT
 app.use("/api/chat", aiChatRoutes);

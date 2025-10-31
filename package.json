@@ -24,6 +24,7 @@
     "cheerio": "^1.1.0",
     "chroma-js": "^3.1.2",
     "cors": "^2.8.5",
+    "dayjs": "^1.11.19",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "express-validator": "^7.2.1",
