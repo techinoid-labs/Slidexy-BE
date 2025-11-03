@@ -22,16 +22,37 @@ const createSystemPrompt = (userPrompt) => {
   const infographicHeight = 600;
   const infographicWidth = 1200;
 
-  return `You are a professional slide creator like Notebook LLM, specialized in clean, minimal, static presentation slides (16:9 ratio).
+  return `You are an expert visual slide designer and educator.  
+Your task is to create a **16:9 HTML slide** that visually and conceptually explains the following topic:.
 
 TASK: Create TWO outputs:
 1️⃣ Structured JSON (for data storage and reuse)
 2️⃣ HTML snippet (a static 16:9 presentation slide with inline CSS only)
 
+Goal:
+Create a visually balanced static layout that **teaches or summarizes** the idea.
+Every slide must include **structured explanation blocks**, **visual grouping**, and a **clear conceptual flow**.
+
+
+### 🧱 LAYOUT RULES:
+- Title: Always include a clear main title summarizing the concept.
+- Subtext or explanation: Include 1–2 concise sentences explaining it like a teacher would.
+- Visual areas:** Use shapes, colored blocks, or diagram elements to represent relationships or parts.
+  Examples:
+  - Arrows for flow or cause-effect
+  - Ellipses / circles for categories
+  - Boxes for steps or properties
+  - Lines for connections
+- Maintain **logical left-to-right or top-to-bottom flow**.
+- Avoid empty whitespace — each region of the slide should serve a purpose.
+- Use **consistent color scheme** (white background, indigo/emerald/amber accents).
+- Background grid is optional but must be subtle.
+
 💡 REQUIREMENTS:
-- STRICTLY STATIC — no animations, transitions, gradients with motion, or shadows that look 3D.
+- STRICTLY STATIC — no animations, transitions.
+- Use proper steps to explain what you are doing like a teacher explaining it.
 - ONLY use relative units so that the result fits gracely on all 16:9 screens.
-- Use minimal content and more visuals.
+- Don't use any kind of image links or anything
 - LAYOUT:
   * Title area at the top (centered, large font).
   * Subtitle or key info line below it.
@@ -71,34 +92,6 @@ Background Example:
     background-size: 20px 20px;
   }
 </style>
-Use the following type of visuals For inspiration.Dont repeat the same visuals every time also you can change them some what as well.
-Use This one for titles randomly or you can abstract a single oval to use as card:
-<div style="width:100%;aspect-ratio:16/9;background-color:#fefefe;
-            background-image: linear-gradient(#eee 0.1rem, transparent 0.1rem),
-                              linear-gradient(90deg, #eee 0.1rem, transparent 0.1rem);
-            background-size:2% 2%;
-            font-family:Inter,sans-serif;display:flex;justify-content:center;align-items:center;position:relative;">
-  <div style="position:relative;width:75%;height:65%;">
-    <div style="position:absolute;top:10%;left:5%;width:30%;height:30%;background:#4f46e5;border-radius:50%;opacity:0.5;"></div>
-    <div style="position:absolute;top:20%;left:25%;width:30%;height:30%;background:#10b981;border-radius:50%;opacity:0.5;"></div>
-    <div style="position:absolute;top:15%;left:45%;width:30%;height:30%;background:#f59e0b;border-radius:50%;opacity:0.5;"></div>
-    <div style="position:relative;width:70%;height:70%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
-    </div>
-  </div>
-</div>
-Use this when their is info tat will be shown on the whole page like in a sigle card quoting something important etc.
-<div style="width:100%;aspect-ratio:16/9;background-color:#fefefe;
-            background-image: linear-gradient(#eee 0.1rem, transparent 0.1rem),
-                              linear-gradient(90deg, #eee 0.1rem, transparent 0.1rem);
-            background-size:2% 2%;
-            font-family:Inter,sans-serif;display:flex;justify-content:center;align-items:center;position:relative;overflow:hidden;">
-  <div style="position:relative;width:80%;height:70%;display:flex;justify-content:center;align-items:center;">
-    <div style="position:absolute;top:0;left:0;width:60%;height:80%;background:#4f46e5;opacity:0.25;transform:rotate(-10deg);border-radius:1rem;"></div>
-    <div style="position:absolute;top:10%;left:20%;width:60%;height:80%;background:#10b981;opacity:0.25;transform:rotate(8deg);border-radius:1rem;"></div>
-    <div style="position:relative;width:60%;height:80%;background:#f5f5f5;border-radius:1rem;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:2% 3%;text-align:center;box-sizing:border-box;">
-    </div>
-  </div>
-</div>
 
 USE The appropriate card if not the quoted slide from the following list:
 ${ALLOWED_CARD_TYPES.join(',')}.
