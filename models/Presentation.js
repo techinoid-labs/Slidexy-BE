@@ -1,45 +1,58 @@
 const mongoose = require("mongoose");
 const crypto = require("crypto");
 
-const konvaComponentSchema = new mongoose.Schema(
+const textElementSchema = new mongoose.Schema(
   {
     id: { type: String, default: () => crypto.randomUUID() },
-    konva_component: { type: String, required: true },
     element_id: String,
-    element_type: String,
-    type: String,
-    shape_id: String,
-    properties: { type: mongoose.Schema.Types.Mixed, required: true },
-    text: String,
-    useThemeColor: Boolean,
+    element_type: { type: String, enum: ['bullet_point', 'quote', 'author', 'context', 'stat', 'description', 'left_bullet', 'right_bullet', 'cta'] },
+    text: { type: String, required: true },
   },
   { _id: false }
 );
 
-const blockSchema = new mongoose.Schema(
+const imagePlaceholderSchema = new mongoose.Schema(
   {
-    elements: [konvaComponentSchema],
-    width: Number,
-    height: Number,
+    x: { type: Number, default: 520 },
+    y: { type: Number, default: 40 },
+    width: { type: Number, default: 400 },
+    height: { type: Number, default: 460 }
   },
   { _id: false }
 );
+
 const slideSchema = new mongoose.Schema(
   {
     slide_id: { type: String, required: true, default: () => `slide-${crypto.randomUUID()}` },
-    layout_type: { type: String, default: 'title-bullets' },
+    layout_type: { type: String, default: 'content-right-image' },
+    content_type: { type: String, default: 'general' }, // e.g., 'bullet-heavy', 'quote'
     visual_suggestion: { type: String, default: '' },
     knowledge: { type: mongoose.Schema.Types.Mixed, default: {} },
-    art_style: { type: String, default: 'abstract surrealism' }, 
+    art_style: { type: String, default: 'modern illustration with characters' }, 
     art_palette: [{ type: String }], 
-    slide_title: { type: konvaComponentSchema, required: true },
-    elements: [konvaComponentSchema],
+    slide_title: { 
+      type: new mongoose.Schema({
+        text: { type: String, required: true }
+      }), 
+      required: true 
+    },
+    subtitle: { 
+      type: new mongoose.Schema({
+        text: String
+      })
+    },
+    elements: [textElementSchema], // Text-only: [{ element_type: "bullet_point", text: "..." }]
     image_url: { type: String, default: null },
     image_caption: { type: String, default: "" },
-    titleBlock: blockSchema,
-    textBlock: blockSchema,
-    imageBlock: blockSchema,
-    _initialState: { type: mongoose.Schema.Types.Mixed },
+    image_placeholder: { type: imagePlaceholderSchema, default: {} },
+    content_metadata: { 
+      type: mongoose.Schema.Types.Mixed, 
+      default: { bullet_count: 0, has_quote: false, has_data: false } 
+    },
+    slide_number: { type: Number, required: true },
+    total_slides: { type: Number, required: true },
+    created_at: { type: Date, default: Date.now },
+    updated_at: { type: Date, default: Date.now }
   },
   { _id: false }
 );
@@ -53,7 +66,12 @@ const presentationSchema = new mongoose.Schema({
   topic: { type: String, required: true },
   meta: { type: mongoose.Schema.Types.Mixed, default: {} },
   slides: [slideSchema],
+  slide_count: { type: Number, required: true },
+  template_used: { type: String, default: "text-only" },
+  art_style: { type: String, default: "modern illustration with characters" },
+  art_palette: [{ type: String }],
   createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
   user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 });
 

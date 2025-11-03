@@ -18,6 +18,7 @@ const aiChatRoutes = require("./routes/aiChatRoutes");
 const contactRoutes = require("./routes/contact");
 const planRoutes = require("./routes/planRoutes");
 const vidGenImg = require("./routes/vidGenImg");
+const templateRoutes = require("./routes/templateRoutes");
 
 // Controllers
 const {
@@ -101,6 +102,9 @@ app.use("/api/chat", aiChatRoutes);
 app.use("/api/contact", contactRoutes);
 // Plans
 app.use("/api/plans", planRoutes);
+
+// Template Routes
+app.use("/api/templates", templateRoutes);
 // --- Slide/Presentation APIs ---
 app.post("/generate-slides", validate, generateSlidesHandler);
 app.post(

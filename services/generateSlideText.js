@@ -1,65 +1,164 @@
 const { textGenModel } = require("../utils/geminiModels");
-const { SLIDE_TEMPLATES, selectTemplate } = require("../utils/slideTemplate");
 const { v4: uuidv4 } = require("uuid");
 
-async function generateSlideText(rawText, meta = {}, slideCount = 3) {
-  let safeRawText = typeof rawText === "string"
-    ? rawText
+// Slide type definitions with content requirements
+const SLIDE_TYPE_DEFINITIONS = {
+  3: {
+    slides: [
+      { type: "cover-hero", description: "Compelling title and subtitle that grabs attention" },
+      { type: "content-right-image", description: "Most important key points and insights" },
+      { type: "conclusion", description: "Powerful summary and call to action" }
+    ],
+    contentFocus: "Concise and impactful - perfect for quick presentations"
+  },
+  5: {
+    slides: [
+      { type: "cover-hero", description: "Engaging title and compelling subtitle" },
+      { type: "content-right-image", description: "Primary problem or opportunity" },
+      { type: "content-left-image", description: "Solution approach and methodology" },
+      { type: "content-split", description: "Key benefits and differentiators" },
+      { type: "call-to-action", description: "Clear next steps and action items" }
+    ],
+    contentFocus: "Problem-solution narrative with clear progression"
+  },
+  7: {
+    slides: [
+      { type: "cover-hero", description: "Professional title and descriptive subtitle" },
+      { type: "content-right-image", description: "Executive summary and context" },
+      { type: "content-left-image", description: "Detailed analysis and findings" },
+      { type: "content-split", description: "Comparative advantages and data" },
+      { type: "quote-slide", description: "Expert testimony or customer feedback" },
+      { type: "infographic-bullets", description: "Key metrics and performance indicators" },
+      { type: "conclusion", description: "Comprehensive summary and recommendations" }
+    ],
+    contentFocus: "Comprehensive analysis with supporting evidence"
+  },
+  10: {
+    slides: [
+      { type: "cover-hero", description: "Strategic title and overview subtitle" },
+      { type: "content-right-image", description: "Market overview and opportunity" },
+      { type: "content-left-image", description: "Competitive landscape analysis" },
+      { type: "content-split", description: "Core capabilities and strengths - MUST include 4-6 bullets for left/right split" },
+      { type: "quote-slide", description: "Leadership vision or customer success" },
+      { type: "infographic-bullets", description: "Performance metrics and growth trends - MUST include 3-4 bullets in 'Value - explanation' format" },
+      { type: "content-right-image", description: "Implementation roadmap" },
+      { type: "content-left-image", description: "Risk assessment and mitigation" },
+      { type: "content-split", description: "Expected outcomes and ROI - MUST include 4-6 bullets for left/right split" },
+      { type: "call-to-action", description: "Strategic next steps and timeline" }
+    ],
+    contentFocus: "Strategic deep dive with comprehensive coverage"
+  }
+};
+
+async function generateSlideText(rawText, meta = {}, slideCount = 5) {
+  let safeRawText = typeof rawText === "string" 
+    ? rawText 
     : JSON.stringify(rawText, null, 2);
 
   const { goal, tone, audience, length } = meta || {};
-
-  // Build AI prompt based on templates
-  const templatesInfo = buildTemplatePrompt(slideCount);
-
+  
+  // Get slide structure based on count
+  const slideStructure = SLIDE_TYPE_DEFINITIONS[slideCount] || SLIDE_TYPE_DEFINITIONS[5];
+  
   const prompt = `
-You are a professional presentation designer. Create ${slideCount} slides with SPECIFIC content following these templates.
+You are a world-class presentation content strategist. Create EXACTLY ${slideCount} slides with precise textual data for frontend layout mapping.
+
+SLIDE STRUCTURE FOR ${slideCount}-SLIDE PRESENTATION:
+${slideStructure.slides.map((slide, index) => 
+  `Slide ${index + 1}: ${slide.type.toUpperCase()} - ${slide.description}`
+).join('\n')}
 
 CONTENT SOURCE:
-\`\`\`
-${safeRawText}
-\`\`\`
+"""
+${safeRawText.slice(0, 4000)}"
+"""
 
-PREFERENCES:
-${goal ? `- Goal: ${goal}` : ""}
-${tone ? `- Tone: ${tone}` : ""}
-${audience ? `- Audience: ${audience}` : ""}
-${length ? `- Length: ${length}` : ""}
+PRESENTATION CONTEXT:
+${goal ? `• Primary Goal: ${goal}` : '• Goal: Inform and persuade'}
+${tone ? `• Tone: ${tone}` : '• Tone: Professional and engaging'}
+${audience ? `• Audience: ${audience}` : '• Audience: Business professionals'}
+${length ? `• Length: ${length}` : '• Length: Standard presentation'}
 
-TEMPLATE STRUCTURE:
-${templatesInfo}
+STRICT CONTENT RULES (for frontend mapping):
+1. TITLES: 3-6 words, compelling and action-oriented
+2. COVER-HERO: title + subtitle (1 sentence, no bullets)
+3. BULLET SLIDES (content-right-image, content-left-image, content-split, infographic-bullets): EXACTLY 3-4 bullets (6-12 words each, complete thoughts). For content-split: ALWAYS include EXACTLY 4-6 bullets (to be split evenly in layout). For infographic-bullets: ALWAYS include EXACTLY 3-4 bullets in format "Value - 1-sentence explanation" (e.g., "25% - Growth in key metric over last year").
+4. QUOTE-SLIDE: title, quote (20-50 words full sentence), author, context (1 sentence)
+5. CALL-TO-ACTION/CONCLUSION: title, 1-2 action bullets, description (1 sentence)
+6. Maintain consistent terminology and narrative flow. CRITICAL: Ensure EVERY bullet slide (including content-split and infographic-bullets) has the required bullets - no empty lists.
 
-CRITICAL RULES:
-1. Slide 1 MUST be a cover slide (title + subtitle ONLY, no bullets)
-2. Content slides should have the specified number of bullets per slide
-3. ${slideCount === 5 ? "Last slide MUST be a CTA slide" : "Last slide is a conclusion"}
-4. Each bullet must be 8-12 words
-5. Titles must be 6-8 words max
-6. Use professional language, avoid jargon
+OUTPUT FORMAT - Return ONLY valid JSON array with exactly ${slideCount} objects. Use these exact structures:
 
-OUTPUT FORMAT - Return ONLY valid JSON array:
-[
-  {
-    "slide_number": 1,
-    "template_type": "cover-hero",
-    "title": "Your Compelling Title",
-    "subtitle": "A brief subtitle that explains the presentation",
-    "content": []
-  },
-  {
-    "slide_number": 2,
-    "template_type": "content-right-image",
-    "title": "First Key Point",
-    "content": [
-      "First important bullet point here",
-      "Second supporting detail",
-      "Third compelling fact",
-      "Fourth insight if needed"
-    ]
-  }
-]
+For cover-hero:
+{
+  "slide_number": 1,
+  "layout_type": "cover-hero",
+  "title": "Strategic Title Here",
+  "subtitle": "Compelling subtitle that sets context"
+}
 
-Generate exactly ${slideCount} slides now:`;
+For content-right-image/content-left-image:
+{
+  "slide_number": 2,
+  "layout_type": "content-right-image",
+  "title": "Key Insight Heading",
+  "bullets": [
+    "First impactful bullet point with specific detail",
+    "Second supporting point with clear value",
+    "Third compelling insight or finding",
+    "Fourth actionable observation when needed"
+  ]
+}
+
+For content-split:
+{
+  "slide_number": 4,
+  "layout_type": "content-split",
+  "title": "Core Capabilities",
+  "bullets": [
+    "Strength 1 detail (6-12 words)",
+    "Strength 2 detail (6-12 words)",
+    "Strength 3 detail (6-12 words)",
+    "Strength 4 detail (6-12 words)",
+    "Strength 5 detail (if using 5)"
+  ]
+}
+
+For quote-slide:
+{
+  "slide_number": 5,
+  "layout_type": "quote-slide",
+  "title": "Expert Perspective",
+  "quote": "The compelling quote text goes here in full sentences (20-50 words)",
+  "author": "Source or attribution",
+  "context": "Relevance to the presentation topic (1 sentence)"
+}
+
+For infographic-bullets:
+{
+  "slide_number": 6,
+  "layout_type": "infographic-bullets",
+  "title": "Key Metrics",
+  "bullets": [
+    "25% - Explanation of this metric (1 sentence)",
+    "150K - Context for the number (1 sentence)",
+    "95% - Supporting detail (1 sentence)"
+  ]
+}
+
+For call-to-action:
+{
+  "slide_number": 10,
+  "layout_type": "call-to-action",
+  "title": "Next Steps",
+  "bullets": [
+    "Action item 1 (concise)",
+    "Action item 2 (concise)"
+  ],
+  "description": "Brief overview of implementation (1 sentence)"
+}
+
+Generate exactly ${slideCount} slides that tell a compelling story:`;
 
   try {
     const result = await textGenModel.generateContent(prompt);
@@ -71,286 +170,321 @@ Generate exactly ${slideCount} slides now:`;
     const lastBracket = cleaned.lastIndexOf("]");
     
     if (firstBracket === -1 || lastBracket === -1) {
-      throw new Error("No JSON array found in response");
+      throw new Error("No JSON array found in AI response");
     }
     
     const jsonString = cleaned.slice(firstBracket, lastBracket + 1);
-    const aiSlides = JSON.parse(jsonString);
+    let aiSlides = JSON.parse(jsonString);
 
-    // Transform AI output into Konva-ready format
+    // Validate and fix counts - enhanced for content-split and infographic-bullets
+    aiSlides = aiSlides.map(slide => {
+      if (slide.layout_type === "cover-hero" && !slide.subtitle) {
+        slide.subtitle = "Professional presentation overview based on your content.";
+      }
+      if (["content-right-image", "content-left-image", "content-split", "infographic-bullets"].includes(slide.layout_type)) {
+        const minBullets = slide.layout_type === "content-split" ? 4 : 3;
+        const maxBullets = slide.layout_type === "content-split" ? 6 : 4;
+        if (!slide.bullets || slide.bullets.length < minBullets) {
+          // Generate fallback bullets based on title/theme
+          const fallbackBullets = generateFallbackBullets(slide.title, minBullets, slide.layout_type);
+          slide.bullets = [...(slide.bullets || []), ...fallbackBullets].slice(0, maxBullets);
+        } else {
+          slide.bullets = slide.bullets.slice(0, maxBullets);
+        }
+      }
+      if (slide.layout_type === "quote-slide" && !slide.quote) {
+        slide.quote = "A powerful insight from industry experts.";
+        slide.author = "Expert Name";
+        slide.context = "This reinforces the key theme of the presentation.";
+      }
+      if (["call-to-action", "conclusion"].includes(slide.layout_type) && slide.bullets) {
+        slide.bullets = slide.bullets.slice(0, 2);
+        if (!slide.description) slide.description = "Summary of expected outcomes and next actions.";
+      }
+      return slide;
+    });
+
+    // Transform AI output into text-only format with layout variants prep
     const slides = aiSlides.map((aiSlide, index) => {
-      return transformToKonvaSlide(aiSlide, index, slideCount);
+      return transformToTextOnlySlide(aiSlide, index, slideCount);
     });
 
     return slides;
 
   } catch (err) {
     console.error("Error generating slides:", err);
-    // Return fallback slides
-    return generateFallbackSlides(slideCount, safeRawText);
+    // Return intelligent fallback slides
+    return generateIntelligentFallbackSlides(slideCount, safeRawText);
   }
 }
 
-function buildTemplatePrompt(slideCount) {
-  let info = "Slide 1: Cover (cover-hero) - Title + Subtitle only\n";
-  
-  for (let i = 2; i < slideCount; i++) {
-    const template = selectTemplate(i - 1, slideCount);
-    const bulletCount = template.name === "Split Content" ? "6" : "4";
-    info += `Slide ${i}: Content (${template.name}) - Title + ${bulletCount} bullets\n`;
+function generateFallbackBullets(title, count, layoutType) {
+  const basePhrases = [
+    "Key advantage in competitive market positioning.",
+    "Proven methodology for sustainable growth.",
+    "Data-driven insights supporting decisions.",
+    "Strategic partnerships enhancing capabilities.",
+    "Innovative solutions addressing challenges.",
+    "Measurable outcomes from implementation."
+  ];
+  const fallback = [];
+  for (let i = 0; i < count; i++) {
+    let bullet = basePhrases[i % basePhrases.length];
+    if (layoutType === "infographic-bullets") {
+      bullet = `${Math.floor(Math.random() * 100 + 10)}% - ${bullet.toLowerCase().replace('.', '')}`;
+    }
+    fallback.push(bullet);
   }
-  
-  if (slideCount === 5) {
-    info += `Slide ${slideCount}: CTA (call-to-action) - Title + Description + CTA text\n`;
-  } else {
-    info += `Slide ${slideCount}: Conclusion - Title + 2-3 key takeaways\n`;
-  }
-  
-  return info;
+  return fallback;
 }
 
-function transformToKonvaSlide(aiSlide, index, totalSlides) {
-  const template = selectTemplate(index, totalSlides, aiSlide.template_type);
+function transformToTextOnlySlide(aiSlide, index, totalSlides) {
+  const slideStructure = SLIDE_TYPE_DEFINITIONS[totalSlides];
+  const slideType = slideStructure?.slides[index]?.type || aiSlide.layout_type || "content-right-image";
+  
   const slideId = `slide-${uuidv4()}`;
-
+  
   // Base slide structure
   const slide = {
     slide_id: slideId,
-    layout_type: aiSlide.template_type || template.name,
-    visual_suggestion: generateVisualSuggestion(aiSlide),
+    layout_type: slideType,
+    visual_suggestion: generateVisualSuggestion(aiSlide, slideType),
     knowledge: {
-      theme: aiSlide.title || "General",
+      theme: aiSlide.title || "Presentation",
       slideNumber: index + 1,
-      totalSlides: totalSlides
+      totalSlides: totalSlides,
+      contentType: getContentType(slideType)
     },
     art_style: "modern illustration with characters",
-    art_palette: ["#6c5ce7", "#00b894", "#fdcb6e", "#e17055", "#74b9ff"],
-    elements: []
+    art_palette: generateColorPalette(aiSlide.title),
+    elements: [],
+    image_url: null,
+    image_caption: "",
+    image_placeholder: { x: 520, y: 40, width: 400, height: 460 },
+    content_metadata: {
+      title: aiSlide.title || "",
+      subtitle: aiSlide.subtitle || "",
+      bullet_count: 0, // Will be updated later
+      has_quote: !!aiSlide.quote,
+      has_data: slideType === "infographic-bullets"
+    },
+    slide_number: index + 1,
+    total_slides: totalSlides,
+    created_at: { $date: { $numberLong: Date.now().toString() } },
+    updated_at: { $date: { $numberLong: Date.now().toString() } }
   };
 
-  // Add title (REQUIRED for all slides)
-  const titleConfig = template.structure.title;
-  slide.slide_title = {
-    konva_component: "Konva.Text",
-    element_id: uuidv4(),
-    element_type: "text",
-    text: aiSlide.title || "Untitled",
-    properties: {
-      ...titleConfig.konva,
-      id: `title-${slideId}`
-    }
+  // Add title (required for all slides)
+  slide.slide_title = { 
+    text: aiSlide.title || getDefaultTitle(index, slideType),
+    _id: { $oid: uuidv4().replace(/-/g, '').slice(0, 24) }
   };
 
-  // Add subtitle (for cover slides)
-  if (template.structure.subtitle && aiSlide.subtitle) {
-    slide.subtitle = {
-      konva_component: "Konva.Text",
-      element_id: uuidv4(),
-      element_type: "text",
+  // Handle subtitle for cover-hero
+  if (slideType === "cover-hero" && aiSlide.subtitle) {
+    slide.subtitle = { 
       text: aiSlide.subtitle,
-      properties: {
-        ...template.structure.subtitle.konva,
-        id: `subtitle-${slideId}`
-      }
+      _id: { $oid: uuidv4().replace(/-/g, '').slice(0, 24) }
     };
   }
 
-  // Add content bullets
-  if (template.structure.bullets && aiSlide.content?.length > 0) {
-    const bulletConfig = template.structure.bullets.konva;
-    
-    aiSlide.content.forEach((bullet, i) => {
-      slide.elements.push({
-        konva_component: "Konva.Text",
-        element_id: uuidv4(),
-        element_type: "bullet_point",
-        text: `• ${bullet}`,
-        properties: {
-          x: bulletConfig.startX,
-          y: bulletConfig.startY + (i * bulletConfig.spacing),
-          width: bulletConfig.width,
-          fontSize: bulletConfig.fontSize,
-          fill: bulletConfig.fill,
-          lineHeight: bulletConfig.lineHeight,
-          id: `bullet-${i}-${slideId}`
-        }
-      });
-    });
-  }
+  // Handle different slide types for elements
+  switch(slideType) {
+    case "cover-hero":
+      // No elements for cover
+      break;
 
-  // Add split bullets (for split content layout)
-  if (template.structure.leftBullets && template.structure.rightBullets) {
-    const leftBullets = aiSlide.content?.slice(0, Math.ceil(aiSlide.content.length / 2)) || [];
-    const rightBullets = aiSlide.content?.slice(Math.ceil(aiSlide.content.length / 2)) || [];
-
-    const leftConfig = template.structure.leftBullets.konva;
-    leftBullets.forEach((bullet, i) => {
-      slide.elements.push({
-        konva_component: "Konva.Text",
-        element_id: uuidv4(),
-        element_type: "bullet_point",
-        text: `• ${bullet}`,
-        properties: {
-          x: leftConfig.startX,
-          y: leftConfig.startY + (i * leftConfig.spacing),
-          width: leftConfig.width,
-          fontSize: leftConfig.fontSize,
-          fill: leftConfig.fill,
-          lineHeight: leftConfig.lineHeight,
-          id: `left-bullet-${i}-${slideId}`
-        }
-      });
-    });
-
-    const rightConfig = template.structure.rightBullets.konva;
-    rightBullets.forEach((bullet, i) => {
-      slide.elements.push({
-        konva_component: "Konva.Text",
-        element_id: uuidv4(),
-        element_type: "bullet_point",
-        text: `• ${bullet}`,
-        properties: {
-          x: rightConfig.startX,
-          y: rightConfig.startY + (i * rightConfig.spacing),
-          width: rightConfig.width,
-          fontSize: rightConfig.fontSize,
-          fill: rightConfig.fill,
-          lineHeight: rightConfig.lineHeight,
-          id: `right-bullet-${i}-${slideId}`
-        }
-      });
-    });
-  }
-
-  // Add CTA button (for CTA slides)
-  if (template.structure.cta && aiSlide.cta) {
-    slide.elements.push({
-      konva_component: "Konva.Label",
-      element_id: uuidv4(),
-      element_type: "cta_button",
-      text: aiSlide.cta,
-      properties: {
-        ...template.structure.cta.konva,
-        id: `cta-${slideId}`
+    case "quote-slide":
+      if (aiSlide.quote) {
+        slide.elements.push({
+          element_type: "quote",
+          text: aiSlide.quote,
+          id: uuidv4()
+        });
       }
-    });
-  }
-
-  // Add description (for CTA and quote slides)
-  if (template.structure.description && aiSlide.description) {
-    slide.elements.push({
-      konva_component: "Konva.Text",
-      element_id: uuidv4(),
-      element_type: "text",
-      text: aiSlide.description,
-      properties: {
-        ...template.structure.description.konva,
-        id: `description-${slideId}`
+      if (aiSlide.author) {
+        slide.elements.push({
+          element_type: "author",
+          text: aiSlide.author,
+          id: uuidv4()
+        });
       }
-    });
+      if (aiSlide.context) {
+        slide.elements.push({
+          element_type: "context",
+          text: aiSlide.context,
+          id: uuidv4()
+        });
+      }
+      break;
+
+    case "call-to-action":
+      if (aiSlide.bullets) {
+        aiSlide.bullets.forEach((bullet) => {
+          slide.elements.push({
+            element_type: "bullet_point",
+            text: bullet,
+            id: uuidv4()
+          });
+        });
+      }
+      if (aiSlide.description) {
+        slide.elements.push({
+          element_type: "text",
+          text: aiSlide.description,
+          id: uuidv4()
+        });
+      }
+      break;
+
+    case "infographic-bullets":
+      if (aiSlide.bullets) {
+        aiSlide.bullets.forEach((bullet) => {
+          slide.elements.push({
+            element_type: "bullet_point",
+            text: bullet,
+            id: uuidv4()
+          });
+        });
+      }
+      break;
+
+    default: // Content slides including content-split
+      if (aiSlide.bullets && aiSlide.bullets.length > 0) {
+        aiSlide.bullets.forEach((bullet) => {
+          slide.elements.push({
+            element_type: "bullet_point",
+            text: bullet,
+            id: uuidv4()
+          });
+        });
+      }
   }
 
-  // Placeholder for image (will be added by generateImage)
-  slide.image_placeholder = {
-    position: template.structure.image?.position || "right",
-    konva: template.structure.image?.konva || {
-      x: 520,
-      y: 40,
-      width: 400,
-      height: 460
-    }
-  };
+  // Update content_metadata bullet_count after adding elements
+  slide.content_metadata.bullet_count = slide.elements.filter(el => el.element_type === "bullet_point").length;
 
   return slide;
 }
 
-function generateVisualSuggestion(aiSlide) {
+function generateVisualSuggestion(aiSlide, slideType) {
   const title = aiSlide.title?.toLowerCase() || "";
+  const content = aiSlide.bullets?.join(' ') || "";
   
-  if (title.includes("team") || title.includes("collaboration")) {
-    return "team collaboration scene with diverse professionals";
-  } else if (title.includes("data") || title.includes("analytics")) {
-    return "data analyst with charts and dashboards";
-  } else if (title.includes("growth") || title.includes("success")) {
-    return "upward trending graph with business people celebrating";
-  } else if (title.includes("strategy") || title.includes("planning")) {
-    return "strategic planning session with whiteboard";
+  // Enhanced visual suggestions based on content and slide type
+  const suggestions = {
+    "cover-hero": {
+      "team": "diverse team collaboration in modern workspace",
+      "data": "data visualization with analytics dashboard",
+      "growth": "upward trending graph with success imagery",
+      "strategy": "strategic planning session with whiteboard",
+      "innovation": "creative brainstorming with technology elements",
+      "default": "professional business setting with modern design"
+    },
+    "content-right-image": {
+      "analysis": "data analysis scene with charts and graphs",
+      "process": "workflow visualization with step-by-step elements",
+      "technology": "modern tech environment with devices",
+      "default": "relevant business context supporting the content"
+    },
+    "content-left-image": {
+      "analysis": "professional analysis workspace with reports",
+      "risk": "balanced scale representing risk assessment",
+      "default": "professional business imagery relevant to content"
+    },
+    "content-split": {
+      "default": "split-view comparison with balanced elements"
+    },
+    "quote-slide": {
+      "default": "inspiring background that complements the quote tone"
+    },
+    "infographic-bullets": {
+      "default": "data-centric visualization with metrics display"
+    },
+    "call-to-action": {
+      "default": "motivational call to action with forward momentum"
+    },
+    "default": "professional business imagery relevant to content"
+  };
+
+  const slideSuggestions = suggestions[slideType] || suggestions.default;
+  
+  for (const [keyword, suggestion] of Object.entries(slideSuggestions)) {
+    if (keyword !== "default" && (title.includes(keyword) || content.includes(keyword))) {
+      return suggestion;
+    }
+  }
+  
+  return typeof slideSuggestions === 'string' ? slideSuggestions : (slideSuggestions.default || "professional business imagery relevant to content");
+}
+
+function generateColorPalette(title) {
+  const titleLower = title.toLowerCase();
+  
+  if (titleLower.includes('tech') || titleLower.includes('digital')) {
+    return ["#667eea", "#764ba2", "#f093fb", "#4facfe"];
+  } else if (titleLower.includes('health') || titleLower.includes('wellness')) {
+    return ["#06d6a0", "#118ab2", "#073b4c", "#ef476f"];
+  } else if (titleLower.includes('finance') || titleLower.includes('money')) {
+    return ["#264653", "#2a9d8f", "#e76f51", "#f4a261"];
+  } else if (titleLower.includes('creative') || titleLower.includes('design')) {
+    return ["#ff006e", "#8338ec", "#3a86ff", "#fb5607"];
+  } else if (titleLower.includes('environment') || titleLower.includes('sustainability')) {
+    return ["#06d6a0", "#4ecdc4", "#45b7d1", "#ffa07a"];
   } else {
-    return "professional business scene with modern setting";
+    return ["#6c5ce7", "#00b894", "#fdcb6e", "#e17055", "#74b9ff"];
   }
 }
 
-function generateFallbackSlides(slideCount, rawText) {
+function getContentType(slideType) {
+  const types = {
+    "cover-hero": "introduction",
+    "content-right-image": "key points",
+    "content-left-image": "supporting details", 
+    "content-split": "comparison",
+    "quote-slide": "testimonial",
+    "infographic-bullets": "metrics",
+    "call-to-action": "summary",
+    "conclusion": "summary"
+  };
+  return types[slideType] || "content";
+}
+
+function getDefaultTitle(index, slideType) {
+  const defaults = {
+    "cover-hero": "Presentation Title",
+    "content-right-image": `Key Insight ${index}`,
+    "content-left-image": `Important Finding ${index}`,
+    "content-split": `Comparative Analysis`,
+    "quote-slide": "Expert Perspective",
+    "infographic-bullets": "Key Metrics",
+    "call-to-action": "Next Steps & Action",
+    "conclusion": "Summary & Takeaways"
+  };
+  return defaults[slideType] || `Slide ${index + 1}`;
+}
+
+function generateIntelligentFallbackSlides(slideCount, rawText) {
+  const slideStructure = SLIDE_TYPE_DEFINITIONS[slideCount] || SLIDE_TYPE_DEFINITIONS[5];
   const fallbackSlides = [];
   
-  // Slide 1: Cover
-  fallbackSlides.push({
-    slide_id: `slide-${uuidv4()}`,
-    layout_type: "cover-hero",
-    slide_title: {
-      konva_component: "Konva.Text",
-      element_id: uuidv4(),
-      element_type: "text",
-      text: "Presentation Title",
-      properties: { x: 60, y: 180, width: 840, fontSize: 64, fontWeight: "bold", fill: "#ffffff" }
-    },
-    subtitle: {
-      konva_component: "Konva.Text",
-      element_id: uuidv4(),
-      element_type: "text",
-      text: "Professional presentation created for you",
-      properties: { x: 60, y: 280, width: 600, fontSize: 24, fill: "#ffffff" }
-    },
-    elements: [],
-    visual_suggestion: "professional business scene"
-  });
+  // Extract key phrases from raw text for more relevant fallbacks
+  const words = rawText.split(/\s+/).slice(0, 50);
+  const keyPhrases = [...new Set(words.filter(word => word.length > 4))].slice(0, 10);
+  
+  for (let i = 0; i < slideCount; i++) {
+    const slideType = slideStructure.slides[i]?.type || "content-right-image";
+    const fallbackData = {
+      title: getDefaultTitle(i, slideType),
+      bullets: i === 0 ? [] : generateFallbackBullets(getDefaultTitle(i, slideType), slideType === "content-split" ? 4 : 3, slideType),
+      ...(slideType === "quote-slide" && { quote: "Fallback insightful quote.", author: "Expert", context: "Relevant context." }),
+      ...(slideType === "call-to-action" && { description: "Fallback action overview." })
+    };
 
-  // Middle slides: Content
-  for (let i = 1; i < slideCount - 1; i++) {
-    fallbackSlides.push({
-      slide_id: `slide-${uuidv4()}`,
-      layout_type: "content-right-image",
-      slide_title: {
-        konva_component: "Konva.Text",
-        element_id: uuidv4(),
-        element_type: "text",
-        text: `Key Point ${i}`,
-        properties: { x: 40, y: 40, width: 440, fontSize: 36, fontWeight: "bold", fill: "#2c3e50" }
-      },
-      elements: [
-        {
-          konva_component: "Konva.Text",
-          element_id: uuidv4(),
-          element_type: "bullet_point",
-          text: "• First important detail",
-          properties: { x: 40, y: 120, width: 420, fontSize: 18, fill: "#34495e" }
-        },
-        {
-          konva_component: "Konva.Text",
-          element_id: uuidv4(),
-          element_type: "bullet_point",
-          text: "• Second supporting point",
-          properties: { x: 40, y: 160, width: 420, fontSize: 18, fill: "#34495e" }
-        }
-      ],
-      visual_suggestion: "professional team working together"
-    });
+    const slide = transformToTextOnlySlide(fallbackData, i, slideCount);
+
+    fallbackSlides.push(slide);
   }
-
-  // Last slide
-  fallbackSlides.push({
-    slide_id: `slide-${uuidv4()}`,
-    layout_type: slideCount === 5 ? "call-to-action" : "content-right-image",
-    slide_title: {
-      konva_component: "Konva.Text",
-      element_id: uuidv4(),
-      element_type: "text",
-      text: slideCount === 5 ? "Take Action Today" : "Conclusion",
-      properties: { x: 60, y: 160, width: 840, fontSize: 48, fontWeight: "bold", fill: "#2c3e50" }
-    },
-    elements: [],
-    visual_suggestion: "call to action scene"
-  });
 
   return fallbackSlides;
 }

@@ -1,30 +1,27 @@
+const { EJSON } = require("bson");
+// controllers/presentationController.js
 const Presentation = require("../models/Presentation");
 const User = require("../models/User");
 const mongoose = require("mongoose");
 
-// Get a presentation by MongoDB ObjectId (_id)
+// Get a presentation by presentation_id (UUID)
 const getPresentationHandler = async (req, res) => {
   try {
     const { presentation_id } = req.params;
     const cleanId = presentation_id.trim();
 
-    console.log("Fetching presentation with presentation_id:", cleanId);
-
-    // Validate UUID format
     const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
     if (!uuidRegex.test(cleanId)) {
       return res.status(400).json({ error: "Invalid presentation ID format" });
     }
 
-    // Find presentation by presentation_id
     const presentation = await Presentation.findOne({ presentation_id: cleanId });
-
     if (!presentation) {
       return res.status(404).json({ error: "Presentation not found" });
     }
 
     return res.json({
-      _id: presentation._id, // MongoDB ObjectId
+      _id: presentation._id,
       presentation_id: presentation.presentation_id,
       topic: presentation.topic,
       slides: presentation.slides,
@@ -38,7 +35,7 @@ const getPresentationHandler = async (req, res) => {
   }
 };
 
-// Export presentation logic (optional)
+// Export presentation (by MongoDB _id)
 const exportPresentationHandler = async (req, res) => {
   try {
     const { presentation_id } = req.params;
@@ -52,7 +49,6 @@ const exportPresentationHandler = async (req, res) => {
       return res.status(404).json({ error: "Presentation not found" });
     }
 
-    // Your export logic here (PDF, file, etc.)
     return res.json({ message: "Export successful", presentation });
   } catch (err) {
     console.error("Error exporting presentation:", err.message);
@@ -60,9 +56,21 @@ const exportPresentationHandler = async (req, res) => {
   }
 };
 
+// Create presentation (manual, non-AI)
 const createPresentationHandler = async (req, res) => {
   try {
-    const { topic, slides, meta } = req.body;
+    let { topic, slides, meta } = req.body;
+
+    // Convert any MongoDB Extended JSON ($oid, $date, etc.) into real JS values
+    try {
+      const parsed = EJSON.parse(JSON.stringify({ topic, slides, meta }));
+      topic = parsed.topic;
+      slides = parsed.slides;
+      meta = parsed.meta;
+    } catch (err) {
+      console.error("EJSON parse error:", err.message);
+    }
+
     const userId = req.userId || null;
 
     const newPresentation = new Presentation({
@@ -86,8 +94,8 @@ const createPresentationHandler = async (req, res) => {
     }
 
     res.status(201).json({
-      _id: newPresentation._id,           
-      presentation_id: newPresentation.presentation_id, 
+      _id: newPresentation._id,
+      presentation_id: newPresentation.presentation_id,
       topic: newPresentation.topic,
       slides: newPresentation.slides,
       meta: newPresentation.meta,
@@ -99,7 +107,6 @@ const createPresentationHandler = async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 };
-
 
 module.exports = {
   getPresentationHandler,
