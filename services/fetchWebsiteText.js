@@ -5,13 +5,19 @@ puppeteer.use(StealthPlugin());
 async function fetchWebsiteText(url) {
   const browser = await puppeteer.launch({
     headless: true,
-    args: [
-      "--no-sandbox",
-      "--disable-setuid-sandbox",
-      "--disable-blink-features=AutomationControlled",
-      "--window-size=1280,800",
-    ],
-  });
+  args: [
+    "--no-sandbox",
+    "--disable-setuid-sandbox",
+    "--disable-web-security",
+    "--disable-features=IsolateOrigins,site-per-process",
+    "--disable-blink-features=AutomationControlled",
+    "--disable-client-side-phishing-detection",
+    "--disable-popup-blocking",
+    "--disable-default-apps",
+    "--disable-extensions",
+    "--window-size=1280,800",
+  ],
+});
 
   const page = await browser.newPage();
 
