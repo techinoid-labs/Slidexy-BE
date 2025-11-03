@@ -6,16 +6,16 @@ const { uploadToSpaces, deleteFromSpaces } = require("../utils/s3Uploader");
 
 async function convertToWebP(base64Image) {
   const buffer = Buffer.from(base64Image.split(",")[1], "base64");
-  
+
   // Get image metadata to check original dimensions
   const metadata = await sharp(buffer).metadata();
   console.log(`Original image: ${metadata.width}x${metadata.height}, format: ${metadata.format}`);
-  
+
   // Only resize if image is smaller than target, otherwise keep original size
   const shouldResize = metadata.width < 1920 || metadata.height < 1080;
-  
+
   let sharpInstance = sharp(buffer);
-  
+
   if (shouldResize) {
     sharpInstance = sharpInstance.resize({
       width: 1920,
@@ -24,7 +24,7 @@ async function convertToWebP(base64Image) {
       kernel: sharp.kernel.lanczos3,
     });
   }
-  
+
   const webpBuffer = await sharpInstance
     .webp({
       quality: 98,
@@ -182,64 +182,90 @@ async function generateArtKnowledge(slide, rawText = "", artStyle = null) {
   const title = slide.slide_title?.text || slide.slide_title || "Untitled";
   const subtitle = slide.subtitle?.text || "";
   const theme = slide.knowledge?.theme || "General";
+  const slideType = slide.layout_type || "content-right-image";
+  const contentType = slide.knowledge?.contentType || "general";
 
   let safeRawText = typeof rawText === "string" ? rawText : JSON.stringify(rawText, null, 2);
-  
+
   // Get style profile
   const styleProfile = getStyleProfile(artStyle);
-  
-  // Smart color palette based on topic
+
+  // Enhanced color palette based on slide type and content
   const colorSchemes = {
-    business: ["#2c3e50", "#3498db", "#e74c3c", "#f39c12"],
-    technology: ["#667eea", "#764ba2", "#f093fb", "#4facfe"],
-    education: ["#FF6B6B", "#4ECDC4", "#45B7D1", "#FFA07A"],
-    health: ["#06d6a0", "#118ab2", "#073b4c", "#ef476f"],
-    finance: ["#264653", "#2a9d8f", "#e76f51", "#f4a261"],
-    creative: ["#ff006e", "#8338ec", "#3a86ff", "#fb5607"],
-    default: ["#6c5ce7", "#00b894", "#fdcb6e", "#e17055"]
+    "cover-hero": ["#2c3e50", "#3498db", "#e74c3c", "#f39c12"],
+    "content-right-image": ["#667eea", "#764ba2", "#f093fb", "#4facfe"],
+    "content-left-image": ["#06d6a0", "#118ab2", "#073b4c", "#ef476f"],
+    "content-split": ["#264653", "#2a9d8f", "#e76f51", "#f4a261"],
+    "quote-slide": ["#6c5ce7", "#00b894", "#fdcb6e", "#e17055"],
+    "data-visual": ["#ff006e", "#8338ec", "#3a86ff", "#fb5607"],
+    "call-to-action": ["#3498db", "#2c3e50", "#e74c3c", "#f39c12"],
+    "conclusion": ["#6c5ce7", "#00b894", "#fdcb6e", "#74b9ff"]
   };
 
   const topicLower = (title + " " + safeRawText).toLowerCase();
-  let colorScheme = colorSchemes.default;
-  for (const [key, colors] of Object.entries(colorSchemes)) {
-    if (topicLower.includes(key)) {
-      colorScheme = colors;
-      break;
-    }
+  let colorScheme = colorSchemes[slideType] || colorSchemes["content-right-image"];
+
+  // Adjust based on content
+  if (topicLower.includes('tech') || topicLower.includes('digital')) {
+    colorScheme = ["#667eea", "#764ba2", "#f093fb", "#4facfe"];
+  } else if (topicLower.includes('health') || topicLower.includes('wellness')) {
+    colorScheme = ["#06d6a0", "#118ab2", "#073b4c", "#ef476f"];
   }
 
   const numCharacters = styleProfile.needsCharacters ? 2 : 0;
-  
-  const artPrompt = `Generate art direction for a presentation slide image.
+
+  // Enhanced prompt based on slide type
+  const slideTypeContext = {
+    "cover-hero": "heroic, attention-grabbing scene that represents the main theme",
+    "content-right-image": "supporting visual that illustrates the key points",
+    "content-left-image": "complementary imagery that enhances understanding",
+    "content-split": "balanced visual that works with divided content",
+    "quote-slide": "atmospheric background that supports the quote's emotion",
+    "data-visual": "data-centric environment with analytical elements",
+    "call-to-action": "motivational scene that inspires action",
+    "conclusion": "summary imagery that reinforces key messages"
+  };
+
+  const artPrompt = `Generate art direction for a ${slideType} presentation slide.
 
 SLIDE CONTEXT:
+- Type: ${slideType} (${slideTypeContext[slideType]})
 - Title: "${title}"
 - Subtitle: "${subtitle}"
 - Theme: "${theme}"
-- Content: ${safeRawText.slice(0, 300)}
+- Content Type: ${contentType}
+- Key Content: ${safeRawText.slice(0, 300)}
 
 REQUIRED STYLE: ${artStyle}
 Style Profile: ${styleProfile.styleDesc}
 
-REQUIREMENTS:
-${numCharacters === 0 ? 
-  '- ABSOLUTELY NO human characters, figures, or people\n- Focus on environments, objects, abstract elements, or landscapes\n- Scene must be compelling without any human presence' :
-  '- Include exactly 2 diverse professional characters\n- Characters should be diverse in ethnicity and gender\n- Professional attire and poses relevant to the topic'
-}
+VISUAL REQUIREMENTS:
+${numCharacters === 0 ?
+      '- NO human characters, figures, or people\n- Focus on environments, objects, abstract elements\n- Create compelling scene without human presence' :
+      '- Include exactly 2 diverse professional characters\n- Characters should reflect the content context\n- Professional attire and relevant poses'
+    }
+
+SLIDE-SPECIFIC NEEDS:
+${slideType === 'cover-hero' ? '- Heroic, attention-grabbing composition\n- Strong visual hierarchy\n- Memorable first impression' : ''}
+${slideType === 'quote-slide' ? '- Emotional, atmospheric setting\n- Supports quote tone and message\n- Subtle, non-distracting elements' : ''}
+${slideType === 'data-visual' ? '- Data-friendly environment\n- Analytical, precise elements\n- Clear, organized composition' : ''}
+${slideType === 'call-to-action' ? '- Motivational, forward-looking\n- Inspires action and movement\n- Clear focal point for CTA' : ''}
 
 Generate JSON with:
 {
   "style": "${artStyle}",
-  "sceneDescription": "Detailed 2-3 sentence description of the scene ${numCharacters === 0 ? 'WITHOUT any people' : 'with characters naturally integrated'}",
-  "characterDetails": ${numCharacters === 0 ? '[]' : '["description of character 1", "description of character 2"]'},
+  "sceneDescription": "Detailed scene description ${numCharacters === 0 ? 'WITHOUT any people' : 'with integrated characters'}",
+  "characterDetails": ${numCharacters === 0 ? '[]' : '["professional character 1", "professional character 2"]'},
   "numCharacters": ${numCharacters},
-  "colorPalette": ["#hex1", "#hex2", "#hex3", "#hex4"],
-  "mood": "professional/innovative/collaborative/etc",
-  "composition": "center-focused/left-to-right/triangular/etc",
-  "sceneElements": ["element1", "element2", "element3"]
+  "colorPalette": ${JSON.stringify(colorScheme)},
+  "mood": "appropriate emotional tone",
+  "composition": "slide-appropriate layout",
+  "sceneElements": ["primary element", "secondary element", "supporting element"],
+  "slideType": "${slideType}",
+  "contentFocus": "${contentType}"
 }
 
-Output ONLY valid JSON, no markdown or explanations.`;
+Output ONLY valid JSON:`;
 
   try {
     const artResult = await textGenModel.generateContent(artPrompt);
@@ -256,201 +282,245 @@ Output ONLY valid JSON, no markdown or explanations.`;
 
     return {
       style: artStyle || parsed.style,
-      sceneDescription: parsed.sceneDescription || (numCharacters === 0 ? 
-        `${theme} themed environment without people` : 
-        `Professional ${theme} scene with collaboration`),
+      sceneDescription: parsed.sceneDescription ||
+        `${slideType} scene for ${theme} ${numCharacters === 0 ? 'without people' : 'with professionals'}`,
       characterDetails: numCharacters === 0 ? [] : (parsed.characterDetails || [
-        "diverse professional in modern attire",
-        "team member in business casual"
+        "diverse professional in context-appropriate attire",
+        "supporting team member or colleague"
       ]),
       numCharacters: numCharacters,
       colorPalette: parsed.colorPalette || colorScheme,
-      mood: parsed.mood || "professional",
-      composition: parsed.composition || "center-focused",
+      mood: parsed.mood || getDefaultMood(slideType),
+      composition: parsed.composition || "balanced",
       sceneElements: parsed.sceneElements || styleProfile.sceneElements,
-      styleProfile: styleProfile
+      styleProfile: styleProfile,
+      slideType: slideType,
+      contentFocus: parsed.contentFocus || contentType
     };
   } catch (err) {
     console.error("Art knowledge generation failed:", err);
     return {
       style: artStyle || "modern illustration",
-      sceneDescription: numCharacters === 0 ? 
-        `${theme} environment focusing on space and objects` : 
-        `Professional ${theme} workspace with team collaboration`,
+      sceneDescription: `${slideType} scene for ${theme}`,
       characterDetails: numCharacters === 0 ? [] : [
-        "diverse professional with laptop",
-        "team member analyzing data"
+        "professional business person",
+        "colleague or team member"
       ],
       numCharacters: numCharacters,
       colorPalette: colorScheme,
-      mood: "professional",
+      mood: getDefaultMood(slideType),
       composition: "center-focused",
       sceneElements: styleProfile.sceneElements,
-      styleProfile: styleProfile
+      styleProfile: styleProfile,
+      slideType: slideType,
+      contentFocus: contentType
     };
   }
 }
 
+function getDefaultMood(slideType) {
+  const moods = {
+    "cover-hero": "inspirational",
+    "content-right-image": "professional",
+    "content-left-image": "informative",
+    "content-split": "balanced",
+    "quote-slide": "thoughtful",
+    "data-visual": "analytical",
+    "call-to-action": "motivational",
+    "conclusion": "summary"
+  };
+  return moods[slideType] || "professional";
+}
+
 async function generateDetailedImagePrompt(slide, artKnowledge, rawText = "") {
-  const { style, sceneDescription, characterDetails, numCharacters, colorPalette, mood, composition, sceneElements, styleProfile } = artKnowledge;
+  const { style, sceneDescription, characterDetails, numCharacters, colorPalette, mood, composition, sceneElements, styleProfile, slideType, contentFocus } = artKnowledge;
   const title = slide.slide_title?.text || slide.slide_title || "Untitled";
   const subtitle = slide.subtitle?.text || "";
+  const visualContext = slide.image_placeholder?.visual_context || {};
 
   let safeRawText = typeof rawText === "string" ? rawText.slice(0, 400) : "";
 
-  // Build comprehensive prompt with extreme detail
-  const characterSection = numCharacters === 0 ? 
-    `🚫 ABSOLUTE RESTRICTION: ZERO human figures, characters, people, persons, silhouettes, shadows of people, or any humanoid forms whatsoever. Not even in the background, reflections, or suggestions. This is a PEOPLE-FREE ZONE. Focus 100% on environmental elements, objects, architecture, nature, technology, or abstract forms.` :
-    `👥 CHARACTER REQUIREMENTS: Integrate exactly ${numCharacters} photorealistic diverse professionals naturally into the scene:
-${characterDetails.map((char, i) => `   ${i + 1}. ${char} - realistic anatomy, natural pose, appropriate scale`).join('\n')}
+  // Enhanced character section based on slide type
+  const characterSection = numCharacters === 0 ?
+    `🚫 ABSOLUTE RESTRICTION: ZERO human figures, characters, people, persons, silhouettes, or any humanoid forms. Focus 100% on environmental elements, objects, architecture, nature, technology, or abstract forms that support ${slideType} content.` :
+    `👥 CHARACTER INTEGRATION: Include exactly ${numCharacters} photorealistic diverse professionals:
+${characterDetails.map((char, i) => `   ${i + 1}. ${char} - realistic, natural, context-appropriate`).join('\n')}
 
-Character quality standards:
-- Photorealistic skin tones and facial features
-- Natural body proportions and anatomically correct poses
-- Diverse representation: varied ethnicities (Asian, African, Caucasian, Hispanic, Middle Eastern), genders, ages
-- Professional attire appropriate to context
-- Authentic expressions and gestures
-- Proper depth placement in scene
-- Natural interaction with environment`;
+Character Guidelines:
+- Photorealistic diversity in ethnicity, gender, age
+- Natural body proportions and professional poses
+- Authentic interaction with environment
+- Proper scale and depth placement
+- Reflects ${contentFocus} context`;
 
-  const qualityKeywords = [
-    "masterpiece quality",
-    "professional presentation grade",
-    "ultra high definition 8K resolution",
-    "magazine-quality composition",
-    "award-winning visual design",
-    "crisp clarity and sharpness",
-    "rich color depth",
-    "perfect exposure balance",
-    "intricate fine details"
-  ];
+  // Slide-type specific enhancements
+  const slideTypeEnhancements = {
+    "cover-hero": `
+COVER SLIDE EXCELLENCE:
+- Heroic, attention-grabbing composition
+- Strong visual hierarchy with clear focal point
+- Memorable first-impression quality
+- Professional yet innovative aesthetic
+- Perfect balance between impact and professionalism`,
 
-  const textProhibitions = [
-    "🚫 CRITICAL: ABSOLUTELY ZERO text, letters, numbers, words, labels, captions, titles, symbols, logos, watermarks, signatures, or any form of readable typography",
-    "🚫 NO user interface elements, buttons, menus, or text-based graphics",
-    "🚫 NO signs, posters, books with visible text, computer screens with readable content",
-    "🚫 NO copyright symbols, brand names, or written language of any kind",
-    "🚫 If objects like books, screens, or signs appear, they must be blank, blurred, or show abstract patterns only"
-  ];
+    "quote-slide": `
+QUOTE SLIDE ATMOSPHERE:
+- Emotional, reflective background setting
+- Supports the quote's tone and message
+- Subtle, non-distracting elements
+- Creates appropriate mood for contemplation
+- Enhances without competing with text`,
 
-  const prompt = `Generate an absolutely stunning, professional-grade presentation slide visual in EXACT 16:9 landscape aspect ratio (1920x1080 pixels).
+    "data-visual": `
+DATA VISUALIZATION CONTEXT:
+- Analytical, precise environment
+- Data-friendly elements and metaphors
+- Clean, organized composition
+- Supports metrics and statistics
+- Professional analytical setting`,
+
+    "call-to-action": `
+CALL-TO-ACTION ENERGY:
+- Motivational, forward-looking scene
+- Inspires action and movement
+- Clear focal point for CTA emphasis
+- Energetic yet professional tone
+- Encourages next steps and engagement`,
+
+    "conclusion": `
+CONCLUSION REINFORCEMENT:
+- Summary-oriented imagery
+- Reinforces key messages and takeaways
+- Professional closure atmosphere
+- Balanced, resolved composition
+- Leaves lasting positive impression`
+  };
+
+  const prompt = `Generate a stunning professional presentation slide visual in EXACT 16:9 aspect ratio (1920x1080 pixels).
 
 ═══════════════════════════════════════════════════════════════
-🎯 PRIMARY STYLE DIRECTIVE (HIGHEST PRIORITY)
+🎯 SLIDE-SPECIFIC DIRECTION
 ═══════════════════════════════════════════════════════════════
-Style Name: ${style}
+Slide Type: ${slideType}
+Content Focus: ${contentFocus}
+Primary Mood: ${mood}
 
-Style Description: ${styleProfile.styleDesc}
+${slideTypeEnhancements[slideType] || ''}
 
+═══════════════════════════════════════════════════════════════
+🎨 VISUAL STYLE & EXECUTION
+═══════════════════════════════════════════════════════════════
+Style: ${style}
+Style DNA: ${styleProfile.styleDesc}
 Technical Execution: ${styleProfile.technicalSpecs}
 
-Visual DNA: This image must BREATHE the essence of ${style}. Every pixel, color choice, lighting decision, and compositional element should scream "${style}" to anyone viewing it.
+This image must perfectly embody ${style} aesthetic while serving as effective ${slideType} visual support.
 
 ═══════════════════════════════════════════════════════════════
-🖼️ SCENE & COMPOSITION
+🖼️ SCENE COMPOSITION
 ═══════════════════════════════════════════════════════════════
 Scene Description: ${sceneDescription}
 
-Emotional Atmosphere: ${mood} - infuse the entire scene with this mood through lighting, color temperature, and environmental storytelling.
+Composition Strategy: ${composition} layout optimized for ${slideType}
+Visual Hierarchy: Clear focal point supporting slide content
 
-Compositional Structure: ${composition} layout with expert visual weight distribution. Use rule of thirds, leading lines, and balanced negative space.
-
-Key Visual Elements to Feature:
+Key Visual Elements:
 ${sceneElements.map(el => `   • ${el}`).join('\n')}
+${visualContext.elements?.map(el => `   • ${el}`).join('\n') || ''}
 
 ═══════════════════════════════════════════════════════════════
-🎨 COLOR & LIGHTING MASTERY
+🎨 COLOR & LIGHTING STRATEGY
 ═══════════════════════════════════════════════════════════════
-Primary Color Palette: ${colorPalette.join(', ')}
+Color Palette: ${colorPalette.join(', ')}
 
-Color Application Strategy:
-- Dominant color: ${colorPalette[0]} (60% of image)
-- Secondary color: ${colorPalette[1]} (30% of image)  
-- Accent colors: ${colorPalette.slice(2).join(', ')} (10% for highlights and interest points)
-- Use natural gradients and color transitions
-- Ensure harmony through complementary or analogous color relationships
+Color Application:
+- Dominant: ${colorPalette[0]} (establishes base tone)
+- Secondary: ${colorPalette[1]} (supports visual interest)
+- Accents: ${colorPalette.slice(2).join(', ')} (highlights and details)
+- Professional color relationships and harmony
 
 Lighting Design:
-- Professional multi-point lighting setup
-- Key light, fill light, and rim light consideration
-- Appropriate shadows with soft falloff
-- Highlights that add dimension without overexposure
-- Ambient lighting that supports the mood
-- Light direction that guides viewer's eye to focal points
+- Multi-point professional lighting
+- Mood-appropriate lighting (${mood})
+- Supports ${slideType} requirements
+- Clear visual hierarchy through lighting
+- Professional shadow and highlight balance
 
 ═══════════════════════════════════════════════════════════════
-👤 CHARACTER & HUMAN ELEMENTS
+👤 CHARACTER & ELEMENTS
 ═══════════════════════════════════════════════════════════════
 ${characterSection}
 
 ═══════════════════════════════════════════════════════════════
-📝 TEXT PROHIBITION (CRITICAL - ENFORCE STRICTLY)
+📝 TEXT PROHIBITION (STRICTLY ENFORCED)
 ═══════════════════════════════════════════════════════════════
-${textProhibitions.join('\n')}
+🚫 ABSOLUTELY ZERO text, letters, numbers, words, labels, or readable typography
+🚫 NO user interface elements with visible text
+🚫 NO signs, posters, books, or screens with readable content
+🚫 NO copyright symbols, brand names, or written language
+🚫 If text-like elements appear, they must be abstract patterns only
 
 ═══════════════════════════════════════════════════════════════
-🎯 CONTENT CONTEXT & RELEVANCE
+🎯 CONTEXT & RELEVANCE
 ═══════════════════════════════════════════════════════════════
 Slide Title: "${title}"
 ${subtitle ? `Slide Subtitle: "${subtitle}"` : ''}
+Content Context: ${safeRawText || 'Professional presentation content'}
 
-Topic Context: ${safeRawText || 'General presentation content'}
-
-Visual Metaphor: Create imagery that SYMBOLICALLY represents the topic. If the topic is about "growth," show upward motion, expanding forms, or thriving environments. If about "connection," show linking elements, networks, or bridges. Make the visual tell the story without words.
+Visual Metaphor: Create imagery that symbolically represents "${title}" and supports ${contentFocus} without literal translation.
 
 ═══════════════════════════════════════════════════════════════
-✨ QUALITY & TECHNICAL REQUIREMENTS
+✨ QUALITY & TECHNICAL EXCELLENCE
 ═══════════════════════════════════════════════════════════════
-Resolution & Format:
+Technical Standards:
 - Exact 16:9 aspect ratio (1920x1080 pixels minimum)
-- Edge-to-edge frame filling - no letterboxing or pillarboxing
 - Ultra-high resolution rendering
-- Print-quality clarity at 300 DPI equivalent
+- Professional presentation quality
+- Print-ready clarity and sharpness
+- No digital artifacts or distortions
 
-Image Quality Standards:
-${qualityKeywords.map(kw => `✓ ${kw}`).join('\n')}
-
-Technical Excellence:
-- Tack-sharp focus on primary subject
-- Appropriate depth of field (shallow for portraits, deep for environments)
-- No chromatic aberration or digital artifacts
-- Smooth gradients without banding
-- Rich shadows with detail retention
-- Bright highlights without clipping
-- Professional color grading and tonal range
+Quality Benchmarks:
+✓ Masterpiece professional quality
+✓ Perfect exposure and color balance
+✓ Appropriate depth of field
+✓ Rich detail and texture
+✓ Professional color grading
+✓ Flawless technical execution
 
 ═══════════════════════════════════════════════════════════════
 🚫 CRITICAL AVOIDANCES
 ═══════════════════════════════════════════════════════════════
 DO NOT INCLUDE:
-✗ Any text, typography, or readable characters (CRITICAL)
-✗ Generic stock photography clichés (unless Photorealistic style specifically)
-✗ Cluttered or visually noisy compositions
-✗ Awkward cropping or incomplete subjects at frame edges
-✗ Unrealistic proportions or distorted perspective (unless stylistically intentional)
-✗ Muddy or unclear color relationships
+✗ Any text, typography, or readable characters
+✗ Generic stock photography clichés
+✗ Awkward cropping or incomplete subjects
+✗ Unrealistic proportions (unless stylistically intentional)
 ✗ Watermarks, signatures, or copyright notices
-✗ Overused visual tropes (handshakes, light bulbs, arrows unless contextually perfect)
-✗ AI artifacts (warped hands, weird anatomy, melted objects)
+✗ AI artifacts (warped elements, melted objects)
+✗ Overused visual tropes without context
 
 ═══════════════════════════════════════════════════════════════
-🎨 CREATIVE DIRECTION SUMMARY
+🎨 FINAL CREATIVE DIRECTION
 ═══════════════════════════════════════════════════════════════
-Create a UNIQUE, MEMORABLE, PROFESSIONAL presentation slide visual that:
+Create a UNIQUE, PROFESSIONAL ${slideType} visual that:
 
-1. Perfectly embodies the "${style}" aesthetic with technical precision
-2. Tells a visual story related to "${title}" without any text
-3. Uses the specified color palette harmoniously
-4. Maintains ${mood} mood throughout
-5. Features ${numCharacters === 0 ? 'ZERO people - pure environmental/abstract/object focus' : `exactly ${numCharacters} diverse professionals naturally integrated`}
-6. Achieves gallery-quality visual excellence
-7. Commands attention and enhances the presentation message
-8. Stands out as a unique piece, not a generic template
+1. Perfectly executes ${style} aesthetic with technical precision
+2. Supports "${title}" content as effective ${slideType} imagery
+3. Uses ${colorPalette.join(', ')} palette harmoniously
+4. Maintains ${mood} atmosphere throughout
+5. Features ${numCharacters === 0 ? 'ZERO people - pure environmental focus' : `${numCharacters} integrated professionals`}
+6. Achieves presentation-grade visual excellence
+7. Enhances slide impact without distracting
+8. Stands as unique, professional artwork
 
-This should be a show-stopping visual that makes viewers stop and appreciate its craft. Make it AMAZING.`;
+This should be a show-stopping visual that makes the ${slideType} more impactful and memorable.`;
 
   return prompt;
 }
+
+
+// Add this improved error handling in your generateImage function
+// Replace the image generation section (around line 430-470)
 
 async function generateImage(slide, index, rawText = "", planResponseType, artStyle = null) {
   try {
@@ -472,7 +542,7 @@ async function generateImage(slide, index, rawText = "", planResponseType, artSt
     });
 
     // Generate detailed prompt
-    let detailedPrompt = await generateDetailedImagePrompt(artKnowledge, artKnowledge, rawText);
+    let detailedPrompt = await generateDetailedImagePrompt(slide, artKnowledge, rawText);
     console.log(`Generated prompt for slide ${index} (${artKnowledge.style})`);
 
     let attempts = 0;
@@ -484,15 +554,17 @@ async function generateImage(slide, index, rawText = "", planResponseType, artSt
           // Variation for retry
           const variations = [
             "alternative perspective",
-            "different lighting angle", 
+            "different lighting angle",
             "varied composition approach",
             "fresh visual interpretation"
           ];
           const variation = variations[Math.floor(Math.random() * variations.length)];
-          detailedPrompt = detailedPrompt.replace('composition', `${variation} composition`) + 
+          detailedPrompt = detailedPrompt.replace('composition', `${variation} composition`) +
             `\n\nIMPORTANT: Create a distinctly different variation from previous attempt while maintaining style integrity.`;
           console.log(`Retry ${attempts} for slide ${index}`);
         }
+
+        console.log(`Attempting image generation for slide ${index}, attempt ${attempts + 1}...`);
 
         const response = await imageGenLimiter.schedule(() =>
           imageGenModel.generateContent({
@@ -507,32 +579,58 @@ async function generateImage(slide, index, rawText = "", planResponseType, artSt
           })
         );
 
+        // Enhanced response parsing with better error messages
+        console.log(`Response received for slide ${index}`);
+        
+        if (!response || !response.response) {
+          throw new Error("Invalid response structure from image generation API");
+        }
+
         let imageBase64 = null;
         const candidates = response.response.candidates || [];
+        
+        console.log(`Parsing ${candidates.length} candidates for slide ${index}...`);
+
         for (const candidate of candidates) {
           const parts = candidate?.content?.parts || [];
+          console.log(`Candidate has ${parts.length} parts`);
+          
           for (const part of parts) {
+            // Check for inline data with image mime type
             if (part.inlineData?.mimeType?.startsWith("image/")) {
               imageBase64 = `data:${part.inlineData.mimeType};base64,${part.inlineData.data}`;
+              console.log(`✓ Found image data in slide ${index}: ${part.inlineData.mimeType}`);
               break;
+            }
+            // Also check for text responses that might contain error info
+            if (part.text) {
+              console.log(`Text part in slide ${index}:`, part.text.substring(0, 100));
             }
           }
           if (imageBase64) break;
         }
 
         if (!imageBase64) {
-          throw new Error("No image data returned");
+          // Log the full response structure for debugging
+          console.error(`No image data found in response for slide ${index}:`, 
+            JSON.stringify(response.response, null, 2).substring(0, 500));
+          throw new Error("No image data returned from API");
         }
 
         // Upload
         let fileUrl;
         let key;
         try {
+          console.log(`Converting image to WebP for slide ${index}...`);
           imageBase64 = await convertToWebP(imageBase64);
+          
           key = `slide_${slide.slide_id || crypto.randomUUID()}_${Date.now()}.webp`;
+          console.log(`Uploading image for slide ${index}: ${key}`);
+          
           fileUrl = await uploadToSpaces(imageBase64, key);
-          console.log(`✓ Image uploaded for slide ${index}: ${artKnowledge.style}`);
+          console.log(`✓ Image uploaded for slide ${index}: ${artKnowledge.style} -> ${fileUrl}`);
         } catch (uploadErr) {
+          console.error(`Upload failed for slide ${index}:`, uploadErr);
           if (key) await deleteFromSpaces(key);
           throw uploadErr;
         }
@@ -547,20 +645,33 @@ async function generateImage(slide, index, rawText = "", planResponseType, artSt
         };
       } catch (attemptErr) {
         attempts++;
-        console.error(`Attempt ${attempts} failed for slide ${index}:`, attemptErr.message);
+        console.error(`Attempt ${attempts} failed for slide ${index}:`, {
+          error: attemptErr.message,
+          stack: attemptErr.stack?.substring(0, 200)
+        });
+        
         if (attempts >= maxAttempts) {
           throw attemptErr;
         }
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+        
+        // Wait before retry
+        const retryDelay = 2000 * attempts;
+        console.log(`Waiting ${retryDelay}ms before retry...`);
+        await new Promise((resolve) => setTimeout(resolve, retryDelay));
       }
     }
   } catch (err) {
-    console.error(`Failed to generate image for slide ${index}:`, err.message);
+    console.error(`❌ Failed to generate image for slide ${index}:`, {
+      error: err.message,
+      stack: err.stack?.substring(0, 300)
+    });
+    
     const fallback = `https://placehold.co/960x540/6c5ce7/ffffff?text=Slide+${index + 1}`;
     return {
       ...slide,
       image_url: fallback,
       image_caption: "Image unavailable",
+      error: err.message
     };
   }
 }
