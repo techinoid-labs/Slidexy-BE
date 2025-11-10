@@ -354,6 +354,19 @@ function getStyleProfile(artStyle) {
     }
   );
 }
+function getDefaultMood(slideType) {
+  const moods = {
+    "cover-hero": "inspirational",
+    "content-right-image": "professional",
+    "content-left-image": "informative",
+    "content-split": "balanced",
+    "quote-slide": "thoughtful",
+    "data-visual": "analytical",
+    "call-to-action": "motivational",
+    conclusion: "summary",
+  };
+  return moods[slideType] || "professional";
+}
 
 async function generateArtKnowledge(slide, rawText = "", artStyle = null) {
   const title = slide.slide_title?.text || slide.slide_title || "Untitled";
@@ -528,19 +541,7 @@ Output ONLY valid JSON:`;
   }
 }
 
-function getDefaultMood(slideType) {
-  const moods = {
-    "cover-hero": "inspirational",
-    "content-right-image": "professional",
-    "content-left-image": "informative",
-    "content-split": "balanced",
-    "quote-slide": "thoughtful",
-    "data-visual": "analytical",
-    "call-to-action": "motivational",
-    conclusion: "summary",
-  };
-  return moods[slideType] || "professional";
-}
+
 
 async function generateDetailedImagePrompt(slide, artKnowledge, rawText = "") {
   const {
@@ -758,7 +759,10 @@ async function generateImage(
   index,
   rawText = "",
   planResponseType,
-  artStyle = null
+  artStyle = null,
+  progressCallback = null,
+  currentSlideNum = null,
+  totalSlides = null
 ) {
   try {
     // throw Error("Forced Error");
@@ -808,6 +812,10 @@ async function generateImage(
     }
 
     // 🟦 Normal AI image generation flow
+    if (progressCallback && currentSlideNum && totalSlides) {
+      progressCallback(currentSlideNum, totalSlides, 'generating');
+    }
+    
     const artKnowledge = await generateArtKnowledge(slide, rawText, artStyle);
     console.log(`Art knowledge for slide ${index}:`, {
       style: artKnowledge.style,
@@ -847,6 +855,10 @@ async function generateImage(
             attempts + 1
           }...`
         );
+
+        if (progressCallback && currentSlideNum && totalSlides) {
+          progressCallback(currentSlideNum, totalSlides, 'generating');
+        }
 
         const response = await imageGenLimiter.schedule(() =>
           imageGenModel.generateContent({
@@ -910,6 +922,10 @@ async function generateImage(
         let fileUrl;
         let key;
         try {
+          if (progressCallback && currentSlideNum && totalSlides) {
+            progressCallback(currentSlideNum, totalSlides, 'uploading');
+          }
+          
           console.log(`Converting image to WebP for slide ${index}...`);
           imageBase64 = await convertToWebP(imageBase64);
 

@@ -50,7 +50,7 @@ const SLIDE_TYPE_DEFINITIONS = {
   }
 };
 
-async function generateSlideText(rawText, meta = {}, slideCount = 5) {
+async function generateSlideText(rawText, meta = {}, slideCount = 5, progressCallback = null) {
   let safeRawText = typeof rawText === "string" 
     ? rawText 
     : JSON.stringify(rawText, null, 2);
@@ -59,6 +59,11 @@ async function generateSlideText(rawText, meta = {}, slideCount = 5) {
   
   // Get slide structure based on count
   const slideStructure = SLIDE_TYPE_DEFINITIONS[slideCount] || SLIDE_TYPE_DEFINITIONS[5];
+  
+  // Notify progress: starting generation
+  if (progressCallback) {
+    progressCallback(0, slideCount);
+  }
   
   const prompt = `
 You are a world-class presentation content strategist. Create EXACTLY ${slideCount} slides with precise textual data for frontend layout mapping.
@@ -161,8 +166,18 @@ For call-to-action:
 Generate exactly ${slideCount} slides that tell a compelling story:`;
 
   try {
+    // Notify progress: AI generation started
+    if (progressCallback) {
+      progressCallback(1, slideCount);
+    }
+    
     const result = await textGenModel.generateContent(prompt);
     const raw = result.response?.candidates?.[0]?.content?.parts?.[0]?.text || "";
+    
+    // Notify progress: parsing response
+    if (progressCallback) {
+      progressCallback(Math.floor(slideCount * 0.3), slideCount);
+    }
     
     // Clean and parse JSON
     const cleaned = raw.replace(/```json/g, "").replace(/```/g, "").trim();
@@ -176,8 +191,18 @@ Generate exactly ${slideCount} slides that tell a compelling story:`;
     const jsonString = cleaned.slice(firstBracket, lastBracket + 1);
     let aiSlides = JSON.parse(jsonString);
 
+    // Notify progress: processing slides
+    if (progressCallback) {
+      progressCallback(Math.floor(slideCount * 0.5), slideCount);
+    }
+
     // Validate and fix counts - enhanced for content-split and infographic-bullets
-    aiSlides = aiSlides.map(slide => {
+    aiSlides = aiSlides.map((slide, index) => {
+      // Notify progress for each slide being processed
+      if (progressCallback) {
+        progressCallback(index + 1, slideCount);
+      }
+      
       if (slide.layout_type === "cover-hero" && !slide.subtitle) {
         slide.subtitle = "Professional presentation overview based on your content.";
       }
@@ -204,10 +229,24 @@ Generate exactly ${slideCount} slides that tell a compelling story:`;
       return slide;
     });
 
+    // Notify progress: transforming slides
+    if (progressCallback) {
+      progressCallback(Math.floor(slideCount * 0.8), slideCount);
+    }
+
     // Transform AI output into text-only format with layout variants prep
     const slides = aiSlides.map((aiSlide, index) => {
+      // Notify progress for each slide being transformed
+      if (progressCallback) {
+        progressCallback(index + 1, slideCount);
+      }
       return transformToTextOnlySlide(aiSlide, index, slideCount);
     });
+
+    // Notify progress: complete
+    if (progressCallback) {
+      progressCallback(slideCount, slideCount);
+    }
 
     return slides;
 

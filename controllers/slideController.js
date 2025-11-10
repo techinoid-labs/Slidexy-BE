@@ -14,39 +14,32 @@ const { checkPaidLimits } = require("../utils/checkPaidLimits");
 const Subscription = require("../models/Subscription");
 const planConfig = require("../utils/plansConfig");
 
-// --- Helper: Convert EJSON to plain JS objects ---
 function cleanEJSON(data) {
   try {
-    // First stringify to get EJSON format, then parse it back to plain JS
     const ejsonString = EJSON.stringify(data);
     return EJSON.parse(ejsonString);
   } catch (err) {
     console.error("EJSON conversion error:", err.message);
-    return data; // Return original if conversion fails
+    return data;
   }
 }
 
-// --- Helper: Recursively convert EJSON objects ---
 function convertEJSONFields(obj) {
   if (obj === null || obj === undefined) return obj;
   
-  // Handle EJSON ObjectId: { $oid: 'string' }
   if (obj.$oid) {
     return obj.$oid;
   }
   
-  // Handle EJSON Date: { $date: { $numberLong: 'timestamp' } }
   if (obj.$date) {
     const timestamp = obj.$date.$numberLong || obj.$date;
     return new Date(parseInt(timestamp));
   }
   
-  // Handle arrays
   if (Array.isArray(obj)) {
     return obj.map(item => convertEJSONFields(item));
   }
   
-  // Handle objects
   if (typeof obj === 'object') {
     const converted = {};
     for (const [key, value] of Object.entries(obj)) {
@@ -58,7 +51,6 @@ function convertEJSONFields(obj) {
   return obj;
 }
 
-// --- Helper: Sanitize and validate slide data ---
 function sanitizeSlides(slides) {
   const validElementTypes = [
     'bullet_point', 'quote', 'author', 'context', 
@@ -66,7 +58,6 @@ function sanitizeSlides(slides) {
   ];
 
   return slides.map((slide, index) => {
-    // Ensure slide has required structure
     const sanitizedSlide = {
       slide_id: slide.slide_id || `slide-${crypto.randomUUID()}`,
       layout_type: slide.layout_type || 'content-right-image',
@@ -88,23 +79,16 @@ function sanitizeSlides(slides) {
       updated_at: slide.updated_at || new Date()
     };
 
-    // Sanitize elements array
     if (Array.isArray(slide.elements)) {
       sanitizedSlide.elements = slide.elements
         .filter(element => {
-          // Must have text
           if (!element.text || typeof element.text !== 'string') return false;
-          
-          // Must have valid element_type
           if (!element.element_type) return false;
-          
           return true;
         })
         .map(element => {
-          // Normalize element_type
           let elementType = element.element_type.toLowerCase().trim();
           
-          // Map common invalid types to valid ones
           const typeMapping = {
             'text': 'description',
             'paragraph': 'description',
@@ -123,7 +107,6 @@ function sanitizeSlides(slides) {
             elementType = typeMapping[elementType];
           }
 
-          // If still invalid, default to 'description'
           if (!validElementTypes.includes(elementType)) {
             console.warn(`Invalid element_type "${element.element_type}" found in slide ${index + 1}, defaulting to "description"`);
             elementType = 'description';
@@ -142,7 +125,6 @@ function sanitizeSlides(slides) {
   });
 }
 
-// --- Helper: YouTube video ID extractor ---
 function extractYouTubeVideoId(url) {
   try {
     const parsedUrl = new URL(url);
@@ -173,48 +155,47 @@ const streamingStates = {
   start: {
     percent: 2,
     message: "🚀 Initiating presentation creation process...",
-    detail: "We're setting up the foundational framework for your custom presentation, including initial data structures and configuration parameters to ensure smooth generation. This involves initializing AI models, allocating computational resources, and preparing the entire pipeline for optimal performance throughout the creation workflow. We're also establishing connection protocols and validating your input parameters.",
+    detail: "We're setting up the foundational framework for your custom presentation, including initial data structures and configuration parameters to ensure smooth generation.",
   },
   analyzing: {
     percent: 5,
     message: "🔍 Deep content analysis in progress...",
-    detail: "Our AI is meticulously extracting key themes, core insights, and relevant data points from your input source to build a comprehensive understanding of the material. This phase identifies primary concepts, secondary supporting ideas, potential visual opportunities, and narrative arcs to inform the entire presentation structure. We're analyzing sentiment, context, relationships between ideas, and determining the most impactful way to present your content.",
+    detail: "Our AI is meticulously extracting key themes, core insights, and relevant data points from your input source to build a comprehensive understanding of the material.",
   },
   planning: {
     percent: 15,
     message: "📋 Planning presentation structure...",
-    detail: "Structuring the overall narrative flow, determining optimal slide sequencing, and organizing content hierarchy to create a compelling and logical presentation storyline. This includes balancing information density, pacing considerations, audience engagement hooks, and transitions for seamless progression from introduction to conclusion. We're mapping out which ideas deserve their own slides, which should be combined, and how to maintain audience attention throughout.",
+    detail: "Structuring the overall narrative flow, determining optimal slide sequencing, and organizing content hierarchy to create a compelling presentation storyline.",
   },
   generating: {
     start: {
-      percent: 25,
+      percent: 20,
       message: "✍️ Starting detailed content generation phase...",
-      detail: "Leveraging advanced language models to craft in-depth, tailored content for each slide, ensuring relevance, engagement, and alignment with your specified goals and audience. This multi-step process begins with ideation, followed by drafting, and iterative refinement to produce high-quality, professional-grade textual elements. Each slide is being carefully constructed with attention to tone, clarity, and visual balance.",
+      detail: "Leveraging advanced language models to craft in-depth, tailored content for each slide, ensuring relevance, engagement, and alignment with your specified goals.",
     },
     progress: (current, total) => ({
-      message: `📚 Generating precise textual content for slide ${current}/${total}...`,
-      detail: "Crafting titles, bullets, quotes, and stats optimized for frontend layout mapping. Ensuring exact counts and narrative flow. Each element is being carefully worded to maximize impact while maintaining consistency with your presentation's overall theme and message. We're also considering text length, readability, and how each slide will transition to the next.",
+      message: `📚 Generating textual content for slide ${current}/${total}...`,
+      detail: "Crafting titles, bullets, quotes, and stats optimized for layout. Each element is carefully worded to maximize impact while maintaining consistency.",
     }),
   },
-  imaging: {  // NEW: Restored imaging state for progress
+  imaging: {
     start: {
-      percent: 60,
+      percent: 50,
       message: "🎨 Initiating advanced visual design phase...",
-      detail: "Transitioning to creative visuals: preparing generative AI pipelines to produce bespoke imagery that perfectly complements and elevates your slide content. This setup calibrates style parameters, color schemes, and compositional rules based on content analysis for harmonious integration.",
+      detail: "Transitioning to creative visuals: preparing generative AI pipelines to produce bespoke imagery that perfectly complements your slide content.",
     },
     progress: (current, total) => ({
-      message: `🖼️ Designing custom visual elements for slide ${current}/${total}...`,
-      detail: "Harnessing diffusion models and style transfer techniques to generate high-fidelity, contextually relevant imagery, icons, and graphics that visually reinforce your narrative. Each visual is optimized for resolution, aspect ratio, and emotional resonance to maximize viewer engagement and retention.",
+      message: `🖼️ Designing custom visual for slide ${current}/${total}...`,
+      detail: "Generating high-fidelity, contextually relevant imagery that visually reinforces your narrative and maximizes viewer engagement.",
     }),
   },
   finalizing: {
     percent: 95,
     message: "✨ Finalizing your complete presentation...",
-    detail: "Merging all generated textual components into a cohesive deliverable, performing quality assurance checks, and preparing the file for immediate use or export. This wraps up with metadata embedding, thumbnail creation, and compatibility verification to ensure a flawless user experience from start to finish. We're also validating data integrity, ensuring proper formatting, and confirming that all elements are properly structured for your frontend application.",
+    detail: "Performing quality assurance checks and preparing the presentation for immediate use. Validating data integrity and confirming proper formatting.",
   },
 };
 
-// --- Main controller ---
 async function generateSlidesHandler(req, res) {
   const errors = validationResult(req);
   if (!errors.isEmpty())
@@ -231,7 +212,6 @@ async function generateSlidesHandler(req, res) {
     userData,
   } = req.body;
 
-  // Authorization checks
   if (!userData?.admin || !userData) {
     let user = null;
     if (userData?._id) {
@@ -283,14 +263,12 @@ async function generateSlidesHandler(req, res) {
 
     try {
       sendUpdate(streamingStates.start);
-      await new Promise((r) => setTimeout(r, 800));
+      await new Promise((r) => setTimeout(r, 500));
 
       sendUpdate(streamingStates.analyzing);
       let rawText, topic;
 
       try {
-        sendUpdate({ percent: 5, message: "Analyzing input content..." });
-
         if (source === "youtube") {
           const videoId = extractYouTubeVideoId(inputUrl);
           try {
@@ -309,52 +287,73 @@ async function generateSlidesHandler(req, res) {
           rawText = textContent;
           topic = textContent?.slice(0, 50) || "Untitled Presentation";
         }
-        sendUpdate({ percent: 20, message: "Input analysis complete." });
+        
+        sendUpdate({ 
+          percent: 10, 
+          message: "✅ Input analysis complete",
+          detail: "Successfully extracted and processed content from your source. Ready to begin content generation."
+        });
       } catch (fetchErr) {
         console.error("Error fetching input:", fetchErr);
         throw fetchErr;
       }
 
       sendUpdate(streamingStates.planning);
-      await new Promise((r) => setTimeout(r, 1200));
+      await new Promise((r) => setTimeout(r, 800));
 
-      sendUpdate(streamingStates.generating.start);
+      sendUpdate({
+        percent: 20,
+        message: streamingStates.generating.start.message,
+        detail: streamingStates.generating.start.detail
+      });
+      
       const slides = await generateSlideText(rawText, meta, slideCount);
 
-      // Progress updates
-      for (let i = 0; i < slides.length; i++) {
-        await new Promise((r) => setTimeout(r, 800));
-        const contentPercent = 25 + Math.floor((i / slides.length) * 35);
+      const totalSlides = slides.length;
+      for (let i = 0; i < totalSlides; i++) {
+        const contentPercent = 20 + Math.floor(((i + 1) / totalSlides) * 30);
+        const progressUpdate = streamingStates.generating.progress(i + 1, totalSlides);
         sendUpdate({
-          ...streamingStates.generating.progress(i + 1, slides.length),
           percent: contentPercent,
+          message: progressUpdate.message,
+          detail: progressUpdate.detail
         });
+        await new Promise((r) => setTimeout(r, 300));
       }
 
-      // NEW: Restored imaging phase (missing in current version)
-      sendUpdate(streamingStates.imaging.start);
-      const slideCountNum = slides.length;
-      let currentImagingSubstep = 0;
-      const totalImagingSubsteps = slideCountNum;
-
-      // Clean/sanitize BEFORE image gen
       const cleanedSlides = convertEJSONFields(slides);
       const sanitizedSlides = sanitizeSlides(cleanedSlides);
 
+      sendUpdate({
+        percent: 50,
+        message: streamingStates.imaging.start.message,
+        detail: streamingStates.imaging.start.detail
+      });
+      await new Promise((r) => setTimeout(r, 500));
+
       let slidesWithImages = [];
 
-      for (let i = 0; i < sanitizedSlides.length; i++) {
-        // Progress update
-        const imagingPercent = 60 + Math.floor((currentImagingSubstep / totalImagingSubsteps) * 30);
-        sendUpdate({
-          ...streamingStates.imaging.progress(i + 1, sanitizedSlides.length),
-          percent: imagingPercent
-        });
-        currentImagingSubstep++;
-        await new Promise((r) => setTimeout(r, 500)); // Throttle for UX
+      // 🔥 LINEAR PROGRESS SIMULATION HACK
+      const totalImagingProgress = 40; // 50% to 90%
+      const progressPerSlide = totalImagingProgress / sanitizedSlides.length;
+      const minTimePerSlide = 2000; // Minimum 2 seconds per slide for smooth UX
 
+      for (let i = 0; i < sanitizedSlides.length; i++) {
+        const slideStartPercent = 50 + Math.floor(i * progressPerSlide);
+        const slideEndPercent = 50 + Math.floor((i + 1) * progressPerSlide);
+        
+        const progressUpdate = streamingStates.imaging.progress(i + 1, sanitizedSlides.length);
+        sendUpdate({
+          percent: slideStartPercent,
+          message: progressUpdate.message,
+          detail: progressUpdate.detail
+        });
+
+        const imageStartTime = Date.now();
+        let imageSlideResult;
+        
         try {
-          const imageSlide = await generateImage(
+          imageSlideResult = await generateImage(
             sanitizedSlides[i],
             i,
             rawText,
@@ -363,45 +362,71 @@ async function generateSlidesHandler(req, res) {
           );
           slidesWithImages.push({
             ...sanitizedSlides[i],
-            image_url: imageSlide.image_url,
-            image_caption: imageSlide.image_caption,
-            art_style: imageSlide.art_style,
-            art_palette: imageSlide.art_palette,
+            image_url: imageSlideResult.image_url,
+            image_caption: imageSlideResult.image_caption,
+            art_style: imageSlideResult.art_style,
+            art_palette: imageSlideResult.art_palette,
             image_placeholder: { x: 520, y: 40, width: 400, height: 460 },
           });
-          console.log(`✓ Image generated for slide ${i + 1} in streaming`);
+          console.log(`✓ Image generated for slide ${i + 1}`);
         } catch (error) {
-          console.error(`Image gen failed for slide ${i + 1} in streaming:`, error.message);
+          console.error(`Image gen failed for slide ${i + 1}:`, error.message);
           slidesWithImages.push({ 
             ...sanitizedSlides[i], 
             image_url: null, 
             image_caption: "Image unavailable" 
           });
         }
+
+        const imageElapsedTime = Date.now() - imageStartTime;
+        
+        // 🎯 SIMULATION: If image completed quickly, simulate gradual progress
+        if (imageElapsedTime < minTimePerSlide) {
+          const remainingTime = minTimePerSlide - imageElapsedTime;
+          const steps = 5;
+          const stepDelay = remainingTime / steps;
+          const progressStep = (slideEndPercent - slideStartPercent) / steps;
+          
+          for (let step = 1; step <= steps; step++) {
+            await new Promise((r) => setTimeout(r, stepDelay));
+            const intermediatePercent = Math.floor(slideStartPercent + (progressStep * step));
+            
+            sendUpdate({
+              percent: Math.min(intermediatePercent, slideEndPercent),
+              message: progressUpdate.message,
+              detail: progressUpdate.detail
+            });
+          }
+        }
+
+        sendUpdate({
+          percent: slideEndPercent,
+          message: progressUpdate.message,
+          detail: progressUpdate.detail
+        });
       }
 
       sendUpdate(streamingStates.finalizing);
+      await new Promise((r) => setTimeout(r, 500));
 
-      // Prepare final slides using slidesWithImages
-      const totalSlides = slidesWithImages.length;
+      const totalSlidesCount = slidesWithImages.length;
       const finalSlides = slidesWithImages.map((slide, index) => ({
         ...slide,
         slide_number: index + 1,
-        total_slides: totalSlides,
+        total_slides: totalSlidesCount,
         generated_at: new Date(),
       }));
 
-      // Create presentation document
       const presentation = new Presentation({
         topic,
         meta: {
           ...meta,
           source,
-          slideCount: totalSlides,
+          slideCount: totalSlidesCount,
           artStyle: artStyle || "modern illustration with characters",
         },
         slides: finalSlides,
-        slide_count: totalSlides,
+        slide_count: totalSlidesCount,
         template_used: "text-only-system",
         art_style: artStyle || "modern illustration with characters",
         art_palette: finalSlides[0]?.art_palette || [
@@ -413,7 +438,7 @@ async function generateSlidesHandler(req, res) {
         ],
         generation_metadata: {
           content_source: source,
-          slide_count: totalSlides,
+          slide_count: totalSlidesCount,
           art_style: artStyle,
           layout_variants: false,
           generated_at: new Date(),
@@ -422,12 +447,11 @@ async function generateSlidesHandler(req, res) {
 
       await presentation.save();
 
-      // Final success update
       sendUpdate({
         percent: 100,
         complete: true,
         message: "✅ Presentation successfully created!",
-        detail: `Your ${totalSlides}-slide presentation is now complete.`,
+        detail: `Your ${totalSlidesCount}-slide presentation is now complete and ready to use.`,
         slides: finalSlides,
         presentation_id: presentation.presentation_id,
         slideCount: finalSlides.length,
@@ -442,12 +466,13 @@ async function generateSlidesHandler(req, res) {
       sendUpdate({
         error: err.message || "Slide generation failed",
         detail: "An unexpected error occurred. Please try again.",
+        percent: 0
       });
       clearInterval(heartbeat);
       res.end();
     }
   } else {
-    // Non-streaming response (unchanged from current)
+    // Non-streaming response
     try {
       let rawText, topic;
 
@@ -470,16 +495,10 @@ async function generateSlidesHandler(req, res) {
         topic = textContent?.slice(0, 50) || "Untitled Presentation";
       }
 
-      // Generate slide content
       const slides = await generateSlideText(rawText, meta, slideCount);
-
-      // Clean EJSON before processing
       const cleanedSlides = convertEJSONFields(slides);
-
-      // Sanitize and validate all slide data
       const sanitizedSlides = sanitizeSlides(cleanedSlides);
 
-      // Optional: Generate images
       let slidesWithImages = [];
       for (let i = 0; i < sanitizedSlides.length; i++) {
         try {
@@ -502,7 +521,6 @@ async function generateSlidesHandler(req, res) {
         }
       }
 
-      // Use images if generated, otherwise use sanitized slides
       const finalSlides = (slidesWithImages.length > 0 ? slidesWithImages : sanitizedSlides).map(
         (slide, index) => ({
           ...slide,
@@ -512,7 +530,6 @@ async function generateSlidesHandler(req, res) {
         })
       );
 
-      // Save to database
       const presentation = new Presentation({
         topic,
         meta: {
