@@ -12,7 +12,29 @@ const User = require("../models/User");
 const { checkTrialLimits } = require("../utils/checkTrialLimits");
 const { checkPaidLimits } = require("../utils/checkPaidLimits");
 const Subscription = require("../models/Subscription");
-const planConfig = require("../utils/plansConfig");
+
+class ProgressTracker {
+  constructor() {
+    this.current = 0;
+  }
+
+  update(percent) {
+    if (typeof percent !== "number" || Number.isNaN(percent)) {
+      return this.current;
+    }
+    this.current = Math.max(this.current, Math.min(100, Math.round(percent)));
+    return this.current;
+  }
+
+  get() {
+    return this.current;
+  }
+}
+
+function mapProgress(min, max, ratio) {
+  const clamped = Math.max(0, Math.min(1, ratio));
+  return min + Math.floor(clamped * (max - min));
+}
 
 function cleanEJSON(data) {
   try {
@@ -158,35 +180,35 @@ const streamingStates = {
     detail: "We're setting up the foundational framework for your custom presentation, including initial data structures and configuration parameters to ensure smooth generation.",
   },
   analyzing: {
-    percent: 5,
+    percent: 10,
     message: "🔍 Deep content analysis in progress...",
-    detail: "Our AI is meticulously extracting key themes, core insights, and relevant data points from your input source to build a comprehensive understanding of the material.",
+    detail: "Extracting key topics, important data points, and contextual signals from your input so that every slide is grounded in accurate, relevant information.",
   },
   planning: {
-    percent: 15,
+    percent: 18,
     message: "📋 Planning presentation structure...",
-    detail: "Structuring the overall narrative flow, determining optimal slide sequencing, and organizing content hierarchy to create a compelling presentation storyline.",
+    detail: "Designing the slide narrative, defining layout intentions, and mapping content to the most effective presentation flow for your audience.",
   },
   generating: {
     start: {
       percent: 20,
       message: "✍️ Starting detailed content generation phase...",
-      detail: "Leveraging advanced language models to craft in-depth, tailored content for each slide, ensuring relevance, engagement, and alignment with your specified goals.",
+      detail: "Leveraging advanced language models to craft tailored titles, bullet points, quotes, and supporting text that align perfectly with your objectives.",
     },
     progress: (current, total) => ({
       message: `📚 Generating textual content for slide ${current}/${total}...`,
-      detail: "Crafting titles, bullets, quotes, and stats optimized for layout. Each element is carefully worded to maximize impact while maintaining consistency.",
+      detail: "Composing concise, high-impact talking points and narrative elements that fit the layout and maintain a strong storyline.",
     }),
   },
   imaging: {
     start: {
-      percent: 50,
+      percent: 55,
       message: "🎨 Initiating advanced visual design phase...",
-      detail: "Transitioning to creative visuals: preparing generative AI pipelines to produce bespoke imagery that perfectly complements your slide content.",
+      detail: "Preparing the generative visual pipeline to produce presentation-ready imagery that complements and reinforces your message.",
     },
     progress: (current, total) => ({
       message: `🖼️ Designing custom visual for slide ${current}/${total}...`,
-      detail: "Generating high-fidelity, contextually relevant imagery that visually reinforces your narrative and maximizes viewer engagement.",
+      detail: "Creating high-fidelity, contextually relevant imagery that visually reinforces your narrative and strengthens audience engagement.",
     }),
   },
   finalizing: {
@@ -244,7 +266,7 @@ async function generateSlidesHandler(req, res) {
     }
   }
 
-  const planResponseType = req.planResponseType;
+  const planResponseType = req.planResponseType || "full";
   const wantsStreaming = req.headers["accept"] === "text/event-stream";
 
   if (wantsStreaming) {
@@ -257,15 +279,29 @@ async function generateSlidesHandler(req, res) {
       res.write(": heartbeat\n\n");
     }, 15000);
 
-    const sendUpdate = (data) => {
-      res.write(`data: ${JSON.stringify(data)}\n\n`);
+    const progressTracker = new ProgressTracker();
+    const sendUpdate = (data = {}) => {
+      const payload = { ...data };
+      if (payload.percent !== undefined) {
+        payload.percent = progressTracker.update(payload.percent);
+      }
+      res.write(`data: ${JSON.stringify(payload)}\n\n`);
     };
+    const sendProgress = (percent, message, detail) =>
+      sendUpdate({ percent, message, detail });
 
     try {
-      sendUpdate(streamingStates.start);
-      await new Promise((r) => setTimeout(r, 500));
+      sendProgress(
+        streamingStates.start.percent,
+        streamingStates.start.message,
+        streamingStates.start.detail
+      );
 
-      sendUpdate(streamingStates.analyzing);
+      sendProgress(
+        streamingStates.analyzing.percent,
+        streamingStates.analyzing.message,
+        streamingStates.analyzing.detail
+      );
       let rawText, topic;
 
       try {
@@ -287,127 +323,166 @@ async function generateSlidesHandler(req, res) {
           rawText = textContent;
           topic = textContent?.slice(0, 50) || "Untitled Presentation";
         }
-        
-        sendUpdate({ 
-          percent: 10, 
-          message: "✅ Input analysis complete",
-          detail: "Successfully extracted and processed content from your source. Ready to begin content generation."
-        });
+
+        sendProgress(
+          15,
+          "✅ Input analysis complete",
+          "Content successfully extracted and normalized. Preparing to generate slide copy tailored to your goals."
+        );
       } catch (fetchErr) {
         console.error("Error fetching input:", fetchErr);
         throw fetchErr;
       }
 
-      sendUpdate(streamingStates.planning);
-      await new Promise((r) => setTimeout(r, 800));
+      sendProgress(
+        streamingStates.planning.percent,
+        streamingStates.planning.message,
+        streamingStates.planning.detail
+      );
 
-      sendUpdate({
-        percent: 20,
-        message: streamingStates.generating.start.message,
-        detail: streamingStates.generating.start.detail
-      });
-      
-      const slides = await generateSlideText(rawText, meta, slideCount);
+      sendProgress(
+        streamingStates.generating.start.percent,
+        streamingStates.generating.start.message,
+        streamingStates.generating.start.detail
+      );
 
-      const totalSlides = slides.length;
-      for (let i = 0; i < totalSlides; i++) {
-        const contentPercent = 20 + Math.floor(((i + 1) / totalSlides) * 30);
-        const progressUpdate = streamingStates.generating.progress(i + 1, totalSlides);
-        sendUpdate({
-          percent: contentPercent,
-          message: progressUpdate.message,
-          detail: progressUpdate.detail
-        });
-        await new Promise((r) => setTimeout(r, 300));
-      }
+      let lastTextPercent = streamingStates.generating.start.percent;
+      const textProgressCallback = (current, total) => {
+        if (!total) return;
+        const normalized = Math.max(0, Math.min(total, current));
+        const percent = mapProgress(
+          streamingStates.generating.start.percent,
+          50,
+          normalized / total
+        );
+        if (percent <= lastTextPercent) return;
+        lastTextPercent = percent;
+        const progressMessage = streamingStates.generating.progress(
+          Math.min(normalized, total),
+          total
+        );
+        sendProgress(percent, progressMessage.message, progressMessage.detail);
+      };
+
+      const slides = await generateSlideText(
+        rawText,
+        meta,
+        slideCount,
+        textProgressCallback
+      );
+
+      sendProgress(
+        52,
+        "🧹 Structuring generated slide content...",
+        "Cleaning, validating, and formatting slide copy so it aligns with layout requirements and is ready for visual pairing."
+      );
 
       const cleanedSlides = convertEJSONFields(slides);
       const sanitizedSlides = sanitizeSlides(cleanedSlides);
 
-      sendUpdate({
-        percent: 50,
-        message: streamingStates.imaging.start.message,
-        detail: streamingStates.imaging.start.detail
-      });
-      await new Promise((r) => setTimeout(r, 500));
+      sendProgress(
+        streamingStates.imaging.start.percent,
+        streamingStates.imaging.start.message,
+        streamingStates.imaging.start.detail
+      );
 
       let slidesWithImages = [];
 
-      // 🔥 LINEAR PROGRESS SIMULATION HACK
-      const totalImagingProgress = 40; // 50% to 90%
-      const progressPerSlide = totalImagingProgress / sanitizedSlides.length;
-      const minTimePerSlide = 2000; // Minimum 2 seconds per slide for smooth UX
+      if (sanitizedSlides.length === 0) {
+        slidesWithImages = [];
+      } else if (planResponseType === "predefined") {
+        slidesWithImages = sanitizedSlides.map((slide, index) => ({
+          ...slide,
+          image_url: `https://placehold.co/1920x1080/6c5ce7/ffffff?text=Slide+${index + 1}&font=roboto`,
+          image_caption: "Placeholder image (trial mode)",
+          fallback_used: "template",
+        }));
+        sendProgress(
+          90,
+          "📦 Template visuals assigned",
+          "Trial mode detected — using predefined template visuals so you can preview the full presentation instantly."
+        );
+      } else {
+        const maxConcurrent = 4;
+        const slideCountTotal = sanitizedSlides.length;
+        const results = new Array(slideCountTotal);
+        let nextIndex = 0;
+        let completedImages = 0;
 
-      for (let i = 0; i < sanitizedSlides.length; i++) {
-        const slideStartPercent = 50 + Math.floor(i * progressPerSlide);
-        const slideEndPercent = 50 + Math.floor((i + 1) * progressPerSlide);
-        
-        const progressUpdate = streamingStates.imaging.progress(i + 1, sanitizedSlides.length);
-        sendUpdate({
-          percent: slideStartPercent,
-          message: progressUpdate.message,
-          detail: progressUpdate.detail
-        });
+        const imageProgressRangeStart = streamingStates.imaging.start.percent;
+        const imageProgressRangeEnd = 90;
 
-        const imageStartTime = Date.now();
-        let imageSlideResult;
-        
-        try {
-          imageSlideResult = await generateImage(
-            sanitizedSlides[i],
-            i,
-            rawText,
-            planResponseType,
-            artStyle
-          );
-          slidesWithImages.push({
-            ...sanitizedSlides[i],
-            image_url: imageSlideResult.image_url,
-            image_caption: imageSlideResult.image_caption,
-            art_style: imageSlideResult.art_style,
-            art_palette: imageSlideResult.art_palette,
-            image_placeholder: { x: 520, y: 40, width: 400, height: 460 },
-          });
-          console.log(`✓ Image generated for slide ${i + 1}`);
-        } catch (error) {
-          console.error(`Image gen failed for slide ${i + 1}:`, error.message);
-          slidesWithImages.push({ 
-            ...sanitizedSlides[i], 
-            image_url: null, 
-            image_caption: "Image unavailable" 
-          });
-        }
+        const runWorker = async () => {
+          while (true) {
+            const currentIndex = nextIndex++;
+            if (currentIndex >= slideCountTotal) break;
+            const slide = sanitizedSlides[currentIndex];
+            const slideNumber = currentIndex + 1;
 
-        const imageElapsedTime = Date.now() - imageStartTime;
-        
-        // 🎯 SIMULATION: If image completed quickly, simulate gradual progress
-        if (imageElapsedTime < minTimePerSlide) {
-          const remainingTime = minTimePerSlide - imageElapsedTime;
-          const steps = 5;
-          const stepDelay = remainingTime / steps;
-          const progressStep = (slideEndPercent - slideStartPercent) / steps;
-          
-          for (let step = 1; step <= steps; step++) {
-            await new Promise((r) => setTimeout(r, stepDelay));
-            const intermediatePercent = Math.floor(slideStartPercent + (progressStep * step));
-            
+            const inProgressMessage = streamingStates.imaging.progress(
+              slideNumber,
+              slideCountTotal
+            );
             sendUpdate({
-              percent: Math.min(intermediatePercent, slideEndPercent),
-              message: progressUpdate.message,
-              detail: progressUpdate.detail
+              message: inProgressMessage.message,
+              detail: inProgressMessage.detail,
             });
-          }
-        }
 
-        sendUpdate({
-          percent: slideEndPercent,
-          message: progressUpdate.message,
-          detail: progressUpdate.detail
-        });
+            try {
+              const imageResult = await generateImage(
+                slide,
+                currentIndex,
+                rawText,
+                planResponseType,
+                artStyle
+              );
+              results[currentIndex] = {
+                ...slide,
+                image_url: imageResult.image_url,
+                image_caption: imageResult.image_caption,
+                art_style: imageResult.art_style,
+                art_palette: imageResult.art_palette,
+                image_placeholder: { x: 520, y: 40, width: 400, height: 460 },
+              };
+            } catch (error) {
+              console.error(
+                `Image generation failed for slide ${slideNumber}:`,
+                error.message
+              );
+              results[currentIndex] = {
+                ...slide,
+                image_url: null,
+                image_caption:
+                  "Image unavailable (using content-only slide as fallback)",
+                fallback_used: "none",
+              };
+            } finally {
+              completedImages += 1;
+              const percent = mapProgress(
+                imageProgressRangeStart,
+                imageProgressRangeEnd,
+                completedImages / slideCountTotal
+              );
+              const doneMessage = `🖼️ Visual ready for slide ${slideNumber}/${slideCountTotal}`;
+              sendProgress(
+                percent,
+                doneMessage,
+                "Visual assets prepared and linked to the slide. Moving to the next item in the queue."
+              );
+            }
+          }
+        };
+
+        const workerCount = Math.min(maxConcurrent, sanitizedSlides.length);
+        await Promise.all(Array.from({ length: workerCount }, () => runWorker()));
+        slidesWithImages = results;
       }
 
-      sendUpdate(streamingStates.finalizing);
-      await new Promise((r) => setTimeout(r, 500));
+      sendProgress(
+        streamingStates.finalizing.percent,
+        streamingStates.finalizing.message,
+        streamingStates.finalizing.detail
+      );
 
       const totalSlidesCount = slidesWithImages.length;
       const finalSlides = slidesWithImages.map((slide, index) => ({
@@ -416,6 +491,12 @@ async function generateSlidesHandler(req, res) {
         total_slides: totalSlidesCount,
         generated_at: new Date(),
       }));
+
+      sendProgress(
+        98,
+        "💾 Saving presentation",
+        "Persisting your presentation, slides, and visual assets so you can access them immediately."
+      );
 
       const presentation = new Presentation({
         topic,
@@ -500,25 +581,55 @@ async function generateSlidesHandler(req, res) {
       const sanitizedSlides = sanitizeSlides(cleanedSlides);
 
       let slidesWithImages = [];
-      for (let i = 0; i < sanitizedSlides.length; i++) {
-        try {
-          const imageSlide = await generateImage(
-            sanitizedSlides[i],
-            i,
-            rawText,
-            planResponseType,
-            artStyle
-          );
-          slidesWithImages.push({
-            ...sanitizedSlides[i],
-            image_url: imageSlide.image_url,
-            image_caption: imageSlide.image_caption,
-            image_placeholder: { x: 520, y: 40, width: 400, height: 460 },
-          });
-        } catch (error) {
-          console.error(`Image generation failed for slide ${i + 1}:`, error);
-          slidesWithImages.push({ ...sanitizedSlides[i], image_url: null });
-        }
+
+      if (sanitizedSlides.length === 0) {
+        slidesWithImages = [];
+      } else if (planResponseType === "predefined") {
+        slidesWithImages = sanitizedSlides.map((slide, index) => ({
+          ...slide,
+          image_url: `https://placehold.co/1920x1080/6c5ce7/ffffff?text=Slide+${index + 1}&font=roboto`,
+          image_caption: "Placeholder image (trial mode)",
+          fallback_used: "template",
+        }));
+      } else {
+        const results = new Array(sanitizedSlides.length);
+        const maxConcurrent = 4;
+        let nextIndex = 0;
+
+        const runWorker = async () => {
+          while (true) {
+            const currentIndex = nextIndex++;
+            if (currentIndex >= sanitizedSlides.length) break;
+            const slide = sanitizedSlides[currentIndex];
+            try {
+              const imageSlide = await generateImage(
+                slide,
+                currentIndex,
+                rawText,
+                planResponseType,
+                artStyle
+              );
+              results[currentIndex] = {
+                ...slide,
+                image_url: imageSlide.image_url,
+                image_caption: imageSlide.image_caption,
+                art_style: imageSlide.art_style,
+                art_palette: imageSlide.art_palette,
+                image_placeholder: { x: 520, y: 40, width: 400, height: 460 },
+              };
+            } catch (error) {
+              console.error(
+                `Image generation failed for slide ${currentIndex + 1}:`,
+                error
+              );
+              results[currentIndex] = { ...slide, image_url: null };
+            }
+          }
+        };
+
+        const workerCount = Math.min(maxConcurrent, sanitizedSlides.length);
+        await Promise.all(Array.from({ length: workerCount }, () => runWorker()));
+        slidesWithImages = results;
       }
 
       const finalSlides = (slidesWithImages.length > 0 ? slidesWithImages : sanitizedSlides).map(
