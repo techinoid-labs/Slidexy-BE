@@ -19,6 +19,7 @@ const contactRoutes = require("./routes/contact");
 const planRoutes = require("./routes/planRoutes");
 const vidGenImg = require("./routes/vidGenImg");
 const templateRoutes = require("./routes/templateRoutes");
+const proposalTemplateRoutes = require("./routes/proposalTemplateRoutes");
 
 // Controllers
 const {
@@ -96,6 +97,9 @@ app.use("/api/stripe", stripeRoutes);
 
 // AI CHAT
 app.use("/api/chat", aiChatRoutes);
+
+//Proposal
+app.use("/api/proposal",proposalTemplateRoutes);
 
 // Contact
 

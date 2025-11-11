@@ -1,0 +1,187 @@
+
+    :root{
+      --bg:#0f1724;
+      --muted:#94a3b8;
+      --accent:#7c3aed;
+      --card:#0b1220;
+      --white:#ffffff;
+      --glass: rgba(255,255,255,0.04);
+      --radius:14px;
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background: linear-gradient(180deg,#071024 0%, #081529 100%);
+      color:var(--white);
+      padding:32px;
+      line-height:1.45;
+    }
+
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:20px;
+    }
+
+    /* Slide card look to mirror PDF pages */
+    .slide{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid rgba(255,255,255,0.04);
+      border-radius:var(--radius);
+      padding:28px;
+      box-shadow: 0 6px 24px rgba(2,6,23,0.6);
+      overflow:hidden;
+    }
+
+    .cover{
+      display:flex;
+      align-items:center;
+      gap:28px;
+      padding:40px;
+    }
+    .brand{
+      flex:0 0 220px;
+      min-height:160px;
+      border-radius:12px;
+      background:linear-gradient(135deg,var(--accent), #0ea5a4);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      font-size:20px;
+      letter-spacing:0.6px;
+      color:var(--white);
+      box-shadow: 0 8px 30px rgba(124,58,237,0.12);
+    }
+    .cover h1{
+      margin:0 0 8px 0;
+      font-size:32px;
+      letter-spacing:0.2px;
+    }
+    .cover p.lead{
+      margin:0;
+      color:var(--muted);
+    }
+
+    /* Two-column content used in many pages */
+    .two-col{
+      display:grid;
+      grid-template-columns: 1fr 320px;
+      gap:22px;
+      align-items:start;
+    }
+
+    .section-title{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-bottom:16px;
+    }
+    .section-title h2{
+      margin:0;
+      font-size:18px;
+      letter-spacing:0.6px;
+    }
+    .section-sub{
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .about-list{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap:12px;
+    }
+    .stat{
+      background:var(--glass);
+      padding:12px;
+      border-radius:10px;
+      text-align:center;
+    }
+    .stat strong{display:block;font-size:18px}
+    .stat span{color:var(--muted);font-size:13px}
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:12px;
+      padding:14px;
+      border:1px solid rgba(255,255,255,0.03);
+    }
+
+    ul.clean{padding-left:1rem; margin:0}
+    ul.clean li{margin:8px 0; color:var(--muted)}
+
+    .timeline table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:8px;
+    }
+    .timeline th, .timeline td{
+      text-align:left;
+      padding:10px 8px;
+      border-bottom:1px dashed rgba(255,255,255,0.03);
+      color:var(--muted);
+      font-size:14px;
+    }
+    .timeline th{color:var(--white); font-weight:600; width:180px}
+
+    .pricing table{
+      width:100%;
+      border-collapse:collapse;
+    }
+    .pricing th, .pricing td{
+      padding:12px 10px;
+      border-bottom:1px dashed rgba(255,255,255,0.03);
+    }
+    .pricing th{ text-align:left; color:var(--muted)}
+    .pricing td{ text-align:right; color:var(--white); font-weight:600 }
+
+    .cta{
+      display:flex;
+      gap:12px;
+      margin-top:18px;
+    }
+    .btn{
+      padding:10px 16px;
+      border-radius:10px;
+      font-weight:600;
+      cursor:pointer;
+      border:0;
+    }
+    .btn.primary{
+      background:var(--accent);
+      color:#fff;
+    }
+    .btn.ghost{
+      background:transparent;
+      color:var(--white);
+      border:1px solid rgba(255,255,255,0.06);
+    }
+
+    footer.contact{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      color:var(--muted);
+      font-size:14px;
+      padding-top:8px;
+    }
+
+    /* responsive */
+    @media (max-width:920px){
+      .two-col{grid-template-columns:1fr}
+      .brand{display:none}
+    }
+    @media (max-width:520px){
+      body{padding:16px}
+      .cover h1{font-size:22px}
+      .section-title h2{font-size:16px}
+    }
+  
