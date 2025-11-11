@@ -9,6 +9,7 @@ const { MongoClient, GridFSBucket, ObjectId } = require("mongodb");
 const infographicRoute = require("./routes/infographics");
 const dynamicInfographicRoute = require("./routes/dynamicInfographics");
 const blogRoutes = require("./routes/blogRoutes");
+
 // Models
 const User = require("./models/WaitingUser");
 
@@ -105,6 +106,8 @@ app.use("/api/plans", planRoutes);
 
 // Template Routes
 app.use("/api/templates", templateRoutes);
+// After your other routes
+app.use("/template-presentation", require("./routes/templatePresentationRoutes"));
 // --- Slide/Presentation APIs ---
 app.post("/generate-slides", validate, generateSlidesHandler);
 app.post(

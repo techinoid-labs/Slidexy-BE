@@ -319,12 +319,14 @@ function transformToTextOnlySlide(aiSlide, index, totalSlides) {
     _id: { $oid: uuidv4().replace(/-/g, '').slice(0, 24) }
   };
 
-  // Handle subtitle for cover-hero
-  if (slideType === "cover-hero" && aiSlide.subtitle) {
+  // Handle subtitle for cover-hero (ensure fallback if missing)
+  if (slideType === "cover-hero") {
+    const coverSubtitle = aiSlide.subtitle || "Professional presentation overview based on your content.";
     slide.subtitle = { 
-      text: aiSlide.subtitle,
+      text: coverSubtitle,
       _id: { $oid: uuidv4().replace(/-/g, '').slice(0, 24) }
     };
+    slide.content_metadata.subtitle = coverSubtitle;
   }
 
   // Handle different slide types for elements
@@ -334,10 +336,21 @@ function transformToTextOnlySlide(aiSlide, index, totalSlides) {
       break;
 
     case "quote-slide":
+      // Ensure fallback quote data when AI omits it
+      if (!aiSlide.quote) {
+        aiSlide.quote = "A powerful insight from industry experts that reinforces the key theme of the presentation.";
+      }
+      if (!aiSlide.author) {
+        aiSlide.author = "Expert Source";
+      }
+      if (!aiSlide.context) {
+        aiSlide.context = "This quote highlights a core message relevant to the audience.";
+      }
       if (aiSlide.quote) {
         slide.elements.push({
           element_type: "quote",
           text: aiSlide.quote,
+          element_id: `element-${uuidv4()}`,
           id: uuidv4()
         });
       }
@@ -345,6 +358,7 @@ function transformToTextOnlySlide(aiSlide, index, totalSlides) {
         slide.elements.push({
           element_type: "author",
           text: aiSlide.author,
+          element_id: `element-${uuidv4()}`,
           id: uuidv4()
         });
       }
@@ -352,6 +366,7 @@ function transformToTextOnlySlide(aiSlide, index, totalSlides) {
         slide.elements.push({
           element_type: "context",
           text: aiSlide.context,
+          element_id: `element-${uuidv4()}`,
           id: uuidv4()
         });
       }
@@ -369,7 +384,7 @@ function transformToTextOnlySlide(aiSlide, index, totalSlides) {
       }
       if (aiSlide.description) {
         slide.elements.push({
-          element_type: "text",
+          element_type: "description",
           text: aiSlide.description,
           id: uuidv4()
         });
