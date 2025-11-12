@@ -1,0 +1,250 @@
+{
+  "info": {
+    "name": "Image Deck Service",
+    "description": "API collection for testing the Image Deck Service - CEO Requirement",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/image-deck/health",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "image-deck", "health"]
+        },
+        "description": "Check if the Image Deck service is operational"
+      },
+      "response": []
+    },
+    {
+      "name": "2. Generate from URL - Example.com",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"https://example.com\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/image-deck/generate-from-url",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "image-deck", "generate-from-url"]
+        },
+        "description": "Generate Konva deck from example.com images"
+      },
+      "response": []
+    },
+    {
+      "name": "3. Generate from URL - BBC News",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"https://www.bbc.com/news\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/image-deck/generate-from-url",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "image-deck", "generate-from-url"]
+        },
+        "description": "Generate Konva deck from BBC News images"
+      },
+      "response": []
+    },
+    {
+      "name": "4. Generate from URL - Unsplash",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"https://unsplash.com\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/image-deck/generate-from-url",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "image-deck", "generate-from-url"]
+        },
+        "description": "Generate Konva deck from Unsplash (image-heavy website)"
+      },
+      "response": []
+    },
+    {
+      "name": "5. Generate from Data - Sample Images",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"images\": [\n    {\n      \"src\": \"https://images.unsplash.com/photo-1506905925346-21bda4d32df4\",\n      \"alt\": \"Mountain landscape\",\n      \"width\": 1920,\n      \"height\": 1080\n    },\n    {\n      \"src\": \"https://images.unsplash.com/photo-1469474968028-56623f02e42e\",\n      \"alt\": \"Nature scenery\",\n      \"width\": 1600,\n      \"height\": 900\n    },\n    {\n      \"src\": \"https://images.unsplash.com/photo-1472214103451-9374bd1c798e\",\n      \"alt\": \"Forest view\",\n      \"width\": 1280,\n      \"height\": 720\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/image-deck/generate-from-data",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "image-deck", "generate-from-data"]
+        },
+        "description": "Generate Konva deck from direct image data array"
+      },
+      "response": []
+    },
+    {
+      "name": "6. Generate from Data - Business Images",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"images\": [\n    {\n      \"src\": \"https://images.unsplash.com/photo-1557804506-669a67965ba0\",\n      \"alt\": \"Business team meeting\",\n      \"width\": 1920,\n      \"height\": 1080\n    },\n    {\n      \"src\": \"https://images.unsplash.com/photo-1542744173-8e7e53415bb0\",\n      \"alt\": \"Office workspace\",\n      \"width\": 1600,\n      \"height\": 1067\n    },\n    {\n      \"src\": \"https://images.unsplash.com/photo-1553877522-43269d4ea984\",\n      \"alt\": \"Professional presentation\",\n      \"width\": 1280,\n      \"height\": 853\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/image-deck/generate-from-data",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "image-deck", "generate-from-data"]
+        },
+        "description": "Generate Konva deck from business-themed images"
+      },
+      "response": []
+    },
+    {
+      "name": "7. Error Test - Missing URL",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/image-deck/generate-from-url",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "image-deck", "generate-from-url"]
+        },
+        "description": "Test error handling - missing URL parameter (should return 400)"
+      },
+      "response": []
+    },
+    {
+      "name": "8. Error Test - Invalid URL",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"not-a-valid-url\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/image-deck/generate-from-url",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "image-deck", "generate-from-url"]
+        },
+        "description": "Test error handling - invalid URL format (should return 400)"
+      },
+      "response": []
+    },
+    {
+      "name": "9. Error Test - Missing Images Array",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/image-deck/generate-from-data",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "image-deck", "generate-from-data"]
+        },
+        "description": "Test error handling - missing images array (should return 400)"
+      },
+      "response": []
+    },
+    {
+      "name": "10. Error Test - Empty Images Array",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"images\": []\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/image-deck/generate-from-data",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "image-deck", "generate-from-data"]
+        },
+        "description": "Test error handling - empty images array (should return 400)"
+      },
+      "response": []
+    }
+  ]
+}
