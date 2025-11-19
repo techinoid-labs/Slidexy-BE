@@ -1,5 +1,4 @@
 const { EJSON } = require("bson");
-// controllers/presentationController.js
 const Presentation = require("../models/Presentation");
 const User = require("../models/User");
 const mongoose = require("mongoose");
@@ -108,8 +107,75 @@ const createPresentationHandler = async (req, res) => {
   }
 };
 
+//UPDATED: Update presentation with better validation and error handling
+const updatePresentationHandler = async (req, res) => {
+  try {
+    const { presentation_id } = req.params;
+    const { slides } = req.body;
+
+    console.log(`Updating presentation ${presentation_id} with ${slides?.length || 0} slides`);
+
+    if (!presentation_id || !slides || !Array.isArray(slides)) {
+      return res.status(400).json({ error: "Invalid request: presentation_id and slides array required" });
+    }
+
+    // Check for base64 images (which shouldn't be in the payload)
+    const hasBase64Images = slides.some(slide => {
+      if (slide.image_url && typeof slide.image_url === 'string') {
+        return slide.image_url.startsWith('data:image');
+      }
+      return false;
+    });
+
+    if (hasBase64Images) {
+      console.error("❌ Base64 images detected in payload - images should be uploaded to S3 first");
+      return res.status(413).json({ 
+        error: "Payload too large. Images must be uploaded to S3 first and only URLs should be sent." 
+      });
+    }
+
+    const presentation = await Presentation.findOne({ presentation_id });
+    if (!presentation) {
+      return res.status(404).json({ error: "Presentation not found" });
+    }
+
+    // Update slides with metadata
+    presentation.slides = slides.map((slide, index) => ({
+      ...slide,
+      slide_number: index + 1,
+      total_slides: slides.length,
+      updated_at: new Date(),
+    }));
+    presentation.slide_count = slides.length;
+    presentation.updated_at = new Date();
+
+    await presentation.save();
+
+    console.log(`✅ Successfully updated presentation ${presentation_id}`);
+
+    return res.json({
+      success: true,
+      presentation_id: presentation.presentation_id,
+      slides: presentation.slides,
+      updated_at: presentation.updated_at,
+    });
+  } catch (err) {
+    console.error("Update error:", err);
+    
+    // Handle payload too large error
+    if (err.name === 'PayloadTooLargeError' || err.code === 'LIMIT_FILE_SIZE') {
+      return res.status(413).json({ 
+        error: "Payload too large. Please ensure images are uploaded to S3 first." 
+      });
+    }
+    
+    return res.status(500).json({ error: "Server error: " + err.message });
+  }
+};
+
 module.exports = {
   getPresentationHandler,
   exportPresentationHandler,
   createPresentationHandler,
+  updatePresentationHandler,
 };
