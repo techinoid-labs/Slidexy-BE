@@ -1,0 +1,300 @@
+{
+  "info": {
+    "name": "Unified Web Deck API - Complete Testing Suite",
+    "description": "CEO Final Service: Orchestrates Raw Text, Image, and Stylesheet services into a single unified presentation object",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_postman_id": "unified-web-deck-final-2025",
+    "version": "1.0.0"
+  },
+  "item": [
+    {
+      "name": "1. Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/unified-web-deck/health",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "unified-web-deck", "health"]
+        },
+        "description": "Check if the unified web deck service is operational. This verifies all 3 underlying services are ready."
+      },
+      "response": []
+    },
+    {
+      "name": "2. Generate Unified Deck - Apple.com",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"https://www.apple.com\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/unified-web-deck/generate-from-url",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "unified-web-deck", "generate-from-url"]
+        },
+        "description": "Generate unified presentation from Apple.com. Combines raw text, images, and design system into a single presentation object with 3 slides."
+      },
+      "response": []
+    },
+    {
+      "name": "3. Generate Unified Deck - Nike.com",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"https://www.nike.com\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/unified-web-deck/generate-from-url",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "unified-web-deck", "generate-from-url"]
+        },
+        "description": "Generate unified presentation from Nike.com website."
+      },
+      "response": []
+    },
+    {
+      "name": "4. Generate Unified Deck - TechCrunch Article",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"https://techcrunch.com/2024/01/01/example-article\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/unified-web-deck/generate-from-url",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "unified-web-deck", "generate-from-url"]
+        },
+        "description": "Generate unified presentation from a tech article. Note: Replace with actual TechCrunch article URL."
+      },
+      "response": []
+    },
+    {
+      "name": "5. Generate Unified Deck - Medium Blog",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"https://medium.com/@username/article-title\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/unified-web-deck/generate-from-url",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "unified-web-deck", "generate-from-url"]
+        },
+        "description": "Generate unified presentation from Medium blog post. Replace with actual Medium article URL."
+      },
+      "response": []
+    },
+    {
+      "name": "6. Save to DB - Apple.com (No User)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"https://www.apple.com\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/unified-web-deck/save-to-db",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "unified-web-deck", "save-to-db"]
+        },
+        "description": "Generate unified presentation and save to MongoDB. No user ID provided (creates anonymous presentation)."
+      },
+      "response": []
+    },
+    {
+      "name": "7. Save to DB - Nike.com (With User)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"https://www.nike.com\",\n  \"userId\": \"507f1f77bcf86cd799439011\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/unified-web-deck/save-to-db",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "unified-web-deck", "save-to-db"]
+        },
+        "description": "Generate unified presentation and save to MongoDB with user reference. Replace userId with actual MongoDB ObjectId from your User collection."
+      },
+      "response": []
+    },
+    {
+      "name": "8. Error Test - Missing URL",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"invalidField\": \"test\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/unified-web-deck/generate-from-url",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "unified-web-deck", "generate-from-url"]
+        },
+        "description": "Test error handling: Missing required 'url' field. Should return 400 Bad Request."
+      },
+      "response": []
+    },
+    {
+      "name": "9. Error Test - Invalid URL Format",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"not-a-valid-url\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/unified-web-deck/generate-from-url",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "unified-web-deck", "generate-from-url"]
+        },
+        "description": "Test error handling: Invalid URL format (missing http/https). Should return 400 Bad Request."
+      },
+      "response": []
+    },
+    {
+      "name": "10. Error Test - Unreachable URL",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"https://this-domain-definitely-does-not-exist-12345.com\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/unified-web-deck/generate-from-url",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "unified-web-deck", "generate-from-url"]
+        },
+        "description": "Test error handling: Unreachable website. Should return 500 with error message from fetchWebsiteText."
+      },
+      "response": []
+    },
+    {
+      "name": "11. Verify Presentation in DB",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/presentation/:presentation_id",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "presentation", ":presentation_id"]
+        },
+        "description": "Verify saved presentation exists in database. Replace :presentation_id with actual presentation_id from previous save-to-db response."
+      },
+      "response": []
+    },
+    {
+      "name": "12. Performance Test - Wikipedia",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"https://en.wikipedia.org/wiki/Artificial_intelligence\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/unified-web-deck/generate-from-url",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "unified-web-deck", "generate-from-url"]
+        },
+        "description": "Performance test with content-heavy page (Wikipedia). Monitor response time and check if all 3 services complete successfully."
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000",
+      "type": "string"
+    }
+  ]
+}

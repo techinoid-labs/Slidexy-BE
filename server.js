@@ -20,6 +20,11 @@ const contactRoutes = require("./routes/contact");
 const planRoutes = require("./routes/planRoutes");
 const vidGenImg = require("./routes/vidGenImg");
 const templateRoutes = require("./routes/templateRoutes");
+const rawTextDeckRoutes = require("./routes/rawTextDeckRoutes"); // Raw Text Deck Service
+const imageDeckRoutes = require("./routes/imageDeckRoutes"); // Image Deck Service
+const stylesheetDeckRoutes = require("./routes/stylesheetDeckRoutes"); // Stylesheet Deck Service
+const unifiedWebDeckRoutes = require("./routes/unifiedWebDeckRoutes"); // Unified Web Deck Service (CEO Final)
+const websiteGeneratorRoutes = require("./routes/websiteGeneratorRoutes"); // Website Generator Service (CEO New Feature)
 
 // Controllers
 const {
@@ -108,6 +113,22 @@ app.use("/api/plans", planRoutes);
 app.use("/api/templates", templateRoutes);
 // After your other routes
 app.use("/template-presentation", require("./routes/templatePresentationRoutes"));
+
+// --- Raw Text Deck Service (Separate Service) ---
+app.use("/api/raw-text-deck", rawTextDeckRoutes);
+
+// --- Image Deck Service (Separate Service) ---
+app.use("/api/image-deck", imageDeckRoutes);
+
+// --- Stylesheet Deck Service (Separate Service) ---
+app.use("/api/stylesheet-deck", stylesheetDeckRoutes);
+
+// --- Unified Web Deck Service (Orchestrates all 3 services) ---
+app.use("/api/unified-web-deck", unifiedWebDeckRoutes);
+
+// --- Website Generator Service (CEO New Feature: Generate HTML websites) ---
+app.use("/api/website-generator", websiteGeneratorRoutes);
+
 // --- Slide/Presentation APIs ---
 app.post("/generate-slides", validate, generateSlidesHandler);
 app.post(

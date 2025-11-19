@@ -1,0 +1,225 @@
+{
+  "info": {
+    "name": "Raw Text Deck Service",
+    "description": "API collection for testing the Raw Text Deck Service - CEO Requirement",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/raw-text-deck/health",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "raw-text-deck", "health"]
+        },
+        "description": "Check if the Raw Text Deck service is operational"
+      },
+      "response": []
+    },
+    {
+      "name": "2. Generate from URL - Example.com",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"https://example.com\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/raw-text-deck/generate-from-url",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "raw-text-deck", "generate-from-url"]
+        },
+        "description": "Generate Konva deck from example.com"
+      },
+      "response": []
+    },
+    {
+      "name": "3. Generate from URL - BBC News",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"https://www.bbc.com/news\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/raw-text-deck/generate-from-url",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "raw-text-deck", "generate-from-url"]
+        },
+        "description": "Generate Konva deck from BBC News"
+      },
+      "response": []
+    },
+    {
+      "name": "4. Generate from URL - TechCrunch",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"https://techcrunch.com\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/raw-text-deck/generate-from-url",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "raw-text-deck", "generate-from-url"]
+        },
+        "description": "Generate Konva deck from TechCrunch"
+      },
+      "response": []
+    },
+    {
+      "name": "5. Generate from Text - AI Content",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"text\": \"Artificial Intelligence is transforming the way we work and live. Machine learning algorithms are becoming more sophisticated, enabling computers to learn from data and make intelligent decisions. Deep learning, a subset of machine learning, uses neural networks with multiple layers to process complex patterns. Natural language processing allows machines to understand and generate human language. Computer vision enables machines to interpret and analyze visual information from the world.\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/raw-text-deck/generate-from-text",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "raw-text-deck", "generate-from-text"]
+        },
+        "description": "Generate Konva deck from direct text input about AI"
+      },
+      "response": []
+    },
+    {
+      "name": "6. Generate from Text - Business Content",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"text\": \"Digital transformation is reshaping businesses across all industries. Companies are adopting cloud computing, automation, and data analytics to improve efficiency and customer experience. Agile methodologies enable faster product development and deployment. Customer-centric strategies focus on personalization and seamless omnichannel experiences. Innovation culture and continuous learning are becoming key competitive advantages in the digital age.\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/raw-text-deck/generate-from-text",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "raw-text-deck", "generate-from-text"]
+        },
+        "description": "Generate Konva deck from business content"
+      },
+      "response": []
+    },
+    {
+      "name": "7. Error Test - Missing URL",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/raw-text-deck/generate-from-url",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "raw-text-deck", "generate-from-url"]
+        },
+        "description": "Test error handling - missing URL parameter (should return 400)"
+      },
+      "response": []
+    },
+    {
+      "name": "8. Error Test - Invalid URL",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"not-a-valid-url\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/raw-text-deck/generate-from-url",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "raw-text-deck", "generate-from-url"]
+        },
+        "description": "Test error handling - invalid URL format (should return 400)"
+      },
+      "response": []
+    },
+    {
+      "name": "9. Error Test - Missing Text",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/raw-text-deck/generate-from-text",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "raw-text-deck", "generate-from-text"]
+        },
+        "description": "Test error handling - missing text parameter (should return 400)"
+      },
+      "response": []
+    }
+  ]
+}

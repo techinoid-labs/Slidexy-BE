@@ -1,0 +1,275 @@
+{
+  "info": {
+    "name": "Stylesheet Deck Service",
+    "description": "API collection for testing the Stylesheet Deck Service - CEO Requirement",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/stylesheet-deck/health",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "stylesheet-deck", "health"]
+        },
+        "description": "Check if the Stylesheet Deck service is operational"
+      },
+      "response": []
+    },
+    {
+      "name": "2. Generate from URL - Example.com",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"https://example.com\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/stylesheet-deck/generate-from-url",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "stylesheet-deck", "generate-from-url"]
+        },
+        "description": "Generate Konva deck from example.com stylesheets"
+      },
+      "response": []
+    },
+    {
+      "name": "3. Generate from URL - BBC",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"https://www.bbc.com\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/stylesheet-deck/generate-from-url",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "stylesheet-deck", "generate-from-url"]
+        },
+        "description": "Generate Konva deck from BBC stylesheets & design system"
+      },
+      "response": []
+    },
+    {
+      "name": "4. Generate from URL - GitHub",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"https://github.com\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/stylesheet-deck/generate-from-url",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "stylesheet-deck", "generate-from-url"]
+        },
+        "description": "Generate Konva deck from GitHub's design system"
+      },
+      "response": []
+    },
+    {
+      "name": "5. Generate from URL - Stripe",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"https://stripe.com\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/stylesheet-deck/generate-from-url",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "stylesheet-deck", "generate-from-url"]
+        },
+        "description": "Generate Konva deck from Stripe's modern design system"
+      },
+      "response": []
+    },
+    {
+      "name": "6. Generate from Data - Modern Design",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"stylesheets\": {\n    \"external\": [\n      {\n        \"href\": \"https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700\",\n        \"media\": \"all\"\n      },\n      {\n        \"href\": \"https://cdn.example.com/styles/main.css\",\n        \"media\": \"screen\"\n      }\n    ],\n    \"inline\": [\n      { \"content\": \"body { margin: 0; padding: 0; }\" }\n    ]\n  },\n  \"aesthetics\": {\n    \"colors\": [\n      \"#6c5ce7\",\n      \"#00b894\",\n      \"#fdcb6e\",\n      \"#e17055\",\n      \"#74b9ff\",\n      \"#a29bfe\",\n      \"#ff7675\"\n    ],\n    \"fonts\": [\n      \"Inter\",\n      \"Roboto\",\n      \"San Francisco\"\n    ],\n    \"typography\": {\n      \"baseFontFamily\": \"Inter, sans-serif\",\n      \"baseFontSize\": \"16px\",\n      \"baseLineHeight\": \"1.5\"\n    },\n    \"rootColors\": {\n      \"backgroundColor\": \"#ffffff\",\n      \"color\": \"#2d3436\",\n      \"primaryColor\": \"#6c5ce7\",\n      \"secondaryColor\": \"#00b894\"\n    }\n  }\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/stylesheet-deck/generate-from-data",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "stylesheet-deck", "generate-from-data"]
+        },
+        "description": "Generate Konva deck from modern design system data"
+      },
+      "response": []
+    },
+    {
+      "name": "7. Generate from Data - Classic Design",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"aesthetics\": {\n    \"colors\": [\n      \"#2c3e50\",\n      \"#3498db\",\n      \"#e74c3c\",\n      \"#ecf0f1\",\n      \"#95a5a6\"\n    ],\n    \"fonts\": [\n      \"Georgia\",\n      \"Times New Roman\",\n      \"serif\"\n    ],\n    \"typography\": {\n      \"baseFontFamily\": \"Georgia, serif\",\n      \"baseFontSize\": \"18px\",\n      \"baseLineHeight\": \"1.6\"\n    },\n    \"rootColors\": {\n      \"backgroundColor\": \"#ecf0f1\",\n      \"color\": \"#2c3e50\",\n      \"primaryColor\": \"#3498db\"\n    }\n  }\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/stylesheet-deck/generate-from-data",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "stylesheet-deck", "generate-from-data"]
+        },
+        "description": "Generate Konva deck from classic serif design system"
+      },
+      "response": []
+    },
+    {
+      "name": "8. Generate from Data - Minimalist",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"aesthetics\": {\n    \"colors\": [\n      \"#000000\",\n      \"#ffffff\",\n      \"#808080\"\n    ],\n    \"fonts\": [\n      \"Helvetica Neue\",\n      \"Arial\",\n      \"sans-serif\"\n    ],\n    \"typography\": {\n      \"baseFontFamily\": \"Helvetica Neue, sans-serif\",\n      \"baseFontSize\": \"14px\",\n      \"baseLineHeight\": \"1.4\"\n    },\n    \"rootColors\": {\n      \"backgroundColor\": \"#ffffff\",\n      \"color\": \"#000000\"\n    },\n    \"borderRadii\": [\"0px\"],\n    \"shadows\": []\n  }\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/stylesheet-deck/generate-from-data",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "stylesheet-deck", "generate-from-data"]
+        },
+        "description": "Generate Konva deck from minimalist black & white design"
+      },
+      "response": []
+    },
+    {
+      "name": "9. Error Test - Missing URL",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/stylesheet-deck/generate-from-url",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "stylesheet-deck", "generate-from-url"]
+        },
+        "description": "Test error handling - missing URL parameter (should return 400)"
+      },
+      "response": []
+    },
+    {
+      "name": "10. Error Test - Invalid URL",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"not-a-valid-url\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/stylesheet-deck/generate-from-url",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "stylesheet-deck", "generate-from-url"]
+        },
+        "description": "Test error handling - invalid URL format (should return 400)"
+      },
+      "response": []
+    },
+    {
+      "name": "11. Error Test - Missing Data",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/stylesheet-deck/generate-from-data",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "stylesheet-deck", "generate-from-data"]
+        },
+        "description": "Test error handling - missing stylesheets/aesthetics (should return 400)"
+      },
+      "response": []
+    }
+  ]
+}
