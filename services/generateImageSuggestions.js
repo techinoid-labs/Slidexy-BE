@@ -1,4 +1,4 @@
-const { imageGenModel } = require("../utils/geminiModels");
+const { generateImageWithRetry } = require("../utils/runwareImageGen");
 const { imageGenLimiter } = require("../utils/limiter");
 
 async function generateImageSuggestions(prompt, count) {
@@ -7,49 +7,25 @@ async function generateImageSuggestions(prompt, count) {
   for (let i = 0; i < count; i++) {
     console.log(`Scheduling image generation for suggestion ${i + 1}...`);
 
-    const imageResponse = await imageGenLimiter.schedule(() =>
-      imageGenModel.generateContent({
-        contents: [
-          {
-            role: "user",
-            parts: [{ text: prompt }],
-          },
-        ],
-        generationConfig: {
-          responseModalities: ["IMAGE", "TEXT"],
-        },
-        safetySettings: [
-          {
-            category: "HARM_CATEGORY_HARASSMENT",
-            threshold: "BLOCK_MEDIUM_AND_ABOVE",
-          },
-          {
-            category: "HARM_CATEGORY_HATE_SPEECH",
-            threshold: "BLOCK_MEDIUM_AND_ABOVE",
-          },
-          {
-            category: "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-            threshold: "BLOCK_MEDIUM_AND_ABOVE",
-          },
-          {
-            category: "HARM_CATEGORY_DANGEROUS_CONTENT",
-            threshold: "BLOCK_MEDIUM_AND_ABOVE",
-          },
-        ],
-      })
-    );
+    try {
+      const imageUrl = await imageGenLimiter.schedule(() =>
+        generateImageWithRetry(prompt, {
+         width: 1344,
+      height: 768,
+          steps: 25,
+          CFGScale: 7,
+          negativePrompt: "text, watermark, signature, letters, words, blurry, low quality, distorted",
+          model: "runware:100@1",
+        }, 1) // 1 retry for suggestions
+      );
 
-    const responseParts =
-      imageResponse.response.candidates?.[0]?.content?.parts;
-    if (responseParts) {
-      for (const part of responseParts) {
-        if (part.inlineData && part.inlineData.mimeType.startsWith("image/")) {
-          imageUrls.push(
-            `data:${part.inlineData.mimeType};base64,${part.inlineData.data}`
-          );
-          break;
-        }
+      if (imageUrl) {
+        imageUrls.push(imageUrl);
+        console.log(`✓ Generated suggestion image ${i + 1}`);
       }
+    } catch (error) {
+      console.error(`Failed to generate suggestion ${i + 1}:`, error.message);
+      // Continue to next image even if one fails
     }
   }
 

@@ -1,4 +1,3 @@
-// utils/geminiModels.js
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const apiKeys = [
@@ -14,7 +13,6 @@ class KeyPool {
   constructor(keys) {
     this.keys = keys.map(key => ({ key, inUse: false, lastUsed: 0, fails: 0 }));
   }
-
   async acquire() {
     this.keys.sort((a, b) => a.lastUsed - b.lastUsed || a.fails - b.fails);
     let candidate = this.keys.find(k => !k.inUse);
@@ -24,7 +22,6 @@ class KeyPool {
     candidate.lastUsed = Date.now();
     return candidate.key;
   }
-
   release(key, success = true) {
     const k = this.keys.find(k => k.key === key);
     if (k) { k.inUse = false; if (!success) k.fails++; }
@@ -37,7 +34,6 @@ async function safeGenerateContent(modelName, config) {
   const key = await pool.acquire();
   const genAI = new GoogleGenerativeAI(key);
   const model = genAI.getGenerativeModel({ model: modelName });
-
   try {
     const res = await model.generateContent(config);
     pool.release(key, true);
@@ -54,5 +50,4 @@ async function safeGenerateContent(modelName, config) {
 
 module.exports = {
   textGenModel: { generateContent: (c) => safeGenerateContent("gemini-2.0-flash", c) },
-  imageGenModel: { generateContent: (c) => safeGenerateContent("gemini-2.0-flash-preview-image-generation", c) },
 };

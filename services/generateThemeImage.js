@@ -1,5 +1,5 @@
 const { imageGenLimiter } = require("../utils/limiter");
-const { imageGenModel } = require("../utils/geminiModels");
+const { generateImageWithRetry } = require("../utils/runwareImageGen");
 
 const presentationThemePrompt = {
   description:
@@ -43,29 +43,6 @@ const presentationThemePrompt = {
 };
 
 async function generateSingleTheme(promptText) {
-  const generationConfig = {
-    responseModalities: ["IMAGE", "TEXT"],
-  };
-
-  const safetySettings = [
-    {
-      category: "HARM_CATEGORY_HARASSMENT",
-      threshold: "BLOCK_MEDIUM_AND_ABOVE",
-    },
-    {
-      category: "HARM_CATEGORY_HATE_SPEECH",
-      threshold: "BLOCK_MEDIUM_AND_ABOVE",
-    },
-    {
-      category: "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-      threshold: "BLOCK_MEDIUM_AND_ABOVE",
-    },
-    {
-      category: "HARM_CATEGORY_DANGEROUS_CONTENT",
-      threshold: "BLOCK_MEDIUM_AND_ABOVE",
-    },
-  ];
-
   const prompt = `
     ${presentationThemePrompt.description}
     ${presentationThemePrompt.visualThemeAndColorPalette.replace(
@@ -84,32 +61,35 @@ async function generateSingleTheme(promptText) {
     ${presentationThemePrompt.outputDetails.colorAndFontMatching}
   `;
 
-  let response;
+  let imageUrl;
   try {
-    response = await imageGenLimiter.schedule(() =>
-      imageGenModel.generateContent({
-        contents: [{ role: "user", parts: [{ text: prompt }] }],
-        generationConfig,
-        safetySettings,
-      })
+    imageUrl = await imageGenLimiter.schedule(() =>
+      generateImageWithRetry(prompt, {
+        width: 1344,
+      height: 768,
+        steps: 30,
+        CFGScale: 7.5,
+        negativePrompt: "text, watermark, signature, letters, typography, words, readable content, blurry, low quality",
+        model: "runware:100@1",
+      }, 2)
     );
   } catch (error) {
     console.error("Error generating content for theme:", error);
     throw new Error("Failed to generate theme content from model.");
   }
 
-  const candidates = response.response.candidates;
-  if (!candidates || candidates.length === 0) {
-    throw new Error("No candidates returned by model for theme generation.");
+  if (!imageUrl) {
+    throw new Error("No image URL returned by Runware for theme generation.");
   }
 
-  const parts = candidates[0]?.content?.parts;
-  if (!parts) {
-    throw new Error("No content parts returned by model for theme generation.");
-  }
-
+  // Since Runware doesn't return JSON metadata with the image,
+  // you'll need to generate theme metadata separately using your textGenModel
+  // Here's an approach:
+  
+  const { textGenModel } = require("../utils/geminiModels");
+  
   let themeData = {
-    image_base64: null,
+    image_base64: imageUrl, // Store the URL or convert to base64 if needed
     font: "Inter",
     primaryColor: "#2A2A2A",
     secondaryColor: "#7F8C8D",
@@ -117,56 +97,52 @@ async function generateSingleTheme(promptText) {
     textColor: "#111111",
   };
 
-  let imageMimeType = null;
-
-  for (const part of parts) {
-    if (
-      part.inlineData &&
-      typeof part.inlineData.mimeType === "string" &&
-      part.inlineData.mimeType.startsWith("image/")
-    ) {
-      themeData.image_base64 = part.inlineData.data;
-      imageMimeType = part.inlineData.mimeType;
-    } else if (part.text) {
-      try {
-        const match = part.text.match(/\{[\s\S]*?\}/);
-        if (match) {
-          const json = JSON.parse(match[0]);
-          themeData.font = json.font || themeData.font;
-          themeData.primaryColor = json.primaryColor || themeData.primaryColor;
-          themeData.secondaryColor =
-            json.secondaryColor || themeData.secondaryColor;
-          themeData.backgroundColor =
-            json.backgroundColor || themeData.backgroundColor;
-          themeData.textColor = json.textColor || themeData.textColor;
-
-          if (json.image_base64 && !themeData.image_base64) {
-            themeData.image_base64 = json.image_base64;
-            imageMimeType = imageMimeType || "image/png";
-          }
-        } else {
-          console.warn(
-            "No JSON block found in text part for theme:",
-            part.text
-          );
-        }
-      } catch (e) {
-        console.warn(
-          "Failed to parse JSON part of theme metadata.",
-          e,
-          "Text content:",
-          part.text
-        );
-      }
+  // Generate color scheme and font using text model
+  try {
+    const metadataPrompt = `Based on this presentation theme: "${promptText}"
+    
+    Generate a JSON object with appropriate design choices:
+    {
+      "font": "font name (Google Fonts compatible)",
+      "primaryColor": "#hexcolor",
+      "secondaryColor": "#hexcolor", 
+      "backgroundColor": "#hexcolor",
+      "textColor": "#hexcolor"
     }
+    
+    Choose colors that match the theme. Output ONLY the JSON, no other text.`;
+
+    const metadataResponse = await textGenModel.generateContent({
+      contents: [{ role: "user", parts: [{ text: metadataPrompt }] }],
+    });
+
+    const metadataText = metadataResponse.response?.candidates?.[0]?.content?.parts?.[0]?.text || "";
+    const match = metadataText.match(/\{[\s\S]*?\}/);
+    
+    if (match) {
+      const json = JSON.parse(match[0]);
+      themeData.font = json.font || themeData.font;
+      themeData.primaryColor = json.primaryColor || themeData.primaryColor;
+      themeData.secondaryColor = json.secondaryColor || themeData.secondaryColor;
+      themeData.backgroundColor = json.backgroundColor || themeData.backgroundColor;
+      themeData.textColor = json.textColor || themeData.textColor;
+    }
+  } catch (e) {
+    console.warn("Failed to generate theme metadata, using defaults:", e.message);
   }
 
-  if (themeData.image_base64 && imageMimeType) {
-    themeData.image_base64 = `data:${imageMimeType};base64,${themeData.image_base64}`;
-  } else {
-    throw new Error(
-      "No complete image data (base64 and MIME type) found in the model's response for the theme."
-    );
+  // If you need base64 instead of URL, fetch and convert:
+  if (imageUrl.startsWith('http')) {
+    try {
+      const fetch = require('node-fetch');
+      const imageResponse = await fetch(imageUrl);
+      const imageBuffer = await imageResponse.buffer();
+      const base64 = imageBuffer.toString('base64');
+      themeData.image_base64 = `data:image/png;base64,${base64}`;
+    } catch (fetchError) {
+      console.warn("Failed to convert URL to base64, keeping URL:", fetchError.message);
+      // Keep the URL as is
+    }
   }
 
   return themeData;

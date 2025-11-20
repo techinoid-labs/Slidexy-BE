@@ -117,7 +117,7 @@ async function generateWithReplicate(prompt) {
         input: {
           prompt: prompt,
           width: 1920,
-          height: 1080,
+          height: 1088,
         }
       },
       {

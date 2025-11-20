@@ -1,5 +1,6 @@
 const { imageGenLimiter } = require("../utils/limiter");
-const { imageGenModel } = require("../utils/geminiModels");
+const { generateImageWithRetry } = require("../utils/runwareImageGen");
+
 
 /**
  * Generates a poster with visuals in the four corners and maps given content paragraphs to each zone.
@@ -63,11 +64,16 @@ All illustrations must be clear, unique per section, and styled consistently. Av
   `;
 
   const response = await imageGenLimiter.schedule(() =>
-    imageGenModel.generateContent({
-      contents: [{ role: "user", parts: [{ text: promptText }] }],
-      generationConfig: { responseModalities: ["IMAGE", "TEXT"] },
-    })
-  );
+  generateImageWithRetry(promptText, {
+   width: 1344,
+      height: 768,
+    steps: 25,
+    CFGScale: 7,
+    negativePrompt: "text, watermark, signature, blurry, low quality",
+    model: "runware:100@1",
+  }, 2)
+);
+
 
   let imageUrl = null;
   const parts = response.response.candidates?.[0]?.content?.parts || [];

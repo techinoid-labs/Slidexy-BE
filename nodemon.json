@@ -1,6 +1,19 @@
 {
-  "watch": ["."],
-  "ext": "ts,js,json",
-  "ignore": ["dist/*"],
+  "watch": [
+    "controllers",
+    "routes", 
+    "models",
+    "middlewares",
+    "services",
+    "utils",
+    "server.js"
+  ],
+  "ignore": [
+    "node_modules",
+    "website-codes/**",
+    "*.log",
+    ".git"
+  ],
+  "ext": "js,json",
   "exec": "node -r ts-node/register ./server.js"
 }

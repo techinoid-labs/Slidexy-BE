@@ -1,10 +1,10 @@
-# devsinc.com
+# download
 
 ## Generated Website
 
-**Source URL:** https://www.devsinc.com  
-**Generated:** 2025-11-19T11:40:05.412Z  
-**Presentation ID:** eeb16c6a-e0b0-40bd-8e02-452189a3ec56
+**Source URL:** https://nodejs.org/en/download  
+**Generated:** 2025-11-20T17:33:50.407Z  
+**Presentation ID:** 80e73ee8-aef8-45cf-ad66-5c3b2fc6bfa7
 
 ### Structure
 - `index.html` - Main HTML structure
@@ -15,9 +15,9 @@
 - 🎨 Modern glass-morphism design
 - 📱 Fully responsive layout
 - ✨ Smooth animations and transitions
-- 🖼️ Image gallery with 24 images
-- 🎯 3 content sections
-- 🌈 Color palette: #000000, #ffffff, #0ebab1
+- 🖼️ Image gallery with 0 images
+- 🎯 2 content sections
+- 🌈 Color palette: #0d121c, #ffffff, #84ba64, #417e38, #2c3437, #556066
 
 ### How to Use
 1. Open `index.html` in your browser

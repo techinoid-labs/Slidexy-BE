@@ -1,16 +1,26 @@
-const { textGenModel, imageGenModel } = require("../utils/geminiModels");
+const { textGenModel} = require("../utils/geminiModels");
+const { generateImageWithRetry } = require("../utils/runwareImageGen");
 
 const generateImageFromPrompt = async (prompt) => {
-  const result = await imageGenModel.generateContent(prompt);
-  const response = await result.response;
+  try {
+    const imageUrl = await generateImageWithRetry(prompt, {
+    width: 1344,
+      height: 768,
+      steps: 25,
+      CFGScale: 7,
+      negativePrompt: "text, watermark, signature, letters, words, blurry, low quality, distorted",
+      model: "runware:100@1",
+    }, 2);
 
-  const mediaPart = response.candidates?.[0]?.content?.parts?.find((part) =>
-    part.inline_data?.mime_type?.startsWith("image/")
-  );
+    if (!imageUrl) {
+      throw new Error("No image URL returned from Runware");
+    }
 
-  if (!mediaPart) throw new Error("No image returned");
-
-  return `data:${mediaPart.inline_data.mime_type};base64,${mediaPart.inline_data.data}`;
+    return imageUrl;
+  } catch (error) {
+    console.error("Error generating image from prompt:", error);
+    throw new Error(`Failed to generate image: ${error.message}`);
+  }
 };
 
 const generateInfographicFromText = async (text) => {

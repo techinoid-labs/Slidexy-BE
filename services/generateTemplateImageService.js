@@ -1,5 +1,5 @@
 const { imageGenLimiter } = require("../utils/limiter");
-const { imageGenModel } = require("../utils/geminiModels");
+const { generateImageWithRetry } = require("../utils/runwareImageGen");
 
 const BASE_CANVAS_WIDTH = 960;
 const BASE_CANVAS_HEIGHT = 540;
@@ -55,10 +55,14 @@ STRICT RULES:
 `;
 
     const response = await imageGenLimiter.schedule(() =>
-      imageGenModel.generateContent({
-        contents: [{ role: "user", parts: [{ text: finalPrompt }] }],
-        generationConfig: { responseModalities: ["IMAGE", "TEXT"] },
-      })
+      generateImageWithRetry(finalPrompt, {
+        width: 1344,
+      height: 768,
+        steps: 25,
+        CFGScale: 7,
+        negativePrompt: "text, watermark, signature, letters, words, blurry, low quality",
+        model: "runware:100@1",
+      }, 2)
     );
 
     let base64Data = null;
@@ -85,9 +89,8 @@ STRICT RULES:
       err.message
     );
 
-    const fallback = `https://placehold.co/${
-      el?.properties?.width || BASE_CANVAS_WIDTH
-    }x${el?.properties?.height || BASE_CANVAS_HEIGHT}?text=Image+Unavailable`;
+    const fallback = `https://placehold.co/${el?.properties?.width || BASE_CANVAS_WIDTH
+      }x${el?.properties?.height || BASE_CANVAS_HEIGHT}?text=Image+Unavailable`;
 
     if (!el || el.element_type !== "image") {
       slide.image_url = fallback;

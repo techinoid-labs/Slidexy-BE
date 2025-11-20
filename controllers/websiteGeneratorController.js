@@ -1,31 +1,11 @@
-/**
- * =============================================================================
- * WEBSITE GENERATOR CONTROLLER
- * =============================================================================
- * 
- * Purpose: HTTP handlers for website generation service
- * 
- * Endpoints:
- * - POST /api/website-generator/generate
- * - GET  /api/website-generator/health
- * - GET  /api/website-generator/list
- * 
- * CEO Requirement: Generate modern HTML websites from URLs using unified deck data
- * 
- * Created: 2025-11-17
- * =============================================================================
- */
-
 const { generateWebsiteFromUrl } = require("../services/websiteGenerator");
+const { createAndUploadZip } = require('../utils/createAndUploadZip');
+const GeneratedWebsite = require('../models/generateWebsite'); 
 const fs = require("fs").promises;
 const path = require("path");
 
-/**
- * Health check endpoint
- */
 async function healthCheck(req, res) {
   try {
-    // Check if website-codes directory exists
     const websiteCodesDir = path.join(__dirname, "..", "website-codes");
     let dirExists = false;
     let fileCount = 0;
@@ -34,7 +14,6 @@ async function healthCheck(req, res) {
       await fs.access(websiteCodesDir);
       dirExists = true;
       const items = await fs.readdir(websiteCodesDir);
-      // Count directories (folders)
       for (const item of items) {
         const itemPath = path.join(websiteCodesDir, item);
         const stats = await fs.stat(itemPath);
@@ -66,84 +45,63 @@ async function healthCheck(req, res) {
 
 /**
  * Generate website from URL
- * Main endpoint that orchestrates the entire website generation process
  */
+// controllers/websiteGeneratorController.js
 async function generateWebsite(req, res) {
   try {
     const { url } = req.body;
+    if (!url) return res.status(400).json({ success: false, error: "URL required" });
 
-    // Validate input
-    if (!url) {
-      return res.status(400).json({
-        success: false,
-        error: "Missing required field: url",
-        message: "Please provide a 'url' field in the request body",
-      });
-    }
-
-    // Validate URL format
-    const urlPattern = /^(https?:\/\/).+/i;
-    if (!urlPattern.test(url)) {
-      return res.status(400).json({
-        success: false,
-        error: "Invalid URL format. Must start with http:// or https://",
-      });
-    }
-
-    console.log("\n🌐 Website Generation Request Received");
-    console.log(`   URL: ${url}`);
-    console.log(`   Timestamp: ${new Date().toISOString()}`);
-
-    // Generate website
+    console.log(`Generating website for: ${url}`);
+    
+    // This now returns clean object
     const result = await generateWebsiteFromUrl(url);
 
-    // Extract folder name from the result (it's the dynamic key)
-    const folderName = Object.keys(result).find(key => 
-      key !== 'success' && 
-      key !== 'message' && 
-      key !== 'presentation' && 
-      key !== 'sourceUrl' && 
-      key !== 'generatedAt'
-    );
+    // result now has: folderName, files, sizeKB, presentation, etc.
+    const { folderName, files, sizeKB, presentation, sourceUrl, generatedAt } = result;
 
-    if (folderName && result[folderName]) {
-      console.log("\n✅ Website Generated Successfully");
-      console.log(`   Folder: ${folderName}`);
-      console.log(`   Files: ${result[folderName].files.length}`);
-      console.log(`   Size: ${result[folderName].sizeKB} KB`);
-    }
+    // Upload ZIP
+    const zipUrl = await createAndUploadZip(folderName, files, presentation.presentation_id);
 
-    res.status(201).json(result);
+    // Save to DB
+    const savedWebsite = await GeneratedWebsite.create({
+      presentationId: presentation.presentation_id,
+      topic: presentation.topic,
+      sourceUrl,
+      folderName,
+      files,                    // ← correct format
+      presentation: {
+        slide_count: presentation.slide_count,
+        art_style: presentation.art_style,
+        art_palette: presentation.art_palette,
+        total_images: presentation.total_images || 0,
+        total_headings: presentation.total_headings || 0
+      },
+      zipUrl,
+      sizeKB,
+      generatedAt: new Date(generatedAt)
+    });
+
+    return res.status(201).json({
+      success: true,
+      message: "Website generated and saved!",
+      data: {
+        id: savedWebsite._id,
+        topic: savedWebsite.topic,
+        downloadZipUrl: zipUrl,
+        sizeKB: savedWebsite.sizeKB,
+        generatedAt: savedWebsite.generatedAt
+      }
+    });
 
   } catch (error) {
-    console.error("\n❌ Website Generation Failed");
-    console.error(`   Error: ${error.message}`);
-    console.error(`   Stack: ${error.stack}`);
-
-    // Determine error type and status code
-    let statusCode = 500;
-    let errorMessage = error.message;
-
-    if (error.message.includes("unified presentation")) {
-      statusCode = 500;
-      errorMessage = "Failed to generate presentation data from URL";
-    } else if (error.message.includes("Gemini")) {
-      statusCode = 500;
-      errorMessage = "AI generation service error";
-    } else if (error.message.includes("save")) {
-      statusCode = 500;
-      errorMessage = "Failed to save generated website";
-    }
-
-    res.status(statusCode).json({
+    console.error("Website generation failed:", error);
+    return res.status(500).json({
       success: false,
-      error: errorMessage,
-      details: error.message,
-      timestamp: new Date().toISOString(),
+      error: error.message || "Internal server error"
     });
   }
 }
-
 /**
  * List all generated websites
  */
@@ -151,7 +109,6 @@ async function listGeneratedWebsites(req, res) {
   try {
     const websiteCodesDir = path.join(__dirname, "..", "website-codes");
     
-    // Check if directory exists
     try {
       await fs.access(websiteCodesDir);
     } catch {
@@ -163,7 +120,6 @@ async function listGeneratedWebsites(req, res) {
       });
     }
 
-    // Read all folders
     const items = await fs.readdir(websiteCodesDir);
     const folders = [];
     
@@ -175,13 +131,11 @@ async function listGeneratedWebsites(req, res) {
       }
     }
 
-    // Get folder details
     const websiteDetails = await Promise.all(
       folders.map(async (folderName) => {
         const folderPath = path.join(websiteCodesDir, folderName);
         const stats = await fs.stat(folderPath);
         
-        // Try to extract metadata from README.md
         let topic = "Unknown";
         let sourceUrl = "Unknown";
         let generatedAt = stats.birthtime;
@@ -189,7 +143,6 @@ async function listGeneratedWebsites(req, res) {
         let totalSize = 0;
 
         try {
-          // Read README for metadata
           const readmePath = path.join(folderPath, "README.md");
           const content = await fs.readFile(readmePath, "utf-8");
           const topicMatch = content.match(/# (.+)/);
@@ -200,7 +153,6 @@ async function listGeneratedWebsites(req, res) {
           if (urlMatch) sourceUrl = urlMatch[1].trim();
           if (dateMatch) generatedAt = new Date(dateMatch[1].trim());
 
-          // Count files and calculate total size
           const files = await fs.readdir(folderPath);
           fileCount = files.length;
           for (const file of files) {
@@ -208,8 +160,8 @@ async function listGeneratedWebsites(req, res) {
             const fileStats = await fs.stat(filePath);
             totalSize += fileStats.size;
           }
-        } catch {
-          // Metadata extraction failed, use defaults
+        } catch (err) {
+          console.warn(`Could not read metadata for ${folderName}:`, err.message);
         }
 
         return {
@@ -225,7 +177,6 @@ async function listGeneratedWebsites(req, res) {
       })
     );
 
-    // Sort by generation date (newest first)
     websiteDetails.sort((a, b) => 
       new Date(b.generatedAt) - new Date(a.generatedAt)
     );
@@ -247,9 +198,55 @@ async function listGeneratedWebsites(req, res) {
     });
   }
 }
+// Add this function at the bottom of the file
+async function getWebsiteById(req, res) {
+  try {
+    const { id } = req.params;
+
+    // Validate ObjectId format
+    if (!id || !/^[0-9a-fA-F]{24}$/.test(id)) {
+      return res.status(400).json({
+        success: false,
+        error: "Invalid website ID",
+      });
+    }
+
+    const website = await GeneratedWebsite.findById(id);
+
+    if (!website) {
+      return res.status(404).json({
+        success: false,
+        error: "Website not found",
+      });
+    }
+
+    // Return exactly what your frontend expects
+    return res.status(200).json({
+      success: true,
+      message: "Website fetched successfully",
+      data: {
+        presentationId: website._id.toString(),
+        topic: website.topic,
+        sourceUrl: website.sourceUrl,
+        folderName: website.folderName,
+        files: website.files,
+        zipUrl: website.zipUrl,
+        presentation: website.presentation,
+        generatedAt: website.generatedAt,
+      },
+    });
+  } catch (error) {
+    console.error("Error fetching website by ID:", error);
+    return res.status(500).json({
+      success: false,
+      error: "Internal server error",
+    });
+  }
+}
 
 module.exports = {
   healthCheck,
   generateWebsite,
   listGeneratedWebsites,
+  getWebsiteById
 };

@@ -9,6 +9,7 @@ const { MongoClient, GridFSBucket, ObjectId } = require("mongodb");
 const infographicRoute = require("./routes/infographics");
 const dynamicInfographicRoute = require("./routes/dynamicInfographics");
 const blogRoutes = require("./routes/blogRoutes");
+const websiteDownloadRoutes = require("./routes/websiteZipDownload");
 
 // Models
 const User = require("./models/WaitingUser");
@@ -128,6 +129,7 @@ app.use("/api/unified-web-deck", unifiedWebDeckRoutes);
 
 // --- Website Generator Service (CEO New Feature: Generate HTML websites) ---
 app.use("/api/website-generator", websiteGeneratorRoutes);
+app.use("/api/website-zip-download", websiteDownloadRoutes);
 
 // --- Slide/Presentation APIs ---
 app.post("/generate-slides", validate, generateSlidesHandler);

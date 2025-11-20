@@ -23,6 +23,7 @@ const {
   healthCheck,
   generateWebsite,
   listGeneratedWebsites,
+  getWebsiteById,
 } = require("../controllers/websiteGeneratorController");
 
 /**
@@ -92,5 +93,7 @@ router.post("/generate", generateWebsite);
  * }
  */
 router.get("/list", listGeneratedWebsites);
+
+router.get("/website/:id", getWebsiteById);
 
 module.exports = router;

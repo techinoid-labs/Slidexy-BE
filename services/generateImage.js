@@ -1,5 +1,6 @@
 const { imageGenLimiter } = require("../utils/limiter");
-const { imageGenModel, textGenModel } = require("../utils/geminiModels");
+const { textGenModel } = require("../utils/geminiModels");
+const { generateImageWithRetry } = require("../utils/runwareImageGen");
 const crypto = require("crypto");
 const sharp = require("sharp");
 const { uploadToSpaces, deleteFromSpaces } = require("../utils/s3Uploader");
@@ -22,7 +23,7 @@ async function convertToWebP(base64Image) {
   if (shouldResize) {
     sharpInstance = sharpInstance.resize({
       width: 1920,
-      height: 1080,
+      height: 1088,
       fit: "cover",
       kernel: sharp.kernel.lanczos3,
     });
@@ -433,45 +434,38 @@ REQUIRED STYLE: ${artStyle}
 Style Profile: ${styleProfile.styleDesc}
 
 VISUAL REQUIREMENTS:
-${
-  numCharacters === 0
-    ? "- NO human characters, figures, or people\n- Focus on environments, objects, abstract elements\n- Create compelling scene without human presence"
-    : "- Include exactly 2 diverse professional characters\n- Characters should reflect the content context\n- Professional attire and relevant poses"
-}
+${numCharacters === 0
+      ? "- NO human characters, figures, or people\n- Focus on environments, objects, abstract elements\n- Create compelling scene without human presence"
+      : "- Include exactly 2 diverse professional characters\n- Characters should reflect the content context\n- Professional attire and relevant poses"
+    }
 
 SLIDE-SPECIFIC NEEDS:
-${
-  slideType === "cover-hero"
-    ? "- Heroic, attention-grabbing composition\n- Strong visual hierarchy\n- Memorable first impression"
-    : ""
-}
-${
-  slideType === "quote-slide"
-    ? "- Emotional, atmospheric setting\n- Supports quote tone and message\n- Subtle, non-distracting elements"
-    : ""
-}
-${
-  slideType === "data-visual"
-    ? "- Data-friendly environment\n- Analytical, precise elements\n- Clear, organized composition"
-    : ""
-}
-${
-  slideType === "call-to-action"
-    ? "- Motivational, forward-looking\n- Inspires action and movement\n- Clear focal point for CTA"
-    : ""
-}
+${slideType === "cover-hero"
+      ? "- Heroic, attention-grabbing composition\n- Strong visual hierarchy\n- Memorable first impression"
+      : ""
+    }
+${slideType === "quote-slide"
+      ? "- Emotional, atmospheric setting\n- Supports quote tone and message\n- Subtle, non-distracting elements"
+      : ""
+    }
+${slideType === "data-visual"
+      ? "- Data-friendly environment\n- Analytical, precise elements\n- Clear, organized composition"
+      : ""
+    }
+${slideType === "call-to-action"
+      ? "- Motivational, forward-looking\n- Inspires action and movement\n- Clear focal point for CTA"
+      : ""
+    }
 
 Generate JSON with:
 {
   "style": "${artStyle}",
-  "sceneDescription": "Detailed scene description ${
-    numCharacters === 0 ? "WITHOUT any people" : "with integrated characters"
-  }",
-  "characterDetails": ${
-    numCharacters === 0
+  "sceneDescription": "Detailed scene description ${numCharacters === 0 ? "WITHOUT any people" : "with integrated characters"
+    }",
+  "characterDetails": ${numCharacters === 0
       ? "[]"
       : '["professional character 1", "professional character 2"]'
-  },
+    },
   "numCharacters": ${numCharacters},
   "colorPalette": ${JSON.stringify(colorScheme)},
   "mood": "appropriate emotional tone",
@@ -501,16 +495,15 @@ Output ONLY valid JSON:`;
       style: artStyle || parsed.style,
       sceneDescription:
         parsed.sceneDescription ||
-        `${slideType} scene for ${theme} ${
-          numCharacters === 0 ? "without people" : "with professionals"
+        `${slideType} scene for ${theme} ${numCharacters === 0 ? "without people" : "with professionals"
         }`,
       characterDetails:
         numCharacters === 0
           ? []
           : parsed.characterDetails || [
-              "diverse professional in context-appropriate attire",
-              "supporting team member or colleague",
-            ],
+            "diverse professional in context-appropriate attire",
+            "supporting team member or colleague",
+          ],
       numCharacters: numCharacters,
       colorPalette: parsed.colorPalette || colorScheme,
       mood: parsed.mood || getDefaultMood(slideType),
@@ -569,11 +562,11 @@ async function generateDetailedImagePrompt(slide, artKnowledge, rawText = "") {
       ? `🚫 ABSOLUTE RESTRICTION: ZERO human figures, characters, people, persons, silhouettes, or any humanoid forms. Focus 100% on environmental elements, objects, architecture, nature, technology, or abstract forms that support ${slideType} content.`
       : `👥 CHARACTER INTEGRATION: Include exactly ${numCharacters} photorealistic diverse professionals:
 ${characterDetails
-  .map(
-    (char, i) =>
-      `   ${i + 1}. ${char} - realistic, natural, context-appropriate`
-  )
-  .join("\n")}
+        .map(
+          (char, i) =>
+            `   ${i + 1}. ${char} - realistic, natural, context-appropriate`
+        )
+        .join("\n")}
 
 Character Guidelines:
 - Photorealistic diversity in ethnicity, gender, age
@@ -737,11 +730,10 @@ Create a UNIQUE, PROFESSIONAL ${slideType} visual that:
 2. Supports "${title}" content as effective ${slideType} imagery
 3. Uses ${colorPalette.join(", ")} palette harmoniously
 4. Maintains ${mood} atmosphere throughout
-5. Features ${
-    numCharacters === 0
+5. Features ${numCharacters === 0
       ? "ZERO people - pure environmental focus"
       : `${numCharacters} integrated professionals`
-  }
+    }
 6. Achieves presentation-grade visual excellence
 7. Enhances slide impact without distracting
 8. Stands as unique, professional artwork
@@ -765,11 +757,9 @@ async function generateImage(
   totalSlides = null
 ) {
   try {
-    // throw Error("Forced Error");
-    //  Predefined (trial/quota)
+    // Predefined (trial/quota) - keep existing logic
     if (planResponseType === "predefined") {
       try {
-        // Try Unsplash first before placeholder
         const fallbackQuery =
           slide?.slide_title.text ||
           slide?.topic ||
@@ -799,10 +789,7 @@ async function generateImage(
         );
       }
 
-      // fallback if Unsplash fails
-      const fallback = `https://placehold.co/960x540/6c5ce7/ffffff?text=Slide+${
-        index + 1
-      }`;
+      const fallback = `https://placehold.co/960x540/6c5ce7/ffffff?text=Slide+${index + 1}`;
       return {
         ...slide,
         image_url: fallback,
@@ -811,11 +798,11 @@ async function generateImage(
       };
     }
 
-    // 🟦 Normal AI image generation flow
+    // 🟦 RUNWARE AI image generation flow
     if (progressCallback && currentSlideNum && totalSlides) {
       progressCallback(currentSlideNum, totalSlides, 'generating');
     }
-    
+
     const artKnowledge = await generateArtKnowledge(slide, rawText, artStyle);
     console.log(`Art knowledge for slide ${index}:`, {
       style: artKnowledge.style,
@@ -823,158 +810,66 @@ async function generateImage(
       mood: artKnowledge.mood,
     });
 
-    let detailedPrompt = await generateDetailedImagePrompt(
+    const detailedPrompt = await generateDetailedImagePrompt(
       slide,
       artKnowledge,
       rawText
     );
     console.log(`Generated prompt for slide ${index} (${artKnowledge.style})`);
 
-    let attempts = 0;
-    const maxAttempts = 2;
+    // 🔥 Use Runware instead of Gemini
+    console.log(`Generating image with Runware for slide ${index}...`);
 
-    while (attempts < maxAttempts) {
-      try {
-        if (attempts === 1) {
-          const variations = [
-            "alternative perspective",
-            "different lighting angle",
-            "varied composition approach",
-            "fresh visual interpretation",
-          ];
-          const variation =
-            variations[Math.floor(Math.random() * variations.length)];
-          detailedPrompt =
-            detailedPrompt.replace("composition", `${variation} composition`) +
-            `\n\nIMPORTANT: Create a distinctly different variation from previous attempt while maintaining style integrity.`;
-          console.log(`Retry ${attempts} for slide ${index}`);
-        }
+    const imageUrl = await imageGenLimiter.schedule(() =>
+      generateImageWithRetry(detailedPrompt, {
+        width: 1344,
+        height: 768,
+        steps: 25,
+        CFGScale: 7,
+        negativePrompt: "text, watermark, signature, letters, words, typography, blurry, distorted, low quality, artifacts, ugly, bad anatomy, deformed",
+        model: "runware:100@1", // You can change this to other Runware models
+      }, 2) // 2 retries
+    );
 
-        console.log(
-          `Attempting image generation for slide ${index}, attempt ${
-            attempts + 1
-          }...`
-        );
+    console.log(`Runware image generated for slide ${index}: ${imageUrl}`);
 
-        if (progressCallback && currentSlideNum && totalSlides) {
-          progressCallback(currentSlideNum, totalSlides, 'generating');
-        }
-
-        const response = await imageGenLimiter.schedule(() =>
-          imageGenModel.generateContent({
-            contents: [{ role: "user", parts: [{ text: detailedPrompt }] }],
-            generationConfig: {
-              responseModalities: ["IMAGE", "TEXT"],
-              candidateCount: 1,
-              temperature: attempts === 0 ? 0.65 : 0.8,
-              topP: 0.95,
-              topK: 50,
-            },
-          })
-        );
-
-        console.log(`Response received for slide ${index}`);
-
-        if (!response || !response.response) {
-          throw new Error(
-            "Invalid response structure from image generation API"
-          );
-        }
-
-        let imageBase64 = null;
-        const candidates = response.response.candidates || [];
-
-        console.log(
-          `Parsing ${candidates.length} candidates for slide ${index}...`
-        );
-
-        for (const candidate of candidates) {
-          const parts = candidate?.content?.parts || [];
-          console.log(`Candidate has ${parts.length} parts`);
-
-          for (const part of parts) {
-            if (part.inlineData?.mimeType?.startsWith("image/")) {
-              imageBase64 = `data:${part.inlineData.mimeType};base64,${part.inlineData.data}`;
-              console.log(
-                `✓ Found image data in slide ${index}: ${part.inlineData.mimeType}`
-              );
-              break;
-            }
-            if (part.text) {
-              console.log(
-                `Text part in slide ${index}:`,
-                part.text.substring(0, 100)
-              );
-            }
-          }
-          if (imageBase64) break;
-        }
-
-        if (!imageBase64) {
-          console.error(
-            `No image data found in response for slide ${index}:`,
-            JSON.stringify(response.response, null, 2).substring(0, 500)
-          );
-          throw new Error("No image data returned from API");
-        }
-
-        // Upload
-        let fileUrl;
-        let key;
-        try {
-          if (progressCallback && currentSlideNum && totalSlides) {
-            progressCallback(currentSlideNum, totalSlides, 'uploading');
-          }
-          
-          console.log(`Converting image to WebP for slide ${index}...`);
-          imageBase64 = await convertToWebP(imageBase64);
-
-          key = `slide_${
-            slide.slide_id || crypto.randomUUID()
-          }_${Date.now()}.webp`;
-          console.log(`Uploading image for slide ${index}: ${key}`);
-
-          fileUrl = await uploadToSpaces(imageBase64, key);
-          console.log(
-            `✓ Image uploaded for slide ${index}: ${artKnowledge.style} -> ${fileUrl}`
-          );
-        } catch (uploadErr) {
-          console.error(`Upload failed for slide ${index}:`, uploadErr);
-          if (key) await deleteFromSpaces(key);
-          throw uploadErr;
-        }
-
-        return {
-          ...slide,
-          image_url: fileUrl,
-          image_caption: artKnowledge.sceneDescription || "",
-          generation_attempt: attempts + 1,
-          art_style: artKnowledge.style,
-          art_palette: artKnowledge.colorPalette,
-        };
-      } catch (attemptErr) {
-        attempts++;
-        console.error(`Attempt ${attempts} failed for slide ${index}:`, {
-          error: attemptErr.message,
-          stack: attemptErr.stack?.substring(0, 200),
-        });
-
-        if (attempts >= maxAttempts) {
-          throw attemptErr;
-        }
-
-        const retryDelay = 2000 * attempts;
-        console.log(`Waiting ${retryDelay}ms before retry...`);
-        await new Promise((resolve) => setTimeout(resolve, retryDelay));
+    // Convert and upload
+    let finalUrl;
+    let key;
+    try {
+      if (progressCallback && currentSlideNum && totalSlides) {
+        progressCallback(currentSlideNum, totalSlides, 'uploading');
       }
+
+      console.log(`Converting image to WebP for slide ${index}...`);
+      const webpImage = await convertToWebP(imageUrl);
+
+      key = `slide_${slide.slide_id || crypto.randomUUID()}_${Date.now()}.webp`;
+      console.log(`Uploading image for slide ${index}: ${key}`);
+
+      finalUrl = await uploadToSpaces(webpImage, key);
+      console.log(`Image uploaded for slide ${index}: ${artKnowledge.style} -> ${finalUrl}`);
+    } catch (uploadErr) {
+      console.error(`Upload failed for slide ${index}:`, uploadErr);
+      if (key) await deleteFromSpaces(key);
+      throw uploadErr;
     }
+
+    return {
+      ...slide,
+      image_url: finalUrl,
+      image_caption: artKnowledge.sceneDescription || "",
+      art_style: artKnowledge.style,
+      art_palette: artKnowledge.colorPalette,
+    };
+
   } catch (err) {
-    console.error(`❌ Failed to generate image for slide ${index}:`, {
+    console.error(`Failed to generate image for slide ${index}:`, {
       error: err.message,
       stack: err.stack?.substring(0, 300),
     });
 
-    // 🟧 Try Unsplash before placeholder
+    // Try Unsplash before placeholder
     try {
       const fallbackQuery =
         slide?.slide_title.text ||
@@ -990,7 +885,7 @@ async function generateImage(
       });
 
       if (unsplashResult && unsplashResult.image_url) {
-        console.log(`✅ Unsplash fallback used for failed slide ${index}`);
+        console.log(`Unsplash fallback used for failed slide ${index}`);
         return {
           ...slide,
           image_url: unsplashResult.image_url,
@@ -1000,15 +895,13 @@ async function generateImage(
       }
     } catch (unsplashErr) {
       console.warn(
-        `⚠️ Unsplash fallback failed for slide ${index}:`,
+        `Unsplash fallback failed for slide ${index}:`,
         unsplashErr.message
       );
     }
 
-    // fallback placeholder
-    const fallback = `https://placehold.co/960x540/6c5ce7/ffffff?text=Slide+${
-      index + 1
-    }`;
+    // Final fallback placeholder
+    const fallback = `https://placehold.co/960x540/6c5ce7/ffffff?text=Slide+${index + 1}`;
     return {
       ...slide,
       image_url: fallback,
