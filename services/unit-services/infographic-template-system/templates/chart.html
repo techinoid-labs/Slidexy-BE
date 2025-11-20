@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- Reset & Base --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, {{colors.[0]}} 0%, {{colors.[1]}} 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow: auto;
+        }
+
+        .main-wrapper {
+            width: 100%;
+            max-width: 1000px;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 30px 35px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Header Section */
+        .header-section {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .header-section h1 {
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: {{colors.[2]}};
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .header-section p {
+            font-size: 0.95rem;
+            color: {{colors.[3]}};
+            font-weight: 500;
+        }
+
+        .main-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            width: 100%;
+        }
+
+        /* =========================================
+           3D PIE CHART SECTION
+           ========================================= */
+        .chart-wrapper {
+            position: relative;
+            width: 320px;
+            height: 320px;
+            flex-shrink: 0;
+        }
+
+        .pie-chart {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            list-style: none;
+            overflow: hidden;
+            transform: rotate(-22.5deg); 
+            box-shadow: -10px 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* The Slice (Wedge shape) */
+        .slice {
+            overflow: hidden;
+            position: absolute;
+            top: 0; 
+            right: 0;
+            width: 50%; 
+            height: 50%;
+            transform-origin: 0% 100%;
+            border-left: 3px solid #fff;
+            border-bottom: 3px solid #fff;
+        }
+
+        /* The Content Container (Un-skews the slice) */
+        .slice-content {
+            position: absolute;
+            left: -100%; 
+            top: 0;
+            width: 200%; 
+            height: 200%;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            box-shadow: inset 0 -10px 0 rgba(0,0,0,0.15);
+        }
+
+        /* Icons & Text positioning adjustments */
+        .slice-content i {
+            font-size: 20px;
+            margin-bottom: 4px;
+            transform: translateY(-50px); 
+        }
+        
+        .slice-text {
+            position: absolute;
+            top: 15%;
+            width: 100px;
+            font-size: 10px;
+            line-height: 1.2;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .slice-text span {
+            display: block;
+            font-size: 7px;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-top: 2px;
+            text-transform: none;
+        }
+
+        /* Slice colors (reusable for any number of slices) */
+        .slice:nth-child(1) .slice-content { background-color: {{colors.[2]}}; }
+        .slice:nth-child(2) .slice-content { background-color: {{colors.[3]}}; }
+        .slice:nth-child(3) .slice-content { background-color: {{colors.[2]}}; opacity: 0.8; }
+        .slice:nth-child(4) .slice-content { background-color: {{colors.[3]}}; opacity: 0.8; }
+        .slice:nth-child(5) .slice-content { background-color: {{colors.[2]}}; opacity: 0.6; }
+        .slice:nth-child(6) .slice-content { background-color: {{colors.[3]}}; opacity: 0.6; }
+        .slice:nth-child(7) .slice-content { background-color: {{colors.[2]}}; opacity: 0.4; }
+        .slice:nth-child(8) .slice-content { background-color: {{colors.[3]}}; opacity: 0.4; }
+
+        /* Center Circle */
+        .center-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: {{colors.[2]}};
+            text-align: center;
+            font-weight: 800;
+            box-shadow: 
+                inset 0 -5px 10px rgba(0,0,0,0.1),
+                0 10px 20px rgba(0,0,0,0.2);
+            border: 6px solid #fff;
+            z-index: 10;
+        }
+
+        .center-circle h2 {
+            font-size: 18px;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+            line-height: 1.1;
+            letter-spacing: 1px;
+        }
+
+        .dots {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+        }
+
+        .dot { 
+            width: 10px; 
+            height: 10px; 
+            border-radius: 50%; 
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        /* =========================================
+           RIGHT LIST SECTION (3D BOXES)
+           ========================================= */
+        .list-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .list-item {
+            display: flex;
+            height: 48px;
+            position: relative;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .list-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+
+        /* The Number Block (Left) */
+        .list-num {
+            width: 48px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+            position: relative;
+            z-index: 2;
+            box-shadow: inset 0 -3px 0 rgba(0,0,0,0.15);
+        }
+
+        /* The Text Block (Right) */
+        .list-text {
+            flex-grow: 1;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 12px;
+            border-radius: 0 8px 8px 0;
+            box-shadow: inset 0 0 0 2px currentColor, inset 0 -4px 0 rgba(0,0,0,0.1);
+        }
+
+        .list-text strong {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: {{colors.[2]}};
+            margin-bottom: 2px;
+            letter-spacing: 0.3px;
+        }
+
+        .list-text span {
+            font-size: 10px;
+            color: {{colors.[3]}};
+            line-height: 1.25;
+            font-weight: 500;
+        }
+
+        /* --- Colors --- */
+        .c-orange .list-num { background: linear-gradient(135deg, {{colors.[2]}}, {{colors.[3]}}); }
+        .c-orange .list-text { border-color: {{colors.[2]}}; border-bottom-color: {{colors.[3]}}; }
+
+        .c-yellow .list-num { background: linear-gradient(135deg, {{colors.[2]}}, {{colors.[3]}}); opacity: 0.9; }
+        .c-yellow .list-text { border-color: {{colors.[2]}}; border-bottom-color: {{colors.[3]}}; }
+
+        .c-teal .list-num { background: linear-gradient(135deg, {{colors.[2]}}, {{colors.[3]}}); opacity: 0.8; }
+        .c-teal .list-text { border-color: {{colors.[2]}}; border-bottom-color: {{colors.[3]}}; }
+
+        .c-blue .list-num { background: linear-gradient(135deg, {{colors.[2]}}, {{colors.[3]}}); opacity: 0.7; }
+        .c-blue .list-text { border-color: {{colors.[2]}}; border-bottom-color: {{colors.[3]}}; }
+
+        .c-purple .list-num { background: linear-gradient(135deg, {{colors.[2]}}, {{colors.[3]}}); opacity: 0.6; }
+        .c-purple .list-text { border-color: {{colors.[2]}}; border-bottom-color: {{colors.[3]}}; }
+
+        .c-pink .list-num { background: linear-gradient(135deg, {{colors.[2]}}, {{colors.[3]}}); opacity: 0.5; }
+        .c-pink .list-text { border-color: {{colors.[2]}}; border-bottom-color: {{colors.[3]}}; }
+
+        .c-green .list-num { background: linear-gradient(135deg, {{colors.[2]}}, {{colors.[3]}}); opacity: 0.4; }
+        .c-green .list-text { border-color: {{colors.[2]}}; border-bottom-color: {{colors.[3]}}; }
+
+        .c-red .list-num { background: linear-gradient(135deg, {{colors.[2]}}, {{colors.[3]}}); opacity: 0.3; }
+        .c-red .list-text { border-color: {{colors.[2]}}; border-bottom-color: {{colors.[3]}}; }
+
+        /* Portrait Mode Overrides */
+        body.portrait-mode .main-wrapper {
+            max-width: 480px;
+            padding: 25px 28px;
+        }
+
+        body.portrait-mode .header-section {
+            margin-bottom: 28px;
+        }
+
+        body.portrait-mode .header-section h1 {
+            font-size: 1.6rem;
+        }
+
+        body.portrait-mode .header-section p {
+            font-size: 0.85rem;
+        }
+
+        body.portrait-mode .main-container {
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
+        }
+
+        body.portrait-mode .chart-wrapper {
+            width: 280px;
+            height: 280px;
+        }
+
+        body.portrait-mode .center-circle {
+            width: 110px;
+            height: 110px;
+            border: 5px solid #fff;
+        }
+
+        body.portrait-mode .center-circle h2 {
+            font-size: 15px;
+            margin: 0 0 8px 0;
+        }
+
+        body.portrait-mode .dots {
+            gap: 5px;
+        }
+
+        body.portrait-mode .dot {
+            width: 8px;
+            height: 8px;
+        }
+
+        body.portrait-mode .slice-content i {
+            font-size: 16px;
+            transform: translateY(-40px);
+        }
+
+        body.portrait-mode .slice-text {
+            width: 80px;
+            font-size: 8px;
+        }
+
+        body.portrait-mode .slice-text span {
+            font-size: 6px;
+        }
+
+        body.portrait-mode .list-wrapper {
+            width: 100%;
+            gap: 10px;
+        }
+
+        body.portrait-mode .list-item {
+            height: 45px;
+        }
+
+        body.portrait-mode .list-num {
+            width: 44px;
+            font-size: 16px;
+            box-shadow: inset 0 -3px 0 rgba(0,0,0,0.15);
+        }
+
+        body.portrait-mode .list-text {
+            padding: 0 10px;
+        }
+
+        body.portrait-mode .list-text strong {
+            font-size: 10px;
+            margin-bottom: 2px;
+        }
+
+        body.portrait-mode .list-text span {
+            font-size: 8.5px;
+            line-height: 1.2;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main-container {
+                flex-direction: column;
+                gap: 50px;
+                align-items: stretch;
+            }
+
+            .chart-wrapper {
+                width: 100%;
+                max-width: 400px;
+                height: 400px;
+                margin: 0 auto;
+            }
+
+            .list-wrapper {
+                width: 100%;
+            }
+
+            .main-wrapper {
+                padding: 30px 25px;
+            }
+
+            .header-section h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .main-wrapper {
+                padding: 20px 15px;
+            }
+
+            .header-section h1 {
+                font-size: 1.5rem;
+            }
+
+            .chart-wrapper {
+                width: 100%;
+                max-width: 300px;
+                height: 300px;
+            }
+
+            .list-item {
+                height: 80px;
+            }
+
+            .list-num {
+                width: 70px;
+                font-size: 24px;
+            }
+
+            .list-text strong {
+                font-size: 14px;
+            }
+
+            .list-text span {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body class="{{#if (eq viewMode 'portrait')}}portrait-mode{{/if}}">
+
+    <div class="main-wrapper">
+        <!-- Header Section -->
+        <div class="header-section">
+            <h1>{{title}}</h1>
+            {{#if subtitle}}
+            <p>{{subtitle}}</p>
+            {{/if}}
+        </div>
+
+        <div class="main-container">
+
+            <!-- PIE CHART SECTION -->
+            <div class="chart-wrapper">
+                <ul class="pie-chart">
+                    {{#each data}}
+                    <li class="slice" style="transform: rotate({{multiply @index (divide 360 (length ../data))}}deg) skewY({{subtract (divide 360 (length ../data)) 90}}deg);">
+                        <div class="slice-content" style="transform: skewY({{subtract 90 (divide 360 (length ../data))}}deg) rotate({{divide (divide 360 (length ../data)) 2}}deg);">
+                            <i class="{{icon}}"></i>
+                            <div class="slice-text">{{label}}<span>{{value}}%</span></div>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ul>
+                
+                <div class="center-circle">
+                    <h2>{{centerLabel}}</h2>
+                    <div class="dots">
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LIST SECTION -->
+            <div class="list-wrapper">
+                {{#each data}}
+                <div class="list-item c-{{getColor @index}}">
+                    <div class="list-num">{{add @index 1}}</div>
+                    <div class="list-text">
+                        <strong>{{label}}</strong>
+                        <span>{{description}}</span>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

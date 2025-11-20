@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <style>
+        /* --- Reset & Base --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, {{colors.[0]}} 0%, {{colors.[1]}} 100%);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        /* Main Wrapper with Container */
+        .main-wrapper {
+            width: 100%;
+            max-width: 1200px;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 30px 25px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Header Section */
+        .header-section {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .header-section h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: {{colors.[2]}};
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header-section p {
+            font-size: 0.95rem;
+            color: {{colors.[3]}};
+            font-weight: 500;
+        }
+
+        /* Center Wrapper for Cards */
+        .center-wrapper {
+            display: flex;
+            justify-content: center;
+            overflow-x: auto;
+            padding: 0 10px;
+        }
+
+        /* --- Cards Container --- */
+        .infographic-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            gap: 25px;
+            padding-top: 50px;
+            position: relative;
+        }
+
+        /* --- Card --- */
+        .card {
+            position: relative;
+            flex-shrink: 0;
+            background: #fff;
+            border-radius: 14px;
+            padding: 45px 12px 20px 12px;
+            text-align: center;
+            border: 2px solid;
+            width: 155px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        /* --- Number Circle --- */
+        .number-circle {
+            position: absolute;
+            top: -38px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: {{colors.[2]}};
+            border: 4px solid {{colors.[1]}};
+            box-shadow: 0 0 0 4px #fff, 0 0 0 7px currentColor;
+            z-index: 3;
+        }
+
+        body.portrait-mode .number-circle {
+            width: 55px;
+            height: 55px;
+            font-size: 16px;
+            top: -32px;
+        }
+
+        /* Shoulders (Cutout Effect) */
+        .number-circle::before,
+        .number-circle::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .number-circle::before { right: -24px; box-shadow: -10px 10px 0 0 currentColor; }
+        .number-circle::after { left: -24px; box-shadow: 10px 10px 0 0 currentColor; }
+        
+        .card-top-mask {
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 76px;
+            height: 6px;
+            background: #fff;
+            z-index: 2;
+        }
+
+        /* --- Content --- */
+        .card h4 {
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            color: {{colors.[2]}};
+            line-height: 1.3;
+        }
+
+        .card p {
+            font-size: 11px;
+            line-height: 1.5;
+            color: {{colors.[3]}};
+            margin-bottom: 18px;
+        }
+
+        .card-icon {
+            font-size: 22px;
+            margin-top: auto;
+        }
+
+        /* --- Decorative Connector (Arrow) --- */
+        .connector-wrapper {
+            position: absolute;
+            right: -33px; 
+            top: 43px; 
+            width: 33px;
+            height: 33px;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .card:last-child .connector-wrapper { display: none; }
+
+        .arrow-line {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 30px;
+            height: 20px;
+            border-bottom: 3px solid; 
+            border-right: 3px solid;
+            border-bottom-right-radius: 16px;
+            transform: scaleY(-1) rotate(-10deg);
+        }
+        
+        .arrow-dot {
+            position: absolute;
+            left: -4px;
+            top: -6px;
+            width: 7px;
+            height: 7px;
+            background: currentColor;
+            border-radius: 50%;
+        }
+
+        .arrow-head {
+            position: absolute;
+            right: -2px;
+            top: -14px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* --- Themes (Colors) --- */
+        .t-orange { color: {{colors.[2]}}; border-color: {{colors.[2]}}; }
+        .t-orange .number-circle { color: {{colors.[2]}}; }
+        .t-orange .arrow-line { border-color: {{colors.[2]}}; color: {{colors.[2]}}; } 
+        .t-orange .arrow-dot { background-color: {{colors.[2]}}; }
+        .t-orange .arrow-head { color: {{colors.[2]}}; }
+
+        .t-yellow { color: {{colors.[3]}}; border-color: {{colors.[3]}}; }
+        .t-yellow .number-circle { color: {{colors.[3]}}; }
+        .t-yellow .arrow-line { border-color: {{colors.[3]}}; color: {{colors.[3]}}; }
+        .t-yellow .arrow-dot { background-color: {{colors.[3]}}; }
+        .t-yellow .arrow-head { color: {{colors.[3]}}; }
+
+        .t-teal { color: {{colors.[2]}}; border-color: {{colors.[2]}}; opacity: 0.9; }
+        .t-teal .number-circle { color: {{colors.[2]}}; }
+        .t-teal .arrow-line { border-color: {{colors.[2]}}; color: {{colors.[2]}}; }
+        .t-teal .arrow-dot { background-color: {{colors.[2]}}; }
+        .t-teal .arrow-head { color: {{colors.[2]}}; }
+
+        .t-blue { color: {{colors.[3]}}; border-color: {{colors.[3]}}; opacity: 0.9; }
+        .t-blue .number-circle { color: {{colors.[3]}}; }
+        .t-blue .arrow-line { border-color: {{colors.[3]}}; color: {{colors.[3]}}; }
+        .t-blue .arrow-dot { background-color: {{colors.[3]}}; }
+        .t-blue .arrow-head { color: {{colors.[3]}}; }
+
+        .t-purple { color: {{colors.[2]}}; border-color: {{colors.[2]}}; opacity: 0.8; }
+        .t-purple .number-circle { color: {{colors.[2]}}; }
+        .t-purple .arrow-line { border-color: {{colors.[2]}}; color: {{colors.[2]}}; }
+        .t-purple .arrow-dot { background-color: {{colors.[2]}}; }
+        .t-purple .arrow-head { color: {{colors.[2]}}; }
+
+        .t-pink { color: {{colors.[3]}}; border-color: {{colors.[3]}}; opacity: 0.8; }
+        .t-pink .number-circle { color: {{colors.[3]}}; }
+        .t-pink .arrow-line { border-color: {{colors.[3]}}; color: {{colors.[3]}}; }
+        .t-pink .arrow-dot { background-color: {{colors.[3]}}; }
+        .t-pink .arrow-head { color: {{colors.[3]}}; }
+
+        /* --- Portrait Mode Styles --- */
+        body.portrait-mode .main-wrapper {
+            max-width: 500px;
+            padding: 25px 20px;
+        }
+
+        body.portrait-mode .header-section {
+            margin-bottom: 20px;
+        }
+
+        body.portrait-mode .header-section h1 {
+            font-size: 1.5rem;
+            margin-bottom: 4px;
+        }
+
+        body.portrait-mode .header-section p {
+            font-size: 0.85rem;
+        }
+
+        body.portrait-mode .center-wrapper {
+            padding: 0;
+            overflow-x: visible;
+        }
+
+        body.portrait-mode .infographic-container {
+            flex-direction: column;
+            align-items: center;
+            gap: 32px;
+            padding-top: 35px;
+        }
+
+        body.portrait-mode .card {
+            width: 100%;
+            max-width: 240px;
+            padding: 35px 15px 18px 15px;
+        }
+
+        body.portrait-mode .card:hover {
+            transform: translateY(-4px);
+        }
+
+        /* Hide horizontal arrows in portrait */
+        body.portrait-mode .connector-wrapper {
+            display: none;
+        }
+
+        /* Vertical separator for portrait */
+        body.portrait-mode .card::after {
+            content: '';
+            position: absolute;
+            bottom: -24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 18px;
+            background: linear-gradient(180deg, currentColor 0%, transparent 100%);
+        }
+
+        body.portrait-mode .card:last-child::after {
+            display: none;
+        }
+
+        /* Downward arrow for portrait */
+        body.portrait-mode .card::before {
+            content: '↓';
+            position: absolute;
+            bottom: -38px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            font-weight: bold;
+            color: currentColor;
+            z-index: 2;
+        }
+
+        body.portrait-mode .card:last-child::before {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-wrapper {
+                padding: 25px 15px;
+            }
+            .header-section h1 {
+                font-size: 1.6rem;
+            }
+            .center-wrapper {
+                padding: 0 10px;
+            }
+            .infographic-container {
+                gap: 25px;
+            }
+            .card {
+                width: 150px;
+            }
+        }
+    </style>
+</head>
+<body {{#if (eq viewMode 'portrait')}}class="portrait-mode"{{/if}}>
+
+    <div class="main-wrapper">
+        <!-- Header Section -->
+        <div class="header-section">
+            <h1>{{title}}</h1>
+            {{#if subtitle}}
+            <p>{{subtitle}}</p>
+            {{/if}}
+        </div>
+
+        <!-- Process Flow Cards -->
+        <div class="center-wrapper">
+            <div class="infographic-container">
+                {{#each data}}
+                <div class="card {{#if (eq @index 0)}}t-orange{{else if (eq @index 1)}}t-yellow{{else if (eq @index 2)}}t-teal{{else if (eq @index 3)}}t-blue{{else if (eq @index 4)}}t-purple{{else}}t-pink{{/if}}">
+                    <div class="card-top-mask"></div>
+                    <div class="number-circle">{{#if (lt @index 9)}}0{{/if}}{{add @index 1}}</div>
+                    
+                    <div class="connector-wrapper">
+                        <div class="arrow-dot"></div>
+                        <div class="arrow-line"></div>
+                        <span class="arrow-head">›</span>
+                    </div>
+
+                    <h4>{{label}}</h4>
+                    <p>{{description}}</p>
+                    <div class="card-icon">{{icon}}</div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

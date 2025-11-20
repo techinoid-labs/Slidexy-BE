@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Build: 6 Steps 🚀</title>
+    <style>
+        /* --- Reset & Base --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #caf0f8 0%, #ade8f4 100%);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        /* Main Wrapper with Container */
+        .main-wrapper {
+            width: 100%;
+            max-width: 1200px;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 30px 25px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Header Section */
+        .header-section {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .header-section h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #0077b6;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header-section p {
+            font-size: 0.95rem;
+            color: #03045e;
+            font-weight: 500;
+        }
+
+        /* Center Wrapper for Cards */
+        .center-wrapper {
+            display: flex;
+            justify-content: center;
+            overflow-x: auto;
+            padding: 0 10px;
+        }
+
+        /* --- Cards Container --- */
+        .infographic-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            gap: 25px;
+            padding-top: 50px;
+            position: relative;
+        }
+
+        /* --- Card --- */
+        .card {
+            position: relative;
+            flex-shrink: 0;
+            background: #fff;
+            border-radius: 14px;
+            padding: 45px 12px 20px 12px;
+            text-align: center;
+            border: 2px solid;
+            width: 155px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        /* --- Number Circle --- */
+        .number-circle {
+            position: absolute;
+            top: -38px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #0077b6;
+            border: 4px solid #ade8f4;
+            box-shadow: 0 0 0 4px #fff, 0 0 0 7px currentColor;
+            z-index: 3;
+        }
+
+        body.portrait-mode .number-circle {
+            width: 55px;
+            height: 55px;
+            font-size: 16px;
+            top: -32px;
+        }
+
+        /* Shoulders (Cutout Effect) */
+        .number-circle::before,
+        .number-circle::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .number-circle::before { right: -24px; box-shadow: -10px 10px 0 0 currentColor; }
+        .number-circle::after { left: -24px; box-shadow: 10px 10px 0 0 currentColor; }
+        
+        .card-top-mask {
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 76px;
+            height: 6px;
+            background: #fff;
+            z-index: 2;
+        }
+
+        /* --- Content --- */
+        .card h4 {
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            color: #0077b6;
+            line-height: 1.3;
+        }
+
+        .card p {
+            font-size: 11px;
+            line-height: 1.5;
+            color: #03045e;
+            margin-bottom: 18px;
+        }
+
+        .card-icon {
+            font-size: 22px;
+            margin-top: auto;
+        }
+
+        /* --- Decorative Connector (Arrow) --- */
+        .connector-wrapper {
+            position: absolute;
+            right: -33px; 
+            top: 43px; 
+            width: 33px;
+            height: 33px;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .card:last-child .connector-wrapper { display: none; }
+
+        .arrow-line {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 30px;
+            height: 20px;
+            border-bottom: 3px solid; 
+            border-right: 3px solid;
+            border-bottom-right-radius: 16px;
+            transform: scaleY(-1) rotate(-10deg);
+        }
+        
+        .arrow-dot {
+            position: absolute;
+            left: -4px;
+            top: -6px;
+            width: 7px;
+            height: 7px;
+            background: currentColor;
+            border-radius: 50%;
+        }
+
+        .arrow-head {
+            position: absolute;
+            right: -2px;
+            top: -14px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* --- Themes (Colors) --- */
+        .t-orange { color: #0077b6; border-color: #0077b6; }
+        .t-orange .number-circle { color: #0077b6; }
+        .t-orange .arrow-line { border-color: #0077b6; color: #0077b6; } 
+        .t-orange .arrow-dot { background-color: #0077b6; }
+        .t-orange .arrow-head { color: #0077b6; }
+
+        .t-yellow { color: #03045e; border-color: #03045e; }
+        .t-yellow .number-circle { color: #03045e; }
+        .t-yellow .arrow-line { border-color: #03045e; color: #03045e; }
+        .t-yellow .arrow-dot { background-color: #03045e; }
+        .t-yellow .arrow-head { color: #03045e; }
+
+        .t-teal { color: #0077b6; border-color: #0077b6; opacity: 0.9; }
+        .t-teal .number-circle { color: #0077b6; }
+        .t-teal .arrow-line { border-color: #0077b6; color: #0077b6; }
+        .t-teal .arrow-dot { background-color: #0077b6; }
+        .t-teal .arrow-head { color: #0077b6; }
+
+        .t-blue { color: #03045e; border-color: #03045e; opacity: 0.9; }
+        .t-blue .number-circle { color: #03045e; }
+        .t-blue .arrow-line { border-color: #03045e; color: #03045e; }
+        .t-blue .arrow-dot { background-color: #03045e; }
+        .t-blue .arrow-head { color: #03045e; }
+
+        .t-purple { color: #0077b6; border-color: #0077b6; opacity: 0.8; }
+        .t-purple .number-circle { color: #0077b6; }
+        .t-purple .arrow-line { border-color: #0077b6; color: #0077b6; }
+        .t-purple .arrow-dot { background-color: #0077b6; }
+        .t-purple .arrow-head { color: #0077b6; }
+
+        .t-pink { color: #03045e; border-color: #03045e; opacity: 0.8; }
+        .t-pink .number-circle { color: #03045e; }
+        .t-pink .arrow-line { border-color: #03045e; color: #03045e; }
+        .t-pink .arrow-dot { background-color: #03045e; }
+        .t-pink .arrow-head { color: #03045e; }
+
+        /* --- Portrait Mode Styles --- */
+        body.portrait-mode .main-wrapper {
+            max-width: 500px;
+            padding: 25px 20px;
+        }
+
+        body.portrait-mode .header-section {
+            margin-bottom: 20px;
+        }
+
+        body.portrait-mode .header-section h1 {
+            font-size: 1.5rem;
+            margin-bottom: 4px;
+        }
+
+        body.portrait-mode .header-section p {
+            font-size: 0.85rem;
+        }
+
+        body.portrait-mode .center-wrapper {
+            padding: 0;
+            overflow-x: visible;
+        }
+
+        body.portrait-mode .infographic-container {
+            flex-direction: column;
+            align-items: center;
+            gap: 32px;
+            padding-top: 35px;
+        }
+
+        body.portrait-mode .card {
+            width: 100%;
+            max-width: 240px;
+            padding: 35px 15px 18px 15px;
+        }
+
+        body.portrait-mode .card:hover {
+            transform: translateY(-4px);
+        }
+
+        /* Hide horizontal arrows in portrait */
+        body.portrait-mode .connector-wrapper {
+            display: none;
+        }
+
+        /* Vertical separator for portrait */
+        body.portrait-mode .card::after {
+            content: '';
+            position: absolute;
+            bottom: -24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 18px;
+            background: linear-gradient(180deg, currentColor 0%, transparent 100%);
+        }
+
+        body.portrait-mode .card:last-child::after {
+            display: none;
+        }
+
+        /* Downward arrow for portrait */
+        body.portrait-mode .card::before {
+            content: '↓';
+            position: absolute;
+            bottom: -38px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            font-weight: bold;
+            color: currentColor;
+            z-index: 2;
+        }
+
+        body.portrait-mode .card:last-child::before {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-wrapper {
+                padding: 25px 15px;
+            }
+            .header-section h1 {
+                font-size: 1.6rem;
+            }
+            .center-wrapper {
+                padding: 0 10px;
+            }
+            .infographic-container {
+                gap: 25px;
+            }
+            .card {
+                width: 150px;
+            }
+        }
+    </style>
+</head>
+<body >
+
+    <div class="main-wrapper">
+        <!-- Header Section -->
+        <div class="header-section">
+            <h1>Website Build: 6 Steps 🚀</h1>
+            <p>Follow this streamlined process to launch your website efficiently. 🌐</p>
+        </div>
+
+        <!-- Process Flow Cards -->
+        <div class="center-wrapper">
+            <div class="infographic-container">
+                <div class="card t-orange">
+                    <div class="card-top-mask"></div>
+                    <div class="number-circle">01</div>
+                    
+                    <div class="connector-wrapper">
+                        <div class="arrow-dot"></div>
+                        <div class="arrow-line"></div>
+                        <span class="arrow-head">›</span>
+                    </div>
+
+                    <h4>Plan &amp; Design</h4>
+                    <p>Define your site&#x27;s purpose, target audience, and create wireframes for layout. 🎨</p>
+                    <div class="card-icon">💡</div>
+                </div>
+                <div class="card t-yellow">
+                    <div class="card-top-mask"></div>
+                    <div class="number-circle">02</div>
+                    
+                    <div class="connector-wrapper">
+                        <div class="arrow-dot"></div>
+                        <div class="arrow-line"></div>
+                        <span class="arrow-head">›</span>
+                    </div>
+
+                    <h4>Content Creation</h4>
+                    <p>Craft engaging text, gather images, and produce videos to fill your website. 🖼️</p>
+                    <div class="card-icon">✍️</div>
+                </div>
+                <div class="card t-teal">
+                    <div class="card-top-mask"></div>
+                    <div class="number-circle">03</div>
+                    
+                    <div class="connector-wrapper">
+                        <div class="arrow-dot"></div>
+                        <div class="arrow-line"></div>
+                        <span class="arrow-head">›</span>
+                    </div>
+
+                    <h4>Development</h4>
+                    <p>Write code (HTML, CSS, JS) or use a CMS like WordPress to build the site structure. 🛠️</p>
+                    <div class="card-icon">💻</div>
+                </div>
+                <div class="card t-blue">
+                    <div class="card-top-mask"></div>
+                    <div class="number-circle">04</div>
+                    
+                    <div class="connector-wrapper">
+                        <div class="arrow-dot"></div>
+                        <div class="arrow-line"></div>
+                        <span class="arrow-head">›</span>
+                    </div>
+
+                    <h4>Domain &amp; Hosting</h4>
+                    <p>Choose a domain name and select a web hosting provider to store your site files. ☁️</p>
+                    <div class="card-icon">🌐</div>
+                </div>
+                <div class="card t-purple">
+                    <div class="card-top-mask"></div>
+                    <div class="number-circle">05</div>
+                    
+                    <div class="connector-wrapper">
+                        <div class="arrow-dot"></div>
+                        <div class="arrow-line"></div>
+                        <span class="arrow-head">›</span>
+                    </div>
+
+                    <h4>Testing &amp; QA</h4>
+                    <p>Thoroughly test your website on different devices and browsers to ensure functionality. ✅</p>
+                    <div class="card-icon">🧪</div>
+                </div>
+                <div class="card t-pink">
+                    <div class="card-top-mask"></div>
+                    <div class="number-circle">06</div>
+                    
+                    <div class="connector-wrapper">
+                        <div class="arrow-dot"></div>
+                        <div class="arrow-line"></div>
+                        <span class="arrow-head">›</span>
+                    </div>
+
+                    <h4>Launch &amp; Promote</h4>
+                    <p>Deploy your website and promote it through SEO and social media marketing. 🎉</p>
+                    <div class="card-icon">🚀</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
