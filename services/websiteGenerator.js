@@ -1298,17 +1298,69 @@ function generateModernCSS(websiteData, presentation) {
   const color4 = colors[3] || "#4facfe";
   const color5 = colors[4] || "#00f2fe";
 
+  // Intelligently determine background color based on palette
+  // Check if palette has dark colors (prefer dark backgrounds from palette)
+  const isDarkColor = (hex) => {
+    const rgb = parseInt(hex.replace('#', ''), 16);
+    const r = (rgb >> 16) & 0xff;
+    const g = (rgb >> 8) & 0xff;
+    const b = (rgb >> 0) & 0xff;
+    const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+    return luma < 128;
+  };
+
+  const isLightColor = (hex) => !isDarkColor(hex);
+
+  // Find background color from palette (prefer 2nd or last colors as they're often backgrounds)
+  let bgColor = colors[1] || "#ffffff";
+  let textColor = isDarkColor(bgColor) ? "#ffffff" : "#000000";
+  let textSecondary = isDarkColor(bgColor) ? "rgba(255, 255, 255, 0.7)" : "rgba(0, 0, 0, 0.7)";
+  let cardBg = isDarkColor(bgColor) ? "rgba(255, 255, 255, 0.05)" : "rgba(0, 0, 0, 0.03)";
+  let borderColor = isDarkColor(bgColor) ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)";
+
+  // If white is in palette, check if we should use it as background
+  if (colors.includes("#ffffff") || colors.includes("#fff")) {
+    // Use white background if primary color is vibrant
+    if (isDarkColor(color1) || color1.match(/^#[0-9a-f]{6}$/i)) {
+      bgColor = "#ffffff";
+      textColor = "#000000";
+      textSecondary = "rgba(0, 0, 0, 0.7)";
+      cardBg = "rgba(0, 0, 0, 0.03)";
+      borderColor = "rgba(0, 0, 0, 0.1)";
+    }
+  }
+
+  // Override with actual background if it's one of the extracted colors
+  const darkColors = colors.filter(c => isDarkColor(c));
+  const lightColors = colors.filter(c => isLightColor(c));
+  
+  if (darkColors.length > lightColors.length) {
+    // Site is likely dark themed, use darkest color as background
+    bgColor = darkColors[darkColors.length - 1] || colors[1] || "#0d121c";
+    textColor = "#ffffff";
+    textSecondary = "rgba(255, 255, 255, 0.7)";
+    cardBg = "rgba(255, 255, 255, 0.05)";
+    borderColor = "rgba(255, 255, 255, 0.1)";
+  } else {
+    // Site is likely light themed
+    bgColor = lightColors[lightColors.length - 1] || colors[colors.length - 1] || "#ffffff";
+    textColor = "#000000";
+    textSecondary = "rgba(0, 0, 0, 0.7)";
+    cardBg = "rgba(0, 0, 0, 0.03)";
+    borderColor = "rgba(0, 0, 0, 0.1)";
+  }
+
   return `:root {
     --color-primary: ${color1};
     --color-secondary: ${color2};
     --color-accent: ${color3};
     --color-accent2: ${color4};
     --color-accent3: ${color5};
-    --color-bg-dark: #000000;
-    --color-bg-card: rgba(255, 255, 255, 0.03);
-    --color-text-primary: #ffffff;
-    --color-text-secondary: rgba(255, 255, 255, 0.7);
-    --color-border: rgba(255, 255, 255, 0.1);
+    --color-bg-main: ${bgColor};
+    --color-bg-card: ${cardBg};
+    --color-text-primary: ${textColor};
+    --color-text-secondary: ${textSecondary};
+    --color-border: ${borderColor};
     --font-primary: 'Inter', ${websiteData.typography.primaryFont}, sans-serif;
 }
 
@@ -1326,7 +1378,7 @@ body {
     font-family: var(--font-primary);
     line-height: 1.6;
     color: var(--color-text-primary);
-    background: var(--color-bg-dark);
+    background: var(--color-bg-main);
     position: relative;
     overflow-x: hidden;
 }
@@ -1339,9 +1391,9 @@ body::before {
     width: 100%;
     height: 100%;
     background: 
-        radial-gradient(circle at 20% 30%, ${color1}15 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, ${color2}15 0%, transparent 50%),
-        radial-gradient(circle at 40% 80%, ${color3}10 0%, transparent 50%);
+        radial-gradient(circle at 20% 30%, ${color1}08 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, ${color2}08 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, ${color3}05 0%, transparent 50%);
     z-index: -1;
     animation: bgShift 20s ease-in-out infinite;
 }
@@ -1370,13 +1422,13 @@ body::before {
     background: 
         conic-gradient(from 180deg at 50% 50%, 
             ${color1}00 0deg, 
-            ${color1}40 45deg, 
-            ${color2}40 90deg, 
-            ${color3}40 180deg,
+            ${color1}25 45deg, 
+            ${color2}25 90deg, 
+            ${color3}25 180deg,
             ${color1}00 360deg);
     animation: rotate 30s linear infinite;
     filter: blur(80px);
-    opacity: 0.3;
+    opacity: 0.2;
 }
 
 @keyframes rotate {
@@ -1428,7 +1480,7 @@ body::before {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: linear-gradient(135deg, ${color1}20, ${color2}20);
+    background: linear-gradient(135deg, ${color1}15, ${color2}15);
     backdrop-filter: blur(20px);
     border: 1px solid var(--color-border);
     padding: 0.8rem 2rem;
@@ -1436,7 +1488,7 @@ body::before {
     font-size: 0.95rem;
     font-weight: 500;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 8px 32px ${color1}20;
+    box-shadow: 0 8px 32px ${color1}15;
     margin-bottom: 3rem;
 }
 
@@ -1484,7 +1536,7 @@ body::before {
     font-size: 0.9rem;
     font-weight: 600;
     color: var(--color-primary);
-    background: linear-gradient(135deg, ${color1}20, ${color2}20);
+    background: linear-gradient(135deg, ${color1}15, ${color2}15);
     padding: 0.5rem 1.5rem;
     border-radius: 50px;
     margin-bottom: 1rem;
@@ -1510,13 +1562,13 @@ body::before {
 .content-section {
     margin: 6rem auto;
     padding: 4rem;
-    background: linear-gradient(135deg, var(--color-bg-card), rgba(255, 255, 255, 0.05));
+    background: var(--color-bg-card);
     backdrop-filter: blur(40px) saturate(180%);
     border-radius: 32px;
     border: 1px solid var(--color-border);
     box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        0 8px 32px ${color1}10,
+        inset 0 1px 0 var(--color-border);
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;
     position: relative;
@@ -1529,8 +1581,8 @@ body::before {
     top: 0;
     left: 0;
     right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, ${color1}50, ${color2}50, transparent);
+    height: 2px;
+    background: linear-gradient(90deg, transparent, ${color1}, ${color2}, transparent);
 }
 
 @keyframes slideUp {
@@ -1547,10 +1599,10 @@ body::before {
 .content-section:hover {
     transform: translateY(-12px);
     box-shadow: 
-        0 20px 60px rgba(0, 0, 0, 0.4),
+        0 20px 60px ${color1}20,
         0 0 80px ${color1}15,
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    border-color: ${color1}50;
+        inset 0 1px 0 var(--color-border);
+    border-color: ${color1};
 }
 
 /* Features Grid */
@@ -1563,10 +1615,10 @@ body::before {
 
 .feature-card {
     padding: 2.5rem;
-    background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+    background: var(--color-bg-card);
     border-radius: 20px;
     border: 1px solid var(--color-border);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 32px ${color1}08;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
@@ -1592,10 +1644,10 @@ body::before {
 .feature-card:hover {
     transform: translateY(-8px);
     box-shadow: 
-        0 16px 48px rgba(0, 0, 0, 0.3),
+        0 16px 48px ${color1}15,
         0 0 40px ${color1}20;
-    border-color: ${color1}50;
-    background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+    border-color: ${color1};
+    background: var(--color-bg-card);
 }
 
 .feature-icon {
@@ -1614,10 +1666,10 @@ body::before {
 .section-description {
     margin-top: 2rem;
     padding: 2rem;
-    background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    background: var(--color-bg-card);
     border-radius: 16px;
     border: 1px solid var(--color-border);
-    border-left: 3px solid ${color1};
+    border-left: 4px solid ${color1};
     backdrop-filter: blur(20px);
 }
 
@@ -1645,8 +1697,8 @@ body::before {
     overflow: hidden;
     border: 1px solid var(--color-border);
     box-shadow: 
-        0 12px 48px rgba(0, 0, 0, 0.3),
-        0 0 0 1px rgba(255, 255, 255, 0.05);
+        0 12px 48px ${color1}10,
+        0 0 0 1px var(--color-border);
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     aspect-ratio: 16/10;
 }
@@ -1680,9 +1732,9 @@ body::before {
 .image-card:hover {
     transform: translateY(-16px) scale(1.03);
     box-shadow: 
-        0 24px 72px rgba(0, 0, 0, 0.4),
-        0 0 60px ${color1}25,
-        0 0 0 1px ${color1}50;
+        0 24px 72px ${color1}20,
+        0 0 60px ${color1}30,
+        0 0 0 2px ${color1};
 }
 
 .image-card:hover .gallery-image {
@@ -1696,8 +1748,8 @@ body::before {
     left: 0;
     right: 0;
     background: linear-gradient(to top, 
-        rgba(0,0,0,0.95) 0%, 
-        rgba(0,0,0,0.7) 40%, 
+        ${color1}f0 0%, 
+        ${color1}b0 40%, 
         transparent 100%);
     padding: 2.5rem;
     color: white;
@@ -1729,7 +1781,7 @@ body::before {
 
 .heading-card {
     padding: 1.5rem;
-    background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+    background: var(--color-bg-card);
     border-radius: 16px;
     border: 1px solid var(--color-border);
     transition: all 0.3s ease;
@@ -1740,14 +1792,14 @@ body::before {
 
 .heading-card:hover {
     transform: translateX(8px);
-    border-color: ${color1}50;
-    background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+    border-color: ${color1};
+    background: var(--color-bg-card);
 }
 
 .heading-level {
     font-size: 0.85rem;
     font-weight: 600;
-    color: ${color1};
+    color: var(--color-primary);
     background: ${color1}20;
     padding: 0.25rem 0.75rem;
     border-radius: 8px;
@@ -1764,9 +1816,9 @@ body::before {
 .footer {
     margin-top: 8rem;
     padding: 4rem 2rem;
-    background: linear-gradient(135deg, rgba(255,255,255,0.02), transparent);
+    background: var(--color-bg-card);
     backdrop-filter: blur(20px);
-    border-top: 1px solid var(--color-border);
+    border-top: 2px solid ${color1};
 }
 
 .footer-content {
