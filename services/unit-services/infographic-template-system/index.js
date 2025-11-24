@@ -25,9 +25,10 @@ class DynamicInfographicServiceV2 {
    * Main entry point - Generate infographic using template system
    * @param {string} prompt - User prompt/topic
    * @param {string} viewMode - landscape or portrait
+   * @param {object} options - Additional options (colorScheme, etc.)
    * @returns {Promise<object>} { data, html, meta }
    */
-  async generateInfographic(prompt, viewMode = 'landscape') {
+  async generateInfographic(prompt, viewMode = 'landscape', options = {}) {
     // Validate inputs
     if (!prompt || typeof prompt !== 'string' || prompt.trim().length === 0) {
       throw new Error('Prompt must be a non-empty string');
@@ -40,7 +41,11 @@ class DynamicInfographicServiceV2 {
     const startTime = Date.now();
     console.log(`\n🚀 Starting Template-Based Infographic Generation`);
     console.log(`📌 Prompt: "${prompt.substring(0, 60)}..."`);
-    console.log(`📱 View Mode: ${viewMode}\n`);
+    console.log(`📱 View Mode: ${viewMode}`);
+    if (options.colorScheme) {
+      console.log(`🎨 Color Scheme: ${options.colorScheme}`);
+    }
+    console.log('');
 
     for (let attempt = 1; attempt <= this.retries; attempt++) {
       try {
@@ -57,7 +62,7 @@ class DynamicInfographicServiceV2 {
 
         // Step 2: Gather parameters (style, colors)
         console.log('\n2️⃣ Gathering visual parameters...');
-        const parameters = await contentGenerator.gatherParameters(prompt);
+        const parameters = await contentGenerator.gatherParameters(prompt, options.colorScheme);
         console.log(`   ✓ Style: ${parameters.style}`);
         console.log(`   ✓ Colors: ${parameters.colors.join(', ')}`);
 
@@ -130,6 +135,7 @@ class DynamicInfographicServiceV2 {
             backgroundType: parameters.background,
             parameters,
             rendered: true,
+            colorScheme: options.colorScheme || 'auto-detected',
           },
         };
 
