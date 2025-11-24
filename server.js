@@ -6,7 +6,7 @@ const path = require("path");
 const swaggerUi = require("swagger-ui-express");
 const YAML = require("yamljs");
 const { MongoClient, GridFSBucket, ObjectId } = require("mongodb");
-const infographicRoute = require("./routes/infographics");
+const infographicRoute = require("./routes/infographicsV2");
 const dynamicInfographicRoute = require("./routes/dynamicInfographics");
 const blogRoutes = require("./routes/blogRoutes");
 
