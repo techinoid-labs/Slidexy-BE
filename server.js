@@ -6,7 +6,7 @@ const path = require("path");
 const swaggerUi = require("swagger-ui-express");
 const YAML = require("yamljs");
 const { MongoClient, GridFSBucket, ObjectId } = require("mongodb");
-const infographicRoute = require("./routes/infographics");
+const infographicRoute = require("./routes/infographicsV2");
 const dynamicInfographicRoute = require("./routes/dynamicInfographics");
 const blogRoutes = require("./routes/blogRoutes");
 const websiteDownloadRoutes = require("./routes/websiteZipDownload");
@@ -20,6 +20,8 @@ const aiChatRoutes = require("./routes/aiChatRoutes");
 const contactRoutes = require("./routes/contact");
 const planRoutes = require("./routes/planRoutes");
 const vidGenImg = require("./routes/vidGenImg");
+const generateImageRoute = require("./routes/generateImage"); 
+
 const templateRoutes = require("./routes/templateRoutes");
 const rawTextDeckRoutes = require("./routes/rawTextDeckRoutes"); // Raw Text Deck Service
 const imageDeckRoutes = require("./routes/imageDeckRoutes"); // Image Deck Service
@@ -103,6 +105,9 @@ app.use("/api/stripe", stripeRoutes);
 
 // AI CHAT
 app.use("/api/chat", aiChatRoutes);
+
+app.use("/api", generateImageRoute);
+
 
 // Contact
 

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Internet Evolution 🌐</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <!-- Timeline Infographic - Responsive Mode with Handlebars -->
+<style>
+    /* --- Basic Setup --- */
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background-color: #caf0f8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 40px 0;
+        margin: 0;
+    }
+
+    /* --- Outer Wrapper Container --- */
+    .timeline-wrapper {
+        width: 95%;
+        max-width: 600px;
+        margin: 0 auto;
+        background: linear-gradient(135deg, #caf0f8, #ade8f4);
+        border-radius: 16px;
+        padding: 2rem 2rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    /* --- Header Section --- */
+    .timeline-header {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 10px;
+        padding: 1rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 1);
+    }
+
+    .timeline-header h1 {
+        font-size: 1.8rem;
+        color: #0077b6;
+        margin: 0 0 0.5rem 0;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+    }
+
+    .timeline-header p {
+        font-size: 0.85rem;
+        color: #03045e;
+        margin: 0;
+        line-height: 1.6;
+        font-weight: 500;
+    }
+
+    /* --- LANDSCAPE MODE: Main Timeline Container (Horizontal) --- */
+    .timeline-container.landscape {
+        position: relative;
+        width: 100%;
+        max-width: 900px;
+        height: 400px;
+        margin: 0 auto;
+    }
+
+    .timeline-container.landscape .timeline-axis {
+        position: absolute;
+        top: 180px;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: #0077b6;
+        z-index: 1;
+    }
+
+    .timeline-container.landscape .v-line {
+        position: absolute;
+        width: 1px;
+        background-color: #0077b6;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 0;
+    }
+
+    .timeline-container.landscape .line-top-to-axis {
+        top: 100px;
+        height: 80px;
+    }
+    
+    .timeline-container.landscape .line-top-to-bottom {
+        top: 100px;
+        height: 130px;
+    }
+
+    .timeline-container.landscape .timeline-item {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 110px;
+        transform: translateX(-50%);
+        z-index: 2;
+    }
+
+    .timeline-container.landscape .timeline-node {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        left: 50%;
+        z-index: 3;
+    }
+
+    .timeline-container.landscape .node-top {
+        top: 100px;
+        transform: translateX(-50%);
+    }
+
+    .timeline-container.landscape .node-bottom {
+        top: 230px;
+        transform: translateX(-50%);
+    }
+
+    .timeline-container.landscape .timeline-content {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        font-size: 10px;
+        line-height: 1.4;
+        color: #03045e;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        box-sizing: border-box;
+        padding: 10px;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px) saturate(180%);
+        border-radius: 10px;
+        box-shadow: 
+            0 4px 12px rgba(0, 0, 0, 0.12),
+            0 1px 3px rgba(0, 0, 0, 0.08),
+            inset 0 1px 0 rgba(255, 255, 255, 1);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .timeline-container.landscape .timeline-content:hover {
+        transform: translateY(-1.5px);
+        box-shadow: 
+            0 6px 16px rgba(0, 0, 0, 0.16),
+            0 2px 4px rgba(0, 0, 0, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 1);
+    }
+    
+    .timeline-container.landscape .timeline-content strong {
+        display: block;
+        margin-bottom: 6px;
+        color: #0077b6;
+        font-size: 12px;
+        font-weight: 700;
+    }
+    
+    .timeline-container.landscape .timeline-content p {
+        margin: 0;
+        color: #03045e;
+        font-size: 10px;
+        line-height: 1.6;
+    }
+
+    .timeline-container.landscape .content-top {
+        top: 10px;
+        max-height: 85px;
+        overflow: hidden;
+    }
+    
+    .timeline-container.landscape .content-bottom {
+        top: 240px;
+        max-height: 150px;
+        overflow: hidden;
+    }
+
+    .timeline-container.landscape .timeline-year {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .timeline-container.landscape .year-axis {
+        top: 195px;
+        color: #03045e;
+    }
+
+    .timeline-container.landscape .year-event {
+        top: 80px;
+    }
+
+    /* --- PORTRAIT MODE: Vertical Timeline --- */
+    .timeline-container.portrait {
+        position: relative;
+        width: 100%;
+        max-width: 350px;
+        margin: 0 auto;
+        padding: 20px 0;
+    }
+
+    .timeline-container.portrait .timeline-axis {
+        position: absolute;
+        left: 90px;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: #0077b6;
+        z-index: 1;
+    }
+
+    .timeline-container.portrait .timeline-item {
+        position: relative;
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+        min-height: 80px;
+    }
+
+    .timeline-container.portrait .timeline-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .timeline-container.portrait .timeline-year {
+        position: absolute;
+        left: 0;
+        width: 60px;
+        text-align: right;
+        font-size: 14px;
+        font-weight: bold;
+        color: #03045e;
+    }
+
+    .timeline-container.portrait .timeline-node {
+        position: absolute;
+        left: 84px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #03045e;
+        z-index: 3;
+        border: 3px solid #caf0f8;
+    }
+
+    .timeline-container.portrait .h-line {
+        position: absolute;
+        left: 91px;
+        width: 25px;
+        height: 2px;
+        background-color: #0077b6;
+        z-index: 0;
+    }
+
+    .timeline-container.portrait .timeline-content {
+        margin-left: 125px;
+        padding: 12px 14px;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px) saturate(180%);
+        border-radius: 12px;
+        box-shadow: 
+            0 4px 12px rgba(0, 0, 0, 0.12),
+            0 1px 3px rgba(0, 0, 0, 0.08),
+            inset 0 1px 0 rgba(255, 255, 255, 1);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        flex: 1;
+    }
+
+    .timeline-container.portrait .timeline-content:hover {
+        transform: translateX(3px);
+        box-shadow: 
+            0 6px 16px rgba(0, 0, 0, 0.16),
+            0 2px 4px rgba(0, 0, 0, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 1);
+    }
+
+    .timeline-container.portrait .timeline-content strong {
+        display: block;
+        margin-bottom: 6px;
+        color: #0077b6;
+        font-size: 14px;
+        font-weight: 700;
+    }
+    
+    .timeline-container.portrait .timeline-content p {
+        margin: 0;
+        color: #03045e;
+        font-size: 11px;
+        line-height: 1.6;
+    }
+</style>
+
+<div class="timeline-wrapper">
+    <div class="timeline-header">
+        <h1>Internet Evolution 🌐</h1>
+        <p>A visual journey through the key milestones in internet history.</p>
+    </div>
+    
+    <!-- LANDSCAPE MODE: Horizontal Timeline -->
+    <div class="timeline-container landscape">
+        <div class="timeline-axis"></div>
+
+        <div class="timeline-item" style="left: 10%;">
+            <!-- Even Index: Content on Top, Year on Axis -->
+            <div class="timeline-content content-top">
+                <strong>ARPANET 📡</strong>
+                <p>Birth of the Internet! First message sent on ARPANET, a precursor to the modern internet.</p>
+            </div>
+            <div class="v-line line-top-to-axis"></div>
+            <div class="timeline-node node-top" style="background-color: ;"></div>
+            <div class="timeline-year year-axis" style="color: ;">1969</div>
+        </div>
+        <div class="timeline-item" style="left: 26%;">
+            <!-- Odd Index: Year on Top, Content on Bottom -->
+            <div class="timeline-year year-event" style="color: ;">1983</div>
+            <div class="v-line line-top-to-bottom"></div>
+            <div class="timeline-node node-bottom" style="background-color: ;"></div>
+            <div class="timeline-content content-bottom">
+                <strong>TCP/IP Standard ✅</strong>
+                <p>TCP/IP becomes the standard protocol, enabling different networks to communicate.</p>
+            </div>
+        </div>
+        <div class="timeline-item" style="left: 42%;">
+            <!-- Even Index: Content on Top, Year on Axis -->
+            <div class="timeline-content content-top">
+                <strong>World Wide Web 🕸️</strong>
+                <p>Tim Berners-Lee invents the World Wide Web, making the internet accessible to all.</p>
+            </div>
+            <div class="v-line line-top-to-axis"></div>
+            <div class="timeline-node node-top" style="background-color: ;"></div>
+            <div class="timeline-year year-axis" style="color: ;">1989</div>
+        </div>
+        <div class="timeline-item" style="left: 58%;">
+            <!-- Odd Index: Year on Top, Content on Bottom -->
+            <div class="timeline-year year-event" style="color: ;">1993</div>
+            <div class="v-line line-top-to-bottom"></div>
+            <div class="timeline-node node-bottom" style="background-color: ;"></div>
+            <div class="timeline-content content-bottom">
+                <strong>Mosaic Browser 🖱️</strong>
+                <p>Mosaic, the first popular web browser, makes the internet user-friendly and widespread.</p>
+            </div>
+        </div>
+        <div class="timeline-item" style="left: 74%;">
+            <!-- Even Index: Content on Top, Year on Axis -->
+            <div class="timeline-content content-top">
+                <strong>iPhone Launch 📱</strong>
+                <p>The iPhone revolutionizes mobile internet access, making the web portable and ubiquitous.</p>
+            </div>
+            <div class="v-line line-top-to-axis"></div>
+            <div class="timeline-node node-top" style="background-color: ;"></div>
+            <div class="timeline-year year-axis" style="color: ;">2007</div>
+        </div>
+        <div class="timeline-item" style="left: 90%;">
+            <!-- Odd Index: Year on Top, Content on Bottom -->
+            <div class="timeline-year year-event" style="color: ;">2024</div>
+            <div class="v-line line-top-to-bottom"></div>
+            <div class="timeline-node node-bottom" style="background-color: ;"></div>
+            <div class="timeline-content content-bottom">
+                <strong>AI &amp; Web3 🤖</strong>
+                <p>AI and Web3 technologies reshape the internet, creating new possibilities &amp; challenges.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

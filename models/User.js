@@ -18,6 +18,9 @@ const userSchema = new mongoose.Schema({
   fingerprint: { type: String, index: true },
   ipAddress: String,
 
+  resetPasswordToken: { type: String },
+  resetPasswordExpires: { type: Date },
+
   createdAt: { type: Date, default: Date.now },
 });
 

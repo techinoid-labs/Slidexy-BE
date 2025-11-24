@@ -4,5 +4,6 @@ const aiChatController = require("../controllers/aiChatController");
 
 // POST /api/chat
 router.post("/", aiChatController.chat);
+router.get("/history/:email", aiChatController.getChatHistory);
 
 module.exports = router;
