@@ -18,6 +18,8 @@ const aiChatRoutes = require("./routes/aiChatRoutes");
 const contactRoutes = require("./routes/contact");
 const planRoutes = require("./routes/planRoutes");
 const vidGenImg = require("./routes/vidGenImg");
+const generateImageRoute = require("./routes/generateImage"); 
+
 
 // Controllers
 const {
@@ -95,6 +97,9 @@ app.use("/api/stripe", stripeRoutes);
 
 // AI CHAT
 app.use("/api/chat", aiChatRoutes);
+
+app.use("/api", generateImageRoute);
+
 
 // Contact
 
