@@ -137,3 +137,6 @@ dist
 
 #OUTPUT
 output/
+
+services/data/
+services/testFetchWeb.js

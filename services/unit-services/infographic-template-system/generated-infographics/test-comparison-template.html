@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iPhone vs. Android: The Great Debate</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <!-- Comparison Infographic - Based on g1.html structure -->
+<style>
+    /* --- General Reset & Body Styles --- */
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #e0f4ff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 40px;
+        color: #023047;
+    }
+
+    /* --- Main Infographic Container --- */
+    .infographic-container {
+        width: 100%;
+        max-width: 1200px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        box-sizing: border-box;
+    }
+
+    /* --- Header Section --- */
+    .infographic-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .infographic-header h1 {
+        font-size: 28px;
+        color: #0096c7;
+        margin: 0;
+        line-height: 1.2;
+        font-weight: normal;
+    }
+
+    .infographic-header .design-template {
+        font-size: 14px;
+        color: #023047;
+        margin-top: 5px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    .infographic-header .comparison-text {
+        color: #0096c7;
+        font-weight: bold;
+    }
+
+    /* --- Main Comparison Grid --- */
+    .comparison-grid {
+        display: grid;
+        grid-template-columns: 1fr 220px 1fr;
+        gap: 20px;
+        align-items: flex-start;
+    }
+
+    /* --- Company Headers --- */
+    .company-header {
+        padding: 15px 25px;
+        border-radius: 30px;
+        color: #fff;
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .company-a {
+        background-color: #0096c7;
+    }
+
+    .company-b {
+        background-color: #023047;
+    }
+
+    /* --- VS Column Styling --- */
+    .vs-column {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+    }
+
+    .vs-text {
+        font-size: 48px;
+        font-weight: bold;
+        color: #fff;
+        background-color: #0096c7;
+        padding: 10px 20px;
+        border-radius: 10px;
+        position: relative;
+        top: -20px;
+        z-index: 3;
+    }
+
+    /* --- Grid for VS Icons --- */
+    .vs-icon-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    /* --- Icons and Labels in VS Column --- */
+    .vs-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .vs-icon {
+        width: 60px;
+        height: 60px;
+        border: 2px solid #a8daff;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 28px;
+        color: #023047;
+        background-color: #a8daff;
+        margin-bottom: 8px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .vs-label {
+        font-size: 14px;
+        color: #023047;
+        text-transform: uppercase;
+        font-weight: bold;
+        line-height: 1.2;
+    }
+
+    /* --- Company Content --- */
+    .company-content {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .topic-block {
+        padding: 15px;
+        border-radius: 8px;
+        background-color: #a8daff;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .topic-number {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+
+    /* --- Specific topic number colors --- */
+    .company-a .topic-number-01, .company-a .topic-number-03 { color: #0096c7; }
+    .company-a .topic-number-02, .company-a .topic-number-04 { color: #0096c7; }
+
+    .company-b .topic-number-01, .company-b .topic-number-03 { color: #023047; }
+    .company-b .topic-number-02, .company-b .topic-number-04 { color: #023047; }
+
+    .topic-description {
+        font-size: 13px;
+        line-height: 1.5;
+        color: #023047;
+    }
+
+    .company-a-section, .company-b-section {
+        position: relative;
+        z-index: 1;
+    }
+</style>
+
+<div class="infographic-container">
+    <div class="infographic-header">
+        <h1><span class="comparison-text">iPhone vs. Android: The Great Debate</span></h1>
+        <div class="design-template">Comparing the key differences between iOS and Android ecosystems.</div>
+    </div>
+
+    <div class="comparison-grid">
+        <div class="company-a-section">
+            <div class="company-header company-a">iPhone (iOS)</div>
+            <div class="company-content">
+                <div class="topic-block">
+                    <div class="topic-number topic-number-01">Ecosystem</div>
+                    <p class="topic-description">Closed ecosystem, offering seamless integration and consistent user experience.</p>
+                </div>
+                <div class="topic-block">
+                    <div class="topic-number topic-number-02">Updates</div>
+                    <p class="topic-description">Guaranteed timely software updates directly from Apple for several years.</p>
+                </div>
+                <div class="topic-block">
+                    <div class="topic-number topic-number-03">Privacy</div>
+                    <p class="topic-description">Strong emphasis on user privacy with strict app tracking transparency features.</p>
+                </div>
+                <div class="topic-block">
+                    <div class="topic-number topic-number-04">Resale Value</div>
+                    <p class="topic-description">Generally retains higher resale value compared to Android devices.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="vs-column">
+            <div class="vs-text">VS</div>
+            <div class="vs-icon-grid">
+                <div class="vs-item">
+                    <div class="vs-icon">🔒</div>
+                    <div class="vs-label">Security</div>
+                </div>
+                <div class="vs-item">
+                    <div class="vs-icon">🔄</div>
+                    <div class="vs-label">Updates</div>
+                </div>
+                <div class="vs-item">
+                    <div class="vs-icon">💰</div>
+                    <div class="vs-label">Price</div>
+                </div>
+                <div class="vs-item">
+                    <div class="vs-icon">⚙️</div>
+                    <div class="vs-label">Customization</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="company-b-section">
+            <div class="company-header company-b">Android</div>
+            <div class="company-content">
+                <div class="topic-block">
+                    <div class="topic-number topic-number-01">Customization</div>
+                    <p class="topic-description">Highly customizable interface with widgets, launchers, and open-source nature.</p>
+                </div>
+                <div class="topic-block">
+                    <div class="topic-number topic-number-02">Hardware Choice</div>
+                    <p class="topic-description">Wide variety of devices from different manufacturers at various price points.</p>
+                </div>
+                <div class="topic-block">
+                    <div class="topic-number topic-number-03">Open Source</div>
+                    <p class="topic-description">Open-source platform allowing developers greater flexibility and control.</p>
+                </div>
+                <div class="topic-block">
+                    <div class="topic-number topic-number-04">Expandability</div>
+                    <p class="topic-description">Often supports expandable storage via microSD cards, offering more space.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

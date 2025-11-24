@@ -1,108 +1,58 @@
-// const { GoogleGenerativeAI } = require("@google/generative-ai");
-
-// const genAI = new GoogleGenerativeAI(process.env.API_KEY);
-
-// const textGenModel = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
-// const imageGenModel = genAI.getGenerativeModel({
-//   model: "gemini-2.0-flash-preview-image-generation",
-// });
-
-// module.exports = { textGenModel, imageGenModel };
-
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// utils/geminiModels.js
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-// Centralized list of your API keys (store in .env)
 const apiKeys = [
-  process.env.API_KEY1,
-  process.env.API_KEY2,
-  process.env.API_KEY3,
-  process.env.API_KEY4,
-  process.env.API_KEY5,
-  process.env.API_KEY6,
-  process.env.API_KEY7,
-  process.env.API_KEY8,
-  process.env.API_KEY9,
-  process.env.API_KEY10,
-  process.env.API_KEY11,
-  process.env.API_KEY12,
-].filter(Boolean); // filter out undefined
+  process.env.API_KEY1, process.env.API_KEY2, process.env.API_KEY3,
+  process.env.API_KEY4, process.env.API_KEY5, process.env.API_KEY6,
+  process.env.API_KEY7, process.env.API_KEY8, process.env.API_KEY9,
+  process.env.API_KEY10, process.env.API_KEY11, process.env.API_KEY12,
+].filter(Boolean);
 
-// const genAI = new GoogleGenerativeAI(
-//   process.env.API_KEY
-// );
+if (apiKeys.length === 0) throw new Error("No API keys configured!");
 
-if (apiKeys.length === 0) {
-  throw new Error("No API keys configured!");
-}
-
-let currentKeyIndex = 0;
-
-/**
- * Get the next key in round-robin order
- */
-function getNextKey() {
-  const key = apiKeys[currentKeyIndex];
-  currentKeyIndex = (currentKeyIndex + 1) % apiKeys.length;
-  return key;
-}
-
-/**
- * Wrapper for generating content with key rotation on 429 errors.
- */
-async function safeGenerateContent(modelName, config, tried = new Set()) {
-  const key = getNextKey();
-
-  // Prevent infinite loops if all keys have been tried
-  if (tried.has(key)) {
-    throw new Error("All API keys exhausted or rate-limited.");
+class KeyPool {
+  constructor(keys) {
+    this.keys = keys.map(key => ({ key, inUse: false, lastUsed: 0, fails: 0 }));
   }
-  tried.add(key);
+
+  async acquire() {
+    this.keys.sort((a, b) => a.lastUsed - b.lastUsed || a.fails - b.fails);
+    let candidate = this.keys.find(k => !k.inUse);
+    if (!candidate) await new Promise(r => setTimeout(r, 100));
+    candidate = this.keys.find(k => !k.inUse) || this.keys[0];
+    candidate.inUse = true;
+    candidate.lastUsed = Date.now();
+    return candidate.key;
+  }
+
+  release(key, success = true) {
+    const k = this.keys.find(k => k.key === key);
+    if (k) { k.inUse = false; if (!success) k.fails++; }
+  }
+}
+
+const pool = new KeyPool(apiKeys);
+
+async function safeGenerateContent(modelName, config) {
+  const key = await pool.acquire();
+  const genAI = new GoogleGenerativeAI(key);
+  const model = genAI.getGenerativeModel({ model: modelName });
 
   try {
-    const genAI = new GoogleGenerativeAI(key);
-    const model = genAI.getGenerativeModel({ model: modelName });
-
-    const response = await model.generateContent(config);
-    return response;
-  } catch (error) {
-    if (
-      error.statusCode === 429 ||
-      (error.message && error.message.includes("429"))
-    ) {
-      console.warn(`Quota exceeded for key: ${key}. Rotating to next key...`);
-      return await safeGenerateContent(modelName, config, tried); // try next key
+    const res = await model.generateContent(config);
+    pool.release(key, true);
+    return res;
+  } catch (err) {
+    pool.release(key, false);
+    if (err.statusCode === 429 || err.message.includes("quota")) {
+      console.warn("Rate limit - rotating key");
+      return safeGenerateContent(modelName, config);
     }
-    throw error;
+    throw err;
   }
 }
-function createModelWrapper(modelName) {
-  return {
-    async generateContent(content, config = {}) {
-      let contentParts;
-      
-      if (typeof content === 'string') {
-        contentParts = [{ text: content }];
-      } else if (Array.isArray(content)) {
-        contentParts = content;
-      } else if (content && typeof content === 'object') {
-        contentParts = [content];
-      } else {
-        throw new Error('Invalid content format provided to generateContent');
-      }
-      
-      return await safeGenerateContent(modelName, contentParts, config.generationConfig || {});
-    }
-  };
-}
-// Expose models
-const textGenModel = {
-  generateContent: (config) => safeGenerateContent("gemini-2.0-flash", config),
-};
 
-const imageGenModel = {
-  generateContent: (config) =>
-    safeGenerateContent("gemini-2.0-flash-preview-image-generation", config),
+module.exports = {
+  textGenModel: { generateContent: (c) => safeGenerateContent("gemini-2.0-flash", c) },
+  imageGenModel: { generateContent: (c) => safeGenerateContent("gemini-2.0-flash-preview-image-generation", c) },
 };
-
-module.exports = { textGenModel, imageGenModel, safeGenerateContent };

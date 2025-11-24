@@ -1,0 +1,243 @@
+<!-- Comparison Infographic - Based on g1.html structure -->
+<style>
+    /* --- General Reset & Body Styles --- */
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: {{colors.[0]}};
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 40px;
+        color: {{colors.[3]}};
+    }
+
+    /* --- Main Infographic Container --- */
+    .infographic-container {
+        width: 100%;
+        max-width: {{#if (eq viewMode 'portrait')}}600px{{else}}1200px{{/if}};
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        box-sizing: border-box;
+    }
+
+    /* --- Header Section --- */
+    .infographic-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .infographic-header h1 {
+        font-size: {{#if (eq viewMode 'portrait')}}22px{{else}}28px{{/if}};
+        color: {{colors.[2]}};
+        margin: 0;
+        line-height: 1.2;
+        font-weight: normal;
+    }
+
+    .infographic-header .design-template {
+        font-size: 14px;
+        color: {{colors.[3]}};
+        margin-top: 5px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    .infographic-header .comparison-text {
+        color: {{colors.[2]}};
+        font-weight: bold;
+    }
+
+    /* --- Main Comparison Grid --- */
+    .comparison-grid {
+        display: grid;
+        {{#if (eq viewMode 'portrait')}}
+        grid-template-columns: 1fr 100px 1fr;
+        grid-template-rows: auto;
+        gap: 15px;
+        {{else}}
+        grid-template-columns: 1fr 220px 1fr;
+        gap: 20px;
+        {{/if}}
+        align-items: flex-start;
+    }
+
+    /* --- Company Headers --- */
+    .company-header {
+        padding: 15px 25px;
+        border-radius: 30px;
+        color: #fff;
+        font-size: {{#if (eq viewMode 'portrait')}}20px{{else}}24px{{/if}};
+        font-weight: bold;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .company-a {
+        background-color: {{colors.[2]}};
+    }
+
+    .company-b {
+        background-color: {{colors.[3]}};
+    }
+
+    /* --- VS Column Styling --- */
+    .vs-column {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+        {{#if (eq viewMode 'portrait')}}
+        padding-top: 50px;
+        {{/if}}
+    }
+
+    .vs-text {
+        font-size: {{#if (eq viewMode 'portrait')}}36px{{else}}48px{{/if}};
+        font-weight: bold;
+        color: #fff;
+        background-color: {{colors.[2]}};
+        padding: 10px 20px;
+        border-radius: 10px;
+        position: relative;
+        {{#if (eq viewMode 'landscape')}}
+        top: -20px;
+        {{/if}}
+        z-index: 3;
+    }
+
+    /* --- Grid for VS Icons --- */
+    .vs-icon-grid {
+        display: flex;
+        flex-direction: column;
+        gap: {{#if (eq viewMode 'portrait')}}25px{{else}}20px{{/if}};
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    /* --- Icons and Labels in VS Column --- */
+    .vs-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .vs-icon {
+        width: {{#if (eq viewMode 'portrait')}}45px{{else}}60px{{/if}};
+        height: {{#if (eq viewMode 'portrait')}}45px{{else}}60px{{/if}};
+        border: 2px solid {{colors.[1]}};
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: {{#if (eq viewMode 'portrait')}}20px{{else}}28px{{/if}};
+        color: {{colors.[3]}};
+        background-color: {{colors.[1]}};
+        margin-bottom: 8px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .vs-label {
+        font-size: {{#if (eq viewMode 'portrait')}}10px{{else}}14px{{/if}};
+        color: {{colors.[3]}};
+        text-transform: uppercase;
+        font-weight: bold;
+        line-height: 1.2;
+    }
+
+    /* --- Company Content --- */
+    .company-content {
+        display: flex;
+        flex-direction: column;
+        gap: {{#if (eq viewMode 'portrait')}}15px{{else}}20px{{/if}};
+        margin-top: 20px;
+    }
+
+    .topic-block {
+        padding: {{#if (eq viewMode 'portrait')}}12px{{else}}15px{{/if}};
+        border-radius: 8px;
+        background-color: {{colors.[1]}};
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .topic-number {
+        font-size: {{#if (eq viewMode 'portrait')}}16px{{else}}18px{{/if}};
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+
+    /* --- Specific topic number colors --- */
+    .company-a .topic-number-01, .company-a .topic-number-03 { color: {{colors.[2]}}; }
+    .company-a .topic-number-02, .company-a .topic-number-04 { color: {{colors.[2]}}; }
+
+    .company-b .topic-number-01, .company-b .topic-number-03 { color: {{colors.[3]}}; }
+    .company-b .topic-number-02, .company-b .topic-number-04 { color: {{colors.[3]}}; }
+
+    .topic-description {
+        font-size: {{#if (eq viewMode 'portrait')}}12px{{else}}13px{{/if}};
+        line-height: 1.5;
+        color: {{colors.[3]}};
+    }
+
+    .company-a-section, .company-b-section {
+        position: relative;
+        z-index: 1;
+    }
+</style>
+
+<div class="infographic-container">
+    <div class="infographic-header">
+        <h1><span class="comparison-text">{{title}}</span></h1>
+        {{#if subtitle}}
+        <div class="design-template">{{subtitle}}</div>
+        {{/if}}
+    </div>
+
+    <div class="comparison-grid">
+        <div class="company-a-section">
+            <div class="company-header company-a">{{leftSide.title}}</div>
+            <div class="company-content">
+                {{#each leftSide.items}}
+                <div class="topic-block">
+                    <div class="topic-number topic-number-0{{add @index 1}}">{{this.label}}</div>
+                    <p class="topic-description">{{this.description}}</p>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+
+        <div class="vs-column">
+            <div class="vs-text">VS</div>
+            <div class="vs-icon-grid">
+                {{#each comparisonPoints}}
+                <div class="vs-item">
+                    <div class="vs-icon">{{this.icon}}</div>
+                    <div class="vs-label">{{this.label}}</div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+
+        <div class="company-b-section">
+            <div class="company-header company-b">{{rightSide.title}}</div>
+            <div class="company-content">
+                {{#each rightSide.items}}
+                <div class="topic-block">
+                    <div class="topic-number topic-number-0{{add @index 1}}">{{this.label}}</div>
+                    <p class="topic-description">{{this.description}}</p>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>

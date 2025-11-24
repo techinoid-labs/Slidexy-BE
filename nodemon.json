@@ -1,0 +1,6 @@
+{
+  "watch": ["."],
+  "ext": "ts,js,json",
+  "ignore": ["dist/*"],
+  "exec": "node -r ts-node/register ./server.js"
+}
