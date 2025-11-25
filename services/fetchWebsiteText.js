@@ -1,434 +1,330 @@
 const puppeteer = require("puppeteer-extra");
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
+const AdblockerPlugin = require("puppeteer-extra-plugin-adblocker");
+
+// Apply stealth plugin to avoid detection
 puppeteer.use(StealthPlugin());
+puppeteer.use(AdblockerPlugin({ blockTrackers: true }));
 
-async function fetchWebsiteText(url) {
-  const browser = await puppeteer.launch({
-    headless: true,
-  args: [
-    "--no-sandbox",
-    "--disable-setuid-sandbox",
-    "--disable-web-security",
-    "--disable-features=IsolateOrigins,site-per-process",
-    "--disable-blink-features=AutomationControlled",
-    "--disable-client-side-phishing-detection",
-    "--disable-popup-blocking",
-    "--disable-default-apps",
-    "--disable-extensions",
-    "--window-size=1280,800",
-  ],
-});
+async function fetchWebsiteText(url, options = {}) {
+  const {
+    timeout = 120000, // Reduced from 180s to 120s
+    waitTime = 2000,  // Reduced from 5s to 2s
+    retries = 3,
+    useProxy = false,
+    proxyUrl = null
+  } = options;
 
-  const page = await browser.newPage();
+  let browser = null;
+  let attempt = 0;
 
-  // ✅ Block unnecessary resources (faster scraping)
-  await page.setRequestInterception(true);
-  page.on("request", (req) => {
-    const resourceType = req.resourceType();
-    if (["font", "media"].includes(resourceType)) {
-      req.abort();
-    } else {
-      req.continue();
-    }
-  });
+  while (attempt < retries) {
+    try {
+      attempt++;
+      console.log(`🔄 Attempt ${attempt}/${retries} to fetch: ${url}`);
 
-  // ✅ Visit website
-  await page.goto(url, {
-    waitUntil: "networkidle2",
-    timeout: 180000,
-  });
+      // Enhanced browser launch configuration
+      const launchOptions = {
+        headless: "new",
+        args: [
+          "--no-sandbox",
+          "--disable-setuid-sandbox",
+          "--disable-web-security",
+          "--disable-features=IsolateOrigins,site-per-process",
+          "--disable-blink-features=AutomationControlled",
+          "--disable-client-side-phishing-detection",
+          "--disable-popup-blocking",
+          "--disable-default-apps",
+          "--disable-extensions",
+          "--disable-dev-shm-usage",
+          "--disable-accelerated-2d-canvas",
+          "--no-first-run",
+          "--no-zygote",
+          "--disable-gpu",
+          "--window-size=1920,1080",
+          "--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+        ],
+        ignoreHTTPSErrors: true,
+        ignoreDefaultArgs: ["--enable-automation"],
+      };
 
-  const pageText = await page.content();
-  if (/Just a moment|checking your connection/i.test(pageText)) {
-    console.warn("⚠️ Cloudflare challenge detected — waiting extra time...");
-    await new Promise((r) => setTimeout(r, 8000));
-    await page.reload({ waitUntil: "networkidle2" });
-  }
-  await page.mouse.move(100, 100);
+      if (useProxy && proxyUrl) {
+        launchOptions.args.push(`--proxy-server=${proxyUrl}`);
+      }
 
+      browser = await puppeteer.launch(launchOptions);
+      const page = await browser.newPage();
 
-
-  // Wait a bit for lazy-loaded content
-  await new Promise((resolve) => setTimeout(resolve, 2000));
-
-  // ✅ Extract data from DOM
-  const extractedData = await page.evaluate(() => {
-    const selectorsToRemove = [
-      "script",
-      "style",
-      "noscript",
-      "iframe",
-      "nav",
-      "footer",
-      "header",
-      ".advertisement",
-      ".cookie-banner",
-      ".popup",
-      ".modal",
-    ];
-    selectorsToRemove.forEach((selector) => {
-      document.querySelectorAll(selector).forEach((el) => el.remove());
-    });
-
-    const cleanText = (text) =>
-      text.replace(/\s+/g, " ").replace(/\n+/g, "\n").trim();
-
-    // ✅ Metadata
-    const title = document.title || "";
-    const metaDescription =
-      document.querySelector('meta[name="description"]')?.content || "";
-
-    // ✅ Meta image extraction
-    const metaImage =
-      document.querySelector('meta[property="og:image"]')?.content ||
-      document.querySelector('meta[name="twitter:image"]')?.content ||
-      document.querySelector("link[rel='image_src']")?.href ||
-      "";
-
-    // ✅ Headings
-    const headings = [];
-    ["h1", "h2", "h3", "h4", "h5", "h6"].forEach((tag) => {
-      document.querySelectorAll(tag).forEach((el) => {
-        const text = cleanText(el.innerText);
-        if (text) headings.push({ level: tag, text });
+      await page.setViewport({
+        width: 1920,
+        height: 1080,
+        deviceScaleFactor: 1,
       });
-    });
 
-    const images = [];
-    document.querySelectorAll("img").forEach((img) => {
-      const src = img.src || img.getAttribute("data-src") || img.getAttribute("data-lazy-src");
-      const alt = img.alt || "";
-      const width = img.width || img.naturalWidth || null;
-      const height = img.height || img.naturalHeight || null;
+      await page.setUserAgent(
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+      );
 
-      // Filter out tracking pixels, icons, and very small images
-      if (src &&
-        !src.startsWith("data:image/svg") &&
-        !src.includes("pixel") &&
-        !src.includes("tracking") &&
-        (width === null || width > 50) &&
-        (height === null || height > 50)) {
-        images.push({
-          src: src,
-          alt: cleanText(alt),
-          width: width,
-          height: height,
-          title: img.title || ""
+      await page.setExtraHTTPHeaders({
+        "Accept-Language": "en-US,en;q=0.9",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Connection": "keep-alive",
+        "Upgrade-Insecure-Requests": "1",
+        "Sec-Fetch-Dest": "document",
+        "Sec-Fetch-Mode": "navigate",
+        "Sec-Fetch-Site": "none",
+        "Cache-Control": "max-age=0"
+      });
+
+      // Block ALL non-essential resources for MAXIMUM speed
+      await page.setRequestInterception(true);
+      page.on("request", (req) => {
+        const resourceType = req.resourceType();
+        // Only allow document and script, block everything else
+        const blockedTypes = ["stylesheet", "image", "font", "media", "websocket", "manifest", "other"];
+        const blockedDomains = [
+          "google-analytics.com",
+          "googletagmanager.com",
+          "facebook.com",
+          "doubleclick.net",
+          "analytics.google.com",
+          "ads",
+          "advertising",
+          "tracking"
+        ];
+
+        if (blockedTypes.includes(resourceType)) {
+          req.abort();
+        } else if (blockedDomains.some(domain => req.url().includes(domain))) {
+          req.abort();
+        } else {
+          req.continue();
+        }
+      });
+
+      console.log("🌐 Navigating to URL...");
+      
+      try {
+        await page.goto(url, {
+          waitUntil: "domcontentloaded", // Faster than networkidle
+          timeout: timeout,
+        });
+      } catch (navError) {
+        console.warn("⚠️ Primary navigation failed, trying alternative...");
+        await page.goto(url, {
+          waitUntil: "load",
+          timeout: timeout,
         });
       }
-    });
 
-    // ✅ Paragraphs and content blocks
-    const paragraphs = [];
-    document
-      .querySelectorAll("p, li, td, th, div[class*='content'], article")
-      .forEach((el) => {
-        const text = cleanText(el.innerText);
-        if (
-          text &&
-          text.length > 20 &&
-          !text.match(/^(cookie|accept|decline|privacy)/i)
-        ) {
-          paragraphs.push(text);
-        }
-      });
+      // Quick check for anti-bot challenges
+      const pageContent = await page.content();
+      const challenges = [
+        /just a moment/i,
+        /checking your browser/i,
+        /cloudflare/i,
+        /ray id/i,
+        /ddos protection/i,
+        /access denied/i,
+        /captcha/i
+      ];
 
-    // ✅ Links
-    const links = [];
-    document.querySelectorAll("a[href]").forEach((link) => {
-      const text = cleanText(link.innerText);
-      const href = link.href;
-      if (text && href && !href.startsWith("javascript:")) {
-        links.push({ text, url: href });
-      }
-    });
-
-    // ✅ Tables
-    const tables = [];
-    document.querySelectorAll("table").forEach((table, idx) => {
-      const rows = [];
-      table.querySelectorAll("tr").forEach((tr) => {
-        const cells = Array.from(tr.querySelectorAll("th, td")).map((cell) =>
-          cleanText(cell.innerText)
-        );
-        if (cells.some((c) => c)) rows.push(cells);
-      });
-      if (rows.length > 0) {
-        tables.push({ tableIndex: idx + 1, rows });
-      }
-    });
-
-    // ✅ Full page text
-    const fullText = cleanText(document.body.innerText);
-
-    return {
-      metadata: {
-        title,
-        description: metaDescription,
-        image: metaImage,
-        url: window.location.href,
-      },
-      headings,
-      images: images.slice(0, 100),
-      paragraphs: [...new Set(paragraphs)],
-      tables,
-      links: links.slice(0, 50),
-      fullText: fullText.slice(0, 100000),
-    };
-  });
-  const stylesheetData = await page.evaluate(() => {
-    const stylesheets = [];
-
-    // External stylesheets
-    document.querySelectorAll('link[rel="stylesheet"]').forEach((link) => {
-      stylesheets.push({
-        type: 'external',
-        href: link.href,
-        media: link.media || 'all'
-      });
-    });
-
-    // Inline style tags
-    const inlineStyles = [];
-    document.querySelectorAll('style').forEach((style, idx) => {
-      const content = style.textContent;
-      if (content && content.trim().length > 0) {
-        inlineStyles.push({
-          index: idx,
-          content: content.slice(0, 10000) // Limit inline style size
+      const hasChallengePattern = challenges.some(pattern => pattern.test(pageContent));
+      
+      if (hasChallengePattern) {
+        console.warn("🛡️ Anti-bot challenge detected, waiting...");
+        await new Promise(resolve => setTimeout(resolve, 8000));
+        
+        // Quick scroll
+        await page.evaluate(() => {
+          window.scrollTo(0, document.body.scrollHeight / 2);
         });
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        await page.reload({ waitUntil: "domcontentloaded", timeout: timeout });
       }
-    });
 
-    return {
-      external: stylesheets,
-      inline: inlineStyles
-    };
-  });
+      // Minimal human simulation
+      await page.mouse.move(100, 100);
+      
+      // Reduced wait time
+      await new Promise(resolve => setTimeout(resolve, waitTime));
 
-  // ✅ Extract computed color scheme and aesthetic properties
-  const aestheticData = await page.evaluate(() => {
-    const colors = new Set();
-    const fonts = new Set();
-    const borderRadii = new Set();
-    const shadows = new Set();
+      // Extract ONLY text data from DOM (no stylesheets, no aesthetics)
+      const extractedData = await page.evaluate(() => {
+        // Remove unwanted elements
+        const selectorsToRemove = [
+          "script",
+          "style",
+          "noscript",
+          "iframe",
+          "nav",
+          "footer",
+          "header",
+          ".advertisement",
+          ".ad",
+          ".ads",
+          ".cookie-banner",
+          ".cookie-notice",
+          ".popup",
+          ".modal",
+          '[class*="cookie"]',
+          '[id*="cookie"]',
+          '[class*="gdpr"]',
+          '[id*="consent"]',
+          '[class*="sidebar"]',
+          '[class*="comment"]'
+        ];
+        
+        selectorsToRemove.forEach((selector) => {
+          document.querySelectorAll(selector).forEach((el) => el.remove());
+        });
 
-    // Helper to check if color is valid
-    const isValidColor = (color) => {
-      return color &&
-        color !== 'rgba(0, 0, 0, 0)' &&
-        color !== 'transparent' &&
-        !color.includes('inherit');
-    };
+        const cleanText = (text) =>
+          text.replace(/\s+/g, " ").replace(/\n+/g, "\n").trim();
 
-    // Helper to convert rgb/rgba to hex
-    const rgbToHex = (color) => {
-      if (!color || color === 'transparent') return null;
+        // Metadata
+        const title = document.title || "";
+        const metaDescription =
+          document.querySelector('meta[name="description"]')?.content || "";
 
-      const rgb = color.match(/\d+/g);
-      if (!rgb || rgb.length < 3) return color;
+        // Headings - prioritize main content
+        const headings = [];
+        ["h1", "h2", "h3"].forEach((tag) => {
+          document.querySelectorAll(tag).forEach((el) => {
+            const text = cleanText(el.innerText);
+            if (text && text.length > 3) {
+              headings.push({ level: tag, text });
+            }
+          });
+        });
 
-      const hex = '#' + rgb.slice(0, 3).map(x => {
-        const h = parseInt(x).toString(16);
-        return h.length === 1 ? '0' + h : h;
-      }).join('');
+        // Main content paragraphs - focus on meaningful content
+        const paragraphs = [];
+        const contentSelectors = [
+          'article p',
+          'main p',
+          '[role="main"] p',
+          '.content p',
+          '.post-content p',
+          '.article-content p',
+          'p' // fallback
+        ];
 
-      return hex;
-    };
-
-    // Sample important elements
-    const importantSelectors = [
-      'body',
-      'header',
-      'nav',
-      'main',
-      'article',
-      'section',
-      'aside',
-      'footer',
-      'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
-      'p',
-      'a',
-      'button',
-      '.btn', '.button',
-      '.card',
-      '.hero',
-      '.container'
-    ];
-
-    importantSelectors.forEach(selector => {
-      const elements = document.querySelectorAll(selector);
-      elements.forEach(el => {
-        const computed = window.getComputedStyle(el);
-
-        // Colors
-        if (isValidColor(computed.color)) {
-          colors.add(rgbToHex(computed.color));
+        let foundContent = false;
+        for (const selector of contentSelectors) {
+          const elements = document.querySelectorAll(selector);
+          if (elements.length > 0) {
+            elements.forEach((el) => {
+              const text = cleanText(el.innerText);
+              if (
+                text &&
+                text.length > 30 && // Longer minimum for quality
+                !text.match(/^(cookie|accept|decline|privacy|subscribe|sign up|log in)/i)
+              ) {
+                paragraphs.push(text);
+                foundContent = true;
+              }
+            });
+            if (foundContent && paragraphs.length > 5) break;
+          }
         }
-        if (isValidColor(computed.backgroundColor)) {
-          colors.add(rgbToHex(computed.backgroundColor));
-        }
-        if (isValidColor(computed.borderColor)) {
-          colors.add(rgbToHex(computed.borderColor));
-        }
 
-        // Fonts
-        const fontFamily = computed.fontFamily;
-        if (fontFamily && fontFamily !== 'inherit') {
-          fonts.add(fontFamily.split(',')[0].replace(/['"]/g, '').trim());
-        }
+        // Also grab list items if they contain substantial content
+        document.querySelectorAll('article li, main li, .content li').forEach((el) => {
+          const text = cleanText(el.innerText);
+          if (text && text.length > 30) {
+            paragraphs.push(text);
+          }
+        });
 
-        // Border radius
-        const borderRadius = computed.borderRadius;
-        if (borderRadius && borderRadius !== '0px' && borderRadius !== 'inherit') {
-          borderRadii.add(borderRadius);
-        }
+        // Full page text as backup
+        const fullText = cleanText(document.body.innerText);
 
-        // Box shadows
-        const boxShadow = computed.boxShadow;
-        if (boxShadow && boxShadow !== 'none') {
-          shadows.add(boxShadow);
-        }
+        return {
+          metadata: {
+            title,
+            description: metaDescription,
+            url: window.location.href,
+          },
+          headings: headings.slice(0, 50), // Limit headings
+          paragraphs: [...new Set(paragraphs)].slice(0, 200), // Deduplicate and limit
+          fullText: fullText.slice(0, 150000), // Increased limit for full text
+        };
       });
-    });
 
-    // Get root/body computed styles
-    const bodyStyle = window.getComputedStyle(document.body);
-    const rootStyle = window.getComputedStyle(document.documentElement);
+      await browser.close();
+      browser = null;
 
-    return {
-      colors: Array.from(colors).filter(c => c).slice(0, 50),
-      fonts: Array.from(fonts).slice(0, 20),
-      borderRadii: Array.from(borderRadii).slice(0, 10),
-      shadows: Array.from(shadows).slice(0, 10),
-      rootColors: {
-        backgroundColor: rgbToHex(bodyStyle.backgroundColor),
-        color: rgbToHex(bodyStyle.color),
-        linkColor: rgbToHex(rootStyle.getPropertyValue('--link-color')) || null,
-        primaryColor: rgbToHex(rootStyle.getPropertyValue('--primary-color')) ||
-          rgbToHex(rootStyle.getPropertyValue('--primary')) || null,
-        secondaryColor: rgbToHex(rootStyle.getPropertyValue('--secondary-color')) ||
-          rgbToHex(rootStyle.getPropertyValue('--secondary')) || null,
-      },
-      typography: {
-        baseFontSize: bodyStyle.fontSize,
-        baseFontFamily: bodyStyle.fontFamily.split(',')[0].replace(/['"]/g, '').trim(),
-        baseLineHeight: bodyStyle.lineHeight,
-        baseFontWeight: bodyStyle.fontWeight,
+      // Classify website type
+      const websiteType = classifyWebsiteType(extractedData);
+
+      // Format output - TEXT ONLY
+      let formatted = `WEBSITE: ${extractedData.metadata.url}\n`;
+      formatted += `TITLE: ${extractedData.metadata.title}\n`;
+      formatted += `DESCRIPTION: ${extractedData.metadata.description}\n`;
+      formatted += `TYPE: ${websiteType}\n\n`;
+      
+      formatted += `=== MAIN HEADINGS ===\n`;
+      extractedData.headings.forEach((h) => {
+        formatted += `${h.level.toUpperCase()}: ${h.text}\n`;
+      });
+      
+      formatted += `\n=== CONTENT ===\n`;
+      extractedData.paragraphs.forEach((p) => {
+        formatted += `${p}\n\n`;
+      });
+
+      // Fallback to full text if paragraphs are insufficient
+      if (extractedData.paragraphs.length < 5 && extractedData.fullText.length > 500) {
+        formatted += `\n=== ADDITIONAL CONTENT ===\n`;
+        formatted += extractedData.fullText;
       }
-    };
-  });
 
-  await browser.close();
+      if (formatted.length > 500000) {
+        formatted = formatted.slice(0, 500000) + "\n\n[Content truncated due to length]";
+      }
 
-  // ⚡ Classify website type
-  const websiteType = classifyWebsiteType(extractedData);
+      console.log(`✅ Successfully scraped website (${formatted.length} chars)`);
 
-  // ⚡ Generate presentation hints
-  const presentationHints = getPresentationHints(websiteType, extractedData);
+      return {
+        formatted,
+        raw: extractedData,
+        stats: {
+          headings: extractedData.headings.length,
+          paragraphs: extractedData.paragraphs.length,
+          totalChars: formatted.length,
+        },
+        websiteType,
+      };
 
-  // ✅ Format readable output
-  let formatted = `WEBSITE: ${extractedData.metadata.url}\n`;
-  formatted += `TITLE: ${extractedData.metadata.title}\n`;
-  formatted += `DESCRIPTION: ${extractedData.metadata.description}\n`;
-  if (extractedData.metadata.image)
-    formatted += `IMAGE: ${extractedData.metadata.image}\n`;
- formatted += `\n=== COLOR SCHEME & AESTHETICS ===\n`;
-  formatted += `Primary Colors:\n`;
-  aestheticData.colors.slice(0, 15).forEach(color => {
-    formatted += `  ${color}\n`;
-  });
-  formatted += `\nTypography:\n`;
-  formatted += `  Base Font: ${aestheticData.typography.baseFontFamily}\n`;
-  formatted += `  Font Size: ${aestheticData.typography.baseFontSize}\n`;
-  formatted += `  Line Height: ${aestheticData.typography.baseLineHeight}\n`;
-  formatted += `\nFont Families Used:\n`;
-  aestheticData.fonts.forEach(font => {
-    formatted += `  ${font}\n`;
-  });
-  if (aestheticData.rootColors.primaryColor) {
-    formatted += `\nBrand Colors:\n`;
-    formatted += `  Primary: ${aestheticData.rootColors.primaryColor}\n`;
-    if (aestheticData.rootColors.secondaryColor) {
-      formatted += `  Secondary: ${aestheticData.rootColors.secondaryColor}\n`;
+    } catch (error) {
+      console.error(`❌ Attempt ${attempt} failed:`, error.message);
+      
+      if (browser) {
+        try {
+          await browser.close();
+        } catch (closeError) {
+          console.error("Error closing browser:", closeError.message);
+        }
+        browser = null;
+      }
+
+      if (attempt >= retries) {
+        throw new Error(`Failed to fetch website after ${retries} attempts: ${error.message}`);
+      }
+
+      // Exponential backoff with reduced wait times
+      const waitTime = Math.min(3000 * Math.pow(2, attempt - 1), 20000);
+      console.log(`⏳ Waiting ${waitTime}ms before retry...`);
+      await new Promise(resolve => setTimeout(resolve, waitTime));
     }
   }
-
-  // ✅ Add stylesheet references
-  formatted += `\n=== STYLESHEETS (${stylesheetData.external.length} external) ===\n`;
-  stylesheetData.external.forEach((sheet, idx) => {
-    formatted += `${idx + 1}. ${sheet.href} (media: ${sheet.media})\n`;
-  });
-  if (stylesheetData.inline.length > 0) {
-    formatted += `\nInline Styles: ${stylesheetData.inline.length} style blocks found\n`;
-  }
-
-
-
-  formatted += `\n=== HEADINGS ===\n`;
-  extractedData.headings.forEach((h) => {
-    formatted += `${h.level.toUpperCase()}: ${h.text}\n`;
-  });
-  if (extractedData.images.length > 0) {
-    formatted += `\n=== IMAGES (${extractedData.images.length}) ===\n`;
-    extractedData.images.forEach((img, idx) => {
-      formatted += `Image ${idx + 1}:\n`;
-      formatted += `  SRC: ${img.src}\n`;
-      formatted += `  ALT: ${img.alt || "(no alt text)"}\n`;
-      if (img.width && img.height) {
-        formatted += `  SIZE: ${img.width}x${img.height}\n`;
-      }
-      if (img.title) {
-        formatted += `  TITLE: ${img.title}\n`;
-      }
-      formatted += `\n`;
-    });
-  }
-
-  formatted += `\n=== MAIN CONTENT ===\n`;
-  extractedData.paragraphs.slice(0, 100).forEach((p) => {
-    formatted += `${p}\n\n`;
-  });
-
-  if (extractedData.tables.length > 0) {
-    formatted += `\n=== TABLES ===\n`;
-    extractedData.tables.forEach((table) => {
-      formatted += `\nTable ${table.tableIndex}:\n`;
-      table.rows.forEach((row) => {
-        formatted += row.join(" | ") + "\n";
-      });
-    });
-  }
-
-  if (formatted.length > 500000) {
-    formatted =
-      formatted.slice(0, 500000) + "\n\n[Content truncated due to length]";
-  }
-
-  // ✅ Return full structured object
-  return {
-    formatted,
-    raw: extractedData,
-    stylesheets: stylesheetData,
-    aesthetics: aestheticData,
-    stats: {
-      headings: extractedData.headings.length,
-      images: extractedData.images.length,
-      paragraphs: extractedData.paragraphs.length,
-      tables: extractedData.tables.length,
-      stylesheets: stylesheetData.external.length,
-      inlineStyles: stylesheetData.inline.length,
-      colors: aestheticData.colors.length,
-      totalChars: formatted.length,
-    },
-    websiteType,
-    presentationHints,
-  };
 }
 
-// ⚡ Helper: classify website type
 function classifyWebsiteType(data) {
-  const text = (data.rawText || data.fullText || "").toLowerCase();
+  const text = (data.fullText || "").toLowerCase();
   const { url } = data.metadata;
 
   if (url.match(/news|article|blog|medium|cnn|bbc/i)) return "news";
@@ -438,69 +334,8 @@ function classifyWebsiteType(data) {
   if (url.match(/forum|thread|discussion|topic/i)) return "forum";
   if (url.match(/youtube|video|soundcloud|media/i)) return "media";
   if (url.match(/company|agency|portfolio|services/i)) return "portfolio";
-  if (url.match(/listing|directory|jobs|realestate|property/i))
-    return "directory";
+  if (url.match(/listing|directory|jobs|realestate|property/i)) return "directory";
   return "generic";
-}
-
-// ⚡ Helper: generate presentation hints
-function getPresentationHints(type, data) {
-  switch (type) {
-    case "news":
-      return {
-        recommendedView: "timeline",
-        dataFocus: ["headlines", "author", "date", "summary"],
-        displayStyle: "modern-news-cards",
-      };
-    case "ecommerce":
-      return {
-        recommendedView: "grid",
-        dataFocus: ["product title", "price", "ratings", "images"],
-        displayStyle: "product-catalog",
-      };
-    case "tutorial":
-      return {
-        recommendedView: "stepper",
-        dataFocus: ["steps", "code blocks", "examples"],
-        displayStyle: "instructional",
-      };
-    case "reference":
-      return {
-        recommendedView: "sectioned document",
-        dataFocus: ["definitions", "tables", "facts"],
-        displayStyle: "encyclopedic",
-      };
-    case "portfolio":
-      return {
-        recommendedView: "hero layout",
-        dataFocus: ["services", "slogans", "contact links"],
-        displayStyle: "visual grid",
-      };
-    case "forum":
-      return {
-        recommendedView: "thread list",
-        dataFocus: ["questions", "answers", "votes"],
-        displayStyle: "discussion layout",
-      };
-    case "directory":
-      return {
-        recommendedView: "list + map",
-        dataFocus: ["titles", "locations", "links"],
-        displayStyle: "card listing",
-      };
-    case "media":
-      return {
-        recommendedView: "gallery",
-        dataFocus: ["titles", "creators", "embed links"],
-        displayStyle: "multimedia grid",
-      };
-    default:
-      return {
-        recommendedView: "document",
-        dataFocus: ["headings", "paragraphs"],
-        displayStyle: "generic text layout",
-      };
-  }
 }
 
 module.exports = { fetchWebsiteText };
