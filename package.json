@@ -48,7 +48,7 @@
     "puppeteer-extra-plugin-adblocker": "^2.13.6",
     "puppeteer-extra-plugin-stealth": "^2.11.2",
     "replicate": "^1.0.1",
-    "sharp": "^0.34.4",
+    "sharp": "^0.34.5",
     "stripe": "^18.5.0",
     "swagger": "^0.7.5",
     "swagger-ui-express": "^5.0.1",

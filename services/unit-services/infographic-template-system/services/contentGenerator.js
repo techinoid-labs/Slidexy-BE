@@ -316,12 +316,17 @@ class ContentGenerator {
   /**
    * Generate parameters (style, colors, card type, background)
    * @param {string} prompt - User prompt
+   * @param {string} forceColorScheme - Optional forced color scheme name
    * @returns {Promise<object>} Parameters {style, colors, card, background}
    */
-  async gatherParameters(prompt) {
-    // First, intelligently select color scheme based on topic
-    const preSelectedScheme = this._selectColorSchemeByTopic(prompt);
+  async gatherParameters(prompt, forceColorScheme = null) {
+    // First, intelligently select color scheme based on topic or use forced scheme
+    const preSelectedScheme = forceColorScheme || this._selectColorSchemeByTopic(prompt);
     const selectedSchemeObj = COLOR_SCHEMES[preSelectedScheme];
+    
+    if (forceColorScheme) {
+      console.log(`🎨 Using forced color scheme: ${forceColorScheme}`);
+    }
     
     const schemeNames = Object.keys(COLOR_SCHEMES);
     const schemeExamples = schemeNames.slice(0, 5).map(name => {
@@ -333,7 +338,7 @@ class ContentGenerator {
 
 User Prompt: "${prompt}"
 
-IMPORTANT: The color scheme has been pre-selected as "${preSelectedScheme}" based on the topic.
+IMPORTANT: The color scheme has been pre-selected as "${preSelectedScheme}" based on the ${forceColorScheme ? 'user request' : 'topic'}.
 Use this scheme's colors:
 - Primary colors: ${selectedSchemeObj.primary.join(', ')}
 - Secondary colors: ${selectedSchemeObj.secondary.join(', ')}
@@ -392,7 +397,7 @@ Output strictly in JSON (no other text):
         background: parsed.background || 'gradient',
       };
     } catch (error) {
-      console.warn(`⚠️ Parameter gathering failed, using topic-based defaults:`, error.message);
+      console.warn(`⚠️ Parameter gathering failed, using ${preSelectedScheme} scheme defaults:`, error.message);
       // Still use topic-based color scheme even on error with improved selection
       const defaultScheme = COLOR_SCHEMES[preSelectedScheme] || COLOR_SCHEMES.cottonCandy;
       const schemeColors = this._selectSchemeColors(defaultScheme);
