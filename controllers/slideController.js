@@ -176,45 +176,50 @@ function extractYouTubeVideoId(url) {
 const streamingStates = {
   start: {
     percent: 2,
-    message: "🚀 Initiating presentation creation process...",
-    detail: "We're setting up the foundational framework for your custom presentation, including initial data structures and configuration parameters to ensure smooth generation.",
+    message: "🚀 Starting presentation creation...",
+    detail: "Initializing the generation pipeline for your custom presentation.",
+  },
+  fetchingWebsite: {
+    percent: 8,
+    message: "🌐 Fetching website content...",
+    detail: "Extracting text and structure from the provided URL.",
   },
   analyzing: {
-    percent: 10,
-    message: "🔍 Deep content analysis in progress...",
-    detail: "Extracting key topics, important data points, and contextual signals from your input so that every slide is grounded in accurate, relevant information.",
+    percent: 15,
+    message: "🔍 Analyzing content...",
+    detail: "Processing key topics and important information from the source.",
   },
   planning: {
-    percent: 18,
-    message: "📋 Planning presentation structure...",
-    detail: "Designing the slide narrative, defining layout intentions, and mapping content to the most effective presentation flow for your audience.",
+    percent: 20,
+    message: "📋 Planning slide structure...",
+    detail: "Designing the presentation flow and layout strategy.",
   },
   generating: {
     start: {
-      percent: 20,
-      message: "✍️ Starting detailed content generation phase...",
-      detail: "Leveraging advanced language models to craft tailored titles, bullet points, quotes, and supporting text that align perfectly with your objectives.",
+      percent: 25,
+      message: "✍️ Generating slide content...",
+      detail: "Creating tailored titles, bullet points, and supporting text.",
     },
     progress: (current, total) => ({
-      message: `📚 Generating textual content for slide ${current}/${total}...`,
-      detail: "Composing concise, high-impact talking points and narrative elements that fit the layout and maintain a strong storyline.",
+      message: `📚 Creating slide ${current}/${total}...`,
+      detail: "Crafting content that fits the layout and maintains narrative flow.",
     }),
   },
   imaging: {
     start: {
-      percent: 55,
-      message: "🎨 Initiating advanced visual design phase...",
-      detail: "Preparing the generative visual pipeline to produce presentation-ready imagery that complements and reinforces your message.",
+      percent: 60,
+      message: "🎨 Generating visuals...",
+      detail: "Creating presentation-ready imagery for your slides.",
     },
     progress: (current, total) => ({
-      message: `🖼️ Designing custom visual for slide ${current}/${total}...`,
-      detail: "Creating high-fidelity, contextually relevant imagery that visually reinforces your narrative and strengthens audience engagement.",
+      message: `🖼️ Designing visual ${current}/${total}...`,
+      detail: "Generating contextually relevant imagery for each slide.",
     }),
   },
   finalizing: {
     percent: 95,
-    message: "✨ Finalizing your complete presentation...",
-    detail: "Performing quality assurance checks and preparing the presentation for immediate use. Validating data integrity and confirming proper formatting.",
+    message: "✨ Finalizing presentation...",
+    detail: "Completing final quality checks and preparing for delivery.",
   },
 };
 
@@ -297,15 +302,11 @@ async function generateSlidesHandler(req, res) {
         streamingStates.start.detail
       );
 
-      sendProgress(
-        streamingStates.analyzing.percent,
-        streamingStates.analyzing.message,
-        streamingStates.analyzing.detail
-      );
       let rawText, topic;
 
       try {
         if (source === "youtube") {
+          sendProgress(10, "📺 Fetching YouTube content...", "Extracting transcript and metadata.");
           const videoId = extractYouTubeVideoId(inputUrl);
           try {
             rawText = await fetchYouTubeTranscript(inputUrl);
@@ -317,17 +318,34 @@ async function generateSlidesHandler(req, res) {
             topic = metaData.title || "YouTube Presentation";
           }
         } else if (source === "website") {
-          rawText = await fetchWebsiteText(inputWebsiteUrl);
-          topic = inputWebsiteUrl || "Website Presentation";
+          sendProgress(
+            streamingStates.fetchingWebsite.percent,
+            streamingStates.fetchingWebsite.message,
+            streamingStates.fetchingWebsite.detail
+          );
+          
+          const websiteData = await fetchWebsiteText(inputWebsiteUrl, {
+            timeout: 120000,
+            waitTime: 2000
+          });
+          
+          rawText = websiteData.formatted;
+          topic = websiteData.raw.metadata.title || inputWebsiteUrl || "Website Presentation";
+          
+          sendProgress(
+            12,
+            `✅ Website content extracted (${websiteData.stats.totalChars} chars)`,
+            `Found ${websiteData.stats.headings} headings and ${websiteData.stats.paragraphs} content blocks.`
+          );
         } else {
           rawText = textContent;
           topic = textContent?.slice(0, 50) || "Untitled Presentation";
         }
 
         sendProgress(
-          15,
-          "✅ Input analysis complete",
-          "Content successfully extracted and normalized. Preparing to generate slide copy tailored to your goals."
+          streamingStates.analyzing.percent,
+          streamingStates.analyzing.message,
+          streamingStates.analyzing.detail
         );
       } catch (fetchErr) {
         console.error("Error fetching input:", fetchErr);
@@ -352,7 +370,7 @@ async function generateSlidesHandler(req, res) {
         const normalized = Math.max(0, Math.min(total, current));
         const percent = mapProgress(
           streamingStates.generating.start.percent,
-          50,
+          55, // End at 55 instead of 50 for smoother transition
           normalized / total
         );
         if (percent <= lastTextPercent) return;
@@ -372,9 +390,9 @@ async function generateSlidesHandler(req, res) {
       );
 
       sendProgress(
-        52,
-        "🧹 Structuring generated slide content...",
-        "Cleaning, validating, and formatting slide copy so it aligns with layout requirements and is ready for visual pairing."
+        57,
+        "🧹 Structuring slide content...",
+        "Validating and formatting generated content."
       );
 
       const cleanedSlides = convertEJSONFields(slides);
@@ -400,7 +418,7 @@ async function generateSlidesHandler(req, res) {
         sendProgress(
           90,
           "📦 Template visuals assigned",
-          "Trial mode detected — using predefined template visuals so you can preview the full presentation instantly."
+          "Using predefined visuals for instant preview."
         );
       } else {
         const maxConcurrent = 4;
@@ -452,8 +470,7 @@ async function generateSlidesHandler(req, res) {
               results[currentIndex] = {
                 ...slide,
                 image_url: null,
-                image_caption:
-                  "Image unavailable (using content-only slide as fallback)",
+                image_caption: "Image unavailable",
                 fallback_used: "none",
               };
             } finally {
@@ -463,11 +480,10 @@ async function generateSlidesHandler(req, res) {
                 imageProgressRangeEnd,
                 completedImages / slideCountTotal
               );
-              const doneMessage = `🖼️ Visual ready for slide ${slideNumber}/${slideCountTotal}`;
               sendProgress(
                 percent,
-                doneMessage,
-                "Visual assets prepared and linked to the slide. Moving to the next item in the queue."
+                `🖼️ Visual ${completedImages}/${slideCountTotal} ready`,
+                "Visual assets prepared and linked."
               );
             }
           }
@@ -494,8 +510,8 @@ async function generateSlidesHandler(req, res) {
 
       sendProgress(
         98,
-        "💾 Saving presentation",
-        "Persisting your presentation, slides, and visual assets so you can access them immediately."
+        "💾 Saving presentation...",
+        "Persisting your presentation data."
       );
 
       const presentation = new Presentation({
@@ -531,8 +547,8 @@ async function generateSlidesHandler(req, res) {
       sendUpdate({
         percent: 100,
         complete: true,
-        message: "✅ Presentation successfully created!",
-        detail: `Your ${totalSlidesCount}-slide presentation is now complete and ready to use.`,
+        message: "✅ Presentation complete!",
+        detail: `Your ${totalSlidesCount}-slide presentation is ready.`,
         slides: finalSlides,
         presentation_id: presentation.presentation_id,
         slideCount: finalSlides.length,
@@ -553,7 +569,7 @@ async function generateSlidesHandler(req, res) {
       res.end();
     }
   } else {
-    // Non-streaming response
+    // Non-streaming response remains the same
     try {
       let rawText, topic;
 
@@ -569,8 +585,9 @@ async function generateSlidesHandler(req, res) {
           topic = metaData.title || "YouTube Presentation";
         }
       } else if (source === "website") {
-        rawText = await fetchWebsiteText(inputWebsiteUrl);
-        topic = inputWebsiteUrl || "Website Presentation";
+        const websiteData = await fetchWebsiteText(inputWebsiteUrl);
+        rawText = websiteData.formatted;
+        topic = websiteData.raw.metadata.title || inputWebsiteUrl || "Website Presentation";
       } else {
         rawText = textContent;
         topic = textContent?.slice(0, 50) || "Untitled Presentation";
