@@ -137,6 +137,7 @@ dist
 
 #OUTPUT
 output/
+output-explainer-infographics
 
 services/data/
 services/testFetchWeb.js
