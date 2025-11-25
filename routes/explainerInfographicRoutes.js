@@ -19,6 +19,8 @@ const OUTPUT_DIR = path.join(__dirname, "../output-explainer-infographics");
  * }
  */
 router.post("/", async (req, res) => {
+  let filepath; // keep track of the file to delete
+
   try {
     const { topic, viewMode = "landscape", colorScheme } = req.body;
 
@@ -26,52 +28,35 @@ router.post("/", async (req, res) => {
       return res.status(400).json({ error: "Topic is required and must be a string" });
     }
 
-    // Validate viewMode
-    if (!["landscape", "portrait"].includes(viewMode)) {
-      return res.status(400).json({ error: "viewMode must be 'landscape' or 'portrait'" });
-    }
-
-    // Validate colorScheme if provided
     const validColorSchemes = [
       'techBlue', 'forestGreen', 'culinaryRed', 'creativeViolet', 
       'travelTeal', 'academicYellow', 'scienceBlue', 'corporateGold', 'medicalBlue'
     ];
-    
+
     if (colorScheme && !validColorSchemes.includes(colorScheme)) {
       return res.status(400).json({ 
         error: `Invalid colorScheme. Must be one of: ${validColorSchemes.join(', ')}` 
       });
     }
 
-    console.log(`🎬 [Explainer Route] Generating infographic - Topic: "${topic.substring(0, 50)}..." | ViewMode: ${viewMode}${colorScheme ? ` | ColorScheme: ${colorScheme}` : ''}`);
-    
-    // Build options object
+    // Generate infographic
     const options = {};
-    if (colorScheme) {
-      options.colorScheme = colorScheme;
-    }
+    if (colorScheme) options.colorScheme = colorScheme;
 
-    // 1. Generate infographic using explainer service
     const result = await generateInfographicExplainerService.generateInfographic(topic, viewMode, options);
 
-    // 2. Ensure output directory exists
+    // Save HTML temporarily
     if (!fs.existsSync(OUTPUT_DIR)) {
       fs.mkdirSync(OUTPUT_DIR, { recursive: true });
     }
 
-    // 3. Save HTML file (optional, for debugging)
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
     const filename = `explainer-${timestamp}.html`;
-    const filepath = path.join(OUTPUT_DIR, filename);
-    
-    try {
-      fs.writeFileSync(filepath, result.html, 'utf8');
-      console.log(`💾 [Explainer Route] HTML saved: ${filepath}`);
-    } catch (writeError) {
-      console.warn(`⚠️ [Explainer Route] Failed to save HTML file: ${writeError.message}`);
-    }
+    filepath = path.join(OUTPUT_DIR, filename);
 
-    // 4. Return response
+    fs.writeFileSync(filepath, result.html, 'utf8');
+
+    // Prepare response
     const response = {
       success: true,
       html: result.html,
@@ -85,7 +70,7 @@ router.post("/", async (req, res) => {
       }
     };
 
-    console.log(`✅ [Explainer Route] Infographic generated successfully`);
+    // Send response **first**
     res.json(response);
 
   } catch (error) {
@@ -95,6 +80,14 @@ router.post("/", async (req, res) => {
       error: error.message,
       details: error.stack
     });
+  } finally {
+    // Delete the file **after sending response**
+    if (filepath && fs.existsSync(filepath)) {
+      fs.unlink(filepath, (err) => {
+        if (err) console.warn(`⚠️ Failed to delete file ${filepath}: ${err.message}`);
+        else console.log(`🗑️ Deleted temporary file: ${filepath}`);
+      });
+    }
   }
 });
 
