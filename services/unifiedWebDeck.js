@@ -26,7 +26,7 @@ const crypto = require("crypto");
 const { generateRawTextDeck } = require("./rawTextDeck");
 const { generateImageDeck } = require("./imageDeck");
 const { generateStylesheetDeck } = require("./stylesheetDeck");
-const { fetchWebsiteText } = require("./fetchWebsiteText");
+const { fetchWebsiteText } = require("./fetchWebsiteTextNoCode");
 
 /**
  * Generate a unified presentation from a URL by calling all 3 services
