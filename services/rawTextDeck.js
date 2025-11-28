@@ -12,7 +12,7 @@
  */
 
 const { textGenModel } = require("../utils/geminiModels");
-const { fetchWebsiteText } = require("./fetchWebsiteText");
+const { fetchWebsiteText } = require("./fetchWebsiteTextNoCode");
 const { uploadToSpaces } = require("../utils/s3Uploader");
 const crypto = require("crypto");
 

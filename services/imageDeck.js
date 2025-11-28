@@ -12,7 +12,7 @@
  */
 
 const { textGenModel } = require("../utils/geminiModels");
-const { fetchWebsiteText } = require("./fetchWebsiteText");
+const { fetchWebsiteText } = require("./fetchWebsiteTextNoCode");
 
 /**
  * Generate Konva deck object from website images
