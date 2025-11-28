@@ -5,7 +5,7 @@ const { v4: uuidv4 } = require("uuid");
 const SLIDE_TYPE_DEFINITIONS = {
   3: {
     slides: [
-      { type: "cover-hero", description: "Compelling title and subtitle that grabs attention" },
+      { type: "cover-hero", description: "Compelling title, subtitle, and 2-3 key highlights" },
       { type: "content-right-image", description: "Most important key points and insights" },
       { type: "conclusion", description: "Powerful summary and call to action" }
     ],
@@ -13,7 +13,7 @@ const SLIDE_TYPE_DEFINITIONS = {
   },
   5: {
     slides: [
-      { type: "cover-hero", description: "Engaging title and compelling subtitle" },
+      { type: "cover-hero", description: "Engaging title, subtitle, and 2-3 preview points" },
       { type: "content-right-image", description: "Primary problem or opportunity" },
       { type: "content-left-image", description: "Solution approach and methodology" },
       { type: "content-split", description: "Key benefits and differentiators" },
@@ -23,7 +23,7 @@ const SLIDE_TYPE_DEFINITIONS = {
   },
   7: {
     slides: [
-      { type: "cover-hero", description: "Professional title and descriptive subtitle" },
+      { type: "cover-hero", description: "Professional title, subtitle, and 2-3 key takeaways" },
       { type: "content-right-image", description: "Executive summary and context" },
       { type: "content-left-image", description: "Detailed analysis and findings" },
       { type: "content-split", description: "Comparative advantages and data" },
@@ -35,7 +35,7 @@ const SLIDE_TYPE_DEFINITIONS = {
   },
   10: {
     slides: [
-      { type: "cover-hero", description: "Strategic title and overview subtitle" },
+      { type: "cover-hero", description: "Strategic title, subtitle, and 2-3 overview points" },
       { type: "content-right-image", description: "Market overview and opportunity" },
       { type: "content-left-image", description: "Competitive landscape analysis" },
       { type: "content-split", description: "Core capabilities and strengths - MUST include 4-6 bullets for left/right split" },
@@ -86,20 +86,25 @@ ${length ? `• Length: ${length}` : '• Length: Standard presentation'}
 
 STRICT CONTENT RULES (for frontend mapping):
 1. TITLES: 3-6 words, compelling and action-oriented
-2. COVER-HERO: title + subtitle (1 sentence, no bullets)
+2. COVER-HERO: title + subtitle (1 sentence) + 2-3 subtle preview bullets (5-8 words each, key takeaways)
 3. BULLET SLIDES (content-right-image, content-left-image, content-split, infographic-bullets): EXACTLY 3-4 bullets (6-12 words each, complete thoughts). For content-split: ALWAYS include EXACTLY 4-6 bullets (to be split evenly in layout). For infographic-bullets: ALWAYS include EXACTLY 3-4 bullets in format "Value - 1-sentence explanation" (e.g., "25% - Growth in key metric over last year").
 4. QUOTE-SLIDE: title, quote (20-50 words full sentence), author, context (1 sentence)
 5. CALL-TO-ACTION/CONCLUSION: title, 1-2 action bullets, description (1 sentence)
-6. Maintain consistent terminology and narrative flow. CRITICAL: Ensure EVERY bullet slide (including content-split and infographic-bullets) has the required bullets - no empty lists.
+6. Maintain consistent terminology and narrative flow. CRITICAL: Ensure EVERY bullet slide (including cover-hero, content-split and infographic-bullets) has the required bullets - no empty lists.
 
 OUTPUT FORMAT - Return ONLY valid JSON array with exactly ${slideCount} objects. Use these exact structures:
 
-For cover-hero:
+For cover-hero (HYBRID APPROACH):
 {
   "slide_number": 1,
   "layout_type": "cover-hero",
   "title": "Strategic Title Here",
-  "subtitle": "Compelling subtitle that sets context"
+  "subtitle": "Compelling subtitle that sets context",
+  "bullets": [
+    "First key preview point (5-8 words)",
+    "Second essential takeaway (5-8 words)",
+    "Third compelling highlight (5-8 words)"
+  ]
 }
 
 For content-right-image/content-left-image:
@@ -196,15 +201,24 @@ Generate exactly ${slideCount} slides that tell a compelling story:`;
       progressCallback(Math.floor(slideCount * 0.5), slideCount);
     }
 
-    // Validate and fix counts - enhanced for content-split and infographic-bullets
+    // Validate and fix counts - enhanced for cover-hero, content-split and infographic-bullets
     aiSlides = aiSlides.map((slide, index) => {
       // Notify progress for each slide being processed
       if (progressCallback) {
         progressCallback(index + 1, slideCount);
       }
       
-      if (slide.layout_type === "cover-hero" && !slide.subtitle) {
-        slide.subtitle = "Professional presentation overview based on your content.";
+      if (slide.layout_type === "cover-hero") {
+        if (!slide.subtitle) {
+          slide.subtitle = "Professional presentation overview based on your content.";
+        }
+        // Ensure cover-hero has 2-3 bullets
+        if (!slide.bullets || slide.bullets.length < 2) {
+          const fallbackBullets = generateFallbackBullets(slide.title, 3, "cover-hero");
+          slide.bullets = [...(slide.bullets || []), ...fallbackBullets].slice(0, 3);
+        } else {
+          slide.bullets = slide.bullets.slice(0, 3);
+        }
       }
       if (["content-right-image", "content-left-image", "content-split", "infographic-bullets"].includes(slide.layout_type)) {
         const minBullets = slide.layout_type === "content-split" ? 4 : 3;
@@ -266,9 +280,19 @@ function generateFallbackBullets(title, count, layoutType) {
     "Innovative solutions addressing challenges.",
     "Measurable outcomes from implementation."
   ];
+  
+  // Shorter, more concise bullets for cover-hero
+  const coverPhrases = [
+    "Strategic overview and key insights",
+    "Actionable recommendations included",
+    "Data-driven approach to success"
+  ];
+  
+  const sourceArray = layoutType === "cover-hero" ? coverPhrases : basePhrases;
   const fallback = [];
+  
   for (let i = 0; i < count; i++) {
-    let bullet = basePhrases[i % basePhrases.length];
+    let bullet = sourceArray[i % sourceArray.length];
     if (layoutType === "infographic-bullets") {
       bullet = `${Math.floor(Math.random() * 100 + 10)}% - ${bullet.toLowerCase().replace('.', '')}`;
     }
@@ -303,7 +327,7 @@ function transformToTextOnlySlide(aiSlide, index, totalSlides) {
     content_metadata: {
       title: aiSlide.title || "",
       subtitle: aiSlide.subtitle || "",
-      bullet_count: 0, // Will be updated later
+      bullet_count: 0,
       has_quote: !!aiSlide.quote,
       has_data: slideType === "infographic-bullets"
     },
@@ -319,20 +343,47 @@ function transformToTextOnlySlide(aiSlide, index, totalSlides) {
     _id: { $oid: uuidv4().replace(/-/g, '').slice(0, 24) }
   };
 
-  // Handle subtitle for cover-hero (ensure fallback if missing)
-  if (slideType === "cover-hero") {
-    const coverSubtitle = aiSlide.subtitle || "Professional presentation overview based on your content.";
-    slide.subtitle = { 
-      text: coverSubtitle,
-      _id: { $oid: uuidv4().replace(/-/g, '').slice(0, 24) }
-    };
-    slide.content_metadata.subtitle = coverSubtitle;
-  }
-
   // Handle different slide types for elements
   switch(slideType) {
     case "cover-hero":
-      // No elements for cover
+      // Add subtitle
+      const coverSubtitle = aiSlide.subtitle || "Professional presentation overview based on your content.";
+      slide.subtitle = { 
+        text: coverSubtitle,
+        _id: { $oid: uuidv4().replace(/-/g, '').slice(0, 24) }
+      };
+      slide.content_metadata.subtitle = coverSubtitle;
+      
+      // HYBRID APPROACH: Add subtle bullets to cover-hero
+      if (aiSlide.bullets && aiSlide.bullets.length > 0) {
+        // Ensure we have 2-3 bullets for cover slide
+        const coverBullets = aiSlide.bullets.slice(0, 3);
+        coverBullets.forEach((bullet) => {
+          slide.elements.push({
+            element_type: "bullet_point",
+            text: bullet,
+            element_id: `element-${uuidv4()}`,
+            id: uuidv4()
+          });
+        });
+        slide.content_metadata.bullet_count = coverBullets.length;
+      } else {
+        // Generate fallback bullets if AI didn't provide them
+        const fallbackBullets = [
+          "Key insight from the presentation",
+          "Essential takeaway for the audience",
+          "Strategic value proposition"
+        ];
+        fallbackBullets.forEach((bullet) => {
+          slide.elements.push({
+            element_type: "bullet_point",
+            text: bullet,
+            element_id: `element-${uuidv4()}`,
+            id: uuidv4()
+          });
+        });
+        slide.content_metadata.bullet_count = 3;
+      }
       break;
 
     case "quote-slide":
@@ -473,7 +524,7 @@ function generateVisualSuggestion(aiSlide, slideType) {
 }
 
 function generateColorPalette(title) {
-  const titleLower = title.toLowerCase();
+  const titleLower = title?.toLowerCase() || "";
   
   if (titleLower.includes('tech') || titleLower.includes('digital')) {
     return ["#667eea", "#764ba2", "#f093fb", "#4facfe"];
@@ -530,13 +581,15 @@ function generateIntelligentFallbackSlides(slideCount, rawText) {
     const slideType = slideStructure.slides[i]?.type || "content-right-image";
     const fallbackData = {
       title: getDefaultTitle(i, slideType),
-      bullets: i === 0 ? [] : generateFallbackBullets(getDefaultTitle(i, slideType), slideType === "content-split" ? 4 : 3, slideType),
+      subtitle: slideType === "cover-hero" ? "Professional presentation overview" : undefined,
+      bullets: slideType === "cover-hero" 
+        ? generateFallbackBullets(getDefaultTitle(i, slideType), 3, "cover-hero")
+        : generateFallbackBullets(getDefaultTitle(i, slideType), slideType === "content-split" ? 4 : 3, slideType),
       ...(slideType === "quote-slide" && { quote: "Fallback insightful quote.", author: "Expert", context: "Relevant context." }),
       ...(slideType === "call-to-action" && { description: "Fallback action overview." })
     };
 
     const slide = transformToTextOnlySlide(fallbackData, i, slideCount);
-
     fallbackSlides.push(slide);
   }
 
