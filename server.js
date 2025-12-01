@@ -138,6 +138,10 @@ app.use("/api/unified-web-deck", unifiedWebDeckRoutes);
 app.use("/api/website-generator", websiteGeneratorRoutes);
 app.use("/api/website-zip-download", websiteDownloadRoutes);
 
+// --- Dynamic Website Generator Service (Enhanced version with adaptive structure) ---
+const dynamicWebsiteRoutes = require("./routes/dynamicWebsiteRoutes");
+app.use("/api/dynamic-website", dynamicWebsiteRoutes);
+
 // --- Slide/Presentation APIs ---
 app.post("/generate-slides", validate, generateSlidesHandler);
 app.post(
