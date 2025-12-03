@@ -2270,115 +2270,115 @@ console.log('Sections: ${websiteData.sections.length} | Images: ${websiteData.al
 /**
  * Save dynamic website to folder
  */
-async function saveDynamicWebsite(htmlCode, cssCode, jsCode, websiteData, presentation, sourceUrl) {
-  try {
-    // Create dynamic-websites folder inside website-codes
-    const websiteCodesDir = path.join(__dirname, "..", "website-codes");
+// async function saveDynamicWebsite(htmlCode, cssCode, jsCode, websiteData, presentation, sourceUrl) {
+//   try {
+//     // Create dynamic-websites folder inside website-codes
+//     const websiteCodesDir = path.join(__dirname, "..", "website-codes");
     
-    try {
-      await fs.access(websiteCodesDir);
-    } catch {
-      await fs.mkdir(websiteCodesDir, { recursive: true });
-    }
+//     try {
+//       await fs.access(websiteCodesDir);
+//     } catch {
+//       await fs.mkdir(websiteCodesDir, { recursive: true });
+//     }
 
-    // Generate unique folder name
-    const timestamp = Date.now();
-    const randomId = crypto.randomBytes(4).toString("hex");
-    const safeTopic = websiteData.topic
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, "")
-      .substring(0, 30);
+//     // Generate unique folder name
+//     const timestamp = Date.now();
+//     const randomId = crypto.randomBytes(4).toString("hex");
+//     const safeTopic = websiteData.topic
+//       .toLowerCase()
+//       .replace(/[^a-z0-9]+/g, "-")
+//       .replace(/^-+|-+$/g, "")
+//       .substring(0, 30);
     
-    const folderName = `dynamic-${safeTopic}-${timestamp}-${randomId}`;
-    const websiteFolderPath = path.join(websiteCodesDir, folderName);
-    const relativeFolderPath = path.relative(path.join(__dirname, ".."), websiteFolderPath);
+//     const folderName = `dynamic-${safeTopic}-${timestamp}-${randomId}`;
+//     const websiteFolderPath = path.join(websiteCodesDir, folderName);
+//     const relativeFolderPath = path.relative(path.join(__dirname, ".."), websiteFolderPath);
 
-    // Create the website folder
-    await fs.mkdir(websiteFolderPath, { recursive: true });
-    console.log(`   📁 Created folder: ${folderName}`);
+//     // Create the website folder
+//     await fs.mkdir(websiteFolderPath, { recursive: true });
+//     console.log(`   📁 Created folder: ${folderName}`);
 
-    // Write index.html
-    const indexPath = path.join(websiteFolderPath, "index.html");
-    await fs.writeFile(indexPath, htmlCode, "utf-8");
-    console.log(`   ✅ Created index.html`);
+//     // Write index.html
+//     const indexPath = path.join(websiteFolderPath, "index.html");
+//     await fs.writeFile(indexPath, htmlCode, "utf-8");
+//     console.log(`   ✅ Created index.html`);
 
-    // Write styles.css
-    const cssPath = path.join(websiteFolderPath, "styles.css");
-    await fs.writeFile(cssPath, cssCode, "utf-8");
-    console.log(`   ✅ Created styles.css`);
+//     // Write styles.css
+//     const cssPath = path.join(websiteFolderPath, "styles.css");
+//     await fs.writeFile(cssPath, cssCode, "utf-8");
+//     console.log(`   ✅ Created styles.css`);
 
-    // Write app.js
-    const jsPath = path.join(websiteFolderPath, "app.js");
-    await fs.writeFile(jsPath, jsCode, "utf-8");
-    console.log(`   ✅ Created app.js`);
+//     // Write app.js
+//     const jsPath = path.join(websiteFolderPath, "app.js");
+//     await fs.writeFile(jsPath, jsCode, "utf-8");
+//     console.log(`   ✅ Created app.js`);
 
-    // Write README.md
-    const readmeContent = `# ${websiteData.topic}
+//     // Write README.md
+//     const readmeContent = `# ${websiteData.topic}
 
-## Dynamic Website Generated
+// ## Dynamic Website Generated
 
-**Source URL:** ${sourceUrl}  
-**Generated:** ${new Date().toISOString()}  
-**Presentation ID:** ${presentation.presentation_id}
+// **Source URL:** ${sourceUrl}  
+// **Generated:** ${new Date().toISOString()}  
+// **Presentation ID:** ${presentation.presentation_id}
 
-### Structure
-- \`index.html\` - Dynamic HTML structure based on original site
-- \`styles.css\` - Adaptive stylesheet matching original colors
-- \`app.js\` - Enhanced interactive features
+// ### Structure
+// - \`index.html\` - Dynamic HTML structure based on original site
+// - \`styles.css\` - Adaptive stylesheet matching original colors
+// - \`app.js\` - Enhanced interactive features
 
-### Features
-- 🎯 Structure mimics original website layout
-- 🎨 Uses original color palette: ${websiteData.colors.join(", ")}
-- 📱 Fully responsive design
-- ✨ Smooth animations and interactions
-- 🖼️ ${websiteData.allImages.length} images
-- 📋 ${websiteData.sections.length} content sections
-- 📝 ${websiteData.allHeadings.length} headings
+// ### Features
+// - 🎯 Structure mimics original website layout
+// - 🎨 Uses original color palette: ${websiteData.colors.join(", ")}
+// - 📱 Fully responsive design
+// - ✨ Smooth animations and interactions
+// - 🖼️ ${websiteData.allImages.length} images
+// - 📋 ${websiteData.sections.length} content sections
+// - 📝 ${websiteData.allHeadings.length} headings
 
-### Dynamic Features
-- HTML structure varies per URL
-- Adaptive color scheme with proper contrast
-- Smart content organization
-- Modern, sleek design
+// ### Dynamic Features
+// - HTML structure varies per URL
+// - Adaptive color scheme with proper contrast
+// - Smart content organization
+// - Modern, sleek design
 
----
-*Generated by Dynamic Website Generator • Powered by Gemini AI & Unified Web Deck*
-`;
+// ---
+// *Generated by Dynamic Website Generator • Powered by Gemini AI & Unified Web Deck*
+// `;
 
-    const readmePath = path.join(websiteFolderPath, "README.md");
-    await fs.writeFile(readmePath, readmeContent, "utf-8");
-    console.log(`   ✅ Created README.md`);
+//     const readmePath = path.join(websiteFolderPath, "README.md");
+//     await fs.writeFile(readmePath, readmeContent, "utf-8");
+//     console.log(`   ✅ Created README.md`);
 
-    // Calculate folder size
-    const calculateFolderSize = async (folderPath) => {
-      const files = await fs.readdir(folderPath);
-      let totalSize = 0;
-      for (const file of files) {
-        const filePath = path.join(folderPath, file);
-        const stats = await fs.stat(filePath);
-        totalSize += stats.size;
-      }
-      return totalSize;
-    };
+//     // Calculate folder size
+//     const calculateFolderSize = async (folderPath) => {
+//       const files = await fs.readdir(folderPath);
+//       let totalSize = 0;
+//       for (const file of files) {
+//         const filePath = path.join(folderPath, file);
+//         const stats = await fs.stat(filePath);
+//         totalSize += stats.size;
+//       }
+//       return totalSize;
+//     };
 
-    const folderSizeBytes = await calculateFolderSize(websiteFolderPath);
-    const folderSizeKB = (folderSizeBytes / 1024).toFixed(2);
+//     const folderSizeBytes = await calculateFolderSize(websiteFolderPath);
+//     const folderSizeKB = (folderSizeBytes / 1024).toFixed(2);
 
-    return {
-      folderName: folderName,
-      folderPath: websiteFolderPath,
-      relativePath: relativeFolderPath,
-      sizeKB: parseFloat(folderSizeKB),
-      previewUrl: `/website-codes/${folderName}/index.html`,
-      readmeContent: readmeContent,
-    };
+//     return {
+//       folderName: folderName,
+//       folderPath: websiteFolderPath,
+//       relativePath: relativeFolderPath,
+//       sizeKB: parseFloat(folderSizeKB),
+//       previewUrl: `/website-codes/${folderName}/index.html`,
+//       readmeContent: readmeContent,
+//     };
 
-  } catch (error) {
-    console.error("Error saving dynamic website:", error.message);
-    throw new Error(`Failed to save dynamic website: ${error.message}`);
-  }
-}
+//   } catch (error) {
+//     console.error("Error saving dynamic website:", error.message);
+//     throw new Error(`Failed to save dynamic website: ${error.message}`);
+//   }
+// }
 
 /**
  * Perform final AI-powered quality check on generated HTML and CSS
