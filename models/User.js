@@ -21,6 +21,20 @@ const userSchema = new mongoose.Schema({
   resetPasswordToken: { type: String },
   resetPasswordExpires: { type: Date },
 
+  // LinkedIn Integration
+  linkedinConnected: { type: Boolean, default: false },
+  linkedinAccessToken: { type: String },
+  linkedinRefreshToken: { type: String },
+  linkedinTokenExpiry: { type: Date },
+  linkedinProfile: {
+    id: String,
+    name: String,
+    email: String,
+    picture: String,
+  },
+  linkedinOAuthState: { type: String },
+  linkedinOAuthStateExpiry: { type: Date },
+
   createdAt: { type: Date, default: Date.now },
 });
 
