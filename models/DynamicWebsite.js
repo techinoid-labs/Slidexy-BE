@@ -24,7 +24,9 @@ const DynamicWebsiteSchema = new mongoose.Schema({
   sizeKB: { type: Number },
   generatedAt: { type: Date, default: Date.now },
   downloadedAt: { type: Date },
-  downloadCount: { type: Number, default: 0 }
+  downloadCount: { type: Number, default: 0 },
+  improved: { type: Boolean, default: false },
+  qualityChecked: { type: Boolean, default: false }
 }, {
   timestamps: false // we control generatedAt manually
 });

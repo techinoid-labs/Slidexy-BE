@@ -142,6 +142,10 @@ app.use("/api/website-zip-download", websiteDownloadRoutes);
 const dynamicWebsiteRoutes = require("./routes/dynamicWebsiteRoutes");
 app.use("/api/dynamic-website", dynamicWebsiteRoutes);
 
+// --- Improved Dynamic Website Generator Service (Enhanced with better structure & responsiveness) ---
+const improvedDynamicWebsiteRoutes = require("./routes/improvedDynamicWebsiteRoutes");
+app.use("/api/improved-dynamic", improvedDynamicWebsiteRoutes);
+
 // --- Slide/Presentation APIs ---
 app.post("/generate-slides", validate, generateSlidesHandler);
 app.post(
