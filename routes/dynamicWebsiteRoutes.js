@@ -1,9 +1,27 @@
 const express = require("express");
 const router = express.Router();
+const multer = require("multer");
+const path = require("path");
 const {
   generateDynamic,
   getDynamicWebsiteById,
 } = require("../controllers/dynamicWebsiteController");
+const { editWebsiteController } = require("../controllers/websiteEditorController");
+const DynamicWebsite = require('../models/DynamicWebsite');
+
+const upload = multer({ dest: "uploads/" });
+
+// Edit by ID (wrapper around existing editor)
+router.post("/:id/edit", upload.single("image"), async (req, res) => {
+  try {
+    const website = await DynamicWebsite.findById(req.params.id);
+    if (!website) return res.status(404).json({ success: false, error: "Not found" });
+    req.body.folderName = website.folderName;
+    return editWebsiteController(req, res);
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
 
 // Generate new dynamic website
 router.post("/generate", generateDynamic);

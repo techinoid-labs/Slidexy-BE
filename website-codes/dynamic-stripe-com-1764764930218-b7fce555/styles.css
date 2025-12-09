@@ -490,3 +490,45 @@ a:hover {
     font-size: 1rem;
   }
 }
+
+/* AI Update */
+
+/* Security & Compliance Section */
+.security-compliance-section {
+  padding: var(--spacing-xl) 0;
+  background-color: var(--bg-body); /* To alternate with features-section's bg-section */
+  text-align: center; /* Center the title */
+}
+
+.security-compliance-section h2 {
+    margin-bottom: var(--spacing-lg);
+}
+
+/* AI Update */
+
+/* User Request: Change the primary accent color to blue */
+:root {
+  --accent: #007bff; /* Changed from original #4f5b76 (a slate blue/gray) to a vibrant blue */
+}
+
+/* AI Update */
+
+/* Security & Compliance Section */
+.security-compliance-section {
+  padding: var(--spacing-xl) 0;
+  background-color: var(--bg-body); /* To alternate with features-section's bg-section */
+  text-align: center; /* Center the title */
+}
+
+.security-compliance-section h2 {
+    margin-bottom: var(--spacing-lg);
+}
+
+/* AI Update */
+
+/* AI Update */
+
+/* User Request: Change the primary accent color from purple to blue */
+:root {
+  --accent: #0000FF; /* Changed to a vibrant blue */
+}

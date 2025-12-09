@@ -72,7 +72,7 @@ async function generateDynamicWebsite(websiteUrl) {
     let htmlCode;
     let retryCount = 0;
     const maxRetries = 3;
-    
+
     while (retryCount < maxRetries) {
       try {
         htmlCode = await generateDynamicHTML(websiteData, presentation);
@@ -92,7 +92,7 @@ async function generateDynamicWebsite(websiteUrl) {
     console.log("🎨 Step 4/6: Generating adaptive CSS stylesheet with AI...");
     let cssCode;
     retryCount = 0;
-    
+
     while (retryCount < maxRetries) {
       try {
         cssCode = await generateAdaptiveCSS(websiteData, presentation, htmlCode);
@@ -112,7 +112,7 @@ async function generateDynamicWebsite(websiteUrl) {
     console.log("⚡ Step 5/6: Generating enhanced JavaScript with AI...");
     let jsCode;
     retryCount = 0;
-    
+
     while (retryCount < maxRetries) {
       try {
         jsCode = await generateEnhancedJS(websiteData, presentation, htmlCode);
@@ -131,7 +131,7 @@ async function generateDynamicWebsite(websiteUrl) {
     // Step 6: Final AI Quality Check
     console.log("🔍 Step 6/7: Running final AI quality check...");
     retryCount = 0;
-    
+
     while (retryCount < 2) { // Only 2 attempts for quality check
       try {
         const qualityCheck = await performFinalQualityCheck(htmlCode, cssCode, websiteData);
@@ -148,7 +148,7 @@ async function generateDynamicWebsite(websiteUrl) {
           break; // Proceed with warning instead of failing
         }
         console.log(`   🔄 Regenerating CSS only to fix styling issues...`);
-        
+
         // Only regenerate CSS, not HTML (to avoid triggering validation again)
         try {
           cssCode = await generateAdaptiveCSS(websiteData, presentation, htmlCode);
@@ -225,7 +225,7 @@ async function generateDynamicWebsite(websiteUrl) {
  */
 async function analyzeWebsiteStructure(presentation, sourceUrl) {
   const slides = presentation.slides || [];
-  
+
   // Extract all images
   const allImages = [];
   slides.forEach(slide => {
@@ -277,7 +277,7 @@ async function analyzeWebsiteStructure(presentation, sourceUrl) {
     const bullets = slide.elements
       ?.filter(el => el.element_type === "bullet_point")
       .map(el => el.text) || [];
-    
+
     const descriptions = slide.elements
       ?.filter(el => el.element_type === "description")
       .map(el => el.text) || [];
@@ -461,55 +461,55 @@ Output ONLY HTML code without explanations or markdown blocks.`;
     });
     let htmlCode = result.response.candidates?.[0]?.content?.parts?.[0]?.text || "";
     htmlCode = htmlCode.replace(/```html\n?/g, "").replace(/```\n?/g, "").trim();
-    
+
     // Comprehensive validation
     const validationErrors = [];
-    
+
     if (!htmlCode.includes('<!DOCTYPE html>') || !htmlCode.includes('</html>')) {
       validationErrors.push('Invalid HTML structure');
     }
-    
+
     // Check for forbidden authentication elements (only in nav/header, not in content)
     const headerMatch = htmlCode.match(/<header[\s\S]*?<\/header>/gi);
     const navMatch = htmlCode.match(/<nav[\s\S]*?<\/nav>/gi);
     const headerContent = (headerMatch || []).join('') + (navMatch || []).join('');
-    
+
     const authPatterns = /(?:sign\s*in|sign\s*up|log\s*in|log\s*out|register|create\s*account)/gi;
     const authInHeader = authPatterns.test(headerContent);
-    
+
     if (authInHeader) {
       validationErrors.push('Contains forbidden authentication elements in header/nav (Sign in/Sign up/Login/Register)');
     }
-    
+
     // Check for dummy placeholder text
     const dummyPatterns = /case\s*study\s*(title\s*)?\d+|project\s*\d+|service\s*\d+|feature\s*\d+|item\s*\d+|placeholder|lorem\s*ipsum|\[.*?\]|xxx+|test\s*\d+/gi;
     if (dummyPatterns.test(htmlCode)) {
       validationErrors.push('Contains dummy/placeholder text (e.g., "Case Study Title 1", "Project 1")');
     }
-    
+
     // Check image distribution - ensure images are spread throughout
     const imgTags = htmlCode.match(/<img[^>]+>/gi) || [];
     const totalImages = imgTags.length;
-    
+
     if (totalImages < Math.min(4, websiteData.allImages.length)) {
       validationErrors.push(`Not enough images used (${totalImages} used, minimum ${Math.min(4, websiteData.allImages.length)} required)`);
     }
-    
+
     // Check if images are clustered in one section (bad distribution)
     const sections = htmlCode.split(/<section/gi);
     const imagesPerSection = sections.map(s => (s.match(/<img/gi) || []).length);
     const maxImagesInOneSection = Math.max(...imagesPerSection);
-    
+
     if (totalImages >= 6 && maxImagesInOneSection > totalImages * 0.6) {
       validationErrors.push(`Images clustered in one section (${maxImagesInOneSection}/${totalImages}). Distribute evenly across sections.`);
     }
-    
+
     // Check for logo class to ensure navbar sizing
     const hasLogoClass = htmlCode.includes('class="logo"') || htmlCode.includes("class='logo'");
     if (!hasLogoClass && htmlCode.includes('<header')) {
       validationErrors.push('Logo image missing class="logo" for proper navbar sizing');
     }
-    
+
     // Check for empty cards/boxes (cards with text but no images)
     const cardPatterns = /<div[^>]*class="[^"]*(?:card|box|item|feature)[^"]*"[^>]*>[\s\S]*?<\/div>/gi;
     const cards = htmlCode.match(cardPatterns) || [];
@@ -518,15 +518,15 @@ Output ONLY HTML code without explanations or markdown blocks.`;
       const hasImage = card.match(/<img/gi);
       return hasText && !hasImage;
     });
-    
+
     if (emptyCards.length > 2) {
       validationErrors.push(`Found ${emptyCards.length} empty cards/boxes without images. Add images to all cards (reuse if needed).`);
     }
-    
+
     if (validationErrors.length > 0) {
       throw new Error(`HTML validation failed: ${validationErrors.join(', ')}`);
     }
-    
+
     return htmlCode;
   } catch (error) {
     console.error("❌ AI HTML generation failed:", error.message);
@@ -539,29 +539,29 @@ Output ONLY HTML code without explanations or markdown blocks.`;
  */
 function generateFallbackHTML(websiteData, presentation) {
   const { topic, hostname, sections, allImages, allHeadings } = websiteData;
-  
+
   // Analyze content to determine unique layout structure
   const hasImages = allImages.length > 0;
   const imageCount = allImages.length;
   const sectionCount = sections.length;
   const headingCount = allHeadings.length;
-  
+
   // Deduplicate images - only show unique images
   const uniqueImages = allImages.filter((img, index, self) =>
     index === self.findIndex((t) => t.src === img.src)
   );
-  
+
   // Determine layout variation based on content characteristics
   let layoutType = 'standard';
   if (imageCount > 15) layoutType = 'image-heavy';
   else if (imageCount < 3) layoutType = 'text-focused';
   else if (sectionCount > 5) layoutType = 'multi-section';
   else if (headingCount > 20) layoutType = 'content-rich';
-  
+
   // Generate unique navigation based on actual sections
   const navItems = sections.slice(0, 5).map((section, idx) => {
-    const shortTitle = section.title.length > 30 
-      ? section.title.substring(0, 27) + '...' 
+    const shortTitle = section.title.length > 30
+      ? section.title.substring(0, 27) + '...'
       : section.title;
     return `<a href="#section-${idx}" class="nav-link">${shortTitle}</a>`;
   }).join('');
@@ -647,18 +647,18 @@ function generateFallbackHTML(websiteData, presentation) {
     <!-- Main Content - Dynamic layouts -->
     <main class="main-wrapper">
         ${sections.map((section, idx) => {
-          const sectionImages = uniqueImages.filter(img => 
-            section.images?.some(sImg => sImg.src === img.src)
-          ).slice(0, 4);
-          
-          // Vary section layouts
-          const layouts = ['grid', 'split', 'stack', 'featured', 'cards', 'masonry'];
-          const currentLayout = layouts[idx % layouts.length];
-          
-          // Add related headings to this section
-          const sectionHeadings = allHeadings.slice(idx * 3, (idx * 3) + 3);
-          
-          return `
+    const sectionImages = uniqueImages.filter(img =>
+      section.images?.some(sImg => sImg.src === img.src)
+    ).slice(0, 4);
+
+    // Vary section layouts
+    const layouts = ['grid', 'split', 'stack', 'featured', 'cards', 'masonry'];
+    const currentLayout = layouts[idx % layouts.length];
+
+    // Add related headings to this section
+    const sectionHeadings = allHeadings.slice(idx * 3, (idx * 3) + 3);
+
+    return `
         <article id="section-${idx}" class="content-section layout-${currentLayout}">
             <div class="section-inner">
                 <header class="section-heading">
@@ -737,7 +737,7 @@ function generateFallbackHTML(websiteData, presentation) {
             </div>
         </article>
           `;
-        }).join('')}
+  }).join('')}
         
         <!-- Features Showcase -->
         <section class="features-showcase">
@@ -951,7 +951,7 @@ async function generateAdaptiveCSS(websiteData, presentation, htmlCode) {
   const htmlClasses = [...new Set(
     classMatches.flatMap(m => m.replace(/class="/g, '').replace(/"/g, '').split(' '))
   )].filter(c => c.trim());
-  
+
   const prompt = `You are an expert CSS developer. Generate COMPLETE, PRODUCTION-READY CSS stylesheet for "${websiteData.topic}" website.
 
 CRITICAL: The HTML uses these classes - your CSS MUST style ALL of them:
@@ -1160,30 +1160,30 @@ Output ONLY CSS code without markdown blocks or explanations.`;
     });
     let cssCode = result.response.candidates?.[0]?.content?.parts?.[0]?.text || "";
     cssCode = cssCode.replace(/```css\n?/g, "").replace(/```\n?/g, "").trim();
-    
+
     // Comprehensive CSS validation
     const validationErrors = [];
-    
+
     if (!cssCode.includes(':root') || cssCode.length < 1000) {
       validationErrors.push('Incomplete CSS (missing :root or too short)');
     }
-    
+
     // Check for invisible buttons (transparent background AND transparent color)
     const buttonPatterns = /\.(?:button|btn|cta)[^{]*\{[^}]*background[^:]*:\s*transparent[^}]*color[^:]*:\s*transparent/gi;
     if (buttonPatterns.test(cssCode)) {
       validationErrors.push('Contains invisible buttons (transparent background + transparent color)');
     }
-    
+
     // Check for bad contrast (white on white or black on black)
     const badContrastPatterns = /(background[^:]*:\s*#(?:fff|ffffff|f0f0f0)[^}]*color[^:]*:\s*#(?:fff|ffffff|f0f0f0))|(background[^:]*:\s*#(?:000|000000|0d1117)[^}]*color[^:]*:\s*#(?:000|000000|0d1117))/gi;
     if (badContrastPatterns.test(cssCode)) {
       validationErrors.push('Contains bad contrast combinations (white on white or black on black)');
     }
-    
+
     if (validationErrors.length > 0) {
       throw new Error(`CSS validation failed: ${validationErrors.join(', ')}`);
     }
-    
+
     return cssCode;
   } catch (error) {
     console.error("❌ AI CSS generation failed:", error.message);
@@ -1200,14 +1200,14 @@ function generateFallbackCSS(websiteData, presentation) {
   const secondaryColor = colors[1] || "#1a1a1a";
   const tertiaryColor = colors[2] || "#ffffff";
   const accentColor = colors[3] || "#0066cc";
-  
+
   // Smart color analysis
   const getLuminance = (hex) => {
     const rgb = parseInt(hex.replace('#', ''), 16);
     const r = ((rgb >> 16) & 0xff) / 255;
     const g = ((rgb >> 8) & 0xff) / 255;
     const b = ((rgb >> 0) & 0xff) / 255;
-    const [rL, gL, bL] = [r, g, b].map(val => 
+    const [rL, gL, bL] = [r, g, b].map(val =>
       val <= 0.03928 ? val / 12.92 : Math.pow((val + 0.055) / 1.055, 2.4)
     );
     return 0.2126 * rL + 0.7152 * gL + 0.0722 * bL;
@@ -1217,25 +1217,25 @@ function generateFallbackCSS(websiteData, presentation) {
   const primaryLum = getLuminance(primaryColor);
   const secondaryLum = getLuminance(secondaryColor);
   const tertiaryLum = getLuminance(tertiaryColor);
-  
+
   // Smart background selection - use lightest color
   const colorsByLuminance = [
     { color: primaryColor, lum: primaryLum },
     { color: secondaryColor, lum: secondaryLum },
     { color: tertiaryColor, lum: tertiaryLum }
   ].sort((a, b) => b.lum - a.lum);
-  
+
   const bgColor = colorsByLuminance[0].color;
   const isLightBg = colorsByLuminance[0].lum > 0.5;
-  
+
   // Text colors with guaranteed contrast
   const textColor = isLightBg ? "#1a1a1a" : "#ffffff";
   const textSecondary = isLightBg ? "#666666" : "rgba(255, 255, 255, 0.75)";
-  
+
   // Use darkest color for primary elements
   const uiPrimary = colorsByLuminance[2].color;
   const uiSecondary = colorsByLuminance[1].color;
-  
+
   // Card backgrounds with subtle contrast
   const cardBg = isLightBg ? "rgba(0, 0, 0, 0.02)" : "rgba(255, 255, 255, 0.05)";
   const cardBgHover = isLightBg ? "rgba(0, 0, 0, 0.04)" : "rgba(255, 255, 255, 0.08)";
@@ -2148,12 +2148,12 @@ Output ONLY JavaScript code without markdown or explanations.`;
     });
     let jsCode = result.response.candidates?.[0]?.content?.parts?.[0]?.text || "";
     jsCode = jsCode.replace(/```javascript\n?/g, "").replace(/```js\n?/g, "").replace(/```\n?/g, "").trim();
-    
+
     // Basic validation - check for essential JS structure
     if (!jsCode.includes('DOMContentLoaded') || jsCode.length < 500) {
       throw new Error('Incomplete JS generated');
     }
-    
+
     return jsCode;
   } catch (error) {
     console.error("❌ AI JS generation failed:", error.message);
@@ -2274,7 +2274,7 @@ console.log('Sections: ${websiteData.sections.length} | Images: ${websiteData.al
 //   try {
 //     // Create dynamic-websites folder inside website-codes
 //     const websiteCodesDir = path.join(__dirname, "..", "website-codes");
-    
+
 //     try {
 //       await fs.access(websiteCodesDir);
 //     } catch {
@@ -2289,7 +2289,7 @@ console.log('Sections: ${websiteData.sections.length} | Images: ${websiteData.al
 //       .replace(/[^a-z0-9]+/g, "-")
 //       .replace(/^-+|-+$/g, "")
 //       .substring(0, 30);
-    
+
 //     const folderName = `dynamic-${safeTopic}-${timestamp}-${randomId}`;
 //     const websiteFolderPath = path.join(websiteCodesDir, folderName);
 //     const relativeFolderPath = path.relative(path.join(__dirname, ".."), websiteFolderPath);
@@ -2385,7 +2385,7 @@ console.log('Sections: ${websiteData.sections.length} | Images: ${websiteData.al
  */
 async function performFinalQualityCheck(htmlCode, cssCode, websiteData) {
   const { textGenModel } = require("../utils/geminiModels");
-  
+
   const prompt = `You are a quality assurance expert. Analyze this generated HTML and CSS code and identify ANY issues.
 
 HTML CODE:
@@ -2439,37 +2439,37 @@ Return ONLY valid JSON. No markdown, no explanations.`;
     const result = await textGenModel.generateContent({
       contents: [{ role: "user", parts: [{ text: prompt }] }]
     });
-    
+
     let response = result.response.candidates?.[0]?.content?.parts?.[0]?.text || "{}";
     response = response.replace(/```json\n?/g, "").replace(/```\n?/g, "").trim();
-    
+
     const analysis = JSON.parse(response);
-    
+
     // Validate critical issues
     const issues = [];
-    
+
     if (analysis.emptyCards > 2) {
       issues.push(`Found ${analysis.emptyCards} empty cards without images`);
     }
-    
+
     if (analysis.footerStructured === false) {
       issues.push('Footer not properly structured with columns');
     }
-    
+
     if (analysis.logoSized === false) {
       issues.push('Logo not properly sized (missing max-height: 40px)');
     }
-    
+
     if (analysis.imagesSized === false) {
       issues.push('Some images missing size constraints (max-width: 100%)');
     }
-    
+
     return {
       passed: issues.length === 0,
       issues: issues,
       analysis: analysis
     };
-    
+
   } catch (error) {
     console.error("❌ Quality check error:", error.message);
     // If quality check fails, assume pass to not block generation

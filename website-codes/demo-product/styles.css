@@ -1,0 +1,327 @@
+:root {
+    --primary: #2A2A2A;
+    --accent: #D4A373;
+    /* Coffee color */
+    --text-light: #F4F4F9;
+    --text-dark: #333;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--text-light);
+    color: var(--text-dark);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background-color: var(--primary);
+    color: white;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.hero {
+    height: 80vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=1000&q=80');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.cta-button {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: transform 0.2s;
+}
+
+.cta-button:hover {
+    transform: scale(1.05);
+}
+
+.features {
+    padding: 4rem 5%;
+    text-align: center;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.feature-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    background-color: var(--primary);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 2rem;
+    text-align: center;
+}
+
+/* AI Update */
+
+.features {
+    background-color: lightgray;
+}
+
+/* AI Update */
+
+.testimonials {
+    padding: 4rem 5%;
+    text-align: center;
+    background-color: var(--text-light);
+}
+
+.testimonials h2 {
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+    color: var(--text-dark);
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.testimonial-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.testimonial-card p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+}
+
+.testimonial-author {
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 1rem;
+    margin-top: auto;
+}
+
+/* AI Update */
+/* Newsletter Section */
+.newsletter {
+    padding: 4rem 5%;
+    text-align: center;
+    background-color: var(--primary); /* Dark background for contrast */
+    color: var(--text-light);
+}
+
+.newsletter h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-light);
+}
+
+.newsletter p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+.newsletter-form {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.newsletter-input {
+    flex-grow: 1;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    outline: none;
+    max-width: 300px; /* Limit input width */
+}
+
+.newsletter-button {
+    /* Reusing cta-button styles, but good to have a specific class */
+    flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+    .newsletter-form {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .newsletter-input {
+        width: 100%;
+        max-width: unset;
+    }
+
+    .newsletter-button {
+        width: 100%;
+    }
+}
+
+/* AI Update */
+
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/uploads/image-1765301918852-664273270.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* AI Update */
+
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/uploads/image-1765301973085-853038150.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* AI Update */
+
+/* AI Update: Hero background image */
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/uploads/image-1765302263510-536551176.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* AI Update */
+
+/* AI Update: Hero background image */
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/uploads/image-1765302366704-527195058.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* AI Update */
+
+/* Shipping Banner */
+.shipping-banner {
+    background-color: var(--accent); /* Use accent color for visibility */
+    color: var(--primary); /* Dark text for contrast */
+    text-align: center;
+    padding: 0.75rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    animation: slideDown 0.5s ease-out;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.shipping-banner p {
+    margin: 0;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* AI Update */
+/* New styles for about.html */
+.about-main-content {
+    padding: 4rem 5%;
+    max-width: 900px;
+    margin: 0 auto;
+    line-height: 1.6;
+    color: var(--text-dark);
+}
+
+.about-hero {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+}
+
+.about-hero h1 {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+}
+
+.about-hero p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.about-section {
+    margin-bottom: 3rem;
+    padding-top: 1rem;
+}
+
+.about-section h2 {
+    font-size: 2.2rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    text-align: center; /* Center section headings */
+}
+
+.about-section p, .about-section ul {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.about-section ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.about-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.about-section ul li strong {
+    color: var(--accent);
+}
+
+/* AI Update */
+
+/* AI Update: Hero background image */
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/uploads/image-1765311036144-981892056.jpeg');
+    background-size: cover;
+    background-position: center;
+}

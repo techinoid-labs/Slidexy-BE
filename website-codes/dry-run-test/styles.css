@@ -1,0 +1,19 @@
+body {
+    background-color: white;
+    font-family: sans-serif;
+}
+.hero-title {
+    color: black;
+    font-size: 2rem;
+}
+
+/* AI Update */
+.hero-title {
+    color: blue;
+}
+
+/* AI Update */
+.hero-title { color: blue; }
+
+/* AI Update */
+.hero-title { color: blue; }

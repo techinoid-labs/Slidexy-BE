@@ -26,10 +26,10 @@ async function createAndUploadZip(folderName, files, presentationId) {
 
     // Add all files
     files.forEach(file => {
-      archive.append(Buffer.from(file.content), { 
+      archive.append(Buffer.from(file.content), {
         name: file.type === 'html' ? 'index.html' :
-              file.type === 'css' ? 'styles.css' :
-              file.type === 'js' ? 'app.js' :
+          file.type === 'css' ? 'styles.css' :
+            file.type === 'js' ? 'app.js' :
               file.type === 'readme' ? 'README.md' : `${file.type}`
       });
     });

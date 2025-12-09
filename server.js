@@ -21,7 +21,7 @@ const aiChatRoutes = require("./routes/aiChatRoutes");
 const contactRoutes = require("./routes/contact");
 const planRoutes = require("./routes/planRoutes");
 const vidGenImg = require("./routes/vidGenImg");
-const generateImageRoute = require("./routes/generateImage"); 
+const generateImageRoute = require("./routes/generateImage");
 
 const templateRoutes = require("./routes/templateRoutes");
 const rawTextDeckRoutes = require("./routes/rawTextDeckRoutes"); // Raw Text Deck Service
@@ -96,9 +96,9 @@ app.use("/api/users", userRoutes);
 app.use("/api/presentations", presentationRoutes);
 app.use("/api/infographic", infographicRoute);
 app.use("/api/explainer-infographic", explainerInfographicRoute);
-app.use("/api/dynamicInfographic",dynamicInfographicRoute );
+app.use("/api/dynamicInfographic", dynamicInfographicRoute);
 app.use("/api/blogs", blogRoutes);
-app.use("/api/vidGenImg",vidGenImg);
+app.use("/api/vidGenImg", vidGenImg);
 // --- API Docs ---
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
@@ -212,6 +212,19 @@ app.post("/join-waitlist", async (req, res) => {
 //     res.status(500).json({ error: "Failed to fetch image" });
 //   }
 // });
+
+// --- Website Editor Route ---
+const websiteEditorRoutes = require("./routes/websiteEditorRoutes");
+app.use("/api/edit-website", websiteEditorRoutes);
+
+// Ensure uploads directory exists for image replacement
+const fs = require("fs");
+const uploadsDir = path.join(__dirname, "uploads");
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir);
+}
+app.use("/uploads", express.static(uploadsDir));
+app.use("/websites", express.static(path.join(__dirname, "website-codes")));
 
 // --- Start Server ---
 const port = process.env.PORT || 5000;

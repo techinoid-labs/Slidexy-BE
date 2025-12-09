@@ -514,3 +514,10 @@ ul {
     max-width: 120px;
   }
 }
+
+/* AI Update */
+
+/* User Request: Change background color of features section */
+.features-section {
+  background-color: #f0f8ff; /* AliceBlue */
+}

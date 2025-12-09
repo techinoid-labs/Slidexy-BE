@@ -135,6 +135,12 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+# Project-specific
+test-*.js
+dry-run-editor.js
+temp_image.jpeg
+server.log
+
 #OUTPUT
 output/
 output-explainer-infographics
