@@ -35,6 +35,17 @@ const userSchema = new mongoose.Schema({
   linkedinOAuthState: { type: String },
   linkedinOAuthStateExpiry: { type: Date },
 
+  // Telegram Integration
+  telegramConnected: { type: Boolean, default: false },
+  telegramChatId: { type: String },
+  telegramProfile: {
+    chatId: String,
+    username: String,
+    firstName: String,
+    lastName: String,
+  },
+  telegramConnectedAt: { type: Date },
+
   createdAt: { type: Date, default: Date.now },
 });
 

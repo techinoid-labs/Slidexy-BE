@@ -141,3 +141,6 @@ output-explainer-infographics
 
 services/data/
 services/testFetchWeb.js
+
+# Frontend folder (separate repo)
+slidesX-FE/

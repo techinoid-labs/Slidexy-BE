@@ -30,6 +30,7 @@ const stylesheetDeckRoutes = require("./routes/stylesheetDeckRoutes"); // Styles
 const unifiedWebDeckRoutes = require("./routes/unifiedWebDeckRoutes"); // Unified Web Deck Service (CEO Final)
 const websiteGeneratorRoutes = require("./routes/websiteGeneratorRoutes"); // Website Generator Service (CEO New Feature)
 const linkedinRoutes = require("./routes/linkedinRoutes"); // LinkedIn Integration
+const telegramRoutes = require("./routes/telegramRoutes"); // Telegram Integration
 
 // Controllers
 const {
@@ -145,6 +146,9 @@ app.use("/api/dynamic-website", dynamicWebsiteRoutes);
 
 // --- LinkedIn Integration ---
 app.use("/api/linkedin", linkedinRoutes);
+
+// --- Telegram Integration ---
+app.use("/api/telegram", telegramRoutes);
 
 // --- Slide/Presentation APIs ---
 app.post("/generate-slides", validate, generateSlidesHandler);
