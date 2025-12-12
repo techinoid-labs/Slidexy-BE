@@ -46,6 +46,21 @@ const userSchema = new mongoose.Schema({
   },
   telegramConnectedAt: { type: Date },
 
+  // Reddit Integration
+  redditConnected: { type: Boolean, default: false },
+  redditAccessToken: { type: String },
+  redditRefreshToken: { type: String },
+  redditTokenExpiry: { type: Date },
+  redditProfile: {
+    id: String,
+    username: String,
+    iconImg: String,
+    linkKarma: Number,
+    commentKarma: Number,
+  },
+  redditOAuthState: { type: String },
+  redditOAuthStateExpiry: { type: Date },
+
   createdAt: { type: Date, default: Date.now },
 });
 

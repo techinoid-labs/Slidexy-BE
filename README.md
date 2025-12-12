@@ -92,6 +92,7 @@ Server will run on `http://localhost:5000`
 Neuro Engine supports sharing presentations to:
 - **LinkedIn** - OAuth 2.0 integration with feed posting
 - **Telegram** - Bot API integration with direct messaging
+- **Reddit** - OAuth 2.0 integration with subreddit posting
 
 ### Quick Setup
 
@@ -101,13 +102,18 @@ Neuro Engine supports sharing presentations to:
 npm run dev
 ```
 
-**Telegram** (New):
+**Telegram**:
 1. Create bot via @BotFather on Telegram
 2. Add `TELEGRAM_BOT_TOKEN` to `.env`
 3. Start conversation with bot to get chat ID
 4. Connect via API
 
-See **[SOCIAL_MEDIA_GUIDE.md](./SOCIAL_MEDIA_GUIDE.md)** for complete documentation covering both integrations.
+**Reddit**:
+1. Create app at https://www.reddit.com/prefs/apps (select "web app")
+2. Add credentials to `.env` (see `.env` file for placeholders)
+3. Connect via OAuth flow
+
+See **[SOCIAL_MEDIA_ROADMAP.md](./SOCIAL_MEDIA_ROADMAP.md)** for platform comparisons and implementation details.
 
 ## API Documentation
 
@@ -134,6 +140,16 @@ See **[SOCIAL_MEDIA_GUIDE.md](./SOCIAL_MEDIA_GUIDE.md)** for complete documentat
 - `POST /api/telegram/share` - Share slide to Telegram
 - `POST /api/telegram/send-message` - Send text message
 - `DELETE /api/telegram/disconnect` - Disconnect account
+
+**Reddit:**
+- `GET /api/reddit/auth` - Initiate OAuth flow
+- `GET /api/reddit/callback` - OAuth callback handler
+- `GET /api/reddit/status` - Check connection status
+- `POST /api/reddit/share` - Share single slide as image
+- `POST /api/reddit/share-text` - Post text content
+- `POST /api/reddit/share-gallery` - Share multiple slides as gallery
+- `GET /api/reddit/subreddit/:name` - Get subreddit info
+- `DELETE /api/reddit/disconnect` - Disconnect account
 
 #### User Management
 - `POST /api/users/register` - Register new user

@@ -31,6 +31,7 @@ const unifiedWebDeckRoutes = require("./routes/unifiedWebDeckRoutes"); // Unifie
 const websiteGeneratorRoutes = require("./routes/websiteGeneratorRoutes"); // Website Generator Service (CEO New Feature)
 const linkedinRoutes = require("./routes/linkedinRoutes"); // LinkedIn Integration
 const telegramRoutes = require("./routes/telegramRoutes"); // Telegram Integration
+const redditRoutes = require("./routes/redditRoutes"); // Reddit Integration
 
 // Controllers
 const {
@@ -149,6 +150,9 @@ app.use("/api/linkedin", linkedinRoutes);
 
 // --- Telegram Integration ---
 app.use("/api/telegram", telegramRoutes);
+
+// --- Reddit Integration ---
+app.use("/api/reddit", redditRoutes);
 
 // --- Slide/Presentation APIs ---
 app.post("/generate-slides", validate, generateSlidesHandler);

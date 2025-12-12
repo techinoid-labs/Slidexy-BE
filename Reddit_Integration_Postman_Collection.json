@@ -1,0 +1,370 @@
+{
+  "info": {
+    "name": "Reddit Integration",
+    "description": "API endpoints for Reddit OAuth integration and content sharing",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000/api/reddit",
+      "type": "string"
+    },
+    {
+      "key": "jwt_token",
+      "value": "your_jwt_token_here",
+      "type": "string"
+    },
+    {
+      "key": "presentation_id",
+      "value": "your_presentation_id_here",
+      "type": "string"
+    },
+    {
+      "key": "test_subreddit",
+      "value": "test",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Initiate OAuth (Get Authorization URL)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt_token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/auth",
+          "host": ["{{base_url}}"],
+          "path": ["auth"]
+        },
+        "description": "Initiates Reddit OAuth flow by generating a state token and returning the authorization URL. Visit the URL in your browser to authorize the app."
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has authorization URL\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property('authorizationUrl');",
+              "    pm.expect(jsonData.authorizationUrl).to.include('reddit.com');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. OAuth Callback (Handled by Browser)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/callback?code=AUTH_CODE&state=STATE_TOKEN",
+          "host": ["{{base_url}}"],
+          "path": ["callback"],
+          "query": [
+            {
+              "key": "code",
+              "value": "AUTH_CODE",
+              "description": "Authorization code from Reddit"
+            },
+            {
+              "key": "state",
+              "value": "STATE_TOKEN",
+              "description": "CSRF state token"
+            }
+          ]
+        },
+        "description": "This endpoint is called by Reddit after user authorization. You don't need to call this manually - it's handled by the browser redirect."
+      },
+      "response": []
+    },
+    {
+      "name": "3. Get Connection Status",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt_token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/status",
+          "host": ["{{base_url}}"],
+          "path": ["status"]
+        },
+        "description": "Check if Reddit account is connected and get profile information including username, karma, and token expiry."
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has connected status\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property('connected');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Get Subreddit Info",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt_token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/subreddit/{{test_subreddit}}",
+          "host": ["{{base_url}}"],
+          "path": ["subreddit", "{{test_subreddit}}"]
+        },
+        "description": "Get information about a subreddit including subscriber count, rules, and whether it allows images/galleries."
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has subreddit details\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.subreddit).to.have.property('display_name');",
+              "    pm.expect(jsonData.subreddit).to.have.property('subscribers');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Share Text Post",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt_token}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"subreddit\": \"{{test_subreddit}}\",\n  \"title\": \"Test Post from Neuro Engine\",\n  \"text\": \"This is a test post created via the Neuro Engine Reddit integration! 🚀\\n\\nThis is a multi-line text post with **markdown** support.\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/share-text",
+          "host": ["{{base_url}}"],
+          "path": ["share-text"]
+        },
+        "description": "Post text content to a subreddit. Supports multi-line text and markdown formatting."
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Post was created successfully\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property('postUrl');",
+              "    pm.expect(jsonData.postUrl).to.include('reddit.com');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "6. Share Single Slide (Image Post)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt_token}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"presentationId\": \"{{presentation_id}}\",\n  \"slideIndex\": 0,\n  \"subreddit\": \"{{test_subreddit}}\",\n  \"title\": \"Check out this amazing slide from Neuro Engine! 🎨\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/share",
+          "host": ["{{base_url}}"],
+          "path": ["share"]
+        },
+        "description": "Share a single presentation slide as an image post to Reddit. The slide image will be downloaded and uploaded to Reddit automatically."
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Image was shared successfully\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property('postUrl');",
+              "    pm.expect(jsonData.postUrl).to.include('reddit.com');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "7. Share Gallery Post (Multiple Slides)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt_token}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"presentationId\": \"{{presentation_id}}\",\n  \"slideIndices\": [0, 1, 2],\n  \"subreddit\": \"{{test_subreddit}}\",\n  \"title\": \"Gallery Post: Multiple Slides from Neuro Engine 📊\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/share-gallery",
+          "host": ["{{base_url}}"],
+          "path": ["share-gallery"]
+        },
+        "description": "Share multiple presentation slides as a gallery post to Reddit. All specified slides will be downloaded and uploaded as a single gallery post."
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Gallery was created successfully\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property('postUrl');",
+              "    pm.expect(jsonData.postUrl).to.include('reddit.com');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "8. Disconnect Reddit Account",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt_token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/disconnect",
+          "host": ["{{base_url}}"],
+          "path": ["disconnect"]
+        },
+        "description": "Disconnect the Reddit account by removing all stored credentials and tokens from the user profile."
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Account was disconnected\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.include('disconnected');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    }
+  ]
+}
