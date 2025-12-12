@@ -61,6 +61,17 @@ const userSchema = new mongoose.Schema({
   redditOAuthState: { type: String },
   redditOAuthStateExpiry: { type: Date },
 
+  // Discord Integration
+  discordConnected: { type: Boolean, default: false },
+  discordChannelId: { type: String },
+  discordProfile: {
+    channelId: String,
+    channelName: String,
+    guildId: String,
+    guildName: String,
+  },
+  discordConnectedAt: { type: Date },
+
   createdAt: { type: Date, default: Date.now },
 });
 

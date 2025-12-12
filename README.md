@@ -93,6 +93,7 @@ Neuro Engine supports sharing presentations to:
 - **LinkedIn** - OAuth 2.0 integration with feed posting
 - **Telegram** - Bot API integration with direct messaging
 - **Reddit** - OAuth 2.0 integration with subreddit posting
+- **Discord** - Bot API integration with channel messaging
 
 ### Quick Setup
 
@@ -112,6 +113,16 @@ npm run dev
 1. Create app at https://www.reddit.com/prefs/apps (select "web app")
 2. Add credentials to `.env` (see `.env` file for placeholders)
 3. Connect via OAuth flow
+
+**Discord**:
+1. Create application at https://discord.com/developers/applications
+2. Create bot user and copy bot token
+3. Add `DISCORD_BOT_TOKEN` to `.env`
+4. Generate OAuth2 URL with permissions (52224: Send Messages, Attach Files, Embed Links, Read Message History)
+5. Invite bot to your Discord server
+6. Enable Developer Mode in Discord (User Settings → Advanced → Developer Mode)
+7. Right-click channel → Copy ID
+8. Connect via API
 
 See **[SOCIAL_MEDIA_ROADMAP.md](./SOCIAL_MEDIA_ROADMAP.md)** for platform comparisons and implementation details.
 
@@ -151,6 +162,16 @@ See **[SOCIAL_MEDIA_ROADMAP.md](./SOCIAL_MEDIA_ROADMAP.md)** for platform compar
 - `GET /api/reddit/subreddit/:name` - Get subreddit info
 - `DELETE /api/reddit/disconnect` - Disconnect account
 
+**Discord:**
+- `GET /api/discord/bot-info` - Get bot information
+- `POST /api/discord/connect` - Connect channel (requires channelId)
+- `GET /api/discord/status` - Check connection status
+- `POST /api/discord/share` - Share single slide with embed
+- `POST /api/discord/share-custom` - Share custom image URL
+- `POST /api/discord/send-message` - Send text message
+- `POST /api/discord/share-multiple` - Share multiple slides
+- `DELETE /api/discord/disconnect` - Disconnect channel
+
 #### User Management
 - `POST /api/users/register` - Register new user
 - `POST /api/users/login` - User login
@@ -168,15 +189,21 @@ Full API documentation available in Swagger: `http://localhost:5000/api-docs`
 
 ### Automated Tests
 
-**LinkedIn Integration**
+**Social Media Integrations**
 ```bash
 node test-linkedin.js
+node test-telegram.js
+node test-reddit.js
+node test-discord.js
 ```
 
 ### Postman Collections
 
 Import these collections for API testing:
 - `LinkedIn_Integration_Postman_Collection.json` - LinkedIn endpoints
+- `Telegram_Integration_Postman_Collection.json` - Telegram endpoints
+- `Reddit_Integration_Postman_Collection.json` - Reddit endpoints
+- `Discord_Integration_Postman_Collection.json` - Discord endpoints
 - `Image_Deck_Postman_Collection.json` - Image deck endpoints
 - `Raw_Text_Deck_Postman_Collection.json` - Text deck endpoints
 - `Stylesheet_Deck_Postman_Collection.json` - Stylesheet endpoints

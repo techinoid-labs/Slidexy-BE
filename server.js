@@ -32,6 +32,7 @@ const websiteGeneratorRoutes = require("./routes/websiteGeneratorRoutes"); // We
 const linkedinRoutes = require("./routes/linkedinRoutes"); // LinkedIn Integration
 const telegramRoutes = require("./routes/telegramRoutes"); // Telegram Integration
 const redditRoutes = require("./routes/redditRoutes"); // Reddit Integration
+const discordRoutes = require("./routes/discordRoutes"); // Discord Integration
 
 // Controllers
 const {
@@ -153,6 +154,9 @@ app.use("/api/telegram", telegramRoutes);
 
 // --- Reddit Integration ---
 app.use("/api/reddit", redditRoutes);
+
+// --- Discord Integration ---
+app.use("/api/discord", discordRoutes);
 
 // --- Slide/Presentation APIs ---
 app.post("/generate-slides", validate, generateSlidesHandler);
