@@ -147,3 +147,4 @@ output-explainer-infographics
 
 services/data/
 services/testFetchWeb.js
+node_modules

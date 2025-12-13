@@ -9,25 +9,25 @@ const {
 const { editWebsiteController } = require("../controllers/websiteEditorController");
 const DynamicWebsite = require('../models/DynamicWebsite');
 
-const upload = multer({ dest: "uploads/" });
-
-// Edit by ID (wrapper around existing editor)
-router.post("/:id/edit", upload.single("image"), async (req, res) => {
-  try {
-    const website = await DynamicWebsite.findById(req.params.id);
-    if (!website) return res.status(404).json({ success: false, error: "Not found" });
-    req.body.folderName = website.folderName;
-    return editWebsiteController(req, res);
-  } catch (err) {
-    res.status(500).json({ success: false, error: err.message });
-  }
+// Configure Multer with disk storage to preserve extensions
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/");
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    cb(null, file.fieldname + "-" + uniqueSuffix + path.extname(file.originalname));
+  },
 });
+
+const upload = multer({ storage: storage });
+
+// Edit by ID (RESTful PUT for updates)
+// Updated to delegate ID lookup to the controller (ambidextrous model support)
+router.put("/:id", upload.single("image"), editWebsiteController);
 
 // Generate new dynamic website
 router.post("/generate", generateDynamic);
-
-// Get dynamic website by ID
-router.get("/:id", getDynamicWebsiteById);  // Consistent with static
 
 // Optional: List all dynamic websites
 router.get("/list", async (req, res) => {
@@ -49,5 +49,8 @@ router.get("/list", async (req, res) => {
     res.status(500).json({ success: false, error: err.message });
   }
 });
+
+// Get dynamic website by ID
+router.get("/:id", getDynamicWebsiteById);  // Consistent with static
 
 module.exports = router;

@@ -6,7 +6,17 @@ const { editWebsite } = require("../services/websiteEditorService");
 async function editWebsiteController(req, res) {
     try {
         const { id } = req.params; // This is the ID of the DynamicWebsite document
-        const { prompt, folderName } = req.body;
+        let { prompt, folderName, history, clickedElementId } = req.body;
+
+        // Parse history if it's a string (common with FormData)
+        if (typeof history === 'string') {
+            try {
+                history = JSON.parse(history);
+            } catch (e) {
+                console.warn("Failed to parse history JSON:", e.message);
+                history = [];
+            }
+        }
 
         // We need either the ID to look up the DB or the folderName directly.
         // Since the service logic uses folderName, it's safer to allow the client to pass it 
@@ -21,12 +31,34 @@ async function editWebsiteController(req, res) {
         // Let's import the model to get the folderName from ID.
 
         const DynamicWebsite = require('../models/DynamicWebsite');
+        const GeneratedWebsite = require('../models/generateWebsite');
         let targetFolderName = folderName;
+        let ModelToUse = DynamicWebsite; // Default to Dynamic
+        let initialFiles = null; // New: Pass files to service for reconstruction
 
         if (!targetFolderName && id) {
-            const website = await DynamicWebsite.findById(id);
-            if (website) {
-                targetFolderName = website.folderName;
+            console.log("Looking up website with ID:", id);
+
+            try {
+                let website = await DynamicWebsite.findById(id);
+                console.log("DynamicWebsite lookup result:", website ? "Found" : "Not Found");
+
+                if (website) {
+                    targetFolderName = website.folderName;
+                    initialFiles = website.files; // Capture files
+                } else {
+                    // Try GeneratedWebsite
+                    website = await GeneratedWebsite.findById(id);
+                    console.log("GeneratedWebsite lookup result:", website ? "Found" : "Not Found");
+
+                    if (website) {
+                        targetFolderName = website.folderName;
+                        ModelToUse = GeneratedWebsite;
+                        initialFiles = website.files; // Capture files
+                    }
+                }
+            } catch (err) {
+                console.error("Error looking up website by ID:", err.message);
             }
         }
 
@@ -37,6 +69,9 @@ async function editWebsiteController(req, res) {
         if (!prompt) {
             return res.status(400).json({ success: false, error: "Prompt is required" });
         }
+
+        console.log("📝 Controller received edit request. ID:", id);
+        console.log("📂 Files received:", req.file ? `YES - ${req.file.filename}` : "NO");
 
         let imagePath = null;
         if (req.file) {
@@ -50,7 +85,60 @@ async function editWebsiteController(req, res) {
 
         console.log(`Editing website: ${targetFolderName} with prompt: "${prompt}"`);
 
-        const result = await editWebsite(targetFolderName, prompt, imagePath);
+        // Pass initialFiles to allow reconstruction if folder is missing
+        const result = await editWebsite(targetFolderName, prompt, imagePath, history, clickedElementId, initialFiles);
+
+        // === DB SYNC: Update MongoDB with new file contents ===
+        if (id && result.success) {
+            const fs = require('fs').promises;
+            const path = require('path');
+
+            // Re-read the updated files to sync with DB
+            // We need this because the frontend fetches from DB, not file system
+            const websiteCodesDir = path.join(__dirname, "..", "website-codes");
+            const folderPath = path.join(websiteCodesDir, targetFolderName);
+
+            // Construct the files array for DB
+            // We know the main 3 files are index.html, styles.css, app.js
+            // Plus any new files created.
+            // Simplest approach: Read the result.files (which has content) OR read from disk
+
+            // Let's use the updates returned by editWebsite, but they might be partial?
+            // editWebsite returns `files` array with full content for modified files.
+            // But to be safe and complete, let's just re-read the directory or specific known files.
+
+            try {
+                const filesForDb = [];
+                const filesOnDisk = await fs.readdir(folderPath);
+
+                for (const file of filesOnDisk) {
+                    if (['index.html', 'styles.css', 'app.js', 'readme.md'].includes(file.toLowerCase()) || file.endsWith('.html')) {
+                        const content = await fs.readFile(path.join(folderPath, file), 'utf-8');
+                        // Determine type
+                        let type = 'html';
+                        if (file.endsWith('.css')) type = 'css';
+                        if (file.endsWith('.js')) type = 'js';
+                        if (file.toLowerCase().endsWith('.md')) type = 'readme';
+
+                        filesForDb.push({
+                            type: type,
+                            content: content
+                        });
+                    }
+                }
+
+                // Update the document (Dynamic or Generated)
+                await ModelToUse.findByIdAndUpdate(id, {
+                    files: filesForDb,
+                    generatedAt: new Date() // Optional: Update timestamp
+                });
+                console.log(`✅ Synced ${filesForDb.length} files to MongoDB for ID: ${id}`);
+            } catch (dbErr) {
+                console.error("Failed to sync updates to DB:", dbErr);
+                // Don't fail the request, just log it. 
+                // (Or should we fail? Ideally yes, but file system is the source of truth for serving)
+            }
+        }
 
         res.json(result);
 

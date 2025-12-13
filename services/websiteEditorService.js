@@ -20,16 +20,34 @@ const { textGenModel } = require("../utils/geminiModels");
  * @param {string} [imagePath] - Optional path to uploaded image
  * @returns {Object} Result with updated files
  */
-async function editWebsite(folderName, prompt, imagePath = null) {
+async function editWebsite(folderName, prompt, imagePath = null, history = [], clickedElementId = null, initialFiles = null) {
     try {
         const websiteCodesDir = path.join(__dirname, "..", "website-codes");
         const folderPath = path.join(websiteCodesDir, folderName);
 
-        // 1. Verify folder exists
+        // 1. Verify folder exists, OR create it if we have initial files (Lazy Loading)
         try {
             await fs.access(folderPath);
         } catch {
-            throw new Error(`Website folder not found: ${folderName}`);
+            if (initialFiles && Array.isArray(initialFiles) && initialFiles.length > 0) {
+                console.log(`📂 Folder not found, reconstructing from DB: ${folderName}`);
+                await fs.mkdir(folderPath, { recursive: true });
+
+                for (const file of initialFiles) {
+                    let fileName = "";
+                    if (file.type === "html") fileName = "index.html";
+                    else if (file.type === "css") fileName = "styles.css";
+                    else if (file.type === "js") fileName = "app.js";
+                    else if (file.type === "readme") fileName = "README.md";
+
+                    if (fileName && file.content) {
+                        await fs.writeFile(path.join(folderPath, fileName), file.content, "utf-8");
+                    }
+                }
+                console.log("✅ Website files reconstructed on disk.");
+            } else {
+                throw new Error(`Website folder not found: ${folderName}`);
+            }
         }
 
         // 2. Read current files
@@ -43,6 +61,33 @@ async function editWebsite(folderName, prompt, imagePath = null) {
             fs.readFile(jsPath, "utf-8").catch(() => "")
         ]);
 
+        // --- ENHANCEMENT: Ensure Unique IDs for Block Replacement ---
+        const cheerio = require("cheerio");
+        const $ = cheerio.load(htmlCode);
+        let idCounter = 1;
+        let protectionModified = false;
+
+        // Target common structural and content elements
+        // Target common structural and content elements - Expanded for Granular Click-to-Edit
+        $('section, div, header, footer, nav, main, article, aside, h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, table, img, span, a, button, i, strong, em, svg, path').each((i, el) => {
+            const currentId = $(el).attr('id');
+            if (!currentId) {
+                // Generate a semantic-ish ID if possible, or generic
+                const tagName = el.tagName.toLowerCase();
+                const newId = `neuro-${tagName}-${idCounter++}`;
+                $(el).attr('id', newId);
+                protectionModified = true;
+            }
+        });
+
+        // Use this enhanced HTML for both Prompt and Final apply
+        let currentHtml = protectionModified ? $.html() : htmlCode;
+        if (protectionModified) console.log("✨ Auto-injected IDs into HTML to improve AI targeting.");
+
+        if (imagePath) {
+            console.log(`📸 Image uploaded for edit: ${imagePath}`);
+        }
+
         // 3. Construct AI Prompt with Block Strategy
         const systemPrompt = `You are an expert full-stack developer (HTML/CSS/JS). 
 Your task is to MODIFY an existing website based on the user's request.
@@ -54,11 +99,31 @@ I will provide their current contents below.
 USER REQUEST:
 "${prompt}"
 
-${imagePath ? `CONTEXT: The user has uploaded an image. It is available at this local path: "${imagePath}". 
-If the user asks to use this image (e.g., "replace logo", "change hero"), update the relevant <img> src attribute or CSS background-image to use this EXACT path: "${imagePath}".` : ""}
+${imagePath ? `
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+CRITICAL INSTRUCTION: IMAGE ATTACHED
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+The user has uploaded an image file. It is saved at: "${imagePath}"
 
-STRATEGY (COST OPTIMIZATION):
-Prefer "Block Replacement" over "Full File Rewrite" whenever possible.
+You MUST use this exact path: "${imagePath}" in your code update.
+- If replacing an <img>, set src="${imagePath}"
+- If changing a background, set background-image: url('${imagePath}')
+- Do NOT use a placeholder.
+- Do NOT make up a URL.
+- USE "${imagePath}" EXACTLY.
+- PRESERVE existing alt text, titles, and captions unless the user explicitly asks to change them.
+- Do NOT hallucinate new content for the image.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+` : ""}
+
+${clickedElementId ? `IMPORTANT: The user has CLICKED on the element with ID "${clickedElementId}" while making this request. 
+Your edit MUST focus on this specific element ("#${clickedElementId}") or its immediate children. 
+If the user's prompt is vague (e.g., "fix typo", "make it blue"), apply it to THIS element.` : ""}
+
+${history && history.length > 0 ? `PREVIOUS CONVERSATION HISTORY:
+The user is continuing a conversation. Use this context to understand references like "it", "that section", or "make it blue".
+${history.map(h => `${h.role === 'user' ? 'User' : 'Assistant'}: "${h.content}"`).join('\n')}
+` : ""}
 
 1. **HTML Block Replacement/Insertion**:
    - If the change is localized to a specific section (e.g., "change hero title"), identify the parent element ID.
@@ -87,10 +152,12 @@ Return a strictly valid JSON object. No markdown.
   "htmlUpdates": [
     { 
       "targetId": "section-0", 
+      "selector": ".hero-content", // OPTIONAL: Use CSS selector if ID is missing or unknown
       "action": "replace" | "insert_after" | "insert_before" | "remove", 
-      "content": "<section id='new-section'>...</section>" // Optional for remove
+      "content": "<section id='new-section'>...</section>" 
     }
   ],
+  "forceFullRewrite": false, // Set to true if you cannot confidently identify IDs for block replacement
   "cssAppend": ".hero-title { color: red; }", // New rules to append
   "jsUpdate": "full new js code OR null",     // JS is always full update for safety
   "newFiles": [
@@ -116,7 +183,7 @@ Return a strictly valid JSON object. No markdown.
 CODE CONTEXT:
 
 --- index.html ---
-${htmlCode}
+${currentHtml}
 
 --- styles.css ---
 ${cssCode}
@@ -130,22 +197,23 @@ ${systemPrompt}
             ]
         });
 
-        let r = result.response.candidates?.[0]?.content?.parts?.[0]?.text || "{}";
+        const responseText = result.response.text();
 
-        // Clean JSON (remove markdown blocks if any)
-        r = r.replace(/```json\n?/g, "").replace(/```\n?/g, "").trim();
 
         let parsedParams;
         try {
-            parsedParams = JSON.parse(r);
+            // Sanitize JSON (sometimes AI wraps in ```json ... ```)
+            const jsonMatch = responseText.match(/\{[\s\S]*\}/);
+            if (!jsonMatch) throw new Error("No JSON found in response");
+            parsedParams = JSON.parse(jsonMatch[0]);
         } catch (e) {
-            console.error("Failed to parse AI response:", r);
+            console.error("JSON Parse Error:", e);
             throw new Error("AI produced invalid JSON response");
         }
 
         // 5. Apply Updates based on Strategy
         const updates = [];
-        let finalHtml = htmlCode;
+        let finalHtml = currentHtml;
         let finalCss = cssCode;
         let finalJs = jsCode;
 
@@ -160,31 +228,37 @@ ${systemPrompt}
                 let htmlChanged = false;
 
                 for (const update of parsedParams.htmlUpdates) {
-                    if (update.targetId) { // Content is optional for remove
-                        const $target = $(`#${update.targetId}`);
-                        if ($target.length) {
-                            const action = update.action || "replace"; // Default to replace
+                    let $target = null;
 
-                            if (action === "replace") {
-                                // Replace the element with new content
-                                $target.replaceWith(update.content);
-                                htmlChanged = true;
-                            } else if (action === "insert_after") {
-                                // Insert new content AFTER the target element
-                                $target.after("\n" + update.content);
-                                htmlChanged = true;
-                            } else if (action === "insert_before") {
-                                // Insert new content BEFORE the target element
-                                $target.before(update.content + "\n");
-                                htmlChanged = true;
-                            } else if (action === "remove") {
-                                // Remove the element completely
-                                $target.remove();
-                                htmlChanged = true;
-                            }
-                        } else {
-                            console.warn(`Could not find target ID #${update.targetId} for action ${update.action || 'replace'}.`);
+                    // 1. Try finding by ID first
+                    if (update.targetId) {
+                        $target = $(`#${update.targetId}`);
+                    }
+
+                    // 2. Fallback to Selector if ID not found or not provided
+                    if ((!$target || !$target.length) && update.selector) {
+                        $target = $(update.selector).first(); // Target only the first match to avoid duplicates
+                    }
+
+                    if ($target && $target.length) {
+                        const action = update.action || "replace";
+
+                        if (action === "replace") {
+                            $target.replaceWith(update.content);
+                            htmlChanged = true;
+                        } else if (action === "insert_after") {
+                            $target.after("\n" + update.content);
+                            htmlChanged = true;
+                        } else if (action === "insert_before") {
+                            $target.before(update.content + "\n");
+                            htmlChanged = true;
+                        } else if (action === "remove") {
+                            $target.remove();
+                            htmlChanged = true;
                         }
+                    } else {
+                        console.warn(`Block Strategy Miss: Could not find target ID #${update.targetId} or selector '${update.selector}'.`);
+                        // Consider triggering full rewrite fallback here if crucial?
                     }
                 }
 
@@ -236,16 +310,16 @@ ${systemPrompt}
             return newC;
         };
 
-        finalHtml = validate(finalHtml, htmlCode, "HTML");
+        finalHtml = validate(finalHtml, currentHtml, "HTML");
         finalCss = validate(finalCss, cssCode, "CSS");
         finalJs = validate(finalJs, jsCode, "JS");
 
         // 7. Write to disk
-        if (finalHtml !== htmlCode) {
+        if (finalHtml !== currentHtml) {
             await fs.writeFile(htmlPath, finalHtml, "utf-8");
             updates.push({ type: "html", content: finalHtml });
         } else {
-            updates.push({ type: "html", content: htmlCode });
+            updates.push({ type: "html", content: currentHtml });
         }
 
         if (finalCss !== cssCode) {
