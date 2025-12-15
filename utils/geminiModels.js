@@ -1,10 +1,10 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const apiKeys = [
-  process.env.API_KEY1, process.env.API_KEY2, process.env.API_KEY3,
-  process.env.API_KEY4, process.env.API_KEY5, process.env.API_KEY6,
-  process.env.API_KEY7, process.env.API_KEY8, process.env.API_KEY9,
-  process.env.API_KEY10, process.env.API_KEY11, process.env.API_KEY12,
+  process.env.API_KEY1, //process.env.API_KEY2, process.env.API_KEY3,
+  // process.env.API_KEY4, process.env.API_KEY5, process.env.API_KEY6,
+  // process.env.API_KEY7, process.env.API_KEY8, process.env.API_KEY9,
+  // process.env.API_KEY10, process.env.API_KEY11, process.env.API_KEY12,
 ].filter(Boolean);
 
 if (apiKeys.length === 0) throw new Error("No API keys configured!");
@@ -39,8 +39,9 @@ async function safeGenerateContent(modelName, config) {
     pool.release(key, true);
     return res;
   } catch (err) {
+    console.error("Error during content generation:", err);
     pool.release(key, false);
-    if (err.statusCode === 429 || err.message.includes("quota")) {
+    if (err.message.includes("quota")) {
       console.warn("Rate limit - rotating key");
       return safeGenerateContent(modelName, config);
     }
