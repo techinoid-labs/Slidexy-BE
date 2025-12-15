@@ -3,7 +3,7 @@ const { validationResult } = require("express-validator");
 const { fetchWebsiteText } = require("../services/fetchWebsiteText");
 const { fetchYouTubeTranscript } = require("../services/fetchYouTubeTranscript");
 const { generateSlideText } = require("../services/generateSlideText");
-const { generateImage } = require("../utils/runwareImageGen");
+const { generateImage } = require("../services/generateImage");
 const { fetchYouTubeMeta } = require("../services/fetchYouTubeMeta");
 const { v4: uuidv4 } = require("uuid");
 const Presentation = require("../models/Presentation");
@@ -48,20 +48,20 @@ function cleanEJSON(data) {
 
 function convertEJSONFields(obj) {
   if (obj === null || obj === undefined) return obj;
-  
+
   if (obj.$oid) {
     return obj.$oid;
   }
-  
+
   if (obj.$date) {
     const timestamp = obj.$date.$numberLong || obj.$date;
     return new Date(parseInt(timestamp));
   }
-  
+
   if (Array.isArray(obj)) {
     return obj.map(item => convertEJSONFields(item));
   }
-  
+
   if (typeof obj === 'object') {
     const converted = {};
     for (const [key, value] of Object.entries(obj)) {
@@ -69,13 +69,13 @@ function convertEJSONFields(obj) {
     }
     return converted;
   }
-  
+
   return obj;
 }
 
 function sanitizeSlides(slides) {
   const validElementTypes = [
-    'bullet_point', 'quote', 'author', 'context', 
+    'bullet_point', 'quote', 'author', 'context',
     'stat', 'description', 'left_bullet', 'right_bullet', 'cta'
   ];
 
@@ -102,15 +102,24 @@ function sanitizeSlides(slides) {
     };
 
     if (Array.isArray(slide.elements)) {
+      if (slide.layout_type === 'quote-slide') {
+        console.log(`[Sanitize] Processing quote slide ${index + 1}, raw elements:`, slide.elements);
+      }
       sanitizedSlide.elements = slide.elements
         .filter(element => {
-          if (!element.text || typeof element.text !== 'string') return false;
-          if (!element.element_type) return false;
+          if (!element.text || typeof element.text !== 'string') {
+            console.warn(`[Sanitize] Dropping element in slide ${index + 1} due to invalid text:`, element);
+            return false;
+          }
+          if (!element.element_type) {
+            console.warn(`[Sanitize] Dropping element in slide ${index + 1} due to missing type:`, element);
+            return false;
+          }
           return true;
         })
         .map(element => {
           let elementType = element.element_type.toLowerCase().trim();
-          
+
           const typeMapping = {
             'text': 'description',
             'paragraph': 'description',
@@ -130,7 +139,7 @@ function sanitizeSlides(slides) {
           }
 
           if (!validElementTypes.includes(elementType)) {
-            console.warn(`Invalid element_type "${element.element_type}" found in slide ${index + 1}, defaulting to "description"`);
+            console.warn(`Invalid element_type "${element.element_type}" found in slide ${index + 1} (after mapping: ${elementType}), defaulting to "description"`);
             elementType = 'description';
           }
 
@@ -214,6 +223,18 @@ const streamingStates = {
     progress: (current, total) => ({
       message: `🖼️ Designing visual ${current}/${total}...`,
       detail: "Generating contextually relevant imagery for each slide.",
+    }),
+    pexels: (current, total) => ({
+      message: `🔍 Finding image ${current}/${total} from Pexels...`,
+      detail: "Searching for high-quality stock imagery.",
+    }),
+    fetchingFallback: (current, total) => ({
+      message: `📥 Fetching image ${current}/${total}...`,
+      detail: "Retrieving professional stock photography.",
+    }),
+    uploading: (current, total) => ({
+      message: `⬆️ Uploading image ${current}/${total}...`,
+      detail: "Optimizing and storing images for your presentation.",
     }),
   },
   finalizing: {
@@ -323,15 +344,15 @@ async function generateSlidesHandler(req, res) {
             streamingStates.fetchingWebsite.message,
             streamingStates.fetchingWebsite.detail
           );
-          
+
           const websiteData = await fetchWebsiteText(inputWebsiteUrl, {
             timeout: 120000,
             waitTime: 2000
           });
-          
+
           rawText = websiteData.formatted;
           topic = websiteData.raw.metadata.title || inputWebsiteUrl || "Website Presentation";
-          
+
           sendProgress(
             12,
             `✅ Website content extracted (${websiteData.stats.totalChars} chars)`,
@@ -370,7 +391,7 @@ async function generateSlidesHandler(req, res) {
         const normalized = Math.max(0, Math.min(total, current));
         const percent = mapProgress(
           streamingStates.generating.start.percent,
-          55, // End at 55 instead of 50 for smoother transition
+          55,
           normalized / total
         );
         if (percent <= lastTextPercent) return;
@@ -409,18 +430,82 @@ async function generateSlidesHandler(req, res) {
       if (sanitizedSlides.length === 0) {
         slidesWithImages = [];
       } else if (planResponseType === "predefined") {
-        slidesWithImages = sanitizedSlides.map((slide, index) => ({
-          ...slide,
-          image_url: `https://placehold.co/1920x1080/6c5ce7/ffffff?text=Slide+${index + 1}&font=roboto`,
-          image_caption: "Placeholder image (trial mode)",
-          fallback_used: "template",
-        }));
+        // For predefined/trial mode, use Pexels images instead of placeholders
         sendProgress(
-          90,
-          "📦 Template visuals assigned",
-          "Using predefined visuals for instant preview."
+          65,
+          "🔍 Fetching stock imagery...",
+          "Finding professional images from Pexels."
         );
+
+        const maxConcurrent = 3;
+        const results = new Array(sanitizedSlides.length);
+        let nextIndex = 0;
+        let completedImages = 0;
+
+        const runWorker = async () => {
+          while (true) {
+            const currentIndex = nextIndex++;
+            if (currentIndex >= sanitizedSlides.length) break;
+            const slide = sanitizedSlides[currentIndex];
+            const slideNumber = currentIndex + 1;
+
+            const progressMsg = streamingStates.imaging.pexels(
+              slideNumber,
+              sanitizedSlides.length
+            );
+            sendUpdate({
+              message: progressMsg.message,
+              detail: progressMsg.detail,
+            });
+
+            try {
+              const imageResult = await generateImage(
+                slide,
+                currentIndex,
+                rawText,
+                "predefined", // Force Pexels mode
+                artStyle,
+                null,
+                null,
+                null
+              );
+
+              results[currentIndex] = {
+                ...slide,
+                image_url: imageResult.image_url || `https://placehold.co/1920x1080/6c5ce7/ffffff?text=Slide+${slideNumber}&font=roboto`,
+                image_caption: imageResult.image_caption || "Placeholder image",
+                photographer: imageResult.photographer,
+                pexels_url: imageResult.pexels_url,
+                fallback_used: imageResult.fallback_used || "pexels",
+                art_style: imageResult.art_style || slide.art_style,
+                art_palette: imageResult.art_palette || slide.art_palette,
+              };
+            } catch (error) {
+              console.error(`Pexels fetch failed for slide ${slideNumber}:`, error);
+              results[currentIndex] = {
+                ...slide,
+                image_url: `https://placehold.co/1920x1080/6c5ce7/ffffff?text=Slide+${slideNumber}&font=roboto`,
+                image_caption: "Placeholder image",
+                fallback_used: "placeholder",
+              };
+            } finally {
+              completedImages += 1;
+              const percent = mapProgress(65, 90, completedImages / sanitizedSlides.length);
+              sendProgress(
+                percent,
+                `✅ Image ${completedImages}/${sanitizedSlides.length} ready`,
+                "Stock imagery retrieved and optimized."
+              );
+            }
+          }
+        };
+
+        const workerCount = Math.min(maxConcurrent, sanitizedSlides.length);
+        await Promise.all(Array.from({ length: workerCount }, () => runWorker()));
+        slidesWithImages = results;
+
       } else {
+        // For paid plans - use Pexels as we don't have AI generation yet
         const maxConcurrent = 4;
         const slideCountTotal = sanitizedSlides.length;
         const results = new Array(slideCountTotal);
@@ -429,6 +514,22 @@ async function generateSlidesHandler(req, res) {
 
         const imageProgressRangeStart = streamingStates.imaging.start.percent;
         const imageProgressRangeEnd = 90;
+
+        // Create progress callback for generateImage
+        const createImageProgressCallback = (slideNum, total) => {
+          return (current, totalSteps, stage) => {
+            const stageMessages = {
+              'fetching-fallback': streamingStates.imaging.fetchingFallback(slideNum, total),
+              'uploading': streamingStates.imaging.uploading(slideNum, total),
+            };
+
+            const msg = stageMessages[stage] || streamingStates.imaging.progress(slideNum, total);
+            sendUpdate({
+              message: msg.message,
+              detail: msg.detail,
+            });
+          };
+        };
 
         const runWorker = async () => {
           while (true) {
@@ -452,14 +553,21 @@ async function generateSlidesHandler(req, res) {
                 currentIndex,
                 rawText,
                 planResponseType,
-                artStyle
+                artStyle,
+                createImageProgressCallback(slideNumber, slideCountTotal),
+                slideNumber,
+                slideCountTotal
               );
+
               results[currentIndex] = {
                 ...slide,
-                image_url: imageResult.image_url,
-                image_caption: imageResult.image_caption,
-                art_style: imageResult.art_style,
-                art_palette: imageResult.art_palette,
+                image_url: imageResult.image_url || null,
+                image_caption: imageResult.image_caption || "Image unavailable",
+                photographer: imageResult.photographer,
+                pexels_url: imageResult.pexels_url,
+                fallback_used: imageResult.fallback_used,
+                art_style: imageResult.art_style || slide.art_style,
+                art_palette: imageResult.art_palette || slide.art_palette,
                 image_placeholder: { x: 520, y: 40, width: 400, height: 460 },
               };
             } catch (error) {
@@ -469,9 +577,9 @@ async function generateSlidesHandler(req, res) {
               );
               results[currentIndex] = {
                 ...slide,
-                image_url: null,
+                image_url: `https://placehold.co/1920x1080/6c5ce7/ffffff?text=Slide+${slideNumber}&font=roboto`,
                 image_caption: "Image unavailable",
-                fallback_used: "none",
+                fallback_used: "placeholder",
               };
             } finally {
               completedImages += 1;
@@ -569,7 +677,7 @@ async function generateSlidesHandler(req, res) {
       res.end();
     }
   } else {
-    // Non-streaming response remains the same
+    // Non-streaming response
     try {
       let rawText, topic;
 
@@ -601,14 +709,8 @@ async function generateSlidesHandler(req, res) {
 
       if (sanitizedSlides.length === 0) {
         slidesWithImages = [];
-      } else if (planResponseType === "predefined") {
-        slidesWithImages = sanitizedSlides.map((slide, index) => ({
-          ...slide,
-          image_url: `https://placehold.co/1920x1080/6c5ce7/ffffff?text=Slide+${index + 1}&font=roboto`,
-          image_caption: "Placeholder image (trial mode)",
-          fallback_used: "template",
-        }));
       } else {
+        // Use Pexels for all plans (since AI generation is not available)
         const results = new Array(sanitizedSlides.length);
         const maxConcurrent = 4;
         let nextIndex = 0;
@@ -624,14 +726,20 @@ async function generateSlidesHandler(req, res) {
                 currentIndex,
                 rawText,
                 planResponseType,
-                artStyle
+                artStyle,
+                null,
+                null,
+                null
               );
               results[currentIndex] = {
                 ...slide,
-                image_url: imageSlide.image_url,
-                image_caption: imageSlide.image_caption,
-                art_style: imageSlide.art_style,
-                art_palette: imageSlide.art_palette,
+                image_url: imageSlide.image_url || `https://placehold.co/1920x1080/6c5ce7/ffffff?text=Slide+${currentIndex + 1}&font=roboto`,
+                image_caption: imageSlide.image_caption || "Image unavailable",
+                photographer: imageSlide.photographer,
+                pexels_url: imageSlide.pexels_url,
+                fallback_used: imageSlide.fallback_used,
+                art_style: imageSlide.art_style || slide.art_style,
+                art_palette: imageSlide.art_palette || slide.art_palette,
                 image_placeholder: { x: 520, y: 40, width: 400, height: 460 },
               };
             } catch (error) {
@@ -639,7 +747,12 @@ async function generateSlidesHandler(req, res) {
                 `Image generation failed for slide ${currentIndex + 1}:`,
                 error
               );
-              results[currentIndex] = { ...slide, image_url: null };
+              results[currentIndex] = {
+                ...slide,
+                image_url: `https://placehold.co/1920x1080/6c5ce7/ffffff?text=Slide+${currentIndex + 1}&font=roboto`,
+                image_caption: "Image unavailable",
+                fallback_used: "placeholder"
+              };
             }
           }
         };
