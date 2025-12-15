@@ -49,5 +49,5 @@ async function safeGenerateContent(modelName, config) {
 }
 
 module.exports = {
-  textGenModel: { generateContent: (c) => safeGenerateContent("gemini-2.0-flash", c) },
+  textGenModel: { generateContent: (c) => safeGenerateContent("gemini-2.5-flash", c) },
 };

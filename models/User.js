@@ -21,6 +21,57 @@ const userSchema = new mongoose.Schema({
   resetPasswordToken: { type: String },
   resetPasswordExpires: { type: Date },
 
+  // LinkedIn Integration
+  linkedinConnected: { type: Boolean, default: false },
+  linkedinAccessToken: { type: String },
+  linkedinRefreshToken: { type: String },
+  linkedinTokenExpiry: { type: Date },
+  linkedinProfile: {
+    id: String,
+    name: String,
+    email: String,
+    picture: String,
+  },
+  linkedinOAuthState: { type: String },
+  linkedinOAuthStateExpiry: { type: Date },
+
+  // Telegram Integration
+  telegramConnected: { type: Boolean, default: false },
+  telegramChatId: { type: String },
+  telegramProfile: {
+    chatId: String,
+    username: String,
+    firstName: String,
+    lastName: String,
+  },
+  telegramConnectedAt: { type: Date },
+
+  // Reddit Integration
+  redditConnected: { type: Boolean, default: false },
+  redditAccessToken: { type: String },
+  redditRefreshToken: { type: String },
+  redditTokenExpiry: { type: Date },
+  redditProfile: {
+    id: String,
+    username: String,
+    iconImg: String,
+    linkKarma: Number,
+    commentKarma: Number,
+  },
+  redditOAuthState: { type: String },
+  redditOAuthStateExpiry: { type: Date },
+
+  // Discord Integration
+  discordConnected: { type: Boolean, default: false },
+  discordChannelId: { type: String },
+  discordProfile: {
+    channelId: String,
+    channelName: String,
+    guildId: String,
+    guildName: String,
+  },
+  discordConnectedAt: { type: Date },
+
   createdAt: { type: Date, default: Date.now },
 });
 
