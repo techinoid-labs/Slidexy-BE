@@ -51,27 +51,27 @@ const SLIDE_TYPE_DEFINITIONS = {
 };
 
 async function generateSlideText(rawText, meta = {}, slideCount = 5, progressCallback = null) {
-  let safeRawText = typeof rawText === "string" 
-    ? rawText 
+  let safeRawText = typeof rawText === "string"
+    ? rawText
     : JSON.stringify(rawText, null, 2);
 
   const { goal, tone, audience, length } = meta || {};
-  
+
   // Get slide structure based on count
   const slideStructure = SLIDE_TYPE_DEFINITIONS[slideCount] || SLIDE_TYPE_DEFINITIONS[5];
-  
+
   // Notify progress: starting generation
   if (progressCallback) {
     progressCallback(0, slideCount);
   }
-  
+
   const prompt = `
 You are a world-class presentation content strategist. Create EXACTLY ${slideCount} slides with precise textual data for frontend layout mapping.
 
 SLIDE STRUCTURE FOR ${slideCount}-SLIDE PRESENTATION:
-${slideStructure.slides.map((slide, index) => 
-  `Slide ${index + 1}: ${slide.type.toUpperCase()} - ${slide.description}`
-).join('\n')}
+${slideStructure.slides.map((slide, index) =>
+    `Slide ${index + 1}: ${slide.type.toUpperCase()} - ${slide.description}`
+  ).join('\n')}
 
 CONTENT SOURCE:
 """
@@ -175,24 +175,24 @@ Generate exactly ${slideCount} slides that tell a compelling story:`;
     if (progressCallback) {
       progressCallback(1, slideCount);
     }
-    
+
     const result = await textGenModel.generateContent(prompt);
     const raw = result.response?.candidates?.[0]?.content?.parts?.[0]?.text || "";
-    
+
     // Notify progress: parsing response
     if (progressCallback) {
       progressCallback(Math.floor(slideCount * 0.3), slideCount);
     }
-    
+
     // Clean and parse JSON
     const cleaned = raw.replace(/```json/g, "").replace(/```/g, "").trim();
     const firstBracket = cleaned.indexOf("[");
     const lastBracket = cleaned.lastIndexOf("]");
-    
+
     if (firstBracket === -1 || lastBracket === -1) {
       throw new Error("No JSON array found in AI response");
     }
-    
+
     const jsonString = cleaned.slice(firstBracket, lastBracket + 1);
     let aiSlides = JSON.parse(jsonString);
 
@@ -207,7 +207,7 @@ Generate exactly ${slideCount} slides that tell a compelling story:`;
       if (progressCallback) {
         progressCallback(index + 1, slideCount);
       }
-      
+
       if (slide.layout_type === "cover-hero") {
         if (!slide.subtitle) {
           slide.subtitle = "Professional presentation overview based on your content.";
@@ -280,17 +280,17 @@ function generateFallbackBullets(title, count, layoutType) {
     "Innovative solutions addressing challenges.",
     "Measurable outcomes from implementation."
   ];
-  
+
   // Shorter, more concise bullets for cover-hero
   const coverPhrases = [
     "Strategic overview and key insights",
     "Actionable recommendations included",
     "Data-driven approach to success"
   ];
-  
+
   const sourceArray = layoutType === "cover-hero" ? coverPhrases : basePhrases;
   const fallback = [];
-  
+
   for (let i = 0; i < count; i++) {
     let bullet = sourceArray[i % sourceArray.length];
     if (layoutType === "infographic-bullets") {
@@ -304,9 +304,9 @@ function generateFallbackBullets(title, count, layoutType) {
 function transformToTextOnlySlide(aiSlide, index, totalSlides) {
   const slideStructure = SLIDE_TYPE_DEFINITIONS[totalSlides];
   const slideType = slideStructure?.slides[index]?.type || aiSlide.layout_type || "content-right-image";
-  
+
   const slideId = `slide-${uuidv4()}`;
-  
+
   // Base slide structure
   const slide = {
     slide_id: slideId,
@@ -338,22 +338,22 @@ function transformToTextOnlySlide(aiSlide, index, totalSlides) {
   };
 
   // Add title (required for all slides)
-  slide.slide_title = { 
+  slide.slide_title = {
     text: aiSlide.title || getDefaultTitle(index, slideType),
     _id: { $oid: uuidv4().replace(/-/g, '').slice(0, 24) }
   };
 
   // Handle different slide types for elements
-  switch(slideType) {
+  switch (slideType) {
     case "cover-hero":
       // Add subtitle
       const coverSubtitle = aiSlide.subtitle || "Professional presentation overview based on your content.";
-      slide.subtitle = { 
+      slide.subtitle = {
         text: coverSubtitle,
         _id: { $oid: uuidv4().replace(/-/g, '').slice(0, 24) }
       };
       slide.content_metadata.subtitle = coverSubtitle;
-      
+
       // HYBRID APPROACH: Add subtle bullets to cover-hero
       if (aiSlide.bullets && aiSlide.bullets.length > 0) {
         // Ensure we have 2-3 bullets for cover slide
@@ -387,80 +387,119 @@ function transformToTextOnlySlide(aiSlide, index, totalSlides) {
       break;
 
     case "quote-slide":
-      // Ensure fallback quote data when AI omits it
-      if (!aiSlide.quote) {
-        aiSlide.quote = "A powerful insight from industry experts that reinforces the key theme of the presentation.";
-      }
-      if (!aiSlide.author) {
-        aiSlide.author = "Expert Source";
-      }
-      if (!aiSlide.context) {
-        aiSlide.context = "This quote highlights a core message relevant to the audience.";
-      }
-      if (aiSlide.quote) {
-        slide.elements.push({
-          element_type: "quote",
-          text: aiSlide.quote,
-          element_id: `element-${uuidv4()}`,
-          id: uuidv4()
-        });
-      }
-      if (aiSlide.author) {
-        slide.elements.push({
-          element_type: "author",
-          text: aiSlide.author,
-          element_id: `element-${uuidv4()}`,
-          id: uuidv4()
-        });
-      }
-      if (aiSlide.context) {
-        slide.elements.push({
-          element_type: "context",
-          text: aiSlide.context,
-          element_id: `element-${uuidv4()}`,
-          id: uuidv4()
-        });
-      }
+      // Add subtitle for quote slides
+      const quoteSubtitle = aiSlide.subtitle || "";
+      slide.subtitle = {
+        text: quoteSubtitle,
+        _id: { $oid: uuidv4().replace(/-/g, '').slice(0, 24) }
+      };
+      slide.content_metadata.subtitle = quoteSubtitle;
+
+      // Strict fallback logic
+      const quoteText = (aiSlide.quote && typeof aiSlide.quote === 'string' && aiSlide.quote.trim().length > 0)
+        ? aiSlide.quote
+        : "A powerful insight from industry experts that reinforces the key theme of the presentation.";
+
+      const authorText = (aiSlide.author && typeof aiSlide.author === 'string' && aiSlide.author.trim().length > 0)
+        ? aiSlide.author
+        : "Expert Source";
+
+      const contextText = (aiSlide.context && typeof aiSlide.context === 'string' && aiSlide.context.trim().length > 0)
+        ? aiSlide.context
+        : "This highlights a key message relevant to the audience.";
+
+      // Always add quote element
+      slide.elements.push({
+        id: uuidv4(),
+        element_id: `element-${uuidv4()}`,
+        element_type: "quote",
+        text: String(quoteText)
+      });
+
+      // Always add author element
+      slide.elements.push({
+        id: uuidv4(),
+        element_id: `element-${uuidv4()}`,
+        element_type: "author",
+        text: String(authorText)
+      });
+
+      // Always add context element
+      slide.elements.push({
+        id: uuidv4(),
+        element_id: `element-${uuidv4()}`,
+        element_type: "context",
+        text: String(contextText)
+      });
       break;
 
     case "call-to-action":
+    case "conclusion":
+      // Add subtitle for CTA/conclusion slides
+      const ctaSubtitle = aiSlide.subtitle || "";
+      slide.subtitle = {
+        text: ctaSubtitle,
+        _id: { $oid: uuidv4().replace(/-/g, '').slice(0, 24) }
+      };
+      slide.content_metadata.subtitle = ctaSubtitle;
+
       if (aiSlide.bullets) {
         aiSlide.bullets.forEach((bullet) => {
           slide.elements.push({
+            id: uuidv4(),
+            element_id: `element-${uuidv4()}`,
             element_type: "bullet_point",
-            text: bullet,
-            id: uuidv4()
+            text: bullet
           });
         });
       }
       if (aiSlide.description) {
         slide.elements.push({
+          id: uuidv4(),
+          element_id: `element-${uuidv4()}`,
           element_type: "description",
-          text: aiSlide.description,
-          id: uuidv4()
+          text: aiSlide.description
         });
       }
       break;
 
     case "infographic-bullets":
+      // Add subtitle for infographic slides
+      const infoSubtitle = aiSlide.subtitle || "";
+      slide.subtitle = {
+        text: infoSubtitle,
+        _id: { $oid: uuidv4().replace(/-/g, '').slice(0, 24) }
+      };
+      slide.content_metadata.subtitle = infoSubtitle;
+
       if (aiSlide.bullets) {
         aiSlide.bullets.forEach((bullet) => {
           slide.elements.push({
+            id: uuidv4(),
+            element_id: `element-${uuidv4()}`,
             element_type: "bullet_point",
-            text: bullet,
-            id: uuidv4()
+            text: bullet
           });
         });
       }
       break;
 
     default: // Content slides including content-split
+      // Add subtitle for content slides
+      const contentSubtitle = aiSlide.subtitle || "";
+      slide.subtitle = {
+        text: contentSubtitle,
+        _id: { $oid: uuidv4().replace(/-/g, '').slice(0, 24) }
+      };
+      slide.content_metadata.subtitle = contentSubtitle;
+
       if (aiSlide.bullets && aiSlide.bullets.length > 0) {
         aiSlide.bullets.forEach((bullet) => {
           slide.elements.push({
+            id: uuidv4(),
+            element_id: `element-${uuidv4()}`,
             element_type: "bullet_point",
-            text: bullet,
-            id: uuidv4()
+            text: bullet
           });
         });
       }
@@ -475,7 +514,7 @@ function transformToTextOnlySlide(aiSlide, index, totalSlides) {
 function generateVisualSuggestion(aiSlide, slideType) {
   const title = aiSlide.title?.toLowerCase() || "";
   const content = aiSlide.bullets?.join(' ') || "";
-  
+
   // Enhanced visual suggestions based on content and slide type
   const suggestions = {
     "cover-hero": {
@@ -513,19 +552,19 @@ function generateVisualSuggestion(aiSlide, slideType) {
   };
 
   const slideSuggestions = suggestions[slideType] || suggestions.default;
-  
+
   for (const [keyword, suggestion] of Object.entries(slideSuggestions)) {
     if (keyword !== "default" && (title.includes(keyword) || content.includes(keyword))) {
       return suggestion;
     }
   }
-  
+
   return typeof slideSuggestions === 'string' ? slideSuggestions : (slideSuggestions.default || "professional business imagery relevant to content");
 }
 
 function generateColorPalette(title) {
   const titleLower = title?.toLowerCase() || "";
-  
+
   if (titleLower.includes('tech') || titleLower.includes('digital')) {
     return ["#667eea", "#764ba2", "#f093fb", "#4facfe"];
   } else if (titleLower.includes('health') || titleLower.includes('wellness')) {
@@ -545,7 +584,7 @@ function getContentType(slideType) {
   const types = {
     "cover-hero": "introduction",
     "content-right-image": "key points",
-    "content-left-image": "supporting details", 
+    "content-left-image": "supporting details",
     "content-split": "comparison",
     "quote-slide": "testimonial",
     "infographic-bullets": "metrics",
@@ -572,17 +611,17 @@ function getDefaultTitle(index, slideType) {
 function generateIntelligentFallbackSlides(slideCount, rawText) {
   const slideStructure = SLIDE_TYPE_DEFINITIONS[slideCount] || SLIDE_TYPE_DEFINITIONS[5];
   const fallbackSlides = [];
-  
+
   // Extract key phrases from raw text for more relevant fallbacks
   const words = rawText.split(/\s+/).slice(0, 50);
   const keyPhrases = [...new Set(words.filter(word => word.length > 4))].slice(0, 10);
-  
+
   for (let i = 0; i < slideCount; i++) {
     const slideType = slideStructure.slides[i]?.type || "content-right-image";
     const fallbackData = {
       title: getDefaultTitle(i, slideType),
       subtitle: slideType === "cover-hero" ? "Professional presentation overview" : undefined,
-      bullets: slideType === "cover-hero" 
+      bullets: slideType === "cover-hero"
         ? generateFallbackBullets(getDefaultTitle(i, slideType), 3, "cover-hero")
         : generateFallbackBullets(getDefaultTitle(i, slideType), slideType === "content-split" ? 4 : 3, slideType),
       ...(slideType === "quote-slide" && { quote: "Fallback insightful quote.", author: "Expert", context: "Relevant context." }),
