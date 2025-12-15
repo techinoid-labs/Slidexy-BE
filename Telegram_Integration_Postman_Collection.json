@@ -1,0 +1,218 @@
+{
+  "info": {
+    "name": "Telegram Integration - Neuro Engine",
+    "description": "API endpoints for Telegram Bot integration. Share presentation slides directly to Telegram chats.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{jwt_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000/api/telegram",
+      "type": "string"
+    },
+    {
+      "key": "jwt_token",
+      "value": "your_jwt_token_here",
+      "type": "string"
+    },
+    {
+      "key": "chat_id",
+      "value": "your_telegram_chat_id_here",
+      "type": "string"
+    },
+    {
+      "key": "presentation_id",
+      "value": "your_presentation_id_here",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Setup Instructions",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/bot-info",
+          "host": ["{{base_url}}"],
+          "path": ["bot-info"]
+        },
+        "description": "# Telegram Integration Setup\n\n## Step 1: Create Telegram Bot\n1. Open Telegram and search for @BotFather\n2. Send `/newbot` command\n3. Follow instructions to create your bot\n4. Copy the bot token (e.g., `123456789:ABCdefGHIjklMNOpqrsTUVwxyz`)\n5. Add token to `.env` file as `TELEGRAM_BOT_TOKEN`\n\n## Step 2: Get Your Chat ID\n1. Start a conversation with your bot on Telegram\n2. Send any message to the bot\n3. Visit: `https://api.telegram.org/bot<YOUR_BOT_TOKEN>/getUpdates`\n4. Find your chat ID in the JSON response: `\"chat\":{\"id\":123456789}`\n5. Save this chat ID for connecting\n\n## Step 3: Test Connection\nUse this request to verify bot is configured correctly."
+      },
+      "response": []
+    },
+    {
+      "name": "1. Get Bot Info",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/bot-info",
+          "host": ["{{base_url}}"],
+          "path": ["bot-info"]
+        },
+        "description": "Get information about the configured Telegram bot.\n\nReturns:\n- Bot ID\n- Bot username\n- Bot first name\n- Bot link for users to start conversation"
+      },
+      "response": []
+    },
+    {
+      "name": "2. Connect Telegram",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"chatId\": \"{{chat_id}}\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/connect",
+          "host": ["{{base_url}}"],
+          "path": ["connect"]
+        },
+        "description": "Connect your Telegram account by providing your chat ID.\n\nBefore calling this endpoint:\n1. Start a conversation with your bot\n2. Get your chat ID from bot updates\n3. Provide the chat ID in the request body\n\nThe backend will:\n- Verify the chat ID is valid\n- Store the connection in your user profile\n- Send a test message to confirm\n\nRequest Body:\n```json\n{\n  \"chatId\": \"123456789\"\n}\n```"
+      },
+      "response": []
+    },
+    {
+      "name": "3. Get Connection Status",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/status",
+          "host": ["{{base_url}}"],
+          "path": ["status"]
+        },
+        "description": "Check if user has connected their Telegram account.\n\nReturns:\n- `connected`: Boolean indicating connection status\n- `profile`: Telegram profile information (if connected)\n- `connectedAt`: Timestamp of when connection was established"
+      },
+      "response": []
+    },
+    {
+      "name": "4. Share Presentation Slide",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"presentationId\": \"{{presentation_id}}\",\n  \"slideIndex\": 0,\n  \"message\": \"Check out this amazing slide! 🎨\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/share",
+          "host": ["{{base_url}}"],
+          "path": ["share"]
+        },
+        "description": "Share a presentation slide to your Telegram chat.\n\nThe backend will:\n1. Fetch the presentation and slide\n2. Download the slide image\n3. Format the slide content (title, subtitle, bullet points)\n4. Send to your Telegram chat with image and caption\n\nRequest Body:\n```json\n{\n  \"presentationId\": \"abc-123-def\",\n  \"slideIndex\": 0,\n  \"message\": \"Optional custom message\"\n}\n```\n\nNote:\n- `message` is optional\n- Slide must have an image\n- Caption includes slide title, text, and Neuro Engine branding"
+      },
+      "response": []
+    },
+    {
+      "name": "5. Share Custom Content",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"imageUrl\": \"https://picsum.photos/800/600\",\n  \"message\": \"Check out this custom image! 🚀\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/share-custom",
+          "host": ["{{base_url}}"],
+          "path": ["share-custom"]
+        },
+        "description": "Share custom content with external image URL.\n\nUseful for:\n- Sharing images from other sources\n- Testing the sharing functionality\n- Custom content not in presentations\n\nRequest Body:\n```json\n{\n  \"imageUrl\": \"https://example.com/image.jpg\",\n  \"message\": \"Your custom message here\"\n}\n```\n\nThe backend will:\n1. Download image from provided URL\n2. Send to Telegram with your message\n3. Add Neuro Engine branding"
+      },
+      "response": []
+    },
+    {
+      "name": "6. Send Text Message",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"message\": \"Hello from Neuro Engine! 🚀\\n\\nThis is a *test message* with **Markdown** formatting.\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/send-message",
+          "host": ["{{base_url}}"],
+          "path": ["send-message"]
+        },
+        "description": "Send a simple text message to your Telegram chat.\n\nSupports Markdown formatting:\n- `*bold*` or `**bold**`\n- `_italic_` or `__italic__`\n- `[link text](URL)`\n- `` `code` ``\n- ```` ```code block``` ````\n\nRequest Body:\n```json\n{\n  \"message\": \"Your message with *Markdown* support\"\n}\n```"
+      },
+      "response": []
+    },
+    {
+      "name": "7. Disconnect Telegram",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/disconnect",
+          "host": ["{{base_url}}"],
+          "path": ["disconnect"]
+        },
+        "description": "Disconnect your Telegram account.\n\nThis will:\n- Remove chat ID from your profile\n- Clear Telegram profile information\n- Disable sharing until reconnected\n\nYou can reconnect anytime by calling the connect endpoint again."
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// This script runs before each request",
+          "// You can add custom logic here if needed",
+          "console.log('Making request to:', pm.request.url.toString());"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// This script runs after each request",
+          "pm.test('Status code is successful', function () {",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "",
+          "pm.test('Response has JSON body', function () {",
+          "    pm.response.to.be.json;",
+          "});"
+        ]
+      }
+    }
+  ]
+}

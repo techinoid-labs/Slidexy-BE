@@ -29,6 +29,10 @@ const imageDeckRoutes = require("./routes/imageDeckRoutes"); // Image Deck Servi
 const stylesheetDeckRoutes = require("./routes/stylesheetDeckRoutes"); // Stylesheet Deck Service
 const unifiedWebDeckRoutes = require("./routes/unifiedWebDeckRoutes"); // Unified Web Deck Service (CEO Final)
 const websiteGeneratorRoutes = require("./routes/websiteGeneratorRoutes"); // Website Generator Service (CEO New Feature)
+const linkedinRoutes = require("./routes/linkedinRoutes"); // LinkedIn Integration
+const telegramRoutes = require("./routes/telegramRoutes"); // Telegram Integration
+const redditRoutes = require("./routes/redditRoutes"); // Reddit Integration
+const discordRoutes = require("./routes/discordRoutes"); // Discord Integration
 
 // Controllers
 const {
@@ -141,6 +145,18 @@ app.use("/api/website-zip-download", websiteDownloadRoutes);
 // --- Dynamic Website Generator Service (Enhanced version with adaptive structure) ---
 const dynamicWebsiteRoutes = require("./routes/dynamicWebsiteRoutes");
 app.use("/api/dynamic-website", dynamicWebsiteRoutes);
+
+// --- LinkedIn Integration ---
+app.use("/api/linkedin", linkedinRoutes);
+
+// --- Telegram Integration ---
+app.use("/api/telegram", telegramRoutes);
+
+// --- Reddit Integration ---
+app.use("/api/reddit", redditRoutes);
+
+// --- Discord Integration ---
+app.use("/api/discord", discordRoutes);
 
 // --- Slide/Presentation APIs ---
 app.post("/generate-slides", validate, generateSlidesHandler);
