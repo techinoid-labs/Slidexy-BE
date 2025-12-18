@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stripe: Financial Infrastructure for Online Revenue Growth</title>
+    <meta name="description" content="Stripe provides the financial infrastructure to grow your online revenue with AI-powered tools, fraud prevention, and scalable solutions for businesses worldwide.">
+    <meta name="keywords" content="Stripe, financial infrastructure, online payments, revenue growth, AI, machine learning, fraud prevention, global payments, enterprise solutions">
+    <link rel="canonical" href="https://stripe.com/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://stripe.com/">
+    <meta property="og:title" content="Stripe: Financial Infrastructure for Online Revenue Growth">
+    <meta property="og:description" content="Stripe provides the financial infrastructure to grow your online revenue with AI-powered tools, fraud prevention, and scalable solutions for businesses worldwide.">
+    <meta property="og:image" content="https://images.stripeassets.com/fzn2n1nzq965/4zeFefnpB8yh7U3qSQRktP/d583ee93dd3d8910fa27296748699a0f/bmw-landscape.png?q=80&w=1836"> <!-- Using a relevant landscape image for OG -->
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://stripe.com/">
+    <meta property="twitter:title" content="Stripe: Financial Infrastructure for Online Revenue Growth">
+    <meta property="twitter:description" content="Stripe provides the financial infrastructure to grow your online revenue with AI-powered tools, fraud prevention, and scalable solutions for businesses worldwide.">
+    <meta property="twitter:image" content="https://images.stripeassets.com/fzn2n1nzq965/4zeFefnpB8yh7U3qSQRktP/d583ee93dd3d8910fa27296748699a0f/bmw-landscape.png?q=80&w=1836"> <!-- Using a relevant landscape image for Twitter -->
+
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+    <style>
+        :root {
+            --color-black: #000000;
+            --color-white: #ffffff;
+            --color-blue: #0000ee;
+            --color-gray-dark: #4f5b76;
+        }
+        body { margin: 0; font-family: sans-serif; color: var(--color-black); background-color: var(--color-white); }
+        .skip-link { position: absolute; top: -40px; left: 0; background: var(--color-blue); color: var(--color-white); padding: 8px; z-index: 1000; transition: top 0.3s; }
+        .skip-link:focus { top: 0; }
+        .site-header { position: fixed; width: 100%; top: 0; left: 0; background-color: var(--color-white); border-bottom: 1px solid #eee; z-index: 999; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; }
+        .logo { height: 30px; }
+        .main-nav .nav-list { list-style: none; margin: 0; padding: 0; display: flex; gap: 25px; }
+        .main-nav .nav-list a { text-decoration: none; color: var(--color-black); font-weight: 500; padding: 5px 0; display: block; }
+        .header-cta .btn { background-color: var(--color-blue); color: var(--color-white); padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: 600; }
+        .hero-section { margin-top: 80px; padding: 60px 0; background-color: #f8f8f8; text-align: center; }
+        .hero-inner { display: flex; flex-direction: column; align-items: center; gap: 40px; }
+        .hero-title { font-size: 3rem; margin-bottom: 20px; color: var(--color-black); }
+        .hero-description { font-size: 1.2rem; line-height: 1.6; color: var(--color-gray-dark); max-width: 800px; margin: 0 auto 30px; }
+        .hero-actions .btn { margin: 0 10px; padding: 12px 25px; border-radius: 5px; text-decoration: none; font-weight: 600; display: inline-block; }
+        .hero-actions .btn-primary { background-color: var(--color-blue); color: var(--color-white); }
+        .hero-actions .btn-secondary { background-color: var(--color-white); color: var(--color-blue); border: 1px solid var(--color-blue); }
+        .hero-image img { max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .section-padding { padding: 80px 0; }
+        .text-center { text-align: center; }
+        .grid { display: grid; gap: 30px; }
+        .grid-cols-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        .grid-cols-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+        .flex { display: flex; align-items: center; justify-content: center; gap: 40px; }
+        .flex-reverse { flex-direction: row-reverse; }
+        .flex-col { flex-direction: column; }
+        .content-block { flex: 1; }
+        .content-image { flex: 1; text-align: center; }
+        .content-image img { max-width: 100%; height: auto; border-radius: 8px; }
+        .feature-card { background-color: #fdfdfd; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: left; }
+        .feature-card h3 { color: var(--color-blue); margin-top: 0; }
+        .feature-card p { color: var(--color-gray-dark); }
+        .feature-card img { max-width: 100%; height: auto; border-radius: 4px; margin-bottom: 15px; }
+        figure { margin: 0; padding: 0; }
+        figcaption { font-style: italic; color: var(--color-gray-dark); margin-top: 10px; font-size: 0.9em; }
+        .cta-section { background-color: var(--color-black); color: var(--color-white); padding: 80px 0; text-align: center; }
+        .cta-section h2 { color: var(--color-white); font-size: 2.5rem; margin-bottom: 20px; }
+        .cta-section p { font-size: 1.1rem; max-width: 700px; margin: 0 auto 30px; line-height: 1.6; }
+        .cta-section .btn { background-color: var(--color-blue); color: var(--color-white); padding: 15px 30px; border-radius: 5px; text-decoration: none; font-weight: 700; font-size: 1.1em; }
+        .site-footer { background-color: var(--color-black); color: var(--color-white); padding: 60px 0; font-size: 0.9em; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; }
+        .footer-column h3 { color: var(--color-white); margin-bottom: 20px; font-size: 1.1em; }
+        .footer-column ul { list-style: none; margin: 0; padding: 0; }
+        .footer-column ul li { margin-bottom: 10px; }
+        .footer-column ul li a { text-decoration: none; color: #ccc; }
+        .footer-column ul li a:hover { color: var(--color-white); }
+        .footer-bottom { text-align: center; margin-top: 40px; border-top: 1px solid #333; padding-top: 20px; }
+        .footer-bottom p { color: #aaa; margin: 5px 0; }
+        .footer-bottom address { font-style: normal; margin-top: 10px; color: #aaa; }
+        .mobile-menu-toggle { display: none; } /* Hidden by default, for desktop */
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-section { margin-top: 60px; padding: 40px 0; }
+            .hero-title { font-size: 2.2rem; }
+            .hero-description { font-size: 1rem; }
+            .hero-actions .btn { padding: 10px 20px; font-size: 0.9em; margin: 0 5px; }
+            .section-padding { padding: 40px 0; }
+            .flex { flex-direction: column; gap: 30px; }
+            .flex-reverse { flex-direction: column; }
+            .header-inner { flex-wrap: wrap; }
+            .main-nav { order: 3; width: 100%; margin-top: 10px; }
+            .nav-list { flex-direction: column; align-items: center; display: none; }
+            .nav-list.is-open { display: flex; }
+            .mobile-menu-toggle { display: block; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--color-black); }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <header class="site-header" role="banner">
+        <div class="container header-inner">
+            <a href="/" class="logo-link" aria-label="Stripe Home">
+                <img src="https://images.stripeassets.com/fzn2n1nzq965/6iLtU8qBUtE42tshpmZxY2/ac5b7b7a181524237b942e43620fceef/chair.jpg?q=80&w=264&fm=jpg" alt="Stripe Logo" class="logo">
+            </a>
+            <nav class="main-nav" role="navigation" aria-label="Main navigation">
+                <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+                    ☰
+                </button>
+                <ul class="nav-list">
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#solutions">Solutions</a></li>
+                    <li><a href="#developers">Developers</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                </ul>
+            </nav>
+            <div class="header-cta">
+                <a href="#contact" class="btn btn-primary">Contact Sales</a>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" role="main">
+        <section class="hero-section" role="banner">
+            <div class="container hero-inner">
+                <div class="hero-content">
+                    <h1 class="hero-title">Stripe: Financial Infrastructure to Grow Your Online Revenue with AI</h1>
+                    <p class="hero-description">Power your business with a unified platform for payments, fraud prevention, and financial management, all enhanced by intelligent AI.</p>
+                    <div class="hero-actions">
+                        <a href="#solutions" class="btn btn-primary btn-lg">Explore Solutions</a>
+                        <a href="#contact" class="btn btn-secondary btn-lg">Get Started</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.stripeassets.com/fzn2n1nzq965/6iLtU8qBUtE42tshpmZxY2/ac5b7b7a181524237b942e43620fceef/chair.jpg?q=80&w=264&fm=jpg" alt="Modern desk setup with a computer showing financial data, symbolizing Stripe's digital infrastructure." loading="eager">
+                </div>
+            </div>
+        </section>
+
+        <section id="solutions" class="section-padding" aria-labelledby="solutions-heading">
+            <div class="container">
+                <h2 id="solutions-heading" class="text-center">Unlock Growth with Stripe's Comprehensive Tools</h2>
+                <p class="text-center hero-description">Stripe provides essential tools designed to maximize your revenue, streamline operations, and prepare your business for global scale.</p>
+                <div class="grid grid-cols-2">
+                    <article class="feature-card" aria-labelledby="platform-title">
+                        <figure>
+                            <img src="https://images.stripeassets.com/fzn2n1nzq965/1ctgMwd2p9euFW9pPSM7jR/451d5e987ca7fa14060526e6b1766a8b/bmw-portrait.png?q=80&w=1024" alt="Portrait image of a BMW vehicle, representing premium enterprise solutions." loading="lazy">
+                            <figcaption>Sophisticated payment solutions for global enterprises like BMW.</figcaption>
+                        </figure>
+                        <h3 id="platform-title">Unified Platform for Financial Services</h3>
+                        <p>Access a single, integrated platform for payments, treasury management, and financial services, simplifying your entire business ecosystem.</p>
+                        <ul class="bullet-list">
+                            <li>Process payments globally with ease and security.</li>
+                            <li>Manage subscriptions and recurring revenue streams.</li>
+                            <li>Automate invoicing and reconciliation.</li>
+                            <li>Optimize payouts to vendors and users.</li>
+                        </ul>
+                    </article>
+                    <article class="feature-card" aria-labelledby="fraud-ai-title">
+                        <figure>
+                            <img src="https://images.stripeassets.com/fzn2n1nzq965/4jq1Wguyus7CA7yc2kxMgn/cf7b01aadf305daef40ac8acab654510/home-enterprise-amazon.png?q=80&w=1836" alt="A screenshot showing Amazon's payment interface powered by Stripe." loading="lazy">
+                            <figcaption>Seamless integration for market leaders such as Amazon.</figcaption>
+                        </figure>
+                        <h3 id="fraud-ai-title">AI-Powered Fraud Prevention & Revenue Optimization</h3>
+                        <p>Leverage machine learning to combat fraud, increase authorization rates, and recover more revenue, ensuring healthy growth for your online business.</p>
+                        <ul class="bullet-list">
+                            <li>Intelligent fraud detection with Stripe Radar.</li>
+                            <li>Dynamic 3D Secure for enhanced security.</li>
+                            <li>Smart retry logic for failed payments.</li>
+                            <li>Insights and analytics to inform your strategy.</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="brands" class="section-padding" aria-labelledby="showcase-heading">
+            <div class="container text-center">
+                <h2 id="showcase-heading">Stripe's Visual Showcase: Brands, Solutions, and Enterprise Scale</h2>
+                <p class="hero-description">Discover the diverse range of industries and leading companies that trust Stripe for their critical financial operations, from global logistics to e-commerce giants.</p>
+                <div class="grid grid-cols-3">
+                    <figure class="brand-showcase-item">
+                        <img src="https://images.stripeassets.com/fzn2n1nzq965/4zeFefnpB8yh7U3qSQRktP/d583ee93dd3d8910fa27296748699a0f/bmw-landscape.png?q=80&w=1836"
+                             srcset="https://images.stripeassets.com/fzn2n1nzq965/1ctgMwd2p9euFW9pPSM7jR/451d5e987ca7fa14060526e6b1766a8b/bmw-portrait.png?q=80&w=1024 1024w,
+                                     https://images.stripeassets.com/fzn2n1nzq965/4zeFefnpB8yh7U3qSQRktP/d583ee93dd3d8910fa27296748699a0f/bmw-landscape.png?q=80&w=1836 1836w"
+                             sizes="(max-width: 768px) 100vw, 33vw"
+                             alt="BMW vehicle illustrating Stripe's premium brand support and scalable financial solutions"
+                             loading="lazy">
+                        <figcaption>This striking landscape image featuring a BMW vehicle likely serves to illustrate the caliber of premium brands or specific industries empowered by Stripe's financial infrastructure. It visually represents the sophisticated enterprises that leverage Stripe for seamless payment processing, advanced financial tooling, and scalable business solutions, underscoring Stripe's diverse client portfolio and global reach.</figcaption>
+                    </figure>
+                    <figure class="brand-showcase-item">
+                        <img src="https://images.stripeassets.com/fzn2n1nzq965/5DaqGgXeMbxSIqQj9WSqSF/8142c0c6e15b27a8bb6c8a0f8a5d4dfb/home-enterprise-amazon-portrait.png?q=80&w=1024" alt="Amazon's logo prominently displayed, signifying Stripe's support for large-scale e-commerce operations." loading="lazy">
+                        <figcaption>Stripe powers the payment experience for global leaders like Amazon, handling immense transaction volumes with precision and reliability.</figcaption>
+                    </figure>
+                    <figure class="brand-showcase-item">
+                        <img src="https://images.stripeassets.com/fzn2n1nzq965/7szA8TJHWKDIEuCbu6Yblm/4548db61648d063fb7e7dddfca04ab79/home-enterprise-maersk-portrait.png?q=80&w=1024" alt="Portrait image of Maersk's branding, indicating Stripe's role in global logistics and shipping finance." loading="lazy">
+                        <figcaption>Maersk leverages Stripe's robust platform for complex international transactions and supply chain financial management.</figcaption>
+                    </figure>
+                    <figure class="brand-showcase-item">
+                        <img src="https://images.stripeassets.com/fzn2n1nzq965/5F0uhf7cRg9vhR6NmgWzzI/664e14ddebb91375f89f8dcc75242dc0/home-enterprise-maersk.png?q=80&w=1836" alt="Wide view of Maersk container ships, representing global trade and complex financial flows managed by Stripe." loading="lazy">
+                        <figcaption>From freight to finance, Stripe enables Maersk to streamline its extensive global operations.</figcaption>
+                    </figure>
+                    <figure class="brand-showcase-item">
+                        <img src="https://images.stripeassets.com/fzn2n1nzq965/4jq1Wguyus7CA7yc2kxMgn/cf7b01aadf305daef40ac8acab654510/home-enterprise-amazon.png?q=80&w=1836" alt="Dashboard showing Stripe's integration with Amazon, highlighting financial analytics." loading="lazy">
+                        <figcaption>Advanced analytics and reporting for major e-commerce platforms, offering deep insights into performance.</figcaption>
+                    </figure>
+                    <figure class="brand-showcase-item">
+                        <img src="https://images.stripeassets.com/fzn2n1nzq965/1ctgMwd2p9euFW9pPSM7jR/451d5e987ca7fa14060526e6b1766a8b/bmw-portrait.png?q=80&w=1024" alt="Close-up of a BMW's interior, implying a focus on customer experience in premium transactions powered by Stripe." loading="lazy">
+                        <figcaption>Enhancing the customer experience with smooth, secure transactions for luxury automotive brands.</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <section id="design" class="section-padding" aria-labelledby="design-heading">
+            <div class="container flex flex-reverse">
+                <div class="content-block">
+                    <h2 id="design-heading">High Contrast Digital with Classic Typography</h2>
+                    <p>At Stripe, our design philosophy marries cutting-edge digital aesthetics with the timeless elegance of classic typography. This approach ensures not only a visually stunning user experience but also unparalleled clarity and functionality.</p>
+                    <dl>
+                        <dt>Crisp, Legible Interfaces</dt>
+                        <dd>Designed for optimal readability across all devices, our interfaces prioritize clarity and directness, making complex financial data easily digestible.</dd>
+                        <dt>Timeless Aesthetic</dt>
+                        <dd>We embrace a design language that prioritizes consistency and user focus, ensuring a sophisticated and enduring brand presence that transcends fleeting trends.</dd>
+                        <dt>Strategic Use of Color</dt>
+                        <dd>Our palette leverages high contrast to guide user attention effectively, highlighting key interactions and essential information without visual clutter.</dd>
+                        <dt>Meticulous Type Selection</dt>
+                        <dd>Carefully chosen classic typefaces ensure brand consistency and contribute to an elevated user experience, making every interaction feel polished and professional.</dd>
+                    </dl>
+                </div>
+                <div class="content-image">
+                    <figure>
+                        <img src="https://images.stripeassets.com/fzn2n1nzq965/6iLtU8qBUtE42tshpmZxY2/ac5b7b7a181524237b942e43620fceef/chair.jpg?q=80&w=264&fm=jpg" alt="A modern chair with a clean, high-contrast design, embodying classic typography and digital aesthetic principles." loading="lazy">
+                        <figcaption>An example of high contrast digital design with classic typography, reflecting Stripe's aesthetic principles.</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <section id="cta" class="cta-section" aria-labelledby="cta-heading">
+            <div class="container">
+                <h2 id="cta-heading">Ready to Grow Your Business with Stripe?</h2>
+                <p>Join millions of businesses worldwide that trust Stripe to power their online revenue, from startups to the largest enterprises. Get started today and transform your financial operations.</p>
+                <a href="#contact" class="btn btn-primary">Start Building Now</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+        <div class="container footer-grid">
+            <div class="footer-column" aria-labelledby="footer-products-heading">
+                <h3 id="footer-products-heading">Products</h3>
+                <ul>
+                    <li><a href="#">Payments</a></li>
+                    <li><a href="#">Billing</a></li>
+                    <li><a href="#">Connect</a></li>
+                    <li><a href="#">Radar</a></li>
+                    <li><a href="#">Issuing</a></li>
+                    <li><a href="#">Terminal</a></li>
+                </ul>
+            </div>
+            <div class="footer-column" aria-labelledby="footer-company-heading">
+                <h3 id="footer-company-heading">Company</h3>
+                <ul>
+                    <li><a href="#">About Stripe</a></li>
+                    <li><a href="#">Customers</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Newsroom</a></li>
+                    <li><a href="#">Partners</a></li>
+                </ul>
+            </div>
+            <div class="footer-column" aria-labelledby="footer-resources-heading">
+                <h3 id="footer-resources-heading">Resources</h3>
+                <ul>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Guides</a></li>
+                    <li><a href="#">Privacy & Terms</a></li>
+                </ul>
+            </div>
+            <div class="footer-column" aria-labelledby="footer-contact-heading">
+                <h3 id="footer-contact-heading">Contact</h3>
+                <address>
+                    Stripe, Inc.<br>
+                    185 Berry Street, Suite 550<br>
+                    San Francisco, CA 94107, USA<br>
+                    <a href="mailto:support@stripe.com">support@stripe.com</a><br>
+                    <a href="tel:+18777864402">+1 (877) 786-4402</a>
+                </address>
+                <p>Follow us:</p>
+                <ul>
+                    <li><a href="#" aria-label="Stripe on Twitter">Twitter</a></li>
+                    <li><a href="#" aria-label="Stripe on LinkedIn">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <time datetime="2023">2023</time> Stripe, Inc.</p>
+            <p>All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
