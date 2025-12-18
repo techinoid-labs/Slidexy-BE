@@ -146,17 +146,9 @@ app.use("/api/website-zip-download", websiteDownloadRoutes);
 const dynamicWebsiteRoutes = require("./routes/dynamicWebsiteRoutes");
 app.use("/api/dynamic-website", dynamicWebsiteRoutes);
 
-// --- LinkedIn Integration ---
-app.use("/api/linkedin", linkedinRoutes);
-
-// --- Telegram Integration ---
-app.use("/api/telegram", telegramRoutes);
-
-// --- Reddit Integration ---
-app.use("/api/reddit", redditRoutes);
-
-// --- Discord Integration ---
-app.use("/api/discord", discordRoutes);
+// --- Improved Dynamic Website Generator Service (Enhanced with better structure & responsiveness) ---
+const improvedDynamicWebsiteRoutes = require("./routes/improvedDynamicWebsiteRoutes");
+app.use("/api/improved-dynamic", improvedDynamicWebsiteRoutes);
 
 // --- Slide/Presentation APIs ---
 app.post("/generate-slides", validate, generateSlidesHandler);
