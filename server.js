@@ -29,6 +29,10 @@ const imageDeckRoutes = require("./routes/imageDeckRoutes"); // Image Deck Servi
 const stylesheetDeckRoutes = require("./routes/stylesheetDeckRoutes"); // Stylesheet Deck Service
 const unifiedWebDeckRoutes = require("./routes/unifiedWebDeckRoutes"); // Unified Web Deck Service (CEO Final)
 const websiteGeneratorRoutes = require("./routes/websiteGeneratorRoutes"); // Website Generator Service (CEO New Feature)
+const linkedinRoutes = require("./routes/linkedinRoutes"); // LinkedIn Integration
+const telegramRoutes = require("./routes/telegramRoutes"); // Telegram Integration
+const redditRoutes = require("./routes/redditRoutes"); // Reddit Integration
+const discordRoutes = require("./routes/discordRoutes"); // Discord Integration
 
 // Controllers
 const {

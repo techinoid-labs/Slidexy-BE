@@ -1,25 +1,39 @@
-const { imageGenLimiter } = require("../utils/limiter");
 const { textGenModel } = require("../utils/geminiModels");
-const { generateImageWithRetry } = require("../utils/runwareImageGen");
 const crypto = require("crypto");
 const sharp = require("sharp");
-const { uploadToSpaces, deleteFromSpaces } = require("../utils/s3Uploader");
-const { getFallbackImage } = require("../utils/imageFallback");
+const axios = require("axios");
+const { uploadToSpaces } = require("../utils/s3Uploader");
+
+const PEXELS_API_KEY = process.env.PEXELS_API_KEY;
+if (!PEXELS_API_KEY) {
+  console.error("PEXELS_API_KEY is not set in .env");
+}
+
+const PEXELS_BASE_URL = "https://api.pexels.com/v1";
+
+// Simple in-memory tracking of recent requests (per hour)
+const requestLog = [];
+const MAX_REQUESTS_PER_HOUR = 190; // Stay under 200
+
+function canMakeRequest() {
+  const oneHourAgo = Date.now() - 60 * 60 * 1000;
+  const recent = requestLog.filter(t => t > oneHourAgo);
+  return recent.length < MAX_REQUESTS_PER_HOUR;
+}
+
+function logRequest() {
+  requestLog.push(Date.now());
+  // Clean old entries
+  const oneHourAgo = Date.now() - 60 * 60 * 1000;
+  while (requestLog.length && requestLog[0] < oneHourAgo) requestLog.shift();
+}
 
 async function convertToWebP(base64Image) {
-  const buffer = Buffer.from(base64Image.split(",")[1], "base64");
-
-  // Get image metadata to check original dimensions
+  const buffer = Buffer.from(base64Image.split(",")[1] || base64Image, "base64");
   const metadata = await sharp(buffer).metadata();
-  console.log(
-    `Original image: ${metadata.width}x${metadata.height}, format: ${metadata.format}`
-  );
-
-  // Only resize if image is smaller than target, otherwise keep original size
-  const shouldResize = metadata.width < 1920 || metadata.height < 1080;
 
   let sharpInstance = sharp(buffer);
-
+  const shouldResize = metadata.width < 1920 || metadata.height < 1080;
   if (shouldResize) {
     sharpInstance = sharpInstance.resize({
       width: 1920,
@@ -30,18 +44,77 @@ async function convertToWebP(base64Image) {
   }
 
   const webpBuffer = await sharpInstance
-    .webp({
-      quality: 98,
-      effort: 6,
-      lossless: false,
-      nearLossless: false,
-      smartSubsample: false,
-    })
+    .webp({ quality: 98, effort: 6 })
     .toBuffer();
 
-  console.log(`Converted to WebP: ${webpBuffer.length} bytes`);
   return `data:image/webp;base64,${webpBuffer.toString("base64")}`;
 }
+async function searchPexelsPhotos(query, page = 1, perPage = 15) {
+  if (!canMakeRequest()) {
+    console.warn("Pexels rate limit near — skipping request");
+    return null;
+  }
+
+  try {
+    const response = await axios.get(`${PEXELS_BASE_URL}/search`, {
+      headers: { Authorization: PEXELS_API_KEY },
+      params: {
+        query: query || "business presentation abstract",
+        orientation: "landscape",
+        size: "large",
+        per_page: perPage,
+        page,
+      },
+      timeout: 10000,
+    });
+
+    logRequest();
+    return response.data;
+  } catch (err) {
+    console.error("Pexels search failed:", err.response?.data || err.message);
+    return null;
+  }
+}
+
+async function getPexelsFallbackImage({ query, index, slide }) {
+  const searchQuery = query || slide.slide_title?.text || slide.topic || "professional presentation";
+
+  // Try first page
+  let data = await searchPexelsPhotos(searchQuery, 1, 30);
+  if (!data || data.photos.length === 0) {
+    // Fallback to curated if search gives nothing
+    try {
+      const curated = await axios.get(`${PEXELS_BASE_URL}/curated`, {
+        headers: { Authorization: PEXELS_API_KEY },
+        params: { per_page: 30, page: 1 },
+        timeout: 10000,
+      });
+      logRequest();
+      data = curated.data;
+    } catch (e) {
+      console.error("Pexels curated also failed");
+      return null;
+    }
+  }
+
+  if (!data || data.photos.length === 0) return null;
+
+  // Pick a good photo (not too small, prefer large2x)
+  const suitable = data.photos
+    .filter(p => p.width >= 2000 || p.src.large2x)
+    .sort((a, b) => b.width - a.width);
+
+  const photo = suitable[0] || data.photos[0];
+
+  return {
+    image_url: photo.src.large2x || photo.src.large || photo.src.original,
+    image_caption: photo.alt || `Photo by ${photo.photographer} on Pexels`,
+    photographer: photo.photographer,
+    pexels_url: photo.url,
+    fallback_used: "pexels",
+  };
+}
+
 
 // Enhanced art style definitions with clear character policies
 const ART_STYLE_PROFILES = {
@@ -756,160 +829,97 @@ async function generateImage(
   currentSlideNum = null,
   totalSlides = null
 ) {
-  try {
-    // Predefined (trial/quota) - keep existing logic
-    if (planResponseType === "predefined") {
-      try {
-        const fallbackQuery =
-          slide?.slide_title.text ||
-          slide?.topic ||
-          slide?.title ||
-          rawText?.substring(0, 50) ||
-          "presentation";
+  // === PREDEFINED / TRIAL MODE → Use Pexels directly ===
+  if (planResponseType === "predefined") {
+    const result = await getPexelsFallbackImage({
+      query: slide?.slide_title?.text || rawText?.substring(0, 50) || "presentation",
+      index,
+      slide,
+    });
 
-        const unsplashResult = await getFallbackImage({
-          query: fallbackQuery,
-          index,
-          slide,
-        });
-
-        if (unsplashResult && unsplashResult.image_url) {
-          console.log(`✅ Unsplash image used for predefined slide ${index}`);
-          return {
-            ...slide,
-            image_url: unsplashResult.image_url,
-            image_caption: unsplashResult.image_caption,
-            fallback_used: unsplashResult.fallback_used,
-          };
-        }
-      } catch (unsplashErr) {
-        console.warn(
-          `⚠️ Unsplash fallback failed for predefined slide ${index}:`,
-          unsplashErr.message
-        );
-      }
-
-      const fallback = `https://placehold.co/960x540/6c5ce7/ffffff?text=Slide+${index + 1}`;
+    if (result) {
+      console.log(`Pexels image used for predefined slide ${index + 1}`);
       return {
-        ...slide,
-        image_url: fallback,
-        image_caption: "Placeholder image (trial quota reached)",
-        fallback_used: "placeholder",
+        image_url: result.image_url,
+        image_caption: result.image_caption,
+        photographer: result.photographer,
+        pexels_url: result.pexels_url,
+        fallback_used: result.fallback_used,
+        art_style: slide.art_style,
+        art_palette: slide.art_palette,
       };
     }
 
-    // 🟦 RUNWARE AI image generation flow
-    if (progressCallback && currentSlideNum && totalSlides) {
-      progressCallback(currentSlideNum, totalSlides, 'generating');
-    }
-
-    const artKnowledge = await generateArtKnowledge(slide, rawText, artStyle);
-    console.log(`Art knowledge for slide ${index}:`, {
-      style: artKnowledge.style,
-      chars: artKnowledge.numCharacters,
-      mood: artKnowledge.mood,
-    });
-
-    const detailedPrompt = await generateDetailedImagePrompt(
-      slide,
-      artKnowledge,
-      rawText
-    );
-    console.log(`Generated prompt for slide ${index} (${artKnowledge.style})`);
-
-    // 🔥 Use Runware instead of Gemini
-    console.log(`Generating image with Runware for slide ${index}...`);
-
-    const imageUrl = await imageGenLimiter.schedule(() =>
-      generateImageWithRetry(detailedPrompt, {
-        width: 1344,
-        height: 768,
-        steps: 25,
-        CFGScale: 7,
-        negativePrompt: "text, watermark, signature, letters, words, typography, blurry, distorted, low quality, artifacts, ugly, bad anatomy, deformed",
-        model: "runware:100@1", // You can change this to other Runware models
-      }, 2) // 2 retries
-    );
-
-    console.log(`Runware image generated for slide ${index}: ${imageUrl}`);
-
-    // Convert and upload
-    let finalUrl;
-    let key;
-    try {
-      if (progressCallback && currentSlideNum && totalSlides) {
-        progressCallback(currentSlideNum, totalSlides, 'uploading');
-      }
-
-      console.log(`Converting image to WebP for slide ${index}...`);
-      const webpImage = await convertToWebP(imageUrl);
-
-      key = `slide_${slide.slide_id || crypto.randomUUID()}_${Date.now()}.webp`;
-      console.log(`Uploading image for slide ${index}: ${key}`);
-
-      finalUrl = await uploadToSpaces(webpImage, key);
-      console.log(`Image uploaded for slide ${index}: ${artKnowledge.style} -> ${finalUrl}`);
-    } catch (uploadErr) {
-      console.error(`Upload failed for slide ${index}:`, uploadErr);
-      if (key) await deleteFromSpaces(key);
-      throw uploadErr;
-    }
-
+    // Final placeholder
+    const placeholder = `https://placehold.co/1920x1080/6366f1/ffffff?text=Slide+${index + 1}&font=roboto`;
     return {
-      ...slide,
-      image_url: finalUrl,
-      image_caption: artKnowledge.sceneDescription || "",
-      art_style: artKnowledge.style,
-      art_palette: artKnowledge.colorPalette,
-    };
-
-  } catch (err) {
-    console.error(`Failed to generate image for slide ${index}:`, {
-      error: err.message,
-      stack: err.stack?.substring(0, 300),
-    });
-
-    // Try Unsplash before placeholder
-    try {
-      const fallbackQuery =
-        slide?.slide_title.text ||
-        slide?.topic ||
-        slide?.title ||
-        rawText?.substring(0, 50) ||
-        "presentation";
-
-      const unsplashResult = await getFallbackImage({
-        query: fallbackQuery,
-        index,
-        slide,
-      });
-
-      if (unsplashResult && unsplashResult.image_url) {
-        console.log(`Unsplash fallback used for failed slide ${index}`);
-        return {
-          ...slide,
-          image_url: unsplashResult.image_url,
-          image_caption: unsplashResult.image_caption,
-          fallback_used: unsplashResult.fallback_used,
-        };
-      }
-    } catch (unsplashErr) {
-      console.warn(
-        `Unsplash fallback failed for slide ${index}:`,
-        unsplashErr.message
-      );
-    }
-
-    // Final fallback placeholder
-    const fallback = `https://placehold.co/960x540/6c5ce7/ffffff?text=Slide+${index + 1}`;
-    return {
-      ...slide,
-      image_url: fallback,
-      image_caption: "Image unavailable",
+      image_url: placeholder,
+      image_caption: "Placeholder (Pexels unavailable)",
       fallback_used: "placeholder",
-      error: err.message,
     };
   }
+
+  // === PAID / AI IMAGE GENERATION NOT IMPLEMENTED YET ===
+  // You said "no more Runware right now" → so we fall back to Pexels even for paid
+  console.log(`No AI generation available — using Pexels fallback for slide ${index + 1}`);
+
+  if (progressCallback && currentSlideNum && totalSlides) {
+    progressCallback(currentSlideNum, totalSlides, 'fetching-fallback');
+  }
+
+  const fallbackResult = await getPexelsFallbackImage({
+    query: slide.slide_title?.text || rawText?.substring(0, 100),
+    index,
+    slide,
+  });
+
+  if (fallbackResult) {
+    // Optional: upload Pexels image to your S3 for faster serving + watermarking
+    try {
+      if (progressCallback) progressCallback(currentSlideNum, totalSlides, 'uploading');
+
+      const response = await axios.get(fallbackResult.image_url, {
+        responseType: "arraybuffer",
+        timeout: 15000,
+      });
+      const webpData = await convertToWebP(
+        `data:${response.headers["content-type"] || "image/jpeg"};base64,${Buffer.from(response.data).toString("base64")}`
+      );
+
+      const key = `slide_${slide.slide_id || crypto.randomUUID()}_${Date.now()}.webp`;
+      const finalUrl = await uploadToSpaces(webpData, key);
+
+      return {
+        image_url: finalUrl,
+        image_caption: fallbackResult.image_caption,
+        photographer: fallbackResult.photographer,
+        pexels_url: fallbackResult.pexels_url,
+        fallback_used: "pexels-uploaded",
+        art_style: slide.art_style,
+        art_palette: slide.art_palette,
+      };
+    } catch (uploadErr) {
+      console.error("Failed to upload Pexels image:", uploadErr.message);
+      // Fall back to direct URL
+      return {
+        image_url: fallbackResult.image_url,
+        image_caption: fallbackResult.image_caption,
+        photographer: fallbackResult.photographer,
+        pexels_url: fallbackResult.pexels_url,
+        fallback_used: "pexels-direct",
+        art_style: slide.art_style,
+        art_palette: slide.art_palette,
+      };
+    }
+  }
+
+  // === LAST RESORT ===
+  const placeholder = `https://placehold.co/1920x1080/6366f1/ffffff?text=No+Image+Available&font=roboto`;
+  return {
+    image_url: placeholder,
+    image_caption: "Image unavailable",
+    fallback_used: "placeholder",
+  };
 }
 
 module.exports = { generateImage };

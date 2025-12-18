@@ -1,0 +1,259 @@
+{
+  "info": {
+    "name": "LinkedIn Integration - Neuro Engine",
+    "description": "LinkedIn OAuth and sharing integration for presentation slides",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000/api",
+      "type": "string"
+    },
+    {
+      "key": "auth_token",
+      "value": "YOUR_JWT_TOKEN",
+      "type": "string"
+    },
+    {
+      "key": "presentation_id",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "LinkedIn Integration",
+      "item": [
+        {
+          "name": "1. Initiate LinkedIn Auth",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/linkedin/auth",
+              "host": ["{{base_url}}"],
+              "path": ["linkedin", "auth"]
+            },
+            "description": "Get LinkedIn OAuth authorization URL. Redirect user to the returned authUrl to begin OAuth flow."
+          },
+          "response": []
+        },
+        {
+          "name": "2. Check Connection Status",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/linkedin/status",
+              "host": ["{{base_url}}"],
+              "path": ["linkedin", "status"]
+            },
+            "description": "Check if LinkedIn account is connected and token is valid."
+          },
+          "response": []
+        },
+        {
+          "name": "3. Share Presentation Slide",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"presentationId\": \"{{presentation_id}}\",\n  \"slideIndex\": 0,\n  \"message\": \"Check out this amazing presentation slide! 🚀\\n\\nCreated with Neuro Engine\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/linkedin/share",
+              "host": ["{{base_url}}"],
+              "path": ["linkedin", "share"]
+            },
+            "description": "Share a specific slide from a presentation to LinkedIn with custom message."
+          },
+          "response": []
+        },
+        {
+          "name": "4. Share Custom Content",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"imageUrl\": \"https://placehold.co/1200x630/6c5ce7/ffffff?text=Neuro+Engine\",\n  \"message\": \"Testing custom content sharing with Neuro Engine! 🎨\\n\\n#AI #Presentations\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/linkedin/share-custom",
+              "host": ["{{base_url}}"],
+              "path": ["linkedin", "share-custom"]
+            },
+            "description": "Share custom content with any image URL and message to LinkedIn."
+          },
+          "response": []
+        },
+        {
+          "name": "5. Disconnect LinkedIn",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/linkedin/disconnect",
+              "host": ["{{base_url}}"],
+              "path": ["linkedin", "disconnect"]
+            },
+            "description": "Disconnect LinkedIn account and remove stored credentials."
+          },
+          "response": []
+        }
+      ],
+      "description": "LinkedIn OAuth authentication and content sharing endpoints"
+    },
+    {
+      "name": "Helper Requests",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test+{{timestamp}}@example.com\",\n  \"password\": \"Password123!\",\n  \"name\": \"Test User\",\n  \"fingerprint\": \"test-fp-{{timestamp}}\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/users/register",
+              "host": ["{{base_url}}"],
+              "path": ["users", "register"]
+            },
+            "description": "Create a new user and receive JWT token in response. 'fingerprint' is required by the backend for trial tracking; use a string for testing."
+          },
+          "response": []
+        },
+        {
+          "name": "Login (Get JWT)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"Password123!\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/users/login",
+              "host": ["{{base_url}}"],
+              "path": ["users", "login"]
+            },
+            "description": "Login and receive JWT. Copy the token into {{auth_token}} for other requests."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json && json.token) {",
+                  "  pm.collectionVariables.set('auth_token', json.token);",
+                  "  pm.collectionVariables.set('test_user_id', json.userId || '');",
+                  "  console.log('Stored auth_token and test_user_id');",
+                  "}",
+                  "pm.test('Login returned token', () => pm.expect(json.token).to.be.a('string'))"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "name": "Get User Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/users/me",
+              "host": ["{{base_url}}"],
+              "path": ["users", "me"]
+            },
+            "description": "Get current user profile to verify authentication."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Presentation",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/presentation/{{presentation_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["presentation", "{{presentation_id}}"]
+            },
+            "description": "Get presentation details including slides and images."
+          },
+          "response": []
+        }
+      ],
+      "description": "Helper endpoints for testing and debugging"
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Auto-add timestamp to requests",
+          "pm.globals.set('timestamp', new Date().toISOString());"
+        ]
+      }
+    }
+  ]
+}
