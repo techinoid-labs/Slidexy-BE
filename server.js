@@ -150,6 +150,12 @@ app.use("/api/dynamic-website", dynamicWebsiteRoutes);
 const improvedDynamicWebsiteRoutes = require("./routes/improvedDynamicWebsiteRoutes");
 app.use("/api/improved-dynamic", improvedDynamicWebsiteRoutes);
 
+// --- Social Media Integrations ---
+app.use("/api/linkedin", linkedinRoutes); // LinkedIn Integration
+app.use("/api/telegram", telegramRoutes); // Telegram Integration
+app.use("/api/reddit", redditRoutes); // Reddit Integration
+app.use("/api/discord", discordRoutes); // Discord Integration
+
 // --- Slide/Presentation APIs ---
 app.post("/generate-slides", validate, generateSlidesHandler);
 app.post(
