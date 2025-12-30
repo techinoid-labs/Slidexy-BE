@@ -95,6 +95,9 @@ function sanitizeSlides(slides) {
       image_caption: slide.image_caption || '',
       image_placeholder: slide.image_placeholder || { x: 520, y: 40, width: 400, height: 460 },
       content_metadata: slide.content_metadata || { bullet_count: 0, has_quote: false, has_data: false },
+      quote: slide.quote,
+      author: slide.author,
+      context: slide.context,
       slide_number: slide.slide_number || index + 1,
       total_slides: slide.total_slides || slides.length,
       created_at: slide.created_at || new Date(),
@@ -103,16 +106,21 @@ function sanitizeSlides(slides) {
 
     if (Array.isArray(slide.elements)) {
       if (slide.layout_type === 'quote-slide') {
-        console.log(`[Sanitize] Processing quote slide ${index + 1}, raw elements:`, slide.elements);
+        console.log(`[Sanitize] Slide ${index + 1} (${slide.layout_type}): Processing ${slide.elements.length} raw elements`);
+        // Log individual elements to see what's wrong
+        slide.elements.forEach((el, i) => {
+          console.log(`  - Element ${i + 1}: type=${el.element_type}, textLength=${el.text ? el.text.length : 'N/A'}`);
+        });
       }
+
       sanitizedSlide.elements = slide.elements
         .filter(element => {
           if (!element.text || typeof element.text !== 'string') {
-            console.warn(`[Sanitize] Dropping element in slide ${index + 1} due to invalid text:`, element);
+            console.warn(`[Sanitize] Dropping element in slide ${index + 1} (${slide.layout_type}) due to invalid text:`, element);
             return false;
           }
           if (!element.element_type) {
-            console.warn(`[Sanitize] Dropping element in slide ${index + 1} due to missing type:`, element);
+            console.warn(`[Sanitize] Dropping element in slide ${index + 1} (${slide.layout_type}) due to missing type:`, element);
             return false;
           }
           return true;
@@ -128,6 +136,7 @@ function sanitizeSlides(slides) {
             'list_item': 'bullet_point',
             'citation': 'author',
             'source': 'author',
+            'author_name': 'author',
             'statistic': 'stat',
             'number': 'stat',
             'call_to_action': 'cta',
@@ -139,7 +148,7 @@ function sanitizeSlides(slides) {
           }
 
           if (!validElementTypes.includes(elementType)) {
-            console.warn(`Invalid element_type "${element.element_type}" found in slide ${index + 1} (after mapping: ${elementType}), defaulting to "description"`);
+            console.warn(`[Sanitize] Invalid element_type "${element.element_type}" in slide ${index + 1}, defaulting to "description"`);
             elementType = 'description';
           }
 
@@ -150,6 +159,45 @@ function sanitizeSlides(slides) {
             text: element.text.trim()
           };
         });
+
+      if (slide.layout_type === 'quote-slide') {
+        console.log(`[Sanitize] Slide ${index + 1} finalized elements from array: ${sanitizedSlide.elements.length}`);
+      }
+    }
+
+    // SELF-HEALING: If quote slide has no elements, try to recover from top-level fields or content_metadata
+    if (slide.layout_type === 'quote-slide' && (!sanitizedSlide.elements || sanitizedSlide.elements.length === 0)) {
+      const qText = slide.quote || (slide.content_metadata && slide.content_metadata.quote);
+      const aText = slide.author || (slide.content_metadata && slide.content_metadata.author);
+      const cText = slide.context || (slide.content_metadata && slide.content_metadata.context);
+
+      console.log(`[EMERGENCY-SANITY] Self-healing Slide ${index + 1}: quote=${!!qText}, author=${!!aText}`);
+
+      if (qText) {
+        sanitizedSlide.elements.push({
+          id: crypto.randomUUID(),
+          element_id: `element-${crypto.randomUUID()}`,
+          element_type: 'quote',
+          text: String(qText).trim()
+        });
+      }
+      if (aText) {
+        sanitizedSlide.elements.push({
+          id: crypto.randomUUID(),
+          element_id: `element-${crypto.randomUUID()}`,
+          element_type: 'author',
+          text: String(aText).trim()
+        });
+      }
+      if (cText) {
+        sanitizedSlide.elements.push({
+          id: crypto.randomUUID(),
+          element_id: `element-${crypto.randomUUID()}`,
+          element_type: 'context',
+          text: String(cText).trim()
+        });
+      }
+      console.log(`[EMERGENCY-SANITY] Slide ${index + 1} reconstructed elements: ${sanitizedSlide.elements.length}`);
     }
 
     return sanitizedSlide;
@@ -602,12 +650,6 @@ async function generateSlidesHandler(req, res) {
         slidesWithImages = results;
       }
 
-      sendProgress(
-        streamingStates.finalizing.percent,
-        streamingStates.finalizing.message,
-        streamingStates.finalizing.detail
-      );
-
       const totalSlidesCount = slidesWithImages.length;
       const finalSlides = slidesWithImages.map((slide, index) => ({
         ...slide,
@@ -648,6 +690,41 @@ async function generateSlidesHandler(req, res) {
           layout_variants: false,
           generated_at: new Date(),
         },
+      });
+
+      // DEEP VALIDATION & FORCE HEAL
+      presentation.slides.forEach((s, i) => {
+        if (s.layout_type === 'quote-slide' && (!s.elements || s.elements.length === 0)) {
+          console.log(`[FORCE-HEAL-STREAMING] Recovering elements for Slide ${i + 1}`);
+          const qText = s.quote || (s.content_metadata && s.content_metadata.quote);
+          const aText = s.author || (s.content_metadata && s.content_metadata.author);
+          const cText = s.context || (s.content_metadata && s.content_metadata.context);
+
+          if (qText) {
+            s.elements.push({
+              id: crypto.randomUUID(),
+              element_id: `element-${crypto.randomUUID()}`,
+              element_type: 'quote',
+              text: String(qText).trim()
+            });
+          }
+          if (aText) {
+            s.elements.push({
+              id: crypto.randomUUID(),
+              element_id: `element-${crypto.randomUUID()}`,
+              element_type: 'author',
+              text: String(aText).trim()
+            });
+          }
+          if (cText) {
+            s.elements.push({
+              id: crypto.randomUUID(),
+              element_id: `element-${crypto.randomUUID()}`,
+              element_type: 'context',
+              text: String(cText).trim()
+            });
+          }
+        }
       });
 
       await presentation.save();
@@ -799,7 +876,49 @@ async function generateSlidesHandler(req, res) {
         },
       });
 
+      // DEEP VALIDATION & FORCE HEAL
+      presentation.slides.forEach((s, i) => {
+        if (s.layout_type === 'quote-slide' && (!s.elements || s.elements.length === 0)) {
+          console.log(`[FORCE-HEAL-NON-STREAMING] Recovering elements for Slide ${i + 1}`);
+          const qText = s.quote || (s.content_metadata && s.content_metadata.quote);
+          const aText = s.author || (s.content_metadata && s.content_metadata.author);
+          const cText = s.context || (s.content_metadata && s.content_metadata.context);
+
+          if (qText) {
+            s.elements.push({
+              id: crypto.randomUUID(),
+              element_id: `element-${crypto.randomUUID()}`,
+              element_type: 'quote',
+              text: String(qText).trim()
+            });
+          }
+          if (aText) {
+            s.elements.push({
+              id: crypto.randomUUID(),
+              element_id: `element-${crypto.randomUUID()}`,
+              element_type: 'author',
+              text: String(aText).trim()
+            });
+          }
+          if (cText) {
+            s.elements.push({
+              id: crypto.randomUUID(),
+              element_id: `element-${crypto.randomUUID()}`,
+              element_type: 'context',
+              text: String(cText).trim()
+            });
+          }
+        }
+      });
+
       await presentation.save();
+
+      console.log(`[DB] Final presentation check: total slides = ${presentation.slides.length}`);
+      presentation.slides.forEach((s, i) => {
+        if (s.layout_type === 'quote-slide') {
+          console.log(`[DB] Slide ${i + 1} (${s.layout_type}) elements count: ${s.elements.length}`);
+        }
+      });
 
       return res.json({
         presentation_id: presentation.presentation_id,
