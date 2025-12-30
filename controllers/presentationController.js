@@ -2,6 +2,58 @@ const { EJSON } = require("bson");
 const Presentation = require("../models/Presentation");
 const User = require("../models/User");
 const mongoose = require("mongoose");
+const crypto = require("crypto");
+
+// Helper function to ensure quote slides have elements populated
+function ensureQuoteSlideElements(slides) {
+  return slides.map((slide) => {
+    if (slide.layout_type === 'quote-slide' && (!slide.elements || slide.elements.length === 0)) {
+      const qText = slide.quote || (slide.content_metadata && slide.content_metadata.quote);
+      const aText = slide.author || (slide.content_metadata && slide.content_metadata.author);
+      const cText = slide.context || (slide.content_metadata && slide.content_metadata.context);
+
+      const elements = [];
+
+      if (qText) {
+        elements.push({
+          id: crypto.randomUUID(),
+          element_id: `element-${crypto.randomUUID()}`,
+          element_type: 'quote',
+          text: String(qText).trim(),
+          konva_component: 'Konva.Text'
+        });
+      }
+
+      if (aText) {
+        elements.push({
+          id: crypto.randomUUID(),
+          element_id: `element-${crypto.randomUUID()}`,
+          element_type: 'author',
+          text: String(aText).trim(),
+          konva_component: 'Konva.Text'
+        });
+      }
+
+      if (cText) {
+        elements.push({
+          id: crypto.randomUUID(),
+          element_id: `element-${crypto.randomUUID()}`,
+          element_type: 'context',
+          text: String(cText).trim(),
+          konva_component: 'Konva.Text'
+        });
+      }
+
+      if (elements.length > 0) {
+        return {
+          ...slide,
+          elements
+        };
+      }
+    }
+    return slide;
+  });
+}
 
 // Get a presentation by presentation_id (UUID)
 const getPresentationHandler = async (req, res) => {
@@ -19,11 +71,14 @@ const getPresentationHandler = async (req, res) => {
       return res.status(404).json({ error: "Presentation not found" });
     }
 
+    // Ensure quote slides have elements populated
+    const sanitizedSlides = ensureQuoteSlideElements(presentation.slides);
+
     return res.json({
       _id: presentation._id,
       presentation_id: presentation.presentation_id,
       topic: presentation.topic,
-      slides: presentation.slides,
+      slides: sanitizedSlides,
       meta: presentation.meta,
       user: presentation.user,
       createdAt: presentation.createdAt,
@@ -139,14 +194,17 @@ const updatePresentationHandler = async (req, res) => {
       return res.status(404).json({ error: "Presentation not found" });
     }
 
+    // Ensure quote slides have elements populated before updating
+    const sanitizedSlides = ensureQuoteSlideElements(slides);
+
     // Update slides with metadata
-    presentation.slides = slides.map((slide, index) => ({
+    presentation.slides = sanitizedSlides.map((slide, index) => ({
       ...slide,
       slide_number: index + 1,
-      total_slides: slides.length,
+      total_slides: sanitizedSlides.length,
       updated_at: new Date(),
     }));
-    presentation.slide_count = slides.length;
+    presentation.slide_count = sanitizedSlides.length;
     presentation.updated_at = new Date();
 
     await presentation.save();

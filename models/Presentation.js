@@ -5,7 +5,7 @@ const textElementSchema = new mongoose.Schema(
   {
     id: { type: String, default: () => crypto.randomUUID() },
     element_id: String,
-    element_type: { type: String, enum: ['bullet_point', 'quote', 'author', 'context', 'stat', 'description', 'left_bullet', 'right_bullet', 'cta'] },
+    element_type: { type: String },
     text: { type: String, required: true },
   },
   { _id: false }
@@ -28,26 +28,29 @@ const slideSchema = new mongoose.Schema(
     content_type: { type: String, default: 'general' }, // e.g., 'bullet-heavy', 'quote'
     visual_suggestion: { type: String, default: '' },
     knowledge: { type: mongoose.Schema.Types.Mixed, default: {} },
-    art_style: { type: String, default: 'modern illustration with characters' }, 
-    art_palette: [{ type: String }], 
-    slide_title: { 
+    art_style: { type: String, default: 'modern illustration with characters' },
+    art_palette: [{ type: String }],
+    slide_title: {
       type: new mongoose.Schema({
         text: { type: String, required: true }
-      }), 
-      required: true 
+      }),
+      required: true
     },
-    subtitle: { 
+    subtitle: {
       type: new mongoose.Schema({
         text: String
       })
     },
-    elements: [textElementSchema], // Text-only: [{ element_type: "bullet_point", text: "..." }]
+    elements: { type: mongoose.Schema.Types.Mixed, default: [] },
+    quote: { type: String, default: null },
+    author: { type: String, default: null },
+    context: { type: String, default: null },
     image_url: { type: String, default: null },
     image_caption: { type: String, default: "" },
     image_placeholder: { type: imagePlaceholderSchema, default: {} },
-    content_metadata: { 
-      type: mongoose.Schema.Types.Mixed, 
-      default: { bullet_count: 0, has_quote: false, has_data: false } 
+    content_metadata: {
+      type: mongoose.Schema.Types.Mixed,
+      default: { bullet_count: 0, has_quote: false, has_data: false }
     },
     slide_number: { type: Number, required: true },
     total_slides: { type: Number, required: true },
