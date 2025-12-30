@@ -21,7 +21,7 @@ const aiChatRoutes = require("./routes/aiChatRoutes");
 const contactRoutes = require("./routes/contact");
 const planRoutes = require("./routes/planRoutes");
 const vidGenImg = require("./routes/vidGenImg");
-const generateImageRoute = require("./routes/generateImage"); 
+const generateImageRoute = require("./routes/generateImage");
 
 const templateRoutes = require("./routes/templateRoutes");
 const rawTextDeckRoutes = require("./routes/rawTextDeckRoutes"); // Raw Text Deck Service
@@ -96,13 +96,18 @@ app.use((req, res, next) => {
   }
 });
 app.use(express.json());
+
+// --- Static File Serving ---
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/website-codes', express.static(path.join(__dirname, 'website-codes')));
+
 app.use("/api/users", userRoutes);
 app.use("/api/presentations", presentationRoutes);
 app.use("/api/infographic", infographicRoute);
 app.use("/api/explainer-infographic", explainerInfographicRoute);
-app.use("/api/dynamicInfographic",dynamicInfographicRoute );
+app.use("/api/dynamicInfographic", dynamicInfographicRoute);
 app.use("/api/blogs", blogRoutes);
-app.use("/api/vidGenImg",vidGenImg);
+app.use("/api/vidGenImg", vidGenImg);
 // --- API Docs ---
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
@@ -141,6 +146,10 @@ app.use("/api/unified-web-deck", unifiedWebDeckRoutes);
 // --- Website Generator Service (CEO New Feature: Generate HTML websites) ---
 app.use("/api/website-generator", websiteGeneratorRoutes);
 app.use("/api/website-zip-download", websiteDownloadRoutes);
+
+// --- Website Editor Service (Edit generated websites with natural language) ---
+const websiteEditorRoutes = require("./routes/websiteEditorRoutes");
+app.use("/api/website-editor", websiteEditorRoutes);
 
 // --- Dynamic Website Generator Service (Enhanced version with adaptive structure) ---
 const dynamicWebsiteRoutes = require("./routes/dynamicWebsiteRoutes");
