@@ -415,6 +415,8 @@ function transformToTextOnlySlide(aiSlide, index, totalSlides) {
         element_type: "quote",
         text: String(quoteText)
       });
+      slide.quote = String(quoteText);
+      slide.content_metadata.quote = String(quoteText);
 
       // Always add author element
       slide.elements.push({
@@ -423,6 +425,8 @@ function transformToTextOnlySlide(aiSlide, index, totalSlides) {
         element_type: "author",
         text: String(authorText)
       });
+      slide.author = String(authorText);
+      slide.content_metadata.author = String(authorText);
 
       // Always add context element
       slide.elements.push({
@@ -431,6 +435,12 @@ function transformToTextOnlySlide(aiSlide, index, totalSlides) {
         element_type: "context",
         text: String(contextText)
       });
+      slide.context = String(contextText);
+      slide.content_metadata.context = String(contextText);
+
+      // Add to knowledge too
+      slide.knowledge.quoteContent = String(quoteText);
+      slide.knowledge.quoteAuthor = String(authorText);
       break;
 
     case "call-to-action":
