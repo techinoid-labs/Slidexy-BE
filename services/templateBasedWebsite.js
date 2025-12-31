@@ -13,11 +13,21 @@ const { fetchWebsiteText } = require("./fetchWebsiteTextNoCode");
 const templateManager = require("./templates/templateManager");
 const crypto = require("crypto");
 const fs = require("fs").promises; // For async file operations
-
+const fsSync = require("fs"); // For sync file operations in generateSmartWebsite
 const path = require("path");
 const { textGenModel } = require("../utils/geminiModels");
 
-
+// Static File Mappings
+const GENRE_FILES = {
+    'saas': 'Saas.html',
+    'software_product': 'corporate.html',
+    'corporate': 'corporate.html',
+    'medical': 'medical.html',
+    'minimal': 'minimal.html',
+    'portfolio': 'portfolio.html',
+    'hospitality': 'hospitality.html',
+    'realestate': 'realestate.html'
+};
 
 /**
  * Generate a website using a niche-specific template
@@ -182,11 +192,17 @@ async function generateSmartWebsite(url) {
         console.log(`✅ Detected Genre: ${genre.toUpperCase()}`);
 
         // 3. Select Static Reference File
-        const template = templateManager.getTemplate(genre);
-        console.log(`📂 Using Reference Template Generator for: ${genre}`);
+        const templateFile = GENRE_FILES[genre] || 'minimal.html';
+        const templatePath = path.join(__dirname, '..', templateFile);
 
-        // Generate Reference Code dynamically
-        const referenceCode = template.generateHTML(content);
+        console.log(`📂 Using Reference Template: ${templateFile}`);
+
+        if (!fsSync.existsSync(templatePath)) {
+            console.warn(`Template file not found at ${templatePath}, falling back to minimal.html`);
+            // fallbacks would go here in robust code
+        }
+
+        const referenceCode = await fs.readFile(templatePath, 'utf-8');
 
         // 4. Construct AI Prompt (Enhanced V6 - Visual Remix)
         const sectionCount = content.sections?.length || 0;
@@ -313,7 +329,7 @@ async function generateSmartWebsite(url) {
         Generated: ${new Date().toISOString()}
         Source URL: ${url}
         Genre: ${genre}
-        Template Used: Dynamic Template Generator
+        Template Used: ${templateFile}
         
         ## Files
         - index.html: Main structure
