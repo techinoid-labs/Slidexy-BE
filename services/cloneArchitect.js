@@ -655,13 +655,35 @@ Return COMPLETE HTML with CONSISTENT branding:
 6. Semantic HTML5
 7. Working navigation
 
-Generate HTML (code only):`;
+=== CRITICAL OUTPUT RULE ===
+**RETURN ONLY PURE HTML CODE - NO EXPLANATIONS, NO THOUGHTS, NO COMMENTARY**
+Do NOT include:
+- Any text before <!DOCTYPE html>
+- Any explanatory notes or comments
+- Any思 思考过程 or reasoning
+- Markdown code blocks
+
+Start IMMEDIATELY with <!DOCTYPE html> and end with </html>
+
+Generate HTML (ONLY code, absolutely nothing else):`;
 
     const result = await textGenModel.generateContent(prompt);
     let html = result.response.text()
         .replace(/```html\n?/g, '')
         .replace(/```\n?/g, '')
         .trim();
+
+    // Aggressive cleanup: Remove any explanatory text before DOCTYPE
+    const doctypeIndex = html.toLowerCase().indexOf('<!doctype');
+    if (doctypeIndex > 0) {
+        html = html.substring(doctypeIndex);
+    }
+
+    // Remove any text after closing </html> tag
+    const htmlEndIndex = html.toLowerCase().lastIndexOf('</html>');
+    if (htmlEndIndex > 0) {
+        html = html.substring(0, htmlEndIndex + 7); // +7 for </html>
+    }
 
     if (!html.toLowerCase().startsWith('<!doctype')) {
         html = '<!DOCTYPE html>\n' + html;
@@ -710,7 +732,7 @@ Description: ${siteDescription}
 ${JSON.stringify(sectionsData, null, 2)}
 
 === IMAGES TO USE ===
-${imagesList || 'No images - create elegant CSS art/gradients as placeholders'}
+${imagesList || 'USE THESE IMAGE URLS IN YOUR HTML: Use <img> tags with actual src attributes from the URLs provided above. Do NOT use placeholders or CSS art.'}
 
 === PAGE STRUCTURE ===
 1. Navigation - Fixed header with anchor links (#services, #about, etc.)
@@ -773,13 +795,35 @@ Return COMPLETE HTML with inline <style> containing your ORIGINAL design:
 5. All sections with matching IDs
 6. Anchor-based navigation
 
-Generate the HTML (code only, no explanation):`;
+=== CRITICAL OUTPUT RULE ===
+**RETURN ONLY PURE HTML CODE - NO EXPLANATIONS, NO THOUGHTS, NO COMMENTARY**
+Do NOT include:
+- Any text before <!DOCTYPE html>
+- Any説明 explanatory notes or思考 reasoning
+- Markdown blocks or formatting
+- ANY text that is not HTML code
+
+Your response must START with <!DOCTYPE html> and END with </html> - NOTHING ELSE.
+
+Generate the HTML (ONLY code, absolutely nothing else):`;
 
     const result = await textGenModel.generateContent(prompt);
     let html = result.response.text()
         .replace(/```html\n?/g, '')
         .replace(/```\n?/g, '')
         .trim();
+
+    // Aggressive cleanup: Remove any explanatory text before DOCTYPE
+    const doctypeIndex = html.toLowerCase().indexOf('<!doctype');
+    if (doctypeIndex > 0) {
+        html = html.substring(doctypeIndex);
+    }
+
+    // Remove any text after closing </html> tag
+    const htmlEndIndex = html.toLowerCase().lastIndexOf('</html>');
+    if (htmlEndIndex > 0) {
+        html = html.substring(0, htmlEndIndex + 7);
+    }
 
     if (!html.toLowerCase().startsWith('<!doctype')) {
         html = '<!DOCTYPE html>\n' + html;
@@ -837,7 +881,7 @@ ${JSON.stringify(sectionsData, null, 2)}
 ${separatePages.map(p => `- ${p.name}: ${p.filename}`).join('\n')}
 
 === IMAGES ===
-${imagesList || 'No images - create stunning CSS gradients/art as placeholders'}
+${imagesList || 'USE THESE IMAGE URLS: Insert actual <img> tags with src attributes from the image URLs listed above. Do NOT create CSS placeholders.'}
 
 === NAVIGATION ===
 ${navHtml}
@@ -900,13 +944,35 @@ Return COMPLETE HTML with YOUR ORIGINAL CREATIVE DESIGN:
 5. Working navigation (anchors + page links)
 6. All sections with IDs
 
-Generate the HTML (code only, no explanation):`;
+=== CRITICAL OUTPUT RULE ===
+**RETURN ONLY PURE HTML CODE - NO EXPLANATIONS, NO THOUGHTS, NO COMMENTARY**
+Do NOT include:
+- Any text before <!DOCTYPE html>
+- Any explanatory notes or reasoning
+- Markdown code blocks
+- ANY non-HTML content
+
+Your ENTIRE response must be valid HTML starting with <!DOCTYPE html>
+
+Generate the HTML (ONLY code, absolutely nothing else):`;
 
     const result = await textGenModel.generateContent(prompt);
     let html = result.response.text()
         .replace(/```html\n?/g, '')
         .replace(/```\n?/g, '')
         .trim();
+
+    // Aggressive cleanup: Remove any explanatory text before DOCTYPE
+    const doctypeIndex = html.toLowerCase().indexOf('<!doctype');
+    if (doctypeIndex > 0) {
+        html = html.substring(doctypeIndex);
+    }
+
+    // Remove any text after closing </html> tag
+    const htmlEndIndex = html.toLowerCase().lastIndexOf('</html>');
+    if (htmlEndIndex > 0) {
+        html = html.substring(0, htmlEndIndex + 7);
+    }
 
     if (!html.toLowerCase().startsWith('<!doctype')) {
         html = '<!DOCTYPE html>\n' + html;
