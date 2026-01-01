@@ -18,7 +18,7 @@ STRICT RULE:
 - Under no circumstances should the output of the image contain any embedded textual data`;
 
     console.log("Generating images with prompt:", finalPrompt);
-    
+
     // Generate base64 images
     const base64Images = await generateImageSuggestions(finalPrompt, count);
 
@@ -51,8 +51,8 @@ STRICT RULE:
     }
   } catch (err) {
     console.error("Error generating image suggestions:", err);
-    res.status(500).json({ 
-      error: "Failed to generate image suggestions: " + err.message 
+    res.status(500).json({
+      error: "Failed to generate image suggestions: " + err.message
     });
   }
 };
@@ -68,17 +68,17 @@ exports.uploadImageHandler = async (req, res) => {
   try {
     const finalFilename = filename || `uploaded-image-${Date.now()}`;
     const s3Url = await uploadToSpaces(base64Image, finalFilename);
-    
+
     console.log("Image uploaded to S3:", s3Url);
-    
-    res.json({ 
-      success: true, 
-      imageUrl: s3Url 
+
+    res.json({
+      success: true,
+      imageUrl: s3Url
     });
   } catch (err) {
     console.error("Error uploading image:", err);
-    res.status(500).json({ 
-      error: "Failed to upload image: " + err.message 
+    res.status(500).json({
+      error: "Failed to upload image: " + err.message
     });
   }
 };
@@ -98,17 +98,17 @@ exports.uploadMultipleImagesHandler = async (req, res) => {
     });
 
     const imageUrls = await Promise.all(uploadPromises);
-    
+
     console.log(`Batch uploaded ${imageUrls.length} images to S3`);
-    
-    res.json({ 
-      success: true, 
-      imageUrls 
+
+    res.json({
+      success: true,
+      imageUrls
     });
   } catch (err) {
     console.error("Error batch uploading images:", err);
-    res.status(500).json({ 
-      error: "Failed to upload images: " + err.message 
+    res.status(500).json({
+      error: "Failed to upload images: " + err.message
     });
   }
 };

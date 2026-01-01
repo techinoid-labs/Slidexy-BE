@@ -406,6 +406,12 @@ async function generateSlidesHandler(req, res) {
             `✅ Website content extracted (${websiteData.stats.totalChars} chars)`,
             `Found ${websiteData.stats.headings} headings and ${websiteData.stats.paragraphs} content blocks.`
           );
+        } else if (source === "file") {
+          sendProgress(10, "📄 Processing uploaded file...", "Reading file content for AI analysis.");
+          if (!req.file) throw new Error("File is required when source is 'file'");
+
+          topic = req.file.originalname || "Uploaded Document";
+          rawText = "Generated from uploaded file: " + topic;
         } else {
           rawText = textContent;
           topic = textContent?.slice(0, 50) || "Untitled Presentation";
@@ -451,11 +457,20 @@ async function generateSlidesHandler(req, res) {
         sendProgress(percent, progressMessage.message, progressMessage.detail);
       };
 
+      let fileData = null;
+      if (source === "file" && req.file) {
+        fileData = {
+          data: req.file.buffer.toString('base64'),
+          mimeType: req.file.mimetype
+        };
+      }
+
       const slides = await generateSlideText(
         rawText,
         meta,
         slideCount,
-        textProgressCallback
+        textProgressCallback,
+        fileData
       );
 
       sendProgress(
@@ -773,12 +788,24 @@ async function generateSlidesHandler(req, res) {
         const websiteData = await fetchWebsiteText(inputWebsiteUrl);
         rawText = websiteData.formatted;
         topic = websiteData.raw.metadata.title || inputWebsiteUrl || "Website Presentation";
+      } else if (source === "file") {
+        if (!req.file) throw new Error("File is required when source is 'file'");
+        topic = req.file.originalname || "Uploaded Document";
+        rawText = "Generated from uploaded file: " + topic;
       } else {
         rawText = textContent;
         topic = textContent?.slice(0, 50) || "Untitled Presentation";
       }
 
-      const slides = await generateSlideText(rawText, meta, slideCount);
+      let fileData = null;
+      if (source === "file" && req.file) {
+        fileData = {
+          data: req.file.buffer.toString('base64'),
+          mimeType: req.file.mimetype
+        };
+      }
+
+      const slides = await generateSlideText(rawText, meta, slideCount, null, fileData);
       const cleanedSlides = convertEJSONFields(slides);
       const sanitizedSlides = sanitizeSlides(cleanedSlides);
 

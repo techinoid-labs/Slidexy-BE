@@ -50,7 +50,7 @@ const SLIDE_TYPE_DEFINITIONS = {
   }
 };
 
-async function generateSlideText(rawText, meta = {}, slideCount = 5, progressCallback = null) {
+async function generateSlideText(rawText, meta = {}, slideCount = 5, progressCallback = null, fileData = null) {
   let safeRawText = typeof rawText === "string"
     ? rawText
     : JSON.stringify(rawText, null, 2);
@@ -176,7 +176,22 @@ Generate exactly ${slideCount} slides that tell a compelling story:`;
       progressCallback(1, slideCount);
     }
 
-    const result = await textGenModel.generateContent(prompt);
+    let generationInput;
+    if (fileData) {
+      generationInput = [
+        { text: prompt },
+        {
+          inlineData: {
+            data: fileData.data,
+            mimeType: fileData.mimeType
+          }
+        }
+      ];
+    } else {
+      generationInput = prompt;
+    }
+
+    const result = await textGenModel.generateContent(generationInput);
     const raw = result.response?.candidates?.[0]?.content?.parts?.[0]?.text || "";
 
     // Notify progress: parsing response
