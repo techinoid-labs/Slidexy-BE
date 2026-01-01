@@ -75,7 +75,7 @@ async function generateCustomSuggestions({ title, bullets, customPrompt }) {
               image: typeof parsed.image === "string" ? parsed.image : "",
             });
           }
-        } catch {}
+        } catch { }
       });
     }
   } catch (err) {

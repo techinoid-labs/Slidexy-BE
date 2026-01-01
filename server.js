@@ -33,6 +33,29 @@ const linkedinRoutes = require("./routes/linkedinRoutes"); // LinkedIn Integrati
 const telegramRoutes = require("./routes/telegramRoutes"); // Telegram Integration
 const redditRoutes = require("./routes/redditRoutes"); // Reddit Integration
 const discordRoutes = require("./routes/discordRoutes"); // Discord Integration
+const multer = require("multer");
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: {
+    fileSize: 20 * 1024 * 1024, // 20MB limit
+  },
+  fileFilter: (req, file, cb) => {
+    const allowedMimeTypes = [
+      'application/pdf',
+      'text/plain',
+      'application/msword',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'image/jpeg',
+      'image/png',
+      'image/webp'
+    ];
+    if (allowedMimeTypes.includes(file.mimetype)) {
+      cb(null, true);
+    } else {
+      cb(new Error("Invalid file type. Only PDFs, Text, Word docs, and Images are allowed."), false);
+    }
+  }
+});
 
 // Controllers
 const {
@@ -165,8 +188,23 @@ app.use("/api/telegram", telegramRoutes); // Telegram Integration
 app.use("/api/reddit", redditRoutes); // Reddit Integration
 app.use("/api/discord", discordRoutes); // Discord Integration
 
+// Helper middleware to handle file uploads and errors
+const uploadMiddleware = (req, res, next) => {
+  upload.single('file')(req, res, (err) => {
+    if (err instanceof multer.MulterError) {
+      if (err.code === 'LIMIT_FILE_SIZE') {
+        return res.status(400).json({ error: "File too large. Max limit is 20MB." });
+      }
+      return res.status(400).json({ error: err.message });
+    } else if (err) {
+      return res.status(400).json({ error: err.message });
+    }
+    next();
+  });
+};
+
 // --- Slide/Presentation APIs ---
-app.post("/generate-slides", validate, generateSlidesHandler);
+app.post("/generate-slides", uploadMiddleware, validate, generateSlidesHandler);
 app.post(
   "/generate-theme-image",
   validateThemeImageInput,

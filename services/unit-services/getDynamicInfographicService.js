@@ -1,7 +1,6 @@
-const e = require("cors");
 const { textGenModel } = require("../../utils/geminiModels");
-const  infographicCards  = require("../../constants/card");
-const  infographicPatterns  = require("../../constants/background");
+const infographicCards = require("../../constants/card");
+const infographicPatterns = require("../../constants/background");
 const JSON5 = require("json5");
 
 const ALLOWED_STYLES = [
@@ -66,14 +65,14 @@ const VIEW_MODES = {
  `,
     ],
   },
-  portrait:{
-  aspectRatio: "9:16",
-  style: "aspect-ratio: 9 / 16; width: 100%; max-width: 480px;",
-  layoutGuidelines: [
-    "Use an auto-scaling wrapper to ensure all content fits inside 9:16 without cropping or scrolling.",
-    "Outer frame keeps fixed ratio; inner content scales down dynamically using transform.",
-    "dont increate too much content which can cause the imae to cut of in the frame",
-    `<!-- Portrait Infographic Frame -->
+  portrait: {
+    aspectRatio: "9:16",
+    style: "aspect-ratio: 9 / 16; width: 100%; max-width: 480px;",
+    layoutGuidelines: [
+      "Use an auto-scaling wrapper to ensure all content fits inside 9:16 without cropping or scrolling.",
+      "Outer frame keeps fixed ratio; inner content scales down dynamically using transform.",
+      "dont increate too much content which can cause the imae to cut of in the frame",
+      `<!-- Portrait Infographic Frame -->
 <div class="infographic-frame-portrait">
   <div class="infographic-content">
     <!-- All infographic content goes here -->
@@ -117,8 +116,8 @@ window.addEventListener('resize', resizeContent);
 window.addEventListener('load', resizeContent);
 </script>
 `
-  ]
-},
+    ]
+  },
 };
 
 const parameterGathering = async (userPrompt) => {
@@ -207,7 +206,10 @@ const createSystemPrompt = async (userPrompt, viewMode) => {
   console.log(parameters);
   const cardStyle = infographicCards[parameters.card];
   const backgroundStyle = infographicPatterns[parameters.background];
-  const mode = VIEW_MODES[viewMode];
+
+  // Fallback if viewMode is missing or invalid
+  const safeViewMode = (viewMode && VIEW_MODES[viewMode]) ? viewMode : "landscape";
+  const mode = VIEW_MODES[safeViewMode];
   const layoutDetails = mode.layoutGuidelines.map((g) => `• ${g}`).join("\n  ");
 
   return `You are an expert infographic generator and web designer who creates STUNNING, UNIQUE, and production-ready HTML/CSS infographics optimized for ${viewMode}.
@@ -316,7 +318,7 @@ Note: Must use color Palette provided and layout details are only suggesion dont
 };
 
 async function getDynamicInfographicService(prompt, viewMode) {
-  retries = 3;
+  let retries = 3;
 
   for (let attempt = 1; attempt <= retries; attempt++) {
     try {
@@ -432,34 +434,13 @@ async function getDynamicInfographicService(prompt, viewMode) {
         jsonData.type = jsonData.type || "generic";
       }
 
-      // --- ✅ Validate HTML strings ---
-      Object.entries(htmlContent).forEach(([layout, html]) => {
-        if (typeof html !== "string") {
-          console.warn(`⚠️ ${layout} HTML is not a string, serializing object`);
-          htmlContent[layout] = JSON.stringify(html);
-        }
-
-        if (!htmlContent[layout].includes("<div")) {
-          console.warn(`⚠️ ${layout} HTML may not contain valid structure`);
-        }
-      });
-
       console.log("✅ Infographic generated successfully!");
-      console.log(
-        `Type: ${jsonData.type}, Title: "${
-          jsonData.title
-        }", Layouts: ${Object.keys(htmlContent).join(", ")}`
-      );
 
       // --- ✅ Return normalized structure ---
       return {
-        data: jsonData,
-        html: htmlContent, // now contains both landscape + portrait
-        meta: {
-          generatedAt: new Date().toISOString(),
-          attempt,
-          prompt,
-        },
+        imageUrl: "", // Placeholder for compatibility
+        textLayout: htmlContent,
+        metadata: jsonData
       };
     } catch (error) {
       console.error(`Attempt ${attempt}/${retries} failed:`, error.message);

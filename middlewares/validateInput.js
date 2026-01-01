@@ -2,8 +2,8 @@ const { body, validationResult } = require("express-validator");
 
 const validate = [
   body("source")
-    .isIn(["youtube", "text", "website"])
-    .withMessage("Invalid source. Must be 'youtube', 'text', or 'website'."),
+    .isIn(["youtube", "text", "website", "file"])
+    .withMessage("Invalid source. Must be 'youtube', 'text', 'website', or 'file'."),
   body("inputUrl")
     .if(body("source").equals("youtube"))
     .isURL()

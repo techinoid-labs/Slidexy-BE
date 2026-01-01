@@ -43,7 +43,7 @@ async function getPosterTemplate(req, res) {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const { prompt: topic, viewMode: orientation, useReferences, userData } = req.body;
+  const { prompt: topic, viewMode: orientation = "landscape", useReferences, userData } = req.body;
 
   if (!topic) {
     return res.status(400).json({ error: "Topic/prompt is required" });
