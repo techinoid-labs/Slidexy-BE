@@ -317,145 +317,157 @@ Note: Must use color Palette provided and layout details are only suggesion dont
   - Produce modern, elegant, and production-grade visuals ready to paste into web apps.`;
 };
 
-async function getDynamicInfographicService(prompt, viewMode) {
-  let retries = 3;
+async function getDynamicInfographicService(prompt, viewMode, fileBuffer = null, fileMimeType = null) {
+  let fileContent = ""; // Raw extracted text
+  let summarizedContent = ""; // Clean, focused summary we'll actually use
 
+  if (fileBuffer) {
+    try {
+      console.log("Received file:", fileMimeType, `(${fileBuffer.length} bytes)`);
+
+      if (fileMimeType?.startsWith("text/")) {
+        fileContent = fileBuffer.toString("utf-8");
+      } else if (fileMimeType === "application/pdf") {
+        try {
+          const { PDFParse } = require("pdf-parse");
+          const parser = new PDFParse({ data: fileBuffer });
+          const result = await parser.getText();
+          fileContent = result.text || "";
+        } catch (pdfError) {
+          console.error("PDF extraction failed:", pdfError.message);
+          fileContent = "";
+        }
+      } else if (fileMimeType === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
+        const mammoth = require("mammoth");
+        const { value: text } = await mammoth.extractRawText({ buffer: fileBuffer });
+        fileContent = text;
+      } else {
+        console.warn("Unsupported file type:", fileMimeType);
+      }
+
+      console.log("Extracted file text length:", fileContent.length);
+    } catch (err) {
+      console.error("Error extracting file content:", err.message);
+      fileContent = "";
+    }
+  }
+
+  // If there's file content → summarize it intelligently
+  if (fileContent && fileContent.trim().length > 100) {
+    try {
+      console.log("Summarizing uploaded file content...");
+
+      const summaryPrompt = `
+You are an expert content summarizer for infographics.
+
+Extract and summarize the uploaded document in a clear, structured way suitable for creating a beautiful infographic.
+
+Focus on:
+- The main topic/title
+- Key steps or process (if it's a guide/tutorial)
+- Important benefits/features
+- Any data, stats, or comparisons
+- Core message or takeaway
+
+Output in clean markdown with:
+- A strong title suggestion
+- 5–10 bullet points of key information
+- Short, visual-friendly phrasing
+
+Document content:
+"""${fileContent}"""
+
+Respond ONLY with the summary in markdown. No extra text.
+`;
+
+      const summaryResult = await textGenModel.generateContent(summaryPrompt);
+      let summaryText = "";
+
+      if (typeof summaryResult.response.text === "function") {
+        summaryText = summaryResult.response.text();
+      } else {
+        summaryText = summaryResult?.response?.candidates?.[0]?.content?.parts?.[0]?.text || "";
+      }
+
+      summarizedContent = summaryText.trim();
+
+      console.log("Summary generated successfully:");
+      console.log(summarizedContent.substring(0, 500) + "...");
+
+    } catch (summaryError) {
+      console.error("Failed to summarize file content:", summaryError.message);
+      // Fallback: use trimmed raw text
+      summarizedContent = fileContent.substring(0, 2000);
+    }
+  } else if (fileContent) {
+    summarizedContent = "Content from uploaded file could not be extracted properly.";
+  }
+
+  // FINAL PROMPT LOGIC:
+  let finalPrompt;
+
+  if (summarizedContent) {
+    // Primary case: We have uploaded content → use summary + optional user prompt as title
+    finalPrompt = `Create an infographic based on this content:
+
+${summarizedContent}
+
+${prompt ? `\nOptional title or focus hint: "${prompt}"` : ""}
+`;
+  } else {
+    // No file → just use the user's text prompt
+    finalPrompt = prompt || "Create a beautiful infographic";
+  }
+
+  console.log(`Final prompt sent to infographic generator:\n"${finalPrompt.slice(0, 100)}..."`);
+
+  // Now proceed with retries as before
+  let retries = 3;
   for (let attempt = 1; attempt <= retries; attempt++) {
     try {
-      console.log(
-        `Attempt ${attempt}/${retries} - Generating infographic for: "${prompt.substring(
-          0,
-          50
-        )}..."`
-      );
-
-      // Create the system prompt
-      const systemPrompt = await createSystemPrompt(prompt, viewMode);
-
+      const systemPrompt = await createSystemPrompt(finalPrompt, viewMode);
       const result = await textGenModel.generateContent(systemPrompt);
 
-      // Extract the response text
-      // Extract the response text safely
+      // ... rest of your existing parsing logic (unchanged)
       const response = result.response || result;
       let responseText = "";
 
-      // ✅ Assign actual text
-      if (typeof response.text === "function") {
-        responseText = response.text().trim();
-      } else if (response?.candidates?.[0]?.content?.parts?.[0]?.text) {
+      if (typeof response.text === "function") responseText = response.text().trim();
+      else if (response?.candidates?.[0]?.content?.parts?.[0]?.text)
         responseText = response.candidates[0].content.parts[0].text.trim();
-      } else {
-        throw new Error("Failed to extract text from Gemini response");
-      }
+      else throw new Error("Failed to extract text from Gemini response");
 
-      // Clean up markdown formatting
       responseText = responseText.replace(/```(json)?/g, "").trim();
-      responseText = responseText.replace(/^```|```$/g, "").trim();
 
-      console.log(`Response received (${responseText.length} characters)`);
-
-      // Parse the JSON response
       let parsed;
       try {
-        // --- ✅ Extract JSON block even if model adds natural language ---
-        let jsonMatch = responseText.match(/\{[\s\S]*\}/);
-        if (!jsonMatch) {
-          console.error("❌ No JSON object found in model output");
-          console.error(
-            "Raw text preview:",
-            responseText.substring(0, 200) + "..."
-          );
-          throw new Error("Model did not return valid JSON structure");
-        }
-
+        const jsonMatch = responseText.match(/\{[\s\S]*\}/);
+        if (!jsonMatch) throw new Error("No JSON object found");
         let jsonSegment = jsonMatch[0].trim();
-
-        try {
-          parsed = JSON5.parse(jsonSegment);
-
-          // Handle double-encoded responses
-          if (typeof parsed === "string") {
-            parsed = JSON5.parse(parsed);
-          }
-        } catch (parseError) {
-          console.error("❌ JSON parsing failed:", parseError.message);
-          console.error(
-            "Extracted JSON preview:",
-            jsonSegment.substring(0, 200) + "..."
-          );
-          throw new Error(
-            `Invalid JSON response from Gemini: ${parseError.message}`
-          );
-        }
-
-        // Handle case where response might be double-encoded
-        if (typeof parsed === "string") {
-          parsed = JSON5.parse(parsed);
-        }
+        parsed = JSON5.parse(jsonSegment);
+        if (typeof parsed === "string") parsed = JSON5.parse(parsed);
       } catch (parseError) {
         console.error("JSON parsing failed:", parseError.message);
-        console.error(
-          "Raw response preview:",
-          responseText.substring(0, 200) + "..."
-        );
-        throw new Error(
-          `Invalid JSON response from Gemini: ${parseError.message}`
-        );
+        throw parseError;
       }
 
-      // Validate response structure
-      if (!parsed || typeof parsed !== "object") {
-        throw new Error("Response is not a valid object");
-      }
+      if (!parsed?.html || !parsed?.json)
+        throw new Error("Missing html or json in response");
 
-      // Normalize HTML content
-      let htmlContent = null;
-
-      if (typeof parsed.html === "string") {
-        htmlContent = parsed.html;
-      } else {
-        throw new Error(
-          "Response missing HTML content in any recognized format"
-        );
-      }
-
-      // --- ✅ Validate JSON data ---
       const jsonData = parsed.json;
-      if (!jsonData || typeof jsonData !== "object") {
-        throw new Error("Missing or invalid JSON data in response");
-      }
+      jsonData.title = jsonData.title || "Infographic";
+      jsonData.subtitle = jsonData.subtitle || "AI Generated";
+      jsonData.type = jsonData.type || "generic";
 
-      if (!jsonData.title || !jsonData.subtitle || !jsonData.type) {
-        console.warn("⚠️ JSON structure incomplete — filling defaults");
-        jsonData.title = jsonData.title || "Untitled Infographic";
-        jsonData.subtitle =
-          jsonData.subtitle ||
-          "Automatically generated infographic — missing detailed subtitle.";
-        jsonData.type = jsonData.type || "generic";
-      }
-
-      console.log("✅ Infographic generated successfully!");
-
-      // --- ✅ Return normalized structure ---
       return {
-        imageUrl: "", // Placeholder for compatibility
-        textLayout: htmlContent,
-        metadata: jsonData
+        imageUrl: "",
+        textLayout: parsed.html,
+        metadata: jsonData,
       };
     } catch (error) {
       console.error(`Attempt ${attempt}/${retries} failed:`, error.message);
-
-      if (attempt === retries) {
-        console.error("All attempts exhausted");
-        throw new Error(
-          `Failed to generate infographic after ${retries} attempts: ${error.message}`
-        );
-      }
-
-      // Progressive delay between retries
-      const delay = attempt * 1500 + Math.random() * 1000; // 1.5s, 3s, 4.5s + random
-      console.log(`⏳ Waiting ${(delay / 1000).toFixed(1)}s before retry...`);
-      await new Promise((resolve) => setTimeout(resolve, delay));
+      if (attempt === retries) throw error;
+      await new Promise((r) => setTimeout(r, attempt * 2000));
     }
   }
 }

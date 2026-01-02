@@ -22,11 +22,11 @@ const LAYOUT_TYPES = {
     best_for: ['comparison', 'vs', 'difference', 'pros-cons', 'alternatives'],
     examples: 'Feature Comparison, Pros vs Cons, Options',
   },
-  'process-flow': {
-    description: 'Sequential process steps',
-    best_for: ['process', 'workflow', 'steps', 'procedure', 'flow', 'stage'],
-    examples: 'Development Process, Manufacturing Steps, User Journey',
-  },
+  // 'process-flow': {
+  //   description: 'Sequential process steps',
+  //   best_for: ['process', 'workflow', 'steps', 'procedure', 'flow', 'stage'],
+  //   examples: 'Development Process, Manufacturing Steps, User Journey',
+  // },
   chart: {
     description: 'Pie chart with data comparison list',
     best_for: ['chart', 'data', 'statistics', 'comparison', 'pie', 'visualization', 'percentage'],

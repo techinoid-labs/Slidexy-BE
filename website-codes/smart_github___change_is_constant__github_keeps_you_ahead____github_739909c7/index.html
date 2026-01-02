@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub · Your AI-Powered Developer Platform</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    
+<link rel="stylesheet" href="style.css"></head>
+
+<body>
+    <div class="bg-wrap">
+        <div class="grid-floor"></div>
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+    <div class="scroll-progress"></div>
+
+    <nav>
+        <div class="container nav-inner">
+            <a href="#" class="logo">
+                <i class="fab fa-github logo-icon"></i>
+                GitHub
+            </a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#platform">Platform</a>
+                <a href="#copilot">Copilot</a>
+                <a href="#pricing">Pricing</a>
+            </div>
+            <a href="#" class="btn btn-primary">Sign up Free</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <div class="container">
+                <h1 class="h-gradient">
+                    Build with the World's <br><span class="h-gradient">Leading AI-Powered Developer Platform</span>
+                </h1>
+                <p>
+                    Join millions of developers, businesses, and the largest open source community building software that
+                    advances humanity. GitHub keeps you ahead, with AI at your fingertips.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#copilot" class="btn btn-primary">Explore Copilot <i class="fas fa-arrow-right"></i></a>
+                    <a href="#features" class="btn btn-ghost">Learn More</a>
+                </div>
+
+                <div class="hero-illustration">
+                    <div class="hero-illustration-frame">
+                        <div class="illustration-header">
+                            <div class="dot d-red"></div>
+                            <div class="dot d-yel"></div>
+                            <div class="dot d-grn"></div>
+                            <span style="margin-left: 10px; font-family: var(--font-code); color: var(--text-muted);">main.py</span>
+                        </div>
+                        <div class="illustration-body">
+                            <div class="illustration-sidebar">
+                                <p style="font-weight: 600; color: white; margin-bottom: 15px;">Files</p>
+                                <div class="dash-line" style="width: 90%;"></div>
+                                <div class="dash-line"></div>
+                                <div class="dash-line" style="width: 70%;"></div>
+                                <div class="dash-line" style="width: 50%;"></div>
+                                <p style="font-weight: 600; color: white; margin-top: 30px; margin-bottom: 15px;">Branches</p>
+                                <div class="dash-line"></div>
+                                <div class="dash-line" style="width: 60%;"></div>
+                            </div>
+                            <div class="illustration-content">
+                                <div class="illustration-code">
+                                    <span class="illustration-comment"># Function to fetch user data</span>
+                                    <span class="illustration-keyword">def</span> <span class="illustration-function">get_user_profile</span>(<span class="illustration-keyword">user_id</span>):
+                                    <br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="illustration-comment"># ... complex logic ...</span>
+                                    <br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="illustration-keyword">return</span> <span class="illustration-string">{"id": user_id, "name": "Octocat", "email": "octo@github.com"}</span>
+                                    <br>
+                                    <br><span class="illustration-comment"># GitHub Copilot suggests:</span>
+                                    <br><span class="illustration-comment"># Refactor to use async/await for better performance</span>
+                                    <br><span class="illustration-terminal-prompt">&gt; Copilot: <span class="illustration-comment">refactor get_user_profile to be asynchronous</span></span>
+                                    <br><span class="illustration-terminal-output">python</span>
+                                    <br><span class="illustration-keyword">async def</span> <span class="illustration-function">get_user_profile_async</span>(<span class="illustration-keyword">user_id</span>):
+                                    <br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="illustration-comment"># Awaits external API call...</span>
+                                    <br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="illustration-keyword">return await</span> <span class="illustration-function">fetch_user_from_db</span>(<span class="illustration-keyword">user_id</span>)
+                                    <br><span class="illustration-terminal-output"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LOGO TICKER SECTION -->
+        <section class="ticker-wrap">
+            <div class="ticker">
+                <img src="https://images.ctfassets.net/8aevphvgewt8/5m9WKL1QJeiDrnxuL9pBux/f7336610c32283d86c71235c0d54ee16/figma.webp" alt="Figma">
+                <img src="https://images.ctfassets.net/8aevphvgewt8/2so1SgbMPgAN2M091ep1YR/3c268f706e7a53fb79276b863e0c9436/mercedes-benz.webp" alt="Mercedes-Benz">
+                <img src="https://images.ctfassets.net/8aevphvgewt8/6qeISSuZ9JWsaytftY1gqk/bd5f4532732d5cf163c8e1a2557f42ba/mercado-libre.webp" alt="Mercado Libre">
+                <img src="https://github.githubassets.com/assets/cta-universe-copilot-7e0793a4b686.webp" alt="GitHub Copilot">
+                <img src="https://images.ctfassets.net/8aevphvgewt8/5m9WKL1QJeiDrnxuL9pBux/f7336610c32283d86c71235c0d54ee16/figma.webp" alt="Figma">
+                <img src="https://images.ctfassets.net/8aevphvgewt8/2so1SgbMPgAN2M091ep1YR/3c268f706e7a53fb79276b863e0c9436/mercedes-benz.webp" alt="Mercedes-Benz">
+                <img src="https://images.ctfassets.net/8aevphvgewt8/6qeISSuZ9JWsaytftY1gqk/bd5f4532732d5cf163c8e1a2557f42ba/mercado-libre.webp" alt="Mercado Libre">
+                <img src="https://github.githubassets.com/assets/cta-universe-copilot-7e0793a4b686.webp" alt="GitHub Copilot">
+            </div>
+        </section>
+
+        <!-- GitHub Copilot: Your AI Partner Section (Bento Grid) -->
+        <section id="copilot" class="section">
+            <div class="container">
+                <div class="tabs-header" style="max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
+                    <span class="badge"><i class="fas fa-robot"></i> GitHub Copilot</span>
+                    <h2 style="font-size: 3.2rem; font-weight: 800; line-height: 1.2; margin-bottom: 20px;" class="h-gradient">
+                        Accelerate Development with Your <br>AI Pair Programmer
+                    </h2>
+                    <p style="font-size: 1.15rem; color: var(--text-muted);">
+                        GitHub Copilot is more than an autocomplete tool; it's an intelligent AI partner ready to work with you at each step of the software development lifecycle. Build better, faster, and smarter.
+                    </p>
+                </div>
+
+                <div class="prim-grid">
+                    <div class="prim-card span-2">
+                        <div class="prim-content">
+                            <div>
+                                <h3 class="prim-title"><i class="fas fa-comment-dots"></i> Intelligent Code Refactoring</h3>
+                                <p class="prim-desc">
+                                    Leverage GitHub Copilot Chat to intelligently refactor duplicated logic, extract reusable functions, and streamline your codebase with simple requests. See your code transform with AI assistance directly in your editor.
+                                </p>
+                            </div>
+                            <div class="card-visual">
+                                <img src="https://images.ctfassets.net/8aevphvgewt8/1Dt1ncaR6ZM4dQvknFzfBI/e5c2092be5bd53881622eced4fd37564/accordion-1-ce487d44c0bf.webp" alt="Copilot Chat Refactoring">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="prim-card">
+                        <div class="prim-content">
+                            <div>
+                                <h3 class="prim-title"><i class="fas fa-rocket"></i> Boost Developer Speed</h3>
+                                <p class="prim-desc">
+                                    Duolingo boosted developer speed by 25% with GitHub Copilot. Experience rapid code generation, efficient debugging, and smart suggestions for complex features.
+                                </p>
+                            </div>
+                            <div class="metric-card-content">
+                                <div class="value">25%</div>
+                                <div class="label">Faster Development</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="prim-card">
+                        <div class="prim-content">
+                            <div>
+                                <h3 class="prim-title"><i class="fas fa-file-code"></i> Write, Test, Fix Code</h3>
+                                <p class="prim-desc">
+                                    From simple boilerplate to complex features, Copilot helps you write, test, and fix code quickly. Reduce context switching and focus on innovation.
+                                </p>
+                            </div>
+                            <div class="code-mock">
+                                <span class="k">const</span> <span class="f">calculateTotal</span> = (<span class="k">items</span>) => {<br>
+                                &nbsp;&nbsp;<span class="k">let</span> <span class="f">total</span> = <span class="s">0</span>;<br>
+                                &nbsp;&nbsp;<span class="k">for</span> (<span class="k">const</span> <span class="f">item</span> <span class="k">of</span> <span class="k">items</span>) {<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="f">total</span> += <span class="f">item</span>.<span class="f">price</span> * <span class="f">item</span>.<span class="f">quantity</span>;<br>
+                                &nbsp;&nbsp;}<br>
+                                &nbsp;&nbsp;<span class="k">return</span> <span class="f">total</span>;<br>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="prim-card span-2">
+                        <div class="prim-content">
+                            <div>
+                                <h3 class="prim-title"><i class="fas fa-user-robot"></i> AI-Powered Development Agent</h3>
+                                <p class="prim-desc">
+                                    Go beyond chat. Copilot's Agent mode understands your codebase and implements complex feature updates, analyzing, explaining, and generating necessary edits across multiple files for you.
+                                </p>
+                            </div>
+                            <div class="card-visual">
+                                <img src="https://images.ctfassets.net/8aevphvgewt8/3xzVZaJhqo3B62R8NeHjX2/e37c81e4f26e9dac2aff1f23a0243087/accordion-3-52ca331d22ea.webp" alt="Copilot Agent Mode">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="prim-card span-2">
+                        <div class="prim-content">
+                            <div>
+                                <h3 class="prim-title"><i class="fas fa-cogs"></i> Full Software Development Lifecycle Integration</h3>
+                                <p class="prim-desc">
+                                    Copilot is ready to work with you at each step of the software development lifecycle, from ideation to deployment and maintenance, making every stage more efficient.
+                                </p>
+                            </div>
+                            <div class="card-visual">
+                                <img src="https://images.ctfassets.net/8aevphvgewt8/6WnLu9nlnemjCltZkd8lCi/b18034be25552e118a36f6617e1f84df/pillar-1-dd667a921f55.webp" alt="Software Development Lifecycle">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GitHub Platform Capabilities Section (Tabs) -->
+        <section id="platform" class="section">
+            <div class="container">
+                <div class="tabs-header">
+                    <span class="badge"><i class="fas fa-cubes"></i> Unified Platform</span>
+                    <h2 class="h-gradient" style="font-size: 3.2rem; font-weight: 800; line-height: 1.2; margin-bottom: 20px;">
+                        The Future of Building Happens Together
+                    </h2>
+                    <p style="font-size: 1.15rem; color: var(--text-muted); max-width: 800px; margin: 0 auto;">
+                        Tools and trends evolve, but collaboration endures. With GitHub, developers, teams, and AI come together on one platform to innovate and advance humanity.
+                    </p>
+                    <div class="tab-btn-group" style="margin-top: 50px;">
+                        <div class="tab-btn active" data-tab="tab1">AI Workflows</div>
+                        <div class="tab-btn" data-tab="tab2">Seamless Collaboration</div>
+                        <div class="tab-btn" data-tab="tab3">Robust Security</div>
+                    </div>
+                </div>
+
+                <div id="tab1" class="tab-content active">
+                    <div>
+                        <h3>Smart AI-Powered Workflows</h3>
+                        <p>Leverage the power of AI across your entire development lifecycle, from code generation to automated testing and deployment. GitHub Copilot elevates every stage.</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> AI-driven code suggestions and completions</li>
+                            <li><i class="fas fa-check-circle"></i> Automated refactoring and debugging assistance</li>
+                            <li><i class="fas fa-check-circle"></i> Natural language interface for complex tasks</li>
+                            <li><i class="fas fa-check-circle"></i> Integrated into your favorite IDEs</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <img src="https://images.ctfassets.net/8aevphvgewt8/5mzhSO4avmXBwkFsMzgXkW/91991e6258f14f54d23840b6c13c3013/hero-64ecd484397f.webp" alt="AI-powered code autofix">
+                    </div>
+                </div>
+
+                <div id="tab2" class="tab-content">
+                    <div>
+                        <h3>Seamless Team Collaboration</h3>
+                        <p>Foster a culture of open contribution and efficient teamwork. GitHub provides the tools to manage projects, review code, and deploy with confidence.</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Powerful pull requests and code reviews</li>
+                            <li><i class="fas fa-check-circle"></i> Project boards and issue tracking</li>
+                            <li><i class="fas fa-check-circle"></i> Centralized repository management</li>
+                            <li><i class="fas fa-check-circle"></i> Integrations with your favorite tools</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <img src="https://images.ctfassets.net/8aevphvgewt8/3ip0mnsbUMonRTsbnnIkOh/a940b7a975a801c8829c113d9799873d/hero-961322485af6.webp" alt="Project Management Dashboard">
+                    </div>
+                </div>
+
+                <div id="tab3" class="tab-content">
+                    <div>
+                        <h3>Robust Security Features</h3>
+                        <p>Protect your code from vulnerabilities with GitHub's industry-leading security features. Identify and fix risks early, ensuring your software is always secure.</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Automated secret scanning and protection</li>
+                            <li><i class="fas fa-check-circle"></i> Dependency vulnerability alerts</li>
+                            <li><i class="fas fa-check-circle"></i> Code scanning with advanced SAST tools</li>
+                            <li><i class="fas fa-check-circle"></i> Audit logs and compliance reporting</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <img src="https://images.ctfassets.net/8aevphvgewt8/3WaMDk5JuZzhaKfpRgibKz/c179c5841373ec1fd37c839bdb24a7b4/pillar-3-0a063e2daae2.webp" alt="GitHub Push Protection">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRICING SECTION -->
+        <section id="pricing" class="section">
+            <div class="container" style="text-align: center;">
+                <span class="badge"><i class="fas fa-dollar-sign"></i> Transparent Pricing</span>
+                <h2 class="h-gradient" style="font-size: 3.2rem; font-weight: 800; line-height: 1.2; margin-bottom: 20px;">
+                    Scale Your Development Seamlessly
+                </h2>
+                <p style="font-size: 1.15rem; color: var(--text-muted); max-width: 800px; margin: 0 auto 60px;">
+                    Whether you're an individual developer, a small team, or a large enterprise, GitHub has a plan to
+                    fit your needs and help you build amazing things.
+                </p>
+
+                <div class="pricing-cards">
+                    <div class="price-card">
+                        <div>
+                            <h3>Free</h3>
+                            <p class="subtitle">For individual developers and open source.</p>
+                            <p class="price-val">$0<span>/month</span></p>
+                        </div>
+                        <ul class="features">
+                            <li><i class="fas fa-check-circle"></i> Unlimited public/private repositories</li>
+                            <li><i class="fas fa-check-circle"></i> GitHub Actions CI/CD</li>
+                            <li><i class="fas fa-check-circle"></i> Basic GitHub Copilot access</li>
+                            <li><i class="fas fa-check-circle"></i> 500MB GitHub Packages storage</li>
+                            <li><i class="fas fa-check-circle"></i> Community support</li>
+                        </ul>
+                        <a href="#" class="btn btn-ghost">Get Started Free</a>
+                    </div>
+
+                    <div class="price-card featured">
+                        <div>
+                            <h3>Team</h3>
+                            <p class="subtitle">For teams collaborating on projects.</p>
+                            <p class="price-val">$21<span>/user/month</span></p>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: -15px; margin-bottom: 20px;">(billed annually)</p>
+                        </div>
+                        <ul class="features">
+                            <li><i class="fas fa-check-circle"></i> All features in Free</li>
+                            <li><i class="fas fa-check-circle"></i> Advanced access to GitHub Copilot</li>
+                            <li><i class="fas fa-check-circle"></i> Advanced code review tools</li>
+                            <li><i class="fas fa-check-circle"></i> 3000 Actions minutes/month</li>
+                            <li><i class="fas fa-check-circle"></i> 2GB GitHub Packages storage</li>
+                            <li><i class="fas fa-check-circle"></i> Team discussions & insights</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Choose Team Plan</a>
+                    </div>
+
+                    <div class="price-card">
+                        <div>
+                            <h3>Enterprise</h3>
+                            <p class="subtitle">For organizations with advanced needs.</p>
+                            <p class="price-val">Custom<span>/month</span></p>
+                        </div>
+                        <ul class="features">
+                            <li><i class="fas fa-check-circle"></i> All features in Team</li>
+                            <li><i class="fas fa-check-circle"></i> Enterprise GitHub Copilot</li>
+                            <li><i class="fas fa-check-circle"></i> Enhanced security & compliance</li>
+                            <li><i class="fas fa-check-circle"></i> Premium support</li>
+                            <li><i class="fas fa-check-circle"></i> Single sign-on (SSO)</li>
+                            <li><i class="fas fa-check-circle"></i> Audit logs</li>
+                        </ul>
+                        <a href="#" class="btn btn-ghost">Contact Sales</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section class="cta-section">
+            <div class="container">
+                <h2 class="h-gradient">Ready to Build the Future?</h2>
+                <p>
+                    Join the millions of developers who are already using GitHub to create, collaborate, and innovate.
+                    Get started today and unleash your potential.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary">Start Building Now <i class="fas fa-code-branch"></i></a>
+                    <a href="#" class="btn btn-ghost">Contact Sales</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <a href="#" class="logo" style="justify-content: center; margin-bottom: 15px;">
+                <i class="fab fa-github logo-icon"></i>
+                GitHub
+            </a>
+            <p>
+                &copy; 2024 GitHub, Inc. All rights reserved.
+            </p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">API</a>
+                <a href="#">Status</a>
+                <a href="#">Contact: contact@github.com</a>
+            </div>
+        </div>
+    </footer>
+
+    
+<script src="script.js"></script></body>
+
+</html>

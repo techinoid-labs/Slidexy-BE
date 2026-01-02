@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gari Connect - Techinoid | AI Development & Custom Solutions Provider</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary-color: #00FFFF;
+            --background-color: #0D001A;
+            --text-color: #E0E0E0;
+            --light-text-color: rgba(224, 224, 224, 0.7); /* Slightly muted text */
+            --gradient-start: #0D001A;
+            --gradient-end: rgba(0, 255, 255, 0.1); /* Primary color with transparency */
+            --footer-bg: #0A0015; /* A slightly darker shade for the footer */
+        }
+
+        /* Base Styles & Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--text-color);
+            transform: translateY(-2px);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-color);
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        p {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--light-text-color);
+            font-weight: 300;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-padding {
+            padding: 6rem 0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.2);
+        }
+
+        .btn:hover {
+            background-color: var(--text-color);
+            color: var(--background-color);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 255, 255, 0.3);
+        }
+
+        /* Header Specific Styles */
+        .header {
+            background-color: var(--background-color); /* Matches page background for seamless look */
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1); /* Subtle border with primary color */
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            color: var(--text-color);
+            padding: 0.5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-color);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            transform: translateX(0);
+        }
+
+        .nav-menu a.active {
+            color: var(--primary-color);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: radial-gradient(circle at top left, var(--gradient-end), transparent 70%),
+                        radial-gradient(circle at bottom right, var(--gradient-end), transparent 70%),
+                        var(--background-color);
+            padding: 8rem 0 6rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            background-color: rgba(0, 255, 255, 0.05);
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: floatShape 8s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background-color: rgba(0, 255, 255, 0.07);
+            border-radius: 50%;
+            filter: blur(60px);
+            animation: floatShape 10s reverse ease-in-out infinite;
+        }
+
+        @keyframes floatShape {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.7; }
+            50% { transform: translate(20px, 20px) scale(1.05); opacity: 1; }
+            100% { transform: translate(0, 0) scale(1); opacity: 0.7; }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: var(--text-color);
+        }
+
+        /* Main Content - Gari Connect Details */
+        .gari-content {
+            padding: 6rem 0;
+            background-color: var(--background-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gari-content .container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+        }
+
+        .gari-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background-color: rgba(0, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+            backdrop-filter: blur(5px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top left, rgba(0, 255, 255, 0.02) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            background-color: rgba(0, 255, 255, 0.08);
+            border-color: rgba(0, 255, 255, 0.4);
+        }
+
+        .feature-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            display: block;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            color: var(--light-text-color);
+        }
+        
+        /* Join The Revolution Section */
+        .join-revolution {
+            background-color: var(--background-color);
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .join-revolution h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .social-links {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            color: var(--text-color);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            background-color: rgba(0, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-link:hover {
+            background-color: rgba(0, 255, 255, 0.15);
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+            color: var(--primary-color);
+        }
+
+        .social-link img {
+            height: 24px;
+            width: 24px;
+            filter: drop-shadow(0 0 5px rgba(0, 255, 255, 0.5));
+        }
+
+        /* Projects Section */
+        .projects-section {
+            padding: 6rem 0;
+            background-color: var(--background-color);
+        }
+
+        .projects-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--primary-color);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: rgba(0, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+        }
+        .project-card:hover::before {
+            opacity: 0.1;
+        }
+
+
+        .project-card.active-project {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+            transform: translateY(-8px);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 255, 255, 0.2);
+        }
+
+        .project-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-color);
+        }
+
+        .project-card p {
+            color: var(--light-text-color);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        .project-card .project-link {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end; /* Align to the right */
+            color: var(--primary-color);
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .project-card .project-link:hover {
+            color: var(--text-color);
+            transform: translateX(5px);
+        }
+
+        .project-card .project-link img {
+            height: 16px;
+            width: 16px;
+            vertical-align: middle;
+            filter: drop-shadow(0 0 3px rgba(0, 255, 255, 0.5));
+        }
+
+        /* Call to Action (CTA) Section */
+        .cta-section {
+            background-color: var(--background-color);
+            padding: 6rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            background-color: rgba(0, 255, 255, 0.03);
+            border-radius: 50%;
+            filter: blur(100px);
+            transform: translate(-50%, -50%);
+        }
+
+        .cta-section h2 {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+
+        .contact-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            background-color: rgba(0, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-10px);
+            background-color: rgba(0, 255, 255, 0.1);
+        }
+
+        .contact-item img {
+            height: 32px;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.5));
+        }
+
+        .contact-item p {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .contact-item a {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        .contact-item a:hover {
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--footer-bg);
+            padding: 4rem 0 2rem;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--light-text-color);
+            margin-top: auto; /* Pushes footer to the bottom */
+            border-top: 1px solid rgba(0, 255, 255, 0.08);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .footer-col ul {
+            padding: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col ul li a {
+            color: var(--light-text-color);
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+        
+        .footer-logo {
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-logo img {
+            height: 40px;
+            width: auto;
+            filter: drop-shadow(0 0 5px rgba(0, 255, 255, 0.3));
+        }
+
+        .footer-info p {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            color: var(--light-text-color);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(0, 255, 255, 0.08);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--light-text-color);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-menu {
+                flex-direction: column;
+                position: absolute;
+                top: 70px; /* Adjust based on header height */
+                left: 0;
+                width: 100%;
+                background-color: var(--background-color);
+                border-top: 1px solid rgba(0, 255, 255, 0.1);
+                padding: 1.5rem 0;
+                display: none; /* Hidden by default */
+                transform: translateY(-100%);
+                transition: transform 0.3s ease-out;
+            }
+
+            .nav-menu.open {
+                display: flex;
+                transform: translateY(0);
+            }
+
+            .nav-menu a {
+                padding: 1rem 1.5rem;
+                text-align: center;
+                border-bottom: 1px solid rgba(224, 224, 224, 0.1);
+            }
+
+            .nav-menu a:last-child {
+                border-bottom: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .header .container {
+                padding: 0 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-padding {
+                padding: 4rem 0;
+            }
+
+            h2 {
+                font-size: 2rem !important;
+            }
+            
+            .feature-grid, .project-grid, .contact-info-grid, .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .social-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="https://techinoid.com/Company.svg" alt="Company Logo">
+            </a>
+            <nav class="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="design.html">Design</a>
+                <a href="projects.html">Projects</a>
+                <a href="finsight-fitchsolutions-company.html">FinSight (FitchSolutions Company)</a>
+                <a href="my-story-vault.html">My Story Vault</a>
+                <a href="gari-connect.html" class="active">Gari Connect</a>
+            </nav>
+            <div class="hamburger" onclick="document.querySelector('.nav-menu').classList.toggle('open')">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Gari Connect</h1>
+                <p>Revolutionizing vehicle data and connectivity with advanced AI solutions from Techinoid.</p>
+            </div>
+        </section>
+
+        <section class="gari-content section-padding">
+            <div class="container">
+                <h2>About Gari Connect</h2>
+                <p class="text-center" style="max-width: 800px; margin: 0 auto 4rem;">
+                    Gari Connect is an innovative AI-powered platform developed by Techinoid, designed to
+                    seamlessly integrate vehicle telematics, diagnostics, and smart services. It provides
+                    real-time insights, predictive maintenance, and enhanced user experiences for both
+                    individual drivers and fleet managers.
+                </p>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-car-alt"></i>
+                        <h3>Real-time Telematics</h3>
+                        <p>Track vehicle location, speed, and status with high precision, enabling efficient fleet management and improved safety.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-cogs"></i>
+                        <h3>Predictive Maintenance</h3>
+                        <p>Leverage AI to analyze vehicle data and predict potential malfunctions before they occur, reducing downtime and costs.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Data-driven Insights</h3>
+                        <p>Comprehensive analytics dashboards provide actionable insights into vehicle performance, fuel efficiency, and driver behavior.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Enhanced Security</h3>
+                        <p>Advanced security features, including geofencing and anti-theft alerts, ensure the safety and protection of assets.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Seamless Connectivity</h3>
+                        <p>Integrate with mobile apps and third-party systems for a truly connected vehicle ecosystem.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-brain"></i>
+                        <h3>AI-Powered Personalization</h3>
+                        <p>Tailor experiences for drivers with personalized recommendations and smart assistance based on driving patterns.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="join-revolution section-padding">
+            <div class="container">
+                <h2>Join the Techinoid Revolution.</h2>
+                <p>Stay updated with our latest innovations and insights. Connect with us!</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/company/techinoid" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <img src="https://techinoid.com/_next/image?url=%2FLinkedIn.png&w=32&q=75" alt="LinkedIn">
+                        Follow us on Linkedin
+                    </a>
+                    <a href="#" class="social-link"> <!-- Assuming Insights is a blog or internal page -->
+                        <i class="fas fa-newspaper" style="color: var(--primary-color); font-size: 1.5rem;"></i>
+                        Read our Insights
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="projects-section section-padding">
+            <div class="container">
+                <h2>Our Impactful Projects</h2>
+                <div class="project-grid">
+                    <a href="finsight-fitchsolutions-company.html" class="project-card">
+                        <h3>FinSight (FitchSolutions Company)</h3>
+                        <p>A cutting-edge financial intelligence platform delivering critical market insights.</p>
+                        <span class="project-link">Learn More <img src="https://techinoid.com/_next/image?url=%2Farrow_outward.png&w=48&q=75" alt="Arrow"></span>
+                    </a>
+                    <a href="my-story-vault.html" class="project-card">
+                        <h3>My Story Vault</h3>
+                        <p>Secure digital archiving solution for personal narratives and memories powered by AI.</p>
+                        <span class="project-link">Learn More <img src="https://techinoid.com/_next/image?url=%2Farrow_outward.png&w=48&q=75" alt="Arrow"></span>
+                    </a>
+                    <a href="gari-connect.html" class="project-card active-project">
+                        <h3>Gari Connect</h3>
+                        <p>Advanced AI telematics for real-time vehicle diagnostics and smart connectivity.</p>
+                        <span class="project-link">Currently Viewing <img src="https://techinoid.com/_next/image?url=%2Farrow_outward.png&w=48&q=75" alt="Arrow"></span>
+                    </a>
+                    <a href="#" class="project-card"> <!-- Placeholder link for Weedx -->
+                        <h3>Weedx</h3>
+                        <p>Innovative agricultural AI solution optimizing crop management and yield prediction.</p>
+                        <span class="project-link">Learn More <img src="https://techinoid.com/_next/image?url=%2Farrow_outward.png&w=48&q=75" alt="Arrow"></span>
+                    </a>
+                    <a href="#" class="project-card"> <!-- Placeholder link for DigiCust -->
+                        <h3>DigiCust</h3>
+                        <p>Digital customer experience platform enhancing engagement and satisfaction.</p>
+                        <span class="project-link">Learn More <img src="https://techinoid.com/_next/image?url=%2Farrow_outward.png&w=48&q=75" alt="Arrow"></span>
+                    </a>
+                    <a href="#" class="project-card"> <!-- Placeholder link for Media Shower -->
+                        <h3>Media Shower</h3>
+                        <p>Content marketing intelligence platform for data-driven strategy and execution.</p>
+                        <span class="project-link">Learn More <img src="https://techinoid.com/_next/image?url=%2Farrow_outward.png&w=48&q=75" alt="Arrow"></span>
+                    </a>
+                    <a href="#" class="project-card"> <!-- Placeholder link for Modulus -->
+                        <h3>Modulus</h3>
+                        <p>Scalable modular software development framework for rapid deployment.</p>
+                        <span class="project-link">Learn More <img src="https://techinoid.com/_next/image?url=%2Farrow_outward.png&w=48&q=75" alt="Arrow"></span>
+                    </a>
+                    <a href="#" class="project-card"> <!-- Placeholder link for Inorganic -->
+                        <h3>Inorganic</h3>
+                        <p>AI-powered material science platform for discovery and optimization of new compounds.</p>
+                        <span class="project-link">Learn More <img src="https://techinoid.com/_next/image?url=%2Farrow_outward.png&w=48&q=75" alt="Arrow"></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section section-padding">
+            <div class="container">
+                <h2>Want to get in touch?</h2>
+                <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto 3rem;">We're always excited to discuss new ideas and opportunities. Reach out to us!</p>
+                <div class="contact-info-grid">
+                    <div class="contact-item">
+                        <img src="https://techinoid.com/Envelope.png" alt="Email Icon">
+                        <p>Email Us</p>
+                        <a href="mailto:info@techinoidsolutions.com">info@techinoidsolutions.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <img src="https://techinoid.com/Pin.png" alt="Location Icon">
+                        <p>Delaware Office</p>
+                        <address style="font-style: normal; color: var(--text-color); font-weight: 400; font-size: 0.95rem;">
+                            2140 S Dupont Hwy, Camden, DE 19934, USA
+                        </address>
+                    </div>
+                    <div class="contact-item">
+                        <img src="https://techinoid.com/Pin.png" alt="Location Icon">
+                        <p>Alabama Office</p>
+                        <address style="font-style: normal; color: var(--text-color); font-weight: 400; font-size: 0.95rem;">
+                            4628 Montevallo Rd Suite 110, Birmingham, AL 35210
+                        </address>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" class="footer-logo">
+                        <img src="https://techinoid.com/Company.svg" alt="Techinoid Logo">
+                    </a>
+                    <p style="margin-top: 1rem; font-size: 0.9rem;">AI Development & Custom Solutions Provider</p>
+                </div>
+
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="design.html">Design</a></li>
+                        <li><a href="#">Industries</a></li>
+                        <li><a href="#">Engagement Models</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="#">Process</a></li>
+                        <li><a href="#">Reviews</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3>Our Projects</h3>
+                    <ul>
+                        <li><a href="finsight-fitchsolutions-company.html">FinSight</a></li>
+                        <li><a href="my-story-vault.html">My Story Vault</a></li>
+                        <li><a href="gari-connect.html">Gari Connect</a></li>
+                        <li><a href="#">Weedx</a></li>
+                        <li><a href="#">DigiCust</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col footer-info">
+                    <h3>Contact Us</h3>
+                    <p><a href="mailto:info@techinoidsolutions.com">info@techinoidsolutions.com</a></p>
+                    <p>2140 S Dupont Hwy, Camden, DE 19934, USA</p>
+                    <p>4628 Montevallo Rd Suite 110, Birmingham, AL 35210</p>
+                    <div class="social-links" style="justify-content: flex-start; margin-top: 1.5rem; gap: 1rem;">
+                        <a href="https://www.linkedin.com/company/techinoid" target="_blank" rel="noopener noreferrer" style="background-color: transparent; border: none; padding: 0;">
+                            <img src="https://techinoid.com/_next/image?url=%2FLinkedIn.png&w=32&q=75" alt="LinkedIn" style="height: 28px; width: 28px;">
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" style="background-color: transparent; border: none; padding: 0;"> 
+                            <img src="https://techinoid.com/_next/image?url=%2FInstagram.png&w=32&q=75" alt="Instagram" style="height: 28px; width: 28px;">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Techinoid LLC. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple script for mobile nav toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('open');
+        });
+
+        // Close nav when clicking a link (optional, but good for mobile UX)
+        document.querySelectorAll('.nav-menu a').forEach(item => {
+            item.addEventListener('click', () => {
+                if (navMenu.classList.contains('open')) {
+                    navMenu.classList.remove('open');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
