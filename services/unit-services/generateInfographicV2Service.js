@@ -148,9 +148,15 @@ ${userPrompt ? `\nUser's additional hint/title: "${userPrompt}"` : ""}
       console.log(`\n[GenerateInfographicV2Service] Starting generation`);
       console.log(`Topic: "${finalTopic.substring(0, 100)}..."`);
       console.log(`View Mode: ${viewMode}`);
+      const prompt = topic;
 
       // === TEMPLATE SYSTEM GENERATION ===
-      const result = await this.templateService.generateInfographic(finalTopic, viewMode);
+      const result = await this.templateService.generateInfographic(
+        prompt,
+        viewMode,
+        slideType || '',
+        options || {}
+      );
 
       console.log(`[GenerateInfographicV2Service] Infographic generated successfully`);
 
