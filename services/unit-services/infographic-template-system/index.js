@@ -21,31 +21,48 @@ class DynamicInfographicServiceV2 {
     this.retries = 3;
   }
 
-  /**
-   * Main entry point - Generate infographic using template system
-   * @param {string} prompt - User prompt/topic
-   * @param {string} viewMode - landscape or portrait
-   * @param {object} options - Additional options (colorScheme, etc.)
-   * @returns {Promise<object>} { data, html, meta }
-   */
-  async generateInfographic(prompt, viewMode = 'landscape', options = {}) {
+  async generateInfographic(prompt, viewMode = 'landscape',slideType, options = {}) {
+      const {
+    colorScheme,
+    title,
+    textOverlay,
+    narration,
+    keyPoints
+  } = options;
     // Validate inputs
-    if (!prompt || typeof prompt !== 'string' || prompt.trim().length === 0) {
-      throw new Error('Prompt must be a non-empty string');
-    }
+// Validate inputs
+  if (!prompt || typeof prompt !== 'string' || prompt.trim().length === 0) {
+    throw new Error('Prompt must be a non-empty string');
+  }
 
-    if (!['landscape', 'portrait'].includes(viewMode)) {
-      throw new Error('viewMode must be either "landscape" or "portrait"');
-    }
+  if (!['landscape', 'portrait'].includes(viewMode)) {
+    throw new Error('viewMode must be either "landscape" or "portrait"');
+  }
 
-    const startTime = Date.now();
-    console.log(`\n🚀 Starting Template-Based Infographic Generation`);
-    console.log(`📌 Prompt: "${prompt.substring(0, 60)}..."`);
-    console.log(`📱 View Mode: ${viewMode}`);
-    if (options.colorScheme) {
-      console.log(`🎨 Color Scheme: ${options.colorScheme}`);
-    }
-    console.log('');
+  if (!slideType || typeof slideType !== 'string') {
+    throw new Error('slideType must be a non-empty string');
+  }
+
+  const startTime = Date.now();
+
+  console.log(`\n🚀 Starting Template-Based Infographic Generation`);
+  console.log(`📌 Prompt: "${prompt.substring(0, 60)}..."`);
+  console.log(`📱 View Mode: ${viewMode}`);
+  console.log(`🧩 Slide Type: ${slideType}`);
+
+  if (colorScheme) {
+    console.log(`🎨 Color Scheme: ${colorScheme}`);
+  }
+
+  if (title) {
+    console.log(`📝 Title: ${title}`);
+  }
+
+  if (keyPoints?.length) {
+    console.log(`📍 Key Points: ${keyPoints.length}`);
+  }
+
+  console.log('');
 
     for (let attempt = 1; attempt <= this.retries; attempt++) {
       try {
@@ -53,10 +70,14 @@ class DynamicInfographicServiceV2 {
 
         // Step 1: Analyze layout
         console.log('\n1️⃣ Analyzing content for best layout type...');
-        const layoutAnalysis = await layoutAnalyzer.analyzeContent(
-          prompt,
-          viewMode
-        );
+        const layoutAnalysis = await layoutAnalyzer.analyzeContent({
+          topic: prompt,
+          viewMode,
+          textOverlay,
+          narration,
+          keyPoints,
+        });
+        console.log(`Slide Type got from Python Code ${slideType}`);
         const layoutType = layoutAnalysis.layoutType;
         console.log(`   ✓ Selected layout: ${layoutType} (confidence: ${(layoutAnalysis.confidence * 100).toFixed(0)}%)`);
 
@@ -68,12 +89,15 @@ class DynamicInfographicServiceV2 {
 
         // Step 3: Generate content
         console.log('\n3️⃣ Generating content for template...');
-        const content = await contentGenerator.generateContent(
-          prompt,
+        const content = await contentGenerator.generateContent({
+          topic: prompt,
           layoutType,
           parameters,
-          viewMode
-        );
+          viewMode,
+          textOverlay,
+          narration,
+          keyPoints,
+        });
         console.log(`   ✓ Content generated`);
         if (layoutType === 'cards') {
           console.log(`   ✓ Cards: ${content.cards?.length || 0}`);

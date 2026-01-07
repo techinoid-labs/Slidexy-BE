@@ -24,7 +24,7 @@ One sub-array per slide. No explanations.
   try {
     const bulletsArrays = JSON5.parse(jsonString);
     // Convert to KonvaComponents (bullet_point elements)
-    return bulletsArrays.map((bullets, index) => 
+    return bulletsArrays.map((bullets, index) =>
       bullets.map((bullet, bulletIndex) => ({
         konva_component: "Konva.Text",
         element_type: "bullet_point",

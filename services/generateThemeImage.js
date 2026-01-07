@@ -46,9 +46,9 @@ async function generateSingleTheme(promptText) {
   const prompt = `
     ${presentationThemePrompt.description}
     ${presentationThemePrompt.visualThemeAndColorPalette.replace(
-      /\${promptText}/g,
-      promptText
-    )}
+    /\${promptText}/g,
+    promptText
+  )}
     ${presentationThemePrompt.imageClarity}
     
     STRICT REQUIREMENTS:
@@ -66,7 +66,7 @@ async function generateSingleTheme(promptText) {
     imageUrl = await imageGenLimiter.schedule(() =>
       generateImageWithRetry(prompt, {
         width: 1344,
-      height: 768,
+        height: 768,
         steps: 30,
         CFGScale: 7.5,
         negativePrompt: "text, watermark, signature, letters, typography, words, readable content, blurry, low quality",
@@ -85,9 +85,9 @@ async function generateSingleTheme(promptText) {
   // Since Runware doesn't return JSON metadata with the image,
   // you'll need to generate theme metadata separately using your textGenModel
   // Here's an approach:
-  
+
   const { textGenModel } = require("../utils/geminiModels");
-  
+
   let themeData = {
     image_base64: imageUrl, // Store the URL or convert to base64 if needed
     font: "Inter",
@@ -118,7 +118,7 @@ async function generateSingleTheme(promptText) {
 
     const metadataText = metadataResponse.response?.candidates?.[0]?.content?.parts?.[0]?.text || "";
     const match = metadataText.match(/\{[\s\S]*?\}/);
-    
+
     if (match) {
       const json = JSON.parse(match[0]);
       themeData.font = json.font || themeData.font;

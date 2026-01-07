@@ -31,30 +31,66 @@ class GenerateInfographicExplainerService {
    * @param {object} options - Additional options (colorScheme, etc.)
    * @returns {Promise<object>} { data, html, meta }
    */
-  async generateInfographic(topic, viewMode = 'landscape', options = {}) {
-    try {
-      if (!topic || typeof topic !== 'string') {
-        throw new Error('Topic must be a non-empty string');
-      }
+async generateInfographic(data) {
+  try {
+    const {
+      topic,
+      viewMode = 'landscape',
+      slideType,
+      colorScheme,
+      title,
+      textOverlay,
+      narration,
+      keyPoints
+    } = data;
 
-      console.log(`\n🎨 [GenerateInfographicExplainerService] Starting infographic generation`);
-      console.log(`📌 Topic: "${topic.substring(0, 60)}..."`);
-      console.log(`📱 View Mode: ${viewMode}`);
-      if (options.colorScheme) {
-        console.log(`🎨 Color Scheme: ${options.colorScheme}`);
-      }
-
-      // Use the new template-based system with color scheme support
-      const result = await this.templateService.generateInfographic(topic, viewMode, options);
-
-      console.log(`✅ [GenerateInfographicExplainerService] Infographic generated successfully`);
-
-      return result;
-    } catch (error) {
-      console.error(`❌ [GenerateInfographicExplainerService] Error:`, error.message);
-      throw error;
+    // Basic validation
+    if (!topic || typeof topic !== 'string') {
+      throw new Error('Topic must be a non-empty string');
     }
+
+    console.log(`\n🎨 [GenerateInfographicExplainerService] Starting infographic generation`);
+    console.log(`📌 Prompt: "${topic.substring(0, 60)}..."`);
+    console.log(`📱 View Mode: ${viewMode}`);
+    console.log(`🧩 Slide Type: ${slideType}`);
+    console.log(`📝 Title: ${title}`);
+
+    if (colorScheme) {
+      console.log(`🎨 Color Scheme: ${colorScheme}`);
+    }
+
+    if (keyPoints?.length) {
+      console.log(`📍 Key Points Count: ${keyPoints.length}`);
+    }
+
+    // Build options object cleanly
+    const options = {
+      colorScheme,
+      title,
+      textOverlay,
+      narration,
+      keyPoints
+    };
+
+    const prompt = topic;
+    // Pass EVERYTHING to template service
+const result = await this.templateService.generateInfographic(
+  prompt,
+  viewMode,
+  slideType || '',
+  options || {}
+);
+
+
+    console.log(`✅ [GenerateInfographicExplainerService] Infographic generated successfully`);
+
+    return result;
+
+  } catch (error) {
+    console.error(`❌ [GenerateInfographicExplainerService] Error:`, error.message);
+    throw error;
   }
+}
 
   /**
    * Generate infographic with custom parameters

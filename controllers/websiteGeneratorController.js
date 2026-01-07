@@ -1,6 +1,6 @@
 const { generateWebsiteFromUrl } = require("../services/websiteGenerator");
 const { createAndUploadZip } = require('../utils/createAndUploadZip');
-const GeneratedWebsite = require('../models/generateWebsite'); 
+const GeneratedWebsite = require('../models/generateWebsite');
 const fs = require("fs").promises;
 const path = require("path");
 
@@ -53,7 +53,7 @@ async function generateWebsite(req, res) {
     if (!url) return res.status(400).json({ success: false, error: "URL required" });
 
     console.log(`Generating website for: ${url}`);
-    
+
     // This now returns clean object
     const result = await generateWebsiteFromUrl(url);
 
@@ -108,7 +108,7 @@ async function generateWebsite(req, res) {
 async function listGeneratedWebsites(req, res) {
   try {
     const websiteCodesDir = path.join(__dirname, "..", "website-codes");
-    
+
     try {
       await fs.access(websiteCodesDir);
     } catch {
@@ -122,7 +122,7 @@ async function listGeneratedWebsites(req, res) {
 
     const items = await fs.readdir(websiteCodesDir);
     const folders = [];
-    
+
     for (const item of items) {
       const itemPath = path.join(websiteCodesDir, item);
       const stats = await fs.stat(itemPath);
@@ -135,7 +135,7 @@ async function listGeneratedWebsites(req, res) {
       folders.map(async (folderName) => {
         const folderPath = path.join(websiteCodesDir, folderName);
         const stats = await fs.stat(folderPath);
-        
+
         let topic = "Unknown";
         let sourceUrl = "Unknown";
         let generatedAt = stats.birthtime;
@@ -177,7 +177,7 @@ async function listGeneratedWebsites(req, res) {
       })
     );
 
-    websiteDetails.sort((a, b) => 
+    websiteDetails.sort((a, b) =>
       new Date(b.generatedAt) - new Date(a.generatedAt)
     );
 
@@ -248,5 +248,99 @@ module.exports = {
   healthCheck,
   generateWebsite,
   listGeneratedWebsites,
-  getWebsiteById
+  getWebsiteById,
+  generateTemplateWebsite,
+  generateTemplateWebsite,
+  generateSmartWebsite,
+  generateClone
+};
+
+async function generateClone(req, res) {
+  try {
+    const { url } = req.body;
+    if (!url) return res.status(400).json({ success: false, error: "URL required" });
+
+    const { generateClone } = require("../services/cloneArchitect");
+    const result = await generateClone(url);
+
+    // Extract ID from MongoDB document (_id is the MongoDB ObjectId)
+    const websiteId = result._id?.toString() || result.id || result.presentationId;
+
+    return res.status(200).json({
+      success: true,
+      data: result,
+      presentationId: websiteId,
+      id: websiteId
+    });
+  } catch (error) {
+    console.error("Clone Architect Error:", error);
+    return res.status(500).json({ success: false, error: error.message });
+  }
+}
+
+
+/**
+ * Generate website using Templates
+ */
+async function generateTemplateWebsite(req, res) {
+  try {
+    const { url } = req.body;
+    if (!url) return res.status(400).json({ success: false, error: "URL required" });
+
+    const { generateTemplateWebsite } = require("../services/templateBasedWebsite");
+    const result = await generateTemplateWebsite(url);
+
+    return res.status(200).json({
+      success: true,
+      data: result
+    });
+  } catch (error) {
+    console.error("Template Gen Error:", error);
+    return res.status(500).json({ success: false, error: error.message });
+  }
+}
+
+/**
+ * Generate website using Smart Generation
+ */
+async function generateSmartWebsite(req, res) {
+  try {
+    const { url } = req.body;
+    if (!url) {
+      return res.status(400).json({ success: false, error: 'URL is required' });
+    }
+
+    const { generateSmartWebsite } = require("../services/templateBasedWebsite");
+    const result = await generateSmartWebsite(url);
+
+    // DEBUG: Log the result to understand structure
+    console.log("📊 Smart Website Result:", JSON.stringify(result, null, 2));
+    console.log("📊 Result keys:", Object.keys(result));
+    console.log("📊 Result._id:", result._id);
+    console.log("📊 Result.id:", result.id);
+
+    // Extract ID from MongoDB document (_id is the MongoDB ObjectId)
+    const websiteId = result._id?.toString() || result.id || result.presentationId;
+    console.log("📊 Extracted websiteId:", websiteId);
+
+    return res.status(200).json({
+      success: true,
+      data: result,
+      presentationId: websiteId,
+      id: websiteId
+    });
+  } catch (error) {
+    console.error('Smart Generation Error:', error);
+    return res.status(500).json({ success: false, error: error.message });
+  }
+}
+
+module.exports = {
+  healthCheck,
+  generateWebsite,
+  listGeneratedWebsites,
+  getWebsiteById,
+  generateTemplateWebsite,
+  generateSmartWebsite,
+  generateClone
 };

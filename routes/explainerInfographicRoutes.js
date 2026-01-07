@@ -22,28 +22,101 @@ router.post("/", async (req, res) => {
   let filepath; // keep track of the file to delete
 
   try {
-    const { topic, viewMode = "landscape", colorScheme } = req.body;
+    const { topic, viewMode = "landscape", colorScheme, slideType, title, textOverlay, narration, keyPoints } = req.body;
 
-    if (!topic || typeof topic !== "string") {
-      return res.status(400).json({ error: "Topic is required and must be a string" });
+    // Validation function
+    function validateSlideData(data) {
+      const errors = [];
+
+      // Validate topic
+      if (!data.topic || typeof data.topic !== "string" || data.topic.trim().length === 0) {
+        errors.push("Topic is required and must be a non-empty string");
+      }
+
+      // Validate viewMode
+      if (data.viewMode && !["landscape", "portrait"].includes(data.viewMode)) {
+        errors.push("viewMode must be either 'landscape' or 'portrait'");
+      }
+
+      // Validate colorScheme (optional, but if provided, must be string)
+      if (data.colorScheme && typeof data.colorScheme !== "string") {
+        errors.push("colorScheme must be a string");
+      }
+
+      // Validate slideType (optional, but if provided, must be string)
+      if (data.slideType && typeof data.slideType !== "string") {
+        errors.push("slideType must be a string");
+      }
+
+      // Validate title (optional, but if provided, must be string)
+      if (data.title && typeof data.title !== "string") {
+        errors.push("title must be a string");
+      }
+
+      // Validate textOverlay (required)
+      if (!data.textOverlay || typeof data.textOverlay !== "string") {
+        errors.push("textOverlay is required and must be a string");
+      }
+
+      // Validate narration (optional, but if provided, must be string)
+      if (data.narration && typeof data.narration !== "string") {
+        errors.push("narration must be a string");
+      }
+
+      // Validate keyPoints (required, must be an array and not empty)
+      if (!data.keyPoints || !Array.isArray(data.keyPoints) || data.keyPoints.length === 0) {
+        errors.push("No Key Points Found");
+      }
+
+      return errors;
     }
 
+    // Perform validation
+    const errors = validateSlideData({ topic, viewMode, colorScheme, slideType, title, textOverlay, narration, keyPoints });
+
+    if (errors.length > 0) {
+      console.log("❌ Validation errors:", errors);
+      return res.status(400).json({ errors });
+    }
+
+    // Log all valid fields
+    console.log("✅ Valid slide data received:");
+    console.log({
+      topic,
+      viewMode,
+      colorScheme,
+      slideType,
+      title,
+      textOverlay,
+      narration,
+      keyPoints
+    });
+
     const validColorSchemes = [
-      'techBlue', 'forestGreen', 'culinaryRed', 'creativeViolet', 
+      'techBlue', 'forestGreen', 'culinaryRed', 'creativeViolet',
       'travelTeal', 'academicYellow', 'scienceBlue', 'corporateGold', 'medicalBlue'
     ];
 
     if (colorScheme && !validColorSchemes.includes(colorScheme)) {
-      return res.status(400).json({ 
-        error: `Invalid colorScheme. Must be one of: ${validColorSchemes.join(', ')}` 
+      return res.status(400).json({
+        error: `Invalid colorScheme. Must be one of: ${validColorSchemes.join(', ')}`
       });
     }
 
     // Generate infographic
-    const options = {};
-    if (colorScheme) options.colorScheme = colorScheme;
+    // Assuming the service expects topic and an options object; adjust if the service signature differs
+    const options = {
+      topic,
+      viewMode,
+      colorScheme,
+      slideType,
+      title,
+      textOverlay,
+      narration,
+      keyPoints
+    };
 
-    const result = await generateInfographicExplainerService.generateInfographic(topic, viewMode, options);
+    const result = await generateInfographicExplainerService.generateInfographic(options);
 
     // Save HTML temporarily
     if (!fs.existsSync(OUTPUT_DIR)) {
@@ -75,7 +148,7 @@ router.post("/", async (req, res) => {
 
   } catch (error) {
     console.error(`❌ [Explainer Route] Error:`, error.message);
-    res.status(500).json({ 
+    res.status(500).json({
       success: false,
       error: error.message,
       details: error.stack
@@ -111,9 +184,9 @@ router.get("/info", (req, res) => {
       }
     });
   } catch (error) {
-    res.status(500).json({ 
+    res.status(500).json({
       success: false,
-      error: error.message 
+      error: error.message
     });
   }
 });

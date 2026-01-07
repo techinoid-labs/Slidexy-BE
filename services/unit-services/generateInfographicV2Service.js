@@ -1,21 +1,24 @@
 /**
  * Generate Infographic V2 Service
  * 
- * New integrated infographic generation service using the template-based system.
- * This replaces the old getInfographicService.js but keeps it intact.
+ * Enhanced V2 service with built-in file processing support.
  * 
  * Features:
- * - Template-based rendering (7 templates: cards, timeline, comparison, hierarchy, chart, list, rich-layout)
- * - Intelligent layout analysis based on content
- * - Consistent visual quality and design
- * - Support for multiple view modes (landscape, portrait)
- * - Robust error handling with retry logic
- * 
- * Architecture:
- * User Input → Layout Analysis → Content Generation → Template Rendering → HTML Output
+ * - Template-based rendering (7 templates)
+ * - Intelligent layout analysis
+ * - File upload support (PDF, DOCX, TXT)
+ * - Smart summarization of uploaded documents
+ * - Multi-view mode support
+ * - Robust error handling
  */
 
 const templateSystemService = require('./infographic-template-system');
+const PDFParse = require('pdf-parse');
+const mammoth = require('mammoth');
+
+// Assuming you have access to your Gemini or text generation model here
+// Replace with your actual model import
+const { textGenModel } = require('../../utils/geminiModels'); // Adjust path as needed
 
 class GenerateInfographicV2Service {
   constructor() {
@@ -23,114 +26,198 @@ class GenerateInfographicV2Service {
   }
 
   /**
-   * Main method to generate infographic
-   * @param {string} topic - The topic/prompt for the infographic
-   * @param {string} viewMode - 'landscape' or 'portrait' (default: 'landscape')
-   * @param {object} options - Additional options
-   * @returns {Promise<object>} { data, html, meta }
+   * Extract text from uploaded file buffer
+   * @private
    */
-  async generateInfographic(topic, viewMode = 'landscape', options = {}) {
+  async _extractTextFromFile(fileBuffer, mimeType) {
+    if (!fileBuffer) return "";
+
     try {
-      if (!topic || typeof topic !== 'string') {
-        throw new Error('Topic must be a non-empty string');
+      if (mimeType.startsWith("text/")) {
+        return fileBuffer.toString("utf-8");
       }
 
-      console.log(`\n🎨 [GenerateInfographicV2Service] Starting infographic generation`);
-      console.log(`📌 Topic: "${topic.substring(0, 60)}..."`);
-      console.log(`📱 View Mode: ${viewMode}`);
+      if (mimeType === "application/pdf") {
+        const { PDFParse } = require("pdf-parse");
+        const parser = new PDFParse({ data: fileBuffer });
+        const result = await parser.getText();
+        return result.text || "";
+      }
 
-      // Use the new template-based system
-      const result = await this.templateService.generateInfographic(topic, viewMode);
+      if (mimeType === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
+        const result = await mammoth.extractRawText({ buffer: fileBuffer });
+        return result.value;
+      }
 
-      console.log(`✅ [GenerateInfographicV2Service] Infographic generated successfully`);
+      console.warn("Unsupported file type in extraction:", mimeType);
+      return "";
+    } catch (err) {
+      console.error("File extraction failed:", err.message);
+      return "";
+    }
+  }
+
+  /**
+   * Summarize long document content intelligently for infographic use
+   * @private
+   */
+  async _summarizeContent(rawContent) {
+    if (!rawContent || rawContent.trim().length < 100) {
+      return rawContent.substring(0, 2000);
+    }
+
+    try {
+      const summaryPrompt = `
+You are an expert infographic content curator.
+
+Summarize the following document in a structured, visual-friendly way for creating a beautiful infographic.
+
+Focus on:
+- Main topic/title suggestion
+- Key facts, stats, steps, benefits, or comparisons
+- Core message or takeaway
+- Short, punchy phrases ideal for visuals
+
+Output in clean markdown:
+# Suggested Title
+
+- Bullet point 1
+- Bullet point 2
+- ...
+
+Document:
+"""${rawContent}"""
+
+Respond ONLY with text no styling or anything. No explanations.
+`;
+
+      const result = await textGenModel.generateContent(summaryPrompt);
+      let summary = "";
+
+      if (typeof result.response.text === "function") {
+        summary = result.response.text();
+      } else {
+        summary = result?.response?.candidates?.[0]?.content?.parts?.[0]?.text || "";
+      }
+
+      return summary.trim();
+    } catch (err) {
+      console.error("Summarization failed, using raw excerpt:", err.message);
+      return rawContent.substring(0, 3000);
+    }
+  }
+
+  /**
+   * Main method: Generate infographic with optional file
+   * @param {string} userPrompt - Optional user text prompt (title/focus)
+   * @param {string} viewMode - 'landscape' or 'portrait'
+   * @param {object} file - Optional file object { buffer, mimetype, originalname }
+   * @returns {Promise<object>} { data, html, meta }
+   */
+  async generateInfographic(userPrompt = "", viewMode = 'landscape', file = null) {
+    let finalTopic = userPrompt?.trim() || "Create a beautiful infographic";
+
+    try {
+      // === FILE PROCESSING ===
+      if (file && file.buffer) {
+        console.log(`Processing uploaded file: ${file.originalname} (${file.mimetype})`);
+
+        const rawText = await this._extractTextFromFile(file.buffer, file.mimetype);
+
+        if (rawText.trim()) {
+          const summarized = await this._summarizeContent(rawText);
+
+          finalTopic = `Create an infographic based on this summarized content:
+
+${summarized}
+
+${userPrompt ? `\nUser's additional hint/title: "${userPrompt}"` : ""}
+`.trim();
+
+          console.log("Final topic built from file + prompt");
+        } else {
+          console.warn("No text extracted from file");
+        }
+      }
+
+      // Validation
+      if (typeof finalTopic !== 'string' || !finalTopic.trim()) {
+        throw new Error('No valid content to generate infographic from');
+      }
+
+      console.log(`\n[GenerateInfographicV2Service] Starting generation`);
+      console.log(`Topic: "${finalTopic.substring(0, 100)}..."`);
+      console.log(`View Mode: ${viewMode}`);
+      const prompt = topic;
+
+      // === TEMPLATE SYSTEM GENERATION ===
+      const result = await this.templateService.generateInfographic(
+        prompt,
+        viewMode,
+        slideType || '',
+        options || {}
+      );
+
+      console.log(`[GenerateInfographicV2Service] Infographic generated successfully`);
 
       return result;
+
     } catch (error) {
-      console.error(`❌ [GenerateInfographicV2Service] Error:`, error.message);
+      console.error(`[GenerateInfographicV2Service] Generation failed:`, error.message);
       throw error;
     }
   }
 
-  /**
-   * Generate infographic with custom parameters
-   * @param {string} topic - The topic
-   * @param {object} customParams - Custom parameters { viewMode, style, colors, etc }
-   * @returns {Promise<object>} { data, html, meta }
-   */
-  async generateWithParams(topic, customParams = {}) {
-    const {
-      viewMode = 'landscape',
-      ...otherParams
-    } = customParams;
+  // === Other existing methods remain unchanged ===
 
-    // For now, we'll use the standard flow, but this can be extended
-    // to pass custom parameters to the template system in the future
-    return this.generateInfographic(topic, viewMode, otherParams);
+  async generateWithParams(topic, customParams = {}) {
+    const { viewMode = 'landscape', ...otherParams } = customParams;
+    return this.generateInfographic(topic, viewMode, null); // file not supported here yet
   }
 
-  /**
-   * Generate multiple view modes for the same topic
-   * @param {string} topic - The topic
-   * @param {string[]} viewModes - Array of view modes
-   * @returns {Promise<object>} { landscape, portrait, ... }
-   */
   async generateMultiView(topic, viewModes = ['landscape', 'portrait']) {
-    console.log(`\n📊 [GenerateInfographicV2Service] Generating multiple views for: "${topic.substring(0, 40)}..."`);
+    console.log(`\nGenerating multiple views for: "${topic.substring(0, 40)}..."`);
 
     const results = {};
-
     for (const viewMode of viewModes) {
       try {
         const result = await this.generateInfographic(topic, viewMode);
         results[viewMode] = result;
-        console.log(`✅ Generated ${viewMode} view`);
+        console.log(`Generated ${viewMode} view`);
       } catch (error) {
-        console.error(`❌ Failed to generate ${viewMode} view:`, error.message);
-        results[viewMode] = {
-          error: error.message,
-          success: false,
-        };
+        console.error(`Failed ${viewMode}:`, error.message);
+        results[viewMode] = { error: error.message, success: false };
       }
     }
-
     return results;
   }
 
-  /**
-   * Get available layout types
-   * @returns {object} Available layouts with descriptions
-   */
   getAvailableLayouts() {
     return this.templateService.getAvailableLayouts();
   }
 
-  /**
-   * Get available templates
-   * @returns {object} Available templates
-   */
   getAvailableTemplates() {
     return this.templateService.getAvailableTemplates();
   }
 
-  /**
-   * Get service information
-   * @returns {object} Service metadata
-   */
   getServiceInfo() {
     return {
       name: 'GenerateInfographicV2Service',
-      version: '2.0.0',
-      description: 'Template-based infographic generation service',
+      version: '2.1.0',
+      description: 'Template-based infographic generation with file upload support',
       type: 'infographic-generator',
       features: [
         'template-based-rendering',
         'layout-analysis',
         'content-generation',
         'multi-view-support',
+        'file-upload-processing',
+        'intelligent-summarization',
         'error-handling-retry',
       ],
       templates: this.getAvailableTemplates(),
       layouts: this.getAvailableLayouts(),
+      supportedFileTypes: ['PDF', 'DOCX', 'TXT'],
     };
   }
 }

@@ -50,56 +50,97 @@ class LayoutAnalyzer {
    * @param {string} viewMode - landscape or portrait
    * @returns {Promise<object>} Layout analysis with layoutType and recommendations
    */
-  async analyzeContent(prompt, viewMode = 'landscape') {
+  async analyzeContent({
+    topic,
+    viewMode = 'landscape',
+    textOverlay,
+    narration,
+    keyPoints
+  }) {
     console.log(`🔍 Analyzing content for layout type...`);
 
-    // Try keyword detection first (fast, no API call)
-    const keywordLayout = this.getLayoutByKeywords(prompt);
-    console.log(`   ✓ Keyword analysis: ${keywordLayout}`);
+    // 🧠 Build semantic context for analysis
+    const analysisContext = `
+TITLE:
+${textOverlay || 'N/A'}
 
-    // If confidence is high enough with keywords, return immediately
-    if (this._getKeywordConfidence(prompt, keywordLayout) >= 0.85) {
+MAIN POINTS:
+${Array.isArray(keyPoints) ? keyPoints.join(' | ') : 'N/A'}
+
+VOICE OVER:
+${narration || 'N/A'}
+
+TOPIC CONTEXT:
+${topic || 'N/A'}
+`.trim();
+
+    // 1️⃣ Keyword-based layout detection (fast)
+    const keywordLayout = this.getLayoutByKeywords(analysisContext);
+    console.log(`   ✓ Keyword analysis result: ${keywordLayout}`);
+
+    const keywordConfidence =
+      this._getKeywordConfidence(analysisContext, keywordLayout);
+
+    // High-confidence shortcut
+    if (keywordConfidence >= 0.85) {
       return {
         layoutType: keywordLayout,
-        confidence: 0.85,
-        reason: 'High-confidence keyword match',
+        confidence: keywordConfidence,
+        reason: 'High-confidence keyword match using title, key points, and narration',
         method: 'keyword-detection'
       };
     }
 
-    // Fall back to Gemini for detailed analysis if keyword confidence is medium
+    // 2️⃣ AI-based analysis (fallback / refinement)
     for (let attempt = 1; attempt <= this.retries; attempt++) {
       try {
-        const systemPrompt = this._buildAnalysisPrompt(prompt, viewMode);
-        const result = await textGenModel.generateContent(systemPrompt);
+        const systemPrompt = this._buildAnalysisPrompt({
+          title: textOverlay,
+          keyPoints,
+          narration,
+          viewMode
+        });
 
+        const result = await textGenModel.generateContent(systemPrompt);
         const responseText = this._extractResponseText(result);
         const analysis = this._parseAnalysis(responseText);
 
         // Validate layout type
         if (!LAYOUT_TYPES[analysis.layoutType]) {
-          console.warn(`⚠️ Invalid layout type: ${analysis.layoutType}, using keyword result`);
+          console.warn(
+            `⚠️ Invalid layout type from AI: ${analysis.layoutType}, falling back to keyword result`
+          );
           analysis.layoutType = keywordLayout;
         }
 
         console.log(`✅ Layout analysis complete: ${analysis.layoutType}`);
-        analysis.method = 'gemini-analysis';
-        return analysis;
+
+        return {
+          ...analysis,
+          method: 'ai-semantic-analysis',
+          confidence: analysis.confidence || 0.75
+        };
+
       } catch (error) {
-        console.error(`Attempt ${attempt}/${this.retries} failed: ${error.message}`);
+        console.error(
+          `❌ Attempt ${attempt}/${this.retries} failed: ${error.message}`
+        );
 
         if (attempt === this.retries) {
-          console.warn('❌ All analysis attempts failed, using keyword result');
+          console.warn('⚠️ All analysis attempts failed, using keyword fallback');
+
           return {
             layoutType: keywordLayout,
             confidence: 0.7,
-            reason: `Keyword-based fallback: ${keywordLayout}`,
+            reason: 'Keyword-based fallback using semantic content',
             method: 'fallback-keyword'
           };
         }
 
-        // Wait before retry
-        await new Promise(resolve => setTimeout(resolve, 1000 * attempt));
+        // Exponential backoff
+        await new Promise(resolve =>
+          setTimeout(resolve, 1000 * attempt)
+        );
       }
     }
   }
@@ -137,40 +178,60 @@ class LayoutAnalyzer {
    * Build analysis prompt for Gemini
    * @private
    */
-  _buildAnalysisPrompt(prompt, viewMode) {
+  _buildAnalysisPrompt({ title, keyPoints, narration, viewMode }) {
     const layoutDescriptions = Object.entries(LAYOUT_TYPES)
       .map(([key, val]) => `- ${key}: ${val.description}`)
       .join('\n');
 
-    return `You are an expert at choosing the best visual layout for infographic content.
+    return `
+You are an expert presentation and infographic designer.
 
-Given this user request:
-"${prompt}"
+Your task is to select the MOST EFFECTIVE visual layout
+for a single slide based on structured content roles.
 
-And these available layout options:
+SLIDE CONTENT:
+
+TITLE (short, high-impact):
+"${title || 'N/A'}"
+
+MAIN POINTS (core slide content):
+${Array.isArray(keyPoints) && keyPoints.length
+        ? keyPoints.map(p => `- ${p}`).join('\n')
+        : '- N/A'}
+
+VOICE-OVER (explanatory narration):
+"${narration || 'N/A'}"
+
+VIEW MODE:
+${viewMode}
+
+AVAILABLE LAYOUT TYPES:
 ${layoutDescriptions}
 
-ANALYZE the request and determine which layout type would be MOST EFFECTIVE.
+ANALYSIS GUIDELINES:
+1. Few points + strong title → title-focused or visual layout
+2. Many points (4+) → list or cards
+3. Sequential narration → process-flow or timeline
+4. Comparative wording → comparison
+5. Data-oriented wording → chart
+6. Prioritize clarity and visual balance for ${viewMode} view
 
-Consider:
-1. Type of information (concepts, timeline, comparison, etc.)
-2. Amount of content
-3. View mode: ${viewMode}
-4. Visual impact and clarity
+RETURN ONLY VALID JSON (NO EXTRA TEXT):
 
-Return ONLY valid JSON (no explanations):
 {
   "layoutType": "<one of: cards, timeline, comparison, process-flow, chart, list>",
   "confidence": <0.0 to 1.0>,
-  "reason": "Brief explanation of why this layout fits"
+  "reason": "Max 50 chars explaining fit"
 }
 
-Requirements:
-- layoutType must be exactly one of the valid options
-- confidence should reflect how well the layout fits (0.5 = moderate, 0.9 = perfect)
-- Keep reason concise (max 50 chars)
+STRICT RULES:
+- layoutType MUST be one of the allowed values
+- confidence must reflect fit accuracy
+- reason must be concise
+- Do NOT include markdown, comments, or explanations
 
-NOW ANALYZE AND RETURN JSON:`;
+NOW ANALYZE AND RETURN JSON:
+`.trim();
   }
 
   /**
@@ -229,7 +290,7 @@ NOW ANALYZE AND RETURN JSON:`;
    */
   getLayoutByKeywords(prompt) {
     const lower = prompt.toLowerCase();
-    
+
     // Score based on keyword matches
     const scores = {
       timeline: 0,
@@ -287,7 +348,7 @@ NOW ANALYZE AND RETURN JSON:`;
 
     // Find highest score
     const maxScore = Math.max(...Object.values(scores));
-    
+
     if (maxScore > 0) {
       for (const [layout, score] of Object.entries(scores)) {
         if (score === maxScore) {

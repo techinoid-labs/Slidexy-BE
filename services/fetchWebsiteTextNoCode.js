@@ -5,19 +5,19 @@ puppeteer.use(StealthPlugin());
 async function fetchWebsiteText(url) {
   const browser = await puppeteer.launch({
     headless: true,
-  args: [
-    "--no-sandbox",
-    "--disable-setuid-sandbox",
-    "--disable-web-security",
-    "--disable-features=IsolateOrigins,site-per-process",
-    "--disable-blink-features=AutomationControlled",
-    "--disable-client-side-phishing-detection",
-    "--disable-popup-blocking",
-    "--disable-default-apps",
-    "--disable-extensions",
-    "--window-size=1280,800",
-  ],
-});
+    args: [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--disable-web-security",
+      "--disable-features=IsolateOrigins,site-per-process",
+      "--disable-blink-features=AutomationControlled",
+      "--disable-client-side-phishing-detection",
+      "--disable-popup-blocking",
+      "--disable-default-apps",
+      "--disable-extensions",
+      "--window-size=1280,800",
+    ],
+  });
 
   const page = await browser.newPage();
 
@@ -33,16 +33,18 @@ async function fetchWebsiteText(url) {
   });
 
   // ✅ Visit website
+  console.log(`🌍 Navigating to ${url}...`);
   await page.goto(url, {
-    waitUntil: "networkidle2",
-    timeout: 180000,
+    waitUntil: "domcontentloaded",
+    timeout: 60000,
   });
+  console.log("✅ Page loaded (domcontentloaded).");
 
   const pageText = await page.content();
   if (/Just a moment|checking your connection/i.test(pageText)) {
     console.warn("⚠️ Cloudflare challenge detected — waiting extra time...");
     await new Promise((r) => setTimeout(r, 8000));
-    await page.reload({ waitUntil: "networkidle2" });
+    await page.reload({ waitUntil: "domcontentloaded" });
   }
   await page.mouse.move(100, 100);
 
@@ -333,7 +335,7 @@ async function fetchWebsiteText(url) {
   formatted += `DESCRIPTION: ${extractedData.metadata.description}\n`;
   if (extractedData.metadata.image)
     formatted += `IMAGE: ${extractedData.metadata.image}\n`;
- formatted += `\n=== COLOR SCHEME & AESTHETICS ===\n`;
+  formatted += `\n=== COLOR SCHEME & AESTHETICS ===\n`;
   formatted += `Primary Colors:\n`;
   aestheticData.colors.slice(0, 15).forEach(color => {
     formatted += `  ${color}\n`;

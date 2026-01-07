@@ -216,7 +216,7 @@ const generatePptTemplateHandler = async (req, res) => {
           error: "Generation failed",
           detail: err.message || "Unknown error",
         });
-      } catch {}
+      } catch { }
       clearInterval(heartbeat);
       res.end();
     }

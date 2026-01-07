@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 
 const FileSchema = new mongoose.Schema({
   type: { type: String, enum: ['html', 'css', 'js', 'readme'], required: true },
-  content: { type: String, required: true }
+  content: { type: String, required: true },
+  name: { type: String } // Optional: actual filename (e.g., "design.html", "projects.html")
 });
 
 const GeneratedWebsiteSchema = new mongoose.Schema({

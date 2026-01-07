@@ -418,249 +418,245 @@ Output strictly in JSON (no other text):
    * @param {string} viewMode - landscape or portrait
    * @returns {Promise<object>} Content data for template
    */
-  async generateContent(prompt, layoutType, parameters, viewMode = 'landscape') {
-    console.log(`📝 Generating content for ${layoutType} layout...`);
+async generateContent({
+  topic,
+  layoutType,
+  parameters,
+  viewMode = 'landscape',
+  textOverlay,
+  narration,
+  keyPoints
+}) {
+  console.log(`📝 Generating content for ${layoutType} layout...`);
 
-    // Hardcode card count based on layout and viewMode
-    const cardCount = layoutType === 'cards' 
-      ? (viewMode === 'portrait' ? 8 : 12)
+  // Hardcode card count based on layout and viewMode
+  const cardCount =
+    layoutType === 'cards'
+      ? viewMode === 'portrait'
+        ? 8
+        : 12
       : null;
 
-    for (let attempt = 1; attempt <= this.retries; attempt++) {
-      try {
-        const systemPrompt = this._buildContentPrompt(
-          prompt,
-          layoutType,
-          parameters,
-          viewMode,
-          cardCount
+  for (let attempt = 1; attempt <= this.retries; attempt++) {
+    try {
+      const systemPrompt = this._buildContentPrompt({
+        topic,
+        layoutType,
+        parameters,
+        viewMode,
+        cardCount,
+        title: textOverlay,
+        narration,
+        keyPoints
+      });
+
+      const result = await textGenModel.generateContent(systemPrompt);
+      const responseText = this._extractResponseText(result);
+      const content = this._parseJSON(responseText);
+
+      // Validate content structure
+      this._validateContent(content, layoutType, viewMode);
+
+      console.log(`✅ Content generated successfully`);
+
+      // Attach viewMode metadata
+      content.viewMode = viewMode;
+
+      return content;
+    } catch (error) {
+      console.error(
+        `Attempt ${attempt}/${this.retries} failed: ${error.message}`
+      );
+
+      if (attempt === this.retries) {
+        console.error('❌ All generation attempts failed');
+        throw new Error(
+          `Content generation failed after ${this.retries} attempts: ${error.message}`
         );
-
-        const result = await textGenModel.generateContent(systemPrompt);
-        const responseText = this._extractResponseText(result);
-        const content = this._parseJSON(responseText);
-
-        // Validate content structure
-        this._validateContent(content, layoutType, viewMode);
-
-        console.log(`✅ Content generated successfully`);
-        
-        // Add viewMode to content
-        content.viewMode = viewMode;
-        
-        return content;
-      } catch (error) {
-        console.error(
-          `Attempt ${attempt}/${this.retries} failed: ${error.message}`
-        );
-
-        if (attempt === this.retries) {
-          console.error('❌ All generation attempts failed');
-          throw new Error(
-            `Content generation failed after ${this.retries} attempts: ${error.message}`
-          );
-        }
-
-        // Progressive delay
-        const delay = attempt * 1000 + Math.random() * 500;
-        await new Promise(resolve => setTimeout(resolve, delay));
       }
+
+      // Progressive delay
+      const delay = attempt * 1000 + Math.random() * 500;
+      await new Promise(resolve => setTimeout(resolve, delay));
     }
   }
+}
 
   /**
    * Build content generation prompt for specific layout
    * @private
    */
-  _buildContentPrompt(prompt, layoutType, parameters, viewMode, cardCount = null) {
-    // Get card and background style examples
-    const cardStyle = infographicCards[parameters.card] || '';
-    const backgroundStyle = infographicPatterns[parameters.background] || '';
-    
-    let contentSchema = '';
+_buildContentPrompt({
+  topic,
+  layoutType,
+  parameters,
+  viewMode,
+  cardCount = null,
+  title,
+  narration,
+  keyPoints
+}) {
+  // Get card and background style examples
+  const cardStyle = infographicCards[parameters.card] || '';
+  const backgroundStyle = infographicPatterns[parameters.background] || '';
 
-    switch (layoutType) {
-      case 'cards':
-        contentSchema = `{
+  let contentSchema = '';
+
+  switch (layoutType) {
+    case 'cards':
+      contentSchema = `{
   "title": "Main headline",
   "subtitle": "Supporting description",
   "cards": [
     {
       "icon": "emoji",
       "heading": "Card title (2-3 words)",
-      "description": "Clear explanation (1-2 sentences, max 100 chars)"
+      "description": "Clear explanation (max 100 chars)"
     }
-    // 8 cards for portrait (2 columns), 12 cards for landscape (4 columns x 3 rows)
+    // ${cardCount} cards EXACTLY
   ]
 }`;
-        break;
+      break;
 
-      case 'timeline':
-        contentSchema = `{
+    case 'timeline':
+      contentSchema = `{
   "title": "Main headline",
   "subtitle": "Supporting description",
   "timeline": [
     {
-      "year": "2020",
+      "year": "Step / Phase",
       "title": "Event title",
       "description": "Event description"
     }
-    // EXACTLY 6 timeline items for landscape, 5 for portrait
+    // EXACT count based on viewMode
   ]
 }`;
-        break;
+      break;
 
-      case 'comparison':
-        const comparisonItemCount = viewMode === 'portrait' ? 6 : 4;
-        const comparisonPointCount = viewMode === 'portrait' ? 6 : 4;
-        contentSchema = `{
-  "title": "Main headline",
-  "subtitle": "Supporting description (optional)",
-  "leftSide": {
-    "title": "Company/Option A name",
-    "items": [
-      {
-        "label": "TOPIC 01",
-        "description": "Description of topic 1 for option A (NO EMOJIS - icons shown in VS column)"
-      }
-      // Exactly ${comparisonItemCount} items for ${viewMode} mode
-    ]
-  },
-  "rightSide": {
-    "title": "Company/Option B name",
-    "items": [
-      {
-        "label": "TOPIC 01",
-        "description": "Description of topic 1 for option B (NO EMOJIS - icons shown in VS column)"
-      }
-      // Exactly ${comparisonItemCount} items for ${viewMode} mode
-    ]
-  },
-  "comparisonPoints": [
-    {
-      "icon": "emoji or symbol",
-      "label": "IDEA"
-    }
-    // Exactly ${comparisonPointCount} comparison points for ${viewMode} mode
-  ]
-}`;
-        break;
-
-      case 'hierarchy':
-        contentSchema = `{
+    case 'comparison':
+      contentSchema = `{
   "title": "Main headline",
   "subtitle": "Supporting description",
-  "root": {
-    "name": "Root node",
-    "children": ["Child 1", "Child 2", "Child 3", "Child 4"]
-  }
+  "leftSide": { "title": "Option A", "items": [] },
+  "rightSide": { "title": "Option B", "items": [] },
+  "comparisonPoints": []
 }`;
-        break;
+      break;
 
-      case 'chart':
-        contentSchema = `{
+    case 'chart':
+      contentSchema = `{
   "title": "Chart title",
-  "subtitle": "Chart description or context",
-  "centerLabel": "Central text (e.g., 'Total')",
+  "subtitle": "Chart context",
   "data": [
     {
-      "icon": "emoji or Font Awesome class (e.g., 'fas fa-chart-pie')",
-      "label": "Data point name",
-      "value": "45",
-      "description": "Description or insight (1-2 sentences)"
+      "icon": "emoji",
+      "label": "Label",
+      "value": "Number",
+      "description": "Insight"
     }
-    // 4-8 items for balanced pie chart and list display
   ]
 }`;
-        break;
+      break;
 
-      case 'list':
-        contentSchema = `{
-  "title": "Main headline (3-6 words, engaging)",
-  "description": "Optional subtitle or context",
+    case 'list':
+      contentSchema = `{
+  "title": "Main headline",
+  "description": "Optional context",
   "items": [
     {
-      "icon": "emoji (optional)",
-      "title": "Item title (3-5 words, clear and catchy)",
-      "description": "Detailed explanation (1-2 sentences, 80-120 chars)"
+      "icon": "emoji",
+      "title": "Item title",
+      "description": "Explanation"
     }
-    // IMPORTANT: Max ${viewMode === 'portrait' ? '6' : '4'} items for ${viewMode} (portrait=taller=6, landscape=wider=4)
   ]
 }`;
-        break;
+      break;
 
-      case 'process-flow':
-        const processItemCount = viewMode === 'portrait' ? 5 : 6;
-        contentSchema = `{
+    case 'process-flow':
+      contentSchema = `{
   "title": "Main headline",
-  "subtitle": "Process description or context",
+  "subtitle": "Process context",
   "data": [
     {
-      "icon": "emoji or symbol",
-      "label": "Step Title",
-      "description": "Step description (1-2 sentences)"
+      "icon": "emoji",
+      "label": "Step title",
+      "description": "Step description"
     }
-    // Exactly ${processItemCount} steps for ${viewMode} mode
   ]
 }`;
-        break;
+      break;
+  }
 
-      case 'rich-layout':
-        contentSchema = `{
-  "title": "Main headline",
-  "subtitle": "Supporting description",
-  "sections": [
-    {
-      "heading": "Section title",
-      "content": "Section content or paragraph",
-      "bullets": ["Point 1", "Point 2"]
-    }
-    // 3-5 sections
-  ]
-}`;
-        break;
-    }
+  return `
+You are an expert infographic content designer.
 
-    return `You are an expert at creating compelling, concise content for ${layoutType} infographics.
+Your task is to generate content for a SINGLE SLIDE.
+The slide text must be concise, visual-first, and readable at a glance.
 
-USER REQUEST:
-"${prompt}"
+────────────────────────
+CONTENT ROLES (IMPORTANT)
+────────────────────────
 
+TITLE (use EXACTLY this as headline):
+"${title}"
+
+MAIN POINTS (DO NOT invent new points):
+${Array.isArray(keyPoints)
+  ? keyPoints.map(p => `- ${p}`).join('\n')
+  : 'N/A'}
+
+VOICE-OVER (context only, do NOT repeat verbatim):
+"${narration}"
+
+TOPIC CONTEXT (background only):
+"${topic}"
+
+────────────────────────
+DESIGN CONTEXT
+────────────────────────
+
+LAYOUT TYPE: ${layoutType}
 VIEW MODE: ${viewMode} (${VIEW_MODES[viewMode].aspectRatio})
 STYLE: ${parameters.style}
 COLORS: ${parameters.colors.join(', ')}
 CARD TYPE: ${parameters.card}
 BACKGROUND: ${parameters.background}
 
-DESIGN CONTEXT:
 ${cardStyle ? `Card Style Example:\n${cardStyle}\n` : ''}
 ${backgroundStyle ? `Background Style Example:\n${backgroundStyle}\n` : ''}
 
-Layout Guidelines for ${viewMode}:
+Layout Guidelines:
 ${VIEW_MODES[viewMode].layoutGuidelines.map(g => `• ${g}`).join('\n')}
 
-YOUR TASK:
-Create structured content that will be rendered in a ${layoutType} layout.
-- Make content accurate, educational, and engaging
-- Keep text concise and readable at small sizes
-- Use emojis to enhance visual interest (icons instead of text)
-- Ensure all content fits within the ${viewMode} aspect ratio
-- Consider the card style and background when planning content amount
+────────────────────────
+CONTENT RULES (CRITICAL)
+────────────────────────
+1. Use title EXACTLY (do not rephrase)
+2. Use keyPoints as the ONLY source of main content
+3. Expand keyPoints visually, not narratively
+4. Narration is for meaning, not duplication
+5. No extra sections, no extra points
+6. Keep all descriptions under 100 chars
+7. Use emojis/icons where helpful
+8. Respect layout density for ${viewMode}
+9. ${cardCount
+  ? `Generate EXACTLY ${cardCount} items`
+  : 'Generate only what fits without overflow'}
 
-CONTENT SCHEMA (JSON structure):
+────────────────────────
+OUTPUT FORMAT
+────────────────────────
+
+Return ONLY valid JSON using this schema:
 ${contentSchema}
 
-CRITICAL REQUIREMENTS:
-1. Title should be short and catchy (max 50 characters)
-2. Subtitle should explain the topic (max 100 characters)
-3. Use emojis/Unicode symbols for visual icons
-4. All descriptions max 100 characters (consider ${viewMode} view)
-5. ${cardCount ? `Generate EXACTLY ${cardCount} cards - no more, no less (${viewMode === 'portrait' ? '8 cards in 2 columns x 4 rows' : '12 cards in 4 columns x 3 rows'})` : 'Generate 4-6 main items (not more, or content will overflow)'}
-6. Content should be at reading level for general audience
-7. Return ONLY valid JSON with no markdown or explanations
+NO markdown  
+NO explanations  
+NO extra text  
 
-NOW GENERATE THE CONTENT (JSON only):`;
-  }
+NOW GENERATE THE JSON:
+`.trim();
+}
 
   /**
    * Extract response text safely

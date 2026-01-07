@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Techinoid | My Story Vault</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css"> 
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-color: #00FFFF;
+            --background-color: #0D001A;
+            --text-color: #E0E0E0;
+            --secondary-background: #1A0D2A; /* Slightly lighter background for contrast */
+            --gradient-start: #0D001A;
+            --gradient-end: rgba(0, 255, 255, 0.1); /* Primary color with transparency */
+
+            --font-heading: 'Inter', sans-serif;
+            --font-body: 'Montserrat', sans-serif;
+
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 32px;
+            --spacing-xl: 64px;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+
+            --transition-speed: 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-color);
+            background-color: var(--background-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            color: var(--text-color);
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 1.8rem; }
+        h4 { font-size: 1.4rem; }
+        p { margin-bottom: 1em; font-weight: 300; }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+        a:hover {
+            color: var(--text-color); /* Hover to text color for contrast */
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-md) var(--spacing-lg);
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            font-family: var(--font-heading);
+            font-weight: 600;
+            border-radius: var(--radius-sm);
+            transition: all var(--transition-speed);
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .btn:hover {
+            background-color: var(--text-color);
+            color: var(--background-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 255, 255, 0.4);
+        }
+        .btn.btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        .btn.btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            box-shadow: none;
+        }
+
+        /* Header */
+        .header {
+            background-color: var(--background-color);
+            padding: var(--spacing-md) 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+        .logo img {
+            height: 40px;
+            margin-right: var(--spacing-sm);
+        }
+        .logo span {
+             color: var(--text-color);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: var(--spacing-lg);
+        }
+
+        .nav-menu a {
+            color: var(--text-color);
+            font-weight: 600;
+            padding: var(--spacing-sm) 0;
+            position: relative;
+            font-family: var(--font-heading);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width var(--transition-speed);
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+        .nav-menu a.active {
+            color: var(--primary-color);
+        }
+
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            z-index: 1001;
+        }
+        .hamburger-menu span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: var(--primary-color);
+            transition: all var(--transition-speed);
+        }
+
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 70%;
+            height: 100%;
+            background-color: var(--secondary-background);
+            padding-top: var(--spacing-xl);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+            transition: right var(--transition-speed);
+            z-index: 999;
+        }
+        .mobile-nav.open {
+            right: 0;
+        }
+        .mobile-nav a {
+            color: var(--text-color);
+            padding: var(--spacing-md) var(--spacing-lg);
+            font-weight: 600;
+            font-family: var(--font-heading);
+            border-bottom: 1px solid rgba(0, 255, 255, 0.05);
+        }
+        .mobile-nav a:hover {
+            background-color: rgba(0, 255, 255, 0.1);
+            color: var(--primary-color);
+        }
+        
+        /* Sections */
+        section {
+            padding: var(--spacing-xl) 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+        }
+        .section-title h2 {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-md);
+        }
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-color);
+            opacity: 0.8;
+            font-weight: 300;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -20px;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: var(--radius-sm);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(0, 255, 255, 0.1);
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: moveLight 10s infinite alternate;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: rgba(0, 255, 255, 0.15);
+            border-radius: 50%;
+            filter: blur(60px);
+            animation: moveLight 8s infinite alternate-reverse;
+        }
+        @keyframes moveLight {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(100px, 50px) scale(1.1); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-content h1 {
+            font-size: 4.5rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--primary-color);
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+            animation: fadeInScale 1s ease-out forwards;
+        }
+        .hero-content p {
+            font-size: 1.3rem;
+            font-weight: 300;
+            color: var(--text-color);
+            opacity: 0.9;
+            margin-bottom: var(--spacing-lg);
+            animation: fadeIn 1.5s ease-out forwards;
+            animation-delay: 0.5s;
+            opacity: 0;
+        }
+        .hero-content .btn {
+            animation: fadeIn 1.5s ease-out forwards;
+            animation-delay: 1s;
+            opacity: 0;
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Project Details Section */
+        .project-details {
+            background-color: var(--secondary-background);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-xl);
+            margin: var(--spacing-xl) 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .project-details .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-lg);
+            align-items: center;
+        }
+        .project-details-text,
+        .project-details-image {
+            flex: 1 1 45%; /* Approx half width, allows wrapping */
+            min-width: 300px;
+        }
+        .project-details-text h3 {
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-md);
+            font-size: 2rem;
+        }
+        .project-details-text p {
+            margin-bottom: var(--spacing-md);
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+        .project-details-image img {
+            border-radius: var(--radius-md);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+            transition: transform 0.5s ease;
+        }
+        .project-details-image img:hover {
+            transform: scale(1.02);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+        .feature-card {
+            background-color: var(--background-color);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            transition: all var(--transition-speed);
+            position: relative;
+            overflow: hidden;
+        }
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 60px;
+            height: 60px;
+            background-color: rgba(0, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all var(--transition-speed);
+            transform: scale(0);
+        }
+        .feature-card:hover::before {
+            transform: scale(1.5);
+        }
+        .feature-card h4 {
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+            position: relative;
+            z-index: 1;
+        }
+        .feature-card p {
+            font-size: 0.95rem;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 255, 255, 0.3);
+            border-color: var(--primary-color);
+        }
+
+        /* Join the Revolution Section */
+        .revolution-cta {
+            background: linear-gradient(45deg, var(--background-color), var(--secondary-background));
+            text-align: center;
+            padding: var(--spacing-xl) 0;
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid rgba(0, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+        }
+        .revolution-cta h2 {
+            font-size: 3.5rem;
+            color: var(--text-color);
+            margin-bottom: var(--spacing-md);
+            position: relative;
+            z-index: 1;
+        }
+        .revolution-cta p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto var(--spacing-lg) auto;
+            color: var(--primary-color);
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+        .revolution-cta .btn {
+            position: relative;
+            z-index: 1;
+        }
+        .revolution-cta::before, .revolution-cta::after {
+            content: '';
+            position: absolute;
+            background: rgba(0, 255, 255, 0.05);
+            border-radius: 50%;
+            filter: blur(50px);
+            opacity: 0.7;
+            animation: floatEffect 15s infinite ease-in-out;
+        }
+        .revolution-cta::before {
+            width: 150px;
+            height: 150px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        .revolution-cta::after {
+            width: 200px;
+            height: 200px;
+            bottom: 15%;
+            right: 10%;
+            animation-delay: 5s;
+        }
+        @keyframes floatEffect {
+            0% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.05); }
+            100% { transform: translateY(0) scale(1); }
+        }
+
+        /* Projects Grid Section */
+        .projects-section {
+            background-color: var(--background-color);
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        .project-card {
+            background-color: var(--secondary-background);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            transition: all var(--transition-speed);
+            display: flex;
+            flex-direction: column;
+        }
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 255, 255, 0.4);
+            border-color: var(--primary-color);
+        }
+        .project-card-content {
+            padding: var(--spacing-lg);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .project-card h4 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+        }
+        .project-card p {
+            font-size: 0.95rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            flex-grow: 1;
+            margin-bottom: var(--spacing-md);
+        }
+        .project-card .btn {
+            font-size: 0.9rem;
+            padding: var(--spacing-sm) var(--spacing-md);
+            align-self: flex-start;
+        }
+        .project-card .btn i {
+            margin-left: var(--spacing-sm);
+            font-size: 0.8rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--secondary-background);
+            padding: var(--spacing-xl) 0 var(--spacing-lg) 0;
+            border-top: 1px solid rgba(0, 255, 255, 0.1);
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-lg);
+        }
+        .footer-col h4 {
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-md);
+            font-size: 1.2rem;
+        }
+        .footer-col p, .footer-col li, .footer-col a {
+            font-size: 0.95rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-color);
+            font-weight: 300;
+        }
+        .footer-col a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-contact-info div {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: var(--spacing-sm);
+        }
+        .footer-contact-info i {
+            color: var(--primary-color);
+            margin-right: var(--spacing-sm);
+            font-size: 1.1em;
+            margin-top: 4px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+        .social-links a {
+            display: inline-flex;
+            width: 40px;
+            height: 40px;
+            background-color: var(--background-color);
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            transition: all var(--transition-speed);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            transform: translateY(-3px) rotate(5deg);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.4);
+        }
+        .social-links a img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: var(--spacing-lg);
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid rgba(0, 255, 255, 0.1);
+            color: var(--text-color);
+            opacity: 0.7;
+            font-size: 0.85rem;
+        }
+        .footer-bottom p {
+            margin: 0;
+            font-weight: 300;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            h1 { font-size: 3rem; }
+            h2 { font-size: 2rem; }
+            h3 { font-size: 1.5rem; }
+            .nav-menu {
+                display: none;
+            }
+            .hamburger-menu {
+                display: flex;
+            }
+            .hero-content h1 {
+                font-size: 3.5rem;
+            }
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+            .project-details .container {
+                flex-direction: column;
+            }
+            .project-details-text,
+            .project-details-image {
+                flex: 1 1 100%;
+            }
+            .revolution-cta h2 {
+                font-size: 2.5rem;
+            }
+            .revolution-cta p {
+                font-size: 1.1rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .footer-contact-info div {
+                justify-content: center;
+            }
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 1.8rem; }
+            h3 { font-size: 1.3rem; }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .hero-content p {
+                font-size: 1rem;
+            }
+            .btn {
+                padding: var(--spacing-sm) var(--spacing-md);
+                font-size: 0.9rem;
+            }
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            .revolution-cta h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Hamburger menu animations */
+        .hamburger-menu.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .hamburger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger-menu.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="https://techinoid.com/Company.svg" alt="Company Logo">
+                    Techinoid<span>.AI</span>
+                </a>
+            </div>
+            <nav class="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="design.html">Design</a>
+                <a href="projects.html">Projects</a>
+                <a href="finsight-fitchsolutions-company.html">FinSight</a>
+                <a href="my-story-vault.html" class="active">My Story Vault</a>
+                <a href="gari-connect.html">Gari Connect</a>
+            </nav>
+            <div class="hamburger-menu" id="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <div class="mobile-nav" id="mobile-nav">
+        <a href="index.html">Home</a>
+        <a href="design.html">Design</a>
+        <a href="projects.html">Projects</a>
+        <a href="finsight-fitchsolutions-company.html">FinSight</a>
+        <a href="my-story-vault.html" class="active">My Story Vault</a>
+        <a href="gari-connect.html">Gari Connect</a>
+    </div>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-content">
+                <h1>My Story Vault</h1>
+                <p>An innovative AI-powered platform for preserving, organizing, and sharing life's precious moments and narratives.</p>
+                <a href="#project-details" class="btn">Explore the Vault <i class="fas fa-arrow-down"></i></a>
+            </div>
+        </section>
+
+        <section id="project-details" class="project-details">
+            <div class="container">
+                <div class="project-details-text">
+                    <h3>About My Story Vault</h3>
+                    <p>My Story Vault is a cutting-edge AI solution developed by Techinoid, designed to revolutionize personal archiving and storytelling. Leveraging advanced natural language processing and machine learning, it intelligently categorizes memories, extracts key themes, and even suggests narratives from unstructured data like journals, photos, and voice recordings.</p>
+                    <p>Our goal was to create a digital legacy platform that is intuitive, secure, and deeply personal. Users can upload various media types, and the AI works its magic to transform a jumble of data into an organized, searchable, and shareable collection of life stories.</p>
+                    <a href="#features" class="btn btn-outline">See Key Features <i class="fas fa-chevron-right"></i></a>
+                </div>
+                <div class="project-details-image">
+                    <img src="https://via.placeholder.com/600x400/00FFFF/0D001A?text=My+Story+Vault+Interface+Mockup" alt="My Story Vault Interface Mockup">
+                </div>
+            </div>
+
+            <div class="container" id="features">
+                <div class="section-title" style="margin-top: var(--spacing-xl);">
+                    <h2 style="color: var(--text-color);">Key Features & Technologies</h2>
+                    <p>Built with robust AI models and user-centric design principles, My Story Vault offers unparalleled capabilities.</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4><i class="fas fa-brain"></i> AI-Powered Story Generation</h4>
+                        <p>Transforms fragmented memories into coherent narratives using advanced NLP and generative AI techniques.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-tags"></i> Intelligent Tagging & Categorization</h4>
+                        <p>Automatically tags and organizes content by people, places, events, and emotions for easy retrieval.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-lock"></i> Robust Security & Privacy</h4>
+                        <p>Ensures all personal data is encrypted and secure, giving users complete control over their digital legacy.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-share-alt"></i> Collaborative Sharing Options</h4>
+                        <p>Allows users to selectively share stories or entire collections with family and friends.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-microphone-alt"></i> Voice & Audio Analysis</h4>
+                        <p>Transcribes and analyzes spoken memories, extracting sentiment and key information.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-chart-line"></i> Sentiment & Theme Analysis</h4>
+                        <p>Provides insights into the emotional tone and recurring themes within a user's collected stories.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="revolution-cta">
+            <div class="container">
+                <h2>Join the Techinoid Revolution.</h2>
+                <p>Discover how AI can transform your business or personal projects. Let's innovate together.</p>
+                <a href="mailto:info@techinoidsolutions.com" class="btn">Get in Touch Today <i class="fas fa-envelope"></i></a>
+            </div>
+        </section>
+
+        <section class="projects-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Featured Projects</h2>
+                    <p>A glimpse into our diverse portfolio of AI development and custom solutions.</p>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-card-content">
+                            <h4>FinSight (FitchSolutions Company)</h4>
+                            <p>An AI-driven platform for financial insights and risk analysis, enhancing decision-making.</p>
+                            <a href="finsight-fitchsolutions-company.html" class="btn btn-outline">View Project <img src="https://techinoid.com/_next/image?url=%2Farrow_outward.png&w=48&q=75" alt="Arrow" style="width: 1em; height: 1em; margin-left: var(--spacing-sm); display: inline-block;"></a>
+                        </div>
+                    </div>
+                    <div class="project-card" style="border-color: var(--primary-color);">
+                        <div class="project-card-content">
+                            <h4>My Story Vault</h4>
+                            <p>Revolutionizing personal archiving with AI-powered storytelling and memory organization.</p>
+                            <a href="my-story-vault.html" class="btn">Current Page <i class="fas fa-circle-dot" style="margin-left: var(--spacing-sm);"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-content">
+                            <h4>Gari Connect</h4>
+                            <p>Connecting automotive services and customers with smart AI-driven matchmaking.</p>
+                            <a href="gari-connect.html" class="btn btn-outline">View Project <img src="https://techinoid.com/_next/image?url=%2Farrow_outward.png&w=48&q=75" alt="Arrow" style="width: 1em; height: 1em; margin-left: var(--spacing-sm); display: inline-block;"></a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-content">
+                            <h4>Weedx</h4>
+                            <p>AI solutions for agricultural optimization and sustainable crop management.</p>
+                            <a href="#" class="btn btn-outline">View Project <img src="https://techinoid.com/_next/image?url=%2Farrow_outward.png&w=48&q=75" alt="Arrow" style="width: 1em; height: 1em; margin-left: var(--spacing-sm); display: inline-block;"></a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-content">
+                            <h4>DigiCust</h4>
+                            <p>Digital customer experience platform enhanced with AI for personalized interactions.</p>
+                            <a href="#" class="btn btn-outline">View Project <img src="https://techinoid.com/_next/image?url=%2Farrow_outward.png&w=48&q=75" alt="Arrow" style="width: 1em; height: 1em; margin-left: var(--spacing-sm); display: inline-block;"></a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-content">
+                            <h4>Media Shower</h4>
+                            <p>AI-driven content creation and distribution platform for marketing agencies.</p>
+                            <a href="#" class="btn btn-outline">View Project <img src="https://techinoid.com/_next/image?url=%2Farrow_outward.png&w=48&q=75" alt="Arrow" style="width: 1em; height: 1em; margin-left: var(--spacing-sm); display: inline-block;"></a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-content">
+                            <h4>Modulus</h4>
+                            <p>Scalable modular AI frameworks for rapid deployment across various industries.</p>
+                            <a href="#" class="btn btn-outline">View Project <img src="https://techinoid.com/_next/image?url=%2Farrow_outward.png&w=48&q=75" alt="Arrow" style="width: 1em; height: 1em; margin-left: var(--spacing-sm); display: inline-block;"></a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-content">
+                            <h4>Inorganic</h4>
+                            <p>AI solutions for supply chain optimization and inorganic material tracking.</p>
+                            <a href="#" class="btn btn-outline">View Project <img src="https://techinoid.com/_next/image?url=%2Farrow_outward.png&w=48&q=75" alt="Arrow" style="width: 1em; height: 1em; margin-left: var(--spacing-sm); display: inline-block;"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo" style="margin-bottom: var(--spacing-md);">
+                        <a href="index.html">
+                            <img src="https://techinoid.com/Company.svg" alt="Company Logo" style="height: 30px;">
+                            Techinoid<span>.AI</span>
+                        </a>
+                    </div>
+                    <p style="margin-top: var(--spacing-md);">AI Development & Custom Solutions Provider dedicated to innovation.</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/techinoid" target="_blank" aria-label="LinkedIn">
+                            <img src="https://techinoid.com/_next/image?url=%2FLinkedIn.png&w=32&q=75" alt="LinkedIn">
+                        </a>
+                        <a href="#" target="_blank" aria-label="Instagram">
+                             <img src="https://techinoid.com/_next/image?url=%2FInstagram.png&w=32&q=75" alt="Instagram">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-col footer-contact-info">
+                    <h4>Want to get in touch.</h4>
+                    <div>
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:info@techinoidsolutions.com">info@techinoidsolutions.com</a>
+                    </div>
+                    <div>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>2140 S Dupont Hwy, Camden, DE 19934, USA</p>
+                    </div>
+                    <div>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>4628 Montevallo Rd Suite 110, Birmingham, AL 35210</p>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="services.html"><i class="fas fa-angle-right"></i> Services</a></li>
+                        <li><a href="design.html"><i class="fas fa-angle-right"></i> Design</a></li>
+                        <li><a href="industries.html"><i class="fas fa-angle-right"></i> Industries</a></li>
+                        <li><a href="engagement-models.html"><i class="fas fa-angle-right"></i> Engagement Models</a></li>
+                        <li><a href="projects.html"><i class="fas fa-angle-right"></i> Projects</a></li>
+                        <li><a href="process.html"><i class="fas fa-angle-right"></i> Process</a></li>
+                        <li><a href="reviews.html"><i class="fas fa-angle-right"></i> Reviews</a></li>
+                        <li><a href="insights.html"><i class="fas fa-angle-right"></i> Read our Insights</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Techinoid LLC. All rights reserved.</p>
+                <p>Powered by Techinoid</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('hamburger-menu').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.getElementById('mobile-nav').classList.toggle('open');
+        });
+    </script>
+</body>
+
+</html>

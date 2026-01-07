@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design - Techinoid - AI Development & Custom Solutions Provider</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS VARIABLES --- */
+        :root {
+            --primary-color: #00FFFF;
+            --background-color: #0D001A;
+            --text-color: #E0E0E0;
+            --secondary-bg: #1A0D2A; /* A slightly lighter background for contrast, derived from BG */
+            --border-color: rgba(0, 255, 255, 0.2); /* Semi-transparent primary for borders */
+            --gradient-start: rgba(0, 255, 255, 0.1);
+            --gradient-end: rgba(0, 255, 255, 0);
+
+            --heading-font: 'Inter', sans-serif;
+            --body-font: 'Montserrat', sans-serif;
+
+            --transition-speed: 0.3s ease;
+            --border-radius-lg: 12px;
+            --border-radius-md: 8px;
+        }
+
+        /* --- GLOBAL RESET & BASE STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--body-font);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition-speed);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--heading-font);
+            font-weight: 700;
+            color: var(--text-color);
+            line-height: 1.2;
+        }
+
+        p {
+            font-family: var(--body-font);
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.8rem;
+            border-radius: var(--border-radius-md);
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            font-family: var(--heading-font);
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-speed);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 255, 255, 0.4);
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            transition: all 0.6s ease-out;
+            transform: translate(-50%, -50%) scale(0);
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .section-heading {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        /* --- HEADER & NAVIGATION --- */
+        .header {
+            background-color: var(--background-color);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .logo img {
+            height: 40px; /* Adjust as needed */
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            font-family: var(--body-font);
+            font-weight: 400;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition-speed);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-toggle {
+            display: none;
+            font-size: 1.8rem;
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        /* Schedule a Call button in header */
+        .header .btn {
+            font-size: 0.9rem;
+            padding: 0.6rem 1.2rem;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(180deg, var(--background-color) 0%, rgba(13, 0, 26, 0.8) 100%), url('https://techinoid.com/DesignHero.png') no-repeat center center/cover;
+            padding: 8rem 0;
+            text-align: center;
+            position: relative;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            color: var(--text-color);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- SERVICES SECTION --- */
+        .services-section {
+            padding: 6rem 0;
+            background-color: var(--secondary-bg);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background-color: var(--background-color);
+            padding: 2.5rem;
+            border-radius: var(--border-radius-lg);
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: var(--transition-speed);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg at 50% 50%, transparent 0%, var(--primary-color) 20%, transparent 40%, transparent 60%, var(--primary-color) 80%, transparent 100%);
+            animation: rotate-border 6s linear infinite;
+            opacity: 0;
+            transition: opacity var(--transition-speed);
+            z-index: 0;
+        }
+
+        .service-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .service-card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes rotate-border {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .service-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 255, 255, 0.2);
+            border-color: var(--primary-color);
+        }
+
+        /* --- DESIGN PROCESS SECTION --- */
+        .process-section {
+            padding: 6rem 0;
+            background-color: var(--background-color);
+        }
+
+        .process-content {
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 4rem;
+        }
+        
+        .process-intro {
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .process-intro p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .process-steps {
+            display: flex;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            justify-content: center;
+            gap: 3rem;
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+            z-index: 0;
+            display: none; /* Hidden on mobile, visible on larger screens via media query */
+        }
+
+        .process-step {
+            flex: 1 1 250px; /* Allow items to grow/shrink, with a base of 250px */
+            background-color: var(--secondary-bg);
+            padding: 2rem;
+            border-radius: var(--border-radius-lg);
+            border: 1px solid var(--border-color);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            transition: var(--transition-speed);
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 255, 255, 0.15);
+        }
+
+        .process-step .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            border-radius: 50%;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem auto;
+            border: 3px solid rgba(0, 255, 255, 0.3);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+        }
+
+        .process-step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .process-step p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .process-image {
+            width: 100%;
+            max-width: 700px;
+            margin-top: 4rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.2);
+            overflow: hidden;
+            border: 2px solid var(--border-color);
+        }
+
+        .process-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+
+        /* --- DESIGN PROJECTS SECTION --- */
+        .projects-section {
+            padding: 6rem 0;
+            background-color: var(--secondary-bg);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .project-card {
+            background-color: var(--background-color);
+            border-radius: var(--border-radius-lg);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: var(--transition-speed);
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+            border-color: var(--primary-color);
+        }
+
+        .project-card-image {
+            height: 220px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 255, 255, 0.05);
+            padding: 1rem;
+        }
+
+        .project-card-image img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+        
+        .project-card:hover .project-card-image img {
+            transform: scale(1.05);
+        }
+
+        .project-card-content {
+            padding: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .project-card h3 {
+            font-size: 1.7rem;
+            margin-bottom: 0.7rem;
+            color: var(--primary-color);
+        }
+
+        .project-card .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 0.8rem;
+        }
+
+        .project-card .tag {
+            background-color: rgba(0, 255, 255, 0.1);
+            color: var(--primary-color);
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .projects-cta {
+            text-align: center;
+            margin-top: 4rem;
+        }
+        
+        .projects-cta .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* --- CTA SECTION --- */
+        .cta-section {
+            background: linear-gradient(90deg, var(--background-color) 0%, var(--secondary-bg) 100%);
+            padding: 6rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .cta-section .container {
+            max-width: 900px;
+        }
+
+        .cta-section h2 {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+
+        .cta-section p {
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin: 0 auto 3rem auto;
+            line-height: 1.8;
+            color: var(--text-color);
+        }
+        
+        .cta-section .btn {
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            border-radius: var(--border-radius-lg);
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            font-family: var(--body-font);
+            font-size: 0.9rem;
+        }
+
+        .footer-logo img {
+            height: 35px;
+            margin-bottom: 1rem;
+            filter: grayscale(100%) brightness(200%); /* Make logo visible on dark footer */
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-color);
+            opacity: 0.8;
+            position: relative;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+            opacity: 1;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 1px;
+            background-color: var(--primary-color);
+            transition: var(--transition-speed);
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        .footer-socials a {
+            color: var(--text-color);
+            font-size: 1.5rem;
+            margin: 0 0.8rem;
+            opacity: 0.7;
+        }
+
+        .footer-socials a:hover {
+            color: var(--primary-color);
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
+        .footer-copy {
+            margin-top: 2rem;
+            color: var(--text-color);
+            opacity: 0.6;
+        }
+
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+            .section-heading {
+                font-size: 2.2rem;
+            }
+            .services-grid, .projects-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .logo {
+                width: 100%;
+                text-align: center;
+                margin-bottom: 1rem;
+            }
+
+            .nav-links {
+                display: none; /* Hide by default for mobile */
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                background-color: var(--background-color);
+                border-top: 1px solid var(--border-color);
+                padding-top: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: block;
+                position: absolute;
+                right: 1.5rem;
+                top: 1.3rem;
+            }
+
+            .header .btn {
+                width: 100%;
+                margin-top: 1rem;
+            }
+
+            .hero {
+                padding: 6rem 0;
+                min-height: 500px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-heading {
+                font-size: 2rem;
+                margin-bottom: 2.5rem;
+            }
+
+            .process-steps::before {
+                display: none; /* Hide line on mobile */
+            }
+            .process-step {
+                width: 100%; /* Full width on smaller screens */
+                flex-basis: auto;
+            }
+
+            .cta-section h2 {
+                font-size: 2.2rem;
+            }
+
+            .cta-section p {
+                font-size: 1rem;
+            }
+            .cta-section .btn {
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .section-heading {
+                font-size: 1.8rem;
+            }
+            .services-grid, .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .project-card-image {
+                height: 180px;
+            }
+            .project-card h3 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="navbar">
+            <a href="index.html" class="logo">
+                <img src="https://techinoid.com/Company.svg" alt="Company Logo">
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="design.html" class="active">Design</a>
+                <a href="projects.html">Projects</a>
+                <a href="finsight-fitchsolutions-company.html">FinSight (FitchSolutions Company)</a>
+                <a href="my-story-vault.html">My Story Vault</a>
+                <a href="gari-connect.html">Gari Connect</a>
+                <a href="#" class="btn">Schedule a Call</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Empower Your Brand with Intuitive and Impactful UX/UI Design Solutions</h1>
+                <p>Boost your business with customized digital solutions that adapt and grow with you, ensuring seamless scalability and long-term success.</p>
+                <a href="#" class="btn">Schedule a Call</a>
+            </div>
+        </section>
+
+        <section class="services-section">
+            <div class="container">
+                <h2 class="section-heading">Our Services</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-card-content">
+                            <i class="fas fa-palette"></i>
+                            <h3>Brand Design</h3>
+                            <p>Crafting unique brand identities that resonate with your audience and leave a lasting impression.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-card-content">
+                            <i class="fas fa-desktop"></i>
+                            <h3>Presentation Decks</h3>
+                            <p>Designing compelling presentations that effectively communicate your ideas and captivate your audience.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-card-content">
+                            <i class="fas fa-globe"></i>
+                            <h3>Website Design</h3>
+                            <p>Building responsive, user-friendly websites that perform flawlessly and look stunning on any device.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-card-content">
+                            <i class="fas fa-user-friends"></i>
+                            <h3>UX/UI Design</h3>
+                            <p>Creating seamless user experiences and intuitive interfaces that drive engagement and satisfaction.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-card-content">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h3>Mobile App Design</h3>
+                            <p>Developing innovative and elegant mobile app designs that deliver exceptional user journeys.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-card-content">
+                            <i class="fas fa-cubes"></i>
+                            <h3>3D & Motion</h3>
+                            <p>Bringing concepts to life with captivating 3D models and dynamic motion graphics.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="process-section">
+            <div class="container">
+                <h2 class="section-heading">Our Design Process</h2>
+                <div class="process-content">
+                    <div class="process-intro">
+                        <p>Our design process is rooted in precision, ensuring every detail is meticulously crafted to meet your needs. We blend creativity with strategic thinking to deliver outstanding results.</p>
+                    </div>
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <div class="step-number">1</div>
+                            <h3>Discovery & Research</h3>
+                            <p>Understanding your vision, target audience, and market landscape.</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">2</div>
+                            <h3>Strategy & Planning</h3>
+                            <p>Defining goals, creating user flows, and outlining the project roadmap.</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">3</div>
+                            <h3>Design & Prototyping</h3>
+                            <p>Crafting wireframes, mockups, and interactive prototypes for feedback.</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">4</div>
+                            <h3>Testing & Iteration</h3>
+                            <p>Gathering user feedback, refining designs, and ensuring optimal usability.</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">5</div>
+                            <h3>Implementation & Launch</h3>
+                            <p>Overseeing development and ensuring a smooth, successful product launch.</p>
+                        </div>
+                    </div>
+                    <div class="process-image">
+                        <img src="https://techinoid.com/_next/image?url=%2FDesignProcessImg.png&w=3840&q=75" alt="DesignProcess">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="projects-section">
+            <div class="container">
+                <h2 class="section-heading">Our Design Projects</h2>
+                <div class="projects-grid">
+                    <a href="#" class="project-card">
+                        <div class="project-card-image">
+                            <img src="https://techinoid.com/Paqqup.svg" alt="Paqqup Logo">
+                        </div>
+                        <div class="project-card-content">
+                            <h3>Paqqup</h3>
+                            <div class="project-tags">
+                                <span class="tag">eCommerce</span>
+                                <span class="tag">B2B</span>
+                                <span class="tag">Web App</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="project-card">
+                        <div class="project-card-image">
+                            <img src="https://techinoid.com/GrubGo.svg" alt="GrubGo Logo">
+                        </div>
+                        <div class="project-card-content">
+                            <h3>GrubGo</h3>
+                            <div class="project-tags">
+                                <span class="tag">eCommerce</span>
+                                <span class="tag">B2B</span>
+                                <span class="tag">Web App</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="project-card">
+                        <div class="project-card-image">
+                            <img src="https://techinoid.com/Andale.svg" alt="Andale Logo">
+                        </div>
+                        <div class="project-card-content">
+                            <h3>Andale</h3>
+                            <div class="project-tags">
+                                <span class="tag">eCommerce</span>
+                                <span class="tag">B2B</span>
+                                <span class="tag">Web App</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="project-card">
+                        <div class="project-card-image">
+                            <!-- Placeholder for Convierge as no specific image was provided, using Company logo with filter -->
+                            <img src="https://techinoid.com/Company.svg" alt="Convierge Logo Placeholder" style="filter: invert(1) hue-rotate(180deg);"> 
+                        </div>
+                        <div class="project-card-content">
+                            <h3>Convierge</h3>
+                            <div class="project-tags">
+                                <span class="tag">Real Estate</span>
+                                <span class="tag">B2C</span>
+                                <span class="tag">Mobile App</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="project-card">
+                        <div class="project-card-image">
+                            <!-- Placeholder for Imgry as no specific image was provided, using Frame logo with filter -->
+                            <img src="https://techinoid.com/Frame.svg" alt="Imgry Logo Placeholder" style="filter: invert(1) hue-rotate(180deg);">
+                        </div>
+                        <div class="project-card-content">
+                            <h3>Imgry</h3>
+                            <div class="project-tags">
+                                <span class="tag">Social Content</span>
+                                <span class="tag">B2</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="projects-cta">
+                    <a href="projects.html" class="btn">View All Projects</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>Experience our expertise risk-free with a 2-week trial — let’s bring your vision to life!</h2>
+                <p>Ready to transform your digital presence? We're so confident in our design capabilities that we offer a no-risk trial. Let's discuss your project and start building something extraordinary.</p>
+                <a href="#" class="btn">Start Your Free Trial</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">
+                <img src="https://techinoid.com/Company.svg" alt="Company Logo">
+            </div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="design.html">Design</a>
+                <a href="projects.html">Projects</a>
+                <a href="#">Services</a>
+                <a href="#">About Us</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="footer-socials">
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p class="footer-copy">&copy; 2023 Techinoid. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navToggle = document.querySelector('.nav-toggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (navToggle && navLinks) {
+                navToggle.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
