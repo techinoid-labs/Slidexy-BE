@@ -39,9 +39,9 @@ class DynamicInfographicServiceV2 {
     throw new Error('viewMode must be either "landscape" or "portrait"');
   }
 
-  if (!slideType || typeof slideType !== 'string') {
-    throw new Error('slideType must be a non-empty string');
-  }
+  // if (!slideType || typeof slideType !== 'string') {
+  //   throw new Error('slideType must be a non-empty string');
+  // }
 
   const startTime = Date.now();
 
