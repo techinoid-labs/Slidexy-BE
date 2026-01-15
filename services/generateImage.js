@@ -3,6 +3,7 @@ const crypto = require("crypto");
 const sharp = require("sharp");
 const axios = require("axios");
 const { uploadToSpaces } = require("../utils/s3Uploader");
+const { generateFluxImage } = require("../utils/generateFluxImage");
 
 const PEXELS_API_KEY = process.env.PEXELS_API_KEY;
 if (!PEXELS_API_KEY) {
@@ -830,96 +831,152 @@ async function generateImage(
   totalSlides = null
 ) {
   // === PREDEFINED / TRIAL MODE → Use Pexels directly ===
-  if (planResponseType === "predefined") {
-    const result = await getPexelsFallbackImage({
-      query: slide?.slide_title?.text || rawText?.substring(0, 50) || "presentation",
-      index,
-      slide,
+  // if (planResponseType === "predefined") {
+  //   const result = await getPexelsFallbackImage({
+  //     query: slide?.slide_title?.text || rawText?.substring(0, 50) || "presentation",
+  //     index,
+  //     slide,
+  //   });
+
+  //   if (result) {
+  //     console.log(`Pexels image used for predefined slide ${index + 1}`);
+  //     return {
+  //       image_url: result.image_url,
+  //       image_caption: result.image_caption,
+  //       photographer: result.photographer,
+  //       pexels_url: result.pexels_url,
+  //       fallback_used: result.fallback_used,
+  //       art_style: slide.art_style,
+  //       art_palette: slide.art_palette,
+  //     };
+  //   }
+
+  //   // Final placeholder
+  //   const placeholder = `https://placehold.co/1920x1080/6366f1/ffffff?text=Slide+${index + 1}&font=roboto`;
+  //   return {
+  //     image_url: placeholder,
+  //     image_caption: "Placeholder (Pexels unavailable)",
+  //     fallback_used: "placeholder",
+  //   };
+  // }
+
+  // === PAID PLAN → FLUX IMAGE GENERATION ===
+// if (planResponseType === "paid") {
+try {
+  if (progressCallback)
+    progressCallback(currentSlideNum, totalSlides, "generating-ai-image");
+
+  const prompt =
+    slide.slide_title?.text ||
+    rawText?.substring(0, 120) ||
+    "professional presentation background";
+
+  const fluxResult = await generateFluxImage({
+    prompt,
+    artStyle: slide.art_style,
+    artPalette: slide.art_palette,
+  });
+
+  console.log("FLUX RAW RESULT:", fluxResult);
+
+  if (!fluxResult) {
+    throw new Error("Flux returned empty response");
+  }
+
+  if (fluxResult.image_url) {
+    const response = await axios.get(fluxResult.image_url, {
+      responseType: "arraybuffer",
+      timeout: 20000,
     });
 
-    if (result) {
-      console.log(`Pexels image used for predefined slide ${index + 1}`);
-      return {
-        image_url: result.image_url,
-        image_caption: result.image_caption,
-        photographer: result.photographer,
-        pexels_url: result.pexels_url,
-        fallback_used: result.fallback_used,
-        art_style: slide.art_style,
-        art_palette: slide.art_palette,
-      };
-    }
-
-    // Final placeholder
-    const placeholder = `https://placehold.co/1920x1080/6366f1/ffffff?text=Slide+${index + 1}&font=roboto`;
-    return {
-      image_url: placeholder,
-      image_caption: "Placeholder (Pexels unavailable)",
-      fallback_used: "placeholder",
-    };
+    webpData = await convertToWebP(
+      `data:image/png;base64,${Buffer.from(response.data).toString("base64")}`
+    );
   }
+  else {
+    throw new Error("Flux returned no usable image data");
+  }
+
+  if (progressCallback)
+    progressCallback(currentSlideNum, totalSlides, "uploading");
+
+  const key = `slide_ai_${slide.slide_id || crypto.randomUUID()}_${Date.now()}.webp`;
+  const finalUrl = await uploadToSpaces(webpData, key);
+
+  return {
+    image_url: finalUrl,
+    image_caption: slide.slide_title?.text || "AI-generated image",
+    fallback_used: "flux",
+    art_style: slide.art_style,
+    art_palette: slide.art_palette,
+  };
+} catch (fluxError) {
+  console.error("Flux generation failed:", fluxError.message);
+  // ↓ FALL THROUGH to Pexels fallback
+}
+// }
 
   // === PAID / AI IMAGE GENERATION NOT IMPLEMENTED YET ===
   // You said "no more Runware right now" → so we fall back to Pexels even for paid
-  console.log(`No AI generation available — using Pexels fallback for slide ${index + 1}`);
+  // console.log(`No AI generation available — using Pexels fallback for slide ${index + 1}`);
 
-  if (progressCallback && currentSlideNum && totalSlides) {
-    progressCallback(currentSlideNum, totalSlides, 'fetching-fallback');
-  }
+  // if (progressCallback && currentSlideNum && totalSlides) {
+  //   progressCallback(currentSlideNum, totalSlides, 'fetching-fallback');
+  // }
 
-  const fallbackResult = await getPexelsFallbackImage({
-    query: slide.slide_title?.text || rawText?.substring(0, 100),
-    index,
-    slide,
-  });
+  // const fallbackResult = await getPexelsFallbackImage({
+  //   query: slide.slide_title?.text || rawText?.substring(0, 100),
+  //   index,
+  //   slide,
+  // });
 
-  if (fallbackResult) {
-    // Optional: upload Pexels image to your S3 for faster serving + watermarking
-    try {
-      if (progressCallback) progressCallback(currentSlideNum, totalSlides, 'uploading');
+  // if (fallbackResult) {
+  //   // Optional: upload Pexels image to your S3 for faster serving + watermarking
+  //   try {
+  //     if (progressCallback) progressCallback(currentSlideNum, totalSlides, 'uploading');
 
-      const response = await axios.get(fallbackResult.image_url, {
-        responseType: "arraybuffer",
-        timeout: 15000,
-      });
-      const webpData = await convertToWebP(
-        `data:${response.headers["content-type"] || "image/jpeg"};base64,${Buffer.from(response.data).toString("base64")}`
-      );
+  //     const response = await axios.get(fallbackResult.image_url, {
+  //       responseType: "arraybuffer",
+  //       timeout: 15000,
+  //     });
+  //     const webpData = await convertToWebP(
+  //       `data:${response.headers["content-type"] || "image/jpeg"};base64,${Buffer.from(response.data).toString("base64")}`
+  //     );
 
-      const key = `slide_${slide.slide_id || crypto.randomUUID()}_${Date.now()}.webp`;
-      const finalUrl = await uploadToSpaces(webpData, key);
+  //     const key = `slide_${slide.slide_id || crypto.randomUUID()}_${Date.now()}.webp`;
+  //     const finalUrl = await uploadToSpaces(webpData, key);
 
-      return {
-        image_url: finalUrl,
-        image_caption: fallbackResult.image_caption,
-        photographer: fallbackResult.photographer,
-        pexels_url: fallbackResult.pexels_url,
-        fallback_used: "pexels-uploaded",
-        art_style: slide.art_style,
-        art_palette: slide.art_palette,
-      };
-    } catch (uploadErr) {
-      console.error("Failed to upload Pexels image:", uploadErr.message);
-      // Fall back to direct URL
-      return {
-        image_url: fallbackResult.image_url,
-        image_caption: fallbackResult.image_caption,
-        photographer: fallbackResult.photographer,
-        pexels_url: fallbackResult.pexels_url,
-        fallback_used: "pexels-direct",
-        art_style: slide.art_style,
-        art_palette: slide.art_palette,
-      };
-    }
-  }
+  //     return {
+  //       image_url: finalUrl,
+  //       image_caption: fallbackResult.image_caption,
+  //       photographer: fallbackResult.photographer,
+  //       pexels_url: fallbackResult.pexels_url,
+  //       fallback_used: "pexels-uploaded",
+  //       art_style: slide.art_style,
+  //       art_palette: slide.art_palette,
+  //     };
+  //   } catch (uploadErr) {
+  //     console.error("Failed to upload Pexels image:", uploadErr.message);
+  //     // Fall back to direct URL
+  //     return {
+  //       image_url: fallbackResult.image_url,
+  //       image_caption: fallbackResult.image_caption,
+  //       photographer: fallbackResult.photographer,
+  //       pexels_url: fallbackResult.pexels_url,
+  //       fallback_used: "pexels-direct",
+  //       art_style: slide.art_style,
+  //       art_palette: slide.art_palette,
+  //     };
+  //   }
+  // }
 
-  // === LAST RESORT ===
-  const placeholder = `https://placehold.co/1920x1080/6366f1/ffffff?text=No+Image+Available&font=roboto`;
-  return {
-    image_url: placeholder,
-    image_caption: "Image unavailable",
-    fallback_used: "placeholder",
-  };
+  // // === LAST RESORT ===
+  // const placeholder = `https://placehold.co/1920x1080/6366f1/ffffff?text=No+Image+Available&font=roboto`;
+  // return {
+  //   image_url: placeholder,
+  //   image_caption: "Image unavailable",
+  //   fallback_used: "placeholder",
+  // };
 }
 
 module.exports = { generateImage };
