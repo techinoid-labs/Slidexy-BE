@@ -21,12 +21,12 @@ router.post("/", async (req, res) => {
     const newInfographic = new Infographic({
       prompt,
       viewMode,
-      type: result.data?.type || "generic",
-      title: result.data?.title || "Untitled",
-      subtitle: result.data?.subtitle || "",
-      data: result.data,
-      html: result.html,  // Object with landscape/portrait
-      meta: result.meta,
+      type: result.metadata?.type || "generic",
+      title: result.metadata?.title || "Untitled",
+      subtitle: result.metadata?.subtitle || "",
+      data: result.metadata,
+      html: result.textLayout,  // The HTML content
+      meta: result.metadata?.meta || {},
     });
 
     const savedInfographic = await newInfographic.save();
