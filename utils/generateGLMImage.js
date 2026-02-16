@@ -68,40 +68,52 @@ async function generateWithGLMImage(prompt, options = {}) {
       // Download from URL with retry logic
       console.log('   Downloading image from URL...');
       
-      try {
-        const imageResponse = await axios.get(imageItem.url, {
-          responseType: 'arraybuffer',
-          timeout: 60000, // Increased timeout to 60s
-          headers: {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-          },
-          maxRedirects: 5,
-        });
-        imageBuffer = imageResponse.data;
-        console.log('   ✅ Image downloaded successfully');
-      } catch (downloadError) {
-        console.warn('   ⚠️  URL download failed, trying alternative approach...');
-        
-        // Retry once more with simpler headers
+      let downloadSuccess = false;
+      let lastError = null;
+      
+      // Retry up to 3 times with exponential backoff
+      for (let attempt = 1; attempt <= 3; attempt++) {
         try {
-          console.log('   Retrying download...');
-          const retryResponse = await axios.get(imageItem.url, {
+          const imageResponse = await axios.get(imageItem.url, {
             responseType: 'arraybuffer',
             timeout: 60000,
-            maxRedirects: 10,
+            headers: {
+              'User-Agent': 'Mozilla/5.0',
+              'Accept': 'image/*',
+              'Accept-Encoding': 'gzip, deflate',
+            },
+            maxRedirects: 5,
           });
-          imageBuffer = retryResponse.data;
-          console.log('   ✅ Image downloaded on retry');
-        } catch (retryError) {
-          console.warn('   ⚠️  Retry failed, checking for b64_json fallback...');
+          imageBuffer = imageResponse.data;
+          console.log('   ✅ Image downloaded successfully');
+          downloadSuccess = true;
+          break;
+        } catch (downloadError) {
+          lastError = downloadError;
+          const status = downloadError.response?.status;
+          const isRetryable = status === 404 || status === 503 || downloadError.code === 'ECONNABORTED';
           
-          // Fallback: Check if b64_json is in response
-          if (imageItem.b64_json) {
-            console.log('   Using base64 data from response');
-            imageBuffer = Buffer.from(imageItem.b64_json, 'base64');
-          } else {
-            throw new Error(`Failed to download image: ${downloadError.message}`);
+          if (isRetryable && attempt < 3) {
+            // Wait before retry with exponential backoff
+            const waitTime = 500 * Math.pow(2, attempt - 1);
+            console.log(`   ⚠️  Attempt ${attempt} failed (${status || 'timeout'}), retrying in ${waitTime}ms...`);
+            await new Promise(resolve => setTimeout(resolve, waitTime));
+          } else if (attempt === 3) {
+            console.warn('   ⚠️  All download attempts failed');
           }
+        }
+      }
+      
+      if (!downloadSuccess) {
+        console.warn('   Checking for b64_json fallback...');
+        
+        // Fallback: Check if b64_json is in response
+        if (imageItem.b64_json) {
+          console.log('   Using base64 data from response');
+          imageBuffer = Buffer.from(imageItem.b64_json, 'base64');
+          downloadSuccess = true;
+        } else {
+          throw new Error(`Failed to download image after 3 attempts: ${lastError?.message}`);
         }
       }
     } else if (imageItem.b64_json) {
