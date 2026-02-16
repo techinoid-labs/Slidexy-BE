@@ -57,22 +57,63 @@ async function generateWithGLMImage(prompt, options = {}) {
       throw new Error('GLM Image API returned no image data');
     }
 
-    // GLM returns image URL in the response data
-    const imageUrl = response.data.data[0].url;
-    if (!imageUrl) {
-      throw new Error('GLM Image API returned image but no URL');
-    }
-
     console.log('✅ GLM Image generation successful');
 
-    // Download the image from the provided URL
-    const imageResponse = await axios.get(imageUrl, {
-      responseType: 'arraybuffer',
-      timeout: 30000,
-    });
+    // GLM returns image URL in the response data
+    const imageItem = response.data.data[0];
+    let imageBuffer;
+
+    // Try to get image buffer from response
+    if (imageItem.url) {
+      // Download from URL with retry logic
+      console.log('   Downloading image from URL...');
+      
+      try {
+        const imageResponse = await axios.get(imageItem.url, {
+          responseType: 'arraybuffer',
+          timeout: 60000, // Increased timeout to 60s
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+          },
+          maxRedirects: 5,
+        });
+        imageBuffer = imageResponse.data;
+        console.log('   ✅ Image downloaded successfully');
+      } catch (downloadError) {
+        console.warn('   ⚠️  URL download failed, trying alternative approach...');
+        
+        // Retry once more with simpler headers
+        try {
+          console.log('   Retrying download...');
+          const retryResponse = await axios.get(imageItem.url, {
+            responseType: 'arraybuffer',
+            timeout: 60000,
+            maxRedirects: 10,
+          });
+          imageBuffer = retryResponse.data;
+          console.log('   ✅ Image downloaded on retry');
+        } catch (retryError) {
+          console.warn('   ⚠️  Retry failed, checking for b64_json fallback...');
+          
+          // Fallback: Check if b64_json is in response
+          if (imageItem.b64_json) {
+            console.log('   Using base64 data from response');
+            imageBuffer = Buffer.from(imageItem.b64_json, 'base64');
+          } else {
+            throw new Error(`Failed to download image: ${downloadError.message}`);
+          }
+        }
+      }
+    } else if (imageItem.b64_json) {
+      // Use base64 directly if URL not available
+      console.log('   Using base64 data from response');
+      imageBuffer = Buffer.from(imageItem.b64_json, 'base64');
+    } else {
+      throw new Error('GLM Image API returned no URL or base64 data');
+    }
 
     // Resize to 1920x1080 for presentation consistency
-    const resizedBuffer = await sharp(imageResponse.data)
+    const resizedBuffer = await sharp(imageBuffer)
       .resize(1920, 1080, {
         fit: 'cover',
         position: 'center',
