@@ -30,6 +30,7 @@ const linkedinRoutes = require("./routes/linkedinRoutes");
 const telegramRoutes = require("./routes/telegramRoutes");
 const redditRoutes = require("./routes/redditRoutes");
 const discordRoutes = require("./routes/discordRoutes");
+const glmImageRoutes = require("./routes/glmImageRoutes");
 
 // Presentation routes & controllers
 const presentationRoutes = require("./routes/presentation");
@@ -179,6 +180,7 @@ app.use("/api/linkedin", linkedinRoutes);
 app.use("/api/telegram", telegramRoutes);
 app.use("/api/reddit", redditRoutes);
 app.use("/api/discord", discordRoutes);
+app.use("/api/glm-image", glmImageRoutes);
 
 // Template Presentation Route
 app.use("/template-presentation", require("./routes/templatePresentationRoutes"));
