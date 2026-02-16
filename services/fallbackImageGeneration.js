@@ -1,13 +1,38 @@
-// Create a new file: services/fallbackImageGeneration.js
-const axios = require('axios');
-const sharp = require('sharp');
-
 /**
- * Fallback image generation when Gemini quota is exhausted
+ * Fallback image generation when primary services are exhausted
  * Uses multiple free/paid services as backup
+ * 
+ * Service Priority Order:
+ * 1. GLM Image (Zhipu API) - High quality, paid
+ * 2. Pollinations.ai - Free, AI-generated
+ * 3. Unsplash - Free stock photos
+ * 4. Hugging Face - Free AI generation
+ * 5. Replicate - Paid, but reliable
  */
 
-// Option 1: Pollinations.ai (Free, no API key needed)
+const axios = require('axios');
+const sharp = require('sharp');
+const { generateWithGLMImage } = require('../utils/generateGLMImage');
+
+// Option 1: GLM Image (Zhipu API) - Highest priority paid service
+async function generateWithGLM(prompt) {
+  try {
+    console.log('🎨 Attempting image generation with GLM Image API...');
+    
+    const imageData = await generateWithGLMImage(prompt, {
+      size: '1280x1280',
+      timeout: 120000,
+    });
+    
+    console.log('✅ GLM Image generation successful');
+    return imageData;
+  } catch (error) {
+    console.error('❌ GLM Image generation failed:', error.message);
+    throw error;
+  }
+}
+
+// Option 2: Pollinations.ai (Free, no API key needed)
 async function generateWithPollinations(prompt) {
   try {
     const encodedPrompt = encodeURIComponent(prompt);
@@ -175,42 +200,47 @@ async function generateWithReplicate(prompt) {
 }
 
 // Main fallback function with cascade
-async function generateFallbackImage(prompt, preferredService = 'pollinations') {
+async function generateFallbackImage(prompt, preferredService = null) {
   const services = {
+    'glm': generateWithGLM,
     'pollinations': generateWithPollinations,
     'unsplash': generateWithUnsplash,
     'huggingface': generateWithHuggingFace,
     'replicate': generateWithReplicate,
   };
   
-  // Try preferred service first
-  if (services[preferredService]) {
+  // Try preferred service first if specified
+  if (preferredService && services[preferredService]) {
     try {
+      console.log(`\n🔄 Attempting preferred service: ${preferredService}`);
       return await services[preferredService](prompt);
     } catch (error) {
-      console.warn(`Preferred service ${preferredService} failed, trying alternatives...`);
+      console.warn(`⚠️  Preferred service ${preferredService} failed, trying alternatives...`);
     }
   }
   
-  // Try all services in order
-  const serviceOrder = ['pollinations', 'unsplash', 'huggingface', 'replicate'];
+  // Try all services in priority order
+  const serviceOrder = ['glm', 'pollinations', 'unsplash', 'huggingface', 'replicate'];
   
   for (const serviceName of serviceOrder) {
     if (serviceName === preferredService) continue; // Already tried
     
     try {
-      console.log(`Attempting ${serviceName}...`);
-      return await services[serviceName](prompt);
+      console.log(`\n🔄 Attempting fallback service: ${serviceName}`);
+      const result = await services[serviceName](prompt);
+      console.log(`✅ Success with ${serviceName}`);
+      return result;
     } catch (error) {
-      console.warn(`${serviceName} failed: ${error.message}`);
+      console.warn(`⚠️  ${serviceName} failed: ${error.message}`);
     }
   }
   
-  throw new Error('All fallback image services failed');
+  throw new Error('❌ All fallback image services failed');
 }
 
 module.exports = {
   generateFallbackImage,
+  generateWithGLM,
   generateWithPollinations,
   generateWithUnsplash,
   generateWithHuggingFace,

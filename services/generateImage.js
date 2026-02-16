@@ -4,6 +4,7 @@ const sharp = require("sharp");
 const axios = require("axios");
 const { uploadToSpaces } = require("../utils/s3Uploader");
 const { generateFluxImage } = require("../utils/generateFluxImage");
+const { generateFallbackImage, generateWithGLM } = require("../services/fallbackImageGeneration");
 
 const PEXELS_API_KEY = process.env.PEXELS_API_KEY;
 if (!PEXELS_API_KEY) {
@@ -911,72 +912,138 @@ try {
     art_palette: slide.art_palette,
   };
 } catch (fluxError) {
-  console.error("Flux generation failed:", fluxError.message);
-  // ↓ FALL THROUGH to Pexels fallback
-}
-// }
+  console.error("❌ Flux generation failed:", fluxError.message);
+  console.log("🔄 Activating fallback image generation chain...");
+  
+  // === FALLBACK CHAIN: GLM → Pollinations → Unsplash → Hugging Face → Replicate ===
+  try {
+    const prompt =
+      slide.slide_title?.text ||
+      rawText?.substring(0, 120) ||
+      "professional presentation background";
 
-  // === PAID / AI IMAGE GENERATION NOT IMPLEMENTED YET ===
-  // You said "no more Runware right now" → so we fall back to Pexels even for paid
-  // console.log(`No AI generation available — using Pexels fallback for slide ${index + 1}`);
+    console.log(`\n📊 Starting fallback cascade for slide ${index + 1}...`);
+    
+    if (progressCallback)
+      progressCallback(currentSlideNum, totalSlides, "generating-fallback-image");
 
-  // if (progressCallback && currentSlideNum && totalSlides) {
-  //   progressCallback(currentSlideNum, totalSlides, 'fetching-fallback');
-  // }
+    // Try GLM Image first (highest quality paid alternative)
+    let fallbackImageData = null;
+    try {
+      console.log("🎨 Attempting GLM Image generation...");
+      fallbackImageData = await generateWithGLM(prompt);
+      console.log("✅ GLM Image succeeded");
+    } catch (glmError) {
+      console.warn("⚠️  GLM Image failed, trying other services...");
+      
+      // Fall through to other services if GLM fails
+      try {
+        console.log("🔄 Using multi-service fallback cascade...");
+        fallbackImageData = await generateFallbackImage(prompt);
+        console.log("✅ Fallback cascade succeeded");
+      } catch (cascadeError) {
+        console.warn("⚠️  All AI image services failed:", cascadeError.message);
+        fallbackImageData = null;
+      }
+    }
 
-  // const fallbackResult = await getPexelsFallbackImage({
-  //   query: slide.slide_title?.text || rawText?.substring(0, 100),
-  //   index,
-  //   slide,
-  // });
+    if (fallbackImageData) {
+      // Got image from fallback - process and upload
+      if (progressCallback)
+        progressCallback(currentSlideNum, totalSlides, "uploading");
 
-  // if (fallbackResult) {
-  //   // Optional: upload Pexels image to your S3 for faster serving + watermarking
-  //   try {
-  //     if (progressCallback) progressCallback(currentSlideNum, totalSlides, 'uploading');
+      const webpData = fallbackImageData.includes('data:image/webp')
+        ? fallbackImageData
+        : await convertToWebP(fallbackImageData);
 
-  //     const response = await axios.get(fallbackResult.image_url, {
-  //       responseType: "arraybuffer",
-  //       timeout: 15000,
-  //     });
-  //     const webpData = await convertToWebP(
-  //       `data:${response.headers["content-type"] || "image/jpeg"};base64,${Buffer.from(response.data).toString("base64")}`
-  //     );
+      const key = `slide_fallback_${slide.slide_id || crypto.randomUUID()}_${Date.now()}.webp`;
+      const finalUrl = await uploadToSpaces(webpData, key);
 
-  //     const key = `slide_${slide.slide_id || crypto.randomUUID()}_${Date.now()}.webp`;
-  //     const finalUrl = await uploadToSpaces(webpData, key);
+      return {
+        image_url: finalUrl,
+        image_caption: slide.slide_title?.text || "AI-generated image (fallback)",
+        fallback_used: "glm-or-cascade",
+        art_style: slide.art_style,
+        art_palette: slide.art_palette,
+      };
+    }
 
-  //     return {
-  //       image_url: finalUrl,
-  //       image_caption: fallbackResult.image_caption,
-  //       photographer: fallbackResult.photographer,
-  //       pexels_url: fallbackResult.pexels_url,
-  //       fallback_used: "pexels-uploaded",
-  //       art_style: slide.art_style,
-  //       art_palette: slide.art_palette,
-  //     };
-  //   } catch (uploadErr) {
-  //     console.error("Failed to upload Pexels image:", uploadErr.message);
-  //     // Fall back to direct URL
-  //     return {
-  //       image_url: fallbackResult.image_url,
-  //       image_caption: fallbackResult.image_caption,
-  //       photographer: fallbackResult.photographer,
-  //       pexels_url: fallbackResult.pexels_url,
-  //       fallback_used: "pexels-direct",
-  //       art_style: slide.art_style,
-  //       art_palette: slide.art_palette,
-  //     };
-  //   }
-  // }
+    // If all AI services fail, try Pexels
+    console.log("⚠️  All AI services exhausted, trying Pexels stock photos...");
+    
+    if (progressCallback && currentSlideNum && totalSlides) {
+      progressCallback(currentSlideNum, totalSlides, 'fetching-pexels-fallback');
+    }
 
-  // // === LAST RESORT ===
-  // const placeholder = `https://placehold.co/1920x1080/6366f1/ffffff?text=No+Image+Available&font=roboto`;
-  // return {
-  //   image_url: placeholder,
-  //   image_caption: "Image unavailable",
-  //   fallback_used: "placeholder",
-  // };
+    const fallbackResult = await getPexelsFallbackImage({
+      query: slide.slide_title?.text || rawText?.substring(0, 100),
+      index,
+      slide,
+    });
+
+    if (fallbackResult) {
+      try {
+        if (progressCallback) progressCallback(currentSlideNum, totalSlides, 'uploading');
+
+        const response = await axios.get(fallbackResult.image_url, {
+          responseType: "arraybuffer",
+          timeout: 15000,
+        });
+        const webpData = await convertToWebP(
+          `data:${response.headers["content-type"] || "image/jpeg"};base64,${Buffer.from(response.data).toString("base64")}`
+        );
+
+        const key = `slide_pexels_${slide.slide_id || crypto.randomUUID()}_${Date.now()}.webp`;
+        const finalUrl = await uploadToSpaces(webpData, key);
+
+        return {
+          image_url: finalUrl,
+          image_caption: fallbackResult.image_caption,
+          photographer: fallbackResult.photographer,
+          pexels_url: fallbackResult.pexels_url,
+          fallback_used: "pexels-uploaded",
+          art_style: slide.art_style,
+          art_palette: slide.art_palette,
+        };
+      } catch (uploadErr) {
+        console.error("Failed to upload Pexels image:", uploadErr.message);
+        // Fall back to direct URL
+        return {
+          image_url: fallbackResult.image_url,
+          image_caption: fallbackResult.image_caption,
+          photographer: fallbackResult.photographer,
+          pexels_url: fallbackResult.pexels_url,
+          fallback_used: "pexels-direct",
+          art_style: slide.art_style,
+          art_palette: slide.art_palette,
+        };
+      }
+    }
+
+    // === LAST RESORT: Placeholder ===
+    console.warn("⚠️  All image sources exhausted, using placeholder");
+    const placeholder = `https://placehold.co/1920x1080/6366f1/ffffff?text=Slide+${index + 1}&font=roboto`;
+    return {
+      image_url: placeholder,
+      image_caption: "Image unavailable - placeholder",
+      fallback_used: "placeholder",
+      art_style: slide.art_style,
+      art_palette: slide.art_palette,
+    };
+
+  } catch (fallbackError) {
+    console.error("❌ Critical error in fallback chain:", fallbackError.message);
+    
+    // Ultimate fallback: return placeholder
+    const placeholder = `https://placehold.co/1920x1080/6366f1/ffffff?text=Slide+${index + 1}&font=roboto`;
+    return {
+      image_url: placeholder,
+      image_caption: "Image generation failed",
+      fallback_used: "placeholder",
+      art_style: slide.art_style,
+      art_palette: slide.art_palette,
+    };
+  }
 }
 
 module.exports = { generateImage };
