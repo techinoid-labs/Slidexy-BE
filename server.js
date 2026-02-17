@@ -80,10 +80,14 @@ const app = express();
 
 // CORS
 const corsOptions = {
-  origin: "*",
+  origin: function (origin, callback) {
+    // Allow any origin - necessary for 'credentials: true' to work with 'all'
+    callback(null, true);
+  },
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
+  optionsSuccessStatus: 200
 };
 app.use(cors(corsOptions));
 
@@ -186,13 +190,13 @@ app.use("/api/glm-image", glmImageRoutes);
 app.use("/template-presentation", require("./routes/templatePresentationRoutes"));
 
 // --- Slide & Presentation Endpoints ---
-app.post("/generate-slides", uploadMiddleware, validate, generateSlidesHandler);
-app.post("/generate-theme-image", validateThemeImageInput, generateThemeImageHandler);
-app.post("/edit-text", editTextHandler);
-app.post("/generate-image-suggestions", generateImageSuggestionsHandler);
-app.post("/custom-suggestions", customSuggestionsHandler);
-app.post("/generate-ppt-template", validateTemplateInput, generatePptTemplateHandler);
-app.get("/presentation/:presentation_id", getPresentationHandler);
+app.post("/api/generate-slides", uploadMiddleware, validate, generateSlidesHandler);
+app.post("/api/generate-theme-image", validateThemeImageInput, generateThemeImageHandler);
+app.post("/api/edit-text", editTextHandler);
+app.post("/api/generate-image-suggestions", generateImageSuggestionsHandler);
+app.post("/api/custom-suggestions", customSuggestionsHandler);
+app.post("/api/generate-ppt-template", validateTemplateInput, generatePptTemplateHandler);
+app.get("/api/presentation/:presentation_id", getPresentationHandler);
 
 // --- REMOVED: Old streaming endpoint ---
 // app.post("/generate-poster-template", uploadMiddleware, getPosterTemplate); ← Deleted!
