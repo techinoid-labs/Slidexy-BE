@@ -198,6 +198,15 @@ app.post("/api/custom-suggestions", customSuggestionsHandler);
 app.post("/api/generate-ppt-template", validateTemplateInput, generatePptTemplateHandler);
 app.get("/api/presentation/:presentation_id", getPresentationHandler);
 
+// Backward compatibility for old root routes
+app.post("/generate-slides", uploadMiddleware, validate, generateSlidesHandler);
+app.post("/generate-theme-image", validateThemeImageInput, generateThemeImageHandler);
+app.post("/edit-text", editTextHandler);
+app.post("/generate-image-suggestions", generateImageSuggestionsHandler);
+app.post("/custom-suggestions", customSuggestionsHandler);
+app.post("/generate-ppt-template", validateTemplateInput, generatePptTemplateHandler);
+app.get("/presentation/:presentation_id", getPresentationHandler);
+
 // --- REMOVED: Old streaming endpoint ---
 // app.post("/generate-poster-template", uploadMiddleware, getPosterTemplate); ← Deleted!
 
