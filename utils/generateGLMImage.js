@@ -32,6 +32,8 @@ async function generateWithGLMImage(prompt, options = {}) {
   }
 
   try {
+    // reinforce the no-text rule
+    prompt = `${prompt}\n\n⚠️ WARNING: absolutely no readable text, letters, numbers, or typography in the generated image.`;
     console.log('🎨 Generating image with GLM Image API...');
     console.log(`   Prompt: ${prompt.substring(0, 80)}...`);
     console.log(`   Size: ${size}`);

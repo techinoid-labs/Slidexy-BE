@@ -46,6 +46,7 @@ const slideSchema = new mongoose.Schema(
     author: { type: String, default: null },
     context: { type: String, default: null },
     image_url: { type: String, default: null },
+    image_mobile_url: { type: String, default: null },
     image_caption: { type: String, default: "" },
     image_placeholder: { type: imagePlaceholderSchema, default: {} },
     content_metadata: {
