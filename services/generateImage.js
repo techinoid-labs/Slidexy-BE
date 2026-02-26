@@ -51,6 +51,24 @@ async function convertToWebP(base64Image) {
 
   return `data:image/webp;base64,${webpBuffer.toString("base64")}`;
 }
+
+// Create a smaller WebP thumbnail (used for mobile / Flutter clients)
+async function createThumbnailWebP(base64Image, width = 142, height = 160) {
+  const buffer = Buffer.from(base64Image.split(",")[1] || base64Image, "base64");
+
+  const webpBuffer = await sharp(buffer)
+    .resize({
+      width,
+      height,
+      fit: "cover",
+      position: "center",
+      kernel: sharp.kernel.lanczos3,
+    })
+    .webp({ quality: 95, effort: 6 })
+    .toBuffer();
+
+  return `data:image/webp;base64,${webpBuffer.toString("base64")}`;
+}
 async function searchPexelsPhotos(query, page = 1, perPage = 15) {
   if (!canMakeRequest()) {
     console.warn("Pexels rate limit near — skipping request");
@@ -831,6 +849,11 @@ async function generateImage(
   currentSlideNum = null,
   totalSlides = null
 ) {
+  // prepare a richly described prompt for the image service so results are more relevant
+  const artKnowledge = await generateArtKnowledge(slide, rawText, artStyle);
+  const detailedPrompt = await generateDetailedImagePrompt(slide, artKnowledge, rawText);
+  let promptToUse = detailedPrompt;
+
   // === PREDEFINED / TRIAL MODE → Use Pexels directly ===
   // if (planResponseType === "predefined") {
   //   const result = await getPexelsFallbackImage({
@@ -868,10 +891,7 @@ async function generateImage(
     if (progressCallback)
       progressCallback(currentSlideNum, totalSlides, "generating-ai-image");
 
-    const prompt =
-      slide.slide_title?.text ||
-      rawText?.substring(0, 120) ||
-      "professional presentation background";
+    const prompt = promptToUse;
 
     const fluxResult = await generateFluxImage({
       prompt,
@@ -902,11 +922,22 @@ async function generateImage(
     if (progressCallback)
       progressCallback(currentSlideNum, totalSlides, "uploading");
 
-    const key = `slide_ai_${slide.slide_id || crypto.randomUUID()}_${Date.now()}.webp`;
-    const finalUrl = await uploadToSpaces(webpData, key);
+    const baseFilename = `slide_ai_${slide.slide_id || crypto.randomUUID()}_${Date.now()}.webp`;
+    const finalUrl = await uploadToSpaces(webpData, baseFilename);
+
+    // Also create a smaller 142x160 thumbnail variant for mobile clients
+    let mobileUrl = null;
+    try {
+      const mobileWebpData = await createThumbnailWebP(webpData, 142, 160);
+      const mobileFilename = `slide_ai_mobile_${slide.slide_id || crypto.randomUUID()}_${Date.now()}_142x160.webp`;
+      mobileUrl = await uploadToSpaces(mobileWebpData, mobileFilename);
+    } catch (thumbErr) {
+      console.error("Failed to create/upload mobile thumbnail:", thumbErr.message);
+    }
 
     return {
       image_url: finalUrl,
+      image_mobile_url: mobileUrl || finalUrl,
       image_caption: slide.slide_title?.text || "AI-generated image",
       fallback_used: "flux",
       art_style: slide.art_style,
@@ -918,10 +949,7 @@ async function generateImage(
 
     // === FALLBACK CHAIN: GLM → Pollinations → Unsplash → Hugging Face → Replicate ===
     try {
-      const prompt =
-        slide.slide_title?.text ||
-        rawText?.substring(0, 120) ||
-        "professional presentation background";
+      const prompt = promptToUse; // reuse the detailed description generated earlier
 
       console.log(`\n📊 Starting fallback cascade for slide ${index + 1}...`);
 
@@ -957,11 +985,22 @@ async function generateImage(
           ? fallbackImageData
           : await convertToWebP(fallbackImageData);
 
-        const key = `slide_fallback_${slide.slide_id || crypto.randomUUID()}_${Date.now()}.webp`;
-        const finalUrl = await uploadToSpaces(webpData, key);
+        const baseFilename = `slide_fallback_${slide.slide_id || crypto.randomUUID()}_${Date.now()}.webp`;
+        const finalUrl = await uploadToSpaces(webpData, baseFilename);
+
+        // Mobile-sized thumbnail
+        let mobileUrl = null;
+        try {
+          const mobileWebpData = await createThumbnailWebP(webpData, 142, 160);
+          const mobileFilename = `slide_fallback_mobile_${slide.slide_id || crypto.randomUUID()}_${Date.now()}_142x160.webp`;
+          mobileUrl = await uploadToSpaces(mobileWebpData, mobileFilename);
+        } catch (thumbErr) {
+          console.error("Failed to create/upload mobile thumbnail (fallback):", thumbErr.message);
+        }
 
         return {
           image_url: finalUrl,
+          image_mobile_url: mobileUrl || finalUrl,
           image_caption: slide.slide_title?.text || "AI-generated image (fallback)",
           fallback_used: "glm-or-cascade",
           art_style: slide.art_style,
@@ -977,7 +1016,7 @@ async function generateImage(
       }
 
       const fallbackResult = await getPexelsFallbackImage({
-        query: slide.slide_title?.text || rawText?.substring(0, 100),
+        query: promptToUse || slide.slide_title?.text || rawText?.substring(0, 100),
         index,
         slide,
       });
@@ -994,11 +1033,22 @@ async function generateImage(
             `data:${response.headers["content-type"] || "image/jpeg"};base64,${Buffer.from(response.data).toString("base64")}`
           );
 
-          const key = `slide_pexels_${slide.slide_id || crypto.randomUUID()}_${Date.now()}.webp`;
-          const finalUrl = await uploadToSpaces(webpData, key);
+          const baseFilename = `slide_pexels_${slide.slide_id || crypto.randomUUID()}_${Date.now()}.webp`;
+          const finalUrl = await uploadToSpaces(webpData, baseFilename);
+
+          // Mobile-sized thumbnail derived from the uploaded WebP
+          let mobileUrl = null;
+          try {
+            const mobileWebpData = await createThumbnailWebP(webpData, 142, 160);
+            const mobileFilename = `slide_pexels_mobile_${slide.slide_id || crypto.randomUUID()}_${Date.now()}_142x160.webp`;
+            mobileUrl = await uploadToSpaces(mobileWebpData, mobileFilename);
+          } catch (thumbErr) {
+            console.error("Failed to create/upload mobile thumbnail (pexels):", thumbErr.message);
+          }
 
           return {
             image_url: finalUrl,
+            image_mobile_url: mobileUrl || finalUrl,
             image_caption: fallbackResult.image_caption,
             photographer: fallbackResult.photographer,
             pexels_url: fallbackResult.pexels_url,
@@ -1024,8 +1074,10 @@ async function generateImage(
       // === LAST RESORT: Placeholder ===
       console.warn("⚠️  All image sources exhausted, using placeholder");
       const placeholder = `https://placehold.co/1920x1080/6366f1/ffffff?text=Slide+${index + 1}&font=roboto`;
+      const mobilePlaceholder = `https://placehold.co/142x160/6366f1/ffffff?text=Slide+${index + 1}&font=roboto`;
       return {
         image_url: placeholder,
+        image_mobile_url: mobilePlaceholder,
         image_caption: "Image unavailable - placeholder",
         fallback_used: "placeholder",
         art_style: slide.art_style,
@@ -1038,6 +1090,7 @@ async function generateImage(
       const placeholder = `https://placehold.co/1920x1080/6366f1/ffffff?text=Slide+${index + 1}&font=roboto`;
       return {
         image_url: placeholder,
+        image_mobile_url: placeholder,
         image_caption: "Image generation failed",
         fallback_used: "placeholder",
         art_style: slide.art_style,

@@ -201,6 +201,9 @@ async function generateWithReplicate(prompt) {
 
 // Main fallback function with cascade
 async function generateFallbackImage(prompt, preferredService = null) {
+  // ensure downstream services receive the no-text prohibition again
+  const safePrompt = `${prompt}\n\n⚠️ IMPORTANT: do NOT include any readable text, letters, numbers, or typography in the generated image; this applies even if the service tends to hallucinate.`;
+  
   const services = {
     'glm': generateWithGLM,
     'pollinations': generateWithPollinations,
@@ -213,7 +216,7 @@ async function generateFallbackImage(prompt, preferredService = null) {
   if (preferredService && services[preferredService]) {
     try {
       console.log(`\n🔄 Attempting preferred service: ${preferredService}`);
-      return await services[preferredService](prompt);
+      return await services[preferredService](safePrompt);
     } catch (error) {
       console.warn(`⚠️  Preferred service ${preferredService} failed, trying alternatives...`);
     }
@@ -227,7 +230,7 @@ async function generateFallbackImage(prompt, preferredService = null) {
     
     try {
       console.log(`\n🔄 Attempting fallback service: ${serviceName}`);
-      const result = await services[serviceName](prompt);
+      const result = await services[serviceName](safePrompt);
       console.log(`✅ Success with ${serviceName}`);
       return result;
     } catch (error) {

@@ -66,7 +66,7 @@ async function generateSlideText(rawText, meta = {}, slideCount = 5, progressCal
   }
 
   const prompt = `
-You are a world-class presentation content strategist. Create EXACTLY ${slideCount} slides with precise textual data for frontend layout mapping.
+You are a world-class presentation content strategist. Create EXACTLY ${slideCount} slides with precise textual data for frontend layout mapping. All text must be grammatically flawless and free of spelling mistakes.
 
 SLIDE STRUCTURE FOR ${slideCount}-SLIDE PRESENTATION:
 ${slideStructure.slides.map((slide, index) =>
@@ -91,6 +91,7 @@ STRICT CONTENT RULES (for frontend mapping):
 4. QUOTE-SLIDE: title, quote (20-50 words full sentence), author, context (1 sentence)
 5. CALL-TO-ACTION/CONCLUSION: title, 1-2 action bullets, description (1 sentence)
 6. Maintain consistent terminology and narrative flow. CRITICAL: Ensure EVERY bullet slide (including cover-hero, content-split and infographic-bullets) has the required bullets - no empty lists.
+7. Spelling & Grammar: double-check every word for correct spelling and flawless grammar.
 
 OUTPUT FORMAT - Return ONLY valid JSON array with exactly ${slideCount} objects. Use these exact structures:
 
@@ -210,6 +211,21 @@ Generate exactly ${slideCount} slides that tell a compelling story:`;
 
     const jsonString = cleaned.slice(firstBracket, lastBracket + 1);
     let aiSlides = JSON.parse(jsonString);
+
+    // quick spell/grammar pass through the model to catch any typos
+    try {
+      const proofPrompt = `Proofread the following JSON array of slides for any spelling or grammar mistakes. Return corrected JSON only:\n${jsonString}`;
+      const proofRes = await textGenModel.generateContent(proofPrompt);
+      const proofRaw = proofRes.response?.candidates?.[0]?.content?.parts?.[0]?.text || "";
+      const start = proofRaw.indexOf("[");
+      const end = proofRaw.lastIndexOf("]");
+      if (start !== -1 && end !== -1) {
+        const cleanedProof = proofRaw.slice(start, end + 1);
+        aiSlides = JSON.parse(cleanedProof);
+      }
+    } catch (proofErr) {
+      console.warn("Slide text proofread step failed, using original slides:", proofErr.message);
+    }
 
     // Notify progress: processing slides
     if (progressCallback) {
