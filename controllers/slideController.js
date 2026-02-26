@@ -92,6 +92,7 @@ function sanitizeSlides(slides) {
       subtitle: slide.subtitle || { text: '' },
       elements: [],
       image_url: slide.image_url || null,
+      image_mobile_url: slide.image_mobile_url || null,
       image_caption: slide.image_caption || '',
       image_placeholder: slide.image_placeholder || { x: 520, y: 40, width: 400, height: 460 },
       content_metadata: slide.content_metadata || { bullet_count: 0, has_quote: false, has_data: false },
@@ -536,6 +537,7 @@ async function generateSlidesHandler(req, res) {
               results[currentIndex] = {
                 ...slide,
                 image_url: imageResult.image_url || `https://placehold.co/1920x1080/6c5ce7/ffffff?text=Slide+${slideNumber}&font=roboto`,
+                image_mobile_url: imageResult.image_mobile_url || imageResult.image_url || `https://placehold.co/142x160/6c5ce7/ffffff?text=Slide+${slideNumber}&font=roboto`,
                 image_caption: imageResult.image_caption || "Placeholder image",
                 photographer: imageResult.photographer,
                 pexels_url: imageResult.pexels_url,
@@ -548,6 +550,7 @@ async function generateSlidesHandler(req, res) {
               results[currentIndex] = {
                 ...slide,
                 image_url: `https://placehold.co/1920x1080/6c5ce7/ffffff?text=Slide+${slideNumber}&font=roboto`,
+                image_mobile_url: `https://placehold.co/142x160/6c5ce7/ffffff?text=Slide+${slideNumber}&font=roboto`,
                 image_caption: "Placeholder image",
                 fallback_used: "placeholder",
               };
@@ -625,6 +628,7 @@ async function generateSlidesHandler(req, res) {
               results[currentIndex] = {
                 ...slide,
                 image_url: imageResult.image_url || null,
+                image_mobile_url: imageResult.image_mobile_url || imageResult.image_url || `https://placehold.co/142x160/6c5ce7/ffffff?text=Slide+${slideNumber}&font=roboto`,
                 image_caption: imageResult.image_caption || "Image unavailable",
                 photographer: imageResult.photographer,
                 pexels_url: imageResult.pexels_url,
@@ -641,6 +645,7 @@ async function generateSlidesHandler(req, res) {
               results[currentIndex] = {
                 ...slide,
                 image_url: `https://placehold.co/1920x1080/6c5ce7/ffffff?text=Slide+${slideNumber}&font=roboto`,
+                image_mobile_url: `https://placehold.co/142x160/6c5ce7/ffffff?text=Slide+${slideNumber}&font=roboto`,
                 image_caption: "Image unavailable",
                 fallback_used: "placeholder",
               };
@@ -838,6 +843,7 @@ async function generateSlidesHandler(req, res) {
               results[currentIndex] = {
                 ...slide,
                 image_url: imageSlide.image_url || `https://placehold.co/1920x1080/6c5ce7/ffffff?text=Slide+${currentIndex + 1}&font=roboto`,
+                image_mobile_url: imageSlide.image_mobile_url || imageSlide.image_url || `https://placehold.co/142x160/6c5ce7/ffffff?text=Slide+${currentIndex + 1}&font=roboto`,
                 image_caption: imageSlide.image_caption || "Image unavailable",
                 photographer: imageSlide.photographer,
                 pexels_url: imageSlide.pexels_url,
@@ -854,6 +860,7 @@ async function generateSlidesHandler(req, res) {
               results[currentIndex] = {
                 ...slide,
                 image_url: `https://placehold.co/1920x1080/6c5ce7/ffffff?text=Slide+${currentIndex + 1}&font=roboto`,
+                image_mobile_url: `https://placehold.co/142x160/6c5ce7/ffffff?text=Slide+${currentIndex + 1}&font=roboto`,
                 image_caption: "Image unavailable",
                 fallback_used: "placeholder"
               };

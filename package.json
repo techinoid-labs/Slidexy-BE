@@ -58,7 +58,8 @@
     "uuid": "^11.1.0",
     "winston": "^3.17.0",
     "yamljs": "^0.3.0",
-    "youtube-transcript": "^1.2.1"
+    "youtube-transcript": "^1.2.1",
+    "tesseract.js": "^4.1.1"
   },
   "repository": {
     "type": "git",
