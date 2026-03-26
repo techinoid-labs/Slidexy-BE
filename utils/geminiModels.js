@@ -35,25 +35,54 @@ if (GOOGLE_API_KEY) {
 }
 
 // ---------------------------------------------------------------------------
-// generateContent adapter – keeps the SAME interface the rest of the codebase
-// expects:
-//   const result = await textGenModel.generateContent(promptOrParts);
-//   const text   = result.response?.candidates?.[0]?.content?.parts?.[0]?.text;
+// Normalize ANY input format into OpenAI messages array
+//
+// The codebase uses 3 distinct calling patterns:
+//
+//   Pattern 1 (String):   textGenModel.generateContent("prompt text")
+//   Pattern 2 (Array):    textGenModel.generateContent([{text: "..."}, {inlineData: {...}}])
+//   Pattern 3 (Object):   textGenModel.generateContent({contents: [{role: "user", parts: [{text: "..."}]}]})
+//
+// This function handles ALL three and converts to OpenAI messages format.
 // ---------------------------------------------------------------------------
-async function generateContentViaOpenRouter(input) {
-  // Build the user message from the input (string or multipart array)
-  let userContent;
+function normalizeToMessages(input) {
+  // Pattern 3: Object with `contents` array (Gemini native format)
+  if (input && typeof input === "object" && !Array.isArray(input) && input.contents) {
+    return input.contents.map((contentItem) => {
+      const role = contentItem.role === "model" ? "assistant" : (contentItem.role || "user");
+      const parts = contentItem.parts || [];
+      const contentParts = [];
 
-  if (typeof input === "string") {
-    userContent = input;
-  } else if (Array.isArray(input)) {
-    // Multipart: [{text: "..."}, {inlineData: {data, mimeType}}]
-    const parts = [];
+      for (const part of parts) {
+        if (part.text) {
+          contentParts.push({ type: "text", text: part.text });
+        } else if (part.inlineData) {
+          contentParts.push({
+            type: "image_url",
+            image_url: {
+              url: `data:${part.inlineData.mimeType};base64,${part.inlineData.data}`,
+            },
+          });
+        }
+      }
+
+      // If only one text part, simplify to plain string content
+      if (contentParts.length === 1 && contentParts[0].type === "text") {
+        return { role, content: contentParts[0].text };
+      }
+
+      return { role, content: contentParts };
+    });
+  }
+
+  // Pattern 2: Array of parts [{text: "..."}, {inlineData: {...}}]
+  if (Array.isArray(input)) {
+    const contentParts = [];
     for (const part of input) {
       if (part.text) {
-        parts.push({ type: "text", text: part.text });
+        contentParts.push({ type: "text", text: part.text });
       } else if (part.inlineData) {
-        parts.push({
+        contentParts.push({
           type: "image_url",
           image_url: {
             url: `data:${part.inlineData.mimeType};base64,${part.inlineData.data}`,
@@ -61,25 +90,35 @@ async function generateContentViaOpenRouter(input) {
         });
       }
     }
-    userContent = parts;
-  } else {
-    userContent = String(input);
+
+    // If only text parts, simplify
+    if (contentParts.length === 1 && contentParts[0].type === "text") {
+      return [{ role: "user", content: contentParts[0].text }];
+    }
+
+    return [{ role: "user", content: contentParts }];
   }
+
+  // Pattern 1: Plain string
+  return [{ role: "user", content: String(input) }];
+}
+
+// ---------------------------------------------------------------------------
+// generateContent via OpenRouter
+// ---------------------------------------------------------------------------
+async function generateContentViaOpenRouter(input) {
+  const messages = normalizeToMessages(input);
 
   const completion = await openRouterClient.chat.completions.create({
     model: "google/gemini-2.5-flash",
-    messages: [
-      {
-        role: "user",
-        content: userContent,
-      },
-    ],
+    messages,
     max_tokens: 16384,
   });
 
   const responseText = completion.choices?.[0]?.message?.content || "";
 
-  // Return in the same shape that the rest of the codebase expects
+  // Return in the same shape the rest of the codebase expects:
+  //   result.response.candidates[0].content.parts[0].text
   return {
     response: {
       candidates: [
