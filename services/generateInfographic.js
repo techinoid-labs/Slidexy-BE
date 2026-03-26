@@ -15,7 +15,7 @@
  */
 
 const infographicV2Service = require("./unit-services/generateInfographicV2Service");
-const { textGenModel, imageGenModel } = require("../utils/geminiModels");
+const { textGenModel } = require("../utils/geminiModels");
 
 /**
  * MAIN: Generate infographic using V2 template-based system
@@ -159,24 +159,10 @@ Return JSON:
     };
 
     // Attempt to generate image
-    if (slide.imagePrompt) {
-      try {
-        const imageResult = await imageGenModel.generateContent(
-          slide.imagePrompt
-        );
-        const imageResponse = await imageResult.response;
-        const mediaPart = imageResponse.candidates?.[0]?.content?.parts?.find(
-          (part) => part.inline_data?.mime_type?.startsWith("image/")
-        );
-        if (mediaPart) {
-          slideObj.image_url = `data:${mediaPart.inline_data.mime_type};base64,${mediaPart.inline_data.data}`;
-          slideObj.image_caption = slide.imagePrompt;
-        }
-      } catch {
-        slideObj.image_url = null;
-        slideObj.image_caption = "";
-      }
-    }
+    // Legacy: Image generation via imageGenModel is no longer available
+      // Images are now handled by the V2 system or generateImage service
+      slideObj.image_url = null;
+      slideObj.image_caption = slide.imagePrompt || "";
 
     slides.push(slideObj);
   }

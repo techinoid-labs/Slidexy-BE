@@ -1,54 +1,168 @@
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+const OpenAI = require("openai");
 
-const apiKeys = [
-  process.env.API_KEY1, //process.env.API_KEY2, process.env.API_KEY3,
-  // process.env.API_KEY4, process.env.API_KEY5, process.env.API_KEY6,
-  // process.env.API_KEY7, process.env.API_KEY8, process.env.API_KEY9,
-  // process.env.API_KEY10, process.env.API_KEY11, process.env.API_KEY12,
-].filter(Boolean);
+const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
+const GOOGLE_API_KEY = process.env.API_KEY1;
 
-if (apiKeys.length === 0) throw new Error("No API keys configured!");
-
-class KeyPool {
-  constructor(keys) {
-    this.keys = keys.map(key => ({ key, inUse: false, lastUsed: 0, fails: 0 }));
-  }
-  async acquire() {
-    this.keys.sort((a, b) => a.lastUsed - b.lastUsed || a.fails - b.fails);
-    let candidate = this.keys.find(k => !k.inUse);
-    if (!candidate) await new Promise(r => setTimeout(r, 100));
-    candidate = this.keys.find(k => !k.inUse) || this.keys[0];
-    candidate.inUse = true;
-    candidate.lastUsed = Date.now();
-    return candidate.key;
-  }
-  release(key, success = true) {
-    const k = this.keys.find(k => k.key === key);
-    if (k) { k.inUse = false; if (!success) k.fails++; }
-  }
+if (!OPENROUTER_API_KEY && !GOOGLE_API_KEY) {
+  throw new Error("No API keys configured! Set OPENROUTER_API_KEY or API_KEY1.");
 }
 
-const pool = new KeyPool(apiKeys);
+// ---------------------------------------------------------------------------
+// OpenRouter client (OpenAI-compatible)
+// ---------------------------------------------------------------------------
+let openRouterClient = null;
+if (OPENROUTER_API_KEY) {
+  openRouterClient = new OpenAI({
+    baseURL: "https://openrouter.ai/api/v1",
+    apiKey: OPENROUTER_API_KEY,
+    defaultHeaders: {
+      "HTTP-Referer": "https://slidexy.ai",
+      "X-Title": "Slidexy Neuro Engine",
+    },
+  });
+  console.log("✅ OpenRouter client initialized (model: google/gemini-2.5-flash)");
+}
 
-async function safeGenerateContent(modelName, config) {
-  const key = await pool.acquire();
-  const genAI = new GoogleGenerativeAI(key);
-  const model = genAI.getGenerativeModel({ model: modelName });
-  try {
-    const res = await model.generateContent(config);
-    pool.release(key, true);
-    return res;
-  } catch (err) {
-    console.error("Error during content generation:", err);
-    pool.release(key, false);
-    if (err.message.includes("quota")) {
-      console.warn("Rate limit - rotating key");
-      return safeGenerateContent(modelName, config);
-    }
-    throw err;
+// ---------------------------------------------------------------------------
+// Fallback: direct Google Generative AI (original implementation)
+// ---------------------------------------------------------------------------
+let googleFallback = null;
+if (GOOGLE_API_KEY) {
+  const { GoogleGenerativeAI } = require("@google/generative-ai");
+  const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY);
+  googleFallback = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+  console.log("🔄 Google Gemini fallback ready");
+}
+
+// ---------------------------------------------------------------------------
+// Normalize ANY input format into OpenAI messages array
+//
+// The codebase uses 3 distinct calling patterns:
+//
+//   Pattern 1 (String):   textGenModel.generateContent("prompt text")
+//   Pattern 2 (Array):    textGenModel.generateContent([{text: "..."}, {inlineData: {...}}])
+//   Pattern 3 (Object):   textGenModel.generateContent({contents: [{role: "user", parts: [{text: "..."}]}]})
+//
+// This function handles ALL three and converts to OpenAI messages format.
+// ---------------------------------------------------------------------------
+function normalizeToMessages(input) {
+  // Pattern 3: Object with `contents` array (Gemini native format)
+  if (input && typeof input === "object" && !Array.isArray(input) && input.contents) {
+    return input.contents.map((contentItem) => {
+      const role = contentItem.role === "model" ? "assistant" : (contentItem.role || "user");
+      const parts = contentItem.parts || [];
+      const contentParts = [];
+
+      for (const part of parts) {
+        if (part.text) {
+          contentParts.push({ type: "text", text: part.text });
+        } else if (part.inlineData) {
+          contentParts.push({
+            type: "image_url",
+            image_url: {
+              url: `data:${part.inlineData.mimeType};base64,${part.inlineData.data}`,
+            },
+          });
+        }
+      }
+
+      // If only one text part, simplify to plain string content
+      if (contentParts.length === 1 && contentParts[0].type === "text") {
+        return { role, content: contentParts[0].text };
+      }
+
+      return { role, content: contentParts };
+    });
   }
+
+  // Pattern 2: Array of parts [{text: "..."}, {inlineData: {...}}]
+  if (Array.isArray(input)) {
+    const contentParts = [];
+    for (const part of input) {
+      if (part.text) {
+        contentParts.push({ type: "text", text: part.text });
+      } else if (part.inlineData) {
+        contentParts.push({
+          type: "image_url",
+          image_url: {
+            url: `data:${part.inlineData.mimeType};base64,${part.inlineData.data}`,
+          },
+        });
+      }
+    }
+
+    // If only text parts, simplify
+    if (contentParts.length === 1 && contentParts[0].type === "text") {
+      return [{ role: "user", content: contentParts[0].text }];
+    }
+
+    return [{ role: "user", content: contentParts }];
+  }
+
+  // Pattern 1: Plain string
+  return [{ role: "user", content: String(input) }];
+}
+
+// ---------------------------------------------------------------------------
+// generateContent via OpenRouter
+// ---------------------------------------------------------------------------
+async function generateContentViaOpenRouter(input) {
+  const messages = normalizeToMessages(input);
+
+  const completion = await openRouterClient.chat.completions.create({
+    model: "google/gemini-2.5-flash",
+    messages,
+    max_tokens: 16384,
+  });
+
+  const responseText = completion.choices?.[0]?.message?.content || "";
+
+  // Return in the same shape the rest of the codebase expects:
+  //   result.response.candidates[0].content.parts[0].text
+  return {
+    response: {
+      candidates: [
+        {
+          content: {
+            parts: [{ text: responseText }],
+          },
+        },
+      ],
+    },
+  };
+}
+
+// ---------------------------------------------------------------------------
+// generateContent via direct Google fallback
+// ---------------------------------------------------------------------------
+async function generateContentViaGoogle(input) {
+  if (!googleFallback) {
+    throw new Error("Google Gemini fallback not configured");
+  }
+  return await googleFallback.generateContent(input);
+}
+
+// ---------------------------------------------------------------------------
+// Main generateContent – tries OpenRouter first, falls back to Google
+// ---------------------------------------------------------------------------
+async function generateContent(input) {
+  if (openRouterClient) {
+    try {
+      return await generateContentViaOpenRouter(input);
+    } catch (err) {
+      console.error("⚠️  OpenRouter request failed:", err.message);
+      if (googleFallback) {
+        console.log("🔄 Falling back to direct Google Gemini...");
+        return await generateContentViaGoogle(input);
+      }
+      throw err;
+    }
+  }
+
+  // No OpenRouter key – use Google directly
+  return await generateContentViaGoogle(input);
 }
 
 module.exports = {
-  textGenModel: { generateContent: (c) => safeGenerateContent("gemini-2.5-flash", c) },
+  textGenModel: { generateContent },
 };
