@@ -1,68 +1,8 @@
-/**
- * =============================================================================
- * WEBSITE GENERATOR SERVICE
- * =============================================================================
- * 
- * Purpose: Generate modern, sleek HTML websites from unified web deck presentations
- * 
- * CEO Requirement: 
- * - Use unified route response to generate complete HTML pages
- * - Utilize Gemini AI to create modern, responsive designs
- * - Save each generated website as a unique HTML file in website-codes folder
- * - Leverage all presentation data (slides, images, colors, typography)
- * 
- * Flow:
- * 1. Receive URL
- * 2. Call unified web deck service to get presentation data
- * 3. Send presentation data to Gemini with HTML generation prompt
- * 4. Parse and save the generated HTML code
- * 5. Return file path and preview URL
- * 
- * Created: 2025-11-17
- * =============================================================================
- */
-
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+const { textGenModel } = require("../utils/geminiModels");
 const fs = require("fs").promises;
 const path = require("path");
 const crypto = require("crypto");
 const { generateUnifiedWebDeck } = require("./unifiedWebDeck");
-
-// Initialize API Key Pool (same as geminiModels.js)
-const apiKeys = [
-  process.env.API_KEY1, process.env.API_KEY2, process.env.API_KEY3,
-  process.env.API_KEY4, process.env.API_KEY5, process.env.API_KEY6,
-  process.env.API_KEY7, process.env.API_KEY8, process.env.API_KEY9,
-  process.env.API_KEY10, process.env.API_KEY11, process.env.API_KEY12,
-].filter(Boolean);
-
-if (apiKeys.length === 0) {
-  console.error("⚠️  No Gemini API keys configured!");
-}
-
-// Key Pool class (same logic as geminiModels.js)
-class KeyPool {
-  constructor(keys) {
-    this.keys = keys.map(key => ({ key, inUse: false, lastUsed: 0, fails: 0 }));
-  }
-
-  async acquire() {
-    this.keys.sort((a, b) => a.lastUsed - b.lastUsed || a.fails - b.fails);
-    let candidate = this.keys.find(k => !k.inUse);
-    if (!candidate) await new Promise(r => setTimeout(r, 100));
-    candidate = this.keys.find(k => !k.inUse) || this.keys[0];
-    candidate.inUse = true;
-    candidate.lastUsed = Date.now();
-    return candidate.key;
-  }
-
-  release(key, success = true) {
-    const k = this.keys.find(k => k.key === key);
-    if (k) { k.inUse = false; if (!success) k.fails++; }
-  }
-}
-
-const pool = new KeyPool(apiKeys);
 
 /**
  * Generate a complete HTML website from a URL using unified presentation data
@@ -136,13 +76,12 @@ async function generateWebsiteFromUrl(websiteUrl) {
     console.log("║       ✨ WEBSITE GENERATION COMPLETE!                     ║");
     console.log("╚════════════════════════════════════════════════════════════╝\n");
 
-   // services/websiteGenerator.js → at the very end of generateWebsiteFromUrl()
-    // === RETURN CLEAN, PREDICTABLE STRUCTURE ===
+   // === RETURN CLEAN, PREDICTABLE STRUCTURE ===
     return {
       success: true,
       message: "Website generated successfully",
       folderName: savedWebsite.folderName,
-      files: savedWebsite.files,           // ← correct: { type: "html", content: "..." }
+      files: savedWebsite.files,
       sizeKB: savedWebsite.sizeKB,
       previewUrl: savedWebsite.previewUrl,
       presentation: {
@@ -492,67 +431,30 @@ Make it look STUNNING and PROFESSIONAL. This will be evaluated by the CEO!
 
 Generate the complete HTML code now:`;
 
-  let fullHtmlCode = "";
-  let maxAttempts = Math.min(apiKeys.length, 5); // Try up to 5 keys or all available
+  try {
+    console.log("   🔑 Generating website HTML via OpenRouter/textGenModel...");
 
-  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
-    const apiKey = await pool.acquire();
-    
-    try {
-      console.log(`   🔑 Attempt ${attempt}/${maxAttempts}: Using API key from pool`);
-      
-      const genAI = new GoogleGenerativeAI(apiKey);
-      const model = genAI.getGenerativeModel({ 
-        model: "gemini-2.0-flash", // Same model as other services use successfully
-        generationConfig: {
-          temperature: 0.7,
-          topP: 0.95,
-          topK: 40,
-          maxOutputTokens: 8192, // Large enough for complete HTML
-        }
-      });
+    const result = await textGenModel.generateContent(prompt);
+    let fullHtmlCode = result.response?.candidates?.[0]?.content?.parts?.[0]?.text || "";
 
-      const result = await model.generateContentStream(prompt);
+    // Clean the response
+    fullHtmlCode = cleanHtmlCode(fullHtmlCode);
 
-      // Collect streaming response
-      for await (const chunk of result.stream) {
-        const chunkText = chunk.text();
-        if (chunkText) {
-          fullHtmlCode += chunkText;
-        }
-      }
-
-      // Clean the response
-      fullHtmlCode = cleanHtmlCode(fullHtmlCode);
-
-      // Validate HTML
-      if (!fullHtmlCode.includes("<!DOCTYPE html>") && !fullHtmlCode.includes("<html")) {
-        throw new Error("Generated code does not appear to be valid HTML");
-      }
-
-      console.log("   ✅ Gemini successfully generated HTML!");
-      pool.release(apiKey, true);
-      return fullHtmlCode;
-
-    } catch (error) {
-      pool.release(apiKey, false);
-      
-      if (error.message.includes("quota") || error.message.includes("429") || error.statusCode === 429) {
-        console.warn(`   ⚠️  Quota exceeded, rotating to next key... (${maxAttempts - attempt} attempts left)`);
-        if (attempt < maxAttempts) {
-          continue; // Try next API key
-        }
-      } else {
-        // Non-quota error, log and fall back immediately
-        console.error("   ❌ Gemini API Error:", error.message);
-        break;
-      }
+    // Validate HTML
+    if (!fullHtmlCode.includes("<!DOCTYPE html>") && !fullHtmlCode.includes("<html")) {
+      throw new Error("Generated code does not appear to be valid HTML");
     }
-  }
 
-  // Fallback: generate a modern HTML template
-  console.log("⚠️  All API keys exhausted or error occurred. Using enhanced fallback template...");
-  return generateFallbackHtml(designBrief, presentation);
+    console.log("   ✅ Successfully generated HTML!");
+    return fullHtmlCode;
+
+  } catch (error) {
+    console.error("   ❌ AI HTML generation error:", error.message);
+
+    // Fallback: generate a modern HTML template
+    console.log("⚠️  AI generation failed. Using enhanced fallback template...");
+    return generateFallbackHtml(designBrief, presentation);
+  }
 }
 
 /**
