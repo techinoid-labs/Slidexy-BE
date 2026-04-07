@@ -30,7 +30,7 @@ let googleFallback = null;
 if (GOOGLE_API_KEY) {
   const { GoogleGenerativeAI } = require("@google/generative-ai");
   const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY);
-  googleFallback = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+  googleFallback = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
   console.log("🔄 Google Gemini fallback ready");
 }
 
@@ -112,7 +112,7 @@ async function generateContentViaOpenRouter(input) {
   const completion = await openRouterClient.chat.completions.create({
     model: "google/gemini-2.5-flash",
     messages,
-    max_tokens: 16384,
+    max_tokens: 4096,
   });
 
   const responseText = completion.choices?.[0]?.message?.content || "";
