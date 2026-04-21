@@ -1,0 +1,115 @@
+{
+  "domain": "slidexy.ai",
+  "app_name": "Slidexy",
+  "description": "AI-powered presentation and document generator — create pitch decks, proposals, infographics, websites, and ebooks from text prompts or URLs.",
+  "base_url": "https://https://slidexy.ai",
+  "login_required_for_all_except": [
+    "/",
+    "/auth",
+    "/pricing",
+    "/tools",
+    "/templates",
+    "/blog",
+    "/tools/prompt-to-deck",
+    "/tools/prompt-to-pitchdeck",
+    "/tools/prompt-to-proposal",
+    "/tools/url-to-website",
+    "/tools/text-to-infographics"
+  ],
+  "quick_actions": [
+    { "phrase": "create presentation", "workflow": "create_presentation", "url": "/tools/prompt-to-deck" },
+    { "phrase": "create pitch deck", "workflow": "create_presentation", "url": "/tools/prompt-to-pitchdeck" },
+    { "phrase": "create proposal", "workflow": "create_presentation", "url": "/tools/prompt-to-proposal" },
+    { "phrase": "create infographic", "workflow": "create_presentation", "url": "/tools/text-to-infographics" },
+    { "phrase": "create website from url", "workflow": "create_presentation", "url": "/tools/url-to-website" },
+    { "phrase": "open editor", "workflow": "open_editor", "url": "/editor" },
+    { "phrase": "view templates", "workflow": "view_templates", "url": "/templates" },
+    { "phrase": "manage account", "workflow": "manage_account", "url": "/account" },
+    { "phrase": "view pricing", "workflow": "view_pricing", "url": "/pricing" }
+  ],
+  "auth": {
+    "login_url": "/auth",
+    "fields": {
+      "email": "Email textbox",
+      "password": "Password textbox"
+    },
+    "submit_button": "Login button"
+  },
+  "navigation": {
+    "top_level": [
+      { "label": "Home", "url": "/" },
+      { "label": "Tools", "url": "/tools" },
+      { "label": "Templates", "url": "/templates" },
+      { "label": "Pricing", "url": "/pricing" },
+      { "label": "Blogs", "url": "/blog" }
+    ],
+    "profile_menu": {
+      "trigger": "NavProfileHandler in Header",
+      "items": [
+        { "label": "Account", "url": "/account" }
+      ]
+    }
+  },
+  "pages": {
+    "/auth": {
+      "description": "Authentication page for Login, Signup, and Password Reset.",
+      "form_fields": ["Email", "Password"],
+      "actions": ["Login", "Sign Up", "Forgot Password"]
+    },
+    "/tools/prompt-to-deck": {
+      "description": "Generate a slide deck from a text prompt or uploaded file.",
+      "form_fields": [
+        "Prompt / Description (textarea)",
+        "Goal (dropdown)",
+        "Tone (dropdown)",
+        "Visual Style (dropdown)",
+        "Slide Count (number)"
+      ],
+      "actions": ["Generate / Submit"]
+    },
+    "/editor": {
+      "description": "Slide editor where generated presentations or templates can be customized.",
+      "actions": ["Add Slide", "Edit Text", "Add Shapes", "Export"]
+    },
+    "/account": {
+      "description": "User account settings and subscription management.",
+      "login_required": true,
+      "tabs": ["Subscription Details", "Account Settings"]
+    },
+    "/templates": {
+      "description": "Browse and select starter templates for various document types."
+    },
+    "/presentation/outline": {
+      "description": "Outline review page to rearrange, edit, add, or generate text and images for slides before full presentation generation."
+    }
+  },
+  "workflows": {
+    "edit_outline": [
+      "Used when user wants to modify an outline element directly",
+      "Executes in the outline view context"
+    ],
+    "edit_slide": [
+      "Used when user wants to modify an existing slide element directly (title, text, shape, etc.)",
+      "Executes in the editor context"
+    ],
+    "create_presentation": [
+      "Navigate to /tools/prompt-to-deck (or specific tool endpoint)",
+      "Enter a description / prompt into the text area",
+      "Select desired goal, tone, visual style, and slide count",
+      "Upload a source file if needed",
+      "Click Submit/Generate button",
+      "Wait for AI generation sequence to complete",
+      "Presentation will automatically load in Editor or preview"
+    ],
+    "open_editor": [
+      "Navigate to /editor",
+      "Interact with editor canvas to select slide elements",
+      "Use sidebar/toolbar to customize content"
+    ],
+    "manage_account": [
+      "Login if necessary",
+      "Navigate to /account",
+      "Use tabs to view Subscription Details or Account Settings"
+    ]
+  }
+}

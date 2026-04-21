@@ -15,6 +15,7 @@ const websiteDownloadRoutes = require("./routes/websiteZipDownload");
 
 const userRoutes = require("./routes/user");
 const aiChatRoutes = require("./routes/aiChatRoutes");
+const aiAgentRoutes = require("./routes/aiAgentRoutes");
 const contactRoutes = require("./routes/contact");
 const planRoutes = require("./routes/planRoutes");
 const vidGenImg = require("./routes/vidGenImg");
@@ -146,6 +147,7 @@ const uploadMiddleware = (req, res, next) => {
 
 // Core APIs
 app.use("/api/users", userRoutes);
+app.use("/api/agent", aiAgentRoutes);
 app.use("/api/presentations", presentationRoutes);
 app.use("/api/infographic", infographicRoute); // ← Critical: apply multer here
 app.use("/api/explainer-infographic", explainerInfographicRoute);
