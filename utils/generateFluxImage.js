@@ -13,22 +13,17 @@ fal.config({
 
 async function generateFluxImage({ prompt, artStyle, artPalette }) {
   try {
-    const fluxPrompt = `
-${prompt}
-Style: ${artStyle || "modern presentation illustration"}
-Color palette: ${Array.isArray(artPalette) ? artPalette.join(", ") : (artPalette || "clean, professional")}
+    // Keep the prompt as-is — it is already a concise natural-language description
+    // built by generateDetailedImagePrompt. Only append style/palette if not already
+    // present so we don't dilute the subject-specific content that comes first.
+    const styleSuffix = artStyle && !prompt.toLowerCase().includes(artStyle.toLowerCase())
+      ? `, ${artStyle} style`
+      : "";
+    const paletteSuffix = artPalette && Array.isArray(artPalette) && artPalette.length
+      ? `, colors ${artPalette.slice(0, 3).join(", ")}`
+      : "";
 
-CRITICAL VISUAL RULES:
-- ABSOLUTELY NO text, letters, numbers, words, logos, or typography of any kind. this includes random gibberish, pseudo-text, or any character-like marks.
-- NO UI screenshots, dashboards, charts with labels, or anything that looks like interface text.
-- If something might look like text (signs, posters, screens), replace it with abstract shapes, gradients, or icons only.
-- Focus purely on abstract shapes, environments, objects, characters, and lighting.
-- Should you see any letters or words in the output, regenerate immediately (they are forbidden).
-
-Framing:
-- High quality, 16:9, clean presentation background.
-- Composition must work even when center-cropped to a small 142x160 thumbnail.
-`;
+    const fluxPrompt = `${prompt.trim()}${styleSuffix}${paletteSuffix}`;
 
     console.log("Sending Flux request with prompt:", fluxPrompt);
 

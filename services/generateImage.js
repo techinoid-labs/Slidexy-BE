@@ -633,205 +633,49 @@ async function generateDetailedImagePrompt(slide, artKnowledge, rawText = "") {
   const {
     style,
     sceneDescription,
-    characterDetails,
     numCharacters,
     colorPalette,
     mood,
-    composition,
     sceneElements,
     styleProfile,
     slideType,
-    contentFocus,
   } = artKnowledge;
+
   const title = slide.slide_title?.text || slide.slide_title || "Untitled";
   const subtitle = slide.subtitle?.text || "";
-  const visualContext = slide.image_placeholder?.visual_context || {};
 
-  let safeRawText = typeof rawText === "string" ? rawText.slice(0, 400) : "";
+  // Flux / SD models are prompt-weight-front: the most important concept must come first.
+  // Keep the prompt short (~80-150 words) and entirely in natural language — no headers,
+  // no bullet lists, no emoji, no instruction verbs like "generate" or "create".
 
-  // Enhanced character section based on slide type
-  const characterSection =
-    numCharacters === 0
-      ? `🚫 ABSOLUTE RESTRICTION: ZERO human figures, characters, people, persons, silhouettes, or any humanoid forms. Focus 100% on environmental elements, objects, architecture, nature, technology, or abstract forms that support ${slideType} content.`
-      : `👥 CHARACTER INTEGRATION: Include exactly ${numCharacters} photorealistic diverse professionals:
-${characterDetails
-        .map(
-          (char, i) =>
-            `   ${i + 1}. ${char} - realistic, natural, context-appropriate`
-        )
-        .join("\n")}
+  const subjectClause = subtitle
+    ? `"${title}" — ${subtitle}`
+    : `"${title}"`;
 
-Character Guidelines:
-- Photorealistic diversity in ethnicity, gender, age
-- Natural body proportions and professional poses
-- Authentic interaction with environment
-- Proper scale and depth placement
-- Reflects ${contentFocus} context`;
+  const sceneClause = sceneDescription
+    ? sceneDescription.replace(/["""]/g, "")
+    : `professional ${slideType} scene`;
 
-  // Slide-type specific enhancements
-  const slideTypeEnhancements = {
-    "cover-hero": `
-COVER SLIDE EXCELLENCE:
-- Heroic, attention-grabbing composition
-- Strong visual hierarchy with clear focal point
-- Memorable first-impression quality
-- Professional yet innovative aesthetic
-- Perfect balance between impact and professionalism`,
+  const elementsClause = sceneElements.slice(0, 3).join(", ");
 
-    "quote-slide": `
-QUOTE SLIDE ATMOSPHERE:
-- Emotional, reflective background setting
-- Supports the quote's tone and message
-- Subtle, non-distracting elements
-- Creates appropriate mood for contemplation
-- Enhances without competing with text`,
+  const colorClause = colorPalette.slice(0, 3).join(", ");
 
-    "data-visual": `
-DATA VISUALIZATION CONTEXT:
-- Analytical, precise environment
-- Data-friendly elements and metaphors
-- Clean, organized composition
-- Supports metrics and statistics
-- Professional analytical setting`,
+  const characterClause = numCharacters === 0
+    ? "no people, no human figures, no silhouettes"
+    : `${numCharacters} professional diverse characters`;
 
-    "call-to-action": `
-CALL-TO-ACTION ENERGY:
-- Motivational, forward-looking scene
-- Inspires action and movement
-- Clear focal point for CTA emphasis
-- Energetic yet professional tone
-- Encourages next steps and engagement`,
+  const styleClause = styleProfile?.styleDesc
+    ? styleProfile.styleDesc.split(".")[0]  // first sentence only
+    : style || "modern professional illustration";
 
-    conclusion: `
-CONCLUSION REINFORCEMENT:
-- Summary-oriented imagery
-- Reinforces key messages and takeaways
-- Professional closure atmosphere
-- Balanced, resolved composition
-- Leaves lasting positive impression`,
-  };
-
-  const prompt = `Generate a stunning professional presentation slide visual in EXACT 16:9 aspect ratio (1920x1080 pixels).
-
-═══════════════════════════════════════════════════════════════
-🎯 SLIDE-SPECIFIC DIRECTION
-═══════════════════════════════════════════════════════════════
-Slide Type: ${slideType}
-Content Focus: ${contentFocus}
-Primary Mood: ${mood}
-
-${slideTypeEnhancements[slideType] || ""}
-
-═══════════════════════════════════════════════════════════════
-🎨 VISUAL STYLE & EXECUTION
-═══════════════════════════════════════════════════════════════
-Style: ${style}
-Style DNA: ${styleProfile.styleDesc}
-Technical Execution: ${styleProfile.technicalSpecs}
-
-This image must perfectly embody ${style} aesthetic while serving as effective ${slideType} visual support.
-
-═══════════════════════════════════════════════════════════════
-🖼️ SCENE COMPOSITION
-═══════════════════════════════════════════════════════════════
-Scene Description: ${sceneDescription}
-
-Composition Strategy: ${composition} layout optimized for ${slideType}
-Visual Hierarchy: Clear focal point supporting slide content
-
-Key Visual Elements:
-${sceneElements.map((el) => `   • ${el}`).join("\n")}
-${visualContext.elements?.map((el) => `   • ${el}`).join("\n") || ""}
-
-═══════════════════════════════════════════════════════════════
-🎨 COLOR & LIGHTING STRATEGY
-═══════════════════════════════════════════════════════════════
-Color Palette: ${colorPalette.join(", ")}
-
-Color Application:
-- Dominant: ${colorPalette[0]} (establishes base tone)
-- Secondary: ${colorPalette[1]} (supports visual interest)
-- Accents: ${colorPalette.slice(2).join(", ")} (highlights and details)
-- Professional color relationships and harmony
-
-Lighting Design:
-- Multi-point professional lighting
-- Mood-appropriate lighting (${mood})
-- Supports ${slideType} requirements
-- Clear visual hierarchy through lighting
-- Professional shadow and highlight balance
-
-═══════════════════════════════════════════════════════════════
-👤 CHARACTER & ELEMENTS
-═══════════════════════════════════════════════════════════════
-${characterSection}
-
-═══════════════════════════════════════════════════════════════
-📝 TEXT PROHIBITION (STRICTLY ENFORCED)
-═══════════════════════════════════════════════════════════════
-🚫 ABSOLUTELY ZERO text, letters, numbers, words, labels, or readable typography
-🚫 NO user interface elements with visible text
-🚫 NO signs, posters, books, or screens with readable content
-🚫 NO copyright symbols, brand names, or written language
-🚫 If text-like elements appear, they must be abstract patterns only
-
-═══════════════════════════════════════════════════════════════
-🎯 CONTEXT & RELEVANCE
-═══════════════════════════════════════════════════════════════
-Slide Title: "${title}"
-${subtitle ? `Slide Subtitle: "${subtitle}"` : ""}
-Content Context: ${safeRawText || "Professional presentation content"}
-
-Visual Metaphor: Create imagery that symbolically represents "${title}" and supports ${contentFocus} without literal translation.
-
-═══════════════════════════════════════════════════════════════
-✨ QUALITY & TECHNICAL EXCELLENCE
-═══════════════════════════════════════════════════════════════
-Technical Standards:
-- Exact 16:9 aspect ratio (1920x1080 pixels minimum)
-- Ultra-high resolution rendering
-- Professional presentation quality
-- Print-ready clarity and sharpness
-- No digital artifacts or distortions
-
-Quality Benchmarks:
-✓ Masterpiece professional quality
-✓ Perfect exposure and color balance
-✓ Appropriate depth of field
-✓ Rich detail and texture
-✓ Professional color grading
-✓ Flawless technical execution
-
-═══════════════════════════════════════════════════════════════
-🚫 CRITICAL AVOIDANCES
-═══════════════════════════════════════════════════════════════
-DO NOT INCLUDE:
-✗ Any text, typography, or readable characters
-✗ Generic stock photography clichés
-✗ Awkward cropping or incomplete subjects
-✗ Unrealistic proportions (unless stylistically intentional)
-✗ Watermarks, signatures, or copyright notices
-✗ AI artifacts (warped elements, melted objects)
-✗ Overused visual tropes without context
-
-═══════════════════════════════════════════════════════════════
-🎨 FINAL CREATIVE DIRECTION
-═══════════════════════════════════════════════════════════════
-Create a UNIQUE, PROFESSIONAL ${slideType} visual that:
-
-1. Perfectly executes ${style} aesthetic with technical precision
-2. Supports "${title}" content as effective ${slideType} imagery
-3. Uses ${colorPalette.join(", ")} palette harmoniously
-4. Maintains ${mood} atmosphere throughout
-5. Features ${numCharacters === 0
-      ? "ZERO people - pure environmental focus"
-      : `${numCharacters} integrated professionals`
-    }
-6. Achieves presentation-grade visual excellence
-7. Enhances slide impact without distracting
-8. Stands as unique, professional artwork
-
-This should be a show-stopping visual that makes the ${slideType} more impactful and memorable.`;
+  const prompt =
+    `${sceneClause} visually representing ${subjectClause}. ` +
+    `${styleClause}. ` +
+    `Includes ${elementsClause}. ` +
+    `${mood} mood, color palette ${colorClause}. ` +
+    `${characterClause}. ` +
+    `No text, no letters, no numbers, no typography, no signs, no labels. ` +
+    `16:9 widescreen, high quality, professional presentation visual.`;
 
   return prompt;
 }
