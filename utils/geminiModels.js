@@ -3,8 +3,12 @@ const OpenAI = require("openai");
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
 const GOOGLE_API_KEY = process.env.API_KEY1;
 
-if (!OPENROUTER_API_KEY && !GOOGLE_API_KEY) {
-  throw new Error("No API keys configured! Set OPENROUTER_API_KEY or API_KEY1.");
+if (!OPENROUTER_API_KEY) {
+  console.warn("⚠️  OPENROUTER_API_KEY not configured. Using Google Generative AI as primary.");
+}
+
+if (!GOOGLE_API_KEY && !OPENROUTER_API_KEY) {
+  throw new Error("No API keys configured! Set API_KEY1 (Google) and/or OPENROUTER_API_KEY.");
 }
 
 // ---------------------------------------------------------------------------
@@ -20,7 +24,7 @@ if (OPENROUTER_API_KEY) {
       "X-Title": "Slidexy Neuro Engine",
     },
   });
-  console.log("✅ OpenRouter client initialized (model: google/gemini-2.5-flash)");
+  console.log("✅ OpenRouter client initialized (model: google/gemini-2.5-flash-lite)");
 }
 
 // ---------------------------------------------------------------------------
@@ -30,8 +34,8 @@ let googleFallback = null;
 if (GOOGLE_API_KEY) {
   const { GoogleGenerativeAI } = require("@google/generative-ai");
   const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY);
-  googleFallback = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-  console.log("🔄 Google Gemini fallback ready");
+  googleFallback = genAI.getGenerativeModel({ model: "gemini-2.5-flash-lite" });
+  console.log("🔄 Google Gemini text generation ready (gemini-2.5-flash-lite)");
 }
 
 // ---------------------------------------------------------------------------
@@ -110,7 +114,7 @@ async function generateContentViaOpenRouter(input) {
   const messages = normalizeToMessages(input);
 
   const completion = await openRouterClient.chat.completions.create({
-    model: "google/gemini-2.5-flash",
+    model: "google/gemini-2.5-flash-lite",
     messages,
     max_tokens: 4096,
   });

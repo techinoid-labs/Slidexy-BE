@@ -296,7 +296,13 @@ Generate exactly ${slideCount} slides that tell a compelling story:`;
     return slides;
 
   } catch (err) {
-    console.error("Error generating slides:", err);
+    console.error("❌ SLIDE TEXT GENERATION FAILED:");
+    console.error("   Error Message:", err.message || err);
+    console.error("   Error Status:", err.status);
+    console.error("   Error Details:", err.errorDetails || err);
+    console.error("   Stack:", err.stack);
+    console.error("\n⚠️  USING FALLBACK SLIDES - This means Gemini 2.0-flash is not responding correctly");
+    
     // Return intelligent fallback slides
     return generateIntelligentFallbackSlides(slideCount, safeRawText);
   }
