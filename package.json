@@ -57,6 +57,7 @@
     "swagger-ui-express": "^5.0.1",
     "uuid": "^11.1.0",
     "winston": "^3.17.0",
+    "ws": "^8.18.3",
     "yamljs": "^0.3.0",
     "youtube-transcript": "^1.2.1",
     "tesseract.js": "^4.1.1"

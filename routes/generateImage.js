@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { imageGenModel } = require("../utils/geminiModels");
+const { generateFluxImage } = require("../utils/generateFluxImage");
 
 // POST /generate-image
 router.post("/generate-image", async (req, res) => {
@@ -13,34 +13,16 @@ router.post("/generate-image", async (req, res) => {
 
     console.log(`🖼️ Generating image for prompt: "${prompt}"`);
 
-    // Use your safe image generator
-    const result = await imageGenModel.generateContent({
-      contents: [{ role: "user", parts: [{ text: prompt }] }],
-      generationConfig: {
-        responseModalities: ["IMAGE", "TEXT"],
-        candidateCount: 1,
-        temperature: 0.80,
-        topP: 0.95,
-        topK: 50,
-      },
-    })
+    const result = await generateFluxImage({ prompt });
 
-    // Extract the image data
-    const imageData = result?.response?.candidates?.[0]?.content?.parts?.[0]?.inlineData;
-
-    if (!imageData) {
+    if (!result?.image_url) {
       return res.status(500).json({ error: "Failed to generate image." });
     }
-
-    // Convert to a base64 image URL for easy frontend rendering
-    const base64 = imageData.data;
-    const mimeType = imageData.mimeType || "image/png";
-    const imageUrl = `data:${mimeType};base64,${base64}`;
 
     res.json({
       success: true,
       prompt,
-      imageUrl,
+      imageUrl: result.image_url,
     });
   } catch (err) {
     console.error("❌ Image generation error:", err.message);

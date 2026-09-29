@@ -11,7 +11,31 @@ fal.config({
   credentials: FAL_CREDENTIALS,
 });
 
-async function generateFluxImage({ prompt, artStyle, artPalette }) {
+/*
+ * Map slide layout type to best Flux image_size:
+ *  - Side-panel layouts (cover, content-*): square_hd fills portrait panels
+ *    without awkward landscape cropping
+ *  - Full-background layouts: landscape_16_9 is perfect
+ */
+function getFluxImageSize(layoutType) {
+  const panelLayouts = [
+    "cover-hero",
+    "content-right-image",
+    "content-left-image",
+    "content-split",
+    "infographic-bullets",
+    "quote-slide",
+    "timeline-slide",
+    "comparison-slide",
+    "conclusion",
+    "call-to-action",
+  ];
+  if (panelLayouts.includes(layoutType)) return "square_hd";
+  if (layoutType === "full-image-text-overlay") return "landscape_16_9";
+  return "landscape_16_9";
+}
+
+async function generateFluxImage({ prompt, artStyle, artPalette, layoutType }) {
   try {
     // Keep the prompt as-is — it is already a concise natural-language description
     // built by generateDetailedImagePrompt. Only append style/palette if not already
@@ -24,14 +48,14 @@ async function generateFluxImage({ prompt, artStyle, artPalette }) {
       : "";
 
     const fluxPrompt = `${prompt.trim()}${styleSuffix}${paletteSuffix}`;
+    const imageSize = getFluxImageSize(layoutType);
 
-    console.log("Sending Flux request with prompt:", fluxPrompt);
+    console.log(`Sending Flux request [${imageSize}] with prompt:`, fluxPrompt);
 
     const result = await fal.subscribe("fal-ai/flux-1/schnell", {
       input: {
         prompt: fluxPrompt,
-        // Ask Flux for a landscape 16:9 frame; we still normalize to 1920x1080 later
-        image_size: "landscape_16_9",
+        image_size: imageSize,
       },
       logs: true,
       onQueueUpdate: (update) => {

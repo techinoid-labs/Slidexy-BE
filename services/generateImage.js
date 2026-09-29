@@ -741,6 +741,7 @@ async function generateImage(
       prompt,
       artStyle: slide.art_style,
       artPalette: slide.art_palette,
+      layoutType: slide.layout_type,
     });
 
     console.log("FLUX RAW RESULT:", fluxResult);
