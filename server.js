@@ -67,13 +67,52 @@ const swaggerDocument = YAML.load(path.join(__dirname, "swagger.yaml"));
 const User = require("./models/WaitingUser");
 
 // --- MongoDB Connection ---
-mongoose
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("Connected to MongoDB Atlas"))
-  .catch((err) => console.error("MongoDB connection error:", err));
+// Atlas `mongodb+srv://` URIs need a DNS SRV lookup before the driver can
+// reach a single node. A slow or flaky resolver makes that lookup time out
+// (querySrv ETIMEOUT), and without a retry the process then runs with no
+// database at all while still serving requests — every DB route 500s and the
+// server looks half-alive. So: retry with backoff instead of giving up once.
+const MONGO_MAX_ATTEMPTS = 5;
+
+async function connectToMongo(attempt = 1) {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      // Fail a connection attempt fast so we retry rather than hang for the
+      // 30s default while the resolver is misbehaving.
+      serverSelectionTimeoutMS: 8000,
+    });
+    console.log("Connected to MongoDB Atlas");
+  } catch (err) {
+    const isLast = attempt >= MONGO_MAX_ATTEMPTS;
+    const isDns = err?.code === "ETIMEOUT" || err?.syscall === "querySrv";
+
+    console.error(
+      `MongoDB connection attempt ${attempt}/${MONGO_MAX_ATTEMPTS} failed:`,
+      err?.message || err
+    );
+
+    if (isLast) {
+      console.error(
+        isDns
+          ? "Giving up: the SRV record could not be resolved. This is a DNS problem, not an Atlas one — try a public resolver (1.1.1.1 / 8.8.8.8), or switch MONGO_URI to the non-SRV mongodb:// form."
+          : "Giving up on MongoDB. The API will keep serving, but every database route will fail."
+      );
+      return;
+    }
+
+    const delay = Math.min(1000 * 2 ** (attempt - 1), 10000);
+    setTimeout(() => connectToMongo(attempt + 1), delay);
+  }
+}
+
+connectToMongo();
+
+mongoose.connection.on("disconnected", () =>
+  console.warn("MongoDB disconnected")
+);
+mongoose.connection.on("reconnected", () =>
+  console.log("MongoDB reconnected")
+);
 
 // --- Initialize App ---
 const app = express();
