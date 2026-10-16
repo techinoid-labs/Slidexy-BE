@@ -139,6 +139,9 @@ dist
 # Generated deck templates (same JSON the phone app loads)
 generated-templates/*.json
 
+# Third-party PPTX, PowerPoint renders, and one-off probe scripts
+.audit-cache/
+
 #OUTPUT
 output/
 output-explainer-infographics

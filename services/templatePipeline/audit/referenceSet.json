@@ -1,0 +1,461 @@
+{
+  "source": "SlidesCarnival (templates authored in Canva, exported to PowerPoint by SlidesCarnival)",
+  "retrieved": "2026-10-16",
+  "selection": "Stratified: 4 decks from each of 5 style buckets, PowerPoint download required; games, quizzes, documents, posters and single-slide infographics excluded.",
+  "replaced": [
+    {
+      "slug": "pottery-class",
+      "replacedBy": "fashion-photographer-portfolio",
+      "reason": "source file truncated: 52 of 67 images missing"
+    },
+    {
+      "slug": "bakery-brand-marketing-plan",
+      "replacedBy": "coffee-shop-business-plan",
+      "reason": "source file truncated: 100 of 197 images missing"
+    }
+  ],
+  "entries": [
+    {
+      "slug": "minimalist-white-slides",
+      "bucket": "minimal_professional",
+      "page": "https://www.slidescarnival.com/template/minimalist-white-slides/237932",
+      "pptx": "https://www.slidescarnival.com/download/sc02660/minimalist-white-slides/pptx",
+      "listedUnder": [
+        "tag/minimalist"
+      ],
+      "tags": [
+        "business",
+        "light",
+        "marketing-plan",
+        "minimalist",
+        "modern",
+        "multipurpose",
+        "red",
+        "simple",
+        "white"
+      ]
+    },
+    {
+      "slug": "it-consulting",
+      "bucket": "minimal_professional",
+      "page": "https://www.slidescarnival.com/template/it-consulting/155241",
+      "pptx": "https://www.slidescarnival.com/download/sc01548/it-consulting/pptx",
+      "listedUnder": [
+        "tag/minimalist"
+      ],
+      "tags": [
+        "business",
+        "business-plan",
+        "consulting",
+        "corporate",
+        "grey",
+        "it",
+        "minimalist",
+        "modern",
+        "multipurpose",
+        "simple",
+        "tech",
+        "technology"
+      ]
+    },
+    {
+      "slug": "simple-business-proposal-slides",
+      "bucket": "minimal_professional",
+      "page": "https://www.slidescarnival.com/template/simple-business-proposal-slides/208909",
+      "pptx": "https://www.slidescarnival.com/download/sc02316/simple-business-proposal-slides/pptx",
+      "listedUnder": [
+        "tag/simple"
+      ],
+      "tags": [
+        "agenda",
+        "basic",
+        "bold",
+        "business",
+        "business-plan",
+        "consulting",
+        "content",
+        "corporate",
+        "grey",
+        "market-research",
+        "marketing-strategy",
+        "minimalist"
+      ]
+    },
+    {
+      "slug": "stocks-trading-business-plan",
+      "bucket": "minimal_professional",
+      "page": "https://www.slidescarnival.com/template/stocks-trading-business-plan/162836",
+      "pptx": "https://www.slidescarnival.com/download/sc01664/stocks-trading-business-plan/pptx",
+      "listedUnder": [
+        "tag/professional"
+      ],
+      "tags": [
+        "basic",
+        "brown",
+        "business-plan",
+        "corporate",
+        "finance",
+        "minimalist",
+        "modern",
+        "professional",
+        "simple",
+        "stock-market",
+        "trading"
+      ]
+    },
+    {
+      "slug": "retail-startup-pitch-deck",
+      "bucket": "pitch_tech",
+      "page": "https://www.slidescarnival.com/template/retail-startup-pitch-deck/30439",
+      "pptx": "https://www.slidescarnival.com/download/sc00450/retail-startup-pitch-deck/pptx",
+      "listedUnder": [
+        "tag/pitch-deck"
+      ],
+      "tags": [
+        "business",
+        "business-plan",
+        "cool",
+        "creative",
+        "green",
+        "minimalist",
+        "modern",
+        "pitch-deck",
+        "retail",
+        "startup"
+      ]
+    },
+    {
+      "slug": "it-software-pitch-deck",
+      "bucket": "pitch_tech",
+      "page": "https://www.slidescarnival.com/template/it-software-pitch-deck/55642",
+      "pptx": "https://www.slidescarnival.com/download/sc00819/it-software-pitch-deck/pptx",
+      "listedUnder": [
+        "tag/pitch-deck"
+      ],
+      "tags": [
+        "agency",
+        "artificial-intelligence",
+        "blue",
+        "corporate",
+        "data-visualization",
+        "digital",
+        "futuristic",
+        "geometric",
+        "informational",
+        "innovation",
+        "it",
+        "modern"
+      ]
+    },
+    {
+      "slug": "elegant-pitch-deck",
+      "bucket": "pitch_tech",
+      "page": "https://www.slidescarnival.com/template/elegant-pitch-deck/30565",
+      "pptx": "https://www.slidescarnival.com/download/sc00452/elegant-pitch-deck/pptx",
+      "listedUnder": [
+        "tag/pitch-deck"
+      ],
+      "tags": [
+        "background",
+        "blue",
+        "business",
+        "business-plan",
+        "elegant",
+        "minimalist",
+        "modern",
+        "pitch-deck",
+        "simple"
+      ]
+    },
+    {
+      "slug": "pitch-deck-competitor-analysis-slides",
+      "bucket": "pitch_tech",
+      "page": "https://www.slidescarnival.com/template/pitch-deck-competitor-analysis-slides/211483",
+      "pptx": "https://www.slidescarnival.com/download/sc02342/pitch-deck-competitor-analysis-slides/pptx",
+      "listedUnder": [
+        "tag/pitch-deck"
+      ],
+      "tags": [
+        "abstract",
+        "competitor-analysis",
+        "geometric",
+        "glassmorphism",
+        "gradient",
+        "market-analysis",
+        "neon",
+        "pitch-deck",
+        "purple"
+      ]
+    },
+    {
+      "slug": "photojournalist-portfolio",
+      "bucket": "editorial_portfolio",
+      "page": "https://www.slidescarnival.com/template/photojournalist-portfolio/127694",
+      "pptx": "https://www.slidescarnival.com/download/sc01278/photojournalist-portfolio/pptx",
+      "listedUnder": [
+        "tag/minimalist",
+        "tag/portfolio"
+      ],
+      "tags": [
+        "grey",
+        "magazine",
+        "marketing",
+        "minimalist",
+        "newspaper",
+        "photography",
+        "picture",
+        "portfolio",
+        "professional",
+        "simple"
+      ]
+    },
+    {
+      "slug": "fashion-photographer-portfolio",
+      "bucket": "editorial_portfolio",
+      "page": "https://www.slidescarnival.com/template/fashion-photographer-portfolio/19826",
+      "pptx": "https://www.slidescarnival.com/download/sc00292/fashion-photographer-portfolio/pptx",
+      "listedUnder": [
+        "tag/portfolio"
+      ],
+      "tags": [
+        "aesthetic",
+        "elegant",
+        "fashion",
+        "green",
+        "lookbook",
+        "marketing",
+        "minimalist",
+        "neutral",
+        "photography",
+        "portfolio",
+        "simple"
+      ]
+    },
+    {
+      "slug": "elegant-branding-kit",
+      "bucket": "editorial_portfolio",
+      "page": "https://www.slidescarnival.com/template/elegant-branding-kit/38531",
+      "pptx": "https://www.slidescarnival.com/download/sc00564/elegant-branding-kit/pptx",
+      "listedUnder": [
+        "tag/minimalist",
+        "tag/elegant"
+      ],
+      "tags": [
+        "brand-guidelines",
+        "business",
+        "business-plan",
+        "elegant",
+        "feminine",
+        "gold",
+        "logo",
+        "marketing",
+        "marketing-plan",
+        "minimalist",
+        "simple"
+      ]
+    },
+    {
+      "slug": "luxury-vacation-homes-company-profile",
+      "bucket": "editorial_portfolio",
+      "page": "https://www.slidescarnival.com/template/luxury-vacation-homes-company-profile/148161",
+      "pptx": "https://www.slidescarnival.com/download/sc01434/luxury-vacation-homes-company-profile/pptx",
+      "listedUnder": [
+        "tag/company-profile"
+      ],
+      "tags": [
+        "aesthetic",
+        "beige",
+        "company-profile",
+        "elegant",
+        "formal",
+        "hotel",
+        "leisure",
+        "luxury",
+        "minimalist",
+        "neutral",
+        "professional",
+        "real-estate"
+      ]
+    },
+    {
+      "slug": "weekly-recruitment-report",
+      "bucket": "bold_creative",
+      "page": "https://www.slidescarnival.com/template/weekly-recruitment-report/342943",
+      "pptx": "https://www.slidescarnival.com/download/sc04709/weekly-recruitment-report/pptx",
+      "listedUnder": [
+        "category/free-templates/editors-choice"
+      ],
+      "tags": [
+        "bold",
+        "creative",
+        "geometric",
+        "landscape",
+        "modern",
+        "progress-report",
+        "recruitment",
+        "red",
+        "report",
+        "status-report",
+        "weekly-report"
+      ]
+    },
+    {
+      "slug": "print-media-advertising-slides",
+      "bucket": "bold_creative",
+      "page": "https://www.slidescarnival.com/template/print-media-advertising-slides/328486",
+      "pptx": "https://www.slidescarnival.com/download/sc03128/print-media-advertising-slides/pptx",
+      "listedUnder": [
+        "category/free-templates/editors-choice"
+      ],
+      "tags": [
+        "abstract",
+        "advertising",
+        "agency",
+        "agenda",
+        "artistic",
+        "beige",
+        "bold",
+        "camera",
+        "collage",
+        "colorful",
+        "conclusion",
+        "creative"
+      ]
+    },
+    {
+      "slug": "fundamentals-of-graphic-design-slides",
+      "bucket": "bold_creative",
+      "page": "https://www.slidescarnival.com/template/fundamentals-of-graphic-design-slides/329413",
+      "pptx": "https://www.slidescarnival.com/download/sc02811/fundamentals-of-graphic-design-slides/pptx",
+      "listedUnder": [
+        "tag/bold"
+      ],
+      "tags": [
+        "abstract",
+        "black",
+        "bold",
+        "colorful",
+        "creative",
+        "creative-agency",
+        "designer",
+        "fresh",
+        "geometric",
+        "graphic-design",
+        "horizontal",
+        "illustrated"
+      ]
+    },
+    {
+      "slug": "a-year-in-breakdowns-presentation",
+      "bucket": "bold_creative",
+      "page": "https://www.slidescarnival.com/template/a-year-in-breakdowns-presentation/337981",
+      "pptx": "https://www.slidescarnival.com/download/sc04308/a-year-in-breakdowns-presentation/pptx",
+      "listedUnder": [
+        "category/free-templates/editors-choice"
+      ],
+      "tags": [
+        "collage",
+        "colorful",
+        "creative",
+        "emotions",
+        "grey",
+        "landscape",
+        "mental-health",
+        "new-year",
+        "trends",
+        "wrapped"
+      ]
+    },
+    {
+      "slug": "my-travel-wrapped-slides",
+      "bucket": "lifestyle_illustrated",
+      "page": "https://www.slidescarnival.com/template/my-travel-wrapped-slides/337979",
+      "pptx": "https://www.slidescarnival.com/download/sc04306/my-travel-wrapped-slides/pptx",
+      "listedUnder": [
+        "category/free-templates/popular-templates"
+      ],
+      "tags": [
+        "adventure",
+        "aesthetic",
+        "beige",
+        "blue",
+        "collage",
+        "diary",
+        "field-trip",
+        "journal",
+        "landscape",
+        "mountain",
+        "nature",
+        "ocean"
+      ]
+    },
+    {
+      "slug": "wellness-and-retreat-presentation",
+      "bucket": "lifestyle_illustrated",
+      "page": "https://www.slidescarnival.com/template/wellness-and-retreat-presentation/20096",
+      "pptx": "https://www.slidescarnival.com/download/sc00321/wellness-and-retreat-presentation/pptx",
+      "listedUnder": [
+        "tag/medical"
+      ],
+      "tags": [
+        "aesthetic",
+        "business",
+        "elegant",
+        "fitness",
+        "geometric",
+        "green",
+        "grey",
+        "medical",
+        "simple",
+        "wellness",
+        "yoga-and-meditation"
+      ]
+    },
+    {
+      "slug": "coffee-shop-business-plan",
+      "bucket": "lifestyle_illustrated",
+      "page": "https://www.slidescarnival.com/template/coffee-shop-business-plan/331820",
+      "pptx": "https://www.slidescarnival.com/download/sc04104/coffee-shop-business-plan/pptx",
+      "listedUnder": [
+        "tag/business-plan"
+      ],
+      "tags": [
+        "beige",
+        "brown",
+        "business",
+        "business-plan",
+        "coffee",
+        "docs",
+        "elegant",
+        "food",
+        "minimalist",
+        "professional",
+        "project-management",
+        "simple"
+      ]
+    },
+    {
+      "slug": "diabetes-mellitus-slides",
+      "bucket": "lifestyle_illustrated",
+      "page": "https://www.slidescarnival.com/template/diabetes-mellitus-slides/337044",
+      "pptx": "https://www.slidescarnival.com/download/sc04262/diabetes-mellitus-slides/pptx",
+      "listedUnder": [
+        "category/free-templates/editors-choice",
+        "tag/illustrated"
+      ],
+      "tags": [
+        "creative",
+        "diabetes",
+        "disease",
+        "education",
+        "illustrated",
+        "landscape",
+        "medical",
+        "purple",
+        "science",
+        "slide-lessons",
+        "violet"
+      ]
+    }
+  ]
+}

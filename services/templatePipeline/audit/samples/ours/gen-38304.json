@@ -1,0 +1,1245 @@
+{
+  "version": 2,
+  "schemaVersion": 2,
+  "id": "gen-38304",
+  "name": "Maritime Communication",
+  "description": "Maritime Communication — Exo 2 and Source Serif Pro.",
+  "category": "Maritime Communication",
+  "visualMode": "hybrid",
+  "seed": 38304,
+  "taste": {
+    "cover": "split",
+    "density": "airy",
+    "align": "asymmetric",
+    "slides": [
+      "layoutStatHighlight",
+      "layoutThreeUp",
+      "layoutImageLeft",
+      "layoutTeam"
+    ]
+  },
+  "geometry": "split.airy.asymmetric.rows.cards.split.uneven.right.bleed.cards.strip.accent.mark.right.128.8.0.68.1.Maritime Communication.layoutStatHighlight-layoutThreeUp-layoutImageLeft-layoutTeam",
+  "tokens": {
+    "color": {
+      "bg": "#1A2E3F",
+      "surface": "#2F4F6A",
+      "card": "#3A5F84",
+      "ink": "#E0E8EF",
+      "muted": "#8AA9C4",
+      "rule": "#5C8DB8",
+      "accent": "#FFC107",
+      "accent2": "#4CAF50",
+      "onAccent": "#1A2E3F"
+    },
+    "font": {
+      "display": "Exo 2",
+      "text": "Source Serif Pro"
+    },
+    "type": {
+      "eyebrow": 18,
+      "h1": 80,
+      "h2": 49,
+      "h3": 32,
+      "h4": 25,
+      "body": 23,
+      "caption": 20,
+      "stat": 114,
+      "micro": 16
+    }
+  },
+  "theme": {
+    "name": "Maritime Communication",
+    "backgroundColor": "{color.bg}",
+    "fontFamily": "{font.text}",
+    "titleFontSize": 40,
+    "titleColor": "{color.ink}",
+    "titleBold": true,
+    "titleItalic": false,
+    "bodyFontSize": 20,
+    "bodyColor": "{color.muted}",
+    "bodyBold": false,
+    "bodyItalic": false
+  },
+  "layoutSequence": [
+    "layoutTitleFocus",
+    "layoutStatHighlight",
+    "layoutThreeUp",
+    "layoutImageLeft",
+    "layoutTeam",
+    "layoutClosingCta"
+  ],
+  "layouts": {
+    "layoutTitleFocus": {
+      "version": 2,
+      "id": "layoutTitleFocus",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "field",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.bg}"
+          }
+        },
+        {
+          "id": "panel",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 760,
+          "height": 900,
+          "zIndex": 1,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.accent}"
+          }
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "x": 56,
+          "y": 260,
+          "width": 650,
+          "height": 240,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 96,
+            "fontWeight": 750,
+            "color": "{color.onAccent}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "title"
+          }
+        },
+        {
+          "id": "body",
+          "type": "text",
+          "x": 56,
+          "y": 530,
+          "width": 620,
+          "height": 70,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 26,
+            "fontWeight": 500,
+            "color": "{color.onAccent}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "bullets"
+          }
+        },
+        {
+          "id": "photo",
+          "type": "image",
+          "role": "image",
+          "x": 760,
+          "y": 0,
+          "width": 840,
+          "height": 900,
+          "zIndex": 2,
+          "imageContent": {
+            "binding": "image",
+            "url": "https://images.pexels.com/photos/32654866/pexels-photo-32654866.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+            "fit": "cover",
+            "alignX": 0.5,
+            "alignY": 0.5
+          }
+        }
+      ]
+    },
+    "layoutStatHighlight": {
+      "version": 2,
+      "id": "layoutStatHighlight",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.bg}"
+          }
+        },
+        {
+          "id": "wash",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 1,
+          "shapeContent": {
+            "kind": "decor",
+            "decorName": "meshGradient",
+            "fill": "{color.accent}",
+            "decorParams": {
+              "colors": [
+                "{color.accent}",
+                "{color.accent2}"
+              ],
+              "points": [
+                [
+                  0.08,
+                  0.12
+                ],
+                [
+                  0.92,
+                  0.2
+                ],
+                [
+                  0.45,
+                  1.05
+                ]
+              ],
+              "radius": 0.65
+            }
+          },
+          "opacity": 0.28
+        },
+        {
+          "id": "left",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 900,
+          "zIndex": 1,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.accent}"
+          }
+        },
+        {
+          "id": "stat",
+          "type": "text",
+          "x": 80,
+          "y": 280,
+          "width": 640,
+          "height": 220,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": "{type.stat}",
+            "fontWeight": 700,
+            "color": "{color.onAccent}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "subtitle"
+          }
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "x": 860,
+          "y": 280,
+          "width": 660,
+          "height": 160,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": "{type.h2}",
+            "fontWeight": 650,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "title"
+          }
+        },
+        {
+          "id": "body",
+          "type": "text",
+          "x": 860,
+          "y": 470,
+          "width": 640,
+          "height": 120,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": "{type.body}",
+            "fontWeight": 500,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "bullets"
+          }
+        }
+      ]
+    },
+    "layoutThreeUp": {
+      "version": 2,
+      "id": "layoutThreeUp",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.bg}"
+          }
+        },
+        {
+          "id": "wash",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 1,
+          "shapeContent": {
+            "kind": "decor",
+            "decorName": "meshGradient",
+            "fill": "{color.accent}",
+            "decorParams": {
+              "colors": [
+                "{color.accent}",
+                "{color.accent2}"
+              ],
+              "points": [
+                [
+                  0.08,
+                  0.12
+                ],
+                [
+                  0.92,
+                  0.2
+                ],
+                [
+                  0.45,
+                  1.05
+                ]
+              ],
+              "radius": 0.65
+            }
+          },
+          "opacity": 0.28
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "x": 289,
+          "y": 128,
+          "width": 1048,
+          "height": 80,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": "{type.h2}",
+            "fontWeight": 650,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "title"
+          }
+        },
+        {
+          "id": "card0",
+          "type": "shape",
+          "x": 128,
+          "y": 240,
+          "width": 429.3333333333333,
+          "height": 520,
+          "zIndex": 2,
+          "shapeContent": {
+            "kind": "roundedRect",
+            "fill": "{color.card}",
+            "cornerRadius": 8
+          }
+        },
+        {
+          "id": "n0",
+          "type": "text",
+          "x": 156,
+          "y": 280,
+          "width": 80,
+          "height": 50,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": "{type.h3}",
+            "fontWeight": 700,
+            "color": "{color.accent}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "itemNumber"
+          },
+          "itemIndex": 0,
+          "visibleWhen": "hasLabeledItem"
+        },
+        {
+          "id": "al0",
+          "type": "text",
+          "x": 156,
+          "y": 360,
+          "width": 373.3333333333333,
+          "height": 80,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": "{type.h4}",
+            "fontWeight": 650,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "labeledLabel"
+          },
+          "itemIndex": 0,
+          "visibleWhen": "hasLabeledItem"
+        },
+        {
+          "id": "ad0",
+          "type": "text",
+          "x": 156,
+          "y": 460,
+          "width": 373.3333333333333,
+          "height": 220,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": "{type.body}",
+            "fontWeight": 500,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "labeledDetail"
+          },
+          "itemIndex": 0,
+          "visibleWhen": "hasLabeledItem"
+        },
+        {
+          "id": "card1",
+          "type": "shape",
+          "x": 585.3333333333333,
+          "y": 240,
+          "width": 429.3333333333333,
+          "height": 520,
+          "zIndex": 2,
+          "shapeContent": {
+            "kind": "roundedRect",
+            "fill": "{color.card}",
+            "cornerRadius": 8
+          }
+        },
+        {
+          "id": "n1",
+          "type": "text",
+          "x": 613.3333333333333,
+          "y": 280,
+          "width": 80,
+          "height": 50,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": "{type.h3}",
+            "fontWeight": 700,
+            "color": "{color.accent}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "itemNumber"
+          },
+          "itemIndex": 1,
+          "visibleWhen": "hasLabeledItem"
+        },
+        {
+          "id": "al1",
+          "type": "text",
+          "x": 613.3333333333333,
+          "y": 360,
+          "width": 373.3333333333333,
+          "height": 80,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": "{type.h4}",
+            "fontWeight": 650,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "labeledLabel"
+          },
+          "itemIndex": 1,
+          "visibleWhen": "hasLabeledItem"
+        },
+        {
+          "id": "ad1",
+          "type": "text",
+          "x": 613.3333333333333,
+          "y": 460,
+          "width": 373.3333333333333,
+          "height": 220,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": "{type.body}",
+            "fontWeight": 500,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "labeledDetail"
+          },
+          "itemIndex": 1,
+          "visibleWhen": "hasLabeledItem"
+        },
+        {
+          "id": "card2",
+          "type": "shape",
+          "x": 1042.6666666666665,
+          "y": 240,
+          "width": 429.3333333333333,
+          "height": 520,
+          "zIndex": 2,
+          "shapeContent": {
+            "kind": "roundedRect",
+            "fill": "{color.card}",
+            "cornerRadius": 8
+          }
+        },
+        {
+          "id": "n2",
+          "type": "text",
+          "x": 1070.6666666666665,
+          "y": 280,
+          "width": 80,
+          "height": 50,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": "{type.h3}",
+            "fontWeight": 700,
+            "color": "{color.accent}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "itemNumber"
+          },
+          "itemIndex": 2,
+          "visibleWhen": "hasLabeledItem"
+        },
+        {
+          "id": "al2",
+          "type": "text",
+          "x": 1070.6666666666665,
+          "y": 360,
+          "width": 373.3333333333333,
+          "height": 80,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": "{type.h4}",
+            "fontWeight": 650,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "labeledLabel"
+          },
+          "itemIndex": 2,
+          "visibleWhen": "hasLabeledItem"
+        },
+        {
+          "id": "ad2",
+          "type": "text",
+          "x": 1070.6666666666665,
+          "y": 460,
+          "width": 373.3333333333333,
+          "height": 220,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": "{type.body}",
+            "fontWeight": 500,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "labeledDetail"
+          },
+          "itemIndex": 2,
+          "visibleWhen": "hasLabeledItem"
+        }
+      ]
+    },
+    "layoutImageLeft": {
+      "version": 2,
+      "id": "layoutImageLeft",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.bg}"
+          }
+        },
+        {
+          "id": "wash",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 1,
+          "shapeContent": {
+            "kind": "decor",
+            "decorName": "meshGradient",
+            "fill": "{color.accent}",
+            "decorParams": {
+              "colors": [
+                "{color.accent}",
+                "{color.accent2}"
+              ],
+              "points": [
+                [
+                  0.08,
+                  0.12
+                ],
+                [
+                  0.92,
+                  0.2
+                ],
+                [
+                  0.45,
+                  1.05
+                ]
+              ],
+              "radius": 0.65
+            }
+          },
+          "opacity": 0.28
+        },
+        {
+          "id": "photo",
+          "type": "image",
+          "role": "image",
+          "x": 512,
+          "y": 0,
+          "width": 1088,
+          "height": 900,
+          "zIndex": 2,
+          "imageContent": {
+            "binding": "image",
+            "fit": "cover",
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "visibleWhen": "hasImage"
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "x": 128,
+          "y": 240,
+          "width": 336,
+          "height": 180,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": "{type.h2}",
+            "fontWeight": 650,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "title"
+          }
+        },
+        {
+          "id": "body",
+          "type": "text",
+          "x": 128,
+          "y": 450,
+          "width": 336,
+          "height": 160,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": "{type.body}",
+            "fontWeight": 500,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "bullets"
+          }
+        }
+      ]
+    },
+    "layoutTeam": {
+      "version": 2,
+      "id": "layoutTeam",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.bg}"
+          }
+        },
+        {
+          "id": "wash",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 1,
+          "shapeContent": {
+            "kind": "decor",
+            "decorName": "meshGradient",
+            "fill": "{color.accent}",
+            "decorParams": {
+              "colors": [
+                "{color.accent}",
+                "{color.accent2}"
+              ],
+              "points": [
+                [
+                  0.08,
+                  0.12
+                ],
+                [
+                  0.92,
+                  0.2
+                ],
+                [
+                  0.45,
+                  1.05
+                ]
+              ],
+              "radius": 0.65
+            }
+          },
+          "opacity": 0.28
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "x": 289,
+          "y": 128,
+          "width": 1048,
+          "height": 80,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": "{type.h2}",
+            "fontWeight": 650,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "title"
+          }
+        },
+        {
+          "id": "bar0",
+          "type": "shape",
+          "x": 128,
+          "y": 220,
+          "width": 10,
+          "height": 100,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.accent}"
+          }
+        },
+        {
+          "id": "al0",
+          "type": "text",
+          "x": 168,
+          "y": 220,
+          "width": 360,
+          "height": 50,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": "{type.h4}",
+            "fontWeight": 650,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "labeledLabel"
+          },
+          "itemIndex": 0,
+          "visibleWhen": "hasLabeledItem"
+        },
+        {
+          "id": "ad0",
+          "type": "text",
+          "x": 558,
+          "y": 220,
+          "width": 914,
+          "height": 90,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": "{type.body}",
+            "fontWeight": 500,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "labeledDetail"
+          },
+          "itemIndex": 0,
+          "visibleWhen": "hasLabeledItem"
+        },
+        {
+          "id": "bar1",
+          "type": "shape",
+          "x": 128,
+          "y": 370,
+          "width": 10,
+          "height": 100,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.accent}"
+          }
+        },
+        {
+          "id": "al1",
+          "type": "text",
+          "x": 168,
+          "y": 370,
+          "width": 360,
+          "height": 50,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": "{type.h4}",
+            "fontWeight": 650,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "labeledLabel"
+          },
+          "itemIndex": 1,
+          "visibleWhen": "hasLabeledItem"
+        },
+        {
+          "id": "ad1",
+          "type": "text",
+          "x": 558,
+          "y": 370,
+          "width": 914,
+          "height": 90,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": "{type.body}",
+            "fontWeight": 500,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "labeledDetail"
+          },
+          "itemIndex": 1,
+          "visibleWhen": "hasLabeledItem"
+        },
+        {
+          "id": "bar2",
+          "type": "shape",
+          "x": 128,
+          "y": 520,
+          "width": 10,
+          "height": 100,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.accent}"
+          }
+        },
+        {
+          "id": "al2",
+          "type": "text",
+          "x": 168,
+          "y": 520,
+          "width": 360,
+          "height": 50,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": "{type.h4}",
+            "fontWeight": 650,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "labeledLabel"
+          },
+          "itemIndex": 2,
+          "visibleWhen": "hasLabeledItem"
+        },
+        {
+          "id": "ad2",
+          "type": "text",
+          "x": 558,
+          "y": 520,
+          "width": 914,
+          "height": 90,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": "{type.body}",
+            "fontWeight": 500,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "labeledDetail"
+          },
+          "itemIndex": 2,
+          "visibleWhen": "hasLabeledItem"
+        },
+        {
+          "id": "bar3",
+          "type": "shape",
+          "x": 128,
+          "y": 670,
+          "width": 10,
+          "height": 100,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.accent}"
+          }
+        },
+        {
+          "id": "al3",
+          "type": "text",
+          "x": 168,
+          "y": 670,
+          "width": 360,
+          "height": 50,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": "{type.h4}",
+            "fontWeight": 650,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "labeledLabel"
+          },
+          "itemIndex": 3,
+          "visibleWhen": "hasLabeledItem"
+        },
+        {
+          "id": "ad3",
+          "type": "text",
+          "x": 558,
+          "y": 670,
+          "width": 914,
+          "height": 90,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": "{type.body}",
+            "fontWeight": 500,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "labeledDetail"
+          },
+          "itemIndex": 3,
+          "visibleWhen": "hasLabeledItem"
+        }
+      ]
+    },
+    "layoutClosingCta": {
+      "version": 2,
+      "id": "layoutClosingCta",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.bg}"
+          }
+        },
+        {
+          "id": "wash",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 1,
+          "shapeContent": {
+            "kind": "decor",
+            "decorName": "meshGradient",
+            "fill": "{color.accent}",
+            "decorParams": {
+              "colors": [
+                "{color.accent}",
+                "{color.accent2}"
+              ],
+              "points": [
+                [
+                  0.08,
+                  0.12
+                ],
+                [
+                  0.92,
+                  0.2
+                ],
+                [
+                  0.45,
+                  1.05
+                ]
+              ],
+              "radius": 0.65
+            }
+          },
+          "opacity": 0.28
+        },
+        {
+          "id": "rule",
+          "type": "shape",
+          "x": 1352,
+          "y": 300,
+          "width": 120,
+          "height": 6,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.accent}"
+          }
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "x": 472,
+          "y": 340,
+          "width": 1000,
+          "height": 160,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": "{type.h1}",
+            "fontWeight": 650,
+            "color": "{color.ink}",
+            "textAlign": "right",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "title"
+          }
+        },
+        {
+          "id": "body",
+          "type": "text",
+          "x": 472,
+          "y": 530,
+          "width": 700,
+          "height": 70,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": "{type.body}",
+            "fontWeight": 500,
+            "color": "{color.muted}",
+            "textAlign": "right",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "bullets"
+          }
+        }
+      ]
+    }
+  },
+  "previewSlides": [
+    {
+      "id": "gen-38304-p1",
+      "layout": "layoutTitleFocus",
+      "title": "Radio Room",
+      "bullets": [
+        "Navigating the Waves of Information"
+      ]
+    },
+    {
+      "id": "gen-38304-p2",
+      "layout": "layoutStatHighlight",
+      "title": "The figure that matters",
+      "bullets": [
+        "One number, then stop"
+      ]
+    },
+    {
+      "id": "gen-38304-p3",
+      "layout": "layoutThreeUp",
+      "title": "Three parts",
+      "bullets": [
+        "See — Look at the real thing",
+        "Make — Shape a response",
+        "Share — Hand it to someone"
+      ]
+    },
+    {
+      "id": "gen-38304-p4",
+      "layout": "layoutImageLeft",
+      "title": "Beside the picture",
+      "bullets": [
+        "One point next to the photograph",
+        "Leave the rest of the frame quiet"
+      ]
+    },
+    {
+      "id": "gen-38304-p5",
+      "layout": "layoutTeam",
+      "title": "Who holds it",
+      "bullets": [
+        "Lead — Sets the direction",
+        "Make — Does the work",
+        "Tell — Writes it down",
+        "Host — Welcomes people"
+      ]
+    },
+    {
+      "id": "gen-38304-p6",
+      "layout": "layoutClosingCta",
+      "title": "Begin here",
+      "bullets": [
+        "Take the first step"
+      ]
+    }
+  ],
+  "tells": [],
+  "status": "audit-sample",
+  "createdAt": "2026-10-16T18:59:14.629Z"
+}
