@@ -206,6 +206,7 @@ app.use("/api/plans", planRoutes);
 
 // Templates & Decks
 app.use("/api/templates", templateRoutes);
+app.use("/api/template-pipeline", require("./routes/templatePipelineRoutes"));
 app.use("/api/raw-text-deck", rawTextDeckRoutes);
 app.use("/api/image-deck", imageDeckRoutes);
 app.use("/api/stylesheet-deck", stylesheetDeckRoutes);

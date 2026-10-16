@@ -136,6 +136,9 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+# Generated deck templates (same JSON the phone app loads)
+generated-templates/*.json
+
 #OUTPUT
 output/
 output-explainer-infographics
