@@ -3,6 +3,7 @@ const path = require("path");
 const { generateDeck } = require("./generateDeck");
 const { judge, fingerprintsForGate } = require("./gates");
 const { rebuildTasteFromDecks } = require("./learn");
+const { scoreDeckFile } = require("./aestheticScore");
 
 const DIR = path.join(__dirname, "..", "..", "generated-templates");
 
@@ -79,7 +80,11 @@ function reviewTemplate(id, status) {
  * Writes one template that passes the gates.
  * Skips seeds that fail, or that repeat a layout already saved.
  */
-async function createTemplate(seed) {
+function wantedScore(options) {
+  return Boolean(options && options.score) || process.argv.includes("--score");
+}
+
+async function createTemplate(seed, options) {
   ensureDir();
   const prints = fingerprintsForGate();
   const start = Number.isFinite(Number(seed)) ? (Number(seed) >>> 0) || 1 : (Date.now() % 100000) || 1;
@@ -119,7 +124,18 @@ async function createTemplate(seed) {
     error.status = 409;
     throw error;
   }
-  return writeDeck(chosen);
+  const saved = writeDeck(chosen);
+  if (!wantedScore(options)) return saved;
+  try {
+    const scores = scoreDeckFile(path.join(DIR, saved.id + ".json"));
+    if (!scores) return saved;
+    saved.scores = scores;
+    writeDeck(saved);
+    judge(saved);
+  } catch (error) {
+    process.stderr.write(String(error && error.message || error) + "\n");
+  }
+  return saved;
 }
 
 module.exports = {

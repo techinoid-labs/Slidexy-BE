@@ -141,6 +141,7 @@ generated-templates/*.json
 
 # Third-party PPTX, PowerPoint renders, and one-off probe scripts
 .audit-cache/
+evaluations/preferences/models/
 
 #OUTPUT
 output/
