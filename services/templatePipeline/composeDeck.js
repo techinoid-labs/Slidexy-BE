@@ -239,7 +239,7 @@ async function composeDeck(seed) {
     cover: idea.cover,
     density: idea.density,
     align: idea.align,
-    slides: reasoning.map((step) => step.layoutId),
+    slides: reasoning.map((step) => step.strategy),
     groundMode,
     designLanguage: idea.designLanguage || "editorial",
   };

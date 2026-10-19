@@ -20,6 +20,11 @@ const STRATEGIES = {
   transition: ["transition.pause", "transition.chapter", "transition.edge"],
 };
 
+// These ids are slide roles the phone app already knows. Two strategies may
+// share a role. The composition's identity is the strategy name, not this id.
+// A new id such as layoutFullBleedHero_emphasis_corner would be parsed by the
+// app as a generic two-column slide, and the composition stored under it
+// would not be drawn.
 const PREFERRED_LAYOUT = {
   "sequence.rail": "layoutTimeline",
   "sequence.spine": "layoutAgendaList",
@@ -385,6 +390,8 @@ function buildStrategy(strategy, kit) {
 module.exports = {
   JOBS,
   STRATEGIES,
+  PREFERRED_LAYOUT,
+  LAYOUT_POOL,
   planReasoning,
   previewFor,
   buildStrategy,

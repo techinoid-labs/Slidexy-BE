@@ -1,7 +1,17 @@
 /**
  * Compares slide boxes. A new template is too close when half or more of
  * its slides sit in the same places as a template we already have.
+ *
+ * The identity of a body slide is its strategy (sequence.rail, comparison.halves).
+ * The layout id is only the role the phone app uses to find the composition.
+ * Two strategies can share a role and still be different slides. Decks written
+ * before strategies existed are still compared by layout id.
  */
+
+function identityOf(deck, layoutId) {
+  const step = (deck.reasoning || []).find((item) => item && item.layoutId === layoutId && item.strategy);
+  return step ? step.strategy : layoutId;
+}
 
 function fingerprint(deck) {
   return (deck.layoutSequence || []).map((layoutId) => {
@@ -20,7 +30,7 @@ function fingerprint(deck) {
       ].join(":"))
       .sort()
       .join(";");
-    return layoutId + "=" + boxes;
+    return identityOf(deck, layoutId) + "=" + boxes;
   });
 }
 

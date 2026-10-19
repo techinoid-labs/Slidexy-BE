@@ -1,6 +1,8 @@
 /**
  * Learns from Ship / Discard. Next templates lean toward covers, densities,
  * alignments, and slide kinds that were shipped, and away from discarded ones.
+ * New decks store strategy names on taste.slides. Those names are not role
+ * ids, so they are not counted in the old role bucket.
  */
 
 const fs = require("fs");
