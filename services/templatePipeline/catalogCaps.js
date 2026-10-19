@@ -118,10 +118,31 @@ function roomFor(counts, total, key) {
   return ((counts[key] || 0) + 1) / (total + 1) <= CAP + 1e-9;
 }
 
+let capWarned = false;
+
 function pickCapped(counts, total, keys, rng) {
   const random = rng || Math.random;
   const open = keys.filter((key) => roomFor(counts, total, key));
-  const pool = open.length ? open : keys;
+  let pool = open;
+  if (!pool.length) {
+    const leastCount = Math.min(...keys.map((key) => counts[key] || 0));
+    const leastShare = total ? leastCount / total : 0;
+    // Six equal choices sit at about 17%, but the next deck makes one of
+    // them 2/7. That step is allowed, and the share falls back under 20%
+    // as the rest catch up. A catalog whose least-used choice is already
+    // over 20% has no such path, so generation stops.
+    if (total > 0 && leastShare > CAP + 1e-9) {
+      const error = new Error("Every catalog choice is already at the 20% cap.");
+      error.code = "catalog-saturated";
+      error.status = 409;
+      throw error;
+    }
+    pool = keys.filter((key) => (counts[key] || 0) === leastCount);
+    if (total > 0 && !capWarned) {
+      capWarned = true;
+      console.warn("Catalog cap: the next deck cannot stay under 20% on this axis, so the least-used choice is used.");
+    }
+  }
   const least = Math.min(...pool.map((key) => counts[key] || 0));
   const tied = pool.filter((key) => (counts[key] || 0) === least);
   return tied[Math.floor(random() * tied.length)];
@@ -237,6 +258,7 @@ module.exports = {
   featuresOf,
   paletteBucket,
   planGeneration,
+  pickCapped,
   nudgePalette,
   applyPlan,
   shares,

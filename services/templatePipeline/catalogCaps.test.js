@@ -7,7 +7,7 @@
 
 const assert = require("assert");
 const {
-  CAP, AXES, planGeneration, shares, readCatalog, nudgePalette, paletteBucket,
+  CAP, AXES, planGeneration, pickCapped, shares, readCatalog, nudgePalette, paletteBucket,
 } = require("./catalogCaps");
 
 const PALETTES = {
@@ -68,6 +68,28 @@ const nudged = nudgePalette(
   "light-cool",
 );
 assert.strictEqual(paletteBucket(nudged.bg, nudged.accent), "light-cool");
+
+const dominated = [];
+for (let i = 0; i < 9; i += 1) {
+  dominated.push({
+    tokens: { font: { display: "Fraunces", text: "Source Sans 3" }, color: PALETTES["light-warm"] },
+    taste: { cover: "photo", groundMode: "flat", designLanguage: "editorial" },
+  });
+}
+dominated.push({
+  tokens: { font: { display: "Outfit", text: "Figtree" }, color: PALETTES["light-cool"] },
+  taste: { cover: "band", groundMode: "noise", designLanguage: "technical" },
+});
+for (let i = 0; i < 12; i += 1) {
+  const plan = planGeneration(dominated, () => 0);
+  assert.notStrictEqual(plan.displayFont, "Fraunces", "a font at 90% was chosen again");
+}
+
+assert.throws(
+  () => pickCapped({ A: 25, B: 25, C: 25, D: 25 }, 100, ["A", "B", "C", "D"], () => 0),
+  (error) => error.code === "catalog-saturated",
+);
+assert.strictEqual(pickCapped({}, 0, ["A", "B"], () => 0), "A");
 
 console.log("50 fresh decks, top share per axis:");
 for (const axis of AXES) {
