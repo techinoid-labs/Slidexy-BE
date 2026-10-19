@@ -706,7 +706,7 @@ async function composeDeck(seed) {
     error.status = 500;
     throw error;
   }
-  const tells = antiTells(deck, null);
+  const tells = antiTells(deck, null, deck.taste && deck.taste.designLanguage);
   deck.tells = tells;
   if (tells.length >= 3) {
     const error = new Error("Rejected AI tells: " + tells.join(", "));

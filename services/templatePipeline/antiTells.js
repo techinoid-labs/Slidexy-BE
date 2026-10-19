@@ -1,7 +1,9 @@
 /**
  * Flags the patterns that make a deck look machine-made.
  * A template with three or more is rejected.
- * A serif-on-cream look is allowed when the human seed already had it.
+ * A serif-on-cream look is allowed when the human seed already had it,
+ * and when the deck's design language is editorial. That language is
+ * allowed to pair a serif with a warm ground.
  */
 
 const SERIF = /fraunces|playfair|newsreader|libre baskerville|cormorant|lora|source serif/i;
@@ -32,7 +34,7 @@ function hasKicker(layout) {
   });
 }
 
-function antiTells(deck, parent) {
+function antiTells(deck, parent, designLanguage) {
   const tells = [];
   const sequence = deck.layoutSequence || [];
   const kickerSlides = sequence.filter((id) => deck.layouts[id] && hasKicker(deck.layouts[id])).length;
@@ -58,7 +60,8 @@ function antiTells(deck, parent) {
   const parentDisplay = parent && parent.tokens && parent.tokens.font && parent.tokens.font.display || "";
   const parentBg = parent && parent.tokens && parent.tokens.color && parent.tokens.color.bg || "";
   const inherited = SERIF.test(parentDisplay) && isWarmLight(parentBg);
-  if (SERIF.test(display) && isWarmLight(bg) && !inherited) tells.push("serif-on-cream");
+  const language = designLanguage || (deck.taste && deck.taste.designLanguage) || "";
+  if (SERIF.test(display) && isWarmLight(bg) && !inherited && language !== "editorial") tells.push("serif-on-cream");
 
   return tells;
 }
