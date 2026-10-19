@@ -203,25 +203,25 @@ async function composeDeck(seed, supplied) {
       return [
         ...ground(),
         shape("panel", m, 180, inner, 540, accent, 2, r),
-        text("title", m + 60, 320, inner - 120, 160, { font: D, size: "{type.h1}", weight: 650, color: on, align: "center" }, { binding: "title" }),
-        text("body", m + 200, 520, inner - 400, 70, { font: F, size: "{type.body}", color: on, align: "center" }, { binding: "bullets" }),
+        text("title", m + 40, 260, inner - 80, 280, { font: D, size: "{type.h1}", weight: 650, color: on, align: "center" }, { binding: "title" }),
+        text("body", m + 200, 560, inner - 400, 70, { font: F, size: "{type.body}", color: on, align: "center" }, { binding: "bullets" }),
       ];
     }
     if (idea.close === "center") {
       return [
         ...ground(),
         shape("rule", W / 2 - 60, 280, 120, 6, accent, 3),
-        text("title", m, 320, inner, 160, { font: D, size: "{type.h1}", weight: 650, color: ink, align: "center" }, { binding: "title" }),
-        text("body", m + 200, 520, inner - 400, 70, { font: F, size: "{type.body}", color: muted, align: "center" }, { binding: "bullets" }),
+        text("title", m, 300, inner, 280, { font: D, size: "{type.h1}", weight: 650, color: ink, align: "center" }, { binding: "title" }),
+        text("body", m + 200, 600, inner - 400, 70, { font: F, size: "{type.body}", color: muted, align: "center" }, { binding: "bullets" }),
       ];
     }
     const align = idea.close === "right" ? "right" : "left";
-    const x = idea.close === "right" ? W - m - 1000 : m;
+    const bodyX = idea.close === "right" ? W - m - 700 : m;
     return [
       ...ground(),
-      shape("rule", idea.close === "right" ? W - m - 120 : m, 300, 120, 6, accent, 3),
-      text("title", x, 340, 1000, 160, { font: D, size: "{type.h1}", weight: 650, color: ink, align }, { binding: "title" }),
-      text("body", x, 530, 700, 70, { font: F, size: "{type.body}", color: muted, align }, { binding: "bullets" }),
+      shape("rule", idea.close === "right" ? W - m - 120 : m, 280, 120, 6, accent, 3),
+      text("title", m, 310, inner, 280, { font: D, size: "{type.h1}", weight: 650, color: ink, align }, { binding: "title" }),
+      text("body", bodyX, 620, 700, 70, { font: F, size: "{type.body}", color: muted, align }, { binding: "bullets" }),
     ];
   }
 
@@ -274,8 +274,8 @@ async function composeDeck(seed, supplied) {
       font: { display: fonts.display, text: fonts.text },
       type: {
         eyebrow: 18,
-        h1: Math.round(84 * typeScale),
-        h2: Math.round(52 * typeScale),
+        h1: Math.max(180, Math.round(200 * typeScale)),
+        h2: Math.round(120 * typeScale),
         h3: Math.round(34 * typeScale),
         h4: Math.round(26 * typeScale),
         body: Math.round(24 * typeScale),

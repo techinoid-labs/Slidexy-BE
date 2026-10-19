@@ -157,7 +157,7 @@ function buildStrategy(strategy, kit) {
   };
 
   if (strategy === "sequence.rail") {
-    const elements = [...ground(), title(m, m, 980, 160, 72), shape("rail", m, 620, inner, 4, accent, 3)];
+    const elements = [...ground(), title(m, m, 980, 160, 140), shape("rail", m, 620, inner, 4, accent, 3)];
     const col = inner / 4;
     for (let i = 0; i < 4; i += 1) {
       const x = m + i * col;
@@ -177,7 +177,7 @@ function buildStrategy(strategy, kit) {
   if (strategy === "sequence.spine") {
     const elements = [
       ...ground(),
-      title(m, 72, 900, 120, 60),
+      title(m, 72, 900, 120, 120),
       shape("spine", W - m - 28, 220, 6, 600, accent, 3),
     ];
     for (let i = 0; i < 4; i += 1) {
@@ -231,9 +231,9 @@ function buildStrategy(strategy, kit) {
     return [
       shape("left", 0, 0, W / 2, H, kit.card || ink, 1),
       shape("right", W / 2, 0, W / 2, H, accent, 1),
-      text("ll", 72, 260, 640, 140, { font: D, size: 64, weight: 750, color: ink }, left.content, left.extra),
+      text("ll", 72, 260, 640, 140, { font: D, size: 130, weight: 750, color: ink }, left.content, left.extra),
       text("ld", 72, 430, 640, 160, { font: F, size: 26, color: muted }, leftDetail.content, leftDetail.extra),
-      text("rl", W / 2 + 72, 260, 640, 140, { font: D, size: 64, weight: 750, color: on }, right.content, right.extra),
+      text("rl", W / 2 + 72, 260, 640, 140, { font: D, size: 130, weight: 750, color: on }, right.content, right.extra),
       text("rd", W / 2 + 72, 430, 640, 160, { font: F, size: 26, color: on }, rightDetail.content, rightDetail.extra),
     ];
   }
@@ -304,7 +304,7 @@ function buildStrategy(strategy, kit) {
     return [
       ...ground(),
       shape("rule", m, 250, 180, 8, accent, 3),
-      title(m, 290, 1400, 220, 96),
+      title(m, 290, 1400, 220, 200),
     ];
   }
 
@@ -372,7 +372,7 @@ function buildStrategy(strategy, kit) {
     return [
       ...ground(),
       text("num", m, 160, 500, 280, { font: D, size: 200, weight: 750, color: accent }, { spans: [{ text: "02" }] }),
-      title(m, 640, 1000, 140, 56),
+      title(m, 640, 1000, 140, 140),
     ];
   }
 
