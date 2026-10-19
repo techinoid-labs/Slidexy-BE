@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Shipping preview</title>
+  <style>
+    :root { color-scheme: light; }
+    body { margin: 0; font: 16px/1.4 "Segoe UI", sans-serif; background: #f3f1ec; color: #1c1915; }
+    header { padding: 28px 32px 8px; max-width: 1100px; }
+    h1 { font-size: 28px; margin: 0 0 8px; }
+    p { margin: 0 0 12px; max-width: 68ch; }
+    button { font: inherit; border: 1px solid #1c1915; background: #fff; padding: 8px 14px; cursor: pointer; }
+    button[aria-pressed="true"] { background: #1c1915; color: #fff; }
+    #export { margin-top: 8px; }
+    main { padding: 8px 32px 48px; display: flex; flex-direction: column; gap: 28px; }
+    article { background: #fff; border: 1px solid #ddd6cc; padding: 16px; }
+    .meta { display: flex; gap: 16px; align-items: baseline; flex-wrap: wrap; }
+    h2 { margin: 0; font-size: 20px; }
+    .score { font-variant-numeric: tabular-nums; }
+    .actions { display: flex; gap: 8px; margin: 12px 0; }
+    .strip { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; }
+    .strip img { width: 280px; height: auto; background: #eee; flex: none; }
+    #status { color: #8a3b12; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Would you use this?</h1>
+    <p>Ten Harbor decks, highest aesthetic score first. Pick Ship, Discard, or Unsure for each. The choice stays in this browser. It is not sent to the taste loop.</p>
+    <button id="export" type="button">Export shipping.jsonl</button>
+    <p id="status"></p>
+  </header>
+  <main id="list"></main>
+  <script>
+    const IDS = ["harbor-1", "harbor-2", "harbor-3", "harbor-4", "harbor-5", "harbor-6", "harbor-7", "harbor-8", "harbor-9", "harbor-10"];
+    const KEY = "slidexy-shipping-preview:v1";
+    const list = document.getElementById("list");
+    const status = document.getElementById("status");
+
+    function load() {
+      try { return JSON.parse(localStorage.getItem(KEY) || "{}"); }
+      catch (error) { return {}; }
+    }
+
+    function save(choices) {
+      localStorage.setItem(KEY, JSON.stringify(choices));
+    }
+
+    function exportFile() {
+      const choices = load();
+      const lines = Object.keys(choices).sort().map((deckId) => JSON.stringify({
+        deck_id: deckId,
+        choice: choices[deckId].choice,
+        timestamp: choices[deckId].timestamp
+      }));
+      const blob = new Blob([lines.join("\n") + (lines.length ? "\n" : "")], { type: "application/jsonl" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "shipping.jsonl";
+      link.click();
+    }
+
+    function render(decks) {
+      const choices = load();
+      decks.sort((a, b) => (b.scores.aesthetic_mean || 0) - (a.scores.aesthetic_mean || 0));
+      list.innerHTML = "";
+      decks.forEach((deck, index) => {
+        const article = document.createElement("article");
+        const slides = deck.layoutSequence || [];
+        const mean = deck.scores && typeof deck.scores.aesthetic_mean === "number"
+          ? deck.scores.aesthetic_mean.toFixed(2)
+          : "—";
+        article.innerHTML = ""
+          + '<div class="meta"><h2>' + (index + 1) + ". " + deck.name + "</h2>"
+          + '<span class="score">aesthetic mean ' + mean + "</span>"
+          + "<span>" + deck.id + "</span></div>"
+          + '<div class="actions"></div>'
+          + '<div class="strip"></div>';
+        const actions = article.querySelector(".actions");
+        ["ship", "discard", "unsure"].forEach((choice) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.textContent = choice[0].toUpperCase() + choice.slice(1);
+          button.setAttribute("aria-pressed", String(choices[deck.id] && choices[deck.id].choice === choice));
+          button.addEventListener("click", () => {
+            const next = load();
+            next[deck.id] = { choice: choice, timestamp: new Date().toISOString() };
+            save(next);
+            actions.querySelectorAll("button").forEach((item) => item.setAttribute("aria-pressed", "false"));
+            button.setAttribute("aria-pressed", "true");
+          });
+          actions.appendChild(button);
+        });
+        const strip = article.querySelector(".strip");
+        slides.forEach((_, slideIndex) => {
+          const image = document.createElement("img");
+          const name = "slide-" + String(slideIndex + 1).padStart(2, "0") + ".png";
+          image.src = "png/" + deck.id + "/" + name;
+          image.alt = deck.name + " slide " + (slideIndex + 1);
+          strip.appendChild(image);
+        });
+        list.appendChild(article);
+      });
+    }
+
+    document.getElementById("export").addEventListener("click", exportFile);
+
+    Promise.all(IDS.map((id) => fetch("../../../generated-templates/" + id + ".json").then((response) => {
+      if (!response.ok) throw new Error(id + " returned " + response.status);
+      return response.json();
+    }))).then(render).catch(() => {
+      status.textContent = "The deck files did not load. From the Slidexy-BE folder, run: python -m http.server 8765 — then open http://localhost:8765/docs/template-pipeline/shipping-preview/";
+    });
+  </script>
+</body>
+</html>
