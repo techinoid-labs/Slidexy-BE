@@ -1,6 +1,28 @@
 const OpenAI = require("openai");
 
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
+
+/**
+ * Two tiers, because not every call is worth the same.
+ *
+ * UTILITY is the cheap mechanical work: classification, tidying an image
+ * prompt, extracting a field. A small model is correct there.
+ *
+ * QUALITY is anything the user actually reads -- slide copy above all.
+ * The deck IS the product. Generating it with the cheapest model in the
+ * family to save a fraction of a cent is a false economy, and it is the
+ * likely reason output lost to competitors despite a strong prompt: a
+ * detailed multi-rule prompt needs a model large enough to honour it.
+ *
+ * The default is the MIDDLE rung, not the most expensive one: roughly an
+ * order of magnitude cheaper than a frontier model and still large enough
+ * to follow the prompt. Run `node scripts/compare-models.js` to see the
+ * ladder priced against its own output and move up only if the samples
+ * justify it.
+ */
+const QUALITY_MODEL =
+  process.env.OPENROUTER_QUALITY_MODEL || "google/gemini-2.5-flash";
+const UTILITY_MODEL = process.env.OPENROUTER_UTILITY_MODEL || "google/gemini-2.5-flash-lite";
 const GOOGLE_API_KEY = process.env.API_KEY1;
 
 if (!OPENROUTER_API_KEY) {
@@ -110,13 +132,17 @@ function normalizeToMessages(input) {
 // ---------------------------------------------------------------------------
 // generateContent via OpenRouter
 // ---------------------------------------------------------------------------
-async function generateContentViaOpenRouter(input) {
+async function generateContentViaOpenRouter(input, opts = {}) {
   const messages = normalizeToMessages(input);
 
   const completion = await openRouterClient.chat.completions.create({
-    model: "google/gemini-2.5-flash-lite",
+    model: opts.model || UTILITY_MODEL,
     messages,
-    max_tokens: 4096,
+    // A deck of real slide copy does not fit in 4096 tokens. It gets cut
+    // mid-JSON, the parser then retries at a lower temperature, and the
+    // result reads as "the AI writes short, generic slides".
+    max_tokens: opts.maxTokens || 4096,
+    ...(opts.temperature !== undefined ? { temperature: opts.temperature } : {}),
   });
 
   const responseText = completion.choices?.[0]?.message?.content || "";
@@ -139,9 +165,14 @@ async function generateContentViaOpenRouter(input) {
 // ---------------------------------------------------------------------------
 // generateContent via direct Google fallback
 // ---------------------------------------------------------------------------
-async function generateContentViaGoogle(input) {
+async function generateContentViaGoogle(input, opts = {}) {
   if (!googleFallback) {
     throw new Error("Google Gemini fallback not configured");
+  }
+  if (opts.model && opts.model !== UTILITY_MODEL) {
+    // The direct Google client is pinned to one small model, so a quality
+    // request landing here is degraded. Say so rather than fail silently.
+    console.warn("Quality request fell back to gemini-2.5-flash-lite - output will be weaker");
   }
   return await googleFallback.generateContent(input);
 }
@@ -149,24 +180,37 @@ async function generateContentViaGoogle(input) {
 // ---------------------------------------------------------------------------
 // Main generateContent – tries OpenRouter first, falls back to Google
 // ---------------------------------------------------------------------------
-async function generateContent(input) {
+async function generateContent(input, opts = {}) {
   if (openRouterClient) {
     try {
-      return await generateContentViaOpenRouter(input);
+      return await generateContentViaOpenRouter(input, opts);
     } catch (err) {
       console.error("⚠️  OpenRouter request failed:", err.message);
       if (googleFallback) {
         console.log("🔄 Falling back to direct Google Gemini...");
-        return await generateContentViaGoogle(input);
+        return await generateContentViaGoogle(input, opts);
       }
       throw err;
     }
   }
 
   // No OpenRouter key – use Google directly
-  return await generateContentViaGoogle(input);
+  return await generateContentViaGoogle(input, opts);
 }
 
 module.exports = {
+  /** Cheap tier. Classification, extraction, prompt tidying. */
   textGenModel: { generateContent },
+
+  /**
+   * Quality tier, for anything a user reads. Same interface, so a caller
+   * switches by swapping the import.
+   */
+  qualityGenModel: {
+    generateContent: (input, opts = {}) =>
+      generateContent(input, { model: QUALITY_MODEL, maxTokens: 16000, ...opts }),
+  },
+
+  QUALITY_MODEL,
+  UTILITY_MODEL,
 };

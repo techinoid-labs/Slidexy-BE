@@ -7,25 +7,15 @@ const swaggerUi = require("swagger-ui-express");
 const YAML = require("yamljs");
 
 // Routes
-const infographicRoute = require("./routes/infographicsV2"); // ← Your V2 route with file support
-const explainerInfographicRoute = require("./routes/explainerInfographicRoutes");
-const dynamicInfographicRoute = require("./routes/dynamicInfographics");
 const blogRoutes = require("./routes/blogRoutes");
-const websiteDownloadRoutes = require("./routes/websiteZipDownload");
 
 const userRoutes = require("./routes/user");
 const aiChatRoutes = require("./routes/aiChatRoutes");
 const contactRoutes = require("./routes/contact");
 const planRoutes = require("./routes/planRoutes");
-const vidGenImg = require("./routes/vidGenImg");
 const generateImageRoute = require("./routes/generateImage");
 
 const templateRoutes = require("./routes/templateRoutes");
-const rawTextDeckRoutes = require("./routes/rawTextDeckRoutes");
-const imageDeckRoutes = require("./routes/imageDeckRoutes");
-const stylesheetDeckRoutes = require("./routes/stylesheetDeckRoutes");
-const unifiedWebDeckRoutes = require("./routes/unifiedWebDeckRoutes");
-const websiteGeneratorRoutes = require("./routes/websiteGeneratorRoutes");
 const linkedinRoutes = require("./routes/linkedinRoutes");
 const telegramRoutes = require("./routes/telegramRoutes");
 const redditRoutes = require("./routes/redditRoutes");
@@ -67,13 +57,52 @@ const swaggerDocument = YAML.load(path.join(__dirname, "swagger.yaml"));
 const User = require("./models/WaitingUser");
 
 // --- MongoDB Connection ---
-mongoose
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("Connected to MongoDB Atlas"))
-  .catch((err) => console.error("MongoDB connection error:", err));
+// Atlas `mongodb+srv://` URIs need a DNS SRV lookup before the driver can
+// reach a single node. A slow or flaky resolver makes that lookup time out
+// (querySrv ETIMEOUT), and without a retry the process then runs with no
+// database at all while still serving requests — every DB route 500s and the
+// server looks half-alive. So: retry with backoff instead of giving up once.
+const MONGO_MAX_ATTEMPTS = 5;
+
+async function connectToMongo(attempt = 1) {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      // Fail a connection attempt fast so we retry rather than hang for the
+      // 30s default while the resolver is misbehaving.
+      serverSelectionTimeoutMS: 8000,
+    });
+    console.log("Connected to MongoDB Atlas");
+  } catch (err) {
+    const isLast = attempt >= MONGO_MAX_ATTEMPTS;
+    const isDns = err?.code === "ETIMEOUT" || err?.syscall === "querySrv";
+
+    console.error(
+      `MongoDB connection attempt ${attempt}/${MONGO_MAX_ATTEMPTS} failed:`,
+      err?.message || err
+    );
+
+    if (isLast) {
+      console.error(
+        isDns
+          ? "Giving up: the SRV record could not be resolved. This is a DNS problem, not an Atlas one — try a public resolver (1.1.1.1 / 8.8.8.8), or switch MONGO_URI to the non-SRV mongodb:// form."
+          : "Giving up on MongoDB. The API will keep serving, but every database route will fail."
+      );
+      return;
+    }
+
+    const delay = Math.min(1000 * 2 ** (attempt - 1), 10000);
+    setTimeout(() => connectToMongo(attempt + 1), delay);
+  }
+}
+
+connectToMongo();
+
+mongoose.connection.on("disconnected", () =>
+  console.warn("MongoDB disconnected")
+);
+mongoose.connection.on("reconnected", () =>
+  console.log("MongoDB reconnected")
+);
 
 // --- Initialize App ---
 const app = express();
@@ -147,11 +176,7 @@ const uploadMiddleware = (req, res, next) => {
 // Core APIs
 app.use("/api/users", userRoutes);
 app.use("/api/presentations", presentationRoutes);
-app.use("/api/infographic", infographicRoute); // ← Critical: apply multer here
-app.use("/api/explainer-infographic", explainerInfographicRoute);
-app.use("/api/dynamicInfographic", dynamicInfographicRoute);
 app.use("/api/blogs", blogRoutes);
-app.use("/api/vidGenImg", vidGenImg);
 app.use("/api", generateImageRoute);
 
 // Docs
@@ -167,17 +192,8 @@ app.use("/api/plans", planRoutes);
 
 // Templates & Decks
 app.use("/api/templates", templateRoutes);
-app.use("/api/raw-text-deck", rawTextDeckRoutes);
-app.use("/api/image-deck", imageDeckRoutes);
-app.use("/api/stylesheet-deck", stylesheetDeckRoutes);
-app.use("/api/unified-web-deck", unifiedWebDeckRoutes);
-app.use("/api/website-generator", websiteGeneratorRoutes);
-app.use("/api/website-zip-download", websiteDownloadRoutes);
 
 // Website Editor & Dynamic Versions
-app.use("/api/website-editor", require("./routes/websiteEditorRoutes"));
-app.use("/api/dynamic-website", require("./routes/dynamicWebsiteRoutes"));
-app.use("/api/improved-dynamic", require("./routes/improvedDynamicWebsiteRoutes"));
 
 // Social Integrations
 app.use("/api/linkedin", linkedinRoutes);
