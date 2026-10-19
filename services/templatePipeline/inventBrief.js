@@ -127,7 +127,7 @@ function oneOf(value, allowed, fallback) {
   return allowed.includes(value) ? value : fallback;
 }
 
-function parseBrief(raw, structure) {
+function parseBrief(raw, structure, plan) {
   const start = raw.indexOf("{");
   const end = raw.lastIndexOf("}");
   if (start === -1 || end === -1) throw new Error("The model did not return JSON.");
@@ -142,7 +142,7 @@ function parseBrief(raw, structure) {
   if (contrast(palette.ink, palette.bg) < 4.5 || contrast(palette.accent, palette.bg) < 3) {
     throw new Error("The model chose a palette that is too faint.");
   }
-  return {
+  const brief = {
     name: String(data.idea || data.title).slice(0, 40),
     title: String(data.title).slice(0, 24),
     subtitle: String(data.subtitle || "").slice(0, 60),
@@ -174,8 +174,12 @@ function parseBrief(raw, structure) {
       accent2: palette.accent2 || palette.accent,
       onAccent: palette.onAccent || "#FFFFFF",
     },
-    fonts: { display: String(fonts.display), text: String(fonts.text) },
+    fonts: { display: String(fonts.display).trim(), text: String(fonts.text).trim() },
   };
+  if (plan && (brief.fonts.display !== plan.displayFont || brief.fonts.text !== plan.textFont)) {
+    throw new Error("The model returned fonts other than the ones the catalog reserved.");
+  }
+  return brief;
 }
 
 const SUBJECT_SEEDS = [
@@ -241,7 +245,7 @@ Unique seed: ${Date.now()}-${Math.random().toString(36).slice(2, 8)}
   for (let attempt = 0; attempt < 2; attempt += 1) {
     try {
       const raw = await askModel(prompt);
-      const brief = applyPlan(parseBrief(raw, structure), plan);
+      const brief = applyPlan(parseBrief(raw, structure, plan), plan);
       if (paletteBucket(brief.palette.bg, brief.palette.accent) !== plan.paletteBucket) {
         throw new Error("The palette could not be moved into an open catalog bucket.");
       }
@@ -254,4 +258,4 @@ Unique seed: ${Date.now()}-${Math.random().toString(36).slice(2, 8)}
   throw lastError;
 }
 
-module.exports = { inventBrief };
+module.exports = { inventBrief, parseBrief };
