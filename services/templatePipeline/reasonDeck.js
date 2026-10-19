@@ -76,15 +76,17 @@ const PREVIEW = {
   "transition.edge": ["To the edge", []],
 };
 
-function shuffle(list, rng) {
-  const copy = list.slice();
-  for (let i = copy.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(rng() * (i + 1));
-    const tmp = copy[i];
-    copy[i] = copy[j];
-    copy[j] = tmp;
+function hashString(value) {
+  let h = 2166136261;
+  for (let i = 0; i < value.length; i += 1) {
+    h ^= value.charCodeAt(i);
+    h = Math.imul(h, 16777619);
   }
-  return copy;
+  return h >>> 0;
+}
+
+function tieRank(key, salt) {
+  return Math.imul(hashString(key) ^ salt, 71) >>> 0;
 }
 
 function tally(decks, field) {
@@ -99,10 +101,11 @@ function tally(decks, field) {
   return counts;
 }
 
-function leastUsed(keys, counts, rng) {
+function leastUsed(keys, counts, salt) {
   const least = Math.min(...keys.map((key) => counts[key] || 0));
   const tied = keys.filter((key) => (counts[key] || 0) === least);
-  return tied[Math.floor(rng() * tied.length)];
+  tied.sort((a, b) => tieRank(a, salt) - tieRank(b, salt) || (a < b ? -1 : 1));
+  return tied[0];
 }
 
 function assignLayout(strategy, used) {
@@ -116,15 +119,15 @@ function assignLayout(strategy, used) {
  */
 function planReasoning(decks, rng) {
   const random = rng || Math.random;
+  const salt = Math.floor(random() * 0x100000000);
   const jobCounts = tally(decks, "job");
   const strategyCounts = tally(decks, "strategy");
-  const jobs = shuffle(JOBS, random)
-    .sort((a, b) => (jobCounts[a] || 0) - (jobCounts[b] || 0))
-    .slice(0, 4);
-  const ordered = shuffle(jobs, random);
+  const byUse = (a, b, counts) => (counts[a] || 0) - (counts[b] || 0) || tieRank(a, salt) - tieRank(b, salt) || (a < b ? -1 : 1);
+  const jobs = JOBS.slice().sort((a, b) => byUse(a, b, jobCounts)).slice(0, 4);
+  const ordered = jobs.slice().sort((a, b) => tieRank(a, salt) - tieRank(b, salt) || (a < b ? -1 : 1));
   const used = new Set(["layoutTitleFocus", "layoutClosingCta"]);
   return ordered.map((job) => {
-    const strategy = leastUsed(STRATEGIES[job], strategyCounts, random);
+    const strategy = leastUsed(STRATEGIES[job], strategyCounts, salt);
     strategyCounts[strategy] = (strategyCounts[strategy] || 0) + 1;
     const layoutId = assignLayout(strategy, used);
     used.add(layoutId);

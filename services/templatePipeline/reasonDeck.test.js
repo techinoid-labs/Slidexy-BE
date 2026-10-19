@@ -91,6 +91,19 @@ Object.entries(STRATEGIES).forEach(([job, names]) => {
 const jobSets = decks.map((deck) => deck.reasoning.map((step) => step.job).sort().join("+"));
 assert.ok(new Set(jobSets).size >= 4, "decks keep the same four jobs");
 
+const coverCounts = {};
+Object.values(STRATEGIES).flat().forEach((name) => { coverCounts[name] = 0; });
+for (let seed = 1; seed <= 10; seed += 1) {
+  planReasoning([], mulberry32(seed)).forEach((step) => {
+    coverCounts[step.strategy] += 1;
+  });
+}
+Object.entries(coverCounts).forEach(([name, times]) => {
+  assert.ok(times >= 1, name + " was not planned from an empty catalog");
+  assert.ok(times <= 3, name + " was planned " + times + " times");
+});
+
 console.log("reasoning test passed");
+console.log("empty-catalog counts", coverCounts);
 console.log("distinct job mixes in 24 decks:", new Set(jobSets).size);
 console.log("busiest composition:", (top / steps * 100).toFixed(0) + "%");
