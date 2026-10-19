@@ -134,7 +134,6 @@ function parseBrief(raw, structure, plan) {
   const data = JSON.parse(raw.slice(start, end + 1));
   const palette = data.palette || {};
   const fonts = data.fonts || {};
-  const layout = data.layout || {};
   const cover = COVER_STYLES.includes(data.cover) ? data.cover : structure.preferredCover || "photo";
   if (!data.title || !palette.bg || !palette.ink || !palette.accent || !fonts.display || !fonts.text) {
     throw new Error("The model left out a color, a font, or the title.");
@@ -149,18 +148,7 @@ function parseBrief(raw, structure, plan) {
     cover,
     density: structure.density,
     align: structure.align,
-    list: oneOf(layout.list, ["rows", "columns", "short", "stack"], "rows"),
-    timeline: oneOf(layout.timeline, ["vertical", "horizontal", "cards"], "vertical"),
-    stat: oneOf(layout.stat, ["circle", "panel", "huge", "split"], "circle"),
-    compare: oneOf(layout.compare, ["even", "uneven", "stacked"], "uneven"),
-    imageSide: oneOf(layout.imageSide, ["left", "right"], "left"),
-    imageMode: oneOf(layout.imageMode, ["bleed", "inset"], "bleed"),
-    three: oneOf(layout.three, ["cards", "rows", "band"], "cards"),
-    team: oneOf(layout.team, ["cards", "strip", "duo"], "cards"),
-    text: oneOf(layout.text, ["plain", "rule", "accent"], "plain"),
-    quote: oneOf(layout.quote, ["mark", "band", "corner"], "mark"),
-    close: oneOf(layout.close, ["left", "right", "center", "panel"], "left"),
-    slides: structure.slides.slice(),
+    close: oneOf(data.close, ["left", "right", "center", "panel"], "left"),
     photoQuery: String(data.photoQuery || data.idea || ""),
     palette: {
       name: String(data.idea || data.title),
@@ -176,7 +164,7 @@ function parseBrief(raw, structure, plan) {
     },
     fonts: { display: String(fonts.display).trim(), text: String(fonts.text).trim() },
   };
-  if (plan && (brief.fonts.display !== plan.displayFont || brief.fonts.text !== plan.textFont)) {
+  if (plan && (brief.fonts.display.toLowerCase() !== plan.displayFont.toLowerCase() || brief.fonts.text.toLowerCase() !== plan.textFont.toLowerCase())) {
     throw new Error("The model returned fonts other than the ones the catalog reserved.");
   }
   return brief;
@@ -211,24 +199,11 @@ Return only JSON with this shape:
   "subtitle": "one short line",
   "cover": "photo" or "band" or "split" or "browser" or "type" or "stack",
   "photoQuery": "a stock-photo search for a real scene matching the subject, with no text in the picture",
-  "layout": {
-    "list": "rows" or "columns" or "short" or "stack",
-    "timeline": "vertical" or "horizontal" or "cards",
-    "stat": "circle" or "panel" or "huge" or "split",
-    "compare": "even" or "uneven" or "stacked",
-    "imageSide": "left" or "right",
-    "imageMode": "bleed" or "inset",
-    "three": "cards" or "rows" or "band",
-    "team": "cards" or "strip" or "duo",
-    "text": "plain" or "rule" or "accent",
-    "quote": "mark" or "band" or "corner",
-    "close": "left" or "right" or "center" or "panel"
-  },
+  "close": "left" or "right" or "center" or "panel",
   "palette": {"bg":"#","surface":"#","card":"#","ink":"#","muted":"#","rule":"#","accent":"#","accent2":"#","onAccent":"#"},
   "fonts": {"display":"${plan.displayFont}", "text":"${plan.textFont}"}
 }
-The deck structure, cover, and fonts are already fixed. Do not invent slides, density, alignment, or a different font.
-Fixed slides in order: ${JSON.stringify(structure.slides)}
+The cover, close, and fonts are already chosen. Do not invent slides or a different font.
 Fixed density: ${structure.density}
 Fixed align: ${structure.align}
 Use photo for a full-bleed picture with the title on it.
@@ -237,7 +212,6 @@ Use split when one half is color and type and the other half is only the photogr
 Use browser when the subject is software or the web.
 Use type when one huge word should fill the slide.
 Use stack when the title should be enormous and the subtitle small above it.
-Pick varied layout arrangements so this deck does not look like a standard list template.
 Ink on bg must be easy to read. Do not use Inter, Roboto, Open Sans, Lato, or Montserrat.
 Unique seed: ${Date.now()}-${Math.random().toString(36).slice(2, 8)}
 `;

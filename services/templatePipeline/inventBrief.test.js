@@ -41,5 +41,11 @@ assert.throws(
 const brief = parseBrief(raw("Fraunces", "Source Sans 3"), structure, plan);
 assert.strictEqual(brief.fonts.display, "Fraunces");
 assert.strictEqual(brief.fonts.text, "Source Sans 3");
+assert.strictEqual(brief.list, undefined);
+assert.strictEqual(brief.slides, undefined);
+
+const lower = parseBrief(raw("fraunces", "source sans 3"), structure, plan);
+assert.strictEqual(lower.fonts.display, "fraunces");
+assert.strictEqual(lower.fonts.text, "source sans 3");
 
 console.log("inventBrief font test passed");
