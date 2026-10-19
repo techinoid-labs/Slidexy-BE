@@ -1,4 +1,7 @@
-const { textGenModel } = require("../utils/geminiModels");
+const { textGenModel, qualityGenModel } = require("../utils/geminiModels");
+
+// Quality tier: this service produces in-editor AI text rewriting, i.e. copy the user reads.
+// The cheap model agrees with a detailed prompt and then ignores it.
 
 const promptMap = {
   longer: ({ title, bullets }) =>
@@ -68,7 +71,7 @@ async function generateTextEdits({
 
   let result;
   try {
-    result = await textGenModel.generateContent(prompt);
+    result = await qualityGenModel.generateContent(prompt);
   } catch (apiError) {
     console.error(`Error from Gemini API for action '${action}':`, apiError);
     throw new Error("Failed to get response from AI model.");

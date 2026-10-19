@@ -1,4 +1,4 @@
-const { textGenModel } = require("../utils/geminiModels");
+const { textGenModel, qualityGenModel } = require("../utils/geminiModels");
 const { v4: uuidv4 } = require("uuid");
 
 // ─── Shared domain taxonomy, palettes, visual templates, and fallback data ───
@@ -444,10 +444,21 @@ Generate exactly ${slideCount} slides that tell a compelling story:`;
         }
 
         const currentTemperature = Math.max(0.2, 0.9 - attempt * 0.3);
-        const result = await textGenModel.generateContent({
-          contents: [{ role: "user", parts: Array.isArray(generationInput) ? generationInput : [{ text: generationInput }] }],
-          generationConfig: { temperature: currentTemperature }
-        });
+
+        // Quality tier: this is the copy the user reads, and the prompt above
+        // carries a dozen specific rules. A small model agrees with the rules
+        // and then writes generically anyway.
+        //
+        // Temperature goes through `opts`, not `generationConfig`: the
+        // OpenRouter path normalises `contents` and drops everything else, so
+        // the cool-down on retries was silently doing nothing.
+        const result = await qualityGenModel.generateContent(
+          {
+            contents: [{ role: "user", parts: Array.isArray(generationInput) ? generationInput : [{ text: generationInput }] }],
+            generationConfig: { temperature: currentTemperature },
+          },
+          { temperature: currentTemperature }
+        );
         const raw = result.response?.candidates?.[0]?.content?.parts?.[0]?.text || "";
         lastRawResponse = raw;
 

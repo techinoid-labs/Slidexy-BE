@@ -78,6 +78,8 @@ const getPresentationHandler = async (req, res) => {
       _id: presentation._id,
       presentation_id: presentation.presentation_id,
       topic: presentation.topic,
+      title: presentation.title,
+      block_template_id: presentation.block_template_id,
       slides: sanitizedSlides,
       meta: presentation.meta,
       user: presentation.user,
@@ -163,10 +165,18 @@ const createPresentationHandler = async (req, res) => {
 };
 
 //UPDATED: Update presentation with better validation and error handling
+/** First heading text inside a block spec, if it has one. */
+function headingOf(spec) {
+  if (!spec || !Array.isArray(spec.blocks)) return null;
+  const h = spec.blocks.find((b) => b && b.type === "heading");
+  const text = h && h.title && h.title.text;
+  return typeof text === "string" && text.trim() ? text.trim() : null;
+}
+
 const updatePresentationHandler = async (req, res) => {
   try {
     const { presentation_id } = req.params;
-    const { slides } = req.body;
+    const { slides, title, block_template_id } = req.body;
 
     console.log(`Updating presentation ${presentation_id} with ${slides?.length || 0} slides`);
 
@@ -194,18 +204,44 @@ const updatePresentationHandler = async (req, res) => {
       return res.status(404).json({ error: "Presentation not found" });
     }
 
+    // Ownership. A deck created before accounts existed has no owner, so the
+    // first signed-in user to save it claims it; after that only they can.
+    if (presentation.user && String(presentation.user) !== String(req.userId)) {
+      return res.status(403).json({ error: "This presentation belongs to another account" });
+    }
+    if (!presentation.user) {
+      presentation.user = req.userId;
+    }
+
     // Ensure quote slides have elements populated before updating
     const sanitizedSlides = ensureQuoteSlideElements(slides);
 
     // Update slides with metadata
-    presentation.slides = sanitizedSlides.map((slide, index) => ({
-      ...slide,
-      slide_number: index + 1,
-      total_slides: sanitizedSlides.length,
-      updated_at: new Date(),
-    }));
+    presentation.slides = sanitizedSlides.map((slide, index) => {
+      const next = {
+        ...slide,
+        slide_number: index + 1,
+        total_slides: sanitizedSlides.length,
+        updated_at: new Date(),
+      };
+
+      // A block slide keeps its heading inside block_spec. Mirror it into
+      // slide_title so deck lists, search and the old export path still have
+      // something to show.
+      const heading = headingOf(next.block_spec);
+      if (heading) {
+        next.slide_title = { text: heading };
+      }
+      return next;
+    });
     presentation.slide_count = sanitizedSlides.length;
+    if (typeof title === "string") presentation.title = title;
+    if (typeof block_template_id === "string" || block_template_id === null) {
+      presentation.block_template_id = block_template_id;
+    }
+    presentation.updatedAt = new Date();
     presentation.updated_at = new Date();
+    presentation.markModified("slides");
 
     await presentation.save();
 
@@ -215,7 +251,9 @@ const updatePresentationHandler = async (req, res) => {
       success: true,
       presentation_id: presentation.presentation_id,
       slides: presentation.slides,
-      updated_at: presentation.updated_at,
+      title: presentation.title,
+      block_template_id: presentation.block_template_id,
+      updated_at: presentation.updatedAt,
     });
   } catch (err) {
     console.error("Update error:", err);
@@ -231,8 +269,39 @@ const updatePresentationHandler = async (req, res) => {
   }
 };
 
+/**
+ * The signed-in user's decks, newest first.
+ *
+ * Returns a summary per deck rather than the slides: a deck list that ships
+ * every slide of every deck gets slow the moment someone has twenty of them.
+ */
+const listMyPresentationsHandler = async (req, res) => {
+  try {
+    const decks = await Presentation.find({ user: req.userId })
+      .select("presentation_id topic title slide_count block_template_id createdAt updatedAt")
+      .sort({ updatedAt: -1 })
+      .limit(200)
+      .lean();
+
+    return res.json({
+      presentations: decks.map((d) => ({
+        presentation_id: d.presentation_id,
+        title: d.title || d.topic || "Untitled presentation",
+        slide_count: d.slide_count || 0,
+        block_template_id: d.block_template_id || null,
+        created_at: d.createdAt,
+        updated_at: d.updatedAt,
+      })),
+    });
+  } catch (err) {
+    console.error("List presentations error:", err);
+    return res.status(500).json({ error: "Server error" });
+  }
+};
+
 module.exports = {
   getPresentationHandler,
+  listMyPresentationsHandler,
   exportPresentationHandler,
   createPresentationHandler,
   updatePresentationHandler,

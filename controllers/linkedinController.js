@@ -345,3 +345,68 @@ exports.shareCustomContent = async (req, res) => {
     });
   }
 };
+
+/**
+ * Share a whole deck to LinkedIn as a document carousel.
+ *
+ * The PDF arrives from the browser rather than being rendered here: the
+ * editor already produces a pixel-accurate PDF of exactly what the user is
+ * looking at, and re-rendering server-side would be a second implementation
+ * that can disagree with the first.
+ *
+ * Expects multipart/form-data with a `file` part (the PDF) plus `message`
+ * and optional `title`.
+ */
+exports.shareDeckAsDocument = async (req, res) => {
+  try {
+    const userId = req.userId;
+    const { message, title } = req.body;
+    const file = req.file;
+
+    if (!file || !file.buffer?.length) {
+      return res.status(400).json({ error: "A PDF file is required" });
+    }
+    if (file.mimetype !== "application/pdf") {
+      return res.status(400).json({ error: "The file must be a PDF" });
+    }
+    // LinkedIn rejects documents over 100MB and anything past 300 pages.
+    if (file.buffer.length > 100 * 1024 * 1024) {
+      return res.status(413).json({ error: "The PDF is larger than LinkedIn's 100MB limit" });
+    }
+    if (!message || !String(message).trim()) {
+      return res.status(400).json({ error: "Post text is required" });
+    }
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    if (!user.linkedinConnected || !user.linkedinAccessToken) {
+      return res.status(400).json({ error: "LinkedIn account not connected" });
+    }
+    if (user.linkedinTokenExpiry && new Date(user.linkedinTokenExpiry) < new Date()) {
+      return res.status(401).json({ error: "LinkedIn token expired. Please reconnect." });
+    }
+
+    const personUrn = await linkedinService.getPersonUrn(user.linkedinAccessToken);
+    const shareResult = await linkedinService.shareDocumentPost(
+      user.linkedinAccessToken,
+      personUrn,
+      String(message).trim(),
+      file.buffer,
+      title || "Presentation"
+    );
+
+    return res.json({
+      success: true,
+      message: "Deck shared to LinkedIn",
+      postId: shareResult.postId,
+    });
+  } catch (error) {
+    console.error("LinkedIn document share error:", error);
+    return res.status(500).json({
+      error: "Failed to share the deck to LinkedIn",
+      detail: error.message,
+    });
+  }
+};

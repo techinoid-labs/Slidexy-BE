@@ -7,25 +7,15 @@ const swaggerUi = require("swagger-ui-express");
 const YAML = require("yamljs");
 
 // Routes
-const infographicRoute = require("./routes/infographicsV2"); // ← Your V2 route with file support
-const explainerInfographicRoute = require("./routes/explainerInfographicRoutes");
-const dynamicInfographicRoute = require("./routes/dynamicInfographics");
 const blogRoutes = require("./routes/blogRoutes");
-const websiteDownloadRoutes = require("./routes/websiteZipDownload");
 
 const userRoutes = require("./routes/user");
 const aiChatRoutes = require("./routes/aiChatRoutes");
 const contactRoutes = require("./routes/contact");
 const planRoutes = require("./routes/planRoutes");
-const vidGenImg = require("./routes/vidGenImg");
 const generateImageRoute = require("./routes/generateImage");
 
 const templateRoutes = require("./routes/templateRoutes");
-const rawTextDeckRoutes = require("./routes/rawTextDeckRoutes");
-const imageDeckRoutes = require("./routes/imageDeckRoutes");
-const stylesheetDeckRoutes = require("./routes/stylesheetDeckRoutes");
-const unifiedWebDeckRoutes = require("./routes/unifiedWebDeckRoutes");
-const websiteGeneratorRoutes = require("./routes/websiteGeneratorRoutes");
 const linkedinRoutes = require("./routes/linkedinRoutes");
 const telegramRoutes = require("./routes/telegramRoutes");
 const redditRoutes = require("./routes/redditRoutes");
@@ -186,11 +176,7 @@ const uploadMiddleware = (req, res, next) => {
 // Core APIs
 app.use("/api/users", userRoutes);
 app.use("/api/presentations", presentationRoutes);
-app.use("/api/infographic", infographicRoute); // ← Critical: apply multer here
-app.use("/api/explainer-infographic", explainerInfographicRoute);
-app.use("/api/dynamicInfographic", dynamicInfographicRoute);
 app.use("/api/blogs", blogRoutes);
-app.use("/api/vidGenImg", vidGenImg);
 app.use("/api", generateImageRoute);
 
 // Docs
@@ -206,17 +192,8 @@ app.use("/api/plans", planRoutes);
 
 // Templates & Decks
 app.use("/api/templates", templateRoutes);
-app.use("/api/raw-text-deck", rawTextDeckRoutes);
-app.use("/api/image-deck", imageDeckRoutes);
-app.use("/api/stylesheet-deck", stylesheetDeckRoutes);
-app.use("/api/unified-web-deck", unifiedWebDeckRoutes);
-app.use("/api/website-generator", websiteGeneratorRoutes);
-app.use("/api/website-zip-download", websiteDownloadRoutes);
 
 // Website Editor & Dynamic Versions
-app.use("/api/website-editor", require("./routes/websiteEditorRoutes"));
-app.use("/api/dynamic-website", require("./routes/dynamicWebsiteRoutes"));
-app.use("/api/improved-dynamic", require("./routes/improvedDynamicWebsiteRoutes"));
 
 // Social Integrations
 app.use("/api/linkedin", linkedinRoutes);

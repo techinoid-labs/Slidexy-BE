@@ -34,7 +34,10 @@ const slideSchema = new mongoose.Schema(
       type: new mongoose.Schema({
         text: { type: String, required: true }
       }),
-      required: true
+      // Not required: a block slide keeps its heading inside `block_spec`.
+      // The controller mirrors that heading here so list views and search
+      // keep working, but an empty one must not reject the whole save.
+      required: false
     },
     subtitle: {
       type: new mongoose.Schema({
@@ -42,6 +45,19 @@ const slideSchema = new mongoose.Schema(
       })
     },
     elements: { type: mongoose.Schema.Types.Mixed, default: [] },
+
+    /**
+     * Block-template slide document: `{ layout, theme, blocks[] }`.
+     *
+     * Mixed rather than a spelled-out schema on purpose. The block library
+     * gains types regularly, and Mongoose silently DROPS any path it does
+     * not know -- which would save a template slide as an empty shell and
+     * lose the user's work with no error anywhere.
+     */
+    block_spec: { type: mongoose.Schema.Types.Mixed, default: null },
+
+    /** Pre-generated legacy variants, kept so old decks still open. */
+    layouts: { type: mongoose.Schema.Types.Mixed, default: undefined },
     quote: { type: String, default: null },
     author: { type: String, default: null },
     context: { type: String, default: null },
@@ -58,7 +74,10 @@ const slideSchema = new mongoose.Schema(
     created_at: { type: Date, default: Date.now },
     updated_at: { type: Date, default: Date.now }
   },
-  { _id: false }
+  // strict:false keeps unknown slide fields instead of dropping them, so a
+  // frontend that adds a field does not silently lose data before the
+  // schema catches up.
+  { _id: false, strict: false }
 );
 
 const presentationSchema = new mongoose.Schema({
@@ -72,6 +91,10 @@ const presentationSchema = new mongoose.Schema({
   slides: [slideSchema],
   slide_count: { type: Number, required: true },
   template_used: { type: String, default: "text-only" },
+  /** Catalogue id of the block template applied to the deck, if any. */
+  block_template_id: { type: String, default: null },
+  /** Shown in the top bar and used as the export filename. */
+  title: { type: String, default: null },
   art_style: { type: String, default: "modern illustration with characters" },
   art_palette: [{ type: String }],
   createdAt: { type: Date, default: Date.now },

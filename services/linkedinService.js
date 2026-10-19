@@ -142,6 +142,129 @@ class LinkedInService {
   }
 
   /**
+   * Upload a PDF as a LinkedIn *document*.
+   *
+   * Same two-step dance as an image, but with the document recipe. A
+   * document post is what LinkedIn renders as a swipeable carousel, which
+   * is the format that actually travels on the feed -- a single slide
+   * posted as a flat image does not.
+   *
+   * @param {string} accessToken
+   * @param {string} personUrn
+   * @param {Buffer} pdfBuffer
+   * @returns {Promise<string>} the document asset URN
+   */
+  async uploadDocument(accessToken, personUrn, pdfBuffer) {
+    try {
+      const registerResponse = await axios.post(
+        `${this.baseURL}/assets?action=registerUpload`,
+        {
+          registerUploadRequest: {
+            recipes: ["urn:li:digitalmediaRecipe:feedshare-document"],
+            owner: personUrn,
+            serviceRelationships: [
+              {
+                relationshipType: "OWNER",
+                identifier: "urn:li:userGeneratedContent",
+              },
+            ],
+          },
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+            "X-Restli-Protocol-Version": "2.0.0",
+          },
+        }
+      );
+
+      const uploadUrl =
+        registerResponse.data.value.uploadMechanism[
+          "com.linkedin.digitalmedia.uploading.MediaUploadHttpRequest"
+        ].uploadUrl;
+      const asset = registerResponse.data.value.asset;
+
+      await axios.put(uploadUrl, pdfBuffer, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/octet-stream",
+        },
+        maxBodyLength: Infinity,
+        maxContentLength: Infinity,
+      });
+
+      return asset;
+    } catch (error) {
+      console.error(
+        "LinkedIn document upload error:",
+        error.response?.data || error.message
+      );
+      throw new Error("Failed to upload document to LinkedIn");
+    }
+  }
+
+  /**
+   * Post a deck as a swipeable document carousel.
+   *
+   * @param {string} accessToken
+   * @param {string} personUrn
+   * @param {string} text   post commentary
+   * @param {Buffer} pdfBuffer
+   * @param {string} title  shown on the carousel card; LinkedIn truncates
+   *                        it in the feed, so keep it short
+   */
+  async shareDocumentPost(accessToken, personUrn, text, pdfBuffer, title) {
+    try {
+      const assetUrn = await this.uploadDocument(accessToken, personUrn, pdfBuffer);
+
+      const shareResponse = await axios.post(
+        `${this.baseURL}/ugcPosts`,
+        {
+          author: personUrn,
+          lifecycleState: "PUBLISHED",
+          specificContent: {
+            "com.linkedin.ugc.ShareContent": {
+              shareCommentary: { text },
+              shareMediaCategory: "DOCUMENT",
+              media: [
+                {
+                  status: "READY",
+                  media: assetUrn,
+                  title: { text: (title || "Presentation").slice(0, 100) },
+                },
+              ],
+            },
+          },
+          visibility: {
+            "com.linkedin.ugc.MemberNetworkVisibility": "PUBLIC",
+          },
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+            "X-Restli-Protocol-Version": "2.0.0",
+          },
+        }
+      );
+
+      return {
+        success: true,
+        postId: shareResponse.data.id || shareResponse.headers["x-restli-id"],
+      };
+    } catch (error) {
+      console.error(
+        "LinkedIn document share error:",
+        error.response?.data || error.message
+      );
+      throw new Error(
+        error.response?.data?.message || "Failed to share document to LinkedIn"
+      );
+    }
+  }
+
+  /**
    * Share a post with image on LinkedIn
    * @param {string} accessToken - LinkedIn access token
    * @param {string} personUrn - LinkedIn person URN (urn:li:person:XXXXX)
