@@ -22,6 +22,8 @@ const FILES = {
   "Manrope": "manrope.ttf",
   "Instrument Serif": "instrument-serif.ttf",
   "DM Serif Display": "dm-serif-display.ttf",
+  "Antonio": "antonio.ttf",
+  "Archivo Black": "archivo-black.ttf",
   "Source Sans 3": "source-sans-3.ttf",
   "Nunito Sans": "nunito-sans.ttf",
   "Figtree": "figtree.ttf",
@@ -30,6 +32,12 @@ const FILES = {
   "Spectral": "spectral.ttf",
   "IBM Plex Sans": "ibm-plex-sans.ttf",
   "IBM Plex Mono": "ibm-plex-mono.ttf",
+  "Poppins": "poppins.ttf",
+  "Montserrat": "montserrat.ttf",
+  "Inter": "inter.ttf",
+  "Open Sans": "open-sans.ttf",
+  "Lato": "lato.ttf",
+  "Roboto": "roboto.ttf",
 };
 
 const loaded = new Map();

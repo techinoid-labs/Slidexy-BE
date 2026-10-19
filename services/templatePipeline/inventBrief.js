@@ -212,7 +212,7 @@ Use split when one half is color and type and the other half is only the photogr
 Use browser when the subject is software or the web.
 Use type when one huge word should fill the slide.
 Use stack when the title should be enormous and the subtitle small above it.
-Ink on bg must be easy to read. Do not use Inter, Roboto, Open Sans, Lato, or Montserrat.
+Ink on bg must be easy to read. For the display font, do not use Inter, Roboto, Open Sans, Lato, Montserrat, or Poppins. Prefer a distinctive display face — condensed grotesque, heavy sans, or a striking serif.
 Unique seed: ${Date.now()}-${Math.random().toString(36).slice(2, 8)}
 `;
   let lastError = null;

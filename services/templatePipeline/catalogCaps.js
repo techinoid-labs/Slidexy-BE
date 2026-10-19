@@ -17,10 +17,12 @@ const DESIGN_LANGUAGES = ["editorial", "photographic", "technical", "geometric",
 const DISPLAY_FONTS = [
   "Fraunces", "Newsreader", "Libre Baskerville", "Source Serif 4", "Literata",
   "Outfit", "Familjen Grotesk", "Space Grotesk", "Syne", "Manrope", "Instrument Serif", "DM Serif Display",
+  "Antonio", "Archivo Black",
 ];
 const TEXT_FONTS = [
   "Source Sans 3", "Nunito Sans", "Figtree", "Literata", "Newsreader",
   "Source Serif 4", "Outfit", "Manrope", "Sora", "Work Sans", "Spectral", "IBM Plex Sans",
+  "Poppins", "Montserrat", "Inter", "Open Sans", "Lato", "Roboto",
 ];
 
 const AXES = ["displayFont", "textFont", "fontPairing", "cover", "groundMode", "paletteBucket", "designLanguage"];
