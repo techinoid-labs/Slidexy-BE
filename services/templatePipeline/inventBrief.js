@@ -7,6 +7,7 @@
 const fs = require("fs");
 const path = require("path");
 const { biasedStructure, tasteHints, COVER_STYLES, loadTaste, rebuildTasteFromDecks } = require("./learn");
+const { readCatalog, planGeneration, applyPlan, paletteBucket } = require("./catalogCaps");
 
 function seedTasteIfNeeded() {
   const taste = loadTaste();
@@ -188,13 +189,17 @@ const SUBJECT_SEEDS = [
 async function inventBrief() {
   seedTasteIfNeeded();
   const structure = biasedStructure();
+  const plan = planGeneration(readCatalog());
   const subject = SUBJECT_SEEDS[Math.floor(Math.random() * SUBJECT_SEEDS.length)];
   const hints = tasteHints();
   const prompt = `
 Invent one presentation template about this subject: ${subject}.
 It must feel specific to that subject, not a generic business deck. Do not invent space, cosmic, or galaxy themes.
 ${hints}
-Prefer cover style "${structure.preferredCover}" unless another cover fits the subject better.
+The cover is already chosen: "${plan.cover}".
+The fonts are already chosen: display "${plan.displayFont}", text "${plan.textFont}".
+The design language is "${plan.designLanguage}". Let the subject and palette suit it.
+The palette must read as ${plan.paletteBucket} (light or dark ground, warm, cool, or neutral accent).
 Return only JSON with this shape:
 {
   "idea": "two or three words",
@@ -216,9 +221,9 @@ Return only JSON with this shape:
     "close": "left" or "right" or "center" or "panel"
   },
   "palette": {"bg":"#","surface":"#","card":"#","ink":"#","muted":"#","rule":"#","accent":"#","accent2":"#","onAccent":"#"},
-  "fonts": {"display":"a Google font", "text":"a different Google font"}
+  "fonts": {"display":"${plan.displayFont}", "text":"${plan.textFont}"}
 }
-The deck structure is already fixed. Do not invent slides, density, or alignment.
+The deck structure, cover, and fonts are already fixed. Do not invent slides, density, alignment, or a different font.
 Fixed slides in order: ${JSON.stringify(structure.slides)}
 Fixed density: ${structure.density}
 Fixed align: ${structure.align}
@@ -236,7 +241,10 @@ Unique seed: ${Date.now()}-${Math.random().toString(36).slice(2, 8)}
   for (let attempt = 0; attempt < 2; attempt += 1) {
     try {
       const raw = await askModel(prompt);
-      const brief = parseBrief(raw, structure);
+      const brief = applyPlan(parseBrief(raw, structure), plan);
+      if (paletteBucket(brief.palette.bg, brief.palette.accent) !== plan.paletteBucket) {
+        throw new Error("The palette could not be moved into an open catalog bucket.");
+      }
       brief.photo = await searchPhoto(brief.photoQuery);
       return brief;
     } catch (error) {

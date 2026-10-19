@@ -1,13 +1,15 @@
 /**
  * Builds an original deck. The model invents the idea, palette, fonts,
- * cover style, and how each body slide is arranged. Structure (which
- * slides, density, align) is biased by Ship/Discard taste.
+ * and cover. A reasoning step then gives each body slide a job and a
+ * composition for that job. Cover and close stay with the idea.
  */
 
 const { CANVAS } = require("./deckSchema");
 const { antiTells } = require("./antiTells");
 const { inventBrief } = require("./inventBrief");
 const { validateDeck } = require("./generateDeck");
+const { readCatalog } = require("./catalogCaps");
+const { planReasoning, previewFor, buildStrategy } = require("./reasonDeck");
 
 function mulberry32(seed) {
   let a = seed >>> 0;
@@ -86,7 +88,7 @@ async function composeDeck(seed) {
   const radius = pick(rng, [0, 8, 28]);
   const imageSplit = pick(rng, [0.38, 0.48, 0.58, 0.68]);
   const typeScale = densityType(idea.density, pick(rng, [0.88, 1, 1.14]));
-  const groundMode = Math.floor(rng() * 2);
+  const groundMode = idea.groundMode || "noise";
 
   const m = margin;
   const r = radius;
@@ -106,14 +108,30 @@ async function composeDeck(seed) {
   const titleW = idea.align === "asymmetric" ? Math.round(inner * 0.78) : idea.align === "center" ? inner : Math.min(inner, 1200);
 
   const bgShape = () => shape("bg", 0, 0, W, H, bg, 0);
-  const wash = () => (groundMode === 0
-    ? decor("grain", 0, 0, W, H, "noise", { density: 0.4, dotSize: 1.3, seed: numeric % 40 }, "{color.ink}", 1, 0.12)
-    : decor("wash", 0, 0, W, H, "meshGradient", {
+  const wash = () => {
+    if (groundMode === "flat") return null;
+    if (groundMode === "noise") {
+      return decor("grain", 0, 0, W, H, "noise", { density: 0.45, dotSize: 1.4, seed: numeric % 40 }, "{color.ink}", 1, 0.14);
+    }
+    if (groundMode === "dotGrid") {
+      return decor("wash", 0, 0, W, H, "dotGrid", { spacing: 28, dotSize: 1.7 }, "{color.ink}", 1, 0.22);
+    }
+    if (groundMode === "lineGrid") {
+      return decor("wash", 0, 0, W, H, "lineGrid", { spacing: 56, strokeWidth: 1 }, "{color.ink}", 1, 0.16);
+    }
+    if (groundMode === "glow") {
+      return decor("wash", 0, 0, W, H, "glow", { centerX: 0.82, centerY: 0.18, radius: 0.72 }, "{color.accent}", 1, 0.45);
+    }
+    return decor("wash", 0, 0, W, H, "meshGradient", {
       colors: ["{color.accent}", "{color.accent2}"],
       points: [[0.08, 0.12], [0.92, 0.2], [0.45, 1.05]],
       radius: 0.65,
-    }, "{color.accent}", 1, 0.28));
-  const ground = () => [bgShape(), wash()];
+    }, "{color.accent}", 1, 0.28);
+  };
+  const ground = () => {
+    const layer = wash();
+    return layer ? [bgShape(), layer] : [bgShape()];
+  };
 
   function photo(id, x, y, w, h, url, z) {
     return {
@@ -593,13 +611,20 @@ async function composeDeck(seed) {
     layoutClosingCta: ["Begin here", ["Take the first step"]],
   };
 
-  const sequence = ["layoutTitleFocus", ...idea.slides, "layoutClosingCta"];
+  const reasoning = planReasoning(readCatalog(), rng);
+  const kit = {
+    ground, shape, text, photo, item, m, r, W, H, D, F,
+    ink, muted, accent, card, bg, on, photoUrl: idea.photo,
+  };
+  const sequence = ["layoutTitleFocus", ...reasoning.map((step) => step.layoutId), "layoutClosingCta"];
   const id = "gen-" + String(numeric).padStart(4, "0");
   const taste = {
     cover: idea.cover,
     density: idea.density,
     align: idea.align,
-    slides: idea.slides.slice(),
+    slides: reasoning.map((step) => step.layoutId),
+    groundMode,
+    designLanguage: idea.designLanguage || "editorial",
   };
   const deck = {
     version: 2,
@@ -611,11 +636,12 @@ async function composeDeck(seed) {
     visualMode: "hybrid",
     seed: numeric,
     taste,
+    reasoning,
     geometry: [
       idea.cover, idea.density, idea.align, idea.list, idea.timeline, idea.stat,
       idea.compare, idea.imageSide, idea.imageMode, idea.three, idea.team, idea.text, idea.quote, idea.close,
-      margin, radius, imageSplit, groundMode,
-      idea.name, idea.slides.join("-"),
+      margin, radius, imageSplit, groundMode, idea.designLanguage || "editorial",
+      idea.name, reasoning.map((step) => step.strategy).join("~"),
     ].join("."),
     tokens: {
       color: {
@@ -656,15 +682,20 @@ async function composeDeck(seed) {
       bodyItalic: false,
     },
     layoutSequence: sequence.slice(),
-    layouts: Object.fromEntries(sequence.map((layoutId) => [layoutId, layout(layoutId, builders[layoutId]())])),
+    layouts: Object.fromEntries(sequence.map((layoutId) => {
+      if (layoutId === "layoutTitleFocus") return [layoutId, layout(layoutId, ideaCover())];
+      if (layoutId === "layoutClosingCta") return [layoutId, layout(layoutId, close())];
+      const step = reasoning.find((item) => item.layoutId === layoutId);
+      return [layoutId, layout(layoutId, buildStrategy(step.strategy, kit))];
+    })),
     previewSlides: sequence.map((layoutId, index) => {
-      const copy = previewCopy[layoutId] || ["Slide", ["Content"]];
-      const bullets = idea.list === "short" && layoutId === "layoutAgendaList" ? copy[1].slice(0, 3) : copy[1];
+      const step = reasoning.find((item) => item.layoutId === layoutId);
+      const copy = step ? previewFor(step.strategy) : { title: (previewCopy[layoutId] || ["Slide"])[0], bullets: (previewCopy[layoutId] || ["Slide", ["Content"]])[1] };
       return {
         id: id + "-p" + (index + 1),
         layout: layoutId,
-        title: copy[0],
-        bullets,
+        title: copy.title,
+        bullets: copy.bullets,
       };
     }),
   };

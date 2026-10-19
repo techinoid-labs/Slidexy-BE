@@ -12,7 +12,7 @@ function ensureDir() {
 
 function files() {
   ensureDir();
-  return fs.readdirSync(DIR).filter((name) => name.endsWith(".json") && name !== "rejects.json");
+  return fs.readdirSync(DIR).filter((name) => name.endsWith(".json") && name !== "rejects.json" && name !== "taste.json");
 }
 
 function readAll() {
