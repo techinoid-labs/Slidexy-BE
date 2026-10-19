@@ -58,7 +58,19 @@ function fontSize(tokens, value) {
 }
 
 function widthOf(family, text, size) {
-  return fontOf(family).getAdvanceWidth(String(text), size);
+  const font = fontOf(family);
+  const value = String(text);
+  try {
+    return font.getAdvanceWidth(value, size);
+  } catch (error) {
+    const scale = size / font.unitsPerEm;
+    let width = 0;
+    for (const char of value) {
+      const glyph = font.charToGlyph(char);
+      width += (glyph.advanceWidth || 0) * scale;
+    }
+    return width;
+  }
 }
 
 function overflows(text, boxWidth, boxHeight, size, lineHeight, family) {

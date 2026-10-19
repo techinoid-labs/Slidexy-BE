@@ -78,10 +78,10 @@ function densityType(density, base) {
   return base;
 }
 
-async function composeDeck(seed) {
+async function composeDeck(seed, supplied) {
   const numeric = Number.isFinite(Number(seed)) ? (Number(seed) >>> 0) || 1 : 1;
   const rng = mulberry32(numeric);
-  const idea = await inventBrief();
+  const idea = supplied || await inventBrief();
   const palette = idea.palette;
   const fonts = idea.fonts;
   const margin = densityMargin(idea.density, pick(rng, [72, 96, 128]));
@@ -255,8 +255,7 @@ async function composeDeck(seed) {
     taste,
     reasoning,
     geometry: [
-      idea.cover, idea.density, idea.align, idea.list, idea.timeline, idea.stat,
-      idea.compare, idea.imageSide, idea.imageMode, idea.three, idea.team, idea.text, idea.quote, idea.close,
+      idea.cover, idea.density, idea.align, idea.close,
       margin, radius, imageSplit, groundMode, idea.designLanguage || "editorial",
       idea.name, reasoning.map((step) => step.strategy).join("~"),
     ].join("."),
