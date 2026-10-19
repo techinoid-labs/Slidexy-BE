@@ -1,12 +1,13 @@
 /**
  * Learns from Ship / Discard. Next templates lean toward covers, densities,
  * alignments, and slide kinds that were shipped, and away from discarded ones.
- * New decks store strategy names on taste.slides. Those names are not role
- * ids, so they are not counted in the old role bucket.
+ * New decks store strategy names on taste.slides. Those names are counted
+ * in taste.strategy. Role ids stay in taste.slide.
  */
 
 const fs = require("fs");
 const path = require("path");
+const { STRATEGIES } = require("./reasonDeck");
 
 const DIR = path.join(__dirname, "..", "..", "generated-templates");
 const TASTE_FILE = path.join(DIR, "taste.json");
@@ -23,6 +24,7 @@ const BODY_SLIDES = [
   "layoutQuoteBanner",
 ];
 
+const STRATEGY_NAMES = Object.values(STRATEGIES).flat();
 const COVER_STYLES = ["photo", "band", "split", "browser", "type", "stack"];
 const DENSITIES = ["airy", "balanced", "dense"];
 const ALIGNS = ["left", "center", "asymmetric"];
@@ -37,6 +39,7 @@ function emptyTaste() {
     density: emptyBucket(DENSITIES),
     align: emptyBucket(ALIGNS),
     slide: emptyBucket(BODY_SLIDES),
+    strategy: emptyBucket(STRATEGY_NAMES),
     reviews: 0,
   };
 }
@@ -51,7 +54,7 @@ function loadTaste() {
   try {
     const data = JSON.parse(fs.readFileSync(TASTE_FILE, "utf8"));
     const base = emptyTaste();
-    ["cover", "density", "align", "slide"].forEach((group) => {
+    ["cover", "density", "align", "slide", "strategy"].forEach((group) => {
       Object.keys(base[group]).forEach((key) => {
         base[group][key] = Number(data[group] && data[group][key]) || 0;
       });
@@ -90,6 +93,13 @@ function bump(bucket, key, delta) {
   bucket[key] = (bucket[key] || 0) + delta;
 }
 
+function bumpSlides(taste, slides, delta) {
+  (slides || []).forEach((id) => {
+    if (id in taste.strategy) bump(taste.strategy, id, delta);
+    else bump(taste.slide, id, delta);
+  });
+}
+
 function recordReview(deck, status) {
   if (status !== "ship" && status !== "discard") return loadTaste();
   const taste = loadTaste();
@@ -98,7 +108,7 @@ function recordReview(deck, status) {
   bump(taste.cover, feat.cover, delta);
   bump(taste.density, feat.density, delta);
   bump(taste.align, feat.align, delta);
-  feat.slides.forEach((id) => bump(taste.slide, id, delta));
+  bumpSlides(taste, feat.slides, delta);
   taste.reviews += 1;
   saveTaste(taste);
   return taste;
@@ -114,7 +124,7 @@ function rebuildTasteFromDecks(decks) {
     bump(taste.cover, feat.cover, delta);
     bump(taste.density, feat.density, delta);
     bump(taste.align, feat.align, delta);
-    feat.slides.forEach((id) => bump(taste.slide, id, delta));
+    bumpSlides(taste, feat.slides, delta);
     taste.reviews += 1;
   });
   saveTaste(taste);
@@ -180,17 +190,22 @@ function tasteHints() {
   const avoidCover = bottomKeys(taste.cover, -1).slice(0, 2);
   const preferSlide = topKeys(taste.slide, 1).slice(0, 3);
   const avoidSlide = bottomKeys(taste.slide, -1).slice(0, 3);
+  const preferStrategy = topKeys(taste.strategy || {}, 1).slice(0, 3);
+  const avoidStrategy = bottomKeys(taste.strategy || {}, -1).slice(0, 3);
   const lines = ["Review taste from Ship/Discard (follow when it fits the subject):"];
   if (preferCover.length) lines.push("Prefer cover styles: " + preferCover.join(", ") + ".");
   if (avoidCover.length) lines.push("Avoid cover styles: " + avoidCover.join(", ") + ".");
   if (preferSlide.length) lines.push("Slide kinds that were shipped often: " + preferSlide.join(", ") + ".");
   if (avoidSlide.length) lines.push("Slide kinds that were discarded often: " + avoidSlide.join(", ") + ".");
+  if (preferStrategy.length) lines.push("Compositions that were shipped often: " + preferStrategy.join(", ") + ".");
+  if (avoidStrategy.length) lines.push("Compositions that were discarded often: " + avoidStrategy.join(", ") + ".");
   lines.push("Still invent a fresh subject and palette. Do not copy a past template.");
   return lines.join("\n");
 }
 
 module.exports = {
   BODY_SLIDES,
+  STRATEGY_NAMES,
   COVER_STYLES,
   featuresFromDeck,
   recordReview,
