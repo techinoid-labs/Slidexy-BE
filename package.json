@@ -46,6 +46,7 @@
     "opentype.js": "^2.0.0",
     "p-limit": "^3.1.0",
     "pdf-parse": "^2.4.5",
+    "pptx-viewer-core": "^4.13.5",
     "pptxgenjs": "^4.0.1",
     "pptxtojson": "^2.2.0",
     "puppeteer": "^24.24.1",
