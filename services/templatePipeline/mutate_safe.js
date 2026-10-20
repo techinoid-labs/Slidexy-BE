@@ -269,6 +269,44 @@ function renderPptx(pptxFile, pngDir) {
     .map((name) => path.join(pngDir, name));
 }
 
+const REJECTED = path.join(ROOT, "docs", "template-pipeline", "rejected-variants.jsonl");
+
+async function reviewRendered(pngs, meta) {
+  const { reviewSlide } = require("./reviewer");
+  let kept = 0;
+  let rejected = 0;
+  for (const png of pngs) {
+    let verdict;
+    try {
+      verdict = await reviewSlide(png);
+    } catch (error) {
+      verdict = {
+        passed: false,
+        quality_score: 0,
+        issues: [error && error.message ? error.message : String(error)],
+      };
+    }
+    const record = {
+      seed: meta.seed,
+      operator: meta.operator,
+      png: path.relative(ROOT, png).replace(/\\/g, "/"),
+      passed: verdict.passed,
+      quality_score: verdict.quality_score,
+      issues: verdict.issues || [],
+      washed_out: verdict.washed_out,
+      legible: verdict.legible,
+      broken_layout: verdict.broken_layout,
+      model: verdict.model,
+    };
+    if (!verdict.passed) {
+      fs.appendFileSync(REJECTED, JSON.stringify(record) + "\n");
+      rejected += 1;
+    } else kept += 1;
+    console.log((verdict.passed ? "keep " : "reject ") + record.png + " " + verdict.quality_score);
+  }
+  return { kept, rejected };
+}
+
 function gray(file) {
   const img = new Image();
   img.src = fs.readFileSync(file);
@@ -366,6 +404,9 @@ async function runSeed(seedId) {
         row.scores = scores;
         row.mean = usable.length ? Math.round((usable.reduce((sum, score) => sum + score, 0) / usable.length) * 100) / 100 : null;
         row.slides = pngs.length;
+        const review = await reviewRendered(pngs, { seed: seedId, operator });
+        row.keptSlides = review.kept;
+        row.rejectedSlides = review.rejected;
       } catch (error) {
         row.renderError = error && error.message ? error.message : String(error);
       }
@@ -385,8 +426,28 @@ async function main() {
   console.log("done " + rows.length);
 }
 
+async function reviewExisting() {
+  const summary = [];
+  for (const seedId of Object.keys(SEEDS)) {
+    for (const operator of OPERATORS) {
+      const dir = path.join(ROOT, "docs", "template-pipeline", "safe-mutations", seedId, operator);
+      const pngs = fs.readdirSync(dir)
+        .filter((name) => name.toLowerCase().endsWith(".png"))
+        .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
+        .map((name) => path.join(dir, name));
+      console.log("review " + seedId + " " + operator);
+      const review = await reviewRendered(pngs, { seed: seedId, operator });
+      summary.push({ seed: seedId, operator, kept: review.kept, rejected: review.rejected });
+    }
+  }
+  const file = path.join(ROOT, "docs", "template-pipeline", "safe-mutations", "review.json");
+  fs.writeFileSync(file, JSON.stringify(summary, null, 2) + "\n");
+  console.log(JSON.stringify(summary));
+}
+
 if (require.main === module) {
-  main().catch((error) => {
+  const reviewOnly = process.argv.includes("--review");
+  (reviewOnly ? reviewExisting() : main()).catch((error) => {
     console.error(error && error.stack ? error.stack : error);
     process.exit(1);
   });

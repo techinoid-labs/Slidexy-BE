@@ -56,3 +56,39 @@ Every save reloaded with the same element count on every slide. No operator thre
 `scale_hero` multiplies the largest picture by 1.4 and clamps the origin. On both seeds that picture is larger than the slide after scaling, so it cannot sit fully inside. The changed slide is visible (health slide 7 SSIM 56.09, company slide 1 SSIM 41.08).
 
 Renders and the six PPTX files are in `docs/template-pipeline/safe-mutations/<seed>/`.
+
+## Phase 3: vision reviewer
+
+`services/templatePipeline/reviewer.js` sends the PNG and this prompt to a vision model. It does not change the slide. `passed` is true only when `legible` is true, `washed_out` is false, `broken_layout` is false, and `quality_score` is at least 0.6. A score returned as 1–100 is scaled into 0–1.
+
+The requested OpenRouter model was `deepseek/deepseek-v4-flash-vision-exp`. That call returned HTTP 402, insufficient credits. The reviewer then used Google `gemini-2.5-flash`:
+
+```js
+model.generateContent([
+  { text: prompt },
+  { inlineData: { mimeType: "image/png", data } },
+])
+```
+
+| Slide | passed | washed_out | quality_score |
+| --- | --- | --- | --- |
+| cinema-neon text mask, `docs/template-pipeline/creativity/cinema-neon/slide-01.png` | false | true | 0.3 |
+| health-medical highlight, `docs/template-pipeline/creativity/health-medical/slide-01.png` | true | false | 0.75 |
+
+The 0.6 gate rejects the washed cinema slide and passes the medical highlight. The medical score is also above 0.7.
+
+After `mutate_safe.js` renders a mutated PPTX, every PNG goes through the reviewer. A failure is appended to `docs/template-pipeline/rejected-variants.jsonl` and is not counted as kept. Of the 60 structural slides, 21 were rejected:
+
+| Seed | Operator | Kept | Rejected |
+| --- | --- | --- | --- |
+| health-medical | mirror_horizontal | 7 | 3 |
+| health-medical | swap_sides | 5 | 5 |
+| health-medical | scale_hero | 8 | 2 |
+| company-minimal | mirror_horizontal | 6 | 4 |
+| company-minimal | swap_sides | 8 | 2 |
+| company-minimal | scale_hero | 5 | 5 |
+
+## Ready for user testing
+
+No. The three checks run, and they catch the washed cinema mask and the slides whose boxes leave the canvas. They are not a user-facing mutator yet. company-minimal still drops 3 zero-height rules. `swap_sides` can exchange a text box with a picture on another slide. Creative operators still write deck JSON and do not pass through this reviewer. The DeepSeek vision model has no credits, so review depends on Gemini.
+

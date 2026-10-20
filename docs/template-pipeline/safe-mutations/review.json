@@ -1,0 +1,38 @@
+[
+  {
+    "seed": "health-medical",
+    "operator": "mirror_horizontal",
+    "kept": 7,
+    "rejected": 3
+  },
+  {
+    "seed": "health-medical",
+    "operator": "swap_sides",
+    "kept": 5,
+    "rejected": 5
+  },
+  {
+    "seed": "health-medical",
+    "operator": "scale_hero",
+    "kept": 8,
+    "rejected": 2
+  },
+  {
+    "seed": "company-minimal",
+    "operator": "mirror_horizontal",
+    "kept": 6,
+    "rejected": 4
+  },
+  {
+    "seed": "company-minimal",
+    "operator": "swap_sides",
+    "kept": 8,
+    "rejected": 2
+  },
+  {
+    "seed": "company-minimal",
+    "operator": "scale_hero",
+    "kept": 5,
+    "rejected": 5
+  }
+]
