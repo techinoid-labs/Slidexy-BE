@@ -1,8 +1,7 @@
 /**
- * Keeps any one font, cover, ground, palette bucket, or design language
- * from exceeding 20% of the catalog. The sampler consults this before a
- * deck is invented. With only two ground modes the cap cannot be met, so
- * ground modes are a set of six.
+ * Keeps any one font, cover, ground, or palette bucket from exceeding 20%
+ * of the catalog. Design language is not capped: the pipeline commits to
+ * one language at a time. The current default is editorial.
  */
 
 const fs = require("fs");
@@ -14,6 +13,7 @@ const DIR = path.join(__dirname, "..", "..", "generated-templates");
 
 const GROUND_MODES = ["flat", "noise", "meshGradient", "dotGrid", "glow", "lineGrid"];
 const DESIGN_LANGUAGES = ["editorial", "photographic", "technical", "geometric", "typographic", "spotlight"];
+const DEFAULT_DESIGN_LANGUAGE = "editorial";
 const DISPLAY_FONTS = [
   "Fraunces", "Newsreader", "Libre Baskerville", "Source Serif 4", "Literata",
   "Outfit", "Familjen Grotesk", "Space Grotesk", "Syne", "Manrope", "Instrument Serif", "DM Serif Display",
@@ -25,7 +25,7 @@ const TEXT_FONTS = [
   "Poppins", "Montserrat", "Inter", "Open Sans", "Lato", "Roboto",
 ];
 
-const AXES = ["displayFont", "textFont", "fontPairing", "cover", "groundMode", "paletteBucket", "designLanguage"];
+const AXES = ["displayFont", "textFont", "fontPairing", "cover", "groundMode", "paletteBucket"];
 
 function readCatalog() {
   if (!fs.existsSync(DIR)) return [];
@@ -168,7 +168,7 @@ function planGeneration(decks, rng) {
   return {
     cover: take("cover", COVER_STYLES),
     groundMode: take("groundMode", GROUND_MODES),
-    designLanguage: take("designLanguage", DESIGN_LANGUAGES),
+    designLanguage: DEFAULT_DESIGN_LANGUAGE,
     displayFont,
     textFont,
     paletteBucket: take("paletteBucket", ["light-warm", "light-cool", "light-neutral", "dark-warm", "dark-cool", "dark-neutral"]),
@@ -189,12 +189,31 @@ function contrast(hexA, hexB) {
   return (hi + 0.05) / (lo + 0.05);
 }
 
+const ANCHORS = {
+  "light-warm": { bg: "#f6efe6", accent: "#b85a2a", ink: "#24180f" },
+  "light-cool": { bg: "#eef3f6", accent: "#2f6f8f", ink: "#142028" },
+  "light-neutral": { bg: "#f3f1ee", accent: "#8a8175", ink: "#1c1916" },
+  "dark-warm": { bg: "#1c1410", accent: "#d4784a", ink: "#f6efe6" },
+  "dark-cool": { bg: "#12181c", accent: "#7eb0c8", ink: "#e7eef2" },
+  "dark-neutral": { bg: "#161616", accent: "#b7b1a6", ink: "#f4f1ea" },
+};
+
+function readable(palette, bucket) {
+  return Boolean(palette)
+    && paletteBucket(palette.bg, palette.accent) === bucket
+    && contrast(palette.ink, palette.bg) >= 4.5
+    && contrast(palette.accent, palette.bg) >= 3;
+}
+
 /**
- * Moves a palette into the requested bucket without dropping ink/bg contrast
- * below 4.5. Returns the original palette when a nudge cannot keep contrast.
+ * Moves a palette into the requested bucket and keeps ink/bg at 4.5 or
+ * better and accent/bg at 3 or better. A palette that cannot be nudged
+ * is replaced with a fixed palette for that bucket.
  */
 function nudgePalette(palette, bucket) {
-  if (!palette || !bucket || paletteBucket(palette.bg, palette.accent) === bucket) return palette;
+  if (!palette || !bucket || readable(palette, bucket)) return palette;
+  const anchor = ANCHORS[bucket];
+  if (!anchor) return palette;
   const [light, tone] = bucket.split("-");
   let bg = palette.bg;
   let ink = palette.ink;
@@ -217,9 +236,9 @@ function nudgePalette(palette, bucket) {
   }
   if (paletteBucket(bg, accent) !== bucket) accent = mix(accent, accentTarget, 0.65);
   const next = { ...palette, bg, ink, accent };
-  if (paletteBucket(next.bg, next.accent) !== bucket) return palette;
-  if (contrast(next.ink, next.bg) < 4.5 || contrast(next.accent, next.bg) < 3) return palette;
-  return next;
+  if (readable(next, bucket)) return next;
+  const onAccent = contrast("#f7f4ee", anchor.accent) >= 3 ? "#f7f4ee" : "#1a1612";
+  return { ...palette, ...anchor, onAccent };
 }
 
 function applyPlan(brief, plan) {
@@ -254,6 +273,7 @@ module.exports = {
   AXES,
   GROUND_MODES,
   DESIGN_LANGUAGES,
+  DEFAULT_DESIGN_LANGUAGE,
   DISPLAY_FONTS,
   TEXT_FONTS,
   readCatalog,

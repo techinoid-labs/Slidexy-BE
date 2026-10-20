@@ -1,0 +1,887 @@
+{
+  "version": 2,
+  "schemaVersion": 2,
+  "id": "editorial-2",
+  "name": "Elegant branding",
+  "description": "Elegant branding. Hand-authored editorial seed.",
+  "category": "editorial",
+  "visualMode": "hybrid",
+  "taste": {
+    "designLanguage": "editorial",
+    "cover": "type",
+    "density": "airy",
+    "align": "asymmetric",
+    "groundMode": "flat"
+  },
+  "tokens": {
+    "color": {
+      "bg": "#F7F1E4",
+      "surface": "#EFE6D4",
+      "card": "#FFFFFF",
+      "ink": "#1C1914",
+      "muted": "#6A5E48",
+      "rule": "#E2D3B0",
+      "accent": "#6E5410",
+      "accent2": "#E2B423",
+      "onAccent": "#1C1914"
+    },
+    "font": {
+      "display": "Fraunces",
+      "text": "Source Sans 3"
+    },
+    "type": {
+      "h1": 88,
+      "body": 22
+    }
+  },
+  "theme": {
+    "backgroundColor": "#F7F1E4",
+    "fontFamily": "{font.text}",
+    "titleColor": "#1C1914",
+    "bodyColor": "#6A5E48"
+  },
+  "layoutSequence": [
+    "cover",
+    "contents",
+    "message",
+    "team",
+    "mark",
+    "close"
+  ],
+  "layouts": {
+    "cover": {
+      "version": 2,
+      "id": "cover",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 1,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#F7F1E4"
+          }
+        },
+        {
+          "id": "panel",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 520,
+          "height": 900,
+          "zIndex": 1,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.accent2}"
+          }
+        },
+        {
+          "id": "arch",
+          "type": "maskedImage",
+          "x": 80,
+          "y": 80,
+          "width": 360,
+          "height": 520,
+          "zIndex": 3,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "editorial://elegant-a",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "arch",
+              "d": "",
+              "viewBox": "0 0 100 100",
+              "cornerRadius": 0
+            }
+          }
+        },
+        {
+          "id": "mark",
+          "type": "illustration",
+          "x": 1500,
+          "y": 80,
+          "width": 48,
+          "height": 48,
+          "zIndex": 6,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M50 10 A40 40 0 1 1 49.8 10 Z M50 38 A12 12 0 1 0 50.2 38 Z",
+            "viewBox": "0 0 100 100",
+            "fill": "none",
+            "stroke": "{color.ink}",
+            "strokeWidth": 2
+          }
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "x": 600,
+          "y": 300,
+          "width": 860,
+          "height": 180,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 96,
+            "fontWeight": 650,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.02
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Elegant"
+              }
+            ]
+          }
+        },
+        {
+          "id": "sub",
+          "type": "text",
+          "x": 600,
+          "y": 500,
+          "width": 700,
+          "height": 48,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 22,
+            "fontWeight": 650,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "lineHeight": 1.02
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "A branding kit"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "contents": {
+      "version": 2,
+      "id": "contents",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 1,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#F7F1E4"
+          }
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "x": 100,
+          "y": 80,
+          "width": 600,
+          "height": 100,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 56,
+            "fontWeight": 650,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.02
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Contents"
+              }
+            ]
+          }
+        },
+        {
+          "id": "rule",
+          "type": "shape",
+          "x": 100,
+          "y": 200,
+          "width": 80,
+          "height": 4,
+          "zIndex": 4,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.accent2}"
+          }
+        },
+        {
+          "id": "n1",
+          "type": "text",
+          "x": 100,
+          "y": 280,
+          "width": 120,
+          "height": 64,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 36,
+            "fontWeight": 650,
+            "color": "{color.accent}",
+            "textAlign": "left",
+            "lineHeight": 1.02
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "01"
+              }
+            ]
+          }
+        },
+        {
+          "id": "l1",
+          "type": "text",
+          "x": 240,
+          "y": 292,
+          "width": 500,
+          "height": 48,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 28,
+            "fontWeight": 650,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.02
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Brand messaging"
+              }
+            ]
+          }
+        },
+        {
+          "id": "n2",
+          "type": "text",
+          "x": 100,
+          "y": 400,
+          "width": 120,
+          "height": 64,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 36,
+            "fontWeight": 650,
+            "color": "{color.accent}",
+            "textAlign": "left",
+            "lineHeight": 1.02
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "02"
+              }
+            ]
+          }
+        },
+        {
+          "id": "l2",
+          "type": "text",
+          "x": 240,
+          "y": 412,
+          "width": 500,
+          "height": 48,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 28,
+            "fontWeight": 650,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.02
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "The people"
+              }
+            ]
+          }
+        },
+        {
+          "id": "n3",
+          "type": "text",
+          "x": 100,
+          "y": 520,
+          "width": 120,
+          "height": 64,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 36,
+            "fontWeight": 650,
+            "color": "{color.accent}",
+            "textAlign": "left",
+            "lineHeight": 1.02
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "03"
+              }
+            ]
+          }
+        },
+        {
+          "id": "l3",
+          "type": "text",
+          "x": 240,
+          "y": 532,
+          "width": 500,
+          "height": 48,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 28,
+            "fontWeight": 650,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.02
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Color and mark"
+              }
+            ]
+          }
+        },
+        {
+          "id": "side",
+          "type": "maskedImage",
+          "x": 1080,
+          "y": 160,
+          "width": 400,
+          "height": 560,
+          "zIndex": 3,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "editorial://elegant-b",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "rect",
+              "d": "",
+              "viewBox": "0 0 100 100",
+              "cornerRadius": 0
+            }
+          }
+        }
+      ]
+    },
+    "message": {
+      "version": 2,
+      "id": "message",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 1,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#F7F1E4"
+          }
+        },
+        {
+          "id": "bar",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 80,
+          "height": 900,
+          "zIndex": 1,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.accent2}"
+          }
+        },
+        {
+          "id": "num",
+          "type": "text",
+          "x": 140,
+          "y": 80,
+          "width": 200,
+          "height": 80,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 42,
+            "fontWeight": 650,
+            "color": "{color.accent}",
+            "textAlign": "left",
+            "lineHeight": 1.02
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "01"
+              }
+            ]
+          }
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "x": 140,
+          "y": 180,
+          "width": 700,
+          "height": 180,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 64,
+            "fontWeight": 650,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.02
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Brand messaging"
+              }
+            ]
+          }
+        },
+        {
+          "id": "body",
+          "type": "text",
+          "x": 140,
+          "y": 400,
+          "width": 640,
+          "height": 160,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 24,
+            "fontWeight": 650,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "lineHeight": 1.02
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "One voice. Gold, serif, and a quiet photograph."
+              }
+            ]
+          }
+        },
+        {
+          "id": "photo",
+          "type": "maskedImage",
+          "x": 980,
+          "y": 120,
+          "width": 500,
+          "height": 660,
+          "zIndex": 3,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "editorial://elegant-c",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "arch",
+              "d": "",
+              "viewBox": "0 0 100 100",
+              "cornerRadius": 0
+            }
+          }
+        }
+      ]
+    },
+    "team": {
+      "version": 2,
+      "id": "team",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 1,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#F7F1E4"
+          }
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "x": 80,
+          "y": 48,
+          "width": 600,
+          "height": 80,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 48,
+            "fontWeight": 650,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.02
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "The people"
+              }
+            ]
+          }
+        },
+        {
+          "id": "faces",
+          "type": "collage",
+          "x": 80,
+          "y": 180,
+          "width": 1440,
+          "height": 620,
+          "zIndex": 2,
+          "collageContent": {
+            "cells": [
+              {
+                "x": 0,
+                "y": 0,
+                "width": 340,
+                "height": 620,
+                "url": "editorial://elegant-d",
+                "binding": "",
+                "fit": "cover"
+              },
+              {
+                "x": 366,
+                "y": 0,
+                "width": 340,
+                "height": 300,
+                "url": "editorial://elegant-e",
+                "binding": "",
+                "fit": "cover"
+              },
+              {
+                "x": 732,
+                "y": 0,
+                "width": 340,
+                "height": 300,
+                "url": "editorial://elegant-f",
+                "binding": "",
+                "fit": "cover"
+              },
+              {
+                "x": 1098,
+                "y": 0,
+                "width": 342,
+                "height": 300,
+                "url": "editorial://elegant-g",
+                "binding": "",
+                "fit": "cover"
+              },
+              {
+                "x": 366,
+                "y": 326,
+                "width": 1074,
+                "height": 294,
+                "url": "editorial://elegant-h",
+                "binding": "",
+                "fit": "cover"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "mark": {
+      "version": 2,
+      "id": "mark",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 1,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#F7F1E4"
+          }
+        },
+        {
+          "id": "swatch",
+          "type": "shape",
+          "x": 100,
+          "y": 160,
+          "width": 360,
+          "height": 360,
+          "zIndex": 1,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.accent2}"
+          }
+        },
+        {
+          "id": "swatch2",
+          "type": "shape",
+          "x": 500,
+          "y": 160,
+          "width": 220,
+          "height": 220,
+          "zIndex": 1,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.accent}"
+          }
+        },
+        {
+          "id": "seal",
+          "type": "illustration",
+          "x": 980,
+          "y": 140,
+          "width": 420,
+          "height": 420,
+          "zIndex": 5,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M50 10 A40 40 0 1 1 49.8 10 Z M50 38 A12 12 0 1 0 50.2 38 Z",
+            "viewBox": "0 0 100 100",
+            "fill": "none",
+            "stroke": "{color.ink}",
+            "strokeWidth": 4
+          }
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "x": 100,
+          "y": 600,
+          "width": 700,
+          "height": 100,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 56,
+            "fontWeight": 650,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.02
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "The mark"
+              }
+            ]
+          }
+        },
+        {
+          "id": "label",
+          "type": "rotated",
+          "x": 180,
+          "y": 640,
+          "width": 520,
+          "height": 40,
+          "zIndex": 8,
+          "degrees": -6,
+          "element": {
+            "id": "turned",
+            "type": "text",
+            "x": 180,
+            "y": 640,
+            "width": 520,
+            "height": 40,
+            "zIndex": 8,
+            "textStyle": {
+              "fontFamily": "{font.display}",
+              "fontSize": 20,
+              "fontWeight": 650,
+              "color": "{color.accent}",
+              "textAlign": "left",
+              "lineHeight": 1.02
+            },
+            "textContent": {
+              "spans": [
+                {
+                  "text": "VISUAL IDENTITY"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "close": {
+      "version": 2,
+      "id": "close",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 1,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#F7F1E4"
+          }
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "x": 100,
+          "y": 240,
+          "width": 800,
+          "height": 160,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 64,
+            "fontWeight": 650,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.02
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Happy designing"
+              }
+            ]
+          }
+        },
+        {
+          "id": "leaf",
+          "type": "illustration",
+          "x": 100,
+          "y": 440,
+          "width": 120,
+          "height": 160,
+          "zIndex": 4,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M50 92 C18 68 8 38 30 16 C42 40 48 62 50 92 C52 62 58 40 70 16 C92 38 82 68 50 92 Z",
+            "viewBox": "0 0 100 100",
+            "fill": "{color.accent2}",
+            "stroke": "none",
+            "strokeWidth": 2
+          }
+        },
+        {
+          "id": "hand",
+          "type": "maskedImage",
+          "x": 1040,
+          "y": 160,
+          "width": 420,
+          "height": 560,
+          "zIndex": 3,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "editorial://elegant-i",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 8 100 L 8 46 Q 50 4 92 46 L 92 100 Z",
+              "viewBox": "0 0 100 100",
+              "cornerRadius": 0
+            }
+          }
+        }
+      ]
+    }
+  },
+  "previewSlides": [
+    {
+      "id": "editorial-2-p1",
+      "layout": "cover",
+      "title": "Elegant",
+      "bullets": []
+    },
+    {
+      "id": "editorial-2-p2",
+      "layout": "contents",
+      "title": "Contents",
+      "bullets": []
+    },
+    {
+      "id": "editorial-2-p3",
+      "layout": "message",
+      "title": "Brand messaging",
+      "bullets": []
+    },
+    {
+      "id": "editorial-2-p4",
+      "layout": "team",
+      "title": "The people",
+      "bullets": []
+    },
+    {
+      "id": "editorial-2-p5",
+      "layout": "mark",
+      "title": "The mark",
+      "bullets": []
+    },
+    {
+      "id": "editorial-2-p6",
+      "layout": "close",
+      "title": "Happy designing",
+      "bullets": []
+    }
+  ]
+}

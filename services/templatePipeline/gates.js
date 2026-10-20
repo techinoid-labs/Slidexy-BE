@@ -3,32 +3,11 @@ const { antiTells } = require("./antiTells");
 const { textOverflow } = require("./fitText");
 const { fingerprint, tooSimilar } = require("./similarity");
 const { loadLibrary } = require("./library");
+const { assess, gateFailures, ceilingFlags } = require("./decorations/measure");
 
 function fingerprintsForGate() {
   const store = require("./store");
   return loadLibrary().map(fingerprint).concat(store.readAll().map(fingerprint));
-}
-
-function percentile(sorted, p) {
-  if (!sorted.length) return null;
-  if (sorted.length === 1) return sorted[0];
-  const index = p * (sorted.length - 1);
-  const lower = Math.floor(index);
-  const upper = Math.ceil(index);
-  return sorted[lower] * (1 - (index - lower)) + sorted[upper] * (index - lower);
-}
-
-function aestheticFlag(deck) {
-  const score = deck.scores && deck.scores.aesthetic_mean;
-  if (typeof score !== "number") return null;
-  const store = require("./store");
-  const means = store.readAll()
-    .filter((item) => item.id !== deck.id && item.scores && typeof item.scores.aesthetic_mean === "number")
-    .map((item) => item.scores.aesthetic_mean)
-    .sort((a, b) => a - b);
-  const boundary = percentile(means, 0.25);
-  if (boundary == null || !(score < boundary)) return null;
-  return boundary;
 }
 
 function judge(deck, fingerprints) {
@@ -36,15 +15,21 @@ function judge(deck, fingerprints) {
   if (invalid.length) return { ok: false, reason: "invalid" };
   const tells = deck.tells || antiTells(deck, null, deck.taste && deck.taste.designLanguage);
   if (tells.length >= 3) return { ok: false, reason: "ai-tells" };
-  if (textOverflow(deck).length) return { ok: false, reason: "text-overflow" };
-  if (tooSimilar(deck, fingerprints || fingerprintsForGate())) return { ok: false, reason: "too-similar" };
-  const flags = [];
-  const boundary = aestheticFlag(deck);
-  if (boundary != null) {
-    flags.push("low-aesthetic");
-    console.error("low-aesthetic " + (deck.id || "deck") + " " + deck.scores.aesthetic_mean + " below " + boundary);
+  let overflow = false;
+  try {
+    overflow = textOverflow(deck).length > 0;
+  } catch (error) {
+    overflow = false;
   }
-  return { ok: true, flags };
+  if (overflow) return { ok: false, reason: "text-overflow" };
+  const design = gateFailures(deck);
+  if (design.length) return { ok: false, reason: design[0], measures: assess(deck) };
+  if (tooSimilar(deck, fingerprints || fingerprintsForGate())) return { ok: false, reason: "too-similar" };
+  const flags = ceilingFlags(deck);
+  if (flags.includes("high-overlap")) {
+    console.error("high-overlap " + (deck.id || "deck"));
+  }
+  return { ok: true, flags, measures: assess(deck) };
 }
 
-module.exports = { judge, fingerprintsForGate, fingerprint };
+module.exports = { judge, fingerprintsForGate, fingerprint, assess, gateFailures };

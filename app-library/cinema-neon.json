@@ -1,0 +1,4045 @@
+{
+  "schemaVersion": 2,
+  "id": "cinema-neon",
+  "name": "Red Black Neon Cinema Presentation",
+  "description": "Converted from Red Black Neon Cinema Presentation.pptx",
+  "category": "converted",
+  "visualMode": "hybrid",
+  "source": "Red Black Neon Cinema Presentation.pptx",
+  "taste": {
+    "designLanguage": "editorial",
+    "cover": "type",
+    "density": "balanced",
+    "align": "left",
+    "groundMode": "flat"
+  },
+  "tokens": {
+    "color": {
+      "bg": "#FFFFFF",
+      "surface": "#FFFFFF",
+      "card": "#FFFFFF",
+      "ink": "#1C1916",
+      "muted": "#1C1916",
+      "rule": "#D9D0C6",
+      "accent": "#1E3A32",
+      "accent2": "#1E3A32",
+      "onAccent": "#FFFFFF"
+    },
+    "font": {
+      "display": "Calibri",
+      "text": "Calibri"
+    },
+    "type": {
+      "h1": 64,
+      "body": 22
+    }
+  },
+  "theme": {
+    "backgroundColor": "#FFFFFF",
+    "fontFamily": "Calibri",
+    "titleColor": "#1C1916",
+    "bodyColor": "#1C1916"
+  },
+  "layoutSequence": [
+    "slide-1",
+    "slide-2",
+    "slide-3",
+    "slide-4",
+    "slide-5",
+    "slide-6",
+    "slide-7",
+    "slide-8",
+    "slide-9",
+    "slide-10"
+  ],
+  "layouts": {
+    "slide-1": {
+      "version": 2,
+      "id": "slide-1",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "s1-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#FFFFFF"
+          }
+        },
+        {
+          "id": "s1-e2",
+          "type": "maskedImage",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 2,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/cinema-neon/slide-1-img-1.jpeg",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 18288000 0 L 18288000 10287000 L 0 10287000 L 0 0 Z",
+              "viewBox": "0 0 18288000 10287000",
+              "cornerRadius": 0
+            },
+            "alignX": 0.4683,
+            "alignY": 1
+          }
+        },
+        {
+          "id": "s1-e3-t",
+          "type": "text",
+          "x": 90,
+          "y": 264.09,
+          "width": 1420,
+          "height": 356.97,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "TAN Meringue",
+            "fontSize": 264.83,
+            "fontWeight": 400,
+            "color": "#FF2121",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "CINEMA",
+                "fontFamily": "TAN Meringue",
+                "fontSize": 264.83,
+                "fontWeight": 400,
+                "color": "#FF2121"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s1-e4",
+          "type": "illustration",
+          "x": 0,
+          "y": 3.52,
+          "width": 90,
+          "height": 896.48,
+          "zIndex": 4,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 270933 0 L 270933 2698739 L 0 2698739 Z",
+            "viewBox": "0 0 270933 2698739",
+            "fill": "#0F0A06",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s1-e5-t",
+          "type": "text",
+          "x": 90,
+          "y": 31.3,
+          "width": 383.69,
+          "height": 37.17,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 26.67,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Timmerman ",
+                "fontFamily": "Poppins",
+                "fontSize": 26.67,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              },
+              {
+                "text": "Industries",
+                "fontFamily": "Poppins",
+                "fontSize": 26.67,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s1-e6-t",
+          "type": "text",
+          "x": 1053.99,
+          "y": 42.47,
+          "width": 83.54,
+          "height": 18.17,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Home",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s1-e7-t",
+          "type": "text",
+          "x": 1224.82,
+          "y": 42.47,
+          "width": 105.68,
+          "height": 18.17,
+          "zIndex": 7,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "About us",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s1-e8-t",
+          "type": "text",
+          "x": 1417.78,
+          "y": 42.47,
+          "width": 117.16,
+          "height": 18.17,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Portfolio",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s1-e9-t",
+          "type": "text",
+          "x": 216.83,
+          "y": 631.92,
+          "width": 300.87,
+          "height": 63.07,
+          "zIndex": 9,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 22.22,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "123 Anywhere ST., Any City, ST 12345",
+                "fontFamily": "Poppins",
+                "fontSize": 22.22,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s1-e10",
+          "type": "illustration",
+          "x": 1228.31,
+          "y": 660.07,
+          "width": 192.66,
+          "height": 34.92,
+          "zIndex": 10,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 52560 0 L 527407 0 C 556435 0 579967 23532 579967 52560 L 579967 52560 C 579967 66499 574429 79868 564572 89725 C 554716 99582 541347 105119 527407 105119 L 52560 105119 C 38620 105119 25251 99582 15394 89725 C 5538 79868 0 66499 0 52560 L 0 52560 C 0 38620 5538 25251 15394 15394 C 25251 5538 38620 0 52560 0 Z",
+            "viewBox": "0 0 579967 105119",
+            "fill": "none",
+            "stroke": "#FFFFFF",
+            "strokeWidth": 1.67
+          }
+        },
+        {
+          "id": "s1-e11-t",
+          "type": "text",
+          "x": 1255.88,
+          "y": 658.5,
+          "width": 137.5,
+          "height": 32.22,
+          "zIndex": 11,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 22.22,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "See More",
+                "fontFamily": "Poppins",
+                "fontSize": 22.22,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "slide-2": {
+      "version": 2,
+      "id": "slide-2",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "s2-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#0F0A06"
+          }
+        },
+        {
+          "id": "s2-e2-t",
+          "type": "text",
+          "x": 90,
+          "y": 31.3,
+          "width": 383.69,
+          "height": 37.17,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "Poppins Medium",
+            "fontSize": 26.67,
+            "fontWeight": 650,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Timmerman ",
+                "fontFamily": "Poppins Medium",
+                "fontSize": 26.67,
+                "fontWeight": 650,
+                "color": "#FFFFFF"
+              },
+              {
+                "text": "Industries",
+                "fontFamily": "Poppins Medium",
+                "fontSize": 26.67,
+                "fontWeight": 650,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s2-e3",
+          "type": "maskedImage",
+          "x": 114.59,
+          "y": 176.99,
+          "width": 426.66,
+          "height": 536.02,
+          "zIndex": 3,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/cinema-neon/slide-2-img-2.jpeg",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 755556 0 L 755556 949213 L 0 949213 Z",
+              "viewBox": "0 0 755556 949213",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          }
+        },
+        {
+          "id": "s2-e4-t",
+          "type": "text",
+          "x": 1068.9,
+          "y": 570.27,
+          "width": 416.51,
+          "height": 128.17,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s2-e5-t",
+          "type": "text",
+          "x": 1068.9,
+          "y": 470.41,
+          "width": 416.51,
+          "height": 73.17,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat .",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s2-e6-t",
+          "type": "text",
+          "x": 453.82,
+          "y": 185.03,
+          "width": 1030.59,
+          "height": 233.67,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "TAN Meringue",
+            "fontSize": 173.33,
+            "fontWeight": 400,
+            "color": "#FF2121",
+            "textAlign": "right",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "About Us",
+                "fontFamily": "TAN Meringue",
+                "fontSize": 173.33,
+                "fontWeight": 400,
+                "color": "#FF2121"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s2-e7",
+          "type": "maskedImage",
+          "x": 566.63,
+          "y": 450,
+          "width": 465.73,
+          "height": 263.01,
+          "zIndex": 7,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/cinema-neon/slide-2-img-3.jpeg",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 824738 0 L 824738 465752 L 0 465752 Z",
+              "viewBox": "0 0 824738 465752",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          }
+        },
+        {
+          "id": "s2-e8-t",
+          "type": "text",
+          "x": 1053.99,
+          "y": 42.47,
+          "width": 83.54,
+          "height": 18.17,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Home",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s2-e9-t",
+          "type": "text",
+          "x": 1224.82,
+          "y": 42.47,
+          "width": 105.68,
+          "height": 18.17,
+          "zIndex": 9,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "About us",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s2-e10-t",
+          "type": "text",
+          "x": 1417.78,
+          "y": 42.47,
+          "width": 117.16,
+          "height": 18.17,
+          "zIndex": 10,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Portfolio",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "slide-3": {
+      "version": 2,
+      "id": "slide-3",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "s3-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#0F0A06"
+          }
+        },
+        {
+          "id": "s3-e2-t",
+          "type": "text",
+          "x": 90,
+          "y": 31.3,
+          "width": 383.69,
+          "height": 37.17,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "Poppins Medium",
+            "fontSize": 26.67,
+            "fontWeight": 650,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Timmerman ",
+                "fontFamily": "Poppins Medium",
+                "fontSize": 26.67,
+                "fontWeight": 650,
+                "color": "#FFFFFF"
+              },
+              {
+                "text": "Industries",
+                "fontFamily": "Poppins Medium",
+                "fontSize": 26.67,
+                "fontWeight": 650,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e3-t",
+          "type": "text",
+          "x": 154.75,
+          "y": 141.77,
+          "width": 857.78,
+          "height": 233.67,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "TAN Meringue",
+            "fontSize": 173.33,
+            "fontWeight": 400,
+            "color": "#FF2121",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Service",
+                "fontFamily": "TAN Meringue",
+                "fontSize": 173.33,
+                "fontWeight": 400,
+                "color": "#FF2121"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e4-t",
+          "type": "text",
+          "x": 217.04,
+          "y": 464.79,
+          "width": 258.92,
+          "height": 91.5,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e5-t",
+          "type": "text",
+          "x": 215.36,
+          "y": 408.46,
+          "width": 228.1,
+          "height": 37.17,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 26.67,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Our Service",
+                "fontFamily": "Poppins",
+                "fontSize": 26.67,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e6-t",
+          "type": "text",
+          "x": 138.44,
+          "y": 404.12,
+          "width": 78.59,
+          "height": 49.56,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 35.56,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "01. ",
+                "fontFamily": "Poppins",
+                "fontSize": 35.56,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e7-t",
+          "type": "text",
+          "x": 217.04,
+          "y": 659.57,
+          "width": 258.92,
+          "height": 91.5,
+          "zIndex": 7,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e8-t",
+          "type": "text",
+          "x": 215.36,
+          "y": 603.24,
+          "width": 228.1,
+          "height": 37.17,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 26.67,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Our Service",
+                "fontFamily": "Poppins",
+                "fontSize": 26.67,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e9-t",
+          "type": "text",
+          "x": 138.44,
+          "y": 598.91,
+          "width": 78.59,
+          "height": 49.56,
+          "zIndex": 9,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 35.56,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "02. ",
+                "fontFamily": "Poppins",
+                "fontSize": 35.56,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e10-t",
+          "type": "text",
+          "x": 663.85,
+          "y": 460.51,
+          "width": 258.92,
+          "height": 91.5,
+          "zIndex": 10,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e11-t",
+          "type": "text",
+          "x": 662.17,
+          "y": 404.17,
+          "width": 228.1,
+          "height": 37.17,
+          "zIndex": 11,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 26.67,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Our Service",
+                "fontFamily": "Poppins",
+                "fontSize": 26.67,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e12-t",
+          "type": "text",
+          "x": 585.25,
+          "y": 399.84,
+          "width": 78.59,
+          "height": 49.56,
+          "zIndex": 12,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 35.56,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "03. ",
+                "fontFamily": "Poppins",
+                "fontSize": 35.56,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e13-t",
+          "type": "text",
+          "x": 663.85,
+          "y": 655.29,
+          "width": 258.92,
+          "height": 91.5,
+          "zIndex": 13,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e14-t",
+          "type": "text",
+          "x": 662.17,
+          "y": 598.96,
+          "width": 228.1,
+          "height": 37.17,
+          "zIndex": 14,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 26.67,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Our Service",
+                "fontFamily": "Poppins",
+                "fontSize": 26.67,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e15-t",
+          "type": "text",
+          "x": 585.25,
+          "y": 594.62,
+          "width": 78.59,
+          "height": 49.56,
+          "zIndex": 15,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 35.56,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "04. ",
+                "fontFamily": "Poppins",
+                "fontSize": 35.56,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e16-t",
+          "type": "text",
+          "x": 1053.99,
+          "y": 42.47,
+          "width": 83.54,
+          "height": 18.17,
+          "zIndex": 16,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Home",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e17-t",
+          "type": "text",
+          "x": 1224.82,
+          "y": 42.47,
+          "width": 105.68,
+          "height": 18.17,
+          "zIndex": 17,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "About us",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e18-t",
+          "type": "text",
+          "x": 1417.78,
+          "y": 42.47,
+          "width": 117.16,
+          "height": 18.17,
+          "zIndex": 18,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Portfolio",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e19",
+          "type": "maskedImage",
+          "x": 1095.76,
+          "y": 111.17,
+          "width": 504.24,
+          "height": 689.67,
+          "zIndex": 19,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/cinema-neon/slide-3-img-4.jpeg",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 765477 0 L 765477 1046986 L 0 1046986 Z",
+              "viewBox": "0 0 765477 1046986",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          }
+        }
+      ]
+    },
+    "slide-4": {
+      "version": 2,
+      "id": "slide-4",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "s4-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#0F0A06"
+          }
+        },
+        {
+          "id": "s4-e2-t",
+          "type": "text",
+          "x": 90,
+          "y": 31.3,
+          "width": 383.69,
+          "height": 37.17,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "Poppins Medium",
+            "fontSize": 26.67,
+            "fontWeight": 650,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Timmerman ",
+                "fontFamily": "Poppins Medium",
+                "fontSize": 26.67,
+                "fontWeight": 650,
+                "color": "#FFFFFF"
+              },
+              {
+                "text": "Industries",
+                "fontFamily": "Poppins Medium",
+                "fontSize": 26.67,
+                "fontWeight": 650,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s4-e3-t",
+          "type": "text",
+          "x": 482.35,
+          "y": 327.71,
+          "width": 984.84,
+          "height": 233.67,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "TAN Meringue",
+            "fontSize": 173.33,
+            "fontWeight": 400,
+            "color": "#FF2121",
+            "textAlign": "right",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Facilities",
+                "fontFamily": "TAN Meringue",
+                "fontSize": 173.33,
+                "fontWeight": 400,
+                "color": "#FF2121"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s4-e4-t",
+          "type": "text",
+          "x": 1053.99,
+          "y": 42.47,
+          "width": 83.54,
+          "height": 18.17,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Home",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s4-e5-t",
+          "type": "text",
+          "x": 1224.82,
+          "y": 42.47,
+          "width": 105.68,
+          "height": 18.17,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "About us",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s4-e6-t",
+          "type": "text",
+          "x": 1417.78,
+          "y": 42.47,
+          "width": 117.16,
+          "height": 18.17,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Portfolio",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s4-e7",
+          "type": "maskedImage",
+          "x": 144.78,
+          "y": 143.38,
+          "width": 363.29,
+          "height": 178.83,
+          "zIndex": 7,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/cinema-neon/slide-4-img-5.jpeg",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 922556 0 L 922556 454132 L 0 454132 Z",
+              "viewBox": "0 0 922556 454132",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          }
+        },
+        {
+          "id": "s4-e8",
+          "type": "maskedImage",
+          "x": 178.95,
+          "y": 364.75,
+          "width": 363.29,
+          "height": 178.83,
+          "zIndex": 8,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/cinema-neon/slide-4-img-6.jpeg",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 922556 0 L 922556 454132 L 0 454132 Z",
+              "viewBox": "0 0 922556 454132",
+              "cornerRadius": 0
+            },
+            "alignX": 1,
+            "alignY": 0.6225
+          }
+        },
+        {
+          "id": "s4-e9",
+          "type": "maskedImage",
+          "x": 144.78,
+          "y": 589.37,
+          "width": 363.29,
+          "height": 178.83,
+          "zIndex": 9,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/cinema-neon/slide-4-img-7.jpeg",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 922556 0 L 922556 454132 L 0 454132 Z",
+              "viewBox": "0 0 922556 454132",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          }
+        },
+        {
+          "id": "s4-e10-t",
+          "type": "text",
+          "x": 731.26,
+          "y": 662.53,
+          "width": 277.29,
+          "height": 73.17,
+          "zIndex": 10,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s4-e11-t",
+          "type": "text",
+          "x": 729.58,
+          "y": 606.2,
+          "width": 228.1,
+          "height": 37.17,
+          "zIndex": 11,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 26.67,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Our Service",
+                "fontFamily": "Poppins",
+                "fontSize": 26.67,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s4-e12-t",
+          "type": "text",
+          "x": 652.66,
+          "y": 601.86,
+          "width": 78.59,
+          "height": 49.56,
+          "zIndex": 12,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 35.56,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "02. ",
+                "fontFamily": "Poppins",
+                "fontSize": 35.56,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s4-e13-t",
+          "type": "text",
+          "x": 1178.07,
+          "y": 658.25,
+          "width": 277.29,
+          "height": 73.17,
+          "zIndex": 13,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s4-e14-t",
+          "type": "text",
+          "x": 1176.39,
+          "y": 601.91,
+          "width": 228.1,
+          "height": 37.17,
+          "zIndex": 14,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 26.67,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Our Service",
+                "fontFamily": "Poppins",
+                "fontSize": 26.67,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s4-e15-t",
+          "type": "text",
+          "x": 1099.48,
+          "y": 597.58,
+          "width": 78.59,
+          "height": 49.56,
+          "zIndex": 15,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 35.56,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "04. ",
+                "fontFamily": "Poppins",
+                "fontSize": 35.56,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s4-e16-t",
+          "type": "text",
+          "x": 731.26,
+          "y": 201.31,
+          "width": 277.29,
+          "height": 73.17,
+          "zIndex": 16,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s4-e17-t",
+          "type": "text",
+          "x": 729.58,
+          "y": 144.98,
+          "width": 228.1,
+          "height": 37.17,
+          "zIndex": 17,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 26.67,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Our Service",
+                "fontFamily": "Poppins",
+                "fontSize": 26.67,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s4-e18-t",
+          "type": "text",
+          "x": 652.66,
+          "y": 140.64,
+          "width": 78.59,
+          "height": 49.56,
+          "zIndex": 18,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 35.56,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "01. ",
+                "fontFamily": "Poppins",
+                "fontSize": 35.56,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s4-e19-t",
+          "type": "text",
+          "x": 1178.07,
+          "y": 197.03,
+          "width": 277.29,
+          "height": 73.17,
+          "zIndex": 19,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s4-e20-t",
+          "type": "text",
+          "x": 1176.39,
+          "y": 140.7,
+          "width": 228.1,
+          "height": 37.17,
+          "zIndex": 20,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 26.67,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Our Service",
+                "fontFamily": "Poppins",
+                "fontSize": 26.67,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s4-e21-t",
+          "type": "text",
+          "x": 1099.48,
+          "y": 136.36,
+          "width": 78.59,
+          "height": 49.56,
+          "zIndex": 21,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 35.56,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "03. ",
+                "fontFamily": "Poppins",
+                "fontSize": 35.56,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "slide-5": {
+      "version": 2,
+      "id": "slide-5",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "s5-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#0F0A06"
+          }
+        },
+        {
+          "id": "s5-e2-t",
+          "type": "text",
+          "x": 90,
+          "y": 31.3,
+          "width": 383.69,
+          "height": 37.17,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "Poppins Medium",
+            "fontSize": 26.67,
+            "fontWeight": 650,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Timmerman ",
+                "fontFamily": "Poppins Medium",
+                "fontSize": 26.67,
+                "fontWeight": 650,
+                "color": "#FFFFFF"
+              },
+              {
+                "text": "Industries",
+                "fontFamily": "Poppins Medium",
+                "fontSize": 26.67,
+                "fontWeight": 650,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s5-e3",
+          "type": "maskedImage",
+          "x": 146.2,
+          "y": 122.65,
+          "width": 608.51,
+          "height": 273.64,
+          "zIndex": 3,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/cinema-neon/slide-5-img-8.jpeg",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 1077577 0 L 1077577 484583 L 0 484583 Z",
+              "viewBox": "0 0 1077577 484583",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.2955
+          }
+        },
+        {
+          "id": "s5-e4-t",
+          "type": "text",
+          "x": 1053.99,
+          "y": 42.47,
+          "width": 83.54,
+          "height": 18.17,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Home",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s5-e5-t",
+          "type": "text",
+          "x": 1224.82,
+          "y": 42.47,
+          "width": 105.68,
+          "height": 18.17,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "About us",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s5-e6-t",
+          "type": "text",
+          "x": 1417.78,
+          "y": 42.47,
+          "width": 117.16,
+          "height": 18.17,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Portfolio",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s5-e7-t",
+          "type": "text",
+          "x": 914.76,
+          "y": 496.75,
+          "width": 543.93,
+          "height": 36.5,
+          "zIndex": 7,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam do.",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s5-e8-t",
+          "type": "text",
+          "x": 913.1,
+          "y": 445.36,
+          "width": 254.47,
+          "height": 37.17,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 26.67,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Our Vision",
+                "fontFamily": "Poppins",
+                "fontSize": 26.67,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s5-e9-t",
+          "type": "text",
+          "x": 845.29,
+          "y": 440,
+          "width": 54.87,
+          "height": 49.56,
+          "zIndex": 9,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 35.54,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "01. ",
+                "fontFamily": "Poppins",
+                "fontSize": 35.54,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s5-e10-t",
+          "type": "text",
+          "x": 914.76,
+          "y": 619.17,
+          "width": 543.93,
+          "height": 36.5,
+          "zIndex": 10,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam do.",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s5-e11-t",
+          "type": "text",
+          "x": 913.1,
+          "y": 567.78,
+          "width": 254.47,
+          "height": 37.17,
+          "zIndex": 11,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 26.67,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Our Vision",
+                "fontFamily": "Poppins",
+                "fontSize": 26.67,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s5-e12-t",
+          "type": "text",
+          "x": 845.29,
+          "y": 562.42,
+          "width": 54.87,
+          "height": 49.56,
+          "zIndex": 12,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 35.54,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "02. ",
+                "fontFamily": "Poppins",
+                "fontSize": 35.54,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s5-e13-t",
+          "type": "text",
+          "x": 914.76,
+          "y": 741.59,
+          "width": 543.93,
+          "height": 36.5,
+          "zIndex": 13,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam do.",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s5-e14-t",
+          "type": "text",
+          "x": 913.1,
+          "y": 690.2,
+          "width": 254.47,
+          "height": 37.17,
+          "zIndex": 14,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 26.67,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Our Vision",
+                "fontFamily": "Poppins",
+                "fontSize": 26.67,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s5-e15-t",
+          "type": "text",
+          "x": 845.29,
+          "y": 684.83,
+          "width": 54.87,
+          "height": 49.56,
+          "zIndex": 15,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 35.54,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "03. ",
+                "fontFamily": "Poppins",
+                "fontSize": 35.54,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s5-e16",
+          "type": "maskedImage",
+          "x": 845.29,
+          "y": 122.65,
+          "width": 608.51,
+          "height": 273.64,
+          "zIndex": 16,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/cinema-neon/slide-5-img-9.jpeg",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 1077577 0 L 1077577 484583 L 0 484583 Z",
+              "viewBox": "0 0 1077577 484583",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.1958
+          }
+        },
+        {
+          "id": "s5-e17-t",
+          "type": "text",
+          "x": 130.39,
+          "y": 478.89,
+          "width": 714.9,
+          "height": 233.67,
+          "zIndex": 17,
+          "textStyle": {
+            "fontFamily": "TAN Meringue",
+            "fontSize": 173.33,
+            "fontWeight": 400,
+            "color": "#FF2121",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Vision",
+                "fontFamily": "TAN Meringue",
+                "fontSize": 173.33,
+                "fontWeight": 400,
+                "color": "#FF2121"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "slide-6": {
+      "version": 2,
+      "id": "slide-6",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "s6-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#0F0A06"
+          }
+        },
+        {
+          "id": "s6-e2-t",
+          "type": "text",
+          "x": 90,
+          "y": 31.3,
+          "width": 383.69,
+          "height": 37.17,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "Poppins Medium",
+            "fontSize": 26.67,
+            "fontWeight": 650,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Timmerman ",
+                "fontFamily": "Poppins Medium",
+                "fontSize": 26.67,
+                "fontWeight": 650,
+                "color": "#FFFFFF"
+              },
+              {
+                "text": "Industries",
+                "fontFamily": "Poppins Medium",
+                "fontSize": 26.67,
+                "fontWeight": 650,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s6-e3-t",
+          "type": "text",
+          "x": 823.34,
+          "y": 149.87,
+          "width": 711.6,
+          "height": 213.95,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "TAN Meringue",
+            "fontSize": 158.27,
+            "fontWeight": 400,
+            "color": "#FF2121",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Mission",
+                "fontFamily": "TAN Meringue",
+                "fontSize": 158.27,
+                "fontWeight": 400,
+                "color": "#FF2121"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s6-e4-t",
+          "type": "text",
+          "x": 1053.99,
+          "y": 42.47,
+          "width": 83.54,
+          "height": 18.17,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Home",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s6-e5-t",
+          "type": "text",
+          "x": 1224.82,
+          "y": 42.47,
+          "width": 105.68,
+          "height": 18.17,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "About us",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s6-e6-t",
+          "type": "text",
+          "x": 1417.78,
+          "y": 42.47,
+          "width": 117.16,
+          "height": 18.17,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Portfolio",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s6-e7-t",
+          "type": "text",
+          "x": 892.8,
+          "y": 446.12,
+          "width": 543.93,
+          "height": 36.5,
+          "zIndex": 7,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam do.",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s6-e8-t",
+          "type": "text",
+          "x": 891.14,
+          "y": 394.73,
+          "width": 254.47,
+          "height": 37.17,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 26.67,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Our Mission",
+                "fontFamily": "Poppins",
+                "fontSize": 26.67,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s6-e9-t",
+          "type": "text",
+          "x": 823.34,
+          "y": 389.37,
+          "width": 54.87,
+          "height": 49.56,
+          "zIndex": 9,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 35.54,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "01. ",
+                "fontFamily": "Poppins",
+                "fontSize": 35.54,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s6-e10-t",
+          "type": "text",
+          "x": 892.8,
+          "y": 568.54,
+          "width": 543.93,
+          "height": 36.5,
+          "zIndex": 10,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam do.",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s6-e11-t",
+          "type": "text",
+          "x": 891.14,
+          "y": 517.15,
+          "width": 254.47,
+          "height": 37.17,
+          "zIndex": 11,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 26.67,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Our Mission",
+                "fontFamily": "Poppins",
+                "fontSize": 26.67,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s6-e12-t",
+          "type": "text",
+          "x": 823.34,
+          "y": 511.79,
+          "width": 54.87,
+          "height": 49.56,
+          "zIndex": 12,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 35.54,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "02. ",
+                "fontFamily": "Poppins",
+                "fontSize": 35.54,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s6-e13-t",
+          "type": "text",
+          "x": 892.8,
+          "y": 690.96,
+          "width": 543.93,
+          "height": 36.5,
+          "zIndex": 13,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam do.",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s6-e14-t",
+          "type": "text",
+          "x": 891.14,
+          "y": 639.57,
+          "width": 254.47,
+          "height": 37.17,
+          "zIndex": 14,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 26.67,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Our Mission",
+                "fontFamily": "Poppins",
+                "fontSize": 26.67,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s6-e15-t",
+          "type": "text",
+          "x": 823.34,
+          "y": 634.21,
+          "width": 54.87,
+          "height": 49.56,
+          "zIndex": 15,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 35.54,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "03. ",
+                "fontFamily": "Poppins",
+                "fontSize": 35.54,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s6-e16",
+          "type": "maskedImage",
+          "x": 129.46,
+          "y": 133.9,
+          "width": 575.1,
+          "height": 305.75,
+          "zIndex": 16,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/cinema-neon/slide-6-img-10.jpeg",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 1018419 0 L 1018419 541427 L 0 541427 Z",
+              "viewBox": "0 0 1018419 541427",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          }
+        },
+        {
+          "id": "s6-e17",
+          "type": "maskedImage",
+          "x": 129.46,
+          "y": 462.03,
+          "width": 575.1,
+          "height": 305.75,
+          "zIndex": 17,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/cinema-neon/slide-6-img-11.jpeg",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 1018419 0 L 1018419 541427 L 0 541427 Z",
+              "viewBox": "0 0 1018419 541427",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          }
+        }
+      ]
+    },
+    "slide-7": {
+      "version": 2,
+      "id": "slide-7",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "s7-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#0F0A06"
+          }
+        },
+        {
+          "id": "s7-e2-t",
+          "type": "text",
+          "x": 142.08,
+          "y": 201.75,
+          "width": 797.47,
+          "height": 206.4,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "TAN Meringue",
+            "fontSize": 153.37,
+            "fontWeight": 400,
+            "color": "#FF2121",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Portfolio",
+                "fontFamily": "TAN Meringue",
+                "fontSize": 153.37,
+                "fontWeight": 400,
+                "color": "#FF2121"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s7-e3",
+          "type": "maskedImage",
+          "x": 939.55,
+          "y": 146.24,
+          "width": 536.81,
+          "height": 295.99,
+          "zIndex": 3,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/cinema-neon/slide-7-img-12.jpeg",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 1075353 0 L 1075353 592943 L 0 592943 Z",
+              "viewBox": "0 0 1075353 592943",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          }
+        },
+        {
+          "id": "s7-e4",
+          "type": "maskedImage",
+          "x": 939.55,
+          "y": 487.83,
+          "width": 536.81,
+          "height": 295.99,
+          "zIndex": 4,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/cinema-neon/slide-7-img-13.jpeg",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 1075353 0 L 1075353 592943 L 0 592943 Z",
+              "viewBox": "0 0 1075353 592943",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          }
+        },
+        {
+          "id": "s7-e5",
+          "type": "maskedImage",
+          "x": 378.95,
+          "y": 487.83,
+          "width": 536.81,
+          "height": 295.99,
+          "zIndex": 5,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/cinema-neon/slide-7-img-14.jpeg",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 1075353 0 L 1075353 592943 L 0 592943 Z",
+              "viewBox": "0 0 1075353 592943",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          }
+        },
+        {
+          "id": "s7-e6-t",
+          "type": "text",
+          "x": 90,
+          "y": 31.3,
+          "width": 383.69,
+          "height": 37.17,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "Poppins Medium",
+            "fontSize": 26.67,
+            "fontWeight": 650,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Timmerman ",
+                "fontFamily": "Poppins Medium",
+                "fontSize": 26.67,
+                "fontWeight": 650,
+                "color": "#FFFFFF"
+              },
+              {
+                "text": "Industries",
+                "fontFamily": "Poppins Medium",
+                "fontSize": 26.67,
+                "fontWeight": 650,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s7-e7-t",
+          "type": "text",
+          "x": 1053.99,
+          "y": 42.47,
+          "width": 83.54,
+          "height": 18.17,
+          "zIndex": 7,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Home",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s7-e8-t",
+          "type": "text",
+          "x": 1224.82,
+          "y": 42.47,
+          "width": 105.68,
+          "height": 18.17,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "About us",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s7-e9-t",
+          "type": "text",
+          "x": 1417.78,
+          "y": 42.47,
+          "width": 117.16,
+          "height": 18.17,
+          "zIndex": 9,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Portfolio",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s7-e10-t",
+          "type": "text",
+          "x": 117.04,
+          "y": 555.5,
+          "width": 192.69,
+          "height": 164.83,
+          "zIndex": 10,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat .",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "slide-8": {
+      "version": 2,
+      "id": "slide-8",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "s8-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#0F0A06"
+          }
+        },
+        {
+          "id": "s8-e2-t",
+          "type": "text",
+          "x": 910.59,
+          "y": 153.48,
+          "width": 561.26,
+          "height": 212.59,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "TAN Meringue",
+            "fontSize": 157.83,
+            "fontWeight": 400,
+            "color": "#FF2121",
+            "textAlign": "right",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Team",
+                "fontFamily": "TAN Meringue",
+                "fontSize": 157.83,
+                "fontWeight": 400,
+                "color": "#FF2121"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s8-e3",
+          "type": "maskedImage",
+          "x": 565.85,
+          "y": 232.47,
+          "width": 373.57,
+          "height": 469.32,
+          "zIndex": 3,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/cinema-neon/slide-8-img-15.jpeg",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 755556 0 L 755556 949213 L 0 949213 Z",
+              "viewBox": "0 0 755556 949213",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          }
+        },
+        {
+          "id": "s8-e4",
+          "type": "maskedImage",
+          "x": 90,
+          "y": 232.47,
+          "width": 373.57,
+          "height": 469.32,
+          "zIndex": 4,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/cinema-neon/slide-8-img-16.jpeg",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 755556 0 L 755556 949213 L 0 949213 Z",
+              "viewBox": "0 0 755556 949213",
+              "cornerRadius": 0
+            },
+            "alignX": 0.7316,
+            "alignY": 0.877
+          }
+        },
+        {
+          "id": "s8-e5-t",
+          "type": "text",
+          "x": 90,
+          "y": 31.3,
+          "width": 383.69,
+          "height": 37.17,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "Poppins Medium",
+            "fontSize": 26.67,
+            "fontWeight": 650,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Timmerman ",
+                "fontFamily": "Poppins Medium",
+                "fontSize": 26.67,
+                "fontWeight": 650,
+                "color": "#FFFFFF"
+              },
+              {
+                "text": "Industries",
+                "fontFamily": "Poppins Medium",
+                "fontSize": 26.67,
+                "fontWeight": 650,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s8-e6-t",
+          "type": "text",
+          "x": 1053.99,
+          "y": 42.47,
+          "width": 83.54,
+          "height": 18.17,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Home",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s8-e7-t",
+          "type": "text",
+          "x": 1224.82,
+          "y": 42.47,
+          "width": 105.68,
+          "height": 18.17,
+          "zIndex": 7,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "About us",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s8-e8-t",
+          "type": "text",
+          "x": 1417.78,
+          "y": 42.47,
+          "width": 117.16,
+          "height": 18.17,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Portfolio",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s8-e9-t",
+          "type": "text",
+          "x": 683.82,
+          "y": 711.08,
+          "width": 239.03,
+          "height": 44.61,
+          "zIndex": 9,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 31.1,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "right",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Helene",
+                "fontFamily": "Poppins",
+                "fontSize": 31.1,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              },
+              {
+                "text": " Paquet",
+                "fontFamily": "Poppins",
+                "fontSize": 31.1,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s8-e10-t",
+          "type": "text",
+          "x": 207.97,
+          "y": 711.08,
+          "width": 239.03,
+          "height": 44.61,
+          "zIndex": 10,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 31.1,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "right",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Dan",
+                "fontFamily": "Poppins",
+                "fontSize": 31.1,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              },
+              {
+                "text": "i Martinez",
+                "fontFamily": "Poppins",
+                "fontSize": 31.1,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s8-e11-t",
+          "type": "text",
+          "x": 1016.56,
+          "y": 497.23,
+          "width": 416.51,
+          "height": 128.17,
+          "zIndex": 11,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s8-e12-t",
+          "type": "text",
+          "x": 1016.56,
+          "y": 397.37,
+          "width": 416.51,
+          "height": 73.17,
+          "zIndex": 12,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat .",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "slide-9": {
+      "version": 2,
+      "id": "slide-9",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "s9-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#0F0A06"
+          }
+        },
+        {
+          "id": "s9-e2-t",
+          "type": "text",
+          "x": 90,
+          "y": 31.3,
+          "width": 383.69,
+          "height": 37.17,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "Poppins Medium",
+            "fontSize": 26.67,
+            "fontWeight": 650,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Timmerman ",
+                "fontFamily": "Poppins Medium",
+                "fontSize": 26.67,
+                "fontWeight": 650,
+                "color": "#FFFFFF"
+              },
+              {
+                "text": "Industries",
+                "fontFamily": "Poppins Medium",
+                "fontSize": 26.67,
+                "fontWeight": 650,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s9-e3-t",
+          "type": "text",
+          "x": 84.17,
+          "y": 214.56,
+          "width": 631.37,
+          "height": 476.17,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "TAN Meringue",
+            "fontSize": 173.33,
+            "fontWeight": 400,
+            "color": "#FF2121",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Get In Touch",
+                "fontFamily": "TAN Meringue",
+                "fontSize": 173.33,
+                "fontWeight": 400,
+                "color": "#FF2121"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s9-e4-t",
+          "type": "text",
+          "x": 1053.99,
+          "y": 42.47,
+          "width": 83.54,
+          "height": 18.17,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Home",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s9-e5-t",
+          "type": "text",
+          "x": 1224.82,
+          "y": 42.47,
+          "width": 105.68,
+          "height": 18.17,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "About us",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s9-e6-t",
+          "type": "text",
+          "x": 1417.78,
+          "y": 42.47,
+          "width": 117.16,
+          "height": 18.17,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Portfolio",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s9-e7",
+          "type": "maskedImage",
+          "x": 715.53,
+          "y": 182.22,
+          "width": 337.63,
+          "height": 448.56,
+          "zIndex": 7,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/cinema-neon/slide-9-img-17.jpeg",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 696757 0 L 696757 925681 L 0 925681 Z",
+              "viewBox": "0 0 696757 925681",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          }
+        },
+        {
+          "id": "s9-e8",
+          "type": "maskedImage",
+          "x": 715.53,
+          "y": 0,
+          "width": 337.63,
+          "height": 168.67,
+          "zIndex": 8,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/cinema-neon/slide-9-img-18.jpeg",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 760555 0 L 760555 379951 L 0 379951 Z",
+              "viewBox": "0 0 760555 379951",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          }
+        },
+        {
+          "id": "s9-e9",
+          "type": "maskedImage",
+          "x": 715.53,
+          "y": 644.11,
+          "width": 337.63,
+          "height": 255.89,
+          "zIndex": 9,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/cinema-neon/slide-9-img-19.jpeg",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 760555 0 L 760555 576421 L 0 576421 Z",
+              "viewBox": "0 0 760555 576421",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          }
+        },
+        {
+          "id": "s9-e10-t",
+          "type": "text",
+          "x": 1148.85,
+          "y": 455.16,
+          "width": 278.8,
+          "height": 28.5,
+          "zIndex": 10,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "hello@reallygreatsite.com",
+                "fontFamily": "Poppins",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s9-e11-t",
+          "type": "text",
+          "x": 1137.54,
+          "y": 405.92,
+          "width": 220.9,
+          "height": 44.61,
+          "zIndex": 11,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 31.1,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Email",
+                "fontFamily": "Poppins",
+                "fontSize": 31.1,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s9-e12-t",
+          "type": "text",
+          "x": 1148.85,
+          "y": 341.79,
+          "width": 298.94,
+          "height": 28.5,
+          "zIndex": 12,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "www.reallygreatsite.com",
+                "fontFamily": "Poppins",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s9-e13-t",
+          "type": "text",
+          "x": 1137.54,
+          "y": 292.56,
+          "width": 157.45,
+          "height": 44.61,
+          "zIndex": 13,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 31.1,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Website",
+                "fontFamily": "Poppins",
+                "fontSize": 31.1,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s9-e14-t",
+          "type": "text",
+          "x": 1149.43,
+          "y": 561.83,
+          "width": 298.36,
+          "height": 28.5,
+          "zIndex": 14,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "@reallygreatsite",
+                "fontFamily": "Poppins",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s9-e15-t",
+          "type": "text",
+          "x": 1137.54,
+          "y": 519.28,
+          "width": 220.9,
+          "height": 44.61,
+          "zIndex": 15,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 31.1,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Social Media",
+                "fontFamily": "Poppins",
+                "fontSize": 31.1,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s9-e16-t",
+          "type": "text",
+          "x": 1148.85,
+          "y": 228.43,
+          "width": 196.95,
+          "height": 28.5,
+          "zIndex": 16,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "+123-456-7890",
+                "fontFamily": "Poppins",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s9-e17-t",
+          "type": "text",
+          "x": 1137.54,
+          "y": 179.19,
+          "width": 157.45,
+          "height": 44.61,
+          "zIndex": 17,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 31.1,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Phone",
+                "fontFamily": "Poppins",
+                "fontSize": 31.1,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s9-e18-t",
+          "type": "text",
+          "x": 1148.85,
+          "y": 675.19,
+          "width": 278.8,
+          "height": 56,
+          "zIndex": 18,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "123 Anywhere ST., Any City, ST 12345",
+                "fontFamily": "Poppins",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s9-e19-t",
+          "type": "text",
+          "x": 1137.54,
+          "y": 625.96,
+          "width": 220.9,
+          "height": 44.61,
+          "zIndex": 19,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 31.1,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Address",
+                "fontFamily": "Poppins",
+                "fontSize": 31.1,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "slide-10": {
+      "version": 2,
+      "id": "slide-10",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "s10-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#FFFFFF"
+          }
+        },
+        {
+          "id": "s10-e2",
+          "type": "maskedImage",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 2,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/cinema-neon/slide-10-img-20.jpeg",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 18288000 0 L 18288000 10287000 L 0 10287000 L 0 0 Z",
+              "viewBox": "0 0 18288000 10287000",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          }
+        },
+        {
+          "id": "s10-e3-t",
+          "type": "text",
+          "x": 166.7,
+          "y": 181.76,
+          "width": 1251.08,
+          "height": 560,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "TAN Meringue",
+            "fontSize": 233.33,
+            "fontWeight": 400,
+            "color": "#FF2121",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Thank you",
+                "fontFamily": "TAN Meringue",
+                "fontSize": 233.33,
+                "fontWeight": 400,
+                "color": "#FF2121"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s10-e4-t",
+          "type": "text",
+          "x": 90,
+          "y": 31.3,
+          "width": 383.69,
+          "height": 37.17,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "Poppins Medium",
+            "fontSize": 26.67,
+            "fontWeight": 650,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Timmerman ",
+                "fontFamily": "Poppins Medium",
+                "fontSize": 26.67,
+                "fontWeight": 650,
+                "color": "#FFFFFF"
+              },
+              {
+                "text": "Industries",
+                "fontFamily": "Poppins Medium",
+                "fontSize": 26.67,
+                "fontWeight": 650,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s10-e5-t",
+          "type": "text",
+          "x": 1053.99,
+          "y": 42.47,
+          "width": 83.54,
+          "height": 18.17,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Home",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s10-e6-t",
+          "type": "text",
+          "x": 1224.82,
+          "y": 42.47,
+          "width": 105.68,
+          "height": 18.17,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "About us",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        },
+        {
+          "id": "s10-e7-t",
+          "type": "text",
+          "x": 1417.78,
+          "y": 42.47,
+          "width": 117.16,
+          "height": 18.17,
+          "zIndex": 7,
+          "textStyle": {
+            "fontFamily": "Poppins",
+            "fontSize": 13.33,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "center",
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Portfolio",
+                "fontFamily": "Poppins",
+                "fontSize": 13.33,
+                "fontWeight": 400,
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "previewSlides": [
+    {
+      "id": "cinema-neon-p1",
+      "layout": "slide-1",
+      "title": "CINEMA",
+      "bullets": []
+    },
+    {
+      "id": "cinema-neon-p2",
+      "layout": "slide-2",
+      "title": "Timmerman Industries",
+      "bullets": []
+    },
+    {
+      "id": "cinema-neon-p3",
+      "layout": "slide-3",
+      "title": "Timmerman Industries",
+      "bullets": []
+    },
+    {
+      "id": "cinema-neon-p4",
+      "layout": "slide-4",
+      "title": "Timmerman Industries",
+      "bullets": []
+    },
+    {
+      "id": "cinema-neon-p5",
+      "layout": "slide-5",
+      "title": "Timmerman Industries",
+      "bullets": []
+    },
+    {
+      "id": "cinema-neon-p6",
+      "layout": "slide-6",
+      "title": "Timmerman Industries",
+      "bullets": []
+    },
+    {
+      "id": "cinema-neon-p7",
+      "layout": "slide-7",
+      "title": "Portfolio",
+      "bullets": []
+    },
+    {
+      "id": "cinema-neon-p8",
+      "layout": "slide-8",
+      "title": "Team",
+      "bullets": []
+    },
+    {
+      "id": "cinema-neon-p9",
+      "layout": "slide-9",
+      "title": "Timmerman Industries",
+      "bullets": []
+    },
+    {
+      "id": "cinema-neon-p10",
+      "layout": "slide-10",
+      "title": "Thank you",
+      "bullets": []
+    }
+  ]
+}

@@ -57,6 +57,10 @@ function assertCaps(decks, label) {
 const fresh = generate([], 50);
 assert.strictEqual(fresh.length, 50);
 const freshReport = assertCaps(fresh, "50 new decks");
+assert.strictEqual(AXES.includes("designLanguage"), false);
+for (let i = 0; i < 20; i += 1) {
+  assert.strictEqual(planGeneration(fresh, () => i / 20).designLanguage, "editorial");
+}
 
 const stored = readCatalog();
 const extended = generate(stored, 50);
@@ -68,6 +72,20 @@ const nudged = nudgePalette(
   "light-cool",
 );
 assert.strictEqual(paletteBucket(nudged.bg, nudged.accent), "light-cool");
+
+const faint = nudgePalette(
+  { bg: "#e8e8e8", ink: "#d0d0d0", accent: "#c8c8c8" },
+  "dark-cool",
+);
+assert.strictEqual(paletteBucket(faint.bg, faint.accent), "dark-cool");
+assert.notStrictEqual(faint.ink.toLowerCase(), "#d0d0d0");
+
+const buckets = ["light-warm", "light-cool", "light-neutral", "dark-warm", "dark-cool", "dark-neutral"];
+for (const bucket of buckets) {
+  const fixed = nudgePalette({ bg: "#888888", ink: "#888888", accent: "#888888" }, bucket);
+  assert.strictEqual(paletteBucket(fixed.bg, fixed.accent), bucket, bucket);
+  assert.notStrictEqual(fixed.bg.toLowerCase(), fixed.ink.toLowerCase(), bucket + " ink");
+}
 
 const dominated = [];
 for (let i = 0; i < 9; i += 1) {

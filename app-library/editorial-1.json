@@ -1,0 +1,616 @@
+{
+  "version": 2,
+  "schemaVersion": 2,
+  "id": "editorial-1",
+  "name": "Fashion photographer",
+  "description": "Hand-authored rebuild of the fashion photographer portfolio.",
+  "category": "editorial",
+  "visualMode": "hybrid",
+  "source": "fashion-photographer-portfolio",
+  "taste": {
+    "designLanguage": "editorial",
+    "cover": "type",
+    "density": "airy",
+    "align": "asymmetric",
+    "groundMode": "flat"
+  },
+  "tokens": {
+    "color": {
+      "bg": "#F6F3EE",
+      "surface": "#EFEAE3",
+      "card": "#FFFFFF",
+      "ink": "#1C1916",
+      "muted": "#6E675F",
+      "rule": "#D9D0C6",
+      "accent": "#1E3A32",
+      "accent2": "#C4553A",
+      "onAccent": "#F6F3EE"
+    },
+    "font": {
+      "display": "Fraunces",
+      "text": "Source Sans 3"
+    },
+    "type": {
+      "h1": 64,
+      "body": 22
+    }
+  },
+  "theme": {
+    "backgroundColor": "#F6F3EE",
+    "fontFamily": "Fraunces",
+    "titleColor": "#1C1916",
+    "bodyColor": "#6E675F"
+  },
+  "layoutSequence": [
+    "cover",
+    "portraits",
+    "moodboard",
+    "quote",
+    "close"
+  ],
+  "layouts": {
+    "cover": {
+      "version": 2,
+      "id": "cover",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#F6F3EE"
+          }
+        },
+        {
+          "id": "film",
+          "type": "collage",
+          "x": -120,
+          "y": 0,
+          "width": 900,
+          "height": 900,
+          "zIndex": 2,
+          "collageContent": {
+            "cells": [
+              {
+                "x": 0,
+                "y": 0,
+                "width": 250,
+                "height": 760,
+                "url": "editorial://fashion-a",
+                "binding": "",
+                "fit": "cover"
+              },
+              {
+                "x": 270,
+                "y": 0,
+                "width": 410,
+                "height": 370,
+                "url": "editorial://fashion-b",
+                "binding": "",
+                "fit": "cover"
+              },
+              {
+                "x": 270,
+                "y": 390,
+                "width": 410,
+                "height": 370,
+                "url": "editorial://fashion-c",
+                "binding": "",
+                "fit": "cover"
+              }
+            ]
+          }
+        },
+        {
+          "id": "kicker",
+          "type": "text",
+          "x": 820,
+          "y": 120,
+          "width": 400,
+          "height": 32,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Fraunces",
+            "fontSize": 18,
+            "fontWeight": 650,
+            "color": "#1E3A32",
+            "textAlign": "left",
+            "lineHeight": 1.02
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "PORTFOLIO"
+              }
+            ]
+          }
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "x": 820,
+          "y": 230,
+          "width": 760,
+          "height": 140,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Fraunces",
+            "fontSize": 120,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.02
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Fashion"
+              }
+            ]
+          }
+        },
+        {
+          "id": "title2",
+          "type": "text",
+          "x": 820,
+          "y": 380,
+          "width": 760,
+          "height": 140,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Fraunces",
+            "fontSize": 120,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.02
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "photographer"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "portraits": {
+      "version": 2,
+      "id": "portraits",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#F6F3EE"
+          }
+        },
+        {
+          "id": "arch-a",
+          "type": "maskedImage",
+          "x": 0,
+          "y": 0,
+          "width": 740,
+          "height": 900,
+          "zIndex": 3,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "editorial://fashion-d",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "arch",
+              "d": "",
+              "viewBox": "0 0 100 100",
+              "cornerRadius": 0
+            }
+          }
+        },
+        {
+          "id": "arch-b",
+          "type": "maskedImage",
+          "x": 860,
+          "y": 0,
+          "width": 740,
+          "height": 900,
+          "zIndex": 3,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "editorial://fashion-e",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "arch",
+              "d": "",
+              "viewBox": "0 0 100 100",
+              "cornerRadius": 0
+            }
+          }
+        },
+        {
+          "id": "cap",
+          "type": "text",
+          "x": 900,
+          "y": 820,
+          "width": 400,
+          "height": 36,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Fraunces",
+            "fontSize": 16,
+            "fontWeight": 650,
+            "color": "#F6F3EE",
+            "textAlign": "left",
+            "lineHeight": 1.02
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Look 04, linen"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "moodboard": {
+      "version": 2,
+      "id": "moodboard",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#F6F3EE"
+          }
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "x": 80,
+          "y": 40,
+          "width": 600,
+          "height": 80,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Fraunces",
+            "fontSize": 64,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.02
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Moodboard"
+              }
+            ]
+          }
+        },
+        {
+          "id": "blob-photo",
+          "type": "maskedImage",
+          "x": 0,
+          "y": 140,
+          "width": 740,
+          "height": 760,
+          "zIndex": 3,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "editorial://fashion-f",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M18 58 C8 30 28 8 52 14 C78 6 98 32 90 56 C100 82 74 98 50 90 C26 100 6 80 18 58 Z",
+              "viewBox": "0 0 100 100",
+              "cornerRadius": 0
+            }
+          }
+        },
+        {
+          "id": "board",
+          "type": "collage",
+          "x": 800,
+          "y": 140,
+          "width": 800,
+          "height": 760,
+          "zIndex": 2,
+          "collageContent": {
+            "cells": [
+              {
+                "x": 0,
+                "y": 90,
+                "width": 380,
+                "height": 450,
+                "url": "editorial://fashion-g",
+                "binding": "",
+                "fit": "cover"
+              },
+              {
+                "x": 400,
+                "y": 0,
+                "width": 400,
+                "height": 250,
+                "url": "editorial://fashion-h",
+                "binding": "",
+                "fit": "cover"
+              },
+              {
+                "x": 400,
+                "y": 270,
+                "width": 280,
+                "height": 260,
+                "url": "editorial://fashion-i",
+                "binding": "",
+                "fit": "cover"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "quote": {
+      "version": 2,
+      "id": "quote",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#F6F3EE"
+          }
+        },
+        {
+          "id": "tilt",
+          "type": "rotated",
+          "x": 120,
+          "y": 230,
+          "width": 960,
+          "height": 280,
+          "zIndex": 8,
+          "degrees": 3,
+          "element": {
+            "id": "quote",
+            "type": "text",
+            "x": 120,
+            "y": 230,
+            "width": 960,
+            "height": 280,
+            "zIndex": 8,
+            "textStyle": {
+              "fontFamily": "Fraunces",
+              "fontSize": 72,
+              "fontWeight": 650,
+              "color": "#1C1916",
+              "textAlign": "left",
+              "lineHeight": 1.02
+            },
+            "textContent": {
+              "spans": [
+                {
+                  "text": "“Quiet color. The cloth speaks first.”"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "arch",
+          "type": "maskedImage",
+          "x": 1080,
+          "y": 0,
+          "width": 520,
+          "height": 900,
+          "zIndex": 3,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "editorial://fashion-j",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "arch",
+              "d": "",
+              "viewBox": "0 0 100 100",
+              "cornerRadius": 0
+            }
+          }
+        },
+        {
+          "id": "cap",
+          "type": "text",
+          "x": 1120,
+          "y": 820,
+          "width": 400,
+          "height": 36,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Fraunces",
+            "fontSize": 16,
+            "fontWeight": 650,
+            "color": "#F6F3EE",
+            "textAlign": "left",
+            "lineHeight": 1.02
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Night studio"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "close": {
+      "version": 2,
+      "id": "close",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#F6F3EE"
+          }
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "x": 100,
+          "y": 280,
+          "width": 900,
+          "height": 160,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Fraunces",
+            "fontSize": 112,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.02
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Book a sitting"
+              }
+            ]
+          }
+        },
+        {
+          "id": "sub",
+          "type": "text",
+          "x": 100,
+          "y": 480,
+          "width": 600,
+          "height": 40,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Fraunces",
+            "fontSize": 28,
+            "fontWeight": 650,
+            "color": "#6E675F",
+            "textAlign": "left",
+            "lineHeight": 1.02
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "One roll. One room."
+              }
+            ]
+          }
+        },
+        {
+          "id": "arch",
+          "type": "maskedImage",
+          "x": 1040,
+          "y": 0,
+          "width": 560,
+          "height": 900,
+          "zIndex": 3,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "editorial://fashion-l",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "arch",
+              "d": "",
+              "viewBox": "0 0 100 100",
+              "cornerRadius": 0
+            }
+          }
+        }
+      ]
+    }
+  },
+  "previewSlides": [
+    {
+      "id": "editorial-1-p1",
+      "layout": "cover",
+      "title": "Fashion photographer",
+      "bullets": []
+    },
+    {
+      "id": "editorial-1-p2",
+      "layout": "portraits",
+      "title": "The sitting",
+      "bullets": []
+    },
+    {
+      "id": "editorial-1-p3",
+      "layout": "moodboard",
+      "title": "Moodboard",
+      "bullets": []
+    },
+    {
+      "id": "editorial-1-p4",
+      "layout": "quote",
+      "title": "Quiet color",
+      "bullets": []
+    },
+    {
+      "id": "editorial-1-p6",
+      "layout": "close",
+      "title": "Book a sitting",
+      "bullets": []
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "id": "cinema-neon",
+  "typeScale": {
+    "h1_ratio": 20.38,
+    "h2_ratio": 17.92,
+    "h3_ratio": 13.31,
+    "body_ratio": 1
+  },
+  "spacingGrid": [
+    32,
+    44,
+    64,
+    92,
+    268
+  ],
+  "palette": {
+    "bg": {
+      "hex": "#FFFFFF",
+      "percent": 72.7
+    },
+    "surface": {
+      "hex": "#FFFFFF",
+      "percent": 72.7
+    },
+    "ink": {
+      "hex": "#1C1916",
+      "percent": 0
+    },
+    "muted": {
+      "hex": "#1C1916",
+      "percent": 0
+    },
+    "accent": {
+      "hex": "#1E3A32",
+      "percent": 0
+    },
+    "card": {
+      "hex": "#FFFFFF",
+      "percent": 72.7
+    }
+  },
+  "photoTreatments": {
+    "full_bleed": 0,
+    "masked": 100,
+    "matted": 0,
+    "duotoned": 0,
+    "plain": 0
+  },
+  "motifSignature": [
+    {
+      "kind": "rectangle",
+      "count": 10
+    },
+    {
+      "kind": "roundedRect",
+      "count": 0
+    },
+    {
+      "kind": "ellipse",
+      "count": 0
+    },
+    {
+      "kind": "path",
+      "count": 22
+    },
+    {
+      "kind": "arch",
+      "count": 0
+    }
+  ]
+}

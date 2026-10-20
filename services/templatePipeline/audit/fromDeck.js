@@ -175,6 +175,60 @@ function convertElement(element, z, slide, layoutId, tokens) {
       },
     };
   }
+  if (element.type === "table") {
+    return { ...base, kind: "table", geom: "table", opacity };
+  }
+  if (element.type === "illustration") {
+    const body = element.illustrationContent || {};
+    const fillColor = colorOf(token(body.fill, tokens));
+    const strokeColor = colorOf(token(body.stroke, tokens));
+    const fill = fillColor && body.fill !== "none" ? { type: "solid", color: fillColor, alpha: fillColor.alpha * opacity } : null;
+    const stroke = strokeColor && body.stroke !== "none"
+      ? { width: Number(body.strokeWidth || 2), color: strokeColor, dash: "solid", arrow: false }
+      : null;
+    return {
+      ...base,
+      kind: "shape",
+      geom: "decor:illustration",
+      radius: null,
+      stroke,
+      shadow: null,
+      opacity,
+      fill,
+      decor: { name: "illustration", params: { d: body.d || "" } },
+    };
+  }
+  if (element.type === "maskedImage") {
+    const content = element.maskedImageContent || {};
+    const kind = content.clip && content.clip.kind;
+    const mask = kind === "ellipse" ? "circle_or_oval" : kind === "arch" ? "arch" : kind === "path" ? "organic" : "rect";
+    return {
+      ...base,
+      kind: "image",
+      geom: "rect",
+      radius: null,
+      stroke: null,
+      shadow: null,
+      opacity,
+      image: {
+        target: content.url || content.binding || null,
+        ext: "jpg",
+        bytes: 0,
+        present: true,
+        pixelWidth: 0,
+        pixelHeight: 0,
+        alpha: mask !== "rect",
+        raster: null,
+        vector: false,
+        duotone: false,
+        mono: false,
+        opacity,
+        crop: false,
+        content: "photo",
+        mask,
+      },
+    };
+  }
   if (element.type === "shape") {
     const shape = element.shapeContent || {};
     const fillColor = colorOf(token(shape.fill, tokens));
@@ -241,8 +295,24 @@ function readDeck(deck) {
     const elements = [];
     for (const { element } of ordered) {
       if (!visible(element, slide)) continue;
-      const converted = convertElement(element, elements.length + 1, slide, layoutId, tokens);
-      if (converted) elements.push(converted);
+      const pieces = element.type === "collage"
+        ? (element.collageContent.cells || []).map((cell, index) => ({
+          id: element.id + "-" + index,
+          type: "image",
+          x: element.x + cell.x,
+          y: element.y + cell.y,
+          width: cell.width,
+          height: cell.height,
+          zIndex: element.zIndex || 0,
+          imageContent: { url: cell.url, binding: cell.binding, fit: cell.fit || "cover" },
+        }))
+        : [element.type === "rotated" && element.element
+          ? { ...element.element, id: element.element.id || element.id, rotation: element.degrees || 0 }
+          : element];
+      for (const piece of pieces) {
+        const converted = convertElement(piece, elements.length + 1, slide, layoutId, tokens);
+        if (converted) elements.push(converted);
+      }
     }
     return {
       index,

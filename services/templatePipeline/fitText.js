@@ -32,7 +32,17 @@ const FILES = {
   "Spectral": "spectral.ttf",
   "IBM Plex Sans": "ibm-plex-sans.ttf",
   "IBM Plex Mono": "ibm-plex-mono.ttf",
-  "Poppins": "poppins.ttf",
+  "Poppins": "poppins-regular.ttf",
+  "Poppins Bold": "poppins-bold.ttf",
+  "Telegraf": "space-grotesk-regular.ttf",
+  "Telegraf Bold": "space-grotesk-bold.ttf",
+  "Open Sauce": "open-sauce-regular.ttf",
+  "Open Sauce Light": "open-sauce-light.ttf",
+  "Open Sauce Medium": "open-sauce-medium.ttf",
+  "Open Sauce Bold": "open-sauce-bold.ttf",
+  "Open Sauce Heavy": "open-sauce-black.ttf",
+  "Canva Sans": "figtree-regular.ttf",
+  "Canva Sans Bold": "figtree-bold.ttf",
   "Montserrat": "montserrat.ttf",
   "Inter": "inter.ttf",
   "Open Sans": "open-sans.ttf",
@@ -42,15 +52,24 @@ const FILES = {
 
 const loaded = new Map();
 
+function fontFile(family) {
+  const file = FILES[family];
+  return file ? path.join(__dirname, "fonts", file) : null;
+}
+
+function knownFamilies() {
+  return Object.keys(FILES);
+}
+
 function fontOf(family) {
   if (loaded.has(family)) return loaded.get(family);
-  const file = FILES[family];
+  const file = fontFile(family);
   if (!file) {
     const error = new Error("No measurement file for the font " + family + ".");
     error.status = 500;
     throw error;
   }
-  const font = opentype.parse(fs.readFileSync(path.join(__dirname, "fonts", file)));
+  const font = opentype.parse(fs.readFileSync(file));
   loaded.set(family, font);
   return font;
 }
@@ -68,17 +87,20 @@ function fontSize(tokens, value) {
 function widthOf(family, text, size) {
   const font = fontOf(family);
   const value = String(text);
-  try {
-    return font.getAdvanceWidth(value, size);
-  } catch (error) {
-    const scale = size / font.unitsPerEm;
-    let width = 0;
-    for (const char of value) {
+  // Glyph advances only. getAdvanceWidth applies the ccmp lookup, and
+  // opentype.js throws on lookup type 6 format 2, which Inter, Roboto,
+  // Source Sans 3, and several other deck fonts contain.
+  const scale = size / (font.unitsPerEm || 1000);
+  let width = 0;
+  for (const char of value) {
+    try {
       const glyph = font.charToGlyph(char);
       width += (glyph.advanceWidth || 0) * scale;
+    } catch (glyphError) {
+      width += size * 0.55;
     }
-    return width;
   }
+  return width;
 }
 
 function overflows(text, boxWidth, boxHeight, size, lineHeight, family) {
@@ -127,4 +149,4 @@ function textOverflow(deck) {
   return problems;
 }
 
-module.exports = { textOverflow };
+module.exports = { textOverflow, measureWidth: widthOf, fontFile, knownFamilies };

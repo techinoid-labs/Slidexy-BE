@@ -1,9 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { generateDeck } = require("./generateDeck");
-const { judge, fingerprintsForGate } = require("./gates");
 const { rebuildTasteFromDecks } = require("./learn");
-const { scoreDeckFile } = require("./aestheticScore");
 
 const DIR = path.join(__dirname, "..", "..", "generated-templates");
 
@@ -76,73 +73,10 @@ function reviewTemplate(id, status) {
   return saved;
 }
 
-/**
- * Writes one template that passes the gates.
- * Skips seeds that fail, or that repeat a layout already saved.
- */
-function wantedScore(options) {
-  return Boolean(options && options.score) || process.argv.includes("--score");
-}
-
-async function createTemplate(seed, options) {
-  ensureDir();
-  const prints = fingerprintsForGate();
-  const start = Number.isFinite(Number(seed)) ? (Number(seed) >>> 0) || 1 : (Date.now() % 100000) || 1;
-  const taken = takenGeometries();
-  const reasons = {};
-  let chosen = null;
-  for (let step = 0; step < 4; step += 1) {
-    const candidateSeed = (start + step) >>> 0 || 1;
-    let deck;
-    try {
-      deck = await generateDeck(candidateSeed);
-    } catch (error) {
-      const reason = error.tells ? "ai-tells" : "invalid";
-      reasons[reason] = (reasons[reason] || 0) + 1;
-      if (error.tells || error.status) continue;
-      throw error;
-    }
-    if (!deck || taken.has(deck.geometry)) {
-      reasons.duplicate = (reasons.duplicate || 0) + 1;
-      continue;
-    }
-    const result = judge(deck, prints);
-    if (!result.ok) {
-      reasons[result.reason] = (reasons[result.reason] || 0) + 1;
-      continue;
-    }
-    chosen = deck;
-    break;
-  }
-  if (!chosen) {
-    const top = Object.entries(reasons).sort((a, b) => b[1] - a[1])[0];
-    const error = new Error(
-      top
-        ? "No template passed the checks. Most were rejected for " + top[0] + "."
-        : "No template passed the checks.",
-    );
-    error.status = 409;
-    throw error;
-  }
-  const saved = writeDeck(chosen);
-  if (!wantedScore(options)) return saved;
-  try {
-    const scores = scoreDeckFile(path.join(DIR, saved.id + ".json"));
-    if (!scores) return saved;
-    saved.scores = scores;
-    writeDeck(saved);
-    judge(saved);
-  } catch (error) {
-    process.stderr.write(String(error && error.message || error) + "\n");
-  }
-  return saved;
-}
-
 module.exports = {
   listTemplates,
   readTemplate,
   readAll,
-  createTemplate,
   writeDeck,
   reviewTemplate,
   takenGeometries,

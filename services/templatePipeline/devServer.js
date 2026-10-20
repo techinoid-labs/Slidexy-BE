@@ -6,8 +6,7 @@
  */
 
 const http = require("http");
-const { listTemplates, readTemplate, createTemplate, reviewTemplate } = require("./store");
-const { runBatch } = require("./pipeline");
+const { listTemplates, readTemplate, reviewTemplate } = require("./store");
 
 function send(res, status, body) {
   res.writeHead(status, {
@@ -37,14 +36,6 @@ const server = http.createServer(async (req, res) => {
   try {
     if (req.method === "GET" && url === "/api/template-pipeline") {
       return send(res, 200, { templates: listTemplates(query.get("status") || undefined) });
-    }
-    if (req.method === "POST" && url === "/api/template-pipeline/generate") {
-      const body = await readBody(req);
-      return send(res, 201, await createTemplate(body.seed));
-    }
-    if (req.method === "POST" && url === "/api/template-pipeline/batch") {
-      const body = await readBody(req);
-      return send(res, 201, await runBatch(body.count));
     }
     const review = url.match(/^\/api\/template-pipeline\/([^/]+)\/review$/);
     if (req.method === "POST" && review) {

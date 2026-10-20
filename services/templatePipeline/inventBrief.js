@@ -1,13 +1,13 @@
 /**
  * Asks the model for one original template idea.
  * Structure (slides/density/align) is biased by Ship/Discard taste.
- * The model invents subject, cover, palette, fonts, and arrangements.
+ * The model invents the subject, title, and palette.
  */
 
 const fs = require("fs");
 const path = require("path");
 const { biasedStructure, tasteHints, COVER_STYLES, loadTaste, rebuildTasteFromDecks } = require("./learn");
-const { readCatalog, planGeneration, applyPlan, paletteBucket } = require("./catalogCaps");
+const { readCatalog, planGeneration, applyPlan } = require("./catalogCaps");
 
 function seedTasteIfNeeded() {
   const taste = loadTaste();
@@ -35,22 +35,6 @@ function loadEnv() {
     const value = match[2].trim().replace(/^["']|["']$/g, "");
     if (!process.env[key]) process.env[key] = value;
   });
-}
-
-function contrast(hexA, hexB) {
-  const lum = (hex) => {
-    const h = String(hex || "").replace("#", "");
-    if (h.length < 6) return 0;
-    const channels = [0, 2, 4].map((i) => {
-      const c = parseInt(h.slice(i, i + 2), 16) / 255;
-      return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
-    });
-    return 0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2];
-  };
-  const a = lum(hexA);
-  const b = lum(hexB);
-  const [hi, lo] = a > b ? [a, b] : [b, a];
-  return (hi + 0.05) / (lo + 0.05);
 }
 
 async function askModel(prompt) {
@@ -138,9 +122,6 @@ function parseBrief(raw, structure, plan) {
   if (!data.title || !palette.bg || !palette.ink || !palette.accent || !fonts.display || !fonts.text) {
     throw new Error("The model left out a color, a font, or the title.");
   }
-  if (contrast(palette.ink, palette.bg) < 4.5 || contrast(palette.accent, palette.bg) < 3) {
-    throw new Error("The model chose a palette that is too faint.");
-  }
   const brief = {
     name: String(data.idea || data.title).slice(0, 40),
     title: String(data.title).slice(0, 24),
@@ -220,9 +201,6 @@ Unique seed: ${Date.now()}-${Math.random().toString(36).slice(2, 8)}
     try {
       const raw = await askModel(prompt);
       const brief = applyPlan(parseBrief(raw, structure, plan), plan);
-      if (paletteBucket(brief.palette.bg, brief.palette.accent) !== plan.paletteBucket) {
-        throw new Error("The palette could not be moved into an open catalog bucket.");
-      }
       brief.photo = await searchPhoto(brief.photoQuery);
       return brief;
     } catch (error) {

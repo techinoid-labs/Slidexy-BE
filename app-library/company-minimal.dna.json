@@ -1,0 +1,71 @@
+{
+  "id": "company-minimal",
+  "typeScale": {
+    "h1_ratio": 21.16,
+    "h2_ratio": 6.4,
+    "h3_ratio": 4.47,
+    "body_ratio": 1
+  },
+  "spacingGrid": [
+    40,
+    72,
+    92,
+    136,
+    248
+  ],
+  "palette": {
+    "bg": {
+      "hex": "#FFFFFF",
+      "percent": 12.8
+    },
+    "surface": {
+      "hex": "#FFFFFF",
+      "percent": 12.8
+    },
+    "ink": {
+      "hex": "#1C1916",
+      "percent": 0
+    },
+    "muted": {
+      "hex": "#1C1916",
+      "percent": 0
+    },
+    "accent": {
+      "hex": "#1E3A32",
+      "percent": 0
+    },
+    "card": {
+      "hex": "#FFFFFF",
+      "percent": 12.8
+    }
+  },
+  "photoTreatments": {
+    "full_bleed": 0,
+    "masked": 100,
+    "matted": 0,
+    "duotoned": 0,
+    "plain": 0
+  },
+  "motifSignature": [
+    {
+      "kind": "rectangle",
+      "count": 12
+    },
+    {
+      "kind": "roundedRect",
+      "count": 0
+    },
+    {
+      "kind": "ellipse",
+      "count": 0
+    },
+    {
+      "kind": "path",
+      "count": 37
+    },
+    {
+      "kind": "arch",
+      "count": 0
+    }
+  ]
+}

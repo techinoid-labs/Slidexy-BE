@@ -31,6 +31,7 @@ const DECOR_FAMILY = {
   arc: "outline",
   blob: "organic",
   waves: "organic",
+  illustration: "illustration",
 };
 
 const PLAIN_TREATMENTS = new Set(["rounded", "bleed", "full_bleed"]);
@@ -196,6 +197,18 @@ function runsOf(e) {
 
 function sizeOf(e) {
   return e.text ? e.text.maxSize || 0 : 0;
+}
+
+/** Large short figure plus only smaller labels. A photo or extra body keeps it a card. */
+function statBlock(container, bodySize) {
+  if (container.holdsVisual.length) return false;
+  const figure = container.holds.find((text) => {
+    const plain = text.text.plain.trim();
+    return FIGURE.test(plain) && plain.length <= 14 && sizeOf(text) >= 40 && sizeOf(text) >= bodySize * 1.8;
+  });
+  if (!figure) return false;
+  const labels = container.holds.filter((text) => text !== figure && sizeOf(text) < sizeOf(figure));
+  return labels.length > 0 && labels.length === container.holds.length - 1;
 }
 
 // ---------- per-slide analysis ----------
@@ -431,6 +444,7 @@ function analyzeSlide(slide, scheme, deckBodySize) {
     else if (c.holds.length === 1 && c.h <= 110 && words[0].length <= 32 && c.w / Math.max(1, c.h) >= 1.6) add("pill_tag");
     else if (c.holds.length === 1 && sizeOf(c.holds[0]) >= 28 && c.w <= c.holds[0].w + 70 && c.h <= c.holds[0].h + 60) add("highlight_label");
     else if (c.w >= W * 0.8 && c.h <= H * 0.45) add("band");
+    else if (statBlock(c, bodySize)) add("stat_block");
     else if ((c.holds.length >= 2 || c.holdsVisual.length) && area(c) <= 0.5 * AREA && area(c) >= 0.012 * AREA) add("card");
   }
   const icons = els.filter((e) => (e.cls === "graphic" && area(e) <= 0.03 * AREA) || e.geom === "decor:icon");

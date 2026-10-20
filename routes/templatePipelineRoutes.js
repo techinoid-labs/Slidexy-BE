@@ -1,29 +1,10 @@
 const express = require("express");
-const { listTemplates, readTemplate, createTemplate, reviewTemplate } = require("../services/templatePipeline/store");
-const { runBatch } = require("../services/templatePipeline/pipeline");
+const { listTemplates, readTemplate, reviewTemplate } = require("../services/templatePipeline/store");
 
 const router = express.Router();
 
 router.get("/", (req, res) => {
   res.json({ templates: listTemplates(req.query.status) });
-});
-
-router.post("/generate", async (req, res) => {
-  try {
-    const deck = await createTemplate(req.body && req.body.seed);
-    return res.status(201).json(deck);
-  } catch (error) {
-    return res.status(error.status || 500).json({ error: error.message });
-  }
-});
-
-router.post("/batch", async (req, res) => {
-  try {
-    const count = req.body && req.body.count;
-    return res.status(201).json(await runBatch(count));
-  } catch (error) {
-    return res.status(error.status || 500).json({ error: error.message });
-  }
 });
 
 router.post("/:id/review", (req, res) => {
