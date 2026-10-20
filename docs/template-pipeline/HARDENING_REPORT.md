@@ -92,3 +92,8 @@ After `mutate_safe.js` renders a mutated PPTX, every PNG goes through the review
 
 No. The three checks run, and they catch the washed cinema mask and the slides whose boxes leave the canvas. They are not a user-facing mutator yet. company-minimal still drops 3 zero-height rules. `swap_sides` can exchange a text box with a picture on another slide. Creative operators still write deck JSON and do not pass through this reviewer. The DeepSeek vision model has no credits, so review depends on Gemini.
 
+## Phase 4: proposal only
+
+No SlidePoise code was written. The one-page note is `docs/template-pipeline/SLIDEPOISE_INTEGRATION_PROPOSAL.md`. It is a generate-then-reconstruct path, separate from convert-and-remix. A spike is about 8 to 12 days. It is not the next build.
+
+
