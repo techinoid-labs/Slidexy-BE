@@ -362,8 +362,14 @@ function loadPhoto(url, warn, where) {
     warn(where + ": missing url");
     return null;
   }
-  const file = path.resolve(PHOTO_ROOT, url);
-  const root = path.resolve(PHOTO_ROOT);
+  const rel = String(url).replace(/\\/g, "/");
+  const asset = rel.startsWith("assets/decorations/");
+  const root = asset
+    ? path.resolve(__dirname, "..", "assets", "decorations")
+    : path.resolve(PHOTO_ROOT);
+  const file = asset
+    ? path.resolve(__dirname, "..", rel)
+    : path.resolve(PHOTO_ROOT, rel);
   const relative = path.relative(root, file);
   if (relative.startsWith("..") || path.isAbsolute(relative)) {
     warn(where + ": image url escapes generated-templates: " + url);
@@ -519,6 +525,8 @@ function elementRuns(element, slide, tokens) {
       textAlign: base.textAlign,
       lineHeight: base.lineHeight,
       letterSpacing: span.letterSpacing == null ? (base.letterSpacing || 0) : span.letterSpacing,
+      highlight: !!span.highlight,
+      shadowColor: span.shadowColor || base.shadowColor || "",
     };
     const parts = String(span.text == null ? "" : span.text).split("\n");
     parts.forEach((part, index) => {
@@ -607,26 +615,23 @@ function inkHeight(line) {
   return ink;
 }
 
+function lineWidthOf(line) {
+  return line.reduce((sum, piece) => sum + piece.width, 0);
+}
+
 function linesFit(lines, width, height, missingLineHeight, where, warn) {
   let y = 0;
   for (let i = 0; i < lines.length; i += 1) {
     const size = Math.max(lineSize(lines[i]), inkHeight(lines[i]));
-    const lineWidth = lines[i].reduce((sum, piece) => sum + piece.width, 0);
-    if (lineWidth > width + 0.5) return false;
+    if (lineWidthOf(lines[i]) > width + 0.5) return false;
     if (y + size > height + 0.5) return false;
     y += lineLead(lines[i], missingLineHeight, where, warn);
   }
   return true;
 }
 
-function ellipsisLine(line, maxWidth) {
-  const style = line[line.length - 1].style;
-  const family = line[line.length - 1].family;
-  let text = line.map((piece) => piece.text).join("");
-  if (widthOfText(text, style, family) <= maxWidth) return line;
-  while (text && widthOfText(text + "…", style, family) > maxWidth) text = text.slice(0, -1);
-  const shown = (text || "") + "…";
-  return [{ text: shown, style, family, width: widthOfText(shown, style, family) }];
+function widestLine(lines) {
+  return lines.reduce((max, line) => Math.max(max, lineWidthOf(line)), 0);
 }
 
 function layoutText(element, slide, warn, where, wrap, tokens) {
@@ -647,19 +652,20 @@ function layoutText(element, slide, warn, where, wrap, tokens) {
     if (!words.length) return [];
     const style = Object.assign({}, words[0].style);
     const family = "Georgia";
-    let shown = words.map((run) => run.word).join(" ");
-    if (widthOfText(shown, style, family) > element.width) {
-      while (shown && widthOfText(shown + "…", style, family) > element.width) shown = shown.slice(0, -1);
-      shown += "…";
+    const shown = words.map((run) => run.word).join(" ");
+    let size = Number(style.fontSize) || 1;
+    while (size > 1 && widthOfText(shown, Object.assign({}, style, { fontSize: size }), family) > element.width) {
+      size *= 0.92;
     }
+    style.fontSize = size;
     return [[{ text: shown, style, family, width: widthOfText(shown, style, family) }]];
   }
   let lines = prepare(1);
   if (fits(lines)) return lines;
-  let low = 0.2;
+  let low = 0.05;
   let high = 1;
   let best = 0;
-  for (let step = 0; step < 12; step += 1) {
+  for (let step = 0; step < 16; step += 1) {
     const mid = (low + high) / 2;
     const attempt = prepare(mid);
     if (linesFit(attempt, element.width, element.height, missingLineHeight, where, () => {})) {
@@ -669,25 +675,36 @@ function layoutText(element, slide, warn, where, wrap, tokens) {
       high = mid;
     }
   }
-  if (best > 0) {
-    lines = prepare(best);
-    const from = runs.filter((run) => run.word).map((run) => Number(run.style.fontSize));
-    warn(where + ": auto-fit font size from " + from[0] + " to " + (from[0] * best).toFixed(1));
-    return lines;
+  let scale = best > 0 ? best : 0.05;
+  lines = prepare(scale);
+  let guard = 0;
+  while (widestLine(lines) > element.width + 0.5 && scale > 0.012 && guard < 12) {
+    scale *= (element.width / Math.max(widestLine(lines), 1)) * 0.96;
+    lines = prepare(scale);
+    guard += 1;
   }
-  lines = prepare(1);
+  guard = 0;
+  while (!linesFit(lines, element.width, element.height, missingLineHeight, where, () => {}) && scale > 0.012 && guard < 14) {
+    scale *= 0.86;
+    lines = prepare(scale);
+    guard += 1;
+  }
+  if (scale < 0.999) {
+    const from = runs.filter((run) => run.word).map((run) => Number(run.style.fontSize));
+    warn(where + ": auto-fit font size from " + from[0] + " to " + (from[0] * scale).toFixed(1));
+  }
+  if (linesFit(lines, element.width, element.height, missingLineHeight, where, warn)) return lines;
   let y = 0;
   const kept = [];
   for (let i = 0; i < lines.length; i += 1) {
-    const size = lineSize(lines[i]);
-    if (y + size > element.height + 0.5) break;
+    const size = Math.max(lineSize(lines[i]), inkHeight(lines[i]));
+    if (y + size > element.height + 0.5 && kept.length) break;
     kept.push(lines[i]);
     y += lineLead(lines[i], missingLineHeight, where, warn);
   }
-  if (!kept.length && lines.length) kept.push(ellipsisLine(lines[0], element.width));
-  else if (kept.length < lines.length) kept[kept.length - 1] = ellipsisLine(kept[kept.length - 1], element.width);
-  warn(where + ": wrapped lines exceed height; clipped with ellipsis");
-  return kept;
+  if (!kept.length && lines.length) kept.push(lines[0]);
+  warn(where + ": wrapped lines exceed height");
+  return kept.length ? kept : lines;
 }
 
 function clipMask(ctx, element, clip, warn, where) {
@@ -727,10 +744,54 @@ function clipMask(ctx, element, clip, warn, where) {
   warn(where + ": unknown clip kind " + clip.kind);
 }
 
+function textBoxes(element, slide, tokens) {
+  prepareFonts();
+  const lines = layoutText(element, slide, () => {}, element.id || "text", true, tokens);
+  const placed = [];
+  const missing = { logged: false };
+  let y = element.y;
+  lines.forEach((line) => {
+    const align = line[0].style.textAlign;
+    const lineWidth = line.reduce((sum, piece) => sum + piece.width, 0);
+    let x = element.x;
+    if (align === "center") x = element.x + (element.width - lineWidth) / 2;
+    else if (align === "right") x = element.x + element.width - lineWidth;
+    const size = lineSize(line);
+    line.forEach((piece) => {
+      let left = x;
+      let width = piece.width;
+      if (piece.style.highlight && piece.text.charAt(0) === " ") {
+        const gap = widthOfText(" ", piece.style, piece.family);
+        left += gap;
+        width -= gap;
+      }
+      placed.push({
+        text: piece.text.replace(/^\s+/, ""),
+        x: left,
+        y,
+        width,
+        height: size,
+        highlight: !!piece.style.highlight,
+      });
+      x += piece.width;
+    });
+    y += lineLead(line, missing, "", () => {});
+  });
+  return placed;
+}
+
 function paintImage(ctx, element, content, warn, where, enabled) {
   ctx.save();
   if (element.opacity != null) ctx.globalAlpha *= Number(element.opacity);
   const box = { x: element.x, y: element.y, width: element.width, height: element.height };
+  if (content.shadow) {
+    ctx.save();
+    ctx.shadowBlur = 40;
+    ctx.shadowColor = "rgba(0,0,0,0.6)";
+    ctx.fillStyle = "#000000";
+    ctx.fillRect(box.x, box.y, box.width, box.height);
+    ctx.restore();
+  }
   if (content.clip) clipMask(ctx, element, content.clip, warn, where);
   else {
     ctx.beginPath();
@@ -858,6 +919,17 @@ function paintText(ctx, element, slide, warn, where, wrap, tokens) {
         warn(where + ": missing text color");
         return;
       }
+      if (piece.style.shadowColor) {
+        ctx.shadowColor = piece.style.shadowColor;
+        ctx.shadowBlur = 8;
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 0;
+      } else {
+        ctx.shadowColor = "transparent";
+        ctx.shadowBlur = 0;
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 0;
+      }
       const size = Number(piece.style.fontSize);
       const painted = fontFile(piece.family)
         && paintGlyphs(ctx, piece.family, piece.text, x, y, size, piece.style.color, letterGap(piece.style));
@@ -873,12 +945,127 @@ function paintText(ctx, element, slide, warn, where, wrap, tokens) {
   ctx.restore();
 }
 
+function thickenFallback(style) {
+  if (!style || !style.fontFamily || fontFile(style.fontFamily)) return false;
+  style.fontWeight = 900;
+  return true;
+}
+
+function maskFontCss(style, family) {
+  const size = Number(style.fontSize);
+  if (!style.fontFamily || !fontFile(style.fontFamily)) return "900 " + size + 'px "' + (family || "Arial") + '"';
+  const weight = Number(style.fontWeight) || 400;
+  return weight + " " + size + "px " + canvasFamily(style.fontFamily);
+}
+
+function patternTextWidth(ctx, text, style) {
+  const gap = letterGap(style);
+  const chars = Array.from(String(text));
+  if (!gap) return ctx.measureText(text).width;
+  let width = 0;
+  chars.forEach((char, index) => {
+    width += ctx.measureText(char).width;
+    if (index < chars.length - 1) width += gap;
+  });
+  return width;
+}
+
+function paintPatternText(ctx, text, x, y, style) {
+  const gap = letterGap(style);
+  if (!gap) {
+    ctx.fillText(text, x, y);
+    return;
+  }
+  const chars = Array.from(String(text));
+  let cursor = x;
+  chars.forEach((char, index) => {
+    ctx.fillText(char, cursor, y);
+    cursor += ctx.measureText(char).width;
+    if (index < chars.length - 1) cursor += gap;
+  });
+}
+
+function paintTextMaskedImage(ctx, element, slide, warn, where, tokens, enabled) {
+  const body = element.textMaskedImageContent || {};
+  thickenFallback(element.textStyle);
+  const spans = element.textContent && element.textContent.spans;
+  if (Array.isArray(spans)) spans.forEach((span) => thickenFallback(span));
+  const lines = layoutText(element, slide, warn, where, true, tokens);
+  if (!lines.length) return;
+  const w = Math.max(1, Math.ceil(element.width));
+  const h = Math.max(1, Math.ceil(element.height));
+  const photoLayer = createCanvas(w, h);
+  const photoCtx = photoLayer.getContext("2d");
+  const local = { x: 0, y: 0, width: element.width, height: element.height };
+  const photo = enabled ? loadPhoto(body.url, warn, where) : null;
+  if (!enabled || !photo) hatchCanvas(photoCtx, local);
+  else {
+    const placed = placement(photo.img, local, body, warn, where);
+    if (placed && placed.crop) photoCtx.drawImage(photo.img, placed.sx, placed.sy, placed.sw, placed.sh, placed.x, placed.y, placed.w, placed.h);
+    else if (placed) photoCtx.drawImage(photo.img, placed.x, placed.y, placed.w, placed.h);
+  }
+  const scratch = createCanvas(w, h);
+  const pen = scratch.getContext("2d");
+  const pattern = pen.createPattern(photoLayer, "no-repeat");
+  pen.fillStyle = pattern || "#000000";
+  pen.textBaseline = "top";
+  let y = 0;
+  const missing = { logged: false };
+  lines.forEach((line) => {
+    const align = line[0].style.textAlign;
+    const widths = line.map((piece) => {
+      pen.font = maskFontCss(piece.style, piece.family);
+      return patternTextWidth(pen, piece.text, piece.style);
+    });
+    const lineWidth = widths.reduce((sum, width) => sum + width, 0);
+    let x = 0;
+    if (align === "center") x = (element.width - lineWidth) / 2;
+    else if (align === "right") x = element.width - lineWidth;
+    line.forEach((piece, index) => {
+      pen.font = maskFontCss(piece.style, piece.family);
+      pen.fillStyle = pattern || "#000000";
+      paintPatternText(pen, piece.text, x, y, piece.style);
+      x += widths[index];
+    });
+    y += lineLead(line, missing, where, warn);
+  });
+  ctx.save();
+  if (element.opacity != null) ctx.globalAlpha *= Number(element.opacity);
+  ctx.drawImage(scratch, element.x, element.y);
+  ctx.restore();
+}
+
+function paintNoise(ctx, element) {
+  const w = Math.max(1, Math.round(element.width));
+  const h = Math.max(1, Math.round(element.height));
+  const scratch = createCanvas(w, h);
+  const noise = scratch.getContext("2d").createImageData(w, h);
+  for (let y = 0; y < h; y += 1) {
+    for (let x = 0; x < w; x += 1) {
+      const n = Math.sin(x * 12.9898 + y * 78.233) * 43758.5453;
+      const v = Math.floor((n - Math.floor(n)) * 255);
+      const i = (y * w + x) * 4;
+      noise.data[i] = v;
+      noise.data[i + 1] = v;
+      noise.data[i + 2] = v;
+      noise.data[i + 3] = 255;
+    }
+  }
+  scratch.getContext("2d").putImageData(noise, 0, 0);
+  ctx.drawImage(scratch, element.x, element.y, element.width, element.height);
+}
+
 function paintShape(ctx, element, tokens) {
   const shape = element.shapeContent || {};
   const fill = token(shape.fill, tokens) || "none";
   const params = shape.decorParams || {};
   ctx.save();
   if (element.opacity != null) ctx.globalAlpha *= Number(element.opacity);
+  if (fill === "noise") {
+    paintNoise(ctx, element);
+    ctx.restore();
+    return;
+  }
   if (shape.kind === "decor" && shape.decorName === "svg" && params.d) {
     const viewBox = parseViewBox(params.viewBox || "0 0 100 100");
     if (viewBox) {
@@ -918,6 +1105,77 @@ function paintShape(ctx, element, tokens) {
     ctx.globalAlpha = previous;
   }
   ctx.restore();
+}
+
+function axisBounds(element) {
+  const width = Number(element.width) || 0;
+  const height = Number(element.height) || 0;
+  const x = Number(element.x) || 0;
+  const y = Number(element.y) || 0;
+  if (element.type !== "rotated") return { x, y, r: x + width, b: y + height };
+  const cx = x + width / 2;
+  const cy = y + height / 2;
+  const rad = (Number(element.degrees) || 0) * Math.PI / 180;
+  const cos = Math.cos(rad);
+  const sin = Math.sin(rad);
+  const corners = [[x, y], [x + width, y], [x, y + height], [x + width, y + height]];
+  const pts = corners.map(([px, py]) => {
+    const dx = px - cx;
+    const dy = py - cy;
+    return [cx + dx * cos - dy * sin, cy + dx * sin + dy * cos];
+  });
+  const xs = pts.map((pt) => pt[0]);
+  const ys = pts.map((pt) => pt[1]);
+  return { x: Math.min.apply(null, xs), y: Math.min.apply(null, ys), r: Math.max.apply(null, xs), b: Math.max.apply(null, ys) };
+}
+
+function pictureElement(element) {
+  const node = element && element.type === "rotated" && element.element ? element.element : element;
+  return Boolean(node && (node.type === "image" || node.type === "maskedImage"));
+}
+
+function oneWord(element) {
+  const spans = element.textContent && element.textContent.spans;
+  const text = (Array.isArray(spans) ? spans.map((span) => String(span && span.text || "")).join("") : "").trim();
+  return Boolean(text) && text.split(/\s+/).length === 1;
+}
+
+function openSpan(element, elements, word) {
+  if (!oneWord(element)) return null;
+  const box = axisBounds(element);
+  const height = box.b - box.y;
+  const blocks = [];
+  elements.forEach((other) => {
+    if (other === element || !pictureElement(other)) return;
+    if ((Number(other.zIndex) || 0) <= (Number(element.zIndex) || 0)) return;
+    const bounds = axisBounds(other);
+    const overlap = Math.min(box.b, bounds.b) - Math.max(box.y, bounds.y);
+    if (overlap < height * 0.4) return;
+    const left = Math.max(box.x, bounds.x);
+    const right = Math.min(box.r, bounds.r);
+    if (right - left > 1) blocks.push([left, right]);
+  });
+  if (!blocks.length) return null;
+  blocks.sort((a, b) => a[0] - b[0]);
+  const merged = [];
+  blocks.forEach(([left, right]) => {
+    const last = merged[merged.length - 1];
+    if (!last || left > last[1]) merged.push([left, right]);
+    else last[1] = Math.max(last[1], right);
+  });
+  if (word && !merged.some(([left, right]) => word.r > left + 1 && word.x < right - 1)) return null;
+  const gaps = [];
+  let cursor = box.x;
+  merged.forEach(([left, right]) => {
+    if (left - cursor > 8) gaps.push([cursor, left]);
+    cursor = Math.max(cursor, right);
+  });
+  if (box.r - cursor > 8) gaps.push([cursor, box.r]);
+  if (!gaps.length) return null;
+  gaps.sort((a, b) => (b[1] - b[0]) - (a[1] - a[0]));
+  const width = gaps[0][1] - gaps[0][0];
+  if (width >= (box.r - box.x) - 1 || width < (box.r - box.x) * 0.42) return null;
+  return { x: gaps[0][0], width };
 }
 
 function paintSlide(ctx, deck, layoutId, warn, options) {
@@ -978,7 +1236,38 @@ function paintSlide(ctx, deck, layoutId, warn, options) {
       paintShape(ctx, element, deck.tokens);
       return;
     }
-    if (element.type === "text") paintText(ctx, element, slide, warn, where, flags.wrap, deck.tokens);
+    if (element.type === "textMaskedImage") {
+      paintTextMaskedImage(ctx, element, slide, warn, where, deck.tokens, flags.images);
+      return;
+    }
+    if (element.type === "text") {
+      const probe = layoutText(element, slide, () => {}, where, flags.wrap, deck.tokens);
+      let word = null;
+      if (probe.length === 1 && probe[0].length === 1) {
+        const ink = probe[0][0].width;
+        const align = probe[0][0].style.textAlign;
+        let left = element.x;
+        if (align === "center") left = element.x + (element.width - ink) / 2;
+        else if (align === "right") left = element.x + element.width - ink;
+        word = { x: left, r: left + ink };
+      }
+      const gap = openSpan(element, elements, word);
+      if (!gap) {
+        paintText(ctx, element, slide, warn, where, flags.wrap, deck.tokens);
+        return;
+      }
+      const savedX = element.x;
+      const savedWidth = element.width;
+      element.x = gap.x;
+      element.width = gap.width;
+      try {
+        paintText(ctx, element, slide, warn, where, flags.wrap, deck.tokens);
+      } finally {
+        element.x = savedX;
+        element.width = savedWidth;
+      }
+      return;
+    }
   };
 
   elements.forEach(draw);
@@ -1017,4 +1306,20 @@ function slideSvg(deck, layoutId) {
     + '<image href="' + href + '" width="1600" height="900"/></svg>\n';
 }
 
-module.exports = { slideSvg, renderSlidePng, renderSlideBuffer };
+function textLineWidths(element, tokens) {
+  const runs = elementRuns(element, {}, tokens || {});
+  runs.forEach((run) => {
+    if (run.break) return;
+    run.family = resolvedFamily(run.style, () => {}, "");
+  });
+  if (!runs.some((run) => run.word)) return [];
+  return wrapRuns(runs, Number(element.width) || 0, 1).map((line) => line.reduce((sum, piece) => sum + piece.width, 0));
+}
+
+function textWasClipped(element, tokens) {
+  const notes = [];
+  layoutText(element, {}, (message) => notes.push(message), "text", true, tokens || {});
+  return notes.some((message) => message.indexOf("clipped with ellipsis") >= 0);
+}
+
+module.exports = { slideSvg, renderSlidePng, renderSlideBuffer, textBoxes, textLineWidths, textWasClipped };

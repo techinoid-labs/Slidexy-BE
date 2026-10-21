@@ -231,12 +231,29 @@ function extractDna(deck) {
   };
 }
 
+function librarySeedIds(library) {
+  if (!fs.existsSync(library)) return [];
+  return fs.readdirSync(library)
+    .filter((name) => name.endsWith(".json") && !name.endsWith(".dna.json"))
+    .map((name) => name.slice(0, -".json".length))
+    .sort();
+}
+
 function writeSeedDna(root) {
   const library = path.join(root, "app-library");
-  return SEEDS.map((id) => {
+  return librarySeedIds(library).map((id) => {
     const deck = JSON.parse(fs.readFileSync(path.join(library, id + ".json"), "utf8"));
     const dna = extractDna(deck);
-    fs.writeFileSync(path.join(library, id + ".dna.json"), JSON.stringify(dna, null, 2) + "\n");
+    const file = path.join(library, id + ".dna.json");
+    if (fs.existsSync(file)) {
+      try {
+        const previous = JSON.parse(fs.readFileSync(file, "utf8"));
+        ["qualityScore", "recommendedUse", "scoreFailures", "disabled", "scoredAt", "scorePrompt", "scoreMethod"].forEach((key) => {
+          if (previous[key] != null) dna[key] = previous[key];
+        });
+      } catch (error) { /* keep the fresh extract */ }
+    }
+    fs.writeFileSync(file, JSON.stringify(dna, null, 2) + "\n");
     return dna;
   });
 }

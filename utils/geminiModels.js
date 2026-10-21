@@ -1,14 +1,14 @@
 const OpenAI = require("openai");
 
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
-const GOOGLE_API_KEY = process.env.API_KEY1;
+const GOOGLE_API_KEY = process.env.API_KEY1 || process.env.GEMINI_API_KEY;
 
 if (!OPENROUTER_API_KEY) {
   console.warn("⚠️  OPENROUTER_API_KEY not configured. Using Google Generative AI as primary.");
 }
 
 if (!GOOGLE_API_KEY && !OPENROUTER_API_KEY) {
-  throw new Error("No API keys configured! Set API_KEY1 (Google) and/or OPENROUTER_API_KEY.");
+  throw new Error("No API keys configured. Set API_KEY1 or GEMINI_API_KEY, and optionally OPENROUTER_API_KEY, in .env.");
 }
 
 // ---------------------------------------------------------------------------

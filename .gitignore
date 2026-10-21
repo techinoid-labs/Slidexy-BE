@@ -138,6 +138,13 @@ dist
 
 # Generated deck templates (same JSON the phone app loads)
 generated-templates/*.json
+generated-templates/photos/
+
+# Seeds and published decks are produced by the admin upload. The folder stays.
+app-library/*
+!app-library/.gitkeep
+docs/template-pipeline/admin-dashboard/tmp/
+docs/template-pipeline/admin-dashboard/uploads/
 
 # Third-party PPTX, PowerPoint renders, and one-off probe scripts
 .audit-cache/

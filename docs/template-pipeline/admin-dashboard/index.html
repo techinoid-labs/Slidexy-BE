@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Template Generator</title>
+  <style>
+    :root { color-scheme: light; }
+    body { margin: 0; font-family: Georgia, "Times New Roman", serif; background: #f4f1ea; color: #1c1916; }
+    header { padding: 28px 32px 8px; }
+    h1 { margin: 0; font-size: 32px; font-weight: 600; }
+    p.note { margin: 8px 0 0; color: #5c564e; font-family: "Segoe UI", sans-serif; font-size: 14px; }
+    form { display: grid; gap: 12px; padding: 20px 32px 8px; max-width: 760px; font-family: "Segoe UI", sans-serif; }
+    label { font-size: 14px; }
+    input, select { font: inherit; padding: 10px 12px; border: 1px solid #c8c0b4; background: #fff; border-radius: 8px; }
+    .row { display: flex; gap: 12px; align-items: end; flex-wrap: wrap; }
+    .row label { flex: 1; display: grid; gap: 6px; }
+    label[hidden] { display: none !important; }
+    .check { display: flex; gap: 8px; align-items: center; }
+    #deck-name { margin: 8px 32px 0; font-size: 22px; font-weight: 600; }
+    button { font: inherit; padding: 10px 16px; border-radius: 8px; border: 0; cursor: pointer; }
+    button:disabled { cursor: wait; opacity: 0.6; }
+    #generate { background: #1c1916; color: #f4f1ea; }
+    #status { min-height: 1.4em; padding: 8px 32px; font-family: "Segoe UI", sans-serif; }
+    #preview { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; padding: 8px 32px 24px; }
+    figure { margin: 0; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+    figcaption { padding: 8px 10px; font-family: "Segoe UI", sans-serif; font-size: 13px; }
+    img { display: block; width: 100%; height: auto; background: #ddd; }
+    .actions { display: flex; gap: 12px; padding: 0 32px 40px; font-family: "Segoe UI", sans-serif; }
+    #publish { background: #1e3a32; color: #f4f1ea; }
+    #discard { background: #fff; color: #1c1916; border: 1px solid #1c1916; }
+    #seeds { padding: 8px 32px 24px; font-family: "Segoe UI", sans-serif; }
+    #seeds h2 { margin: 12px 0; font-family: Georgia, "Times New Roman", serif; font-size: 22px; font-weight: 600; }
+    table { width: 100%; max-width: 1200px; border-collapse: collapse; background: #fff; }
+    th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #e4ddd2; font-size: 14px; vertical-align: top; }
+    td:nth-child(4) { max-width: 420px; }
+    th { font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: #5c564e; }
+    tr.disabled td { color: #8a8176; }
+    .seed-disable { background: #fff; color: #1c1916; border: 1px solid #1c1916; padding: 6px 10px; }
+    @media (max-width: 800px) { #preview { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Admin Template Generator</h1>
+    <p class="note">Internal curator. Generated decks stay temporary until you publish them.</p>
+  </header>
+  <form id="form">
+    <label>What is this template about?
+      <input id="prompt" name="prompt" type="text" maxlength="500" required placeholder="A luxury boutique hotel in Paris.">
+    </label>
+    <p id="vibe" class="note" hidden></p>
+    <div class="row">
+      <label>Base layout
+        <select id="layout" name="layoutId" required>
+          <option value="" disabled selected>Reading app-library…</option>
+        </select>
+      </label>
+      <label id="seed-b-wrap" hidden>Second seed
+        <select id="layout-b" name="layoutIdB"></select>
+      </label>
+      <button id="generate" type="submit">Generate</button>
+    </div>
+    <label class="check">
+      <input id="auto" name="autoLayout" type="checkbox">
+      Auto-Select Best Layout
+    </label>
+    <label class="check">
+      <input id="remix" name="remix" type="checkbox">
+      Frankenstein Remix
+    </label>
+    <label class="check">
+      <input id="assemble" name="assemble" type="checkbox">
+      Auto-Assemble Deck (Max Variety)
+    </label>
+  </form>
+    <section id="seeds">
+      <h2>Seed library</h2>
+      <form id="upload-form" class="row">
+        <label>Upload a folder of seeds
+          <input id="folder" name="folder" type="file" accept=".pptx,application/vnd.openxmlformats-officedocument.presentationml.presentation" webkitdirectory directory multiple>
+        </label>
+        <button id="add-folder" type="button">Add folder</button>
+      </form>
+      <p class="note">Every PowerPoint in the folder becomes a layout. Seeds stay unscored until a later review.</p>
+    <table>
+      <thead>
+        <tr><th>Layout</th><th>Score</th><th>Use</th><th>Failures</th><th></th></tr>
+      </thead>
+      <tbody id="seed-list"></tbody>
+    </table>
+  </section>
+  <div id="status" role="status"></div>
+  <h2 id="deck-name" hidden></h2>
+  <div id="preview"></div>
+  <div class="actions" hidden id="actions">
+    <button id="publish" type="button">Publish to Catalog</button>
+    <button id="discard" type="button">Discard</button>
+  </div>
+  <script>
+    const form = document.getElementById("form");
+    const folderButton = document.getElementById("add-folder");
+    const status = document.getElementById("status");
+    const vibeLine = document.getElementById("vibe");
+    const preview = document.getElementById("preview");
+    const actions = document.getElementById("actions");
+    const generateButton = document.getElementById("generate");
+    const publishButton = document.getElementById("publish");
+    const discardButton = document.getElementById("discard");
+    const autoBox = document.getElementById("auto");
+    const remixBox = document.getElementById("remix");
+    const assembleBox = document.getElementById("assemble");
+    const layoutSelect = document.getElementById("layout");
+    const layoutBSelect = document.getElementById("layout-b");
+    const seedBWrap = document.getElementById("seed-b-wrap");
+    const deckName = document.getElementById("deck-name");
+    let currentId = "";
+
+    function syncModes() {
+      const assembling = assembleBox.checked;
+      const remixing = remixBox.checked;
+      seedBWrap.hidden = !remixing;
+      layoutBSelect.disabled = !remixing;
+      layoutBSelect.required = remixing;
+      layoutSelect.disabled = assembling || autoBox.checked;
+      layoutSelect.required = !assembling && !autoBox.checked;
+    }
+
+    autoBox.addEventListener("change", () => {
+      if (autoBox.checked) {
+        remixBox.checked = false;
+        assembleBox.checked = false;
+      }
+      syncModes();
+    });
+
+    remixBox.addEventListener("change", () => {
+      if (remixBox.checked) {
+        autoBox.checked = false;
+        assembleBox.checked = false;
+      }
+      syncModes();
+    });
+
+    assembleBox.addEventListener("change", () => {
+      if (assembleBox.checked) {
+        autoBox.checked = false;
+        remixBox.checked = false;
+      }
+      syncModes();
+    });
+
+    async function loadLayouts(message) {
+      const select = document.getElementById("layout");
+      const list = document.getElementById("seed-list");
+      try {
+        const response = await fetch("/api/admin/layouts");
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(data.error || "Could not read app-library");
+        const layouts = data.layouts || [];
+        const enabled = layouts.filter((item) => !item.disabled);
+        select.replaceChildren();
+        layoutBSelect.replaceChildren();
+        if (!layouts.length) {
+          const option = document.createElement("option");
+          option.value = "";
+          option.textContent = "Upload a folder to add layouts";
+          select.append(option);
+          list.replaceChildren();
+          status.textContent = message || "No seeds yet. Upload a folder of PowerPoint files.";
+          return;
+        }
+        enabled.forEach((item) => {
+          const option = document.createElement("option");
+          option.value = item.id;
+          option.textContent = item.id;
+          select.append(option);
+          layoutBSelect.append(option.cloneNode(true));
+        });
+        if (!enabled.length) {
+          const option = document.createElement("option");
+          option.value = "";
+          option.textContent = "No enabled layouts";
+          select.append(option);
+        } else if (enabled.length > 1) layoutBSelect.value = enabled[1].id;
+        list.replaceChildren();
+        layouts.forEach((item) => {
+          const row = document.createElement("tr");
+          if (item.disabled) row.className = "disabled";
+          const name = document.createElement("td");
+          name.textContent = item.id;
+          const score = document.createElement("td");
+          score.textContent = item.qualityScore == null ? "Not scored" : String(item.qualityScore);
+          const use = document.createElement("td");
+          use.textContent = item.recommendedUse || "—";
+          const failures = document.createElement("td");
+          const reasons = Array.isArray(item.scoreFailures) ? item.scoreFailures : [];
+          failures.textContent = reasons.length ? reasons.join("; ") : "—";
+          const action = document.createElement("td");
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "seed-disable";
+          button.textContent = item.disabled ? "Enable Seed" : "Disable Seed";
+          button.addEventListener("click", () => toggleSeed(item, button));
+          action.append(button);
+          row.append(name, score, use, failures, action);
+          list.append(row);
+        });
+        status.textContent = message || (enabled.length + " enabled layouts. " + layouts.length + " seeds in the library.");
+      } catch (error) {
+        status.textContent = error.message;
+      }
+    }
+
+    async function toggleSeed(item, button) {
+      button.disabled = true;
+      try {
+        await post("/api/admin/disable-seed", { id: item.id, disabled: !item.disabled });
+        await loadLayouts();
+      } catch (error) {
+        status.textContent = error.message;
+        button.disabled = false;
+      }
+    }
+
+    function setBusy(busy) {
+      generateButton.disabled = busy;
+      publishButton.disabled = busy;
+      discardButton.disabled = busy;
+    }
+
+    async function post(url, body) {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(data.error || "Request failed");
+      return data;
+    }
+
+    function pptxFiles(list) {
+      return [...list].filter((file) => {
+        const name = file.name || "";
+        return name.toLowerCase().endsWith(".pptx") && !name.startsWith("~$");
+      });
+    }
+
+    async function uploadSeed(file) {
+      const response = await fetch("/api/admin/upload-seed?name=" + encodeURIComponent(file.name), {
+        method: "POST",
+        headers: { "Content-Type": "application/vnd.openxmlformats-officedocument.presentationml.presentation" },
+        body: file,
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(data.error || "Upload failed");
+      return data;
+    }
+
+    function setUploading(busy) {
+      folderButton.disabled = busy;
+    }
+
+    loadLayouts();
+
+    folderButton.addEventListener("click", async () => {
+      const files = pptxFiles(document.getElementById("folder").files);
+      if (!files.length) {
+        status.textContent = "That folder has no PowerPoint files.";
+        return;
+      }
+      setUploading(true);
+      const failed = [];
+      let added = 0;
+      let lastId = "";
+      try {
+        for (let index = 0; index < files.length; index += 1) {
+          const file = files[index];
+          status.textContent = "Converting " + (index + 1) + " of " + files.length + ": " + file.name;
+          try {
+            const data = await uploadSeed(file);
+            added += 1;
+            lastId = data.id;
+          } catch (error) {
+            failed.push(file.name + " (" + error.message + ")");
+          }
+        }
+        const summary = "Added " + added + " of " + files.length + " seeds."
+          + (lastId ? " " + lastId + " is selected as the base layout." : "")
+          + (failed.length ? " Failed: " + failed.join("; ") + "." : "")
+          + " Not scored yet.";
+        await loadLayouts(summary);
+        if (lastId && [...layoutSelect.options].some((option) => option.value === lastId)) layoutSelect.value = lastId;
+        document.getElementById("folder").value = "";
+      } catch (error) {
+        status.textContent = error.message;
+      } finally {
+        setUploading(false);
+      }
+    });
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      currentId = "";
+      preview.replaceChildren();
+      deckName.hidden = true;
+      deckName.textContent = "";
+      actions.hidden = true;
+      vibeLine.hidden = true;
+      vibeLine.textContent = "";
+      status.textContent = "Generating the deck. This takes about a minute.";
+      setBusy(true);
+      try {
+        const assemble = assembleBox.checked;
+        const remix = !assemble && remixBox.checked;
+        const autoLayout = !assemble && !remix && autoBox.checked;
+        const data = await post("/api/admin/generate-template", {
+          prompt: document.getElementById("prompt").value,
+          layoutId: assemble || autoLayout ? "" : layoutSelect.value,
+          layoutIdB: remix ? layoutBSelect.value : "",
+          remix,
+          autoLayout,
+          assemble,
+        });
+        currentId = data.id;
+        const title = data.name || (data.deck && data.deck.name) || "";
+        if (title) {
+          deckName.textContent = title;
+          deckName.hidden = false;
+        }
+        (data.slides || []).forEach((slide) => {
+          const figure = document.createElement("figure");
+          const image = document.createElement("img");
+          image.src = slide.url;
+          image.alt = slide.name;
+          const caption = document.createElement("figcaption");
+          caption.textContent = slide.name;
+          figure.append(image, caption);
+          preview.append(figure);
+        });
+        const score = data.analysis ? " Vision score " + data.analysis.score + " (" + data.analysis.passed + "/" + data.analysis.total + " slides passed)." : "";
+        const promptText = document.getElementById("prompt").value.trim();
+        const vibeName = data.assetVibe ? data.assetVibe.charAt(0).toUpperCase() + data.assetVibe.slice(1) : "";
+        if (vibeName) {
+          vibeLine.textContent = "Prompt: " + promptText + " | Vibe: " + vibeName;
+          vibeLine.hidden = false;
+        }
+        status.textContent = (data.slides || []).length + " slides ready. Layout " + (data.layoutId || "") + ". Saved as " + (data.deck && data.deck.id ? data.deck.id : data.id) + ".json." + score;
+        actions.hidden = false;
+      } catch (error) {
+        status.textContent = error.message;
+      } finally {
+        setBusy(false);
+      }
+    });
+
+    publishButton.addEventListener("click", async () => {
+      if (!currentId) return;
+      setBusy(true);
+      status.textContent = "Publishing to the catalog.";
+      try {
+        const data = await post("/api/admin/publish-template", { id: currentId });
+        currentId = "";
+        actions.hidden = true;
+        status.textContent = "Published. Saved at " + data.deckPath + ".";
+      } catch (error) {
+        status.textContent = error.message;
+      } finally {
+        setBusy(false);
+      }
+    });
+
+    discardButton.addEventListener("click", async () => {
+      if (!currentId) return;
+      setBusy(true);
+      status.textContent = "Discarding the render.";
+      try {
+        await post("/api/admin/discard-template", { id: currentId });
+        currentId = "";
+        preview.replaceChildren();
+        deckName.hidden = true;
+        deckName.textContent = "";
+        actions.hidden = true;
+        status.textContent = "Discarded. The temporary slides and photos were deleted.";
+      } catch (error) {
+        status.textContent = error.message;
+      } finally {
+        setBusy(false);
+      }
+    });
+  </script>
+</body>
+</html>

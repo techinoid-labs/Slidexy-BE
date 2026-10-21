@@ -23,6 +23,7 @@ const FILES = {
   "Instrument Serif": "instrument-serif.ttf",
   "DM Serif Display": "dm-serif-display.ttf",
   "Antonio": "antonio.ttf",
+  "Antonio Bold": "antonio.ttf",
   "Archivo Black": "archivo-black.ttf",
   "Source Sans 3": "source-sans-3.ttf",
   "Nunito Sans": "nunito-sans.ttf",
@@ -46,6 +47,7 @@ const FILES = {
   "Montserrat": "montserrat.ttf",
   "Inter": "inter.ttf",
   "Open Sans": "open-sans.ttf",
+  "Open Sans Condensed": "open-sans.ttf",
   "Lato": "lato.ttf",
   "Roboto": "roboto.ttf",
 };

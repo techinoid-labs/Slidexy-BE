@@ -50,7 +50,7 @@ async function askModel(prompt) {
     }
   }
   if (google) return askGoogle(google, prompt);
-  const error = new Error("No model key is set. Add OPENROUTER_API_KEY or GEMINI_API_KEY to the server environment.");
+  const error = new Error("No model key is set. Add OPENROUTER_API_KEY, API_KEY1, or GEMINI_API_KEY to .env.");
   error.status = 500;
   throw error;
 }

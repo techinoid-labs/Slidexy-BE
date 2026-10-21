@@ -37,7 +37,7 @@ const BINDINGS = new Set([
   "timelineMarker",
 ]);
 
-const ELEMENT_TYPES = ["text", "shape", "image", "table", "illustration", "maskedImage", "rotated", "collage"];
+const ELEMENT_TYPES = ["text", "shape", "image", "table", "illustration", "maskedImage", "rotated", "collage", "textMaskedImage"];
 const CLIP_KINDS = ["rect", "ellipse", "arch", "path"];
 
 function illustration(id, x, y, w, h, spec) {

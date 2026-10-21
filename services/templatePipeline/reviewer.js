@@ -11,7 +11,7 @@ const OpenAI = require("openai");
 
 const OPENROUTER_MODEL = "deepseek/deepseek-v4-flash-vision-exp";
 const GEMINI_MODEL = "gemini-2.5-flash";
-const PROMPT = "You are a design quality reviewer. Analyze this slide render. Return strict JSON with these keys: `legible` (boolean: is all text readable?), `washed_out` (boolean: is the background image too faded or is contrast too low?), `broken_layout` (boolean: do any elements overlap in a way that looks like an error?), `quality_score` (0.0–1.0), and `issues` (array of short strings describing any problems). Do not guess. Only return the JSON.";
+const PROMPT = "You are a design quality reviewer. Analyze this slide render. Return strict JSON with these keys: `legible` (boolean: is all text readable?), `washed_out` (boolean: is the background image too faded or is contrast too low?), `broken_layout` (boolean: do any elements overlap in a way that looks like an error?), `quality_score` (0.0–1.0), and `issues` (array of short strings describing any problems). Bleeding off the edge is allowed and looks intentional, do not flag it as a broken layout unless it obscures critical text or looks like a mistake. Do not guess. Only return the JSON.";
 let backend = null;
 
 function openRouter() {
@@ -72,7 +72,7 @@ async function complete(uri) {
     }
   }
   const key = process.env.API_KEY1 || process.env.GEMINI_API_KEY;
-  if (!key) throw new Error("No vision model is available. OpenRouter returned no credits and API_KEY1 is unset.");
+  if (!key) throw new Error("No vision model is available. Set API_KEY1 or GEMINI_API_KEY in .env.");
   const { GoogleGenerativeAI } = require("@google/generative-ai");
   const model = new GoogleGenerativeAI(key).getGenerativeModel({ model: GEMINI_MODEL });
   const data = uri.replace(/^data:image\/png;base64,/, "");

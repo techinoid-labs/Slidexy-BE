@@ -589,13 +589,15 @@ function convertPptx(inputPath, deckId) {
     if (box.flipH || box.flipV) warn(log, "flip", where + " picture flip is not in the schema");
     const crop = align || {};
     if (!mask) {
-      pushElement(list, image(id, fitted.x, fitted.y, fitted.w, fitted.h, {
+      const element = image(id, fitted.x, fitted.y, fitted.w, fitted.h, {
         url,
         fit: "cover",
         alignX: crop.alignX,
         alignY: crop.alignY,
         zIndex: list.length + 1,
-      }), degrees, where);
+      });
+      tagDecoration(element, fitted, geom, cust);
+      pushElement(list, element, degrees, where);
       return;
     }
     let clip = { kind: "rect" };
@@ -619,7 +621,17 @@ function convertPptx(inputPath, deckId) {
       alignY: crop.alignY,
       zIndex: list.length + 1,
     });
+    tagDecoration(element, fitted, geom, cust);
     pushElement(list, element, degrees, where);
+  }
+
+  function tagDecoration(element, fitted, geom, cust) {
+    const area = (Number(fitted.w) || 0) * (Number(fitted.h) || 0);
+    const custom = geom === "custom" && Boolean(cust);
+    const small = area > 0 && area < W * H * 0.1;
+    if (!custom && !small) return;
+    element.isDecoration = true;
+    element.originalRole = "decoration";
   }
 
   function emitText(list, id, box, blocks, degrees, where) {

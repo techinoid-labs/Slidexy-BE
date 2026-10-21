@@ -1,6 +1,6 @@
 /**
- * Structural edits saved through pptx-viewer-core.
- * Creative operators stay in mutate_creative.js and are not applied here.
+ * Edits saved through pptx-viewer-core.
+ * Structural, palette, and creative operators all load, edit, and save here.
  *
  *   node services/templatePipeline/mutate_safe.js
  */
@@ -11,11 +11,13 @@ const path = require("path");
 const { spawnSync } = require("child_process");
 const { createCanvas, Image } = require("canvas");
 const creative = require("./mutate_creative");
+const { shiftHue } = require("./dna/color");
 
 const ROOT = path.join(__dirname, "..", "..");
 const SOFFICE = "C:\\Program Files\\LibreOffice\\program\\soffice.com";
 const SEEDS = {
   "health-medical": "PPTX Slides Templates/Yellow and Blue Illustrative Modern Geometric Health Medical Presentation.pptx",
+  "cinema-neon": "PPTX Slides Templates/Red Black Neon Cinema Presentation.pptx",
   "company-minimal": "PPTX Slides Templates/Red Minimalist Company Profile Presentation .pptx",
 };
 const OPERATORS = ["mirror_horizontal", "swap_sides", "scale_hero"];
@@ -84,50 +86,157 @@ function overflows(element, width, height) {
     || element.y + element.height > height + 0.5;
 }
 
+function boxOverflows(box, width, height) {
+  return box.x < -0.5
+    || box.y < -0.5
+    || box.x + box.width > width + 0.5
+    || box.y + box.height > height + 0.5;
+}
+
+function syncBox(element, data) {
+  if (!element || !data || !data.width || !data.height) return;
+  const sx = data.widthEmu / data.width;
+  const sy = data.heightEmu / data.height;
+  if (Number.isFinite(sx) && Number.isFinite(element.x)) element.xEmu = Math.round(element.x * sx);
+  if (Number.isFinite(sy) && Number.isFinite(element.y)) element.yEmu = Math.round(element.y * sy);
+  if (Number.isFinite(sx) && Number.isFinite(element.width)) element.widthEmu = Math.round(element.width * sx);
+  if (Number.isFinite(sy) && Number.isFinite(element.height)) element.heightEmu = Math.round(element.height * sy);
+}
+
+function elementIds(slides) {
+  const ids = [];
+  (slides || []).forEach((slide) => walk(slide.elements, (element) => {
+    if (element && element.id) ids.push(String(element.id));
+  }));
+  return ids;
+}
+
+function writeSrgb(xml, hex) {
+  if (!xml || typeof xml !== "object") return;
+  const node = xml["a:srgbClr"];
+  if (node && typeof node === "object") node["@_val"] = String(hex).replace("#", "").toUpperCase();
+}
+
+function paintField(style, key, xmlKey, degrees) {
+  if (!style || typeof style[key] !== "string") return;
+  if (!/^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/.test(style[key])) return;
+  const next = shiftHue(style[key], degrees);
+  if (!next || next === style[key]) return;
+  style[key] = next;
+  writeSrgb(style[xmlKey], next);
+  if (style.authoredRunStyle && typeof style.authoredRunStyle[key] === "string") {
+    style.authoredRunStyle[key] = next;
+    writeSrgb(style.authoredRunStyle[xmlKey], next);
+  }
+}
+
+function shiftPalette(data, degrees) {
+  const amount = Number(degrees) || 0;
+  const paint = (value) => {
+    if (typeof value !== "string" || !/^#[0-9A-Fa-f]{6}$/.test(value) && !/^#[0-9A-Fa-f]{3}$/.test(value)) return null;
+    return shiftHue(value, amount);
+  };
+  if (data.theme && data.theme.colorScheme) {
+    Object.keys(data.theme.colorScheme).forEach((key) => {
+      const next = paint(data.theme.colorScheme[key]);
+      if (next) data.theme.colorScheme[key] = next;
+    });
+  }
+  data.slides.forEach((slide) => {
+    const background = paint(slide.backgroundColor);
+    if (background) slide.backgroundColor = background;
+    walk(slide.elements, (element) => {
+      paintField(element.shapeStyle, "fillColor", "fillColorXml", amount);
+      paintField(element.textStyle, "color", "colorXml", amount);
+      (element.textSegments || []).forEach((segment) => paintField(segment.style, "color", "colorXml", amount));
+    });
+  });
+  return { operator: "palette", degrees: amount, added: 0 };
+}
+
 function mirrorHorizontal(data) {
-  const width = data.width;
+  const slideWidth = data.width;
   const violations = [];
   data.slides.forEach((slide, slideIndex) => {
     (slide.elements || []).forEach((element) => {
       if (!Number.isFinite(element.x) || !Number.isFinite(element.width)) return;
-      element.x = Math.round(width - element.x - element.width);
-      if (element.x < -0.5 || element.x + element.width > width + 0.5) {
+      const newX = slideWidth - element.x - element.width;
+      element.x = Math.round(Math.max(0, Math.min(slideWidth - element.width, newX)));
+      syncBox(element, data);
+      if (element.x < -0.5 || element.x + element.width > slideWidth + 0.5) {
         violations.push({ slide: slideIndex + 1, id: element.id, x: element.x, width: element.width });
       }
     });
   });
-  return { operator: "mirror_horizontal", violations };
+  return { operator: "mirror_horizontal", violations, added: 0 };
+}
+
+function largestOn(slide, test) {
+  let best = null;
+  let bestArea = 0;
+  walk(slide.elements, (element) => {
+    if (!test(element)) return;
+    const next = area(element);
+    if (next > bestArea) {
+      best = element;
+      bestArea = next;
+    }
+  });
+  return best;
+}
+
+function restoreBox(element, box, data) {
+  element.x = box.x;
+  element.y = box.y;
+  element.width = box.width;
+  element.height = box.height;
+  syncBox(element, data);
 }
 
 function swapSides(data) {
-  const image = largest(data.slides, isImage);
-  const text = largest(data.slides, isText);
-  if (!image || !text) return { operator: "swap_sides", skipped: true, reason: "missing an image or a text element" };
-  const imageBox = { x: image.element.x, y: image.element.y, width: image.element.width, height: image.element.height };
-  const textBox = { x: text.element.x, y: text.element.y, width: text.element.width, height: text.element.height };
-  image.element.x = textBox.x;
-  image.element.y = textBox.y;
-  image.element.width = textBox.width;
-  image.element.height = textBox.height;
-  text.element.x = imageBox.x;
-  text.element.y = imageBox.y;
-  text.element.width = imageBox.width;
-  text.element.height = imageBox.height;
-  let scales = 0;
-  while (scales < 12 && (overflows(image.element, data.width, data.height) || overflows(text.element, data.width, data.height))) {
-    image.element.width = Math.round(image.element.width * 0.9);
-    image.element.height = Math.round(image.element.height * 0.9);
-    text.element.width = Math.round(text.element.width * 0.9);
-    text.element.height = Math.round(text.element.height * 0.9);
-    scales += 1;
-  }
-  return {
-    operator: "swap_sides",
-    image: image.element.id,
-    text: text.element.id,
-    scales,
-    fits: !overflows(image.element, data.width, data.height) && !overflows(text.element, data.width, data.height),
-  };
+  const applied = [];
+  const skipped = [];
+  data.slides.forEach((slide, slideIndex) => {
+    const slideNumber = slideIndex + 1;
+    const image = largestOn(slide, isImage);
+    const text = largestOn(slide, isText);
+    if (!image || !text || image === text) {
+      skipped.push({ slide: slideNumber, reason: "missing an image or a text element" });
+      return;
+    }
+    const imageBox = { x: image.x, y: image.y, width: image.width, height: image.height };
+    const textBox = { x: text.x, y: text.y, width: text.width, height: text.height };
+    const swappedImage = { x: textBox.x, y: textBox.y, width: textBox.width, height: textBox.height };
+    const swappedText = { x: imageBox.x, y: imageBox.y, width: imageBox.width, height: imageBox.height };
+    if (boxOverflows(swappedImage, data.width, data.height) || boxOverflows(swappedText, data.width, data.height)) {
+      console.warn("swap_sides slide " + slideNumber + ": swapped size exceeds the canvas. Swapping x only and keeping the original width. The text box may need wrapping.");
+      image.x = textBox.x;
+      text.x = imageBox.x;
+      syncBox(image, data);
+      syncBox(text, data);
+      if (overflows(image, data.width, data.height) || overflows(text, data.width, data.height)) {
+        restoreBox(image, imageBox, data);
+        restoreBox(text, textBox, data);
+        console.warn("swap_sides slide " + slideNumber + ": skipped. The x swap still leaves an element outside the slide.");
+        skipped.push({ slide: slideNumber, reason: "x swap still outside the slide" });
+        return;
+      }
+      applied.push({ slide: slideNumber, mode: "x", image: image.id, text: text.id });
+      return;
+    }
+    image.x = swappedImage.x;
+    image.y = swappedImage.y;
+    image.width = swappedImage.width;
+    image.height = swappedImage.height;
+    text.x = swappedText.x;
+    text.y = swappedText.y;
+    text.width = swappedText.width;
+    text.height = swappedText.height;
+    syncBox(image, data);
+    syncBox(text, data);
+    applied.push({ slide: slideNumber, mode: "box", image: image.id, text: text.id });
+  });
+  return { operator: "swap_sides", applied, skipped, scales: 0, added: 0 };
 }
 
 function scaleHero(data) {
@@ -142,11 +251,13 @@ function scaleHero(data) {
   element.y = Math.round(centerY - element.height / 2);
   element.x = Math.min(Math.max(0, element.x), Math.max(0, data.width - element.width));
   element.y = Math.min(Math.max(0, element.y), Math.max(0, data.height - element.height));
+  syncBox(element, data);
   return {
     operator: "scale_hero",
     image: element.id,
     slide: image.slideIndex + 1,
     inside: !overflows(element, data.width, data.height),
+    added: 0,
   };
 }
 
@@ -156,12 +267,27 @@ const STRUCTURAL = {
   scale_hero: scaleHero,
 };
 
+function runOperator(data, operator, options) {
+  const name = operator === "palette_swap" ? "palette" : operator;
+  const degrees = options && options.degrees;
+  if (name !== "palette" && degrees) shiftPalette(data, degrees);
+  if (name === "palette") return shiftPalette(data, degrees);
+  if (STRUCTURAL[name]) return STRUCTURAL[name](data);
+  const creativeRun = {
+    highlight_word: creative.highlightWordPptx,
+    text_mask_image: creative.textMaskImagePptx,
+    overlap_depth: creative.overlapDepthPptx,
+  }[name];
+  if (!creativeRun) throw new Error("unknown operator " + operator);
+  return creativeRun(data);
+}
+
 async function loadHandler() {
   const { PptxHandler } = await import("pptx-viewer-core");
   return PptxHandler;
 }
 
-async function applyOperator(pptxPath, operator) {
+async function applyOperator(pptxPath, operator, options) {
   const PptxHandler = await loadHandler();
   const handler = new PptxHandler();
   const buffer = fs.readFileSync(pptxPath);
@@ -174,9 +300,10 @@ async function applyOperator(pptxPath, operator) {
   }
   const before = countElements(data.slides);
   const beforeSlides = perSlideCounts(data.slides);
+  const beforeIds = elementIds(data.slides);
   let note;
   try {
-    note = STRUCTURAL[operator](data);
+    note = runOperator(data, operator, options || {});
   } catch (error) {
     return {
       ok: false,
@@ -185,7 +312,7 @@ async function applyOperator(pptxPath, operator) {
       before,
     };
   }
-  if (note && note.skipped) {
+  if (note && note.skipped === true) {
     return { ok: false, skipped: true, call: operator + "(data)", note, before };
   }
   let outputBytes;
@@ -215,14 +342,24 @@ async function applyOperator(pptxPath, operator) {
     };
   }
   const after = countElements(reloaded.slides);
+  const afterSlides = perSlideCounts(reloaded.slides);
+  const afterIds = new Set(elementIds(reloaded.slides));
+  const lost = beforeIds.filter((id) => !afterIds.has(id));
+  const added = note && Number(note.added) || 0;
+  const perSlideOk = beforeSlides.every((count, index) => {
+    const extra = note && note.operator === "highlight_word" && note.notes && note.notes[index] && note.notes[index].applied ? 1 : 0;
+    return afterSlides[index] === count + extra;
+  });
   return {
     ok: true,
     note,
     before,
     after,
+    added,
+    lost,
     beforeSlides,
-    afterSlides: perSlideCounts(reloaded.slides),
-    preserved: before === after,
+    afterSlides,
+    preserved: perSlideOk && after === before + added,
     bytes: outputBytes,
   };
 }
@@ -275,18 +412,29 @@ async function reviewRendered(pngs, meta) {
   const { reviewSlide } = require("./reviewer");
   let kept = 0;
   let rejected = 0;
+  const scores = [];
   for (const png of pngs) {
     let verdict;
-    try {
-      verdict = await reviewSlide(png);
-    } catch (error) {
-      verdict = {
-        passed: false,
-        quality_score: 0,
-        issues: [error && error.message ? error.message : String(error)],
-      };
+    let lastError = null;
+    for (let attempt = 1; attempt <= 4; attempt += 1) {
+      try {
+        verdict = await reviewSlide(png);
+        lastError = null;
+        break;
+      } catch (error) {
+        lastError = error;
+        const message = error && error.message ? error.message : String(error);
+        if (!/429|rate|unavailable|503|500/i.test(message) || attempt === 4) break;
+        await new Promise((resolve) => setTimeout(resolve, 5000 * attempt));
+      }
+    }
+    if (!verdict) {
+      const message = lastError && lastError.message ? lastError.message : "review failed";
+      verdict = { passed: false, quality_score: 0, issues: [message] };
     }
     const record = {
+      run: meta.run || "",
+      kind: meta.kind || "",
       seed: meta.seed,
       operator: meta.operator,
       png: path.relative(ROOT, png).replace(/\\/g, "/"),
@@ -302,9 +450,11 @@ async function reviewRendered(pngs, meta) {
       fs.appendFileSync(REJECTED, JSON.stringify(record) + "\n");
       rejected += 1;
     } else kept += 1;
+    scores.push(Number(verdict.quality_score) || 0);
     console.log((verdict.passed ? "keep " : "reject ") + record.png + " " + verdict.quality_score);
   }
-  return { kept, rejected };
+  const mean = scores.length ? Math.round((scores.reduce((sum, score) => sum + score, 0) / scores.length) * 100) / 100 : 0;
+  return { kept, rejected, scores, mean };
 }
 
 function gray(file) {
@@ -455,8 +605,12 @@ if (require.main === module) {
 
 module.exports = {
   applyOperator,
+  renderPptx,
+  reviewRendered,
   mirrorHorizontal,
   swapSides,
   scaleHero,
   creative,
+  SEEDS,
+  ROOT,
 };

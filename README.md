@@ -1,4 +1,106 @@
-# Neuro Engine 🚀
+# Neuro Engine
+
+AI-powered presentation generation, plus the template pipeline that converts a PowerPoint file into a themed, editable deck.
+
+## Template pipeline
+
+A seed deck is a JSON layout on a 1600×900 canvas. A prompt rewrites the copy and photographs. The admin publishes the result, and the catalog downloads it as native PowerPoint objects.
+
+### Converter
+
+`services/templatePipeline/convert/pptxToDeck.js` reads a `.pptx` and writes schema version 2 JSON into `app-library/<deck-id>.json`, with extracted photos beside it. One file:
+
+```bash
+node services/templatePipeline/convert/pptxToDeck.js "path/to/deck.pptx" deck-id
+```
+
+A folder of decks, scored after each conversion:
+
+```bash
+node scripts/bulk_ingest.js "PPTX Slides Templates"
+```
+
+A file the converter cannot parse is appended to `ingest_failures.log`. The batch continues.
+
+### Scorer
+
+`scripts/score_seeds.js` asks the injector for a "A company overview." deck, then `services/templatePipeline/scoring/analyzeDeck.js` scores every slide. A slide passes only when the geometry rules, the vision review, and `quality_score >= 0.6` all pass. `qualityScore` is the percentage of passing slides. The method name on the DNA file is `hybrid-v2`.
+
+```bash
+node scripts/score_seeds.js health-medical
+node scripts/score_seeds.js --all --resume
+```
+
+`--resume` skips seeds already marked `hybrid-v2` and overwrites an older score. Auto-layout only offers a seed when its score is at least 70.
+
+### Single-seed
+
+`services/templatePipeline/thematic.js` rewrites one seed. It invents a brand, shifts the palette, rewrites each text box to about the same length, and downloads Pexels photos into `image`, `maskedImage`, and collage cells. Model calls use `OPENROUTER_API_KEY` and, when that call cannot run, `API_KEY1` or `GEMINI_API_KEY`. Photos use `PEXELS_API_KEY`. All three are read from `.env`. There is no key built into the source.
+
+Auto-Select classifies the prompt as Photo-heavy, Text-heavy, or Corporate and uses the highest enabled seed of that kind with a score of at least 70. A chosen base layout skips that pick and uses the seed you name.
+
+```bash
+node services/templatePipeline/thematic.js --prompt "A futuristic AI robotics company." --layout health-medical --out docs/template-pipeline/thematic-tests/ai-robotics
+node scripts/auto_generate.js "A neighborhood bakery"
+```
+
+`auto_generate.js` is the single-seed path with Auto-Select. Slides are written under `docs/template-pipeline/admin-dashboard/tmp/`.
+
+### Assembler
+
+`services/templatePipeline/assemble_deck.js` builds a 10-slide deck from whole slides. Gemini writes the outline and the design language. Every slide comes from seeds that share that `recommendedUse`, so a Photo-heavy slide is never mixed with a Corporate slide. The highest-scoring seed in the deck supplies the palette and the fonts for every slide. A text box of one or two letters, such as a leftover "Aa" specimen, is left out. Numeric labels stay. Thematic injection then rewrites the copy and the photos. When that locked background is bright and a slide has a dark full-bleed photo, a 40% black scrim is placed on the photo and the type on it is set light.
+
+```bash
+node services/templatePipeline/assemble_deck.js "A sustainable fashion brand."
+```
+
+### Admin and user setup
+
+The curator is loopback-only. It does not require MongoDB.
+
+```powershell
+$env:PIPELINE_PORT = "5055"
+node services/templatePipeline/devServer.js
+```
+
+Open http://127.0.0.1:5055/ . Enter a prompt. Leave **Auto-Select Best Layout** checked for a single seed, or check **Auto-Assemble Deck (Max Variety)** to build the deck from one design language. Press Generate. Review the slides, then Publish to Catalog or Discard. Publish writes `app-library/published/<id>.json` and the slide images. Discard deletes the temporary folder. **Frankenstein Remix** is still on the form; it mixes two seeds and is not a launch path.
+
+The full API server mounts the same admin routes at `/api/admin`, behind `JWT_SECRET` and an admin user:
+
+```bash
+npm start
+```
+
+That process also needs `MONGO_URI`. It listens on `PORT` (5000 when unset).
+
+http://127.0.0.1:5055/catalog lists published decks. Search filters by name and description. View Deck opens the slide carousel. Download PPTX posts to `/api/catalog/:id/download` and returns a 13.333×7.5 inch file whose text, shapes, and pictures are separate objects. Illustrations and arch-masked photos are transparent PNGs placed as pictures. The same catalog routes are public on the full server at `/api/catalog`.
+
+### Local setup
+
+```bash
+npm install
+```
+
+Create `.env` in this directory. The pipeline reads these names and no others for its keys:
+
+```
+API_KEY1=
+PEXELS_API_KEY=
+JWT_SECRET=
+OPENROUTER_API_KEY=
+MONGO_URI=
+PORT=5000
+```
+
+`API_KEY1` is the Gemini key. `GEMINI_API_KEY` is accepted as the same value if you set that name instead. Do not put a key in source. The admin JWT is `process.env.JWT_SECRET`; login and the auth middleware refuse the request when it is missing.
+
+Then start the curator with the PowerShell commands above. Generate one deck with:
+
+```bash
+node scripts/auto_generate.js "A neighborhood bakery"
+```
+
+## Presentation API
 
 AI-powered presentation generation engine with LinkedIn sharing integration.
 
@@ -256,12 +358,17 @@ neuro-engine/
 
 ## Environment Variables
 
-See `.env.example` for all available configuration options.
+Names are read from `.env`. The source has no default key.
 
-**Required:**
+**Required for the full server:**
 - `MONGO_URI` - MongoDB connection string
-- `JWT_SECRET` - Secret for JWT tokens
+- `JWT_SECRET` - Secret for admin and user JWT tokens
 - `PORT` - Server port (default: 5000)
+
+**Required for the template pipeline:**
+- `API_KEY1` - Gemini API key (`GEMINI_API_KEY` is the same slot)
+- `PEXELS_API_KEY` - Pexels API key
+- `OPENROUTER_API_KEY` - used first for rewrite and vision; Gemini is used when that call cannot run
 
 **LinkedIn (Optional but required for sharing):**
 - `LINKEDIN_CLIENT_ID` - LinkedIn app client ID
