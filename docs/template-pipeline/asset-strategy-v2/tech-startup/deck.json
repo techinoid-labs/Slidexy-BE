@@ -1,0 +1,6001 @@
+{
+  "schemaVersion": 2,
+  "id": "nova-labs",
+  "name": "Nova Labs — A tech startup",
+  "description": "Themed for A tech startup",
+  "category": "converted",
+  "visualMode": "hybrid",
+  "source": "modern-geometric-music-lesson-plan.pptx",
+  "taste": {
+    "designLanguage": "editorial",
+    "cover": "type",
+    "density": "balanced",
+    "align": "left",
+    "groundMode": "flat"
+  },
+  "tokens": {
+    "color": {
+      "bg": "#fcfbf8",
+      "surface": "#fcfbf8",
+      "card": "#FFFFFF",
+      "ink": "#1C1916",
+      "muted": "#1C1916",
+      "rule": "#D9D0C6",
+      "accent": "#4f5a50",
+      "accent2": "#4f5a50",
+      "onAccent": "#F6F1E8"
+    },
+    "font": {
+      "display": "Arial",
+      "text": "Arial"
+    },
+    "type": {
+      "h1": 64,
+      "body": 22
+    }
+  },
+  "theme": {
+    "backgroundColor": "#FFFFFF",
+    "fontFamily": "Arial",
+    "titleColor": "#1C1916",
+    "bodyColor": "#1C1916"
+  },
+  "layoutSequence": [
+    "slide-1",
+    "slide-2",
+    "slide-3",
+    "slide-4",
+    "slide-5",
+    "slide-6",
+    "slide-7",
+    "slide-8",
+    "slide-9",
+    "slide-10",
+    "slide-11",
+    "slide-12",
+    "slide-13",
+    "slide-14",
+    "slide-15",
+    "slide-16",
+    "slide-17",
+    "slide-18",
+    "slide-19",
+    "slide-20"
+  ],
+  "layouts": {
+    "slide-1": {
+      "version": 2,
+      "id": "slide-1",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "s1-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#FFFFFF"
+          }
+        },
+        {
+          "id": "s1-e2",
+          "type": "illustration",
+          "x": 0,
+          "y": 379.66,
+          "width": 546.54,
+          "height": 520.34,
+          "zIndex": 2,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s1-e5",
+          "type": "illustration",
+          "x": 396.16,
+          "y": 59.69,
+          "width": 807.68,
+          "height": 807.68,
+          "zIndex": 5,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#fcfbf8",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s1-e6-t",
+          "type": "text",
+          "x": 655.67,
+          "y": 605.04,
+          "width": 288.66,
+          "height": 81.5,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 66.48,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.20006,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Company",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 66.48,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s1-e7-t",
+          "type": "text",
+          "x": 448.38,
+          "y": 267.16,
+          "width": 703.24,
+          "height": 391.91,
+          "zIndex": 7,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 323.93,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.2,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 323.93,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s1-e8",
+          "type": "illustration",
+          "x": 1084.8,
+          "y": 683.45,
+          "width": 390.94,
+          "height": 390.94,
+          "zIndex": 8,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s1-e9",
+          "type": "illustration",
+          "x": 1280.27,
+          "y": 0,
+          "width": 319.73,
+          "height": 357.98,
+          "zIndex": 9,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s1-e10",
+          "type": "illustration",
+          "x": 201.77,
+          "y": 0,
+          "width": 490.71,
+          "height": 260.92,
+          "zIndex": 10,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        }
+      ]
+    },
+    "slide-2": {
+      "version": 2,
+      "id": "slide-2",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "s2-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#FFFFFF"
+          }
+        },
+        {
+          "id": "s2-e2",
+          "type": "illustration",
+          "x": 800,
+          "y": -125.79,
+          "width": 370.61,
+          "height": 370.61,
+          "zIndex": 2,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s2-e3",
+          "type": "illustration",
+          "x": 800,
+          "y": 264.7,
+          "width": 370.61,
+          "height": 370.61,
+          "zIndex": 3,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s2-e4",
+          "type": "illustration",
+          "x": 800,
+          "y": 655.19,
+          "width": 370.61,
+          "height": 370.61,
+          "zIndex": 4,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#fcfbf8",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s2-e5-t",
+          "type": "text",
+          "x": 90,
+          "y": 320.33,
+          "width": 453.86,
+          "height": 258.56,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 133.33,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 0.8,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "company overview",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 133.33,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s2-e6-t",
+          "type": "text",
+          "x": 1227.63,
+          "y": 30,
+          "width": 237.95,
+          "height": 121.21,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 50,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs: AI",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 50,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s2-e7-t",
+          "type": "text",
+          "x": 1227.63,
+          "y": 364.64,
+          "width": 282.36,
+          "height": 121.21,
+          "zIndex": 7,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 50,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "AI-powered Diagnostics",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 50,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s2-e8-t",
+          "type": "text",
+          "x": 1227.63,
+          "y": 680.37,
+          "width": 202.49,
+          "height": 121.21,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 50,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Our Mission",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 50,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s2-e9-t",
+          "type": "text",
+          "x": 1227.63,
+          "y": 141.82,
+          "width": 275.96,
+          "height": 61.94,
+          "zIndex": 9,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs: Medical breakthroughs.",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s2-e10-t",
+          "type": "text",
+          "x": 873.91,
+          "y": 0,
+          "width": 272.36,
+          "height": 219.83,
+          "zIndex": 10,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 264.11,
+            "fontWeight": 650,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.20004,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "01.",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 264.11,
+                "fontWeight": 650,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s2-e11-t",
+          "type": "text",
+          "x": 868.22,
+          "y": 292.23,
+          "width": 270.45,
+          "height": 320.1,
+          "zIndex": 11,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 264.11,
+            "fontWeight": 650,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.20004,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "02.",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 264.11,
+                "fontWeight": 650,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s2-e12-t",
+          "type": "text",
+          "x": 873.91,
+          "y": 700.3,
+          "width": 259.07,
+          "height": 199.7,
+          "zIndex": 12,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 264.11,
+            "fontWeight": 650,
+            "color": "#1A1612",
+            "textAlign": "left",
+            "lineHeight": 1.20004,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "03.",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 264.11,
+                "fontWeight": 650,
+                "color": "#1A1612",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s2-e13-t",
+          "type": "text",
+          "x": 1227.63,
+          "y": 483.48,
+          "width": 275.96,
+          "height": 61.94,
+          "zIndex": 13,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs: Medical breakthroughs.",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s2-e14-t",
+          "type": "text",
+          "x": 1227.63,
+          "y": 802.54,
+          "width": 275.96,
+          "height": 61.94,
+          "zIndex": 14,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs: Medical breakthroughs.",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s2-e15-t",
+          "type": "text",
+          "x": 90,
+          "y": 617.74,
+          "width": 275.96,
+          "height": 61.94,
+          "zIndex": 15,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs: Medical breakthroughs.",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "slide-3": {
+      "version": 2,
+      "id": "slide-3",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "s3-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#fcfbf8"
+          }
+        },
+        {
+          "id": "s3-e2",
+          "type": "illustration",
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 900,
+          "zIndex": 2,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 2408296 0 L 2408296 2709333 L 0 2709333 Z",
+            "viewBox": "0 0 2408296 2709333",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s3-e3-rot",
+          "type": "rotated",
+          "x": 765.93,
+          "y": 590.92,
+          "width": 180.24,
+          "height": 112.1,
+          "zIndex": 3,
+          "degrees": 90,
+          "element": {
+            "id": "s3-e3",
+            "type": "illustration",
+            "x": 765.93,
+            "y": 590.92,
+            "width": 180.24,
+            "height": 112.1,
+            "zIndex": 3,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 571747 0 L 1143494 711200 L 0 711200 L 571747 0 Z",
+              "viewBox": "0 0 1143494 711200",
+              "fill": "#4f5a50",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s3-e6-t",
+          "type": "text",
+          "x": 77.25,
+          "y": 147.19,
+          "width": 645.49,
+          "height": 258.56,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 133.33,
+            "fontWeight": 650,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 0.8,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs: AI",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 133.33,
+                "fontWeight": 650,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e7-t",
+          "type": "text",
+          "x": 77.25,
+          "y": 432.57,
+          "width": 465.51,
+          "height": 31.82,
+          "zIndex": 7,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs: Medical breakthroughs.",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e8-t",
+          "type": "text",
+          "x": 77.25,
+          "y": 556.02,
+          "width": 338.18,
+          "height": 319.58,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 264.11,
+            "fontWeight": 650,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.20004,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "01.",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 264.11,
+                "fontWeight": 650,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "slide-4": {
+      "version": 2,
+      "id": "slide-4",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "s4-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#FFFFFF"
+          }
+        },
+        {
+          "id": "s4-e2",
+          "type": "illustration",
+          "x": 234.22,
+          "y": 167.11,
+          "width": 565.78,
+          "height": 565.78,
+          "zIndex": 2,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s4-e3",
+          "type": "illustration",
+          "x": 61.22,
+          "y": 732.89,
+          "width": 221.68,
+          "height": 221.68,
+          "zIndex": 3,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s4-e5",
+          "type": "illustration",
+          "x": 0,
+          "y": 0,
+          "width": 282.89,
+          "height": 339.84,
+          "zIndex": 5,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#fcfbf8",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s4-e6",
+          "type": "illustration",
+          "x": 885.41,
+          "y": 0,
+          "width": 565.78,
+          "height": 254.97,
+          "zIndex": 6,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s4-e8-t",
+          "type": "text",
+          "x": 815.69,
+          "y": 448.33,
+          "width": 705.23,
+          "height": 163,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 133.33,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "right",
+            "lineHeight": 1.2,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "About Nova Labs",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 133.33,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s4-e9-t",
+          "type": "text",
+          "x": 858.66,
+          "y": 647.56,
+          "width": 662.25,
+          "height": 162.44,
+          "zIndex": 9,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "right",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs leverages cutting-edge AI to analyze complex medical data, identifying patterns and predicting outcomes to speed up the discovery of new treatments and therapies. Our intelligent systems empower researchers and clinicians with actionable insights, transforming the landscape of medical innovation.",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "slide-5": {
+      "version": 2,
+      "id": "slide-5",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "s5-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#FFFFFF"
+          }
+        },
+        {
+          "id": "s5-e2",
+          "type": "illustration",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 2,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 4816592 0 L 4816592 2709333 L 0 2709333 Z",
+            "viewBox": "0 0 4816592 2709333",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s5-e3",
+          "type": "illustration",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 450,
+          "zIndex": 3,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 4816592 0 L 4816592 1354667 L 0 1354667 Z",
+            "viewBox": "0 0 4816592 1354667",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s5-e4",
+          "type": "illustration",
+          "x": 1231.11,
+          "y": 43.58,
+          "width": 330.22,
+          "height": 406.42,
+          "zIndex": 4,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 220252 19070 C 254000 7556 292600 0 330378 0 C 368157 0 404509 6476 438009 17990 C 438723 18350 439435 18350 440148 18710 C 565955 64765 658618 186379 660400 328502 L 660400 812800 L 0 812800 L 0 328861 C 1782 185660 93019 64045 220252 19070 Z",
+            "viewBox": "0 0 660400 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s5-e5",
+          "type": "illustration",
+          "x": 431.64,
+          "y": 22.99,
+          "width": 276.97,
+          "height": 276.97,
+          "zIndex": 5,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#fcfbf8",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s5-e6-rot",
+          "type": "rotated",
+          "x": 68.89,
+          "y": 0,
+          "width": 240.23,
+          "height": 295.66,
+          "zIndex": 6,
+          "degrees": 180,
+          "element": {
+            "id": "s5-e6",
+            "type": "illustration",
+            "x": 68.89,
+            "y": 0,
+            "width": 240.23,
+            "height": 295.66,
+            "zIndex": 6,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 220252 19070 C 254000 7556 292600 0 330378 0 C 368157 0 404509 6476 438009 17990 C 438723 18350 439435 18350 440148 18710 C 565955 64765 658618 186379 660400 328502 L 660400 812800 L 0 812800 L 0 328861 C 1782 185660 93019 64045 220252 19070 Z",
+              "viewBox": "0 0 660400 812800",
+              "fill": "#4f5a50",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s5-e7-t",
+          "type": "text",
+          "x": 68.89,
+          "y": 502.68,
+          "width": 1054.92,
+          "height": 163,
+          "zIndex": 7,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 133.33,
+            "fontWeight": 650,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.2,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Our Journey",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 133.33,
+                "fontWeight": 650,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s5-e8-t",
+          "type": "text",
+          "x": 68.89,
+          "y": 694.02,
+          "width": 829.66,
+          "height": 129.94,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs leverages cutting-edge AI to analyze complex medical data, identifying patterns and predicting outcomes to speed up the discovery of new treatments and therapies. Our intelligent systems empower researchers and clinicians with actionable insights, transforming the landscape of medical innovation.",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s5-e9",
+          "type": "illustration",
+          "x": 1093.64,
+          "y": -71.57,
+          "width": 143.14,
+          "height": 143.14,
+          "zIndex": 9,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        }
+      ]
+    },
+    "slide-6": {
+      "version": 2,
+      "id": "slide-6",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "s6-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#FFFFFF"
+          }
+        },
+        {
+          "id": "s6-e2-rot",
+          "type": "rotated",
+          "x": 746.2,
+          "y": 561.41,
+          "width": 439.34,
+          "height": 196.24,
+          "zIndex": 2,
+          "degrees": 90,
+          "element": {
+            "id": "s6-e2",
+            "type": "illustration",
+            "x": 746.2,
+            "y": 561.41,
+            "width": 439.34,
+            "height": 196.24,
+            "zIndex": 2,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 609600 0 C 721824 0 812800 81273 812800 181528 C 812800 281784 721824 363057 609600 363057 L 203200 363057 C 90976 363057 0 281784 0 181528 C 0 81273 90976 0 203200 0 Z",
+              "viewBox": "0 0 812800 363057",
+              "fill": "#4f5a50",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s6-e3-rot",
+          "type": "rotated",
+          "x": 186.42,
+          "y": 297.66,
+          "width": 859.32,
+          "height": 196.24,
+          "zIndex": 3,
+          "degrees": 90,
+          "element": {
+            "id": "s6-e3",
+            "type": "illustration",
+            "x": 186.42,
+            "y": 297.66,
+            "width": 859.32,
+            "height": 196.24,
+            "zIndex": 3,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 1386601 0 C 1498825 0 1589801 81273 1589801 181528 C 1589801 281784 1498825 363057 1386601 363057 L 203200 363057 C 90976 363057 0 281784 0 181528 C 0 81273 90976 0 203200 0 Z",
+              "viewBox": "0 0 1589801 363057",
+              "fill": "#fcfbf8",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s6-e4-rot",
+          "type": "rotated",
+          "x": 873.49,
+          "y": 561.41,
+          "width": 859.32,
+          "height": 196.24,
+          "zIndex": 4,
+          "degrees": 90,
+          "element": {
+            "id": "s6-e4",
+            "type": "illustration",
+            "x": 873.49,
+            "y": 561.41,
+            "width": 859.32,
+            "height": 196.24,
+            "zIndex": 4,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 1386601 0 C 1498825 0 1589801 81273 1589801 181528 C 1589801 281784 1498825 363057 1386601 363057 L 203200 363057 C 90976 363057 0 281784 0 181528 C 0 81273 90976 0 203200 0 Z",
+              "viewBox": "0 0 1589801 363057",
+              "fill": "#fcfbf8",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s6-e5-rot",
+          "type": "rotated",
+          "x": 742.65,
+          "y": 183.83,
+          "width": 439.34,
+          "height": 196.24,
+          "zIndex": 5,
+          "degrees": 90,
+          "element": {
+            "id": "s6-e5",
+            "type": "illustration",
+            "x": 742.65,
+            "y": 183.83,
+            "width": 439.34,
+            "height": 196.24,
+            "zIndex": 5,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 609600 0 C 721824 0 812800 81273 812800 181528 C 812800 281784 721824 363057 609600 363057 L 203200 363057 C 90976 363057 0 281784 0 181528 C 0 81273 90976 0 203200 0 Z",
+              "viewBox": "0 0 812800 363057",
+              "fill": "#4f5a50",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s6-e6-rot",
+          "type": "rotated",
+          "x": 1083.48,
+          "y": -169.91,
+          "width": 439.34,
+          "height": 196.24,
+          "zIndex": 6,
+          "degrees": 90,
+          "element": {
+            "id": "s6-e6",
+            "type": "illustration",
+            "x": 1083.48,
+            "y": -169.91,
+            "width": 439.34,
+            "height": 196.24,
+            "zIndex": 6,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 609600 0 C 721824 0 812800 81273 812800 181528 C 812800 281784 721824 363057 609600 363057 L 203200 363057 C 90976 363057 0 281784 0 181528 C 0 81273 90976 0 203200 0 Z",
+              "viewBox": "0 0 812800 363057",
+              "fill": "#4f5a50",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s6-e7-rot",
+          "type": "rotated",
+          "x": 1207.02,
+          "y": 261.12,
+          "width": 392.98,
+          "height": 196.24,
+          "zIndex": 7,
+          "degrees": 90,
+          "element": {
+            "id": "s6-e7",
+            "type": "illustration",
+            "x": 1207.02,
+            "y": 261.12,
+            "width": 392.98,
+            "height": 196.24,
+            "zIndex": 7,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 1386601 0 C 1498825 0 1589801 81273 1589801 181528 C 1589801 281784 1498825 363057 1386601 363057 L 203200 363057 C 90976 363057 0 281784 0 181528 C 0 81273 90976 0 203200 0 Z",
+              "viewBox": "0 0 1589801 363057",
+              "fill": "#4f5a50",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s6-e8-rot",
+          "type": "rotated",
+          "x": -127.11,
+          "y": -56.45,
+          "width": 859.32,
+          "height": 196.24,
+          "zIndex": 8,
+          "degrees": 90,
+          "element": {
+            "id": "s6-e8",
+            "type": "illustration",
+            "x": -127.11,
+            "y": -56.45,
+            "width": 859.32,
+            "height": 196.24,
+            "zIndex": 8,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 1386601 0 C 1498825 0 1589801 81273 1589801 181528 C 1589801 281784 1498825 363057 1386601 363057 L 203200 363057 C 90976 363057 0 281784 0 181528 C 0 81273 90976 0 203200 0 Z",
+              "viewBox": "0 0 1589801 363057",
+              "fill": "#4f5a50",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s6-e9-rot",
+          "type": "rotated",
+          "x": 0,
+          "y": 436.99,
+          "width": 400.65,
+          "height": 196.24,
+          "zIndex": 9,
+          "degrees": 90,
+          "element": {
+            "id": "s6-e9",
+            "type": "illustration",
+            "x": 0,
+            "y": 436.99,
+            "width": 400.65,
+            "height": 196.24,
+            "zIndex": 9,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 1386601 0 C 1498825 0 1589801 81273 1589801 181528 C 1589801 281784 1498825 363057 1386601 363057 L 203200 363057 C 90976 363057 0 281784 0 181528 C 0 81273 90976 0 203200 0 Z",
+              "viewBox": "0 0 1589801 363057",
+              "fill": "#fcfbf8",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s6-e10",
+          "type": "illustration",
+          "x": 104.34,
+          "y": 126.55,
+          "width": 646.91,
+          "height": 646.91,
+          "zIndex": 10,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 1947424 0 L 1947424 1947424 L 0 1947424 Z",
+            "viewBox": "0 0 1947424 1947424",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s6-e11",
+          "type": "illustration",
+          "x": 848.76,
+          "y": 126.55,
+          "width": 646.91,
+          "height": 646.91,
+          "zIndex": 11,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 1947424 0 L 1947424 1947424 L 0 1947424 Z",
+            "viewBox": "0 0 1947424 1947424",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s6-e12-t",
+          "type": "text",
+          "x": 142.46,
+          "y": 169.42,
+          "width": 401.06,
+          "height": 88.33,
+          "zIndex": 12,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 72.22,
+            "fontWeight": 650,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.2,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Innovation",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 72.22,
+                "fontWeight": 650,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s6-e13-t",
+          "type": "text",
+          "x": 886.88,
+          "y": 169.42,
+          "width": 401.06,
+          "height": 88.33,
+          "zIndex": 13,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 72.22,
+            "fontWeight": 650,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.2,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Impact",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 72.22,
+                "fontWeight": 650,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s6-e14-t",
+          "type": "text",
+          "x": 142.46,
+          "y": 483.67,
+          "width": 570.66,
+          "height": 194.94,
+          "zIndex": 14,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs leverages cutting-edge AI to analyze complex medical data, identifying patterns and predicting outcomes to speed up the discovery of new treatments and therapies. Our intelligent systems empower researchers and clinicians with actionable insights, transforming the landscape of medical innovation.",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s6-e15-t",
+          "type": "text",
+          "x": 886.88,
+          "y": 483.67,
+          "width": 570.66,
+          "height": 194.94,
+          "zIndex": 15,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs leverages cutting-edge AI to analyze complex medical data, identifying patterns and predicting outcomes to speed up the discovery of new treatments and therapies. Our intelligent systems empower researchers and clinicians with actionable insights, transforming the landscape of medical innovation.",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "slide-7": {
+      "version": 2,
+      "id": "slide-7",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "s7-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#fcfbf8"
+          }
+        },
+        {
+          "id": "s7-e2",
+          "type": "illustration",
+          "x": 800,
+          "y": 0,
+          "width": 800,
+          "height": 900,
+          "zIndex": 2,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 2408296 0 L 2408296 2709333 L 0 2709333 Z",
+            "viewBox": "0 0 2408296 2709333",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s7-e3-rot",
+          "type": "rotated",
+          "x": 653.83,
+          "y": 150.87,
+          "width": 180.24,
+          "height": 112.1,
+          "zIndex": 3,
+          "degrees": -90,
+          "element": {
+            "id": "s7-e3",
+            "type": "illustration",
+            "x": 653.83,
+            "y": 150.87,
+            "width": 180.24,
+            "height": 112.1,
+            "zIndex": 3,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 571747 0 L 1143494 711200 L 0 711200 L 571747 0 Z",
+              "viewBox": "0 0 1143494 711200",
+              "fill": "#4f5a50",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s7-e4-t",
+          "type": "text",
+          "x": 864.5,
+          "y": 544.43,
+          "width": 645.51,
+          "height": 258.56,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 133.33,
+            "fontWeight": 650,
+            "color": "#F6F1E8",
+            "textAlign": "right",
+            "lineHeight": 0.8,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "AI-powered Diagnostics",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 133.33,
+                "fontWeight": 650,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s7-e5-t",
+          "type": "text",
+          "x": 1044.49,
+          "y": 796.27,
+          "width": 465.51,
+          "height": 32.44,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "right",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs: Medical breakthroughs.",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s7-e7-t",
+          "type": "text",
+          "x": 1171.82,
+          "y": 71.28,
+          "width": 338.18,
+          "height": 319.5,
+          "zIndex": 7,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 264.12,
+            "fontWeight": 650,
+            "color": "#F6F1E8",
+            "textAlign": "right",
+            "lineHeight": 1.19999,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "02.",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 264.12,
+                "fontWeight": 650,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "slide-8": {
+      "version": 2,
+      "id": "slide-8",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "s8-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#FFFFFF"
+          }
+        },
+        {
+          "id": "s8-e2",
+          "type": "illustration",
+          "x": 57.92,
+          "y": 48.71,
+          "width": 323.03,
+          "height": 323.03,
+          "zIndex": 2,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 972446 0 L 972446 972446 L 0 972446 Z",
+            "viewBox": "0 0 972446 972446",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s8-e3",
+          "type": "illustration",
+          "x": 444.88,
+          "y": 48.71,
+          "width": 323.03,
+          "height": 323.03,
+          "zIndex": 3,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 972446 0 L 972446 972446 L 0 972446 Z",
+            "viewBox": "0 0 972446 972446",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s8-e4",
+          "type": "illustration",
+          "x": 831.85,
+          "y": 48.71,
+          "width": 323.03,
+          "height": 323.03,
+          "zIndex": 4,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 972446 0 L 972446 972446 L 0 972446 Z",
+            "viewBox": "0 0 972446 972446",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s8-e5",
+          "type": "illustration",
+          "x": 1219.05,
+          "y": 48.71,
+          "width": 323.03,
+          "height": 323.03,
+          "zIndex": 5,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 972446 0 L 972446 972446 L 0 972446 Z",
+            "viewBox": "0 0 972446 972446",
+            "fill": "#fcfbf8",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s8-e6-t",
+          "type": "text",
+          "x": 896.3,
+          "y": 543.47,
+          "width": 645.51,
+          "height": 258.56,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 133.33,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "right",
+            "lineHeight": 0.8,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "AI-powered Diagnostics",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 133.33,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s8-e7-t",
+          "type": "text",
+          "x": 1076.58,
+          "y": 818.85,
+          "width": 465.51,
+          "height": 32.44,
+          "zIndex": 7,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "right",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs: Medical breakthroughs.",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s8-e8-t",
+          "type": "text",
+          "x": 90,
+          "y": 79.75,
+          "width": 151.95,
+          "height": 44.33,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 35.56,
+            "fontWeight": 650,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.2,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Data",
+                "fontFamily": "Roboto",
+                "fontSize": 35.56,
+                "fontWeight": 650,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s8-e9-t",
+          "type": "text",
+          "x": 90,
+          "y": 229.58,
+          "width": 241.13,
+          "height": 66.59,
+          "zIndex": 9,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs: Medical breakthroughs.",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s8-e10-t",
+          "type": "text",
+          "x": 473.25,
+          "y": 79.75,
+          "width": 241.12,
+          "height": 44.33,
+          "zIndex": 10,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 35.56,
+            "fontWeight": 650,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.2,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Insights",
+                "fontFamily": "Roboto",
+                "fontSize": 35.56,
+                "fontWeight": 650,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s8-e11-t",
+          "type": "text",
+          "x": 473.25,
+          "y": 229.58,
+          "width": 241.13,
+          "height": 66.59,
+          "zIndex": 11,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs: Medical breakthroughs.",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s8-e12-t",
+          "type": "text",
+          "x": 860.42,
+          "y": 79.75,
+          "width": 151.95,
+          "height": 44.33,
+          "zIndex": 12,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 35.56,
+            "fontWeight": 650,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.2,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Analysis",
+                "fontFamily": "Roboto",
+                "fontSize": 35.56,
+                "fontWeight": 650,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s8-e13-t",
+          "type": "text",
+          "x": 860.42,
+          "y": 229.58,
+          "width": 241.13,
+          "height": 66.59,
+          "zIndex": 13,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs: Medical breakthroughs.",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s8-e14-t",
+          "type": "text",
+          "x": 1247.58,
+          "y": 79.75,
+          "width": 151.95,
+          "height": 44.33,
+          "zIndex": 14,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 35.56,
+            "fontWeight": 650,
+            "color": "#1A1612",
+            "textAlign": "left",
+            "lineHeight": 1.2,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Future",
+                "fontFamily": "Roboto",
+                "fontSize": 35.56,
+                "fontWeight": 650,
+                "color": "#1A1612",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s8-e15-t",
+          "type": "text",
+          "x": 1247.58,
+          "y": 229.58,
+          "width": 241.13,
+          "height": 66.59,
+          "zIndex": 15,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#1A1612",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs: Medical breakthroughs.",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#1A1612",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s8-e16-t",
+          "type": "text",
+          "x": 57.92,
+          "y": 543.87,
+          "width": 742.07,
+          "height": 315.93,
+          "zIndex": 16,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs is at the forefront of revolutionizing healthcare through artificial intelligence. Our commitment to accelerating medical breakthroughs is driven by a passion for innovation and a dedication to improving patient outcomes. We believe that by harnessing the power of intelligent data analysis, we can unlock new possibilities in diagnostics and treatment, paving the way for a healthier future for all.",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "slide-9": {
+      "version": 2,
+      "id": "slide-9",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "s9-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#4f5a50"
+          }
+        },
+        {
+          "id": "s9-e2-rot",
+          "type": "rotated",
+          "x": 778.29,
+          "y": 533.78,
+          "width": 781.38,
+          "height": 349.02,
+          "zIndex": 2,
+          "degrees": 90,
+          "element": {
+            "id": "s9-e2",
+            "type": "illustration",
+            "x": 778.29,
+            "y": 533.78,
+            "width": 781.38,
+            "height": 349.02,
+            "zIndex": 2,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 609600 0 C 721824 0 812800 81273 812800 181528 C 812800 281784 721824 363057 609600 363057 L 203200 363057 C 90976 363057 0 281784 0 181528 C 0 81273 90976 0 203200 0 Z",
+              "viewBox": "0 0 812800 363057",
+              "fill": "#4f5a50",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s9-e3-rot",
+          "type": "rotated",
+          "x": 1127.31,
+          "y": 83.08,
+          "width": 781.38,
+          "height": 349.02,
+          "zIndex": 3,
+          "degrees": 90,
+          "element": {
+            "id": "s9-e3",
+            "type": "illustration",
+            "x": 1127.31,
+            "y": 83.08,
+            "width": 781.38,
+            "height": 349.02,
+            "zIndex": 3,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 609600 0 C 721824 0 812800 81273 812800 181528 C 812800 281784 721824 363057 609600 363057 L 203200 363057 C 90976 363057 0 281784 0 181528 C 0 81273 90976 0 203200 0 Z",
+              "viewBox": "0 0 812800 363057",
+              "fill": "#4f5a50",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s9-e4-rot",
+          "type": "rotated",
+          "x": 121.8,
+          "y": 79.04,
+          "width": 781.38,
+          "height": 349.02,
+          "zIndex": 4,
+          "degrees": 90,
+          "element": {
+            "id": "s9-e4",
+            "type": "illustration",
+            "x": 121.8,
+            "y": 79.04,
+            "width": 781.38,
+            "height": 349.02,
+            "zIndex": 4,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 609600 0 C 721824 0 812800 81273 812800 181528 C 812800 281784 721824 363057 609600 363057 L 203200 363057 C 90976 363057 0 281784 0 181528 C 0 81273 90976 0 203200 0 Z",
+              "viewBox": "0 0 812800 363057",
+              "fill": "#fcfbf8",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s9-e5",
+          "type": "illustration",
+          "x": 0,
+          "y": 451.42,
+          "width": 310.5,
+          "height": 448.58,
+          "zIndex": 5,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 934732 0 L 934732 1350377 L 0 1350377 Z",
+            "viewBox": "0 0 934732 1350377",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s9-e6-rot",
+          "type": "rotated",
+          "x": 928.86,
+          "y": 0,
+          "width": 480.23,
+          "height": 130.01,
+          "zIndex": 6,
+          "degrees": 90,
+          "element": {
+            "id": "s9-e6",
+            "type": "illustration",
+            "x": 928.86,
+            "y": 0,
+            "width": 480.23,
+            "height": 130.01,
+            "zIndex": 6,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 296345 0 C 408569 0 499545 81273 499545 181528 C 499545 281784 408569 363057 296345 363057 L 203200 363057 C 90976 363057 0 281784 0 181528 C 0 81273 90976 0 203200 0 Z",
+              "viewBox": "0 0 499545 363057",
+              "fill": "#4f5a50",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s9-e7-rot",
+          "type": "rotated",
+          "x": 1277.88,
+          "y": 824.93,
+          "width": 322.12,
+          "height": 75.07,
+          "zIndex": 7,
+          "degrees": 90,
+          "element": {
+            "id": "s9-e7",
+            "type": "illustration",
+            "x": 1277.88,
+            "y": 824.93,
+            "width": 322.12,
+            "height": 75.07,
+            "zIndex": 7,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 296345 0 C 408569 0 499545 81273 499545 181528 C 499545 281784 408569 363057 296345 363057 L 203200 363057 C 90976 363057 0 281784 0 181528 C 0 81273 90976 0 203200 0 Z",
+              "viewBox": "0 0 499545 363057",
+              "fill": "#fcfbf8",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s9-e8-t",
+          "type": "text",
+          "x": 14.97,
+          "y": 87.34,
+          "width": 274.7,
+          "height": 193.91,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 100,
+            "fontWeight": 650,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 0.8,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Showcase",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 100,
+                "fontWeight": 650,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s9-e9-t",
+          "type": "text",
+          "x": 14.97,
+          "y": 523.37,
+          "width": 248.56,
+          "height": 102.2,
+          "zIndex": 9,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "How Nova Labs is changing medical research and patient care.",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s9-e10-t",
+          "type": "text",
+          "x": 1017.23,
+          "y": 571.44,
+          "width": 248.56,
+          "height": 66.59,
+          "zIndex": 10,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs' impact on research.",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s9-e11-t",
+          "type": "text",
+          "x": 360.74,
+          "y": 416.28,
+          "width": 248.56,
+          "height": 66.59,
+          "zIndex": 11,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs' impact on research.",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s9-e12-t",
+          "type": "text",
+          "x": 1351.44,
+          "y": 417.7,
+          "width": 248.56,
+          "height": 66.59,
+          "zIndex": 12,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs' impact on research.",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "slide-10": {
+      "version": 2,
+      "id": "slide-10",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "s10-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#4f5a50"
+          }
+        },
+        {
+          "id": "s10-e2",
+          "type": "illustration",
+          "x": 464.8,
+          "y": 487.63,
+          "width": 281.41,
+          "height": 245.43,
+          "zIndex": 2,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 203085 19070 C 234202 7556 269794 0 304627 0 C 339461 0 372980 6476 403869 17990 C 404527 18350 405184 18350 405841 18710 C 521842 64765 607283 186379 608926 322244 L 608926 531073 L 0 531073 L 0 322399 C 1643 185660 85769 64045 203085 19070 Z",
+            "viewBox": "0 0 608926 531073",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s10-e3",
+          "type": "illustration",
+          "x": 1180.95,
+          "y": 493.59,
+          "width": 281.41,
+          "height": 245.43,
+          "zIndex": 3,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 203085 19070 C 234202 7556 269794 0 304627 0 C 339461 0 372980 6476 403869 17990 C 404527 18350 405184 18350 405841 18710 C 521842 64765 607283 186379 608926 322244 L 608926 531073 L 0 531073 L 0 322399 C 1643 185660 85769 64045 203085 19070 Z",
+            "viewBox": "0 0 608926 531073",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s10-e5",
+          "type": "illustration",
+          "x": 822.88,
+          "y": 487.63,
+          "width": 281.41,
+          "height": 245.43,
+          "zIndex": 5,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 203085 19070 C 234202 7556 269794 0 304627 0 C 339461 0 372980 6476 403869 17990 C 404527 18350 405184 18350 405841 18710 C 521842 64765 607283 186379 608926 322244 L 608926 531073 L 0 531073 L 0 322399 C 1643 185660 85769 64045 203085 19070 Z",
+            "viewBox": "0 0 608926 531073",
+            "fill": "#fcfbf8",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s10-e8",
+          "type": "illustration",
+          "x": 106.92,
+          "y": 487.63,
+          "width": 281.41,
+          "height": 245.43,
+          "zIndex": 8,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 203085 19070 C 234202 7556 269794 0 304627 0 C 339461 0 372980 6476 403869 17990 C 404527 18350 405184 18350 405841 18710 C 521842 64765 607283 186379 608926 322244 L 608926 531073 L 0 531073 L 0 322399 C 1643 185660 85769 64045 203085 19070 Z",
+            "viewBox": "0 0 608926 531073",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s10-e10",
+          "type": "illustration",
+          "x": 1029.74,
+          "y": 0,
+          "width": 570.26,
+          "height": 412.39,
+          "zIndex": 10,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s10-e11-t",
+          "type": "text",
+          "x": 90,
+          "y": 733.06,
+          "width": 281.22,
+          "height": 42.5,
+          "zIndex": 11,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 35.56,
+            "fontWeight": 650,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.2,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Team Member",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 35.56,
+                "fontWeight": 650,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s10-e12-t",
+          "type": "text",
+          "x": 448.07,
+          "y": 733.06,
+          "width": 281.22,
+          "height": 42.5,
+          "zIndex": 12,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 35.56,
+            "fontWeight": 650,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.2,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Team Member",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 35.56,
+                "fontWeight": 650,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s10-e13-t",
+          "type": "text",
+          "x": 806.15,
+          "y": 733.06,
+          "width": 281.22,
+          "height": 42.5,
+          "zIndex": 13,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 35.56,
+            "fontWeight": 650,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.2,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Team Member",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 35.56,
+                "fontWeight": 650,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s10-e14-t",
+          "type": "text",
+          "x": 1164.22,
+          "y": 733.06,
+          "width": 281.22,
+          "height": 42.5,
+          "zIndex": 14,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 35.56,
+            "fontWeight": 650,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.2,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Team Member",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 35.56,
+                "fontWeight": 650,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s10-e15-t",
+          "type": "text",
+          "x": 106.92,
+          "y": 788.31,
+          "width": 247.59,
+          "height": 66.59,
+          "zIndex": 15,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs: Medical breakthroughs.",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s10-e16-t",
+          "type": "text",
+          "x": 464.8,
+          "y": 788.31,
+          "width": 247.59,
+          "height": 66.59,
+          "zIndex": 16,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs: Medical breakthroughs.",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s10-e17-t",
+          "type": "text",
+          "x": 822.69,
+          "y": 788.31,
+          "width": 247.59,
+          "height": 66.59,
+          "zIndex": 17,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs: Medical breakthroughs.",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s10-e18-t",
+          "type": "text",
+          "x": 1180.58,
+          "y": 788.31,
+          "width": 247.59,
+          "height": 66.59,
+          "zIndex": 18,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs: Medical breakthroughs.",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s10-e19-t",
+          "type": "text",
+          "x": 90,
+          "y": 54.72,
+          "width": 828.14,
+          "height": 161.6,
+          "zIndex": 19,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 133.33,
+            "fontWeight": 650,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.2,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "OUR TEAM",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 133.33,
+                "fontWeight": 650,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s10-e20-t",
+          "type": "text",
+          "x": 90,
+          "y": 240.64,
+          "width": 713.04,
+          "height": 163.62,
+          "zIndex": 20,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs is comprised of a diverse team of leading scientists, data analysts, and medical professionals dedicated to pushing the boundaries of AI in healthcare. Our collaborative environment fosters innovation, enabling us to tackle the most complex challenges in medical research and deliver groundbreaking solutions. We are united by a shared vision of a future where advanced technology enhances human health and well-being.",
+                "fontFamily": "Roboto",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s10-e21",
+          "type": "illustration",
+          "x": 1491.08,
+          "y": 289.74,
+          "width": 175.84,
+          "height": 175.84,
+          "zIndex": 21,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#fcfbf8",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        }
+      ]
+    },
+    "slide-11": {
+      "version": 2,
+      "id": "slide-11",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "s11-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#4f5a50"
+          }
+        },
+        {
+          "id": "s11-e3",
+          "type": "illustration",
+          "x": 0,
+          "y": 530.04,
+          "width": 396.16,
+          "height": 369.96,
+          "zIndex": 3,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s11-e5",
+          "type": "illustration",
+          "x": 1280.27,
+          "y": 0,
+          "width": 319.73,
+          "height": 357.98,
+          "zIndex": 5,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s11-e7",
+          "type": "illustration",
+          "x": 396.16,
+          "y": 59.69,
+          "width": 807.68,
+          "height": 807.68,
+          "zIndex": 7,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#fcfbf8",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s11-e8-t",
+          "type": "text",
+          "x": 512.94,
+          "y": 261.42,
+          "width": 574.12,
+          "height": 404.23,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 104.22,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 0.8,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Driving medical progress with intelligent data.",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 104.22,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s11-e9",
+          "type": "illustration",
+          "x": 1053.49,
+          "y": 686.54,
+          "width": 546.51,
+          "height": 213.46,
+          "zIndex": 9,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s11-e10",
+          "type": "illustration",
+          "x": 0,
+          "y": 0,
+          "width": 637.14,
+          "height": 336.59,
+          "zIndex": 10,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        }
+      ]
+    },
+    "slide-12": {
+      "version": 2,
+      "id": "slide-12",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "s12-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#FFFFFF"
+          }
+        },
+        {
+          "id": "s12-e2-rot",
+          "type": "rotated",
+          "x": -219.91,
+          "y": 373.62,
+          "width": 439.34,
+          "height": 196.24,
+          "zIndex": 2,
+          "degrees": 137.81,
+          "element": {
+            "id": "s12-e2",
+            "type": "illustration",
+            "x": -219.91,
+            "y": 373.62,
+            "width": 439.34,
+            "height": 196.24,
+            "zIndex": 2,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 609600 0 C 721824 0 812800 81273 812800 181528 C 812800 281784 721824 363057 609600 363057 L 203200 363057 C 90976 363057 0 281784 0 181528 C 0 81273 90976 0 203200 0 Z",
+              "viewBox": "0 0 812800 363057",
+              "fill": "#4f5a50",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s12-e3-rot",
+          "type": "rotated",
+          "x": 307.75,
+          "y": 736.16,
+          "width": 439.34,
+          "height": 196.24,
+          "zIndex": 3,
+          "degrees": 137.81,
+          "element": {
+            "id": "s12-e3",
+            "type": "illustration",
+            "x": 307.75,
+            "y": 736.16,
+            "width": 439.34,
+            "height": 196.24,
+            "zIndex": 3,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 609600 0 C 721824 0 812800 81273 812800 181528 C 812800 281784 721824 363057 609600 363057 L 203200 363057 C 90976 363057 0 281784 0 181528 C 0 81273 90976 0 203200 0 Z",
+              "viewBox": "0 0 812800 363057",
+              "fill": "#4f5a50",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s12-e4-rot",
+          "type": "rotated",
+          "x": 274.58,
+          "y": 183.99,
+          "width": 859.32,
+          "height": 196.24,
+          "zIndex": 4,
+          "degrees": 137.81,
+          "element": {
+            "id": "s12-e4",
+            "type": "illustration",
+            "x": 274.58,
+            "y": 183.99,
+            "width": 859.32,
+            "height": 196.24,
+            "zIndex": 4,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 1386601 0 C 1498825 0 1589801 81273 1589801 181528 C 1589801 281784 1498825 363057 1386601 363057 L 203200 363057 C 90976 363057 0 281784 0 181528 C 0 81273 90976 0 203200 0 Z",
+              "viewBox": "0 0 1589801 363057",
+              "fill": "#fcfbf8",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s12-e5-rot",
+          "type": "rotated",
+          "x": 540.58,
+          "y": 870.19,
+          "width": 859.32,
+          "height": 196.24,
+          "zIndex": 5,
+          "degrees": 137.81,
+          "element": {
+            "id": "s12-e5",
+            "type": "illustration",
+            "x": 540.58,
+            "y": 870.19,
+            "width": 859.32,
+            "height": 196.24,
+            "zIndex": 5,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 1386601 0 C 1498825 0 1589801 81273 1589801 181528 C 1589801 281784 1498825 363057 1386601 363057 L 203200 363057 C 90976 363057 0 281784 0 181528 C 0 81273 90976 0 203200 0 Z",
+              "viewBox": "0 0 1589801 363057",
+              "fill": "#4f5a50",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s12-e6-rot",
+          "type": "rotated",
+          "x": 1132.48,
+          "y": 42.96,
+          "width": 439.34,
+          "height": 196.24,
+          "zIndex": 6,
+          "degrees": 137.81,
+          "element": {
+            "id": "s12-e6",
+            "type": "illustration",
+            "x": 1132.48,
+            "y": 42.96,
+            "width": 439.34,
+            "height": 196.24,
+            "zIndex": 6,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 609600 0 C 721824 0 812800 81273 812800 181528 C 812800 281784 721824 363057 609600 363057 L 203200 363057 C 90976 363057 0 281784 0 181528 C 0 81273 90976 0 203200 0 Z",
+              "viewBox": "0 0 812800 363057",
+              "fill": "#4f5a50",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s12-e7-rot",
+          "type": "rotated",
+          "x": 1292.44,
+          "y": 379.06,
+          "width": 439.34,
+          "height": 196.24,
+          "zIndex": 7,
+          "degrees": 137.81,
+          "element": {
+            "id": "s12-e7",
+            "type": "illustration",
+            "x": 1292.44,
+            "y": 379.06,
+            "width": 439.34,
+            "height": 196.24,
+            "zIndex": 7,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 609600 0 C 721824 0 812800 81273 812800 181528 C 812800 281784 721824 363057 609600 363057 L 203200 363057 C 90976 363057 0 281784 0 181528 C 0 81273 90976 0 203200 0 Z",
+              "viewBox": "0 0 812800 363057",
+              "fill": "#4f5a50",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s12-e8-rot",
+          "type": "rotated",
+          "x": -103.18,
+          "y": 720.33,
+          "width": 439.34,
+          "height": 196.24,
+          "zIndex": 8,
+          "degrees": 137.81,
+          "element": {
+            "id": "s12-e8",
+            "type": "illustration",
+            "x": -103.18,
+            "y": 720.33,
+            "width": 439.34,
+            "height": 196.24,
+            "zIndex": 8,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 609600 0 C 721824 0 812800 81273 812800 181528 C 812800 281784 721824 363057 609600 363057 L 203200 363057 C 90976 363057 0 281784 0 181528 C 0 81273 90976 0 203200 0 Z",
+              "viewBox": "0 0 812800 363057",
+              "fill": "#4f5a50",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s12-e9",
+          "type": "illustration",
+          "x": 106.12,
+          "y": 138.94,
+          "width": 439.27,
+          "height": 622.13,
+          "zIndex": 9,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 1322372 0 L 1322372 1872838 L 0 1872838 Z",
+            "viewBox": "0 0 1322372 1872838",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s12-e10",
+          "type": "illustration",
+          "x": 1054.61,
+          "y": 138.94,
+          "width": 439.27,
+          "height": 622.13,
+          "zIndex": 10,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 1322372 0 L 1322372 1872838 L 0 1872838 Z",
+            "viewBox": "0 0 1322372 1872838",
+            "fill": "#fcfbf8",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s12-e11",
+          "type": "illustration",
+          "x": 580.36,
+          "y": 138.94,
+          "width": 439.27,
+          "height": 622.13,
+          "zIndex": 11,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 1322372 0 L 1322372 1872838 L 0 1872838 Z",
+            "viewBox": "0 0 1322372 1872838",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s12-e12",
+          "type": "illustration",
+          "x": 190.76,
+          "y": 168.78,
+          "width": 270,
+          "height": 270,
+          "zIndex": 12,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s12-e13-t",
+          "type": "text",
+          "x": 205.92,
+          "y": 612.03,
+          "width": 239.66,
+          "height": 66.59,
+          "zIndex": 13,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs AI: High accuracy.",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s12-e14-t",
+          "type": "text",
+          "x": 185.14,
+          "y": 448.33,
+          "width": 281.23,
+          "height": 121.21,
+          "zIndex": 14,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 50,
+            "fontWeight": 650,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Diagnostic Accuracy",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 50,
+                "fontWeight": 650,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s12-e15-t",
+          "type": "text",
+          "x": 659.39,
+          "y": 450.83,
+          "width": 281.23,
+          "height": 121.21,
+          "zIndex": 15,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 50,
+            "fontWeight": 650,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Research Acceleration",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 50,
+                "fontWeight": 650,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s12-e16-t",
+          "type": "text",
+          "x": 1133.63,
+          "y": 448.33,
+          "width": 281.23,
+          "height": 121.21,
+          "zIndex": 16,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 50,
+            "fontWeight": 650,
+            "color": "#1A1612",
+            "textAlign": "center",
+            "lineHeight": 1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Predictive Power",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 50,
+                "fontWeight": 650,
+                "color": "#1A1612",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s12-e17-t",
+          "type": "text",
+          "x": 185.14,
+          "y": 221.45,
+          "width": 281.22,
+          "height": 163,
+          "zIndex": 17,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 133.33,
+            "fontWeight": 650,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.2,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "45%",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 133.33,
+                "fontWeight": 650,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s12-e18",
+          "type": "illustration",
+          "x": 665,
+          "y": 168.78,
+          "width": 270,
+          "height": 270,
+          "zIndex": 18,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s12-e19",
+          "type": "illustration",
+          "x": 1139.24,
+          "y": 168.78,
+          "width": 270,
+          "height": 270,
+          "zIndex": 19,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s12-e20-t",
+          "type": "text",
+          "x": 659.39,
+          "y": 221.45,
+          "width": 281.22,
+          "height": 163,
+          "zIndex": 20,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 133.33,
+            "fontWeight": 650,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.2,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "67%",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 133.33,
+                "fontWeight": 650,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s12-e21-t",
+          "type": "text",
+          "x": 1133.63,
+          "y": 221.45,
+          "width": 281.22,
+          "height": 163,
+          "zIndex": 21,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 133.33,
+            "fontWeight": 650,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.2,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "23%",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 133.33,
+                "fontWeight": 650,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s12-e22-t",
+          "type": "text",
+          "x": 680.17,
+          "y": 612.03,
+          "width": 239.66,
+          "height": 66.59,
+          "zIndex": 22,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs AI: High accuracy.",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s12-e23-t",
+          "type": "text",
+          "x": 1154.41,
+          "y": 612.03,
+          "width": 239.66,
+          "height": 66.59,
+          "zIndex": 23,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#1A1612",
+            "textAlign": "center",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs AI: High accuracy.",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#1A1612",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "slide-13": {
+      "version": 2,
+      "id": "slide-13",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "s13-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#4f5a50"
+          }
+        },
+        {
+          "id": "s13-e2",
+          "type": "illustration",
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 900,
+          "zIndex": 2,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 2408296 0 L 2408296 2709333 L 0 2709333 Z",
+            "viewBox": "0 0 2408296 2709333",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s13-e3-rot",
+          "type": "rotated",
+          "x": 765.93,
+          "y": 303.83,
+          "width": 180.24,
+          "height": 112.1,
+          "zIndex": 3,
+          "degrees": 90,
+          "element": {
+            "id": "s13-e3",
+            "type": "illustration",
+            "x": 765.93,
+            "y": 303.83,
+            "width": 180.24,
+            "height": 112.1,
+            "zIndex": 3,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 571747 0 L 1143494 711200 L 0 711200 L 571747 0 Z",
+              "viewBox": "0 0 1143494 711200",
+              "fill": "#4f5a50",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s13-e6-t",
+          "type": "text",
+          "x": 77.25,
+          "y": 614.14,
+          "width": 645.5,
+          "height": 140.08,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 133.33,
+            "fontWeight": 650,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 0.9,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Our Mission",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 133.33,
+                "fontWeight": 650,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s13-e7-t",
+          "type": "text",
+          "x": 77.25,
+          "y": 778.18,
+          "width": 465.51,
+          "height": 31.82,
+          "zIndex": 7,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs: Medical breakthroughs.",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s13-e8-t",
+          "type": "text",
+          "x": 77.25,
+          "y": 25.83,
+          "width": 338.18,
+          "height": 319.58,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 264.11,
+            "fontWeight": 650,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.20004,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "03.",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 264.11,
+                "fontWeight": 650,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "slide-14": {
+      "version": 2,
+      "id": "slide-14",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "s14-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#FFFFFF"
+          }
+        },
+        {
+          "id": "s14-e2-rot",
+          "type": "rotated",
+          "x": 236.82,
+          "y": 361.37,
+          "width": 690.53,
+          "height": 383.63,
+          "zIndex": 2,
+          "degrees": 90,
+          "element": {
+            "id": "s14-e2",
+            "type": "illustration",
+            "x": 236.82,
+            "y": 361.37,
+            "width": 690.53,
+            "height": 383.63,
+            "zIndex": 2,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 677925 0 C 790150 0 881125 109583 881125 244761 C 881125 379938 790150 489521 677925 489521 L 203200 489521 C 90976 489521 0 379938 0 244761 C 0 109583 90976 0 203200 0 Z",
+              "viewBox": "0 0 881125 489521",
+              "fill": "#4f5a50",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s14-e5-t-p1",
+          "type": "text",
+          "x": 899.13,
+          "y": 257.4,
+          "width": 542.68,
+          "height": 129.28,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 133.33,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 0.8,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 133.33,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s14-e5-t-p2",
+          "type": "text",
+          "x": 899.13,
+          "y": 386.68,
+          "width": 542.68,
+          "height": 129.28,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 133.33,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 0.8,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Labs",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 133.33,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s14-e7-t",
+          "type": "text",
+          "x": 899.13,
+          "y": 578.42,
+          "width": 542.68,
+          "height": 139.89,
+          "zIndex": 7,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs utilizes advanced AI for data-driven medical insights, enhancing research presentations and accelerating discovery.",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s14-e8-rot",
+          "type": "rotated",
+          "x": -41.59,
+          "y": -82.8,
+          "width": 360,
+          "height": 200,
+          "zIndex": 8,
+          "degrees": 90,
+          "element": {
+            "id": "s14-e8",
+            "type": "illustration",
+            "x": -41.59,
+            "y": -82.8,
+            "width": 360,
+            "height": 200,
+            "zIndex": 8,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 677925 0 C 790150 0 881125 109583 881125 244761 C 881125 379938 790150 489521 677925 489521 L 203200 489521 C 90976 489521 0 379938 0 244761 C 0 109583 90976 0 203200 0 Z",
+              "viewBox": "0 0 881125 489521",
+              "fill": "#fcfbf8",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s14-e9",
+          "type": "illustration",
+          "x": 1351.45,
+          "y": 735.51,
+          "width": 248.55,
+          "height": 164.49,
+          "zIndex": 9,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        }
+      ]
+    },
+    "slide-15": {
+      "version": 2,
+      "id": "slide-15",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "s15-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#4f5a50"
+          }
+        },
+        {
+          "id": "s15-e2",
+          "type": "image",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 774.36,
+          "zIndex": 2,
+          "imageContent": {
+            "url": "photos/thematic/tech-startup/landscape-01.jpg",
+            "fit": "cover",
+            "alignX": 0.5,
+            "alignY": 0.5
+          }
+        },
+        {
+          "id": "s15-e3-t",
+          "type": "text",
+          "x": 90,
+          "y": 816.67,
+          "width": 887.02,
+          "height": 44.17,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 35.56,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.2,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Data visualization is key.",
+                "fontFamily": "Roboto",
+                "fontSize": 35.56,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s15-e4",
+          "type": "illustration",
+          "x": 63.5,
+          "y": 697.9,
+          "width": 180.24,
+          "height": 112.1,
+          "zIndex": 4,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 571747 0 L 1143494 711200 L 0 711200 L 571747 0 Z",
+            "viewBox": "0 0 1143494 711200",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s15-e5",
+          "type": "illustration",
+          "x": 1337.4,
+          "y": 0,
+          "width": 262.6,
+          "height": 162.37,
+          "zIndex": 5,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#fcfbf8",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s15-e6",
+          "type": "illustration",
+          "x": 1510,
+          "y": 76.07,
+          "width": 172.6,
+          "height": 172.6,
+          "zIndex": 6,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        }
+      ]
+    },
+    "slide-16": {
+      "version": 2,
+      "id": "slide-16",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "s16-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#FFFFFF"
+          }
+        },
+        {
+          "id": "s16-e2",
+          "type": "image",
+          "x": 0,
+          "y": 496.95,
+          "width": 1600,
+          "height": 403.05,
+          "zIndex": 2,
+          "imageContent": {
+            "url": "photos/thematic/tech-startup/landscape-02.jpg",
+            "fit": "cover",
+            "alignX": 0.5,
+            "alignY": 0.5
+          }
+        },
+        {
+          "id": "s16-e3",
+          "type": "illustration",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 496.95,
+          "zIndex": 3,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 4816592 0 L 4816592 1496010 L 0 1496010 Z",
+            "viewBox": "0 0 4816592 1496010",
+            "fill": "#fcfbf8",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s16-e4-t",
+          "type": "text",
+          "x": 75.34,
+          "y": 76.03,
+          "width": 1304.15,
+          "height": 258.56,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 133.33,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 0.8,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Driving medical progress with intelligent data.",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 133.33,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s16-e5-t",
+          "type": "text",
+          "x": 75.34,
+          "y": 415.11,
+          "width": 636.39,
+          "height": 34.89,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Powered by Nova Labs' AI.",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s16-e6-rot",
+          "type": "rotated",
+          "x": 709.88,
+          "y": 470.89,
+          "width": 180.24,
+          "height": 112.1,
+          "zIndex": 6,
+          "degrees": 180,
+          "element": {
+            "id": "s16-e6",
+            "type": "illustration",
+            "x": 709.88,
+            "y": 470.89,
+            "width": 180.24,
+            "height": 112.1,
+            "zIndex": 6,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 571747 0 L 1143494 711200 L 0 711200 L 571747 0 Z",
+              "viewBox": "0 0 1143494 711200",
+              "fill": "#fcfbf8",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        }
+      ]
+    },
+    "slide-17": {
+      "version": 2,
+      "id": "slide-17",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "s17-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#FFFFFF"
+          }
+        },
+        {
+          "id": "s17-e2",
+          "type": "illustration",
+          "x": 54.87,
+          "y": 272.59,
+          "width": 307.72,
+          "height": 307.72,
+          "zIndex": 2,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s17-e3",
+          "type": "illustration",
+          "x": 448.95,
+          "y": 272.59,
+          "width": 307.72,
+          "height": 307.72,
+          "zIndex": 3,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#fcfbf8",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s17-e4",
+          "type": "illustration",
+          "x": 843.33,
+          "y": 272.59,
+          "width": 307.72,
+          "height": 307.72,
+          "zIndex": 4,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s17-e5",
+          "type": "illustration",
+          "x": 1237.42,
+          "y": 272.59,
+          "width": 307.72,
+          "height": 307.72,
+          "zIndex": 5,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s17-e6",
+          "type": "illustration",
+          "x": 135.57,
+          "y": 199.43,
+          "width": 146.32,
+          "height": 146.32,
+          "zIndex": 6,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s17-e7",
+          "type": "illustration",
+          "x": 526.96,
+          "y": 201.5,
+          "width": 146.32,
+          "height": 146.32,
+          "zIndex": 7,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s17-e8",
+          "type": "illustration",
+          "x": 923.88,
+          "y": 199.43,
+          "width": 146.32,
+          "height": 146.32,
+          "zIndex": 8,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s17-e9",
+          "type": "illustration",
+          "x": 1315.43,
+          "y": 197.36,
+          "width": 146.32,
+          "height": 146.32,
+          "zIndex": 9,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s17-e14-t",
+          "type": "text",
+          "x": 473.12,
+          "y": 403.46,
+          "width": 254.01,
+          "height": 69.89,
+          "zIndex": 14,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "456 Innovation Dr, Tech City, CA",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s17-e15-t",
+          "type": "text",
+          "x": 903.28,
+          "y": 404.57,
+          "width": 182.46,
+          "height": 34.89,
+          "zIndex": 15,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "555-NOVA-LABS",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s17-e16-t",
+          "type": "text",
+          "x": 50.95,
+          "y": 404.57,
+          "width": 319.69,
+          "height": 33.44,
+          "zIndex": 16,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "contact@novalabs.ai",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s17-e17-t",
+          "type": "text",
+          "x": 1281.57,
+          "y": 402.02,
+          "width": 214.04,
+          "height": 34.89,
+          "zIndex": 17,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 25.56,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "@NovaLabsAI",
+                "fontFamily": "Roboto",
+                "fontSize": 25.56,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s17-e18-t",
+          "type": "text",
+          "x": 58.2,
+          "y": 640.31,
+          "width": 281.22,
+          "height": 62.33,
+          "zIndex": 18,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 50,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.2,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "EMAIL",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 50,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s17-e19-t",
+          "type": "text",
+          "x": 454.79,
+          "y": 640.31,
+          "width": 281.22,
+          "height": 62.33,
+          "zIndex": 19,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 50,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.2,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "ADDRESS",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 50,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s17-e20-t",
+          "type": "text",
+          "x": 851.38,
+          "y": 640.31,
+          "width": 281.22,
+          "height": 62.33,
+          "zIndex": 20,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 50,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.2,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "PHONE",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 50,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s17-e21-t",
+          "type": "text",
+          "x": 1247.98,
+          "y": 640.31,
+          "width": 281.22,
+          "height": 62.33,
+          "zIndex": 21,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 50,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.2,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "SOCIALS",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 50,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "slide-18": {
+      "version": 2,
+      "id": "slide-18",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "s18-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#FFFFFF"
+          }
+        },
+        {
+          "id": "s18-e2-rot",
+          "type": "rotated",
+          "x": -151.38,
+          "y": 512.71,
+          "width": 253.82,
+          "height": 113.37,
+          "zIndex": 2,
+          "degrees": 137.81,
+          "element": {
+            "id": "s18-e2",
+            "type": "illustration",
+            "x": -151.38,
+            "y": 512.71,
+            "width": 253.82,
+            "height": 113.37,
+            "zIndex": 2,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 609600 0 C 721824 0 812800 81273 812800 181528 C 812800 281784 721824 363057 609600 363057 L 203200 363057 C 90976 363057 0 281784 0 181528 C 0 81273 90976 0 203200 0 Z",
+              "viewBox": "0 0 812800 363057",
+              "fill": "#4f5a50",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s18-e3-rot",
+          "type": "rotated",
+          "x": -170.54,
+          "y": 193.71,
+          "width": 496.45,
+          "height": 113.37,
+          "zIndex": 3,
+          "degrees": 137.81,
+          "element": {
+            "id": "s18-e3",
+            "type": "illustration",
+            "x": -170.54,
+            "y": 193.71,
+            "width": 496.45,
+            "height": 113.37,
+            "zIndex": 3,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 1386601 0 C 1498825 0 1589801 81273 1589801 181528 C 1589801 281784 1498825 363057 1386601 363057 L 203200 363057 C 90976 363057 0 281784 0 181528 C 0 81273 90976 0 203200 0 Z",
+              "viewBox": "0 0 1589801 363057",
+              "fill": "#4f5a50",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s18-e4-rot",
+          "type": "rotated",
+          "x": -182.8,
+          "y": 768.85,
+          "width": 496.45,
+          "height": 113.37,
+          "zIndex": 4,
+          "degrees": 137.81,
+          "element": {
+            "id": "s18-e4",
+            "type": "illustration",
+            "x": -182.8,
+            "y": 768.85,
+            "width": 496.45,
+            "height": 113.37,
+            "zIndex": 4,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 1386601 0 C 1498825 0 1589801 81273 1589801 181528 C 1589801 281784 1498825 363057 1386601 363057 L 203200 363057 C 90976 363057 0 281784 0 181528 C 0 81273 90976 0 203200 0 Z",
+              "viewBox": "0 0 1589801 363057",
+              "fill": "#4f5a50",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s18-e5-rot",
+          "type": "rotated",
+          "x": 88.68,
+          "y": 179.18,
+          "width": 506.04,
+          "height": 113.37,
+          "zIndex": 5,
+          "degrees": 137.81,
+          "element": {
+            "id": "s18-e5",
+            "type": "illustration",
+            "x": 88.68,
+            "y": 179.18,
+            "width": 506.04,
+            "height": 113.37,
+            "zIndex": 5,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 1417291 0 C 1529516 0 1620491 81273 1620491 181528 C 1620491 281784 1529516 363057 1417291 363057 L 203200 363057 C 90976 363057 0 281784 0 181528 C 0 81273 90976 0 203200 0 Z",
+              "viewBox": "0 0 1620491 363057",
+              "fill": "#fcfbf8",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s18-e6-rot",
+          "type": "rotated",
+          "x": 611.83,
+          "y": 3.58,
+          "width": 253.82,
+          "height": 113.37,
+          "zIndex": 6,
+          "degrees": 137.81,
+          "element": {
+            "id": "s18-e6",
+            "type": "illustration",
+            "x": 611.83,
+            "y": 3.58,
+            "width": 253.82,
+            "height": 113.37,
+            "zIndex": 6,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 609600 0 C 721824 0 812800 81273 812800 181528 C 812800 281784 721824 363057 609600 363057 L 203200 363057 C 90976 363057 0 281784 0 181528 C 0 81273 90976 0 203200 0 Z",
+              "viewBox": "0 0 812800 363057",
+              "fill": "#4f5a50",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s18-e7-rot",
+          "type": "rotated",
+          "x": 381.04,
+          "y": 317.61,
+          "width": 338.79,
+          "height": 113.37,
+          "zIndex": 7,
+          "degrees": 137.81,
+          "element": {
+            "id": "s18-e7",
+            "type": "illustration",
+            "x": 381.04,
+            "y": 317.61,
+            "width": 338.79,
+            "height": 113.37,
+            "zIndex": 7,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 881718 0 C 993942 0 1084918 81273 1084918 181528 C 1084918 281784 993942 363057 881718 363057 L 203200 363057 C 90976 363057 0 281784 0 181528 C 0 81273 90976 0 203200 0 Z",
+              "viewBox": "0 0 1084918 363057",
+              "fill": "#4f5a50",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s18-e8-rot",
+          "type": "rotated",
+          "x": -140.59,
+          "y": -77.89,
+          "width": 496.45,
+          "height": 113.37,
+          "zIndex": 8,
+          "degrees": 137.81,
+          "element": {
+            "id": "s18-e8",
+            "type": "illustration",
+            "x": -140.59,
+            "y": -77.89,
+            "width": 496.45,
+            "height": 113.37,
+            "zIndex": 8,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 1386601 0 C 1498825 0 1589801 81273 1589801 181528 C 1589801 281784 1498825 363057 1386601 363057 L 203200 363057 C 90976 363057 0 281784 0 181528 C 0 81273 90976 0 203200 0 Z",
+              "viewBox": "0 0 1589801 363057",
+              "fill": "#4f5a50",
+              "stroke": "none",
+              "strokeWidth": 0
+            }
+          }
+        },
+        {
+          "id": "s18-e9",
+          "type": "illustration",
+          "x": 678.97,
+          "y": 678.56,
+          "width": 848.95,
+          "height": 35.22,
+          "zIndex": 9,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 2555653 0 L 2555653 106025 L 0 106025 Z",
+            "viewBox": "0 0 2555653 106025",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s18-e10-t",
+          "type": "text",
+          "x": 880.27,
+          "y": 226.73,
+          "width": 647.66,
+          "height": 479.95,
+          "zIndex": 10,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 247.5,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "right",
+            "lineHeight": 0.8,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "THANK YOU",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 247.5,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "slide-19": {
+      "version": 2,
+      "id": "slide-19",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "s19-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#FFFFFF"
+          }
+        },
+        {
+          "id": "s19-e2",
+          "type": "illustration",
+          "x": 67.74,
+          "y": 199.99,
+          "width": 445.99,
+          "height": 647.45,
+          "zIndex": 2,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 36449 0 L 1306139 0 C 1315806 0 1325077 3840 1331913 10676 C 1338748 17511 1342589 26782 1342589 36449 L 1342589 1912607 C 1342589 1932737 1326270 1949056 1306139 1949056 L 36449 1949056 C 16319 1949056 0 1932737 0 1912607 L 0 36449 C 0 16319 16319 0 36449 0 Z",
+            "viewBox": "0 0 1342589 1949056",
+            "fill": "#FFFFFF",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s19-e3",
+          "type": "illustration",
+          "x": 534.56,
+          "y": 199.99,
+          "width": 1007.26,
+          "height": 647.45,
+          "zIndex": 3,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 16139 0 L 3016086 0 C 3020366 0 3024471 1700 3027498 4727 C 3030525 7754 3032225 11859 3032225 16139 L 3032225 1932917 C 3032225 1937197 3030525 1941302 3027498 1944329 C 3024471 1947356 3020366 1949056 3016086 1949056 L 16139 1949056 C 11859 1949056 7754 1947356 4727 1944329 C 1700 1941302 0 1937197 0 1932917 L 0 16139 C 0 11859 1700 7754 4727 4727 C 7754 1700 11859 0 16139 0 Z",
+            "viewBox": "0 0 3032225 1949056",
+            "fill": "#FFFFFF",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s19-e4",
+          "type": "illustration",
+          "x": 99.65,
+          "y": 224.55,
+          "width": 382.16,
+          "height": 56.63,
+          "zIndex": 4,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 31903 0 L 1118534 0 C 1126995 0 1135110 3361 1141093 9344 C 1147076 15327 1150437 23442 1150437 31903 L 1150437 138563 C 1150437 147024 1147076 155139 1141093 161122 C 1135110 167104 1126995 170466 1118534 170466 L 31903 170466 C 23442 170466 15327 167104 9344 161122 C 3361 155139 0 147024 0 138563 L 0 31903 C 0 23442 3361 15327 9344 9344 C 15327 3361 23442 0 31903 0 Z",
+            "viewBox": "0 0 1150437 170466",
+            "fill": "none",
+            "stroke": "#0F1A38",
+            "strokeWidth": 1.67
+          }
+        },
+        {
+          "id": "s19-e5",
+          "type": "illustration",
+          "x": 847.11,
+          "y": 224.55,
+          "width": 382.16,
+          "height": 56.63,
+          "zIndex": 5,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 31903 0 L 1118534 0 C 1126995 0 1135110 3361 1141093 9344 C 1147076 15327 1150437 23442 1150437 31903 L 1150437 138563 C 1150437 147024 1147076 155139 1141093 161122 C 1135110 167104 1126995 170466 1118534 170466 L 31903 170466 C 23442 170466 15327 167104 9344 161122 C 3361 155139 0 147024 0 138563 L 0 31903 C 0 23442 3361 15327 9344 9344 C 15327 3361 23442 0 31903 0 Z",
+            "viewBox": "0 0 1150437 170466",
+            "fill": "none",
+            "stroke": "#0F1A38",
+            "strokeWidth": 1.67
+          }
+        },
+        {
+          "id": "s19-e6",
+          "type": "illustration",
+          "x": 99.65,
+          "y": 630.01,
+          "width": 382.16,
+          "height": 56.63,
+          "zIndex": 6,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 31903 0 L 1118534 0 C 1126995 0 1135110 3361 1141093 9344 C 1147076 15327 1150437 23442 1150437 31903 L 1150437 138563 C 1150437 147024 1147076 155139 1141093 161122 C 1135110 167104 1126995 170466 1118534 170466 L 31903 170466 C 23442 170466 15327 167104 9344 161122 C 3361 155139 0 147024 0 138563 L 0 31903 C 0 23442 3361 15327 9344 9344 C 15327 3361 23442 0 31903 0 Z",
+            "viewBox": "0 0 1150437 170466",
+            "fill": "none",
+            "stroke": "#0F1A38",
+            "strokeWidth": 1.67
+          }
+        },
+        {
+          "id": "s19-e7",
+          "type": "illustration",
+          "x": 93.5,
+          "y": 709.97,
+          "width": 65.98,
+          "height": 65.98,
+          "zIndex": 7,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 L 406400 0 C 630849 0 812800 181951 812800 406400 L 812800 406400 C 812800 630849 630849 812800 406400 812800 L 406400 812800 C 181951 812800 0 630849 0 406400 L 0 406400 C 0 181951 181951 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s19-e8",
+          "type": "illustration",
+          "x": 175.18,
+          "y": 709.97,
+          "width": 65.98,
+          "height": 65.98,
+          "zIndex": 8,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 L 406400 0 C 630849 0 812800 181951 812800 406400 L 812800 406400 C 812800 630849 630849 812800 406400 812800 L 406400 812800 C 181951 812800 0 630849 0 406400 L 0 406400 C 0 181951 181951 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s19-e9",
+          "type": "illustration",
+          "x": 256.86,
+          "y": 709.97,
+          "width": 65.98,
+          "height": 65.98,
+          "zIndex": 9,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 L 406400 0 C 630849 0 812800 181951 812800 406400 L 812800 406400 C 812800 630849 630849 812800 406400 812800 L 406400 812800 C 181951 812800 0 630849 0 406400 L 0 406400 C 0 181951 181951 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s19-e10",
+          "type": "illustration",
+          "x": 338.53,
+          "y": 709.97,
+          "width": 65.98,
+          "height": 65.98,
+          "zIndex": 10,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 L 406400 0 C 630849 0 812800 181951 812800 406400 L 812800 406400 C 812800 630849 630849 812800 406400 812800 L 406400 812800 C 181951 812800 0 630849 0 406400 L 0 406400 C 0 181951 181951 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#fcfbf8",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s19-e11",
+          "type": "illustration",
+          "x": 420.21,
+          "y": 709.97,
+          "width": 65.98,
+          "height": 65.98,
+          "zIndex": 11,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 L 406400 0 C 630849 0 812800 181951 812800 406400 L 812800 406400 C 812800 630849 630849 812800 406400 812800 L 406400 812800 C 181951 812800 0 630849 0 406400 L 0 406400 C 0 181951 181951 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s19-e12-t-p1",
+          "type": "text",
+          "x": 107.82,
+          "y": 301.47,
+          "width": 365.82,
+          "height": 22.73,
+          "zIndex": 12,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 18.89,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.22,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "This Nova Labs profile",
+                "fontFamily": "Roboto",
+                "fontSize": 18.89,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s19-e12-t-p2",
+          "type": "text",
+          "x": 107.82,
+          "y": 324.2,
+          "width": 365.82,
+          "height": 22.73,
+          "zIndex": 13,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 18.89,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.22,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs:",
+                "fontFamily": "Roboto",
+                "fontSize": 18.89,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s19-e14-t",
+          "type": "text",
+          "x": 102.84,
+          "y": 572.05,
+          "width": 382.16,
+          "height": 22.96,
+          "zIndex": 14,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 18.89,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.22,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Explore Nova Labs' innovative approach.",
+                "fontFamily": "Roboto",
+                "fontSize": 18.89,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s19-e15-t-p1",
+          "type": "text",
+          "x": 152.03,
+          "y": 378.46,
+          "width": 275.64,
+          "height": 27.01,
+          "zIndex": 15,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 16.63,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 0.8,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "INDUSTRY:",
+                "fontFamily": "Roboto",
+                "fontSize": 16.63,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s19-e15-t-p2",
+          "type": "text",
+          "x": 152.03,
+          "y": 405.47,
+          "width": 275.64,
+          "height": 27.01,
+          "zIndex": 16,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 23.44,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 0.8,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "BEBAS NEUE",
+                "fontFamily": "Roboto",
+                "fontSize": 23.44,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s19-e15-t-p3",
+          "type": "text",
+          "x": 152.03,
+          "y": 432.48,
+          "width": 275.64,
+          "height": 27.01,
+          "zIndex": 17,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 16.63,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 0.8,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "MISSION:",
+                "fontFamily": "Roboto",
+                "fontSize": 16.63,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s19-e15-t-p4",
+          "type": "text",
+          "x": 152.03,
+          "y": 459.49,
+          "width": 275.64,
+          "height": 27.01,
+          "zIndex": 18,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 23.44,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 0.8,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "BEBAS NEUE",
+                "fontFamily": "Roboto",
+                "fontSize": 23.44,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s19-e15-t-p5",
+          "type": "text",
+          "x": 152.03,
+          "y": 486.49,
+          "width": 275.64,
+          "height": 27.01,
+          "zIndex": 19,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 16.63,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 0.8,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "ROBOTO",
+                "fontFamily": "Roboto",
+                "fontSize": 16.63,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s19-e15-t-p6",
+          "type": "text",
+          "x": 152.03,
+          "y": 513.5,
+          "width": 275.64,
+          "height": 27.01,
+          "zIndex": 20,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 23.44,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 0.8,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "ROBOTO",
+                "fontFamily": "Roboto",
+                "fontSize": 23.44,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s19-e21-t",
+          "type": "text",
+          "x": 73.07,
+          "y": 787.59,
+          "width": 106.86,
+          "height": 14.96,
+          "zIndex": 21,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 14.44,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.03,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "#004080",
+                "fontFamily": "Roboto",
+                "fontSize": 14.44,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s19-e22-t",
+          "type": "text",
+          "x": 154.74,
+          "y": 787.59,
+          "width": 106.86,
+          "height": 14.96,
+          "zIndex": 22,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 14.44,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.03,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "#007bff",
+                "fontFamily": "Roboto",
+                "fontSize": 14.44,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s19-e23-t",
+          "type": "text",
+          "x": 236.42,
+          "y": 787.59,
+          "width": 106.86,
+          "height": 14.96,
+          "zIndex": 23,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 14.44,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.03,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "#66a3ff",
+                "fontFamily": "Roboto",
+                "fontSize": 14.44,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s19-e24-t",
+          "type": "text",
+          "x": 318.1,
+          "y": 787.59,
+          "width": 106.86,
+          "height": 14.96,
+          "zIndex": 24,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 14.44,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.03,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "#ffc107",
+                "fontFamily": "Roboto",
+                "fontSize": 14.44,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s19-e25-t",
+          "type": "text",
+          "x": 399.77,
+          "y": 787.59,
+          "width": 106.86,
+          "height": 14.96,
+          "zIndex": 25,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 14.44,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.03,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "#dc3545",
+                "fontFamily": "Roboto",
+                "fontSize": 14.44,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s19-e26-t",
+          "type": "text",
+          "x": 368.33,
+          "y": 147.15,
+          "width": 863.34,
+          "height": 29.51,
+          "zIndex": 26,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 24.43,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.2201,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Learn more about Nova Labs' technology and impact.",
+                "fontFamily": "Roboto",
+                "fontSize": 24.43,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s19-e27-t",
+          "type": "text",
+          "x": 1024.17,
+          "y": 866.69,
+          "width": 517.65,
+          "height": 16.19,
+          "zIndex": 27,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 13.32,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "right",
+            "lineHeight": 1.22018,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs: Innovating for a healthier future.",
+                "fontFamily": "Roboto",
+                "fontSize": 13.32,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s19-e28-t",
+          "type": "text",
+          "x": 478.56,
+          "y": 39.98,
+          "width": 642.89,
+          "height": 121.21,
+          "zIndex": 28,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 100,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "ABOUT NOVA LABS",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 100,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s19-e29-t",
+          "type": "text",
+          "x": 152.91,
+          "y": 235.64,
+          "width": 275.64,
+          "height": 33.61,
+          "zIndex": 29,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 27.77,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.22008,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Technology",
+                "fontFamily": "Roboto",
+                "fontSize": 27.77,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s19-e30-t",
+          "type": "text",
+          "x": 900.37,
+          "y": 235.64,
+          "width": 275.64,
+          "height": 33.61,
+          "zIndex": 30,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 27.77,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.22008,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "AI Solutions",
+                "fontFamily": "Roboto",
+                "fontSize": 27.77,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s19-e31-t",
+          "type": "text",
+          "x": 152.91,
+          "y": 638.37,
+          "width": 275.64,
+          "height": 33.61,
+          "zIndex": 31,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 27.77,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.22008,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Data",
+                "fontFamily": "Roboto",
+                "fontSize": 27.77,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "slide-20": {
+      "version": 2,
+      "id": "slide-20",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "s20-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#FFFFFF"
+          }
+        },
+        {
+          "id": "s20-e2",
+          "type": "illustration",
+          "x": 229.1,
+          "y": 105.38,
+          "width": 1141.79,
+          "height": 714.71,
+          "zIndex": 2,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 14237 0 L 3422984 0 C 3430846 0 3437221 6374 3437221 14237 L 3437221 2137317 C 3437221 2145180 3430846 2151554 3422984 2151554 L 14237 2151554 C 6374 2151554 0 2145180 0 2137317 L 0 14237 C 0 6374 6374 0 14237 0 Z",
+            "viewBox": "0 0 3437221 2151554",
+            "fill": "#FFFFFF",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s20-e3-t",
+          "type": "text",
+          "x": 295.49,
+          "y": 269.52,
+          "width": 1009.01,
+          "height": 29.51,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 24.43,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.2201,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs is powered by cutting-edge technology and expert insights:",
+                "fontFamily": "Roboto",
+                "fontSize": 24.43,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s20-e4-t",
+          "type": "text",
+          "x": 621.94,
+          "y": 720.77,
+          "width": 356.13,
+          "height": 39.38,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 31.1,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.22007,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Happy designing!",
+                "fontFamily": "Roboto",
+                "fontSize": 31.1,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s20-e5-t",
+          "type": "text",
+          "x": 368.33,
+          "y": 461.07,
+          "width": 863.34,
+          "height": 27.89,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 22.22,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.22,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "for the AI platform",
+                "fontFamily": "Roboto",
+                "fontSize": 22.22,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s20-e6-t",
+          "type": "text",
+          "x": 368.33,
+          "y": 612.88,
+          "width": 863.34,
+          "height": 27.89,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 22.22,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.22,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "for the insights",
+                "fontFamily": "Roboto",
+                "fontSize": 22.22,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s20-e7-t",
+          "type": "text",
+          "x": 478.56,
+          "y": 154.85,
+          "width": 642.87,
+          "height": 107.17,
+          "zIndex": 7,
+          "textStyle": {
+            "fontFamily": "Bebas Neue",
+            "fontSize": 100,
+            "fontWeight": 650,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "BACKGROUND",
+                "fontFamily": "Bebas Neue",
+                "fontSize": 100,
+                "fontWeight": 650,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s20-e8-t",
+          "type": "text",
+          "x": 534.56,
+          "y": 548.8,
+          "width": 530.88,
+          "height": 55.47,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 52.36,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Nova Labs Team",
+                "fontFamily": "Roboto",
+                "fontSize": 52.36,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "previewSlides": [
+    {
+      "id": "modern-geometric-music-lesson-plan-p1",
+      "layout": "slide-1",
+      "title": "Lesson Plan",
+      "bullets": []
+    },
+    {
+      "id": "modern-geometric-music-lesson-plan-p2",
+      "layout": "slide-2",
+      "title": "table of contents",
+      "bullets": []
+    },
+    {
+      "id": "modern-geometric-music-lesson-plan-p3",
+      "layout": "slide-3",
+      "title": "Introduction to Music",
+      "bullets": []
+    },
+    {
+      "id": "modern-geometric-music-lesson-plan-p4",
+      "layout": "slide-4",
+      "title": "What is Music?",
+      "bullets": []
+    },
+    {
+      "id": "modern-geometric-music-lesson-plan-p5",
+      "layout": "slide-5",
+      "title": "Brief History of Music",
+      "bullets": []
+    },
+    {
+      "id": "modern-geometric-music-lesson-plan-p6",
+      "layout": "slide-6",
+      "title": "Rhythm",
+      "bullets": []
+    },
+    {
+      "id": "modern-geometric-music-lesson-plan-p7",
+      "layout": "slide-7",
+      "title": "Musical Instruments",
+      "bullets": []
+    },
+    {
+      "id": "modern-geometric-music-lesson-plan-p8",
+      "layout": "slide-8",
+      "title": "Musical Instruments",
+      "bullets": []
+    },
+    {
+      "id": "modern-geometric-music-lesson-plan-p9",
+      "layout": "slide-9",
+      "title": "Gallery Image",
+      "bullets": []
+    },
+    {
+      "id": "modern-geometric-music-lesson-plan-p10",
+      "layout": "slide-10",
+      "title": "name surname",
+      "bullets": []
+    },
+    {
+      "id": "modern-geometric-music-lesson-plan-p11",
+      "layout": "slide-11",
+      "title": "Write an original statement or inspiring quote",
+      "bullets": []
+    },
+    {
+      "id": "modern-geometric-music-lesson-plan-p12",
+      "layout": "slide-12",
+      "title": "Elaborate on the featured statistic.",
+      "bullets": []
+    },
+    {
+      "id": "modern-geometric-music-lesson-plan-p13",
+      "layout": "slide-13",
+      "title": "Music Genres",
+      "bullets": []
+    },
+    {
+      "id": "modern-geometric-music-lesson-plan-p14",
+      "layout": "slide-14",
+      "title": "Our",
+      "bullets": []
+    },
+    {
+      "id": "modern-geometric-music-lesson-plan-p15",
+      "layout": "slide-15",
+      "title": "A picture is worth a thousand words",
+      "bullets": []
+    },
+    {
+      "id": "modern-geometric-music-lesson-plan-p16",
+      "layout": "slide-16",
+      "title": "Write an original statement or inspiring quote",
+      "bullets": []
+    },
+    {
+      "id": "modern-geometric-music-lesson-plan-p17",
+      "layout": "slide-17",
+      "title": "123 Anywhere St., Any City,ST 12345",
+      "bullets": []
+    },
+    {
+      "id": "modern-geometric-music-lesson-plan-p18",
+      "layout": "slide-18",
+      "title": "THANK YOU",
+      "bullets": []
+    },
+    {
+      "id": "modern-geometric-music-lesson-plan-p19",
+      "layout": "slide-19",
+      "title": "This presentation template",
+      "bullets": []
+    },
+    {
+      "id": "modern-geometric-music-lesson-plan-p20",
+      "layout": "slide-20",
+      "title": "This presentation template is free for everyone to use thanks to the following:",
+      "bullets": []
+    }
+  ],
+  "assetVibe": "tech"
+}

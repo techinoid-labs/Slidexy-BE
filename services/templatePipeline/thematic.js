@@ -1,7 +1,7 @@
 /**
  * Rewrite a deck's copy and photographs for a new subject.
  *
- *   node services/templatePipeline/thematic.js --prompt "A futuristic AI robotics company." --layout health-medical --out docs/template-pipeline/thematic-tests/ai-robotics
+ *   node services/templatePipeline/thematic.js --prompt "A futuristic AI robotics company." --layout health-medical --density airy --out docs/template-pipeline/thematic-tests/ai-robotics
  *
  * Text is rewritten by Gemini (OpenRouter, then the Gemini API).
  * Photographs come from Pexels. Copy that runs past the line, or ends on a
@@ -13,6 +13,8 @@ const path = require("path");
 const { createCanvas, Image } = require("canvas");
 const { renderSlidePng } = require("../../scripts/slideSvg");
 const { nudgePalette } = require("./catalogCaps");
+const { analyzeDeck } = require("./scoring/analyzeDeck");
+const { applyParametric } = require("./parametric");
 
 const ROOT = path.join(__dirname, "..", "..");
 const LIBRARY = path.join(ROOT, "app-library");
@@ -39,7 +41,7 @@ function loadEnv() {
 }
 
 function parseArgs(argv) {
-  const args = { prompt: "", layout: "", out: "", autoLayout: false };
+  const args = { prompt: "", layout: "", out: "", autoLayout: false, density: "balanced" };
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
     if (arg === "--prompt") args.prompt = argv[++i] || "";
@@ -48,11 +50,16 @@ function parseArgs(argv) {
     else if (arg.startsWith("--layout=")) args.layout = arg.slice("--layout=".length);
     else if (arg === "--out") args.out = argv[++i] || "";
     else if (arg.startsWith("--out=")) args.out = arg.slice("--out=".length);
+    else if (arg === "--density") args.density = argv[++i] || "";
+    else if (arg.startsWith("--density=")) args.density = arg.slice("--density=".length);
     else if (arg === "--auto-layout") args.autoLayout = true;
     else throw new Error("Unknown argument " + arg);
   }
   if (!args.prompt) throw new Error("Pass --prompt \"A pitch deck for a sustainable fashion brand\"");
   if (!args.layout && !args.autoLayout) throw new Error("Pass --layout health-medical.json or --auto-layout");
+  if (["airy", "balanced", "dense"].indexOf(args.density) < 0) {
+    throw new Error("Pass --density airy, balanced, or dense");
+  }
   return args;
 }
 
@@ -67,7 +74,13 @@ function loadLayout(layout) {
     path.join(LIBRARY, named),
     path.join(LIBRARY, path.basename(named)),
   ];
-  const file = candidates.find((item) => fs.existsSync(item) && fs.statSync(item).isFile());
+  let file = candidates.find((item) => fs.existsSync(item) && fs.statSync(item).isFile());
+  if (!file && fs.existsSync(LIBRARY)) {
+    const needle = path.basename(named, ".json").toLowerCase();
+    const matches = fs.readdirSync(LIBRARY).filter((name) => name.endsWith(".json") && name.indexOf(".dna.") < 0 && name.toLowerCase().indexOf(needle) >= 0);
+    if (matches.length === 1) file = path.join(LIBRARY, matches[0]);
+    else if (matches.length > 1) throw new Error("Layout " + layout + " matches more than one seed: " + matches.join(", "));
+  }
   if (!file) throw new Error("Layout not found: " + layout);
   return JSON.parse(fs.readFileSync(file, "utf8"));
 }
@@ -225,23 +238,14 @@ function photoQuery(prompt) {
   return words.join(" ") || String(prompt).trim();
 }
 
-function keywordPrompt(subject) {
+function directionPrompt(subject) {
   return [
-    "Extract 2-3 core visual keywords a camera can see. Each keyword is a single word, in the style of the examples.",
-    "Prompt: \"A B2B enterprise SaaS platform...\" -> Keywords: \"office, software, laptop\"",
-    "Prompt: \"A heavy metal rock band...\" -> Keywords: \"concert, guitar, stage\"",
-    "Prompt: \"A vintage coffee shop...\" -> Keywords: \"cafe, coffee, barista\"",
-    "Prompt: " + JSON.stringify(subject),
-    "Return JSON: { \"keywords\": [\"...\", \"...\"] }.",
+    "Based on this prompt: " + JSON.stringify(subject) + ", invent one presentation direction.",
+    "brand is a company name of 2-4 words. industry is a short industry. mission is one sentence.",
+    "mood is a color palette mood that fits that brand, such as dark and neon, warm and earthy, or clean and corporate.",
+    "keywords are 2-3 single words a camera can see. Examples: office, software, laptop. concert, guitar, stage. cafe, coffee, barista.",
+    "Return JSON only: { \"brand\": \"...\", \"industry\": \"...\", \"mission\": \"...\", \"mood\": \"...\", \"keywords\": [\"...\", \"...\"] }.",
   ].join("\n");
-}
-
-function moodPrompt(subject) {
-  return "Based on this prompt: " + subject + ", suggest a color palette mood (e.g., 'dark and neon', 'warm and earthy', 'clean and corporate'). Return JSON: { \"mood\": \"...\" }.";
-}
-
-function brandPrompt(subject) {
-  return "Based on this prompt: " + subject + ", invent a short company name (2-4 words), an industry, and a 1-sentence mission. Return as JSON: { \"brand\": \"...\", \"industry\": \"...\", \"mission\": \"...\" }.";
 }
 
 function vibePrompt(subject) {
@@ -272,6 +276,14 @@ function parseProfile(raw) {
   return { brand, industry, mission };
 }
 
+const COPY_RULES = [
+  "Write like a slide designer, not an essayist. Maximum 25 words of body text per slide.",
+  "A bullet is a phrase, not a sentence. Do not use full stops at the end of bullets.",
+  "Never use em dashes. Use a colon, a comma, or a period.",
+  "Subtitles must be a single line, maximum 10 words.",
+  "Metrics must be written exactly like: '47%: churn, after the onboarding rebuild'.",
+];
+
 function buildPrompt(strings, subject, profile) {
   const list = strings.map((text) => ({
     text,
@@ -283,8 +295,8 @@ function buildPrompt(strings, subject, profile) {
     "Rewrite these strings for a new presentation about: " + subject + ".",
     "Company profile: " + JSON.stringify(profile) + ".",
     "You MUST use the exact brand name provided in every string that refers to the company. Do not invent new names.",
-    "Crucially, you must keep the exact same approximate character count and word count for each string so the layout does not break.",
-    "Match each string's characters value within about 15 percent. Do not add a second sentence when the original is one short line.",
+    COPY_RULES.join(" "),
+    "Each string is at most 25 words, and at most one sentence. A bullet stays under 12 words and does not end with a period. A subtitle stays under 10 words. If the original is one word, keep one word.",
     "A string that is one word may be replaced by one complete word even when that word is longer. Never delete letters from a word. The layout shrinks the font when a single word is wider than its box.",
     "You MUST return a non-empty replacement for every string. If a string is very short (1-3 characters) or a generic label (like a nav pill), return a shortened version of the original text. DO NOT return an empty string.",
     "NEVER split a word with a space.",
@@ -433,8 +445,39 @@ function pngNames(vibe) {
 function assetVibePrompt(subject, vibes) {
   return [
     "Based on the user's prompt, choose exactly ONE of the following visual vibes for the design assets: " + JSON.stringify(vibes) + ". Return ONLY the exact word.",
+    "Choose minimal for a corporate, professional, or minimalist presentation, including a pitch deck, a consultancy, a bank, or a company overview.",
+    "Choose tech for a technology company, a software product, or a startup.",
+    "Choose organic only for plants, nature, and wellness.",
+    "A physical place a person can photograph, such as a cafe, restaurant, hotel, store, or fashion boutique, should choose minimal.",
     "Prompt: " + JSON.stringify(subject),
   ].join("\n");
+}
+
+function subjectAssetVibe(subject, vibes) {
+  const list = Array.isArray(vibes) ? vibes : [];
+  const find = (name) => list.find((vibe) => vibe.toLowerCase() === name);
+  const text = String(subject || "");
+  if (/\b(tech|software|startup|cyber|robotics|saas)\b/i.test(text) && !/\bcorporate\b/i.test(text)) {
+    const tech = find("tech");
+    if (tech) return tech;
+  }
+  if (photographicSubject(text) || /\b(corporate|minimalist|minimal|pitch|consultancy|bank)\b/i.test(text)) {
+    const minimal = find("minimal");
+    if (minimal) return minimal;
+  }
+  return "";
+}
+
+function photographicSubject(subject) {
+  return /\b(coffee|cafe|café|restaurant|bakery|boutique|fashion|hotel|salon|gym|shop|store|brewery|roastery|barbershop|spa)\b/i.test(String(subject || ""));
+}
+
+function steerAssetVibe(subject, settled, vibes) {
+  const current = settled || { vibe: "", fallback: false };
+  const hinted = subjectAssetVibe(subject, vibes);
+  if (!hinted || hinted === current.vibe) return current;
+  console.log("asset vibe steer " + (current.vibe || "none") + " -> " + hinted);
+  return { vibe: hinted, fallback: true };
 }
 
 function parseAssetVibe(raw, vibes) {
@@ -463,11 +506,8 @@ function parseAssetVibe(raw, vibes) {
 function settleAssetVibe(choice, vibes) {
   const list = Array.isArray(vibes) ? vibes : getAvailableVibes();
   const named = list.find((vibe) => vibe.toLowerCase() === String(choice || "").trim().toLowerCase());
-  if (named && pngNames(named).length) return { vibe: named, fallback: false };
-  const stocked = list.filter((vibe) => vibe !== named && pngNames(vibe).length);
-  const pool = stocked.length ? stocked : list.filter((vibe) => vibe !== named);
-  const vibe = pool.length ? pool[Math.floor(Math.random() * pool.length)] : (named || "");
-  return { vibe, fallback: Boolean(vibe) && vibe !== named };
+  if (named) return { vibe: named, fallback: false };
+  return { vibe: "", fallback: Boolean(String(choice || "").trim()) };
 }
 
 async function classifyAssetVibe(subject) {
@@ -486,17 +526,40 @@ async function classifyAssetVibe(subject) {
   console.log("asset vibe choice " + (choice || "unrecognized"));
   const settled = settleAssetVibe(choice, vibes);
   if (settled.fallback) console.log("asset vibe fallback " + (choice || "unrecognized") + " -> " + settled.vibe);
-  return { vibe: settled.vibe, model, fallback: settled.fallback };
+  const steered = steerAssetVibe(subject, settled, vibes);
+  return { vibe: steered.vibe, model, fallback: settled.fallback || steered.fallback };
 }
 
-async function chooseLayout(subject) {
-  const result = await classifyVibe(subject);
+async function chooseLayout(subject, exclude, knownVibe) {
+  const skipped = Array.isArray(exclude) ? exclude : [];
+  const result = knownVibe && knownVibe.vibe
+    ? { vibe: knownVibe.vibe, model: knownVibe.model || "" }
+    : await classifyVibe(subject);
   const vibe = result.vibe;
-  const matches = seedScores()
+  const ranked = seedScores()
     .filter((seed) => seed.recommendedUse === vibe && !seed.disabled && seed.qualityScore >= 70)
     .sort((a, b) => b.qualityScore - a.qualityScore || (a.id < b.id ? -1 : 1));
-  if (!matches.length) throw new Error("No enabled " + vibe + " layout scored 70 or above");
-  return { id: matches[0].id, vibe, qualityScore: matches[0].qualityScore, model: result.model };
+  const matches = ranked.filter((seed) => skipped.indexOf(seed.id) < 0);
+  if (!matches.length) {
+    if (!ranked.length) throw new Error("No enabled " + vibe + " layout scored 70 or above");
+    const same = ranked[0];
+    return { id: same.id, vibe, qualityScore: same.qualityScore, model: result.model, repeated: true };
+  }
+  let pick = matches[0];
+  if (vibe === "Photo-heavy") {
+    let slots = 0;
+    try { slots = countLargePhotoSlides(loadLayout(pick.id)); } catch (error) { slots = 0; }
+    if (slots < 2) {
+      const richer = matches.find((seed) => {
+        try { return countLargePhotoSlides(loadLayout(seed.id)) >= 2; } catch (error) { return false; }
+      });
+      if (richer && richer.id !== pick.id) {
+        console.log("photo layout swap " + pick.id + " -> " + richer.id);
+        pick = richer;
+      }
+    }
+  }
+  return { id: pick.id, vibe, qualityScore: pick.qualityScore, model: result.model };
 }
 
 function stringMap(value) {
@@ -566,7 +629,23 @@ function dangling(text) {
 }
 
 function cleanCopy(text) {
-  return String(text || "").replace(/\r/g, "").trim();
+  let value = String(text || "").replace(/\r/g, "").replace(/\u2014|\u2013/g, ", ").trim();
+  value = value.replace(/\s+,/g, ",").replace(/,{2,}/g, ",");
+  const words = value.split(/\s+/).filter(Boolean);
+  if (words.length > 0 && words.length <= 12 && value.indexOf(".") === value.length - 1) {
+    value = value.slice(0, -1).trim();
+  }
+  return value;
+}
+
+function clampCopy(text) {
+  let value = cleanCopy(text);
+  const first = value.split(/\.\s+/)[0] || value;
+  value = cleanCopy(first);
+  const words = value.split(/\s+/).filter(Boolean);
+  if (words.length > 25) value = words.slice(0, 25).join(" ");
+  if (wordCount(value) <= 12 && value.endsWith(".")) value = value.slice(0, -1).trim();
+  return value;
 }
 
 function prefixChop(source, text) {
@@ -590,6 +669,11 @@ function splitsContiguousWord(source, text) {
 function acceptable(source, text) {
   const value = cleanCopy(text);
   if (!value) return false;
+  const words = wordCount(value);
+  if (words > 25) return false;
+  if ((value.match(/\. /g) || []).length > 0) return false;
+  if (/\.$/.test(value) && words <= 12) return false;
+  if (wordCount(source) <= 10 && words > 10) return false;
   if (value.length > charLimit(source) && !(singleWord(source) && singleWord(value))) return false;
   if (dangling(value)) return false;
   if (prefixChop(source, value)) return false;
@@ -611,15 +695,25 @@ function retryPrompt(items, profile) {
     "String: " + JSON.stringify(item.draft),
     "JSON key: " + JSON.stringify(item.from),
   ].join(" "));
-  return lines.join("\n") + (brand ? "\nWhen the string names the company, use the brand \"" + brand + "\"." : "") + "\nYou MUST return a non-empty replacement for every string. DO NOT return an empty string.\nNEVER split a word with a space. Never delete letters from a word. A one-word string must stay one complete word; the layout shrinks the font to fit.\nReturn strict JSON mapping each JSON key to its rewritten string.";
+  return lines.join("\n") + (brand ? "\nWhen the string names the company, use the brand \"" + brand + "\"." : "") + "\n" + COPY_RULES.join(" ") + "\nYou MUST return a non-empty replacement for every string. DO NOT return an empty string.\nNEVER split a word with a space. Never delete letters from a word. A one-word string must stay one complete word; the layout shrinks the font to fit.\nReturn strict JSON mapping each JSON key to its rewritten string.";
 }
 
-async function inventProfile(subject) {
+async function inventDirection(subject) {
   let lastError = null;
   for (let attempt = 0; attempt < 2; attempt += 1) {
     try {
-      const result = await askModel(brandPrompt(subject));
-      return { profile: parseProfile(result.text), model: result.model };
+      const result = await askModel(directionPrompt(subject));
+      const profile = parseProfile(result.text);
+      const mood = parseMood(result.text);
+      const keywords = parseKeywords(result.text);
+      if (!mood) throw new Error("The model did not return a mood");
+      return {
+        profile,
+        mood,
+        keywords,
+        query: keywords.length ? keywords.join(" ") : photoQuery(subject),
+        model: result.model,
+      };
     } catch (error) {
       lastError = error;
     }
@@ -652,6 +746,11 @@ async function settleCopy(strings, map, profile) {
       return;
     }
     const draft = cleanCopy(raw);
+    if (!draft) {
+      accepted[from] = "";
+      notes[from] = { replaced: true, rejected: false, deleted: true };
+      return;
+    }
     if (acceptable(from, draft)) {
       accepted[from] = draft;
       notes[from] = { replaced: true, rejected: false };
@@ -675,8 +774,9 @@ async function settleCopy(strings, map, profile) {
         accepted[item.from] = next;
         notes[item.from] = { replaced: true, rejected: false, retried: true };
       } else {
-        accepted[item.from] = item.from;
-        notes[item.from] = { replaced: false, rejected: true, retried: true };
+        const clamped = clampCopy(next || item.draft || item.from);
+        accepted[item.from] = clamped || item.from;
+        notes[item.from] = { replaced: clamped !== item.from, rejected: !clamped, retried: true, clamped: true };
       }
     });
   }
@@ -753,6 +853,74 @@ function applyText(deck, accepted, notes, groups) {
   return replacements;
 }
 
+function textHostNode(element) {
+  if (!element) return null;
+  if (element.type === "text") return element;
+  if (element.type === "rotated" && element.element && element.element.type === "text") return element.element;
+  return null;
+}
+
+function hostText(element) {
+  const node = textHostNode(element);
+  if (!node) return "";
+  const spans = node.textContent && node.textContent.spans;
+  if (!Array.isArray(spans)) return "";
+  return spans.map((span) => String(span.text == null ? "" : span.text)).join("").replace(/\s+/g, " ").trim();
+}
+
+function hostSize(element) {
+  const node = textHostNode(element);
+  if (!node) return 0;
+  const spans = (node.textContent && node.textContent.spans) || [];
+  const sizes = spans.map((span) => spanSize(span, node));
+  if (node.textStyle && node.textStyle.fontSize) sizes.push(Number(node.textStyle.fontSize) || 0);
+  return sizes.reduce((max, size) => Math.max(max, size), 0);
+}
+
+function hostImportance(element) {
+  return hostSize(element) * 1000 + wordCount(hostText(element)) * 10 - (Number(element.y) || 0) / 1000;
+}
+
+function pruneSlideText(deck) {
+  const ids = deck.layoutSequence || Object.keys(deck.layouts || {});
+  let removed = 0;
+  ids.forEach((id) => {
+    const layout = deck.layouts && deck.layouts[id];
+    if (!layout) return;
+    const hosts = [];
+    function collect(list) {
+      (list || []).forEach((element) => {
+        if (!element) return;
+        if (textHostNode(element)) hosts.push({ list, element });
+        if (Array.isArray(element.children)) collect(element.children);
+      });
+    }
+    collect(layout.elements);
+    function drop(host) {
+      const index = host.list.indexOf(host.element);
+      if (index < 0) return;
+      host.list.splice(index, 1);
+      host.removed = true;
+      removed += 1;
+    }
+    hosts.forEach((host) => {
+      if (!hostText(host.element)) drop(host);
+    });
+    let live = hosts.filter((host) => !host.removed);
+    const wordsOf = (list) => list.reduce((sum, host) => sum + wordCount(hostText(host.element)), 0);
+    if (wordsOf(live) <= 25) return;
+    live.sort((a, b) => hostImportance(b.element) - hostImportance(a.element));
+    let kept = live.slice(0, 4);
+    while (kept.length > 1 && wordsOf(kept) > 25) kept.pop();
+    const keep = new Set(kept);
+    live.forEach((host) => {
+      if (!keep.has(host)) drop(host);
+    });
+  });
+  console.log("text boxes removed " + removed);
+  return removed;
+}
+
 function parseKeywords(raw) {
   const fenced = String(raw || "").match(/```(?:json)?\s*([\s\S]*?)```/);
   const body = fenced ? fenced[1] : String(raw || "");
@@ -780,17 +948,6 @@ function parseKeywords(raw) {
     });
   });
   return words;
-}
-
-async function visualKeywords(subject) {
-  try {
-    const result = await askModel(keywordPrompt(subject));
-    const keywords = parseKeywords(result.text);
-    if (!keywords.length) return { query: photoQuery(subject), keywords: [], model: result.model };
-    return { query: keywords.join(" "), keywords, model: result.model };
-  } catch (error) {
-    return { query: photoQuery(subject), keywords: [], model: "" };
-  }
 }
 
 function parseMood(raw) {
@@ -888,8 +1045,8 @@ function paintPalette(palette, bucket) {
   return { ...palette, card, surface: palette.bg, onAccent };
 }
 
-function applyMood(deck, mood) {
-  const bucket = moodBucket(mood);
+function applyMood(deck, mood, forcedBucket) {
+  const bucket = forcedBucket || moodBucket(mood);
   const current = (deck.tokens && deck.tokens.color) || {};
   const nudged = nudgePalette({
     bg: current.bg || "#FBD523",
@@ -947,7 +1104,8 @@ function applyMood(deck, mood) {
   liftDarkTextBackdrops(deck);
   repairChipText(deck);
   guardPhotoText(deck, deck.tokens.color);
-  return { mood, bucket, palette: deck.tokens.color };
+  if (deck.assembly) liftDarkShapes(deck);
+  return { mood: forcedBucket || mood, bucket, palette: deck.tokens.color };
 }
 
 function elementCenter(element) {
@@ -1124,17 +1282,6 @@ function guardPhotoText(deck, palette) {
   });
 }
 
-async function inventMood(subject) {
-  try {
-    const result = await askModel(moodPrompt(subject));
-    const mood = parseMood(result.text);
-    if (!mood) return { mood: "", bucket: "", model: result.model };
-    return { mood, model: result.model };
-  } catch (error) {
-    return { mood: "", model: "" };
-  }
-}
-
 async function searchPexels(query, orientation) {
   loadEnv();
   const key = process.env.PEXELS_API_KEY;
@@ -1214,7 +1361,38 @@ function customClip(content) {
   return Boolean(clip && clip.kind === "path" && clip.d);
 }
 
+function imageInk(file) {
+  if (inkCache.has(file)) return inkCache.get(file);
+  let ink = null;
+  try {
+    const image = new Image();
+    image.src = fs.readFileSync(file);
+    if (image.width && image.height) {
+      const canvas = createCanvas(image.width, image.height);
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(image, 0, 0);
+      const data = ctx.getImageData(0, 0, image.width, image.height).data;
+      const step = image.width * image.height > 1500000 ? 2 : 1;
+      let sampled = 0;
+      let opaque = 0;
+      for (let y = 0; y < image.height; y += step) {
+        const row = y * image.width;
+        for (let x = 0; x < image.width; x += step) {
+          sampled += 1;
+          if (data[(row + x) * 4 + 3] > 16) opaque += 1;
+        }
+      }
+      ink = { opaqueRatio: sampled ? opaque / sampled : 1 };
+    }
+  } catch (error) {
+    ink = null;
+  }
+  inkCache.set(file, ink);
+  return ink;
+}
+
 function decorationImage(element, content) {
+  if (element && element.forcePhoto) return false;
   if (element && (element.isDecoration === true || element.originalRole === "decoration")) return true;
   const width = Number(element.width) || 0;
   const height = Number(element.height) || 0;
@@ -1230,6 +1408,8 @@ function decorationImage(element, content) {
 }
 
 const assetSizeCache = new Map();
+const inkCache = new Map();
+const LARGE_PHOTO = SLIDE_AREA * 0.18;
 
 function roundBox(value) {
   return Math.round(value * 100) / 100;
@@ -1255,7 +1435,7 @@ function assetPixelSize(url) {
   return size;
 }
 
-function fitDecorationBox(target, pixels) {
+function fitDecorationBox(target, pixels, ink) {
   const width = Number(target.width) || 0;
   const height = Number(target.height) || 0;
   const assetWidth = pixels && Number(pixels.width);
@@ -1266,6 +1446,16 @@ function fitDecorationBox(target, pixels) {
   let nextHeight = height;
   if (assetRatio > width / height) nextHeight = width / assetRatio;
   else nextWidth = height * assetRatio;
+  const ratio = ink && Number(ink.opaqueRatio);
+  if (ratio > 0.02 && ratio < 0.98) {
+    const fittedArea = nextWidth * nextHeight;
+    const inkArea = width * height * ratio;
+    if (inkArea > 0 && inkArea < fittedArea) {
+      const scale = Math.sqrt(inkArea / fittedArea);
+      nextWidth *= scale;
+      nextHeight *= scale;
+    }
+  }
   nextWidth = Math.max(1, nextWidth);
   nextHeight = Math.max(1, nextHeight);
   const x = Number(target.x) || 0;
@@ -1276,6 +1466,68 @@ function fitDecorationBox(target, pixels) {
   target.height = roundBox(nextHeight);
 }
 
+function pictureSlots(deck) {
+  const slots = [];
+  const ids = deck.layoutSequence || Object.keys(deck.layouts || {});
+  function visit(slideId, element) {
+    if (!element) return;
+    if (element.type === "collage" && element.collageContent && Array.isArray(element.collageContent.cells)) {
+      element.collageContent.cells.forEach((cell) => {
+        if (!cell) return;
+        const area = (Number(cell.width) || 0) * (Number(cell.height) || 0);
+        if (area > 0) slots.push({ slideId, element: cell, content: cell, area });
+      });
+    }
+    if ((element.type === "image" || element.type === "maskedImage") && (element.imageContent || element.maskedImageContent)) {
+      const content = element.imageContent || element.maskedImageContent;
+      const area = (Number(element.width) || 0) * (Number(element.height) || 0);
+      if (area > 0) slots.push({ slideId, element, content, area });
+    }
+    if (element.type === "rotated" && element.element) visit(slideId, element.element);
+    if (Array.isArray(element.children)) element.children.forEach((child) => visit(slideId, child));
+  }
+  ids.forEach((slideId) => {
+    const layout = deck.layouts && deck.layouts[slideId];
+    if (!layout) return;
+    (layout.elements || []).forEach((element) => visit(slideId, element));
+  });
+  return slots;
+}
+
+function countLargePhotoSlides(deck) {
+  const slides = new Set();
+  pictureSlots(deck).forEach((slot) => {
+    if (slot.area >= LARGE_PHOTO && !decorationImage(slot.element, slot.content)) slides.add(slot.slideId);
+  });
+  return slides.size;
+}
+
+function forcePhotoSlides(deck, minimum) {
+  const slots = pictureSlots(deck);
+  const covered = new Set();
+  slots.forEach((slot) => {
+    if (slot.area >= LARGE_PHOTO && !decorationImage(slot.element, slot.content)) covered.add(slot.slideId);
+  });
+  const before = covered.size;
+  const bySlide = new Map();
+  slots.forEach((slot) => {
+    if (covered.has(slot.slideId)) return;
+    if (decorationImage(slot.element, slot.content)) return;
+    const current = bySlide.get(slot.slideId);
+    if (!current || slot.area > current.area) bySlide.set(slot.slideId, slot);
+  });
+  const ranked = Array.from(bySlide.values()).sort((a, b) => b.area - a.area);
+  let added = 0;
+  ranked.forEach((slot) => {
+    if (covered.size >= minimum) return;
+    slot.element.forcePhoto = true;
+    covered.add(slot.slideId);
+    added += 1;
+  });
+  console.log("photo slides " + before + (added ? " forced " + added : ""));
+  return added;
+}
+
 function sameBox(a, b) {
   if (!a || !b) return false;
   return Math.abs((Number(a.x) || 0) - (Number(b.x) || 0)) < 1
@@ -1284,62 +1536,77 @@ function sameBox(a, b) {
     && Math.abs((Number(a.height) || 0) - (Number(b.height) || 0)) < 1;
 }
 
-function decorationFiles(vibe) {
-  const names = pngNames(vibe);
-  for (let index = names.length - 1; index > 0; index -= 1) {
-    const swap = Math.floor(Math.random() * (index + 1));
-    const held = names[index];
-    names[index] = names[swap];
-    names[swap] = held;
-  }
-  return names.map((name) => "assets/decorations/" + vibe + "/" + name);
+function decorationFiles() {
+  return [];
 }
 
-function assignImages(deck, files, vibe) {
-  const counts = { landscape: 0, portrait: 0, decorations: 0 };
-  const settled = settleAssetVibe(vibe, getAvailableVibes());
-  if (settled.fallback) console.log("asset vibe fallback " + (vibe || "none") + " -> " + settled.vibe);
-  const chosen = settled.vibe;
-  counts.vibe = chosen;
-  const library = decorationFiles(chosen);
-  let cursor = 0;
-  function nextAsset() {
-    if (!library.length) return "";
-    const url = library[cursor % library.length];
-    cursor += 1;
-    return url;
-  }
-  function placeDecoration(target, content, parent) {
-    const url = nextAsset();
-    if (!url) return false;
-    const frame = parent && parent.type === "rotated" && parent.element === target && sameBox(parent, target) ? parent : null;
-    fitDecorationBox(target, assetPixelSize(url));
-    if (frame) {
-      frame.x = target.x;
-      frame.y = target.y;
-      frame.width = target.width;
-      frame.height = target.height;
+function minimalistRequest(layoutVibe, subject) {
+  if (/^minimalist$/i.test(String(layoutVibe || ""))) return true;
+  return /\bminimalist\b/i.test(String(subject || ""));
+}
+
+function decorationKind(element, content) {
+  const width = Math.abs(Number(element && element.width) || 0);
+  const height = Math.abs(Number(element && element.height) || 0);
+  if (width > 0 && height > 0 && (width > 5 * height || height > 5 * width)) return "line";
+  const clip = content && content.clip;
+  if (clip && (clip.kind === "ellipse" || clip.kind === "circle")) return "circle";
+  if (width * height >= SLIDE_AREA * 0.25) return "block";
+  if (width > 0 && height > 0 && Math.min(width, height) / Math.max(width, height) >= 0.85) return "circle";
+  return "open";
+}
+
+function assetFits(kind, name) {
+  const stem = String(name || "").toLowerCase();
+  const has = (word) => stem.indexOf(word) >= 0;
+  if (kind === "line") return has("line") || has("grid");
+  if (kind === "circle") return has("circle") || has("sphere");
+  if (kind === "block") return has("blob") || has("texture");
+  return true;
+}
+
+function removeDecoration(deck, target) {
+  const ids = deck.layoutSequence || Object.keys(deck.layouts || {});
+  function walk(list) {
+    if (!Array.isArray(list)) return false;
+    for (let index = 0; index < list.length; index += 1) {
+      const element = list[index];
+      if (!element) continue;
+      if (element === target || (element.type === "rotated" && element.element === target)) {
+        list.splice(index, 1);
+        return true;
+      }
+      if (element.type === "collage" && element.collageContent && Array.isArray(element.collageContent.cells)) {
+        const cellIndex = element.collageContent.cells.indexOf(target);
+        if (cellIndex >= 0) {
+          element.collageContent.cells.splice(cellIndex, 1);
+          return true;
+        }
+      }
+      if (Array.isArray(element.children) && walk(element.children)) return true;
     }
-    content.url = url;
-    content.fit = "contain";
-    content.alignX = 0.5;
-    content.alignY = 0.5;
-    target.isDecoration = true;
-    if (!target.originalRole) target.originalRole = "decoration";
-    counts.decorations += 1;
-    return true;
+    return false;
   }
-  eachElement(deck, (element, parent) => {
+  ids.forEach((id) => {
+    const layout = deck.layouts && deck.layouts[id];
+    if (layout) walk(layout.elements);
+  });
+}
+
+function assignImages(deck, files, vibe, options) {
+  const counts = { landscape: 0, portrait: 0, decorations: 0, removed: 0 };
+  forcePhotoSlides(deck, 2);
+  void vibe;
+  void options;
+  console.log("decorations kept from the seed");
+  eachElement(deck, (element) => {
     if (element.type === "collage") {
       const cells = element.collageContent && element.collageContent.cells;
       if (!Array.isArray(cells)) return;
       cells.forEach((cell) => {
-        if (!cell) return;
-        const standIn = { width: cell.width, height: cell.height, isDecoration: cell.isDecoration, originalRole: cell.originalRole };
-        if (decorationImage(standIn, cell)) {
-          placeDecoration(cell, cell, null);
-          return;
-        }
+        if (!cell || !cell.url || String(cell.url).indexOf("assets/decorations/") === 0) return;
+        const standIn = { width: cell.width, height: cell.height, isDecoration: cell.isDecoration, originalRole: cell.originalRole, forcePhoto: cell.forcePhoto };
+        if (decorationImage(standIn, cell)) return;
         const wide = (Number(cell.width) || 0) >= (Number(cell.height) || 0);
         cell.url = nextPhoto(files, counts, wide);
       });
@@ -1347,15 +1614,10 @@ function assignImages(deck, files, vibe) {
     }
     if (element.type !== "image" && element.type !== "maskedImage") return;
     const content = element.imageContent || element.maskedImageContent;
-    if (!content) return;
-    if (decorationImage(element, content)) {
-      placeDecoration(element, content, parent);
-      return;
-    }
+    if (!content || decorationImage(element, content)) return;
     const wide = (Number(element.width) || 0) >= (Number(element.height) || 0);
     content.url = nextPhoto(files, counts, wide);
   });
-  if (counts.decorations) console.log("decorations " + counts.decorations + " from " + chosen);
   return counts;
 }
 
@@ -1374,6 +1636,70 @@ function textBox(element) {
     return { box: element, node: element.element };
   }
   return null;
+}
+
+function paintOwnedText(element, color) {
+  const node = element.type === "rotated" && element.element && element.element.type === "text" ? element.element : element;
+  if (!node || node.type !== "text") return;
+  if (node.textStyle) node.textStyle.color = color;
+  const spans = node.textContent && node.textContent.spans;
+  if (Array.isArray(spans)) spans.forEach((span) => { span.color = color; });
+}
+
+function textColorOf(element) {
+  const node = element.type === "rotated" && element.element && element.element.type === "text" ? element.element : element;
+  const spans = node && node.textContent && node.textContent.spans;
+  const raw = (spans && spans[0] && spans[0].color) || (node && node.textStyle && node.textStyle.color) || "";
+  return /^#[0-9a-f]{6}$/i.test(raw || "") ? raw : "";
+}
+
+function liftDarkShapes(deck) {
+  const color = (deck.tokens && deck.tokens.color) || {};
+  const bg = color.bg || (deck.theme && deck.theme.backgroundColor) || "";
+  if (!/^#[0-9a-f]{6}$/i.test(bg) || luminance(bg) >= 0.3) return 0;
+  let panel = "";
+  if (/^#[0-9a-f]{6}$/i.test(color.card || "") && luminance(color.card) >= 0.3) panel = color.card;
+  else if (/^#[0-9a-f]{6}$/i.test(color.surface || "") && luminance(color.surface) >= 0.3) panel = color.surface;
+  else {
+    panel = /^#[0-9a-f]{6}$/i.test(color.card || "") ? color.card : "#F4F1EC";
+    for (let step = 0; step < 6 && luminance(panel) < 0.3; step += 1) panel = mix(panel, "#F4F1EC", 0.5);
+  }
+  const ink = readableOn(panel);
+  let changed = 0;
+  const ids = deck.layoutSequence || Object.keys(deck.layouts || {});
+  ids.forEach((id) => {
+    const layout = deck.layouts && deck.layouts[id];
+    if (!layout) return;
+    const elements = [];
+    function visit(list) {
+      (list || []).forEach((element) => {
+        if (!element) return;
+        elements.push(element);
+        if (element.type === "rotated" && element.element) visit([element.element]);
+        if (Array.isArray(element.children)) visit(element.children);
+      });
+    }
+    visit(layout.elements);
+    elements.forEach((element) => {
+      const fill = solidFill(element);
+      if (!/^#[0-9a-f]{6}$/i.test(fill || "") || isFullBleed(element) || luminance(fill) >= 0.3) return;
+      if (element.type === "shape" && element.shapeContent) element.shapeContent.fill = panel;
+      else if (element.type === "illustration" && element.illustrationContent) element.illustrationContent.fill = panel;
+      else return;
+      changed += 1;
+      elements.forEach((item) => {
+        const text = item.type === "text" || (item.type === "rotated" && item.element && item.element.type === "text");
+        if (!text) return;
+        const box = item.type === "rotated" ? item : item;
+        if (!containsPoint(element, elementCenter(box))) return;
+        const current = textColorOf(item);
+        if (current && contrast(current, panel) >= 4.5) return;
+        paintOwnedText(item, ink);
+      });
+    });
+  });
+  if (changed) console.log("lifted " + changed + " dark shapes off the background");
+  return changed;
 }
 
 function liftDarkTextBackdrops(deck) {
@@ -1421,38 +1747,35 @@ function renderDeck(deck, dir) {
   return slides;
 }
 
-async function injectTheme(options) {
+async function themeOnce(options) {
   const subject = String(options.prompt || "").trim();
   let layout = options.layout || "";
   let selection = null;
   if (options.autoLayout) {
-    selection = await chooseLayout(subject);
+    selection = await chooseLayout(subject, options.excludeLayouts, options.knownVibe);
     layout = selection.id;
-    console.log("auto-layout " + selection.vibe + " -> " + layout + " " + selection.qualityScore);
+    console.log("auto-layout " + selection.vibe + " -> " + layout + " " + selection.qualityScore + (selection.repeated ? " (same seed)" : ""));
   }
   const outDir = options.out
     ? path.resolve(ROOT, options.out)
     : path.join(ROOT, "docs", "template-pipeline", "thematic-tests", slug(subject));
   const deck = options.deck ? JSON.parse(JSON.stringify(options.deck)) : loadLayout(layout);
   if (options.deck) layout = layout || deck.id || "remix";
+  const seedTokens = JSON.parse(JSON.stringify(deck.tokens || {}));
   const prepared = prepareCopy(deck);
   const strings = prepared.strings;
-  console.log("profile");
-  const invented = await inventProfile(subject);
-  const assetVibe = await classifyAssetVibe(subject);
-  deck.assetVibe = assetVibe.vibe;
-  console.log("brand " + invented.profile.brand);
-  console.log("asset vibe " + assetVibe.vibe);
-  console.log("mood");
-  const moodResult = await inventMood(subject);
-  const paletteShift = moodResult.mood ? applyMood(deck, moodResult.mood) : null;
-  if (paletteShift) console.log("palette " + paletteShift.mood + " -> " + paletteShift.bucket);
+  const direction = await inventDirection(subject);
+  console.log("direction " + direction.profile.brand + " / " + direction.mood + " / " + (direction.keywords.join(" ") || direction.query));
+  if (selection) console.log("vibe " + selection.vibe);
+  const paletteShift = applyMood(deck, direction.mood, options.forcedBucket);
+  if (options.forcedBucket) console.log("palette forced " + paletteShift.bucket);
+  else console.log("palette " + paletteShift.mood + " -> " + paletteShift.bucket);
   console.log("rewrite " + strings.length + " strings");
-  const rewritten = await rewriteStrings(strings, subject, invented.profile);
-  const settled = await settleCopy(strings, rewritten.map, invented.profile);
+  const rewritten = await rewriteStrings(strings, subject, direction.profile);
+  const settled = await settleCopy(strings, rewritten.map, direction.profile);
   const replacements = applyText(deck, settled.accepted, settled.notes, prepared.groups);
-  const photos = await visualKeywords(subject);
-  const query = photos.query;
+  pruneSlideText(deck);
+  const query = direction.query;
   console.log("pexels \"" + query + "\"");
   const [landscapeHits, portraitHits] = await Promise.all([
     searchPexels(query, "landscape"),
@@ -1479,11 +1802,24 @@ async function injectTheme(options) {
   }
   const landscape = await saveSet(landscapeHits, "landscape");
   const portrait = await saveSet(portraitHits, "portrait");
-  const counts = assignImages(deck, { landscape, portrait }, deck.assetVibe);
-  if (counts.vibe) deck.assetVibe = counts.vibe;
+  const counts = assignImages(deck, { landscape, portrait }, "", {
+    layoutVibe: selection ? selection.vibe : "",
+    subject,
+  });
   scrimBrightPhotos(deck);
-  const brand = invented.profile.brand;
-  deck.name = brand + " — " + subject;
+  const photoUrl = (landscape[0] && landscape[0].url) || (portrait[0] && portrait[0].url) || "";
+  const parametric = applyParametric(deck, {
+    prompt: subject,
+    density: options.density || "balanced",
+    seedTokens,
+    title: direction.profile.brand,
+    photoUrl,
+  });
+  console.log("parametric cover " + parametric.coverName + " / density " + parametric.density + " x" + parametric.marginFactor + " / signature " + parametric.signature);
+  if (parametric.densityReverted.length) console.log("density reverted slides " + parametric.densityReverted.join(", ") + " after geometry check");
+  if (parametric.textOverlaps.length) console.log("text overlap remains on slides " + parametric.textOverlaps.join(", "));
+  const brand = direction.profile.brand;
+  deck.name = brand + ": " + subject;
   deck.id = slug(brand);
   deck.description = "Themed for " + subject;
   fs.mkdirSync(outDir, { recursive: true });
@@ -1491,13 +1827,13 @@ async function injectTheme(options) {
   const report = {
     prompt: subject,
     layout,
+    parametric,
     vibe: selection ? selection.vibe : "",
-    assetVibe: deck.assetVibe || "",
     autoLayout: Boolean(options.autoLayout),
-    model: [invented.model, moodResult.model, rewritten.model, settled.model].filter(Boolean).join("+"),
-    profile: invented.profile,
+    model: [direction.model, rewritten.model, settled.model].filter(Boolean).join("+"),
+    profile: direction.profile,
     mood: paletteShift,
-    photoKeywords: photos.keywords,
+    photoKeywords: direction.keywords,
     photoQuery: query,
     photos: {
       landscape: landscape.map((photo) => ({
@@ -1523,10 +1859,72 @@ async function injectTheme(options) {
     rejected: replacements.filter((item) => item.rejected).length,
   };
   fs.writeFileSync(path.join(outDir, "replacements.json"), JSON.stringify(report, null, 2) + "\n");
+  if (fs.existsSync(outDir)) {
+    fs.readdirSync(outDir).filter((name) => /^slide-\d{2}\.png$/.test(name)).forEach((name) => fs.rmSync(path.join(outDir, name)));
+  }
   console.log("render " + (deck.layoutSequence || []).length + " slides");
   const slides = renderDeck(deck, outDir);
-  console.log("wrote " + path.relative(ROOT, outDir) + " (" + replacements.filter((item) => item.replaced).length + " strings, " + (counts.landscape + counts.portrait) + " images)");
-  return { outDir, slides, report, layout, name: deck.name, deckId: deck.id };
+  console.log("wrote " + path.relative(ROOT, outDir) + " (" + replacements.filter((item) => item.replaced).length + " strings, " + (counts.landscape + counts.portrait) + " images, " + counts.removed + " decorations removed)");
+  return { outDir, slides, report, layout, name: deck.name, deckId: deck.id, selection };
+}
+
+const QA_SCORE = 80;
+const QA_TRIES = 3;
+const PALETTE_BUCKETS = ["light-neutral", "light-warm", "dark-neutral"];
+
+async function injectTheme(options) {
+  const settings = options || {};
+  if (settings.qa === false) return themeOnce(settings);
+  const exclude = [];
+  const usedBuckets = [];
+  let knownVibe = null;
+  let lastScore = 0;
+  let lastDir = "";
+  for (let attempt = 1; attempt <= QA_TRIES; attempt += 1) {
+    const forcedBucket = attempt === 1
+      ? (settings.forcedBucket || "")
+      : (PALETTE_BUCKETS.find((bucket) => usedBuckets.indexOf(bucket) < 0) || PALETTE_BUCKETS[0]);
+    let result;
+    try {
+      result = await themeOnce(Object.assign({}, settings, {
+        excludeLayouts: exclude.slice(),
+        knownVibe,
+        forcedBucket,
+      }));
+    } catch (error) {
+      const message = error && error.message ? error.message : String(error);
+      if (/No enabled /.test(message)) throw error;
+      if (attempt === QA_TRIES) throw error;
+      console.log("qa retry " + attempt + " after " + message);
+      continue;
+    }
+    lastDir = result.outDir;
+    if (result.selection) knownVibe = { vibe: result.selection.vibe, model: result.selection.model };
+    const generated = JSON.parse(fs.readFileSync(path.join(result.outDir, "deck.json"), "utf8"));
+    const analysis = await analyzeDeck(generated, result.slides || []);
+    lastScore = analysis.score;
+    const summary = {
+      score: analysis.score,
+      passed: analysis.passed,
+      total: analysis.total,
+      failures: analysis.failures,
+      attempt,
+    };
+    result.analysis = summary;
+    result.report.analysis = summary;
+    generated.qa = summary;
+    fs.writeFileSync(path.join(result.outDir, "deck.json"), JSON.stringify(generated, null, 2) + "\n");
+    fs.writeFileSync(path.join(result.outDir, "replacements.json"), JSON.stringify(result.report, null, 2) + "\n");
+    console.log("qa score " + analysis.score + " attempt " + attempt + " (" + analysis.passed + "/" + analysis.total + ")");
+    if (analysis.score >= QA_SCORE) return result;
+    if (attempt === QA_TRIES) break;
+    console.log("qa retry " + attempt + " below " + QA_SCORE);
+    if (result.layout && result.layout !== "assembled" && result.layout.indexOf("+") < 0) exclude.push(result.layout);
+    const bucket = result.report && result.report.mood && result.report.mood.bucket;
+    if (bucket && usedBuckets.indexOf(bucket) < 0) usedBuckets.push(bucket);
+  }
+  if (lastDir) fs.rmSync(lastDir, { recursive: true, force: true });
+  throw new Error("No deck scored " + QA_SCORE + " or above (last score " + lastScore + ")");
 }
 
 if (require.main === module) {
@@ -1536,4 +1934,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { injectTheme, askModel, classifyVibe, photoQuery, collectStrings, chooseLayout, splitsContiguousWord, splitProportional, liftDarkTextBackdrops, fitDecorationBox, getAvailableVibes, settleAssetVibe, parseAssetVibe };
+module.exports = { injectTheme, askModel, classifyVibe, photoQuery, collectStrings, chooseLayout, splitsContiguousWord, splitProportional, liftDarkTextBackdrops, liftDarkShapes, fitDecorationBox, getAvailableVibes, settleAssetVibe, parseAssetVibe, steerAssetVibe, countLargePhotoSlides, forcePhotoSlides, photographicSubject, decorationKind, assetFits, assignImages, minimalistRequest, removeDecoration, subjectAssetVibe, pruneSlideText };

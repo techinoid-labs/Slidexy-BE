@@ -4,6 +4,7 @@ const { injectTheme } = require("./thematic");
 const { remixSeeds } = require("./mutate_layout");
 const { assembleDeck } = require("./assemble_deck");
 const { convertPptx } = require("./convert/pptxToDeck");
+const { scoreSeed } = require("../../scripts/score_seeds");
 
 const ROOT = path.join(__dirname, "..", "..");
 const LIBRARY = path.join(ROOT, "app-library");
@@ -108,6 +109,21 @@ function ingestPptx(buffer, filename) {
   };
 }
 
+async function scoreLayout(id) {
+  const safe = assertId(id);
+  const file = path.join(LIBRARY, safe + ".json");
+  if (!fs.existsSync(file)) throw fail(404, "Unknown layout");
+  const summary = await scoreSeed(safe);
+  return {
+    id: safe,
+    qualityScore: summary.qualityScore,
+    recommendedUse: summary.recommendedUse,
+    scoreFailures: summary.failures || [],
+    error: summary.error || "",
+    layout: layoutRecord(safe),
+  };
+}
+
 function listLayouts() {
   return fs.readdirSync(LIBRARY)
     .filter((name) => name.endsWith(".json") && !name.endsWith(".dna.json"))
@@ -207,7 +223,7 @@ async function generateTemplate(body) {
     assembly: themed.assembly || null,
     analysis: themed.analysis || null,
     prompt,
-    assetVibe: deck.assetVibe || "",
+    vibe: (themed.report && themed.report.vibe) || (themed.assembly && themed.assembly.designLanguage) || "",
     name: deck.name || "",
     deck,
     slides,
@@ -283,6 +299,7 @@ module.exports = {
   listLayouts,
   setLayoutDisabled,
   ingestPptx,
+  scoreLayout,
   generateTemplate,
   previewPath,
   publishTemplate,

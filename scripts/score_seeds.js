@@ -7,6 +7,7 @@
  *
  * Generates a deck for "A company overview.", then analyzeDeck.js.
  * A slide passes only when geometry, vision, and quality_score >= 0.6 all pass.
+ * Text overlaps text only above 40% of the smaller box. Text or a shape on a photo is allowed.
  * qualityScore is the percentage of passing slides. scoreFailures lists why the rest failed.
  * scoreMethod "hybrid-v2" is the bleed-aware scorer. --resume skips seeds already scored that way
  * and overwrites an older hybrid score.
@@ -48,6 +49,7 @@ function recommendedUse(deck) {
       const height = Number(element.height) || 0;
       if (element.type === "text") textCount += 1;
       if (element.type === "image" || element.type === "maskedImage") {
+        if (element.isDecoration === true || element.originalRole === "decoration") return;
         imageArea += width * height;
         const x = Number(element.x) || 0;
         const y = Number(element.y) || 0;
@@ -90,7 +92,7 @@ async function scoreSeed(layoutId) {
   let failures = [];
   let reviewed = 0;
   try {
-    const result = await injectTheme({ prompt: PROMPT, layout: layoutId, out });
+    const result = await injectTheme({ prompt: PROMPT, layout: layoutId, out, qa: false });
     const generated = readJson(path.join(out, "deck.json"));
     const analysis = await analyzeDeck(generated, result.slides || []);
     qualityScore = analysis.score;

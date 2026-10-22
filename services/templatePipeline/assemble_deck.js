@@ -1,5 +1,5 @@
 /**
- * Build a 10-slide deck by copying whole slides from the best matching seeds.
+ * Build an 11-slide deck by copying whole slides from the best matching seeds.
  *
  *   node services/templatePipeline/assemble_deck.js "A sustainable fashion brand"
  *
@@ -11,24 +11,25 @@
 
 const fs = require("fs");
 const path = require("path");
-const { injectTheme, askModel, classifyVibe, liftDarkTextBackdrops } = require("./thematic");
+const { injectTheme, askModel, classifyVibe, liftDarkTextBackdrops, liftDarkShapes } = require("./thematic");
 const { analyzeDeck } = require("./scoring/analyzeDeck");
 
 const ROOT = path.join(__dirname, "..", "..");
 const LIBRARY = path.join(ROOT, "app-library");
 const CANVAS = 1600 * 900;
-const ROLES = ["Cover", "Introduction", "Problem", "Features", "Process", "Data", "Testimonial", "Team", "Gallery", "CTA"];
+const ROLES = ["Cover", "Contents", "About", "Problem", "Solution", "Proof", "Market", "Model", "People", "Next", "Close"];
 const ROLE_ARCHETYPES = {
   Cover: ["Title slide", "Full-image"],
-  Introduction: ["Two-column text", "Title slide"],
+  Contents: ["Two-column text", "Features", "Title slide"],
+  About: ["Two-column text", "Full-image"],
   Problem: ["Two-column text", "Full-image"],
-  Features: ["Features", "Two-column text"],
-  Process: ["Features", "Data/Stats", "Two-column text"],
-  Data: ["Data/Stats", "Features"],
-  Testimonial: ["Testimonial", "Full-image"],
-  Team: ["Full-image", "Features", "Testimonial"],
-  Gallery: ["Full-image", "Title slide"],
-  CTA: ["CTA", "Title slide"],
+  Solution: ["Features", "Two-column text"],
+  Proof: ["Data/Stats", "Features"],
+  Market: ["Two-column text", "Full-image", "Data/Stats"],
+  Model: ["Features", "Data/Stats", "Two-column text"],
+  People: ["Full-image", "Features", "Testimonial"],
+  Next: ["Features", "Two-column text", "Title slide"],
+  Close: ["CTA", "Title slide"],
 };
 
 function clone(value) {
@@ -182,7 +183,7 @@ function parseOutline(text) {
     const role = ROLES.indexOf(item && item.role) >= 0 ? item.role : "";
     const title = String(item && item.title || "").trim();
     return role ? { role, title } : null;
-  }).filter(Boolean).slice(0, 10);
+  }).filter(Boolean).slice(0, ROLES.length);
 }
 
 function defaultOutline() {
@@ -191,27 +192,32 @@ function defaultOutline() {
 
 async function outlineFor(prompt, designLanguage) {
   const request = [
-    "Generate a 10-slide presentation outline for: " + prompt + ".",
+    "Generate an 11-slide presentation outline for: " + prompt + ".",
     "The deck uses one design language: " + designLanguage + ". Every slide must belong to that language.",
-    "Return a strict JSON array of 10 objects with role and title.",
+    "Map the content to these exact roles, in this order: " + ROLES.join(", ") + ".",
+    "Return a strict JSON array of 11 objects with role and title.",
     "Each role must be exactly one of: " + ROLES.join(", ") + ".",
-    "Use each role once. Start with Cover and end with CTA.",
+    "Use each role once. Start with Cover and end with Close.",
     "Titles are short slide names for this subject. Return only the JSON array.",
   ].join(" ");
   try {
     const result = await askModel(request);
     const parsed = parseOutline(result.text);
-    if (parsed.length === 10 && parsed[0].role === "Cover") return parsed;
+    const ordered = ROLES.every((role, index) => parsed[index] && parsed[index].role === role);
+    if (parsed.length === ROLES.length && ordered) return parsed;
   } catch (error) {
     console.log("outline fallback: " + (error && error.message ? error.message : error));
   }
   return defaultOutline();
 }
 
-function pickSlide(slides, role, used) {
+function pickSlide(slides, role, used, avoid) {
+  const skipped = new Set(avoid || []);
+  const eligible = slides.filter((slide) => !skipped.has(slide.seedId));
+  const source = eligible.length ? eligible : slides;
   const wanted = ROLE_ARCHETYPES[role] || ["Two-column text"];
-  const unused = slides.filter((slide) => !used.has(slide.seedId + ":" + slide.slideId));
-  const pool = unused.length ? unused : slides;
+  const unused = source.filter((slide) => !used.has(slide.seedId + ":" + slide.slideId));
+  const pool = unused.length ? unused : source;
   for (let index = 0; index < wanted.length; index += 1) {
     const matches = pool.filter((slide) => slide.archetype === wanted[index]);
     matches.sort((a, b) => b.qualityScore - a.qualityScore || a.index - b.index);
@@ -303,6 +309,7 @@ function lockTheme(deck, seeds, picks) {
   paintPalette(deck.layouts, color);
   paintPalette(deck.theme, color);
   lockFonts(deck.layouts, display, text);
+  liftDarkShapes(deck);
   liftDarkTextBackdrops(deck);
   deck.assembly.designLanguage = winner.recommendedUse;
   deck.assembly.themeSeed = winner.id;
@@ -319,93 +326,118 @@ function orphanCopy(element) {
   return body.length > 0 && body.length <= 2 && /[A-Za-z]/.test(body);
 }
 
-function assembleDeck(prompt, options) {
-  const subject = String(prompt || "").trim();
-  if (!subject) throw new Error("Prompt is required");
-  return classifyVibe(subject).then((classified) => outlineFor(subject, classified.vibe).then((outline) => {
-    const designLanguage = classified.vibe;
-    const seeds = readSeeds().filter((seed) => seed.recommendedUse === designLanguage);
-    const slides = catalogSlides(seeds);
-    if (!slides.length) throw new Error("No " + designLanguage + " seeds in app-library");
-    console.log("design language " + designLanguage);
-    const used = new Set();
-    const picks = outline.map((item) => {
-      const chosen = pickSlide(slides, item.role, used);
-      if (!chosen) throw new Error("No " + designLanguage + " slide for " + item.role);
-      used.add(chosen.seedId + ":" + chosen.slideId);
-      return {
-        role: item.role,
-        title: item.title || item.role,
-        seed: chosen.seedId,
-        sourceSlide: chosen.slideId,
-        archetype: chosen.archetype,
-        qualityScore: chosen.qualityScore,
-        recommendedUse: chosen.recommendedUse,
-      };
-    });
-    const byId = {};
-    seeds.forEach((seed) => { byId[seed.id] = seed.deck; });
-    const cover = byId[picks[0].seed];
-    const deck = {
-      schemaVersion: cover.schemaVersion || 2,
-      id: "assembled",
-      name: "",
-      source: "assembled",
-      tokens: clone(cover.tokens || {}),
-      theme: clone(cover.theme || {}),
-      layoutSequence: [],
-      layouts: {},
-      assembly: { prompt: subject, designLanguage, outline, picks },
+function composeAssembly(seeds, outline, subject, designLanguage, avoid) {
+  const slides = catalogSlides(seeds);
+  if (!slides.length) throw new Error("No " + designLanguage + " seeds in app-library");
+  console.log("design language " + designLanguage);
+  const used = new Set();
+  const picks = outline.map((item) => {
+    const chosen = pickSlide(slides, item.role, used, avoid);
+    if (!chosen) throw new Error("No " + designLanguage + " slide for " + item.role);
+    used.add(chosen.seedId + ":" + chosen.slideId);
+    return {
+      role: item.role,
+      title: item.title || item.role,
+      seed: chosen.seedId,
+      sourceSlide: chosen.slideId,
+      archetype: chosen.archetype,
+      qualityScore: chosen.qualityScore,
+      recommendedUse: chosen.recommendedUse,
     };
-    picks.forEach((pick, index) => {
-      const source = byId[pick.seed];
-      const layout = clone(source.layouts[pick.sourceSlide]);
-      const id = "slide-" + (index + 1);
-      layout.id = id;
-      layout.elements = (layout.elements || []).filter((element) => !orphanCopy(element));
-      deck.layouts[id] = layout;
-      deck.layoutSequence.push(id);
-      pick.slide = index + 1;
-    });
-    lockTheme(deck, seeds, picks);
-    return themeAssembled(deck, subject, options);
-  }));
+  });
+  const byId = {};
+  seeds.forEach((seed) => { byId[seed.id] = seed.deck; });
+  const cover = byId[picks[0].seed];
+  const deck = {
+    schemaVersion: cover.schemaVersion || 2,
+    id: "assembled",
+    name: "",
+    source: "assembled",
+    tokens: clone(cover.tokens || {}),
+    theme: clone(cover.theme || {}),
+    layoutSequence: [],
+    layouts: {},
+    assembly: { prompt: subject, designLanguage, outline, picks },
+  };
+  picks.forEach((pick, index) => {
+    const source = byId[pick.seed];
+    const layout = clone(source.layouts[pick.sourceSlide]);
+    const id = "slide-" + (index + 1);
+    layout.id = id;
+    layout.elements = (layout.elements || []).filter((element) => !orphanCopy(element));
+    deck.layouts[id] = layout;
+    deck.layoutSequence.push(id);
+    pick.slide = index + 1;
+  });
+  lockTheme(deck, seeds, picks);
+  return deck;
 }
 
-async function themeAssembled(deck, prompt, options) {
-  const out = options && options.out;
-  console.log("theme lock " + deck.assembly.themeSeed + " " + deck.assembly.themeFonts.display + " / " + deck.assembly.themeFonts.text);
-  console.log("outline");
-  deck.assembly.picks.forEach((pick) => {
-    console.log("slide " + pick.slide + " " + pick.role + " <- " + pick.seed + " " + pick.sourceSlide + " (" + pick.archetype + ", " + pick.qualityScore + ")");
-  });
-  const themed = await injectTheme({
-    prompt,
-    layout: "assembled",
-    deck,
-    out,
-  });
-  const saved = JSON.parse(fs.readFileSync(path.join(themed.outDir, "deck.json"), "utf8"));
-  saved.assembly = saved.assembly || deck.assembly;
-  const analysis = await analyzeDeck(saved, themed.slides);
-  console.log("assemble score " + analysis.score + " (" + analysis.passed + "/" + analysis.total + ")");
-  saved.assembly.analysis = {
-    score: analysis.score,
-    passed: analysis.passed,
-    total: analysis.total,
-    failures: analysis.failures,
-  };
-  fs.writeFileSync(path.join(themed.outDir, "deck.json"), JSON.stringify(saved, null, 2) + "\n");
-  return {
-    outDir: themed.outDir,
-    slides: themed.slides,
-    report: themed.report,
-    layout: "assembled",
-    name: themed.name,
-    deckId: themed.deckId,
-    assembly: saved.assembly,
-    analysis: saved.assembly.analysis,
-  };
+async function assembleDeck(prompt, options) {
+  const subject = String(prompt || "").trim();
+  if (!subject) throw new Error("Prompt is required");
+  const classified = await classifyVibe(subject);
+  const outline = await outlineFor(subject, classified.vibe);
+  const designLanguage = classified.vibe;
+  const allSeeds = readSeeds().filter((seed) => seed.recommendedUse === designLanguage);
+  if (!catalogSlides(allSeeds).length) throw new Error("No " + designLanguage + " seeds in app-library");
+  const avoid = [];
+  const usedBuckets = [];
+  const buckets = ["light-neutral", "light-warm", "dark-neutral"];
+  let lastScore = 0;
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    const fresh = allSeeds.filter((seed) => avoid.indexOf(seed.id) < 0);
+    const seeds = fresh.length ? fresh : allSeeds;
+    const deck = composeAssembly(seeds, outline, subject, designLanguage, avoid);
+    const forcedBucket = attempt === 1 ? "" : (buckets.find((bucket) => usedBuckets.indexOf(bucket) < 0) || "dark-neutral");
+    console.log("theme lock " + deck.assembly.themeSeed + " " + deck.assembly.themeFonts.display + " / " + deck.assembly.themeFonts.text);
+    deck.assembly.picks.forEach((pick) => {
+      console.log("slide " + pick.slide + " " + pick.role + " <- " + pick.seed + " " + pick.sourceSlide + " (" + pick.archetype + ", " + pick.qualityScore + ")");
+    });
+    const themed = await injectTheme({
+      prompt: subject,
+      layout: "assembled",
+      deck,
+      out: options && options.out,
+      qa: false,
+      forcedBucket,
+    });
+    const saved = JSON.parse(fs.readFileSync(path.join(themed.outDir, "deck.json"), "utf8"));
+    saved.assembly = saved.assembly || deck.assembly;
+    const analysis = await analyzeDeck(saved, themed.slides);
+    lastScore = analysis.score;
+    saved.assembly.analysis = {
+      score: analysis.score,
+      passed: analysis.passed,
+      total: analysis.total,
+      failures: analysis.failures,
+      attempt,
+    };
+    fs.writeFileSync(path.join(themed.outDir, "deck.json"), JSON.stringify(saved, null, 2) + "\n");
+    const bucket = themed.report && themed.report.mood && themed.report.mood.bucket;
+    if (bucket && usedBuckets.indexOf(bucket) < 0) usedBuckets.push(bucket);
+    console.log("assemble score " + analysis.score + " attempt " + attempt + " (" + analysis.passed + "/" + analysis.total + ")");
+    if (analysis.score >= 80) {
+      return {
+        outDir: themed.outDir,
+        slides: themed.slides,
+        report: themed.report,
+        layout: "assembled",
+        name: themed.name,
+        deckId: themed.deckId,
+        assembly: saved.assembly,
+        analysis: saved.assembly.analysis,
+      };
+    }
+    if (attempt === 3) break;
+    console.log("assemble retry " + attempt + " below 80");
+    deck.assembly.picks.forEach((pick) => {
+      if (avoid.indexOf(pick.seed) < 0) avoid.push(pick.seed);
+    });
+  }
+  const error = new Error("No assembly scored 80 or above (last score " + lastScore + ")");
+  error.status = 422;
+  throw error;
 }
 
 if (require.main === module) {

@@ -3,6 +3,7 @@ const {
   listLayouts,
   setLayoutDisabled,
   ingestPptx,
+  scoreLayout,
   generateTemplate,
   previewPath,
   publishTemplate,
@@ -45,6 +46,11 @@ router.post("/upload-seed", express.raw({
   limit: "120mb",
 }), send(async (req, res) => {
   res.json(ingestPptx(req.body, req.query.name || ""));
+}));
+
+router.post("/score-seed", send(async (req, res) => {
+  const body = req.body || {};
+  res.json(await scoreLayout(body.id));
 }));
 
 router.post("/disable-seed", send(async (req, res) => {

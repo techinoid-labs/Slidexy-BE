@@ -15,6 +15,7 @@ const {
   listLayouts,
   setLayoutDisabled,
   ingestPptx,
+  scoreLayout,
   generateTemplate,
   previewPath,
   publishTemplate,
@@ -123,6 +124,10 @@ const server = http.createServer(async (req, res) => {
         const buffer = await readBuffer(req, 120 * 1024 * 1024);
         return send(res, 200, ingestPptx(buffer, query.get("name") || ""));
       }
+      if (req.method === "POST" && url === "/api/admin/score-seed") {
+        const body = await readBody(req);
+        return send(res, 200, await scoreLayout(body.id));
+      }
       if (req.method === "POST" && url === "/api/admin/disable-seed") {
         const body = await readBody(req);
         return send(res, 200, setLayoutDisabled(body.id, body.disabled !== false));
@@ -171,4 +176,7 @@ const server = http.createServer(async (req, res) => {
 });
 
 const port = Number(process.env.PIPELINE_PORT) || 5000;
+server.requestTimeout = 0;
+server.headersTimeout = 0;
+server.timeout = 0;
 server.listen(port, "127.0.0.1", () => console.log("admin curator on http://127.0.0.1:" + port));

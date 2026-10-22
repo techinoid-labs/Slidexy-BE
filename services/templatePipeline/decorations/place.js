@@ -171,25 +171,8 @@ function placeOnLayout(layout, catalog, rng, family, overlap) {
   layout.decor = decor.map((item) => item.record);
 }
 
-function placeDecorations(deck, rng) {
-  const family = FAMILIES[Math.floor(rng() * FAMILIES.length)];
-  const catalog = byFamily[family];
-  deck.decorationFamily = family;
-  const sequence = deck.layoutSequence || [];
-  const overlapCount = Math.max(1, Math.round(sequence.length * 0.4));
-  const order = sequence.map((_, index) => index);
-  for (let i = order.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(rng() * (i + 1));
-    const swap = order[i];
-    order[i] = order[j];
-    order[j] = swap;
-  }
-  const overlapAt = new Set(order.slice(0, overlapCount));
-  sequence.forEach((layoutId, index) => {
-    const layout = deck.layouts[layoutId];
-    if (layout) placeOnLayout(layout, catalog, rng, family, overlapAt.has(index));
-  });
-  return family;
+function placeDecorations(deck) {
+  return (deck && deck.decorationFamily) || "";
 }
 
 module.exports = { placeDecorations, FUNCTIONS };

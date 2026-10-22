@@ -58,6 +58,12 @@ const SETS = {
     ["blob-07", "#3d405b", drawBlob],
     ["dot-08", "#e07a5f", drawDots],
   ],
+  minimal: [
+    ["hairline-01", "#8a8175", drawHairline],
+    ["speck-02", "#6f675c", drawSpeck],
+    ["corner-03", "#8a8175", drawCorner],
+    ["tick-04", "#5c564c", drawTick],
+  ],
 };
 
 function svgWrap(body) {
@@ -362,6 +368,41 @@ function drawDots(ctx) {
   }
 }
 
+function drawHairline(ctx) {
+  ctx.lineWidth = 8;
+  ctx.strokeStyle = ctx.fillStyle;
+  ctx.beginPath();
+  ctx.moveTo(48, 256);
+  ctx.lineTo(464, 256);
+  ctx.stroke();
+}
+
+function drawSpeck(ctx) {
+  ctx.beginPath();
+  ctx.arc(256, 256, 28, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+function drawCorner(ctx) {
+  ctx.lineWidth = 8;
+  ctx.strokeStyle = ctx.fillStyle;
+  ctx.beginPath();
+  ctx.moveTo(96, 160);
+  ctx.lineTo(96, 96);
+  ctx.lineTo(160, 96);
+  ctx.stroke();
+}
+
+function drawTick(ctx) {
+  ctx.lineWidth = 8;
+  ctx.strokeStyle = ctx.fillStyle;
+  ctx.beginPath();
+  ctx.moveTo(220, 300);
+  ctx.lineTo(256, 340);
+  ctx.lineTo(340, 180);
+  ctx.stroke();
+}
+
 function svgFor(name, color) {
   if (name.startsWith("grid")) {
     const lines = [];
@@ -387,6 +428,18 @@ function svgFor(name, color) {
   }
   if (name.startsWith("frame")) {
     return svgWrap('<rect x="70" y="70" width="372" height="372" stroke="' + color + '" stroke-width="22"/>');
+  }
+  if (name.startsWith("hairline")) {
+    return svgWrap('<path d="M48 256 H464" stroke="' + color + '" stroke-width="8"/>');
+  }
+  if (name.startsWith("speck")) {
+    return svgWrap('<circle cx="256" cy="256" r="28" fill="' + color + '"/>');
+  }
+  if (name.startsWith("corner")) {
+    return svgWrap('<path d="M96 160 V96 H160" stroke="' + color + '" stroke-width="8"/>');
+  }
+  if (name.startsWith("tick")) {
+    return svgWrap('<path d="M220 300 L256 340 L340 180" stroke="' + color + '" stroke-width="8"/>');
   }
   if (name.startsWith("bar") || name.startsWith("column") || name.startsWith("block") || name.startsWith("stack")) {
     return svgWrap('<rect x="90" y="80" width="70" height="350" fill="' + color + '"/><rect x="210" y="140" width="70" height="290" fill="' + color + '"/><rect x="330" y="200" width="70" height="230" fill="' + color + '"/>');
@@ -423,7 +476,13 @@ function fetchAssets() {
 }
 
 if (require.main === module) {
-  fetchAssets();
+  if (!process.argv.includes("--generate")) {
+    console.log("Placeholder generation is off. Add PNG files under assets/decorations/<vibe>/.");
+  } else {
+    const only = process.argv[3];
+    if (only && SETS[only]) console.log(only + " " + writeSet(only, SETS[only]) + " assets");
+    else fetchAssets();
+  }
 }
 
 module.exports = { fetchAssets, SETS };

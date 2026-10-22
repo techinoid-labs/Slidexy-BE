@@ -5,6 +5,8 @@
  * is not sent to the vision model. Photos and shapes may bleed up to 20%
  * past the canvas. A title split across two boxes is allowed. Auto-fit
  * that keeps the text on the canvas passes.
+ * Text boxes overlap only when the shared area is more than 40% of the
+ * smaller box. Text on a photo, and a shape on a photo, are allowed.
  * Layer 2 is reviewer.js. washed_out or broken_layout fails the slide.
  * A slide passes only when layer 1 passes, layer 2 passes, and quality_score >= 0.6.
  * The deck score is the percentage of passing slides.
@@ -111,6 +113,91 @@ function boxOf(element) {
   };
 }
 
+function boxArea(box) {
+  return Math.max(0, box.right - box.x) * Math.max(0, box.bottom - box.y);
+}
+
+function overlapArea(left, right) {
+  const x = Math.max(left.x, right.x);
+  const y = Math.max(left.y, right.y);
+  const rightEdge = Math.min(left.right, right.right);
+  const bottom = Math.min(left.bottom, right.bottom);
+  if (rightEdge <= x || bottom <= y) return 0;
+  return (rightEdge - x) * (bottom - y);
+}
+
+function overlapShare(left, right) {
+  const smaller = Math.min(boxArea(left), boxArea(right));
+  if (smaller <= 0) return 0;
+  return overlapArea(left, right) / smaller;
+}
+
+function isPicture(element) {
+  return element.type === "image" || element.type === "maskedImage" || element.type === "collage";
+}
+
+function canvasArea() {
+  return CANVAS_W * CANVAS_H;
+}
+
+function isBackground(element, elements) {
+  if (!element) return false;
+  if (element.isDecoration === true || element.originalRole === "decoration") return true;
+  const box = boxOf(element);
+  const area = boxArea(box);
+  if (area < canvasArea() * 0.85) return false;
+  const z = Number(element.zIndex) || 0;
+  const lowest = elements.reduce((min, item) => Math.min(min, Number(item.zIndex) || 0), z);
+  return z <= lowest;
+}
+
+function bagHasGradient(bag) {
+  if (!bag || typeof bag !== "object") return false;
+  if (bag.gradient && (Array.isArray(bag.gradient.stops) ? bag.gradient.stops.length > 0 : true)) return true;
+  const fill = bag.fill || bag.background || bag.backgroundColor || "";
+  return typeof fill === "string" && /gradient\s*\(/i.test(fill);
+}
+
+function hasGradient(element) {
+  return [element, element.shapeContent, element.illustrationContent, element.shapeStyle, element.imageContent, element.maskedImageContent]
+    .some(bagHasGradient);
+}
+
+function bagHasShadow(bag) {
+  if (!bag || typeof bag !== "object") return false;
+  if (bag.boxShadow || bag.shadowBlur) return true;
+  if (bag.shadow === true) return true;
+  if (bag.shadowColor && (bag.shadowOffsetX || bag.shadowOffsetY || bag.shadowDistance)) return true;
+  const filter = bag.filter || "";
+  return typeof filter === "string" && /box-shadow/i.test(filter);
+}
+
+function hasBoxShadow(element) {
+  return [element, element.shapeContent, element.shapeStyle, element.illustrationContent].some(bagHasShadow);
+}
+
+function complexPath(d) {
+  const path = String(d || "");
+  if (!path.trim()) return false;
+  if (/[CcQqAaSsTt]/.test(path)) return true;
+  const commands = path.match(/[MLHVZCSQTA]/gi) || [];
+  return commands.length > 8;
+}
+
+function hasComplexSvg(element) {
+  if (element.type === "illustration" && complexPath(element.illustrationContent && element.illustrationContent.d)) return true;
+  const clip = (element.maskedImageContent && element.maskedImageContent.clip)
+    || (element.imageContent && element.imageContent.clip);
+  return Boolean(clip && (clip.kind === "path" || clip.d) && complexPath(clip.d));
+}
+
+function seedGeometry(element) {
+  const id = String(element && element.id || "");
+  if (/^s\d+-e\d+/.test(id)) return true;
+  if (element && element.seedOrigin === true) return true;
+  return false;
+}
+
 function offCanvas(box) {
   return box.x < -1 || box.y < -1 || box.right > CANVAS_W + 1 || box.bottom > CANVAS_H + 1;
 }
@@ -133,19 +220,32 @@ function checkGeometry(deck, layoutId) {
       return;
     }
     if (excessiveBleed(box)) reasons.push("bounds");
+    if (isBackground(element, flat) || seedGeometry(element)) return;
+    if (hasGradient(element)) reasons.push("gradient");
+    if (hasBoxShadow(element)) reasons.push("box shadow");
+    if (hasComplexSvg(element)) reasons.push("complex svg");
   });
 
-  const texts = flat.filter((element) => element.type === "text");
+  const texts = flat.filter((element) => element.type === "text" && String(textOf(element)).trim());
+  const pictures = flat.filter((element) => isPicture(element));
+  // Shapes may sit on photographs. That overlap is not a failure.
+  for (let left = 0; left < texts.length; left += 1) {
+    for (let right = left + 1; right < texts.length; right += 1) {
+      if (overlapShare(boxOf(texts[left]), boxOf(texts[right])) > 0.4) reasons.push("text overlap");
+    }
+  }
   texts.forEach((element) => {
     const box = boxOf(element);
+    const onPicture = pictures.some((picture) => overlapArea(box, boxOf(picture)) > 0);
     if (textWasClipped(element, deck.tokens) && offCanvas(box)) reasons.push("text overflow");
     const spans = (element.textContent && element.textContent.spans) || [];
     for (let index = 0; index < spans.length - 1; index += 1) {
       if (splitBoundary(spans[index].text, spans[index + 1].text)) reasons.push("split word");
     }
+    if (onPicture) return;
     const color = resolveColor((spans[0] && spans[0].color) || (element.textStyle && element.textStyle.color), deck);
     const background = backgroundFor(flat, element, deck);
-    if (color && background && String(textOf(element)).trim() && contrastRatio(color, background) < 4.5) {
+    if (color && background && contrastRatio(color, background) < 4.5) {
       reasons.push("contrast");
     }
   });

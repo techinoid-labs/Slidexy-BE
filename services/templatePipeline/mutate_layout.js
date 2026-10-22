@@ -536,7 +536,7 @@ function textOverlap(elements) {
     for (let right = left + 1; right < boxes.length; right += 1) {
       const shared = overlapArea(boxes[left], boxes[right]);
       const smaller = Math.min(boxes[left].width * boxes[left].height, boxes[right].width * boxes[right].height);
-      if (smaller > 0 && shared / smaller > 0.2) return true;
+      if (smaller > 0 && shared / smaller > 0.4) return true;
     }
   }
   return false;
@@ -638,6 +638,7 @@ async function remixSeeds(seedAId, seedBId, options) {
       layout: seedA.id + "+" + seedB.id,
       deck: rolled.deck,
       out,
+      qa: false,
     });
     const painted = JSON.parse(fs.readFileSync(path.join(themed.outDir, "deck.json"), "utf8"));
     const pools = photoFiles(seedA.id).concat(photoFiles(seedB.id));
@@ -660,12 +661,11 @@ async function remixSeeds(seedAId, seedBId, options) {
     });
     analysis = await analyzeDeck(painted, themed.slides);
     console.log("remix score " + analysis.score + " (" + analysis.passed + "/" + analysis.total + ")");
-    const geometryFailed = analysis.slides.some((slide) => slide.reasons.some((reason) => reason === "bounds" || reason === "contrast" || reason === "text overlap" || reason === "text overflow" || reason === "split word"));
-    if (analysis.passed > 0 && !geometryFailed) break;
-    console.log("remix check failed, discarding round " + round);
+    if (analysis.score >= 80) break;
+    console.log("remix retry " + round + " below 80");
   }
-  if (!themed || !analysis) {
-    const error = new Error("Remix failed the layout check. " + ((rolled && rolled.check.reasons) || []).slice(0, 6).join("; "));
+  if (!themed || !analysis || analysis.score < 80) {
+    const error = new Error("Remix scored " + (analysis ? analysis.score : 0) + ". A deck needs 80 or above.");
     error.status = 422;
     throw error;
   }

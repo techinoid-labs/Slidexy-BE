@@ -82,7 +82,7 @@
         </label>
         <button id="add-folder" type="button">Add folder</button>
       </form>
-      <p class="note">Every PowerPoint in the folder becomes a layout. Seeds stay unscored until a later review.</p>
+      <p class="note">Every PowerPoint in the folder is converted, then scored. Scoring takes a few minutes per deck. A score of 70 or more can be used by Auto-Select.</p>
     <table>
       <thead>
         <tr><th>Layout</th><th>Score</th><th>Use</th><th>Failures</th><th></th></tr>
@@ -272,24 +272,36 @@
       }
       setUploading(true);
       const failed = [];
+      const scores = [];
       let added = 0;
       let lastId = "";
       try {
         for (let index = 0; index < files.length; index += 1) {
           const file = files[index];
-          status.textContent = "Converting " + (index + 1) + " of " + files.length + ": " + file.name;
+          const place = (index + 1) + " of " + files.length;
+          status.textContent = "Converting " + place + ": " + file.name;
+          let data = null;
           try {
-            const data = await uploadSeed(file);
+            data = await uploadSeed(file);
             added += 1;
             lastId = data.id;
           } catch (error) {
             failed.push(file.name + " (" + error.message + ")");
           }
+          if (!data) continue;
+          status.textContent = "Scoring " + place + ": " + data.id + ". This takes a few minutes.";
+          try {
+            scores.push(await post("/api/admin/score-seed", { id: data.id }));
+          } catch (error) {
+            failed.push(data.id + " score (" + error.message + ")");
+          }
         }
-        const summary = "Added " + added + " of " + files.length + " seeds."
+        const ready = scores.filter((item) => Number(item.qualityScore) >= 70).length;
+        const summary = "Added " + added + " of " + files.length + " seeds. "
+          + scores.length + " scored. "
+          + ready + " reached 70 and can be auto-selected."
           + (lastId ? " " + lastId + " is selected as the base layout." : "")
-          + (failed.length ? " Failed: " + failed.join("; ") + "." : "")
-          + " Not scored yet.";
+          + (failed.length ? " Failed: " + failed.join("; ") + "." : "");
         await loadLayouts(summary);
         if (lastId && [...layoutSelect.options].some((option) => option.value === lastId)) layoutSelect.value = lastId;
         document.getElementById("folder").value = "";
@@ -341,7 +353,7 @@
         });
         const score = data.analysis ? " Vision score " + data.analysis.score + " (" + data.analysis.passed + "/" + data.analysis.total + " slides passed)." : "";
         const promptText = document.getElementById("prompt").value.trim();
-        const vibeName = data.assetVibe ? data.assetVibe.charAt(0).toUpperCase() + data.assetVibe.slice(1) : "";
+        const vibeName = data.vibe || (data.assembly && data.assembly.designLanguage) || "";
         if (vibeName) {
           vibeLine.textContent = "Prompt: " + promptText + " | Vibe: " + vibeName;
           vibeLine.hidden = false;

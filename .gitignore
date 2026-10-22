@@ -145,6 +145,7 @@ app-library/*
 !app-library/.gitkeep
 docs/template-pipeline/admin-dashboard/tmp/
 docs/template-pipeline/admin-dashboard/uploads/
+docs/template-pipeline/seed-scores/
 
 # Third-party PPTX, PowerPoint renders, and one-off probe scripts
 .audit-cache/
