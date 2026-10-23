@@ -1,0 +1,326 @@
+{
+  "id": "native-data",
+  "name": "Three Figures",
+  "role": "Proof",
+  "tokens": {
+    "color": {
+      "bg": "#F3F1EC",
+      "surface": "#F3F1EC",
+      "card": "#FFFFFF",
+      "ink": "#1A2332",
+      "muted": "#3D4C5C",
+      "rule": "#D5D0C8",
+      "accent": "#163A5F",
+      "accent2": "#163A5F",
+      "onAccent": "#F3F1EC"
+    },
+    "font": {
+      "display": "Poppins Bold",
+      "text": "Figtree"
+    },
+    "type": {
+      "h1": 96,
+      "body": 18
+    }
+  },
+  "layout": {
+    "version": 2,
+    "id": "native-data",
+    "canvas": {
+      "width": 1600,
+      "height": 900,
+      "aspectRatio": "16:9"
+    },
+    "elements": [
+      {
+        "id": "native-data-field",
+        "type": "shape",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "zIndex": 0,
+        "shapeContent": {
+          "kind": "rect",
+          "fill": "#F3F1EC",
+          "cornerRadius": 0
+        }
+      },
+      {
+        "id": "native-signature",
+        "type": "shape",
+        "x": 1416,
+        "y": -180,
+        "width": 484,
+        "height": 480,
+        "zIndex": 4,
+        "shapeContent": {
+          "kind": "circle",
+          "fill": "#163A5F",
+          "cornerRadius": 0
+        }
+      },
+      {
+        "id": "native-data-value-1",
+        "type": "text",
+        "x": 80,
+        "y": 220,
+        "width": 448,
+        "height": 150,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Poppins Bold",
+          "fontSize": 96,
+          "fontWeight": 800,
+          "color": "#163A5F",
+          "textAlign": "left",
+          "lineHeight": 0.95,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "48 hrs",
+              "fontFamily": "Poppins Bold",
+              "fontSize": 96,
+              "fontWeight": 800,
+              "color": "#163A5F"
+            }
+          ]
+        }
+      },
+      {
+        "id": "native-data-label-1",
+        "type": "text",
+        "x": 80,
+        "y": 400,
+        "width": 448,
+        "height": 48,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Figtree",
+          "fontSize": 22,
+          "fontWeight": 400,
+          "color": "#1A2332",
+          "textAlign": "left",
+          "lineHeight": 1.15,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "Close time",
+              "fontFamily": "Figtree",
+              "fontSize": 22,
+              "fontWeight": 400,
+              "color": "#1A2332"
+            }
+          ]
+        }
+      },
+      {
+        "id": "native-data-detail-1",
+        "type": "text",
+        "x": 80,
+        "y": 460,
+        "width": 448,
+        "height": 140,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Figtree",
+          "fontSize": 18,
+          "fontWeight": 400,
+          "color": "#3D4C5C",
+          "textAlign": "left",
+          "lineHeight": 1.3,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "Books shut two days after payday",
+              "fontFamily": "Figtree",
+              "fontSize": 18,
+              "fontWeight": 400,
+              "color": "#3D4C5C"
+            }
+          ]
+        }
+      },
+      {
+        "id": "native-data-value-2",
+        "type": "text",
+        "x": 576,
+        "y": 220,
+        "width": 448,
+        "height": 150,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Poppins Bold",
+          "fontSize": 96,
+          "fontWeight": 800,
+          "color": "#163A5F",
+          "textAlign": "left",
+          "lineHeight": 0.95,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "0",
+              "fontFamily": "Poppins Bold",
+              "fontSize": 96,
+              "fontWeight": 800,
+              "color": "#163A5F"
+            }
+          ]
+        }
+      },
+      {
+        "id": "native-data-label-2",
+        "type": "text",
+        "x": 576,
+        "y": 400,
+        "width": 448,
+        "height": 48,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Figtree",
+          "fontSize": 22,
+          "fontWeight": 400,
+          "color": "#1A2332",
+          "textAlign": "left",
+          "lineHeight": 1.15,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "Late filings",
+              "fontFamily": "Figtree",
+              "fontSize": 22,
+              "fontWeight": 400,
+              "color": "#1A2332"
+            }
+          ]
+        }
+      },
+      {
+        "id": "native-data-detail-2",
+        "type": "text",
+        "x": 576,
+        "y": 460,
+        "width": 448,
+        "height": 140,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Figtree",
+          "fontSize": 18,
+          "fontWeight": 400,
+          "color": "#3D4C5C",
+          "textAlign": "left",
+          "lineHeight": 1.3,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "Returns go out with the run",
+              "fontFamily": "Figtree",
+              "fontSize": 18,
+              "fontWeight": 400,
+              "color": "#3D4C5C"
+            }
+          ]
+        }
+      },
+      {
+        "id": "native-data-value-3",
+        "type": "text",
+        "x": 1072,
+        "y": 220,
+        "width": 448,
+        "height": 150,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Poppins Bold",
+          "fontSize": 96,
+          "fontWeight": 800,
+          "color": "#163A5F",
+          "textAlign": "left",
+          "lineHeight": 0.95,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "1",
+              "fontFamily": "Poppins Bold",
+              "fontSize": 96,
+              "fontWeight": 800,
+              "color": "#163A5F"
+            }
+          ]
+        }
+      },
+      {
+        "id": "native-data-label-3",
+        "type": "text",
+        "x": 1072,
+        "y": 400,
+        "width": 448,
+        "height": 48,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Figtree",
+          "fontSize": 22,
+          "fontWeight": 400,
+          "color": "#1A2332",
+          "textAlign": "left",
+          "lineHeight": 1.15,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "System",
+              "fontFamily": "Figtree",
+              "fontSize": 22,
+              "fontWeight": 400,
+              "color": "#1A2332"
+            }
+          ]
+        }
+      },
+      {
+        "id": "native-data-detail-3",
+        "type": "text",
+        "x": 1072,
+        "y": 460,
+        "width": 448,
+        "height": 140,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Figtree",
+          "fontSize": 18,
+          "fontWeight": 400,
+          "color": "#3D4C5C",
+          "textAlign": "left",
+          "lineHeight": 1.3,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "Hours, pay, and tax together",
+              "fontFamily": "Figtree",
+              "fontSize": 18,
+              "fontWeight": 400,
+              "color": "#3D4C5C"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

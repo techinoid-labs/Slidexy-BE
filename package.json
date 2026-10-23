@@ -43,9 +43,12 @@
     "node-llama-cpp": "^3.10.0",
     "nodemailer": "^7.0.9",
     "openai": "^5.10.2",
+    "opentype.js": "^2.0.0",
     "p-limit": "^3.1.0",
     "pdf-parse": "^2.4.5",
+    "pptx-viewer-core": "^4.13.5",
     "pptxgenjs": "^4.0.1",
+    "pptxtojson": "^2.2.0",
     "puppeteer": "^24.24.1",
     "puppeteer-extra": "^3.3.6",
     "puppeteer-extra-plugin-adblocker": "^2.13.6",
@@ -55,12 +58,12 @@
     "stripe": "^18.5.0",
     "swagger": "^0.7.5",
     "swagger-ui-express": "^5.0.1",
+    "tesseract.js": "^4.1.1",
     "uuid": "^11.1.0",
     "winston": "^3.17.0",
     "ws": "^8.18.3",
     "yamljs": "^0.3.0",
-    "youtube-transcript": "^1.2.1",
-    "tesseract.js": "^4.1.1"
+    "youtube-transcript": "^1.2.1"
   },
   "repository": {
     "type": "git",

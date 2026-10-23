@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-16T18:58:58.297Z",
+  "finished": "2026-10-16T19:00:09.851Z",
+  "wanted": 20,
+  "saved": 20,
+  "attempts": 30,
+  "rejected": {
+    "text-overflow": 6,
+    "error": 2,
+    "too-similar": 2
+  }
+}

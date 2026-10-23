@@ -192,6 +192,12 @@ app.use("/api/plans", planRoutes);
 
 // Templates & Decks
 app.use("/api/templates", templateRoutes);
+// The raw-text, image, stylesheet, unified-web and website-generator
+// routes were deleted from main in f53bf99 as dead code. This branch
+// predates that cleanup, so its mounts for them are not reinstated.
+app.use("/api/template-pipeline", require("./routes/templatePipelineRoutes"));
+app.use("/api/catalog", require("./routes/catalogRoutes"));
+app.use("/api/admin", require("./middlewares/auth"), require("./middlewares/isAdmin"), require("./routes/adminTemplateRoutes"));
 
 // Website Editor & Dynamic Versions
 

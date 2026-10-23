@@ -1,0 +1,24 @@
+{
+  "id": "infographic",
+  "name": "Infographic",
+  "colors": {
+    "bg": "#F4F7FB",
+    "surface": "#FFFFFF",
+    "card": "#FFFFFF",
+    "ink": "#142033",
+    "muted": "#3E4C5E",
+    "rule": "#E2E8F0",
+    "accent": "#C2410C",
+    "accent2": "#1D4ED8",
+    "signature": "#1D4ED8",
+    "onAccent": "#FFFFFF"
+  },
+  "fonts": {
+    "display": "Poppins Bold",
+    "text": "Figtree"
+  },
+  "cornerRadius": 12,
+  "strokeWidth": 0,
+  "charts": true,
+  "assets": null
+}

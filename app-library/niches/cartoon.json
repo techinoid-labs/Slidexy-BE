@@ -1,0 +1,30 @@
+{
+  "id": "cartoon",
+  "name": "Cartoon",
+  "colors": {
+    "bg": "#FFF1E4",
+    "surface": "#FFF1E4",
+    "card": "#FFFFFF",
+    "ink": "#3B2E4A",
+    "muted": "#6B5878",
+    "rule": "#F3D5C4",
+    "accent": "#9D3B66",
+    "accent2": "#7ED0C8",
+    "signature": "#F2A0C0",
+    "onAccent": "#3B2E4A"
+  },
+  "fonts": {
+    "display": "Poppins Bold",
+    "text": "Figtree"
+  },
+  "cornerRadius": 24,
+  "strokeWidth": 0,
+  "charts": false,
+  "assets": {
+    "folder": "assets/decorations/creative",
+    "slots": [
+      { "x": 1448, "y": 742, "w": 136, "h": 136 },
+      { "x": 24, "y": 720, "w": 150, "h": 150 }
+    ]
+  }
+}

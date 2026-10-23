@@ -1,0 +1,965 @@
+{
+  "version": 2,
+  "schemaVersion": 2,
+  "id": "gen-38320",
+  "name": "Night Railway",
+  "description": "Night Railway — Playfair Display and EB Garamond.",
+  "category": "Night Railway",
+  "visualMode": "hybrid",
+  "seed": 38320,
+  "taste": {
+    "cover": "photo",
+    "density": "dense",
+    "align": "left",
+    "slides": [
+      "layoutStatHighlight",
+      "layoutTextOnly",
+      "layoutTimeline"
+    ]
+  },
+  "geometry": "photo.dense.left.columns.cards.panel.uneven.right.bleed.band.strip.accent.mark.left.72.0.0.48.0.Night Railway.layoutStatHighlight-layoutTextOnly-layoutTimeline",
+  "tokens": {
+    "color": {
+      "bg": "#1a237e",
+      "surface": "#3f51b5",
+      "card": "#536dfe",
+      "ink": "#ffffff",
+      "muted": "#b0bec5",
+      "rule": "#e91e63",
+      "accent": "#ffc107",
+      "accent2": "#f57c00",
+      "onAccent": "#000000"
+    },
+    "font": {
+      "display": "Playfair Display",
+      "text": "EB Garamond"
+    },
+    "type": {
+      "eyebrow": 18,
+      "h1": 79,
+      "h2": 49,
+      "h3": 32,
+      "h4": 24,
+      "body": 23,
+      "caption": 20,
+      "stat": 113,
+      "micro": 16
+    }
+  },
+  "theme": {
+    "name": "Night Railway",
+    "backgroundColor": "{color.bg}",
+    "fontFamily": "{font.text}",
+    "titleFontSize": 40,
+    "titleColor": "{color.ink}",
+    "titleBold": true,
+    "titleItalic": false,
+    "bodyFontSize": 20,
+    "bodyColor": "{color.muted}",
+    "bodyBold": false,
+    "bodyItalic": false
+  },
+  "layoutSequence": [
+    "layoutTitleFocus",
+    "layoutStatHighlight",
+    "layoutTextOnly",
+    "layoutTimeline",
+    "layoutClosingCta"
+  ],
+  "layouts": {
+    "layoutTitleFocus": {
+      "version": 2,
+      "id": "layoutTitleFocus",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "photo",
+          "type": "image",
+          "role": "image",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 1,
+          "imageContent": {
+            "binding": "image",
+            "url": "https://images.pexels.com/photos/1235513/pexels-photo-1235513.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+            "fit": "cover",
+            "alignX": 0.5,
+            "alignY": 0.5
+          }
+        },
+        {
+          "id": "scrim",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#000000"
+          },
+          "opacity": 0.35
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "x": 120,
+          "y": 320,
+          "width": 1360,
+          "height": 180,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 120,
+            "fontWeight": 600,
+            "color": "#F4F1EA",
+            "textAlign": "center",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "title"
+          }
+        },
+        {
+          "id": "body",
+          "type": "text",
+          "x": 360,
+          "y": 520,
+          "width": 880,
+          "height": 60,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 28,
+            "fontWeight": 500,
+            "color": "#F4F1EA",
+            "textAlign": "center",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "bullets"
+          }
+        }
+      ]
+    },
+    "layoutStatHighlight": {
+      "version": 2,
+      "id": "layoutStatHighlight",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.bg}"
+          }
+        },
+        {
+          "id": "grain",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 1,
+          "shapeContent": {
+            "kind": "decor",
+            "decorName": "noise",
+            "fill": "{color.ink}",
+            "decorParams": {
+              "density": 0.4,
+              "dotSize": 1.3,
+              "seed": 0
+            }
+          },
+          "opacity": 0.12
+        },
+        {
+          "id": "block",
+          "type": "shape",
+          "x": 980,
+          "y": 0,
+          "width": 620,
+          "height": 900,
+          "zIndex": 1,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.accent}"
+          }
+        },
+        {
+          "id": "stat",
+          "type": "text",
+          "x": 1060,
+          "y": 300,
+          "width": 480,
+          "height": 200,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": "{type.stat}",
+            "fontWeight": 700,
+            "color": "{color.onAccent}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "subtitle"
+          }
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "x": 72,
+          "y": 280,
+          "width": 840,
+          "height": 180,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": "{type.h2}",
+            "fontWeight": 650,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "title"
+          }
+        },
+        {
+          "id": "body",
+          "type": "text",
+          "x": 72,
+          "y": 500,
+          "width": 840,
+          "height": 120,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": "{type.body}",
+            "fontWeight": 500,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "bullets"
+          }
+        }
+      ]
+    },
+    "layoutTextOnly": {
+      "version": 2,
+      "id": "layoutTextOnly",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.bg}"
+          }
+        },
+        {
+          "id": "grain",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 1,
+          "shapeContent": {
+            "kind": "decor",
+            "decorName": "noise",
+            "fill": "{color.ink}",
+            "decorParams": {
+              "density": 0.4,
+              "dotSize": 1.3,
+              "seed": 0
+            }
+          },
+          "opacity": 0.12
+        },
+        {
+          "id": "panel",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 1,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.accent}"
+          }
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "x": 72,
+          "y": 260,
+          "width": 1200,
+          "height": 220,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": "{type.h1}",
+            "fontWeight": 700,
+            "color": "{color.onAccent}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "title"
+          }
+        },
+        {
+          "id": "body",
+          "type": "text",
+          "x": 72,
+          "y": 520,
+          "width": 900,
+          "height": 120,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": "{type.body}",
+            "fontWeight": 500,
+            "color": "{color.onAccent}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "bullets"
+          }
+        }
+      ]
+    },
+    "layoutTimeline": {
+      "version": 2,
+      "id": "layoutTimeline",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.bg}"
+          }
+        },
+        {
+          "id": "grain",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 1,
+          "shapeContent": {
+            "kind": "decor",
+            "decorName": "noise",
+            "fill": "{color.ink}",
+            "decorParams": {
+              "density": 0.4,
+              "dotSize": 1.3,
+              "seed": 0
+            }
+          },
+          "opacity": 0.12
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "x": 72,
+          "y": 72,
+          "width": 1200,
+          "height": 80,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": "{type.h2}",
+            "fontWeight": 650,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "title"
+          }
+        },
+        {
+          "id": "card0",
+          "type": "shape",
+          "x": 72,
+          "y": 240,
+          "width": 346,
+          "height": 520,
+          "zIndex": 2,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.card}"
+          }
+        },
+        {
+          "id": "top0",
+          "type": "shape",
+          "x": 72,
+          "y": 240,
+          "width": 346,
+          "height": 12,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.accent}"
+          }
+        },
+        {
+          "id": "m0",
+          "type": "text",
+          "x": 96,
+          "y": 280,
+          "width": 298,
+          "height": 40,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": "{type.h4}",
+            "fontWeight": 700,
+            "color": "{color.accent}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "timelineMarker"
+          },
+          "itemIndex": 0,
+          "visibleWhen": "hasLabeledItem"
+        },
+        {
+          "id": "tl0",
+          "type": "text",
+          "x": 96,
+          "y": 340,
+          "width": 298,
+          "height": 80,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": "{type.h4}",
+            "fontWeight": 650,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "timelineLabel"
+          },
+          "itemIndex": 0,
+          "visibleWhen": "hasLabeledItem"
+        },
+        {
+          "id": "td0",
+          "type": "text",
+          "x": 96,
+          "y": 440,
+          "width": 298,
+          "height": 240,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": "{type.body}",
+            "fontWeight": 500,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "labeledDetail"
+          },
+          "itemIndex": 0,
+          "visibleWhen": "hasLabeledItem"
+        },
+        {
+          "id": "card1",
+          "type": "shape",
+          "x": 442,
+          "y": 240,
+          "width": 346,
+          "height": 520,
+          "zIndex": 2,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.card}"
+          }
+        },
+        {
+          "id": "top1",
+          "type": "shape",
+          "x": 442,
+          "y": 240,
+          "width": 346,
+          "height": 12,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.accent}"
+          }
+        },
+        {
+          "id": "m1",
+          "type": "text",
+          "x": 466,
+          "y": 280,
+          "width": 298,
+          "height": 40,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": "{type.h4}",
+            "fontWeight": 700,
+            "color": "{color.accent}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "timelineMarker"
+          },
+          "itemIndex": 1,
+          "visibleWhen": "hasLabeledItem"
+        },
+        {
+          "id": "tl1",
+          "type": "text",
+          "x": 466,
+          "y": 340,
+          "width": 298,
+          "height": 80,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": "{type.h4}",
+            "fontWeight": 650,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "timelineLabel"
+          },
+          "itemIndex": 1,
+          "visibleWhen": "hasLabeledItem"
+        },
+        {
+          "id": "td1",
+          "type": "text",
+          "x": 466,
+          "y": 440,
+          "width": 298,
+          "height": 240,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": "{type.body}",
+            "fontWeight": 500,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "labeledDetail"
+          },
+          "itemIndex": 1,
+          "visibleWhen": "hasLabeledItem"
+        },
+        {
+          "id": "card2",
+          "type": "shape",
+          "x": 812,
+          "y": 240,
+          "width": 346,
+          "height": 520,
+          "zIndex": 2,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.card}"
+          }
+        },
+        {
+          "id": "top2",
+          "type": "shape",
+          "x": 812,
+          "y": 240,
+          "width": 346,
+          "height": 12,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.accent}"
+          }
+        },
+        {
+          "id": "m2",
+          "type": "text",
+          "x": 836,
+          "y": 280,
+          "width": 298,
+          "height": 40,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": "{type.h4}",
+            "fontWeight": 700,
+            "color": "{color.accent}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "timelineMarker"
+          },
+          "itemIndex": 2,
+          "visibleWhen": "hasLabeledItem"
+        },
+        {
+          "id": "tl2",
+          "type": "text",
+          "x": 836,
+          "y": 340,
+          "width": 298,
+          "height": 80,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": "{type.h4}",
+            "fontWeight": 650,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "timelineLabel"
+          },
+          "itemIndex": 2,
+          "visibleWhen": "hasLabeledItem"
+        },
+        {
+          "id": "td2",
+          "type": "text",
+          "x": 836,
+          "y": 440,
+          "width": 298,
+          "height": 240,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": "{type.body}",
+            "fontWeight": 500,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "labeledDetail"
+          },
+          "itemIndex": 2,
+          "visibleWhen": "hasLabeledItem"
+        },
+        {
+          "id": "card3",
+          "type": "shape",
+          "x": 1182,
+          "y": 240,
+          "width": 346,
+          "height": 520,
+          "zIndex": 2,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.card}"
+          }
+        },
+        {
+          "id": "top3",
+          "type": "shape",
+          "x": 1182,
+          "y": 240,
+          "width": 346,
+          "height": 12,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.accent}"
+          }
+        },
+        {
+          "id": "m3",
+          "type": "text",
+          "x": 1206,
+          "y": 280,
+          "width": 298,
+          "height": 40,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": "{type.h4}",
+            "fontWeight": 700,
+            "color": "{color.accent}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "timelineMarker"
+          },
+          "itemIndex": 3,
+          "visibleWhen": "hasLabeledItem"
+        },
+        {
+          "id": "tl3",
+          "type": "text",
+          "x": 1206,
+          "y": 340,
+          "width": 298,
+          "height": 80,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": "{type.h4}",
+            "fontWeight": 650,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "timelineLabel"
+          },
+          "itemIndex": 3,
+          "visibleWhen": "hasLabeledItem"
+        },
+        {
+          "id": "td3",
+          "type": "text",
+          "x": 1206,
+          "y": 440,
+          "width": 298,
+          "height": 240,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": "{type.body}",
+            "fontWeight": 500,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "labeledDetail"
+          },
+          "itemIndex": 3,
+          "visibleWhen": "hasLabeledItem"
+        }
+      ]
+    },
+    "layoutClosingCta": {
+      "version": 2,
+      "id": "layoutClosingCta",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.bg}"
+          }
+        },
+        {
+          "id": "grain",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 1,
+          "shapeContent": {
+            "kind": "decor",
+            "decorName": "noise",
+            "fill": "{color.ink}",
+            "decorParams": {
+              "density": 0.4,
+              "dotSize": 1.3,
+              "seed": 0
+            }
+          },
+          "opacity": 0.12
+        },
+        {
+          "id": "rule",
+          "type": "shape",
+          "x": 72,
+          "y": 300,
+          "width": 120,
+          "height": 6,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "{color.accent}"
+          }
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "x": 72,
+          "y": 340,
+          "width": 1000,
+          "height": 160,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": "{type.h1}",
+            "fontWeight": 650,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "title"
+          }
+        },
+        {
+          "id": "body",
+          "type": "text",
+          "x": 72,
+          "y": 530,
+          "width": 700,
+          "height": 70,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": "{type.body}",
+            "fontWeight": 500,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "themeLocked": true,
+            "lineHeight": 1.15
+          },
+          "textContent": {
+            "binding": "bullets"
+          }
+        }
+      ]
+    }
+  },
+  "previewSlides": [
+    {
+      "id": "gen-38320-p1",
+      "layout": "layoutTitleFocus",
+      "title": "Midnight Express",
+      "bullets": [
+        "A Journey Through Time and Tracks"
+      ]
+    },
+    {
+      "id": "gen-38320-p2",
+      "layout": "layoutStatHighlight",
+      "title": "The figure that matters",
+      "bullets": [
+        "One number, then stop"
+      ]
+    },
+    {
+      "id": "gen-38320-p3",
+      "layout": "layoutTextOnly",
+      "title": "Say it in one line",
+      "bullets": [
+        "A single idea"
+      ]
+    },
+    {
+      "id": "gen-38320-p4",
+      "layout": "layoutTimeline",
+      "title": "How it unfolds",
+      "bullets": [
+        "Start — Name the job",
+        "Build — Make the first cut",
+        "Show — Put it in front of someone"
+      ]
+    },
+    {
+      "id": "gen-38320-p5",
+      "layout": "layoutClosingCta",
+      "title": "Begin here",
+      "bullets": [
+        "Take the first step"
+      ]
+    }
+  ],
+  "tells": [],
+  "status": "audit-sample",
+  "createdAt": "2026-10-16T18:59:52.577Z"
+}

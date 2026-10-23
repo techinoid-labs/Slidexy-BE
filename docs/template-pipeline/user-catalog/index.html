@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Template Library</title>
+  <style>
+    :root { color-scheme: light; }
+    body { margin: 0; font-family: Georgia, "Times New Roman", serif; background: #f4f1ea; color: #1c1916; }
+    header { padding: 32px 32px 8px; display: grid; gap: 16px; }
+    h1 { margin: 0; font-size: 36px; font-weight: 600; }
+    input { font: 16px "Segoe UI", sans-serif; padding: 12px 14px; border: 1px solid #c8c0b4; border-radius: 8px; background: #fff; max-width: 480px; width: 100%; }
+    #status { min-height: 1.4em; padding: 4px 32px 12px; font-family: "Segoe UI", sans-serif; color: #5c564e; }
+    #grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; padding: 8px 32px 48px; }
+    article { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.08); display: flex; flex-direction: column; }
+    article img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: #e7e1d6; }
+    article div { padding: 14px 16px 16px; display: grid; gap: 8px; }
+    h2 { margin: 0; font-size: 20px; font-weight: 600; }
+    p { margin: 0; font-family: "Segoe UI", sans-serif; font-size: 14px; color: #5c564e; }
+    button { font: 14px "Segoe UI", sans-serif; padding: 10px 14px; border-radius: 8px; border: 0; cursor: pointer; }
+    .view { background: #1c1916; color: #f4f1ea; justify-self: start; }
+    button:disabled { opacity: 0.6; cursor: wait; }
+    #modal { position: fixed; inset: 0; background: rgba(28, 25, 22, 0.72); display: grid; place-items: center; padding: 24px; }
+    #modal[hidden] { display: none; }
+    .sheet { width: min(960px, 100%); background: #f4f1ea; border-radius: 14px; padding: 18px; display: grid; gap: 12px; }
+    .sheet header { padding: 0; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .sheet h2 { font-size: 24px; }
+    .stage { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; }
+    .stage img { width: 100%; height: auto; background: #fff; border-radius: 8px; }
+    .nav, .close, #download { background: #fff; color: #1c1916; border: 1px solid #1c1916; }
+    #download { background: #1e3a32; color: #f4f1ea; border: 0; }
+    .bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-family: "Segoe UI", sans-serif; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Template Library</h1>
+    <input id="search" type="search" placeholder="Search by name or description" aria-label="Search templates">
+  </header>
+  <div id="status" role="status">Loading the library.</div>
+  <div id="grid"></div>
+  <div id="modal" hidden>
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="deck-title">
+      <header>
+        <h2 id="deck-title"></h2>
+        <button class="close" type="button">Close</button>
+      </header>
+      <div class="stage">
+        <button class="nav" id="prev" type="button" aria-label="Previous slide">Prev</button>
+        <img id="slide" alt="">
+        <button class="nav" id="next" type="button" aria-label="Next slide">Next</button>
+      </div>
+      <div class="bar">
+        <span id="count"></span>
+        <button id="download" type="button">Download PPTX</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    const grid = document.getElementById("grid");
+    const status = document.getElementById("status");
+    const search = document.getElementById("search");
+    const modal = document.getElementById("modal");
+    const title = document.getElementById("deck-title");
+    const slide = document.getElementById("slide");
+    const count = document.getElementById("count");
+    const download = document.getElementById("download");
+    let decks = [];
+    let open = null;
+    let index = 0;
+
+    function showCards() {
+      const query = search.value.trim().toLowerCase();
+      const visible = decks.filter((deck) => {
+        const hay = (deck.name + " " + deck.description).toLowerCase();
+        return !query || hay.indexOf(query) >= 0;
+      });
+      grid.replaceChildren();
+      visible.forEach((deck) => {
+        const card = document.createElement("article");
+        const image = document.createElement("img");
+        image.src = deck.thumbnailUrl;
+        image.alt = deck.name;
+        const body = document.createElement("div");
+        const heading = document.createElement("h2");
+        heading.textContent = deck.name;
+        const text = document.createElement("p");
+        text.textContent = deck.description || "";
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "view";
+        button.textContent = "View Deck";
+        button.addEventListener("click", () => openDeck(deck.id));
+        body.append(heading, text, button);
+        card.append(image, body);
+        grid.append(card);
+      });
+      status.textContent = visible.length + " template" + (visible.length === 1 ? "" : "s") + ".";
+    }
+
+    function paint() {
+      const current = open.slides[index];
+      slide.src = current.url;
+      slide.alt = open.deck.name + ", slide " + (index + 1);
+      count.textContent = "Slide " + (index + 1) + " of " + open.slides.length;
+      document.getElementById("prev").disabled = index === 0;
+      document.getElementById("next").disabled = index === open.slides.length - 1;
+    }
+
+    async function openDeck(id) {
+      status.textContent = "Opening the deck.";
+      const response = await fetch("/api/catalog/" + encodeURIComponent(id));
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || "Could not open the deck");
+      open = data;
+      index = 0;
+      title.textContent = data.deck.name || id;
+      modal.hidden = false;
+      paint();
+      showCards();
+    }
+
+    search.addEventListener("input", showCards);
+    document.getElementById("prev").addEventListener("click", () => { if (index > 0) { index -= 1; paint(); } });
+    document.getElementById("next").addEventListener("click", () => { if (open && index < open.slides.length - 1) { index += 1; paint(); } });
+    document.querySelector(".close").addEventListener("click", () => { modal.hidden = true; open = null; });
+    download.addEventListener("click", async () => {
+      if (!open) return;
+      download.disabled = true;
+      try {
+        const response = await fetch("/api/catalog/" + encodeURIComponent(open.deck.id) + "/download", { method: "POST" });
+        if (!response.ok) {
+          const data = await response.json().catch(() => ({}));
+          throw new Error(data.error || "Download failed");
+        }
+        const blob = await response.blob();
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = open.deck.id + ".pptx";
+        link.click();
+        URL.revokeObjectURL(link.href);
+      } catch (error) {
+        status.textContent = error.message;
+      } finally {
+        download.disabled = false;
+      }
+    });
+
+    fetch("/api/catalog")
+      .then((response) => response.json().then((data) => ({ ok: response.ok, data })))
+      .then(({ ok, data }) => {
+        if (!ok) throw new Error(data.error || "Could not read the catalog");
+        decks = data.decks || [];
+        showCards();
+      })
+      .catch((error) => { status.textContent = error.message; });
+  </script>
+</body>
+</html>
