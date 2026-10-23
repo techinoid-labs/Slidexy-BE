@@ -133,12 +133,14 @@ const VISUAL_TEMPLATES = {
   }
 };
 
+// Short by design: these go on a slide, where the number is the point and
+// the label only says what it counts.
 const INFOGRAPHIC_FALLBACKS = [
-  "68% — Organizations that prioritize this area outperform industry peers on key performance metrics",
-  "3.5× — Average return on investment reported by companies implementing structured best practices",
-  "42 days — Typical time-to-value when adopting a phased, disciplined implementation approach",
-  "89% — Stakeholder satisfaction rate achieved through consistent delivery and clear communication",
-  "2.1× — Productivity improvement observed in teams with dedicated process and workflow optimization"
+  "68%: outperform their peers",
+  "3.5x: return on investment",
+  "42 days: to first value",
+  "89%: stakeholder satisfaction",
+  "2.1x: team productivity"
 ];
 
 // Variant counts per layout type — must stay in sync with frontend LAYOUT_VARIANT_COUNTS
@@ -260,6 +262,15 @@ ${designGuidelines ? `\nDESIGN & STYLE GUIDELINES (apply consistently to every s
 
 CONTENT QUALITY STANDARDS — READ CAREFULLY BEFORE GENERATING:
 
+RULE 0 — A SLIDE IS NOT A DOCUMENT (this rule outranks every rule below)
+• The audience is listening to a person. The slide is what they glance at. Anything that has to be read instead of glanced at belongs in what the presenter says, not on the slide.
+• Hard ceiling: about 25 words of body text on a slide, across ALL bullets combined. Titles and labels are on top of that.
+• Write the shortest phrase that still carries the fact. Drop articles, drop framing, drop "in order to", drop anything the title already said.
+• A bullet is a phrase, not a sentence. No full stops at the end of bullets.
+• Specific and short beats specific and long: "Churn down 47% after onboarding rebuild" says everything "47% reduction in customer churn achieved after implementing the new onboarding workflow in Year 2" does, in a third of the room.
+• If a slide genuinely needs more than four bullets, it is two slides.
+• Never use an em dash in any output. Use a colon, a comma, or two sentences.
+
 RULE 1 — TITLE SPECIFICITY
 • Titles must reference ACTUAL subject matter from the content source. Never use generic titles like "Key Insights", "Important Analysis", "Core Capabilities", or "Overview of X".
 • Good: "Revenue Doubled in 18 Months" | "Three Risks Demanding Immediate Action" | "Why Traditional Banks Are Losing"
@@ -267,41 +278,47 @@ RULE 1 — TITLE SPECIFICITY
 
 RULE 2 — COVER-HERO SLIDE
 • Title: The single most powerful or surprising claim from the entire presentation.
-• Subtitle: One sentence (max 20 words) framing WHY this matters to the audience RIGHT NOW.
-• Preview bullets (2–3): Each must preview a SPECIFIC, NAMED insight from a later slide — not vague teasers.
-  - Good: "Global expansion increased user base by 340% in Q3"
+• Subtitle: One line, max 12 words, framing why this matters now.
+• Preview bullets (2–3): Each previews a SPECIFIC, NAMED insight from a later slide. 4–8 words each.
+  - Good: "User base up 340% in Q3"
   - Bad: "Strategic overview and key insights"
 
 RULE 3 — CONTENT SLIDES (content-right-image, content-left-image)
-• Each bullet must be 15–25 words — a COMPLETE, SPECIFIC thought with supporting detail, number, or outcome.
-• At least ONE bullet per slide must contain a concrete figure, date, name, percentage, or measurable result from the source content.
-• Bullets must build logically: first bullet = main point, subsequent bullets = evidence/detail/implication.
-• Good: "Mobile-first approach reduced customer onboarding time from 14 days to under 48 hours across all markets"
-• Bad: "Improved onboarding process with faster turnaround time"
+• 3 bullets. 4 only when the fourth genuinely earns its place.
+• Each bullet 5–10 words. A phrase carrying one fact, not a sentence explaining it.
+• At least ONE bullet per slide carries a concrete figure, date, name or percentage from the source content.
+• Bullets build logically: first = the point, the rest = the evidence.
+• Good: "Onboarding: 14 days down to 48 hours"
+• Also good: "Mobile first, every market"
+• Bad: "Mobile-first approach reduced customer onboarding time from 14 days to under 48 hours across all markets" (a sentence, not a bullet)
+• Bad: "Improved onboarding process with faster turnaround time" (vague)
 
 RULE 4 — CONTENT-SPLIT SLIDES (comparative layout)
-• Use EXACTLY 4–6 bullets arranged as contrasting pairs (even count for even split).
-• Prefix each bullet to indicate its side: "Before: ...", "After: ...", OR "Strength: ...", "Challenge: ...", OR "Option A: ...", "Option B: ..."
-• Good: "Before: Manual processing required 3 FTEs and a 5-day turnaround" / "After: Automated pipeline completes the same work in 4 hours with zero manual input"
+• Use EXACTLY 4 bullets as two contrasting pairs.
+• Prefix each to indicate its side: "Before: ...", "After: ...", OR "Strength: ...", "Challenge: ...", OR "Option A: ...", "Option B: ..."
+• 4–9 words after the prefix.
+• Good: "Before: 3 people, 5 days" / "After: automated, 4 hours"
 
 RULE 5 — QUOTE SLIDES
 • Extract an ACTUAL quote or verbatim statement from the source content if one exists. If not, synthesize a realistic quote a credible industry professional would genuinely say.
 • Author must be a named role (e.g., "Dr. Priya Mehta, Chief Medical Officer, HealthTech Inc.") — never just "Expert Name".
-• Quote length: 25–60 words. Must be a complete, meaningful thought.
-• Context (1 sentence): explain exactly what this quote proves about the presentation's central argument.
+• Quote length: 12–28 words. One thought, said the way a person actually speaks.
+• Context: one short line, max 12 words, on what the quote proves.
 • NEVER write: "A powerful insight from industry experts." — this fails quality review automatically.
 
 RULE 6 — INFOGRAPHIC-BULLETS (data-visual slide)
-• ALL bullets must follow: "METRIC — One specific sentence explaining what this metric means and why it matters"
-• Metrics must be REAL numbers from the source content, or realistic industry-standard benchmarks cited as such.
-• Good: "47% — Reduction in customer churn achieved after implementing the new onboarding workflow in Year 2"
-• Bad: "73% — Growth in key metric over last year"
+• ALL bullets must follow: "METRIC: three to six word label". The number carries the slide; the label only says what it counts.
+• Metrics must be REAL numbers from the source content, or realistic industry benchmarks cited as such.
+• 3 metrics, 4 at most.
+• Good: "47%: churn, after the onboarding rebuild"
+• Bad: "47% — Reduction in customer churn achieved after implementing the new onboarding workflow in Year 2" (a sentence, and an em dash)
+• Bad: "73%: growth in key metric" (vague)
 
 RULE 7 — CALL-TO-ACTION / CONCLUSION SLIDES
-• Bullets (1–2): SPECIFIC next steps with WHO, WHAT, and WHEN. Not vague intentions.
-  - Good: "Schedule a discovery call with our solutions team within 72 hours to begin project scoping"
+• Bullets (1–2): a specific next step, under 10 words. Who and what, and when if it matters.
+  - Good: "Book a scoping call this week"
   - Bad: "Take action to implement the solution"
-• Description: Summarize the single most important reason to act NOW, with urgency framing.
+• Description: one short line on why now.
 
 RULE 8 — NARRATIVE FLOW (cross-slide coherence)
 • Slides must tell a STORY. Each slide title should logically follow from the previous.
@@ -351,10 +368,9 @@ For content-right-image/content-left-image:
   "layout_type": "content-right-image",
   "title": "Key Insight Heading",
   "bullets": [
-    "First impactful bullet point with specific detail",
-    "Second supporting point with clear value",
-    "Third compelling insight or finding",
-    "Fourth actionable observation when needed"
+    "Revenue doubled, 18 months (5-10 words)",
+    "Two markets, no new headcount (5-10 words)",
+    "Churn halved since March (5-10 words)"
   ]
 }
 
@@ -364,11 +380,10 @@ For content-split:
   "layout_type": "content-split",
   "title": "Core Capabilities",
   "bullets": [
-    "Strength 1 detail (6-12 words)",
-    "Strength 2 detail (6-12 words)",
-    "Strength 3 detail (6-12 words)",
-    "Strength 4 detail (6-12 words)",
-    "Strength 5 detail (if using 5)"
+    "Before: 3 people, 5 days (4-9 words)",
+    "After: automated, 4 hours (4-9 words)",
+    "Before: quarterly reporting (4-9 words)",
+    "After: live dashboard (4-9 words)"
   ]
 }
 
@@ -546,7 +561,7 @@ Generate exactly ${slideCount} slides that tell a compelling story:`;
       }
       if (slide.layout_type === "quote-slide" && !slide.quote) {
         const extractedFallbackQuote = extractQuoteFromSource(safeRawText);
-        slide.quote = extractedFallbackQuote || "The most valuable competitive advantage today is the ability to learn, adapt, and act faster than the market expects — and then act on what you learn.";
+        slide.quote = extractedFallbackQuote || "The advantage is learning faster than the market expects, then acting on it.";
         slide.author = "Industry Leader";
         slide.context = `This perspective reinforces the central argument of this presentation on ${slide.title || "the topic"}.`;
       }
@@ -593,27 +608,27 @@ Generate exactly ${slideCount} slides that tell a compelling story:`;
 
 function generateFallbackBullets(title, count, layoutType) {
   const basePhrases = [
-    `${title} addresses a critical challenge that organizations in this space face today, with measurable impact on outcomes.`,
-    "This approach has demonstrated consistent improvements in efficiency, quality, and stakeholder satisfaction across comparable implementations.",
-    "The evidence supporting this direction comes from real-world results, not theoretical frameworks — making it immediately actionable.",
-    "Key differentiators include speed of execution, lower total cost of ownership, and a clear path to measurable return on investment.",
-    "Adoption of this strategy positions the organization ahead of emerging competitive pressures and regulatory shifts.",
-    "The implementation roadmap is phased for risk mitigation, with clear milestones and accountability at each stage."
+    `${title}: the problem worth solving first`,
+    "Measurable on efficiency and quality",
+    "The evidence is results, not frameworks",
+    "Faster to run, cheaper to own",
+    "Ahead of the next regulatory shift",
+    "Phased rollout, milestones at each stage"
   ];
 
   const coverPhrases = [
-    `Discover how ${title} is transforming outcomes for leading organizations in this field`,
-    "Real data, specific case evidence, and actionable next steps included throughout this presentation",
-    "Attendees will leave with a clear decision framework and a prioritized implementation path"
+    `What ${title} changes, and for whom`,
+    "Real numbers, not frameworks",
+    "A decision you can make by the end"
   ];
 
   const splitPhrases = [
-    `Before: Traditional approach requires significant manual effort and extended lead times for ${title}`,
-    "After: Streamlined methodology delivers the same outcomes in a fraction of the time and cost",
-    "Strength: Proven track record with measurable results across diverse organizational contexts",
-    "Opportunity: Untapped potential in adjacent areas where this approach applies equally well",
-    "Challenge: Legacy systems and change-resistance slow adoption despite a clear business case",
-    "Solution: Phased rollout with stakeholder engagement built in from day one reduces resistance"
+    "Before: manual, and slow to start",
+    "After: same outcome, a fraction of the time",
+    "Strength: a record you can check",
+    "Opportunity: the same move, one step out",
+    "Challenge: legacy systems, and habit",
+    "Solution: phased, with owners named"
   ];
 
   let sourceArray;
@@ -733,7 +748,7 @@ function transformToTextOnlySlide(aiSlide, index, totalSlides, rawText = "") {
       const _extractedQuote = extractQuoteFromSource(rawText);
       const quoteText = (aiSlide.quote && typeof aiSlide.quote === 'string' && aiSlide.quote.trim().length > 0)
         ? aiSlide.quote
-        : (_extractedQuote || "The most valuable competitive advantage today is the ability to learn, adapt, and act faster than the market expects — and then act on what you learn.");
+        : (_extractedQuote || "The advantage is learning faster than the market expects, then acting on it.");
 
       const authorText = (aiSlide.author && typeof aiSlide.author === 'string' && aiSlide.author.trim().length > 0)
         ? aiSlide.author
@@ -977,7 +992,7 @@ function generateIntelligentFallbackSlides(slideCount, rawText) {
         context: "This perspective reinforces the core theme of this presentation."
       }),
       ...(slideType === "call-to-action" && {
-        description: "Take the first concrete step today — the longer you wait, the more ground competitors will gain."
+        description: "Take the first step this week."
       })
     };
 

@@ -1,0 +1,425 @@
+{
+  "id": "native-next",
+  "name": "Three Phases",
+  "role": "Next",
+  "tokens": {
+    "color": {
+      "bg": "#F3F1EC",
+      "surface": "#F3F1EC",
+      "card": "#FFFFFF",
+      "ink": "#1A2332",
+      "muted": "#3D4C5C",
+      "rule": "#D5D0C8",
+      "accent": "#163A5F",
+      "accent2": "#163A5F",
+      "onAccent": "#F3F1EC"
+    },
+    "font": {
+      "display": "Poppins Bold",
+      "text": "Figtree"
+    },
+    "type": {
+      "h1": 64,
+      "body": 16
+    }
+  },
+  "layout": {
+    "version": 2,
+    "id": "native-next",
+    "canvas": {
+      "width": 1600,
+      "height": 900,
+      "aspectRatio": "16:9"
+    },
+    "elements": [
+      {
+        "id": "native-next-field",
+        "type": "shape",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "zIndex": 0,
+        "shapeContent": {
+          "kind": "rect",
+          "fill": "#F3F1EC",
+          "cornerRadius": 0
+        }
+      },
+      {
+        "id": "native-signature",
+        "type": "shape",
+        "x": 1416,
+        "y": -180,
+        "width": 484,
+        "height": 480,
+        "zIndex": 4,
+        "shapeContent": {
+          "kind": "circle",
+          "fill": "#163A5F",
+          "cornerRadius": 0
+        }
+      },
+      {
+        "id": "native-next-title",
+        "type": "text",
+        "x": 80,
+        "y": 56,
+        "width": 1440,
+        "height": 110,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Poppins Bold",
+          "fontSize": 64,
+          "fontWeight": 800,
+          "color": "#1A2332",
+          "textAlign": "left",
+          "lineHeight": 0.96,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "What is next",
+              "fontFamily": "Poppins Bold",
+              "fontSize": 64,
+              "fontWeight": 800,
+              "color": "#1A2332"
+            }
+          ]
+        }
+      },
+      {
+        "id": "native-next-rail-1",
+        "type": "shape",
+        "x": 280,
+        "y": 237,
+        "width": 480,
+        "height": 6,
+        "zIndex": 2,
+        "shapeContent": {
+          "kind": "rect",
+          "fill": "#163A5F",
+          "cornerRadius": 0
+        }
+      },
+      {
+        "id": "native-next-mark-1",
+        "type": "shape",
+        "x": 200,
+        "y": 200,
+        "width": 80,
+        "height": 80,
+        "zIndex": 3,
+        "shapeContent": {
+          "kind": "rect",
+          "fill": "#163A5F",
+          "cornerRadius": 0
+        }
+      },
+      {
+        "id": "native-next-num-1",
+        "type": "text",
+        "x": 200,
+        "y": 216,
+        "width": 80,
+        "height": 48,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Poppins Bold",
+          "fontSize": 28,
+          "fontWeight": 800,
+          "color": "#F3F1EC",
+          "textAlign": "center",
+          "lineHeight": 1.2,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "01",
+              "fontFamily": "Poppins Bold",
+              "fontSize": 28,
+              "fontWeight": 800,
+              "color": "#F3F1EC"
+            }
+          ]
+        }
+      },
+      {
+        "id": "native-next-title-1",
+        "type": "text",
+        "x": 60,
+        "y": 320,
+        "width": 360,
+        "height": 80,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Poppins Bold",
+          "fontSize": 48,
+          "fontWeight": 800,
+          "color": "#1A2332",
+          "textAlign": "left",
+          "lineHeight": 1.2,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "Phase",
+              "fontFamily": "Poppins Bold",
+              "fontSize": 48,
+              "fontWeight": 800,
+              "color": "#1A2332"
+            }
+          ]
+        }
+      },
+      {
+        "id": "native-next-line-1",
+        "type": "text",
+        "x": 60,
+        "y": 412,
+        "width": 360,
+        "height": 100,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Figtree",
+          "fontSize": 16,
+          "fontWeight": 400,
+          "color": "#1A2332",
+          "textAlign": "left",
+          "lineHeight": 1.2,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "One short line",
+              "fontFamily": "Figtree",
+              "fontSize": 16,
+              "fontWeight": 400,
+              "color": "#1A2332"
+            }
+          ]
+        }
+      },
+      {
+        "id": "native-next-rail-2",
+        "type": "shape",
+        "x": 840,
+        "y": 237,
+        "width": 480,
+        "height": 6,
+        "zIndex": 2,
+        "shapeContent": {
+          "kind": "rect",
+          "fill": "#163A5F",
+          "cornerRadius": 0
+        }
+      },
+      {
+        "id": "native-next-mark-2",
+        "type": "shape",
+        "x": 760,
+        "y": 200,
+        "width": 80,
+        "height": 80,
+        "zIndex": 3,
+        "shapeContent": {
+          "kind": "rect",
+          "fill": "#163A5F",
+          "cornerRadius": 0
+        }
+      },
+      {
+        "id": "native-next-num-2",
+        "type": "text",
+        "x": 760,
+        "y": 216,
+        "width": 80,
+        "height": 48,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Poppins Bold",
+          "fontSize": 28,
+          "fontWeight": 800,
+          "color": "#F3F1EC",
+          "textAlign": "center",
+          "lineHeight": 1.2,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "02",
+              "fontFamily": "Poppins Bold",
+              "fontSize": 28,
+              "fontWeight": 800,
+              "color": "#F3F1EC"
+            }
+          ]
+        }
+      },
+      {
+        "id": "native-next-title-2",
+        "type": "text",
+        "x": 620,
+        "y": 320,
+        "width": 360,
+        "height": 80,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Poppins Bold",
+          "fontSize": 48,
+          "fontWeight": 800,
+          "color": "#1A2332",
+          "textAlign": "left",
+          "lineHeight": 1.2,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "Phase",
+              "fontFamily": "Poppins Bold",
+              "fontSize": 48,
+              "fontWeight": 800,
+              "color": "#1A2332"
+            }
+          ]
+        }
+      },
+      {
+        "id": "native-next-line-2",
+        "type": "text",
+        "x": 620,
+        "y": 412,
+        "width": 360,
+        "height": 100,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Figtree",
+          "fontSize": 16,
+          "fontWeight": 400,
+          "color": "#1A2332",
+          "textAlign": "left",
+          "lineHeight": 1.2,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "One short line",
+              "fontFamily": "Figtree",
+              "fontSize": 16,
+              "fontWeight": 400,
+              "color": "#1A2332"
+            }
+          ]
+        }
+      },
+      {
+        "id": "native-next-mark-3",
+        "type": "shape",
+        "x": 1320,
+        "y": 200,
+        "width": 80,
+        "height": 80,
+        "zIndex": 3,
+        "shapeContent": {
+          "kind": "rect",
+          "fill": "#163A5F",
+          "cornerRadius": 0
+        }
+      },
+      {
+        "id": "native-next-num-3",
+        "type": "text",
+        "x": 1320,
+        "y": 216,
+        "width": 80,
+        "height": 48,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Poppins Bold",
+          "fontSize": 28,
+          "fontWeight": 800,
+          "color": "#F3F1EC",
+          "textAlign": "center",
+          "lineHeight": 1.2,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "03",
+              "fontFamily": "Poppins Bold",
+              "fontSize": 28,
+              "fontWeight": 800,
+              "color": "#F3F1EC"
+            }
+          ]
+        }
+      },
+      {
+        "id": "native-next-title-3",
+        "type": "text",
+        "x": 1180,
+        "y": 320,
+        "width": 360,
+        "height": 80,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Poppins Bold",
+          "fontSize": 48,
+          "fontWeight": 800,
+          "color": "#1A2332",
+          "textAlign": "left",
+          "lineHeight": 1.2,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "Phase",
+              "fontFamily": "Poppins Bold",
+              "fontSize": 48,
+              "fontWeight": 800,
+              "color": "#1A2332"
+            }
+          ]
+        }
+      },
+      {
+        "id": "native-next-line-3",
+        "type": "text",
+        "x": 1180,
+        "y": 412,
+        "width": 360,
+        "height": 100,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Figtree",
+          "fontSize": 16,
+          "fontWeight": 400,
+          "color": "#1A2332",
+          "textAlign": "left",
+          "lineHeight": 1.2,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "One short line",
+              "fontFamily": "Figtree",
+              "fontSize": 16,
+              "fontWeight": 400,
+              "color": "#1A2332"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

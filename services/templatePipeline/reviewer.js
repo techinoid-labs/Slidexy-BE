@@ -1,0 +1,122 @@
+/**
+ * Pass/fail review of a rendered slide. It does not edit the slide.
+ *
+ *   node services/templatePipeline/reviewer.js <slide.png>
+ */
+
+const fs = require("fs");
+const path = require("path");
+require("dotenv").config({ path: path.join(__dirname, "..", "..", ".env") });
+const OpenAI = require("openai");
+
+const OPENROUTER_MODEL = "deepseek/deepseek-v4-flash-vision-exp";
+const GEMINI_MODEL = "gemini-2.5-flash";
+const PROMPT = "You are a design quality reviewer. Analyze this slide render. Judge the pixels you see, not invisible bounding-box padding. Return strict JSON with these keys: `legible` (boolean: is all text readable?), `washed_out` (boolean: is the background image too faded or is contrast too low?), `broken_layout` (boolean: does a visual overlap obscure critical information or look like a technical glitch?), `quality_score` (0.0–1.0), and `issues` (array of short strings describing any problems). Look at the rendered image. If text is placed over an image but remains readable (due to a scrim or good contrast), it is an INTENTIONAL design choice. Pass it. A decorative shape sitting on a photograph is also intentional. Only fail a slide if the overlap obscures critical information or looks like a technical glitch. Bleeding off the edge is allowed and looks intentional, do not flag it as a broken layout unless it obscures critical text or looks like a mistake. Do not guess. Only return the JSON.";
+let backend = null;
+
+function openRouter() {
+  const apiKey = process.env.OPENROUTER_API_KEY;
+  if (!apiKey) return null;
+  return new OpenAI({
+    baseURL: "https://openrouter.ai/api/v1",
+    apiKey,
+    defaultHeaders: {
+      "HTTP-Referer": "https://slidexy.ai",
+      "X-Title": "Slidexy Neuro Engine",
+    },
+  });
+}
+
+function dataUri(input) {
+  if (typeof input === "string" && input.startsWith("data:")) return input;
+  const bytes = fs.readFileSync(input);
+  return "data:image/png;base64," + bytes.toString("base64");
+}
+
+function parseReview(text) {
+  const fenced = String(text || "").match(/```(?:json)?\s*([\s\S]*?)```/);
+  const body = fenced ? fenced[1] : String(text || "");
+  const start = body.indexOf("{");
+  const end = body.lastIndexOf("}");
+  if (start < 0 || end <= start) throw new Error("reviewer did not return JSON");
+  return JSON.parse(body.slice(start, end + 1));
+}
+
+async function complete(uri) {
+  if (backend !== "gemini") {
+    const router = openRouter();
+    if (router) {
+      try {
+        const completion = await router.chat.completions.create({
+          model: OPENROUTER_MODEL,
+          temperature: 0,
+          max_tokens: 500,
+          messages: [{
+            role: "user",
+            content: [
+              { type: "text", text: PROMPT },
+              { type: "image_url", image_url: { url: uri } },
+            ],
+          }],
+        });
+        backend = "openrouter";
+        const text = completion.choices && completion.choices[0] && completion.choices[0].message
+          ? completion.choices[0].message.content
+          : "";
+        return { text, model: OPENROUTER_MODEL };
+      } catch (error) {
+        const message = String(error && error.message ? error.message : error);
+        if (!/402|credit|insufficient/i.test(message)) throw error;
+        backend = "gemini";
+      }
+    }
+  }
+  const key = process.env.API_KEY1 || process.env.GEMINI_API_KEY;
+  if (!key) throw new Error("No vision model is available. Set API_KEY1 or GEMINI_API_KEY in .env.");
+  const { GoogleGenerativeAI } = require("@google/generative-ai");
+  const model = new GoogleGenerativeAI(key).getGenerativeModel({ model: GEMINI_MODEL });
+  const data = uri.replace(/^data:image\/png;base64,/, "");
+  const result = await model.generateContent([
+    { text: PROMPT },
+    { inlineData: { mimeType: "image/png", data } },
+  ]);
+  backend = "gemini";
+  return { text: result.response.text(), model: GEMINI_MODEL };
+}
+
+async function reviewSlide(input) {
+  const completed = await complete(dataUri(input));
+  const parsed = parseReview(completed.text);
+  const legible = parsed.legible === true;
+  const washedOut = parsed.washed_out === true;
+  const broken = parsed.broken_layout === true;
+  let quality = Number(parsed.quality_score);
+  if (quality > 1 && quality <= 100) quality = Math.round((quality / 100) * 1000) / 1000;
+  const issues = Array.isArray(parsed.issues) ? parsed.issues.map(String) : [];
+  const passed = legible && !washedOut && !broken && quality >= 0.6;
+  return {
+    passed,
+    quality_score: quality,
+    issues,
+    legible,
+    washed_out: washedOut,
+    broken_layout: broken,
+    model: completed.model,
+  };
+}
+
+if (require.main === module) {
+  const file = process.argv[2];
+  if (!file) {
+    console.error("Usage: node services/templatePipeline/reviewer.js <slide.png>");
+    process.exit(1);
+  }
+  reviewSlide(path.resolve(file)).then((verdict) => {
+    console.log(JSON.stringify(verdict));
+  }).catch((error) => {
+    console.error(error && error.message ? error.message : error);
+    process.exit(1);
+  });
+}
+
+module.exports = { reviewSlide, OPENROUTER_MODEL, GEMINI_MODEL, PROMPT };

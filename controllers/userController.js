@@ -66,6 +66,9 @@ exports.register = async (req, res) => {
       );
     }
 
+    if (!process.env.JWT_SECRET) {
+      return res.status(500).json({ message: "JWT_SECRET is not set" });
+    }
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
       expiresIn: "1y",
     });
@@ -106,6 +109,9 @@ exports.login = async (req, res) => {
       );
     }
 
+    if (!process.env.JWT_SECRET) {
+      return res.status(500).json({ error: "JWT_SECRET is not set" });
+    }
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
       expiresIn: "1y",
     });
