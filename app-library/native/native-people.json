@@ -1,0 +1,386 @@
+{
+  "id": "native-people",
+  "name": "Four People",
+  "role": "People",
+  "tokens": {
+    "color": {
+      "bg": "#F3F1EC",
+      "surface": "#F3F1EC",
+      "card": "#FFFFFF",
+      "ink": "#1A2332",
+      "muted": "#3D4C5C",
+      "rule": "#D5D0C8",
+      "accent": "#163A5F",
+      "accent2": "#163A5F",
+      "onAccent": "#F3F1EC"
+    },
+    "font": {
+      "display": "Poppins Bold",
+      "text": "Figtree"
+    },
+    "type": {
+      "h1": 64,
+      "body": 16
+    }
+  },
+  "layout": {
+    "version": 2,
+    "id": "native-people",
+    "canvas": {
+      "width": 1600,
+      "height": 900,
+      "aspectRatio": "16:9"
+    },
+    "elements": [
+      {
+        "id": "native-people-field",
+        "type": "shape",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "zIndex": 0,
+        "shapeContent": {
+          "kind": "rect",
+          "fill": "#F3F1EC",
+          "cornerRadius": 0
+        }
+      },
+      {
+        "id": "native-signature",
+        "type": "shape",
+        "x": 1416,
+        "y": -180,
+        "width": 484,
+        "height": 480,
+        "zIndex": 4,
+        "shapeContent": {
+          "kind": "circle",
+          "fill": "#163A5F",
+          "cornerRadius": 0
+        }
+      },
+      {
+        "id": "native-people-title",
+        "type": "text",
+        "x": 72,
+        "y": 48,
+        "width": 1440,
+        "height": 96,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Poppins Bold",
+          "fontSize": 64,
+          "fontWeight": 800,
+          "color": "#1A2332",
+          "textAlign": "left",
+          "lineHeight": 0.96,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "The team",
+              "fontFamily": "Poppins Bold",
+              "fontSize": 64,
+              "fontWeight": 800,
+              "color": "#1A2332"
+            }
+          ]
+        }
+      },
+      {
+        "id": "native-people-photo-1",
+        "type": "image",
+        "x": 72,
+        "y": 176,
+        "width": 343,
+        "height": 400,
+        "zIndex": 1,
+        "imageContent": {
+          "url": "",
+          "fit": "cover",
+          "alignX": 0.5,
+          "alignY": 0.5
+        }
+      },
+      {
+        "id": "native-people-name-1",
+        "type": "text",
+        "x": 72,
+        "y": 596,
+        "width": 343,
+        "height": 40,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Poppins Bold",
+          "fontSize": 20,
+          "fontWeight": 800,
+          "color": "#1A2332",
+          "textAlign": "left",
+          "lineHeight": 1.2,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "Name",
+              "fontFamily": "Poppins Bold",
+              "fontSize": 20,
+              "fontWeight": 800,
+              "color": "#1A2332"
+            }
+          ]
+        }
+      },
+      {
+        "id": "native-people-role-1",
+        "type": "text",
+        "x": 72,
+        "y": 640,
+        "width": 343,
+        "height": 36,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Figtree",
+          "fontSize": 16,
+          "fontWeight": 400,
+          "color": "#3D4C5C",
+          "textAlign": "left",
+          "lineHeight": 1.2,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "Role",
+              "fontFamily": "Figtree",
+              "fontSize": 16,
+              "fontWeight": 400,
+              "color": "#3D4C5C"
+            }
+          ]
+        }
+      },
+      {
+        "id": "native-people-photo-2",
+        "type": "image",
+        "x": 443,
+        "y": 176,
+        "width": 343,
+        "height": 400,
+        "zIndex": 1,
+        "imageContent": {
+          "url": "",
+          "fit": "cover",
+          "alignX": 0.5,
+          "alignY": 0.5
+        }
+      },
+      {
+        "id": "native-people-name-2",
+        "type": "text",
+        "x": 443,
+        "y": 596,
+        "width": 343,
+        "height": 40,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Poppins Bold",
+          "fontSize": 20,
+          "fontWeight": 800,
+          "color": "#1A2332",
+          "textAlign": "left",
+          "lineHeight": 1.2,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "Name",
+              "fontFamily": "Poppins Bold",
+              "fontSize": 20,
+              "fontWeight": 800,
+              "color": "#1A2332"
+            }
+          ]
+        }
+      },
+      {
+        "id": "native-people-role-2",
+        "type": "text",
+        "x": 443,
+        "y": 640,
+        "width": 343,
+        "height": 36,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Figtree",
+          "fontSize": 16,
+          "fontWeight": 400,
+          "color": "#3D4C5C",
+          "textAlign": "left",
+          "lineHeight": 1.2,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "Role",
+              "fontFamily": "Figtree",
+              "fontSize": 16,
+              "fontWeight": 400,
+              "color": "#3D4C5C"
+            }
+          ]
+        }
+      },
+      {
+        "id": "native-people-photo-3",
+        "type": "image",
+        "x": 814,
+        "y": 176,
+        "width": 343,
+        "height": 400,
+        "zIndex": 1,
+        "imageContent": {
+          "url": "",
+          "fit": "cover",
+          "alignX": 0.5,
+          "alignY": 0.5
+        }
+      },
+      {
+        "id": "native-people-name-3",
+        "type": "text",
+        "x": 814,
+        "y": 596,
+        "width": 343,
+        "height": 40,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Poppins Bold",
+          "fontSize": 20,
+          "fontWeight": 800,
+          "color": "#1A2332",
+          "textAlign": "left",
+          "lineHeight": 1.2,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "Name",
+              "fontFamily": "Poppins Bold",
+              "fontSize": 20,
+              "fontWeight": 800,
+              "color": "#1A2332"
+            }
+          ]
+        }
+      },
+      {
+        "id": "native-people-role-3",
+        "type": "text",
+        "x": 814,
+        "y": 640,
+        "width": 343,
+        "height": 36,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Figtree",
+          "fontSize": 16,
+          "fontWeight": 400,
+          "color": "#3D4C5C",
+          "textAlign": "left",
+          "lineHeight": 1.2,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "Role",
+              "fontFamily": "Figtree",
+              "fontSize": 16,
+              "fontWeight": 400,
+              "color": "#3D4C5C"
+            }
+          ]
+        }
+      },
+      {
+        "id": "native-people-photo-4",
+        "type": "image",
+        "x": 1185,
+        "y": 176,
+        "width": 343,
+        "height": 400,
+        "zIndex": 1,
+        "imageContent": {
+          "url": "",
+          "fit": "cover",
+          "alignX": 0.5,
+          "alignY": 0.5
+        }
+      },
+      {
+        "id": "native-people-name-4",
+        "type": "text",
+        "x": 1185,
+        "y": 596,
+        "width": 343,
+        "height": 40,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Poppins Bold",
+          "fontSize": 20,
+          "fontWeight": 800,
+          "color": "#1A2332",
+          "textAlign": "left",
+          "lineHeight": 1.2,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "Name",
+              "fontFamily": "Poppins Bold",
+              "fontSize": 20,
+              "fontWeight": 800,
+              "color": "#1A2332"
+            }
+          ]
+        }
+      },
+      {
+        "id": "native-people-role-4",
+        "type": "text",
+        "x": 1185,
+        "y": 640,
+        "width": 343,
+        "height": 36,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Figtree",
+          "fontSize": 16,
+          "fontWeight": 400,
+          "color": "#3D4C5C",
+          "textAlign": "left",
+          "lineHeight": 1.2,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "Role",
+              "fontFamily": "Figtree",
+              "fontSize": 16,
+              "fontWeight": 400,
+              "color": "#3D4C5C"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -143,9 +143,23 @@ generated-templates/photos/
 # Seeds and published decks are produced by the admin upload. The folder stays.
 app-library/*
 !app-library/.gitkeep
+!app-library/native/
+!app-library/native/**
+!app-library/niches/
+!app-library/niches/**
 docs/template-pipeline/admin-dashboard/tmp/
 docs/template-pipeline/admin-dashboard/uploads/
 docs/template-pipeline/seed-scores/
+
+# Generated test renders. The admin page and catalog stay tracked.
+docs/template-pipeline/asset-fix-v2/
+docs/template-pipeline/asset-strategy-v2/
+docs/template-pipeline/assets-disabled/
+docs/template-pipeline/native/
+docs/template-pipeline/parametric/
+docs/template-pipeline/qa-optimization/
+docs/template-pipeline/semantic-filtering/
+docs/template-pipeline/slide-assemblies/
 
 # Third-party PPTX, PowerPoint renders, and one-off probe scripts
 .audit-cache/

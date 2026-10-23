@@ -18,6 +18,7 @@ const {
   scoreLayout,
   generateTemplate,
   previewPath,
+  pptxPath,
   publishTemplate,
   discardTemplate,
 } = require("./adminCatalog");
@@ -79,7 +80,7 @@ const server = http.createServer(async (req, res) => {
   try {
     if (req.method === "GET" && (url === "/catalog" || url === "/catalog/")) {
       const html = fs.readFileSync(CATALOG);
-      res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+      res.writeHead(200, { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" });
       res.end(html);
       return;
     }
@@ -111,7 +112,7 @@ const server = http.createServer(async (req, res) => {
     }
     if (req.method === "GET" && (url === "/" || url === "/admin" || url === "/admin-dashboard")) {
       const html = fs.readFileSync(DASHBOARD);
-      res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+      res.writeHead(200, { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" });
       res.end(html);
       return;
     }
@@ -135,6 +136,18 @@ const server = http.createServer(async (req, res) => {
       if (req.method === "POST" && url === "/api/admin/generate-template") {
         const body = await readBody(req);
         return send(res, 200, await generateTemplate(body));
+      }
+      const download = url.match(/^\/api\/admin\/download\/([^/]+)$/);
+      if (req.method === "GET" && download) {
+        const file = pptxPath(decodeURIComponent(download[1]));
+        const bytes = fs.readFileSync(file);
+        res.writeHead(200, {
+          "Content-Type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+          "Content-Disposition": "attachment; filename=\"" + path.basename(file) + "\"",
+          "Content-Length": bytes.length,
+        });
+        res.end(bytes);
+        return;
       }
       const preview = url.match(/^\/api\/admin\/preview\/([^/]+)\/([^/]+)$/);
       if (req.method === "GET" && preview) {

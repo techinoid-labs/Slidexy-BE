@@ -1273,6 +1273,34 @@ function paintSlide(ctx, deck, layoutId, warn, options) {
   elements.forEach(draw);
 }
 
+function assertNativeElement(layoutId, element) {
+  if (!element) return;
+  // Corporate and creative layouts share this path: solid shapes, text, and photos.
+  // Full-bleed boxes, stacked overlap, and a translucent shape are painted as themselves.
+  if (element.type !== "shape" && element.type !== "text" && element.type !== "image" && element.type !== "maskedImage") {
+    throw new Error("Native layout " + layoutId + " cannot render " + element.type + " (" + (element.id || "element") + ")");
+  }
+  const clip = element.maskedImageContent && element.maskedImageContent.clip;
+  if (element.type === "maskedImage" && clip && (clip.kind === "path" || clip.d)) {
+    throw new Error("Native layout " + layoutId + " cannot render a clipped path (" + (element.id || "element") + ")");
+  }
+}
+
+function renderNativeDeck(deck, dir) {
+  if (!deck || !deck.layouts) throw new Error("Native deck has no layouts");
+  const sequence = deck.layoutSequence || [];
+  if (!sequence.length) throw new Error("Native deck has no slides");
+  fs.mkdirSync(dir, { recursive: true });
+  return sequence.map((layoutId, index) => {
+    const layout = deck.layouts[layoutId];
+    if (!layout) throw new Error("Missing native layout " + layoutId);
+    (layout.elements || []).forEach((element) => assertNativeElement(layoutId, element));
+    const file = path.join(dir, "slide-" + String(index + 1).padStart(2, "0") + ".png");
+    renderSlidePng(deck, layoutId, file);
+    return file;
+  });
+}
+
 function renderSlidePng(deck, layoutId, file, options) {
   const warnings = [];
   const seen = new Set();
@@ -1322,4 +1350,4 @@ function textWasClipped(element, tokens) {
   return notes.some((message) => message.indexOf("clipped with ellipsis") >= 0);
 }
 
-module.exports = { slideSvg, renderSlidePng, renderSlideBuffer, textBoxes, textLineWidths, textWasClipped };
+module.exports = { slideSvg, renderSlidePng, renderSlideBuffer, renderNativeDeck, textBoxes, textLineWidths, textWasClipped };

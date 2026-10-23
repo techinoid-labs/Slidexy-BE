@@ -6,6 +6,7 @@ const {
   scoreLayout,
   generateTemplate,
   previewPath,
+  pptxPath,
   publishTemplate,
   discardTemplate,
 } = require("../services/templatePipeline/adminCatalog");
@@ -29,6 +30,15 @@ router.post("/generate-template", send(async (req, res) => {
   const result = await generateTemplate(req.body || {});
   res.json(result);
 }));
+
+router.get("/download/:id", (req, res) => {
+  try {
+    const file = pptxPath(req.params.id);
+    res.download(file);
+  } catch (error) {
+    res.status(error.status || 500).json({ error: error.message });
+  }
+});
 
 router.get("/preview/:id/:name", (req, res) => {
   try {

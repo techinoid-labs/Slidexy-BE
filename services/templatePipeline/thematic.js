@@ -407,9 +407,34 @@ function seedScores() {
         qualityScore: Number(data.qualityScore),
         recommendedUse: typeof data.recommendedUse === "string" ? data.recommendedUse : "",
         disabled: Boolean(data.disabled),
+        semanticType: typeof data.semanticType === "string" ? data.semanticType : "",
+        industry: typeof data.industry === "string" ? data.industry : "",
       };
     })
     .filter(Boolean);
+}
+
+function industryMatch(subject, industry) {
+  const key = String(industry || "").trim().toLowerCase();
+  if (!key) return false;
+  const lists = {
+    health: ["health", "medical", "medicine", "hospital", "doctor", "clinic"],
+    music: ["music", "musician", "orchestra"],
+    cinema: ["cinema", "film", "movie"],
+    fitness: ["fitness", "trainer", "gym"],
+  };
+  const words = lists[key] || [key];
+  const text = String(subject || "");
+  return words.some((word) => new RegExp("\\b" + word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b", "i").test(text));
+}
+
+function seedFitsPrompt(seed, vibe, subject) {
+  const type = seed && seed.semanticType;
+  const matched = industryMatch(subject, seed && seed.industry);
+  if (seed && seed.disabled && !matched) return false;
+  if (type === "Illustration-heavy" && !matched) return false;
+  if ((vibe === "Corporate" || vibe === "Text-heavy") && type === "Illustration-heavy") return matched;
+  return true;
 }
 
 async function classifyVibe(subject) {
@@ -536,8 +561,13 @@ async function chooseLayout(subject, exclude, knownVibe) {
     ? { vibe: knownVibe.vibe, model: knownVibe.model || "" }
     : await classifyVibe(subject);
   const vibe = result.vibe;
-  const ranked = seedScores()
-    .filter((seed) => seed.recommendedUse === vibe && !seed.disabled && seed.qualityScore >= 70)
+  const pool = seedScores().filter((seed) => seed.recommendedUse === vibe && seed.qualityScore >= 70);
+  const blocked = pool.filter((seed) => !seedFitsPrompt(seed, vibe, subject));
+  if (blocked.length) {
+    console.log("semantic skip " + blocked.map((seed) => seed.id + " [" + (seed.semanticType || "untagged") + "]").join(", "));
+  }
+  const ranked = pool
+    .filter((seed) => seedFitsPrompt(seed, vibe, subject))
     .sort((a, b) => b.qualityScore - a.qualityScore || (a.id < b.id ? -1 : 1));
   const matches = ranked.filter((seed) => skipped.indexOf(seed.id) < 0);
   if (!matches.length) {
@@ -559,7 +589,8 @@ async function chooseLayout(subject, exclude, knownVibe) {
       }
     }
   }
-  return { id: pick.id, vibe, qualityScore: pick.qualityScore, model: result.model };
+  console.log("semantic type " + (pick.semanticType || "untagged"));
+  return { id: pick.id, vibe, qualityScore: pick.qualityScore, model: result.model, semanticType: pick.semanticType || "" };
 }
 
 function stringMap(value) {
@@ -1934,4 +1965,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { injectTheme, askModel, classifyVibe, photoQuery, collectStrings, chooseLayout, splitsContiguousWord, splitProportional, liftDarkTextBackdrops, liftDarkShapes, fitDecorationBox, getAvailableVibes, settleAssetVibe, parseAssetVibe, steerAssetVibe, countLargePhotoSlides, forcePhotoSlides, photographicSubject, decorationKind, assetFits, assignImages, minimalistRequest, removeDecoration, subjectAssetVibe, pruneSlideText };
+module.exports = { injectTheme, askModel, searchPexels, downloadPhoto, classifyVibe, seedFitsPrompt, photoQuery, collectStrings, chooseLayout, splitsContiguousWord, splitProportional, liftDarkTextBackdrops, liftDarkShapes, fitDecorationBox, getAvailableVibes, settleAssetVibe, parseAssetVibe, steerAssetVibe, countLargePhotoSlides, forcePhotoSlides, photographicSubject, decorationKind, assetFits, assignImages, minimalistRequest, removeDecoration, subjectAssetVibe, pruneSlideText };

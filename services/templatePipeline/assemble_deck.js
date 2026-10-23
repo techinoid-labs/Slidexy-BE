@@ -11,7 +11,7 @@
 
 const fs = require("fs");
 const path = require("path");
-const { injectTheme, askModel, classifyVibe, liftDarkTextBackdrops, liftDarkShapes } = require("./thematic");
+const { injectTheme, askModel, classifyVibe, liftDarkTextBackdrops, liftDarkShapes, seedFitsPrompt } = require("./thematic");
 const { analyzeDeck } = require("./scoring/analyzeDeck");
 
 const ROOT = path.join(__dirname, "..", "..");
@@ -147,6 +147,9 @@ function readSeeds() {
         id,
         qualityScore,
         recommendedUse: typeof dna.recommendedUse === "string" ? dna.recommendedUse : "",
+        semanticType: typeof dna.semanticType === "string" ? dna.semanticType : "",
+        industry: typeof dna.industry === "string" ? dna.industry : "",
+        disabled: Boolean(dna.disabled),
         deck,
         slides: sequence.map((slideId, index) => ({
           seedId: id,
@@ -379,7 +382,7 @@ async function assembleDeck(prompt, options) {
   const classified = await classifyVibe(subject);
   const outline = await outlineFor(subject, classified.vibe);
   const designLanguage = classified.vibe;
-  const allSeeds = readSeeds().filter((seed) => seed.recommendedUse === designLanguage);
+  const allSeeds = readSeeds().filter((seed) => seed.recommendedUse === designLanguage && seedFitsPrompt(seed, designLanguage, subject));
   if (!catalogSlides(allSeeds).length) throw new Error("No " + designLanguage + " seeds in app-library");
   const avoid = [];
   const usedBuckets = [];

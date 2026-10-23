@@ -179,28 +179,41 @@ async function generateTemplate(body) {
   const prompt = String(body && body.prompt || "").trim();
   if (!prompt) throw fail(400, "Prompt is required");
   if (prompt.length > 500) throw fail(400, "Prompt is too long");
-  const assemble = Boolean(body && (body.assemble === true || body.assemble === "true" || body.mode === "assemble"));
-  const remix = !assemble && Boolean(body && (body.remix === true || body.remix === "true" || body.mode === "frankenstein"));
-  const autoLayout = !assemble && !remix && Boolean(body && (body.autoLayout === true || body.autoLayout === "true"));
-  const layoutId = assemble || autoLayout ? "" : layoutFile(body && (body.layoutId || body.layout || body.seedA));
+  const niche = String(body && body.niche || "").trim().toLowerCase();
+  const namedNiche = ["corporate", "elegant", "gradient", "infographic", "cartoon"].indexOf(niche) >= 0;
+  const native = namedNiche || Boolean(body && (body.native === true || body.native === "true" || body.mode === "native"));
+  const assemble = !native && Boolean(body && (body.assemble === true || body.assemble === "true" || body.mode === "assemble"));
+  const remix = !native && !assemble && Boolean(body && (body.remix === true || body.remix === "true" || body.mode === "frankenstein"));
+  const autoLayout = !native && !assemble && !remix && Boolean(body && (body.autoLayout === true || body.autoLayout === "true"));
+  const layoutId = native || assemble || autoLayout ? "" : layoutFile(body && (body.layoutId || body.layout || body.seedA));
   const layoutIdB = remix ? layoutFile(body && (body.layoutIdB || body.seedB)) : "";
   if (remix && layoutId === layoutIdB) throw fail(400, "Pick two different seeds");
-  const id = slug((assemble ? "assemble" : remix ? "remix-" + layoutId + "-" + layoutIdB : (layoutId || "auto")) + "-" + prompt) + "-" + Date.now().toString(36);
+  const id = slug((native ? "native" : assemble ? "assemble" : remix ? "remix-" + layoutId + "-" + layoutIdB : (layoutId || "auto")) + "-" + prompt) + "-" + Date.now().toString(36);
   const dir = jobDir(id);
-  const photoDir = path.join(ROOT, "generated-templates", "photos", "thematic", id);
+  const photoDir = path.join(ROOT, "generated-templates", "photos", native ? "native" : "thematic", id);
   fs.mkdirSync(dir, { recursive: true });
   let themed = null;
   try {
-    themed = assemble
-      ? await assembleDeck(prompt, { out: relative(dir) })
-      : remix
-        ? await remixSeeds(layoutId, layoutIdB, { prompt, out: relative(dir) })
-        : await injectTheme({
-          prompt,
-          layout: layoutId,
-          autoLayout,
-          out: relative(dir),
-        });
+    if (native) {
+      const { generate } = require("./thematic-native");
+      themed = await generate({
+        prompt,
+        out: relative(dir),
+        creative: body.creative === true || body.creative === "true",
+        niche: namedNiche ? niche : "",
+      });
+    } else {
+      themed = assemble
+        ? await assembleDeck(prompt, { out: relative(dir) })
+        : remix
+          ? await remixSeeds(layoutId, layoutIdB, { prompt, out: relative(dir) })
+          : await injectTheme({
+            prompt,
+            layout: layoutId,
+            autoLayout,
+            out: relative(dir),
+          });
+    }
   } catch (error) {
     fs.rmSync(dir, { recursive: true, force: true });
     fs.rmSync(photoDir, { recursive: true, force: true });
@@ -227,6 +240,7 @@ async function generateTemplate(body) {
     name: deck.name || "",
     deck,
     slides,
+    pptxUrl: fs.readdirSync(dir).some((name) => name.endsWith(".pptx")) ? "/api/admin/download/" + id : "",
   };
 }
 
@@ -242,11 +256,19 @@ function thematicPhotoDirs(deck) {
   walkElements(deck, (element) => {
     const content = element.imageContent || element.maskedImageContent;
     if (!content || typeof content.url !== "string") return;
-    const match = content.url.match(/^photos\/thematic\/([a-z0-9-]+)\//);
+    const match = content.url.match(/^photos\/(thematic|native)\/([a-z0-9-]+)\//);
     if (!match) return;
-    dirs.add(path.join(ROOT, "generated-templates", "photos", "thematic", match[1]));
+    dirs.add(path.join(ROOT, "generated-templates", "photos", match[1], match[2]));
   });
   return [...dirs];
+}
+
+function pptxPath(id) {
+  const dir = jobDir(id);
+  if (!fs.existsSync(dir)) throw fail(404, "Deck not found");
+  const name = fs.readdirSync(dir).find((item) => item.endsWith(".pptx"));
+  if (!name) throw fail(404, "PowerPoint not found");
+  return path.join(dir, name);
 }
 
 function publishTemplate(id) {
@@ -260,13 +282,13 @@ function publishTemplate(id) {
   walkElements(deck, (element) => {
     const content = element.imageContent || element.maskedImageContent;
     if (!content || typeof content.url !== "string") return;
-    if (!/^photos\/thematic\/[a-z0-9-]+\//.test(content.url)) return;
+    if (!/^photos\/(thematic|native)\/[a-z0-9-]+\//.test(content.url)) return;
     content.url = "photos/" + path.basename(content.url);
   });
   deck.status = "published";
   deck.publishedAt = new Date().toISOString();
   fs.mkdirSync(dest, { recursive: true });
-  fs.readdirSync(dir).filter((name) => /^slide-\d{2}\.png$/.test(name)).forEach((name) => {
+  fs.readdirSync(dir).filter((name) => /^slide-\d{2}\.png$/.test(name) || name.endsWith(".pptx")).forEach((name) => {
     fs.copyFileSync(path.join(dir, name), path.join(dest, name));
   });
   photoDirs.forEach((photoDir) => copyTree(photoDir, path.join(dest, "photos")));
@@ -289,6 +311,7 @@ function discardTemplate(id) {
   const hadDeck = fs.existsSync(deckFile);
   const photoDirs = hadDeck ? thematicPhotoDirs(JSON.parse(fs.readFileSync(deckFile, "utf8"))) : [];
   photoDirs.push(path.join(ROOT, "generated-templates", "photos", "thematic", assertId(id)));
+  photoDirs.push(path.join(ROOT, "generated-templates", "photos", "native", assertId(id)));
   fs.rmSync(dir, { recursive: true, force: true });
   photoDirs.forEach((photoDir) => fs.rmSync(photoDir, { recursive: true, force: true }));
   if (!hadDeck) throw fail(404, "Deck not found");
@@ -302,6 +325,7 @@ module.exports = {
   scoreLayout,
   generateTemplate,
   previewPath,
+  pptxPath,
   publishTemplate,
   discardTemplate,
 };

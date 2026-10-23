@@ -1,0 +1,24 @@
+{
+  "id": "corporate",
+  "name": "Corporate",
+  "colors": {
+    "bg": "#FFFFFF",
+    "surface": "#F4F7FB",
+    "card": "#FFFFFF",
+    "ink": "#163A5F",
+    "muted": "#4A5D73",
+    "rule": "#D5DCE6",
+    "accent": "#163A5F",
+    "accent2": "#0E2A4A",
+    "signature": "#163A5F",
+    "onAccent": "#FFFFFF"
+  },
+  "fonts": {
+    "display": "Poppins Bold",
+    "text": "Figtree"
+  },
+  "cornerRadius": 0,
+  "strokeWidth": 0,
+  "charts": false,
+  "assets": null
+}

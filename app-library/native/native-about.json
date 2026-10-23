@@ -1,0 +1,224 @@
+{
+  "id": "native-about",
+  "name": "Two Columns",
+  "role": "About",
+  "tokens": {
+    "color": {
+      "bg": "#F3F1EC",
+      "surface": "#F3F1EC",
+      "card": "#FFFFFF",
+      "ink": "#1A2332",
+      "muted": "#3D4C5C",
+      "rule": "#D5D0C8",
+      "accent": "#163A5F",
+      "accent2": "#163A5F",
+      "onAccent": "#F3F1EC"
+    },
+    "font": {
+      "display": "Poppins Bold",
+      "text": "Figtree"
+    },
+    "type": {
+      "h1": 64,
+      "body": 20
+    }
+  },
+  "layout": {
+    "version": 2,
+    "id": "native-about",
+    "canvas": {
+      "width": 1600,
+      "height": 900,
+      "aspectRatio": "16:9"
+    },
+    "elements": [
+      {
+        "id": "native-about-field",
+        "type": "shape",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "zIndex": 0,
+        "shapeContent": {
+          "kind": "rect",
+          "fill": "#F3F1EC",
+          "cornerRadius": 0
+        }
+      },
+      {
+        "id": "native-signature",
+        "type": "shape",
+        "x": 1416,
+        "y": -180,
+        "width": 484,
+        "height": 480,
+        "zIndex": 4,
+        "shapeContent": {
+          "kind": "circle",
+          "fill": "#163A5F",
+          "cornerRadius": 0
+        }
+      },
+      {
+        "id": "native-about-title",
+        "type": "text",
+        "x": 80,
+        "y": 72,
+        "width": 1440,
+        "height": 120,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Poppins Bold",
+          "fontSize": 64,
+          "fontWeight": 800,
+          "color": "#1A2332",
+          "textAlign": "left",
+          "lineHeight": 0.96,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "Who we are",
+              "fontFamily": "Poppins Bold",
+              "fontSize": 64,
+              "fontWeight": 800,
+              "color": "#1A2332"
+            }
+          ]
+        }
+      },
+      {
+        "id": "native-about-rule",
+        "type": "shape",
+        "x": 799,
+        "y": 280,
+        "width": 2,
+        "height": 160,
+        "zIndex": 2,
+        "shapeContent": {
+          "kind": "rect",
+          "fill": "#D5D0C8",
+          "cornerRadius": 0
+        }
+      },
+      {
+        "id": "native-about-left-title",
+        "type": "text",
+        "x": 80,
+        "y": 280,
+        "width": 640,
+        "height": 72,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Poppins Bold",
+          "fontSize": 40,
+          "fontWeight": 800,
+          "color": "#1A2332",
+          "textAlign": "left",
+          "lineHeight": 1.2,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "The firm",
+              "fontFamily": "Poppins Bold",
+              "fontSize": 40,
+              "fontWeight": 800,
+              "color": "#1A2332"
+            }
+          ]
+        }
+      },
+      {
+        "id": "native-about-left-body",
+        "type": "text",
+        "x": 80,
+        "y": 368,
+        "width": 640,
+        "height": 320,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Figtree",
+          "fontSize": 20,
+          "fontWeight": 400,
+          "color": "#1A2332",
+          "textAlign": "left",
+          "lineHeight": 1.2,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "Payroll for growing companies",
+              "fontFamily": "Figtree",
+              "fontSize": 20,
+              "fontWeight": 400,
+              "color": "#1A2332"
+            }
+          ]
+        }
+      },
+      {
+        "id": "native-about-right-title",
+        "type": "text",
+        "x": 880,
+        "y": 280,
+        "width": 640,
+        "height": 72,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Poppins Bold",
+          "fontSize": 40,
+          "fontWeight": 800,
+          "color": "#1A2332",
+          "textAlign": "left",
+          "lineHeight": 1.2,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "The work",
+              "fontFamily": "Poppins Bold",
+              "fontSize": 40,
+              "fontWeight": 800,
+              "color": "#1A2332"
+            }
+          ]
+        }
+      },
+      {
+        "id": "native-about-right-body",
+        "type": "text",
+        "x": 880,
+        "y": 368,
+        "width": 640,
+        "height": 320,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Figtree",
+          "fontSize": 20,
+          "fontWeight": 400,
+          "color": "#1A2332",
+          "textAlign": "left",
+          "lineHeight": 1.2,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "Pay, tax, and time in one place",
+              "fontFamily": "Figtree",
+              "fontSize": 20,
+              "fontWeight": 400,
+              "color": "#1A2332"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

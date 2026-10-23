@@ -1,0 +1,25 @@
+{
+  "id": "elegant",
+  "name": "Elegant",
+  "colors": {
+    "bg": "#F6F1E7",
+    "surface": "#F6F1E7",
+    "card": "#FFFDF8",
+    "ink": "#1A1A1A",
+    "muted": "#5C5346",
+    "rule": "#C6A15B",
+    "accent": "#8C6A1F",
+    "accent2": "#C6A15B",
+    "signature": "#C6A15B",
+    "onAccent": "#1A1A1A"
+  },
+  "fonts": {
+    "display": "Playfair Display",
+    "text": "Source Sans 3"
+  },
+  "cornerRadius": 0,
+  "strokeWidth": 1,
+  "stroke": "#C6A15B",
+  "charts": false,
+  "assets": null
+}

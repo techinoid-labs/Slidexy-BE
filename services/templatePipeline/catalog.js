@@ -6,6 +6,7 @@
 const fs = require("fs");
 const path = require("path");
 const { createCanvas, Image } = require("canvas");
+const JSZip = require("jszip");
 const PptxGenJS = require("pptxgenjs");
 
 const ROOT = path.join(__dirname, "..", "..");
@@ -86,13 +87,11 @@ function readCatalog(id) {
   return { deck, slides };
 }
 
-async function buildPptx(id) {
-  const safe = assertId(id);
-  const deck = readDeck(safe);
+async function pptxBuffer(deck, deckId) {
   const sequence = deck.layoutSequence || Object.keys(deck.layouts || {});
   if (!sequence.length) throw fail(404, "This deck has no slides");
   const pptx = new PptxGenJS();
-  pptx.title = deck.name || safe;
+  pptx.title = deck.name || deckId || "deck";
   pptx.defineLayout({ name: "WIDE", width: SLIDE_W, height: SLIDE_H });
   pptx.layout = "WIDE";
   const background = hexColor((deck.tokens && deck.tokens.color && deck.tokens.color.bg) || (deck.theme && deck.theme.backgroundColor)) || "F4F0E8";
@@ -101,13 +100,92 @@ async function buildPptx(id) {
     const slide = pptx.addSlide();
     slide.background = { color: background };
     const items = flattenElements(layout && layout.elements);
-    items.forEach((item) => placeElement(slide, pptx, item.element, deck, safe, item.rotate));
+    items.forEach((item) => placeElement(slide, pptx, item.element, deck, deckId, item.rotate));
   });
-  const data = await pptx.write({ outputType: "nodebuffer" });
+  return Buffer.from(await pptx.write({ outputType: "nodebuffer" }));
+}
+
+async function buildPptx(id) {
+  const safe = assertId(id);
+  const deck = readDeck(safe);
   return {
     filename: safe + ".pptx",
-    buffer: Buffer.from(data),
+    buffer: await pptxBuffer(deck, safe),
   };
+}
+
+async function exportDeckPptx(deck, file) {
+  const raw = await pptxBuffer(deck, (deck && deck.id) || "native");
+  const data = await paintGradientFills(raw);
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, data);
+  return file;
+}
+
+function gradientName(gradient) {
+  const angle = Math.round(Number(gradient.angle) || 0);
+  const parts = (gradient.stops || []).map((stop) => {
+    const hex = String(stop.hex || stop.color || "").replace("#", "").toUpperCase();
+    const pos = Math.round(Number(stop.pos) * 100);
+    return hex + "-" + pos;
+  });
+  return "ngrad-" + angle + "-" + parts.join("-");
+}
+
+function parseGradientName(name) {
+  const bits = String(name || "").split("-");
+  if (bits[0] !== "ngrad" || bits.length < 4) return null;
+  const stops = [];
+  for (let index = 2; index + 1 < bits.length; index += 2) {
+    const hex = bits[index];
+    if (!/^[0-9A-F]{6}$/.test(hex)) return null;
+    stops.push({ hex, pos: Number(bits[index + 1]) / 100 });
+  }
+  if (stops.length < 2) return null;
+  return { angle: Number(bits[1]) || 0, stops };
+}
+
+function gradientXml(spec) {
+  const stops = spec.stops.map((stop) => {
+    const pos = Math.max(0, Math.min(100000, Math.round(stop.pos * 100000)));
+    return `<a:gs pos="${pos}"><a:srgbClr val="${stop.hex}"/></a:gs>`;
+  }).join("");
+  let ang = Math.round((Number(spec.angle) || 0) * 60000);
+  ang = ((ang % 21600000) + 21600000) % 21600000;
+  return `<a:gradFill rotWithShape="1"><a:gsLst>${stops}</a:gsLst><a:lin ang="${ang}" scaled="1"/></a:gradFill>`;
+}
+
+function replaceShapeFill(block) {
+  const found = block.match(/name="(ngrad-[^"]+)"/);
+  if (!found) return block;
+  const spec = parseGradientName(found[1]);
+  if (!spec) return block;
+  const paint = gradientXml(spec);
+  const lineAt = block.indexOf("<a:ln");
+  const fillAt = block.indexOf("<a:solidFill>");
+  if (fillAt >= 0 && (lineAt < 0 || fillAt < lineAt)) {
+    return block.replace(/<a:solidFill>[\s\S]*?<\/a:solidFill>/, paint);
+  }
+  if (lineAt >= 0) return block.slice(0, lineAt) + paint + block.slice(lineAt);
+  return block.replace("</p:spPr>", paint + "</p:spPr>");
+}
+
+async function paintGradientFills(buffer) {
+  const zip = await JSZip.loadAsync(buffer);
+  const names = Object.keys(zip.files).filter((name) => /ppt\/slides\/slide\d+\.xml$/.test(name));
+  let changed = false;
+  for (let index = 0; index < names.length; index += 1) {
+    const name = names[index];
+    const xml = await zip.file(name).async("string");
+    if (xml.indexOf("ngrad-") < 0) continue;
+    const next = xml.replace(/<p:sp\b[\s\S]*?<\/p:sp>/g, replaceShapeFill);
+    if (next !== xml) {
+      zip.file(name, next);
+      changed = true;
+    }
+  }
+  if (!changed) return buffer;
+  return zip.generateAsync({ type: "nodebuffer", compression: "DEFLATE" });
 }
 
 function inches(px, axis) {
@@ -204,15 +282,15 @@ function addText(slide, element, tokens, rotate) {
     const text = String(span && span.text != null ? span.text : "");
     if (!text) return;
     const weight = span.fontWeight == null ? style.fontWeight : span.fontWeight;
-    runs.push({
-      text,
-      options: {
-        fontFace: fontOf(span.fontFamily || style.fontFamily, tokens),
-        fontSize: points(span.fontSize || style.fontSize || 18),
-        color: colorOf(span.color || style.color, tokens) || "1A1612",
-        bold: Number(weight) >= 600,
-      },
-    });
+    const spacing = Number(span.letterSpacing != null ? span.letterSpacing : style.letterSpacing) || 0;
+    const runOptions = {
+      fontFace: fontOf(span.fontFamily || style.fontFamily, tokens),
+      fontSize: points(span.fontSize || style.fontSize || 18),
+      color: colorOf(span.color || style.color, tokens) || "1A1612",
+      bold: Number(weight) >= 600,
+    };
+    if (spacing) runOptions.charSpacing = points(spacing);
+    runs.push({ text, options: runOptions });
   });
   if (!runs.length) return;
   slide.addText(runs, Object.assign(boxOf(element), {
@@ -240,8 +318,18 @@ function addShape(slide, pptx, element, tokens) {
     const minSide = Math.min(Number(element.width) || 1, Number(element.height) || 1);
     options.rectRadius = Math.max(0, Math.min(1, (radius * 2) / minSide));
   }
-  if (fill) options.fill = { color: fill };
-  else options.fill = { type: "none" };
+  const gradient = shape.gradient && Array.isArray(shape.gradient.stops) ? shape.gradient : null;
+  if (gradient && gradient.stops.length > 1) {
+    const first = colorOf(gradient.stops[0].hex || gradient.stops[0].color, tokens) || fill;
+    options.fill = { color: first || "000000" };
+    options.objectName = gradientName(gradient);
+  } else if (fill) {
+    options.fill = { color: fill };
+    const opacity = Number(element.opacity);
+    if (Number.isFinite(opacity) && opacity >= 0 && opacity < 1) {
+      options.fill.transparency = Math.round((1 - opacity) * 100);
+    }
+  } else options.fill = { type: "none" };
   if (stroke && Number(shape.strokeWidth) > 0) options.line = { color: stroke, width: points(shape.strokeWidth) };
   slide.addShape(kind, options);
 }
@@ -251,6 +339,10 @@ function addPicture(slide, element, content, deckId, rotate) {
   if (!file) return;
   const clip = (content && content.clip) || {};
   const box = boxOf(element);
+  if (content && content.fit === "contain" && !clip.kind) {
+    slide.addImage(Object.assign({ path: file, rotate: rotate || 0 }, box));
+    return;
+  }
   if (clip.kind === "ellipse") {
     slide.addImage(Object.assign({ path: file, rounding: true, rotate: rotate || 0 }, box, coverSizing(box)));
     return;
@@ -456,4 +548,4 @@ function tracePath(ctx, d) {
   return true;
 }
 
-module.exports = { listCatalog, readCatalog, slideFile, buildPptx };
+module.exports = { listCatalog, readCatalog, slideFile, buildPptx, exportDeckPptx };

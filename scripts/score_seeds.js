@@ -22,7 +22,7 @@ const { analyzeDeck } = require("../services/templatePipeline/scoring/analyzeDec
 const ROOT = path.join(__dirname, "..");
 const LIBRARY = path.join(ROOT, "app-library");
 const PROMPT = "A company overview.";
-const KEEP = ["qualityScore", "recommendedUse", "scoreFailures", "disabled", "scoredAt", "scorePrompt", "scoreMethod"];
+const KEEP = ["qualityScore", "recommendedUse", "scoreFailures", "disabled", "scoredAt", "scorePrompt", "scoreMethod", "semanticType", "industry"];
 
 function readJson(file) {
   return JSON.parse(fs.readFileSync(file, "utf8"));

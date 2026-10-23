@@ -1,0 +1,32 @@
+{
+  "id": "gradient",
+  "name": "Gradient",
+  "colors": {
+    "bg": "#1B1145",
+    "surface": "#2E1065",
+    "card": "#2E1065",
+    "ink": "#FFFFFF",
+    "muted": "#E9D5FF",
+    "rule": "#6D28D9",
+    "accent": "#FDE68A",
+    "accent2": "#F472B6",
+    "signature": "#F472B6",
+    "onAccent": "#1B1145"
+  },
+  "fonts": {
+    "display": "Poppins Bold",
+    "text": "Figtree"
+  },
+  "cornerRadius": 20,
+  "strokeWidth": 0,
+  "gradient": {
+    "angle": 128,
+    "stops": [
+      { "hex": "#1B1145", "pos": 0 },
+      { "hex": "#6D28D9", "pos": 0.55 },
+      { "hex": "#BE185D", "pos": 1 }
+    ]
+  },
+  "charts": false,
+  "assets": null
+}

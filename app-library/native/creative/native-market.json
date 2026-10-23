@@ -1,0 +1,211 @@
+{
+  "id": "native-market",
+  "name": "Full Bleed Market",
+  "role": "Market",
+  "tokens": {
+    "color": {
+      "bg": "#F3F1EC",
+      "surface": "#F3F1EC",
+      "card": "#FFFFFF",
+      "ink": "#1A2332",
+      "muted": "#3D4C5C",
+      "rule": "#D5D0C8",
+      "accent": "#163A5F",
+      "accent2": "#163A5F",
+      "onAccent": "#F3F1EC"
+    },
+    "font": {
+      "display": "Poppins Bold",
+      "text": "Figtree"
+    },
+    "type": {
+      "h1": 56,
+      "body": 22
+    }
+  },
+  "layout": {
+    "version": 2,
+    "id": "native-market",
+    "canvas": {
+      "width": 1600,
+      "height": 900,
+      "aspectRatio": "16:9"
+    },
+    "elements": [
+      {
+        "id": "native-market-field",
+        "type": "shape",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "zIndex": 0,
+        "shapeContent": {
+          "kind": "rect",
+          "fill": "#F3F1EC",
+          "cornerRadius": 0
+        }
+      },
+      {
+        "id": "native-market-photo",
+        "type": "image",
+        "x": -16,
+        "y": -16,
+        "width": 1632,
+        "height": 932,
+        "zIndex": 1,
+        "imageContent": {
+          "url": "",
+          "fit": "cover",
+          "alignX": 0.5,
+          "alignY": 0.5
+        }
+      },
+      {
+        "id": "native-market-scrim",
+        "type": "shape",
+        "x": 760,
+        "y": 470,
+        "width": 800,
+        "height": 390,
+        "zIndex": 3,
+        "shapeContent": {
+          "kind": "rect",
+          "fill": "#1A2332",
+          "cornerRadius": 0
+        },
+        "opacity": 0.58
+      },
+      {
+        "id": "native-signature",
+        "type": "shape",
+        "x": 1360,
+        "y": -180,
+        "width": 540,
+        "height": 500,
+        "zIndex": 5,
+        "shapeContent": {
+          "kind": "circle",
+          "fill": "#163A5F",
+          "cornerRadius": 0
+        }
+      },
+      {
+        "id": "native-market-title",
+        "type": "text",
+        "x": 800,
+        "y": 500,
+        "width": 720,
+        "height": 170,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Poppins Bold",
+          "fontSize": 56,
+          "fontWeight": 800,
+          "color": "#F3F1EC",
+          "textAlign": "left",
+          "lineHeight": 0.92,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "Who it is for",
+              "fontFamily": "Poppins Bold",
+              "fontSize": 56,
+              "fontWeight": 800,
+              "color": "#F3F1EC"
+            }
+          ]
+        }
+      },
+      {
+        "id": "native-market-bullet-1",
+        "type": "text",
+        "x": 800,
+        "y": 690,
+        "width": 700,
+        "height": 52,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Figtree",
+          "fontSize": 22,
+          "fontWeight": 400,
+          "color": "#F3F1EC",
+          "textAlign": "left",
+          "lineHeight": 1.15,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "People who want this",
+              "fontFamily": "Figtree",
+              "fontSize": 22,
+              "fontWeight": 400,
+              "color": "#F3F1EC"
+            }
+          ]
+        }
+      },
+      {
+        "id": "native-market-bullet-2",
+        "type": "text",
+        "x": 800,
+        "y": 752,
+        "width": 700,
+        "height": 52,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Figtree",
+          "fontSize": 22,
+          "fontWeight": 400,
+          "color": "#F3F1EC",
+          "textAlign": "left",
+          "lineHeight": 1.15,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "Buyers comparing the old option",
+              "fontFamily": "Figtree",
+              "fontSize": 22,
+              "fontWeight": 400,
+              "color": "#F3F1EC"
+            }
+          ]
+        }
+      },
+      {
+        "id": "native-market-bullet-3",
+        "type": "text",
+        "x": 800,
+        "y": 814,
+        "width": 700,
+        "height": 52,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "Figtree",
+          "fontSize": 22,
+          "fontWeight": 400,
+          "color": "#F3F1EC",
+          "textAlign": "left",
+          "lineHeight": 1.15,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "A market ready to switch",
+              "fontFamily": "Figtree",
+              "fontSize": 22,
+              "fontWeight": 400,
+              "color": "#F3F1EC"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

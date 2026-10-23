@@ -31,6 +31,7 @@ const FILES = {
   "Sora": "sora.ttf",
   "Work Sans": "work-sans.ttf",
   "Spectral": "spectral.ttf",
+  "Playfair Display": "playfair-display.ttf",
   "IBM Plex Sans": "ibm-plex-sans.ttf",
   "IBM Plex Mono": "ibm-plex-mono.ttf",
   "Poppins": "poppins-regular.ttf",
