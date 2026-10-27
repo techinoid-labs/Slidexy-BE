@@ -9,6 +9,7 @@ const path = require("path");
 const { createCanvas, Image, registerFont } = require("canvas");
 const opentype = require("opentype.js");
 const { measureWidth, fontFile, knownFamilies } = require("../services/templatePipeline/fitText");
+const { hasRegisteredFont, systemFontPath } = require("../services/templatePipeline/fonts");
 
 const PHOTO_ROOT = path.join(__dirname, "..", "generated-templates");
 const registeredFonts = new Set();
@@ -52,10 +53,15 @@ function canvasFamily(family) {
 
 function ensureFont(family) {
   const file = fontFile(family);
-  if (!file || registeredFonts.has(family)) return file;
-  registerFont(file, { family: canvasFamily(family) });
-  registeredFonts.add(family);
-  return file;
+  if (file) {
+    if (!registeredFonts.has(family)) {
+      registerFont(file, { family: canvasFamily(family) });
+      registeredFonts.add(family);
+    }
+    return file;
+  }
+  if (hasRegisteredFont(family)) return systemFontPath(family) || true;
+  return null;
 }
 
 function prepareFonts() {
@@ -65,6 +71,10 @@ function prepareFonts() {
 function fontCss(style, family) {
   const size = Number(style.fontSize);
   const weight = Number(style.fontWeight);
+  if (hasRegisteredFont(family)) {
+    const bold = weight >= 600 ? "bold " : "";
+    return bold + size + 'px "' + family + '"';
+  }
   if (family === "Georgia" && weight >= 600) return "bold " + size + "px Georgia";
   if (fontFile(family)) return size + "px " + canvasFamily(family);
   if (weight) return weight + " " + size + 'px "' + family + '"';
@@ -490,6 +500,7 @@ function resolvedFamily(style, warn, where) {
     warn(where + ': font "' + style.fontFamily + '" substituted with ' + substitute[0] + " because " + substitute[1]);
   }
   if (ensureFont(style.fontFamily)) return style.fontFamily;
+  if (hasRegisteredFont(style.fontFamily)) return style.fontFamily;
   if (style.fontFamily === "Georgia") return "Georgia";
   const fallback = fallbackFamily(style.fontFamily);
   warn(where + ': font "' + style.fontFamily + '" falls back to ' + fallback + " because the font is not installed");

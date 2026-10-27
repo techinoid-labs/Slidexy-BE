@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>composer split-copy</title>
+  <style>
+    :root {
+      --color-bg: #f3f1ee; --color-surface: #f3f1ee; --color-card: #ffffff;
+      --color-ink: #1c1916; --color-muted: #5c564e; --color-rule: #d9d0c6;
+      --color-accent: #8a8175; --color-accent2: #8a8175; --color-on-accent: #f3f1ee;
+      --font-display: "Calibri"; --font-text: "Calibri";
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 1600px; height: 900px; overflow: hidden; background: var(--color-bg); }
+    .slide { position: relative; width: 1600px; height: 900px; background: var(--color-bg); color: var(--color-ink); font-family: var(--font-text); }
+    .field { position: absolute; left: 0; top: 0; width: 1600px; height: 900px; background: var(--color-bg); }
+    [data-stack="copy"] {
+      position: absolute; left: 72px; top: 96px; width: 700px; height: 720px;
+      display: flex; flex-direction: column; align-items: flex-start; gap: 28px;
+    }
+    [data-role="title"] {
+      width: 100%;
+      font-family: var(--font-display); font-size: 56px; font-weight: 700; line-height: 1.1; color: var(--color-ink); text-align: left;
+    }
+    [data-role="body"] {
+      width: 100%;
+      font-family: var(--font-text); font-size: 22px; font-weight: 400; line-height: 1.35; color: var(--color-muted); text-align: left;
+    }
+    [data-role="bullet-1"], [data-role="bullet-2"], [data-role="bullet-3"] {
+      width: 100%;
+      font-family: var(--font-text); font-size: 20px; font-weight: 400; line-height: 1.3; color: var(--color-ink); text-align: left;
+    }
+    [data-role="photo"] { position: absolute; object-fit: cover; object-position: center; background: var(--color-rule); }
+    .slide[data-variant="photo-left"] [data-role="photo"] { left: 0; top: 0; width: 720px; height: 900px; z-index: 1; }
+    .slide[data-variant="photo-left"] [data-stack="copy"] { left: 800px; z-index: 2; }
+    .slide[data-variant="photo-right"] [data-role="photo"] { left: 880px; top: 0; width: 720px; height: 900px; z-index: 1; }
+    .slide[data-variant="photo-right"] [data-stack="copy"] { left: 72px; z-index: 2; }
+    /* Ported composition: title in lower third over the photo column edge */
+    .slide[data-variant="title-bottom-left"] [data-role="photo"] { left: 720px; top: 0; width: 880px; height: 900px; z-index: 1; }
+    .slide[data-variant="title-bottom-left"] [data-stack="copy"] {
+      left: 72px; top: 420px; width: 780px; height: 400px; z-index: 3;
+    }
+    .slide[data-variant="photo-wide"] [data-role="photo"] { left: 0; top: 0; width: 960px; height: 900px; z-index: 1; }
+    .slide[data-variant="photo-wide"] [data-stack="copy"] { left: 1020px; width: 500px; z-index: 2; }
+    /* Ported: copy band over a wide lower photo (seed-style bottom title / photo mass) */
+    .slide[data-variant="copy-over-band"] [data-role="photo"] { left: 0; top: 360px; width: 1600px; height: 540px; z-index: 1; }
+    .slide[data-variant="copy-over-band"] [data-stack="copy"] {
+      left: 96px; top: 72px; width: 1200px; height: 280px; z-index: 2;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide" data-component="split-copy" data-variant="photo-right">
+    <div class="field" data-role="field"></div>
+    <div data-stack="copy" data-stack-align="start">
+      <div data-role="title" data-max-chars="48">About title</div>
+      <div data-role="body" data-max-chars="160">Body copy for the split layout stays under one hundred sixty characters for the slot.</div>
+      <div data-role="bullet-1" data-max-chars="80">First bullet point under eighty characters</div>
+      <div data-role="bullet-2" data-max-chars="80">Second bullet point under eighty characters</div>
+      <div data-role="bullet-3" data-max-chars="80">Third bullet point under eighty characters</div>
+    </div>
+    <img data-role="photo" alt="" width="720" height="900" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+  </div>
+</body>
+</html>

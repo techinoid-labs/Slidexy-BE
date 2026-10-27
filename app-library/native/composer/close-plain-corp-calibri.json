@@ -1,0 +1,213 @@
+{
+  "id": "close-plain-corp-calibri",
+  "name": "close plain (corp-calibri)",
+  "role": "Close",
+  "tokens": {
+    "color": {
+      "bg": "#f3f1ee",
+      "surface": "#f3f1ee",
+      "card": "#FFFFFF",
+      "ink": "#1c1916",
+      "muted": "#5c564e",
+      "rule": "#d9d0c6",
+      "accent": "#8a8175",
+      "accent2": "#8a8175",
+      "onAccent": "#1c1916"
+    },
+    "font": {
+      "display": "Calibri",
+      "text": "Calibri"
+    },
+    "type": {
+      "h1": 120,
+      "body": 28
+    }
+  },
+  "layout": {
+    "version": 2,
+    "id": "close-plain-corp-calibri",
+    "canvas": {
+      "width": 1600,
+      "height": 900,
+      "aspectRatio": "16:9"
+    },
+    "elements": [
+      {
+        "id": "composer-close-field",
+        "type": "shape",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "zIndex": 0,
+        "opacity": 1,
+        "shapeContent": {
+          "kind": "rect",
+          "fill": "{color.bg}",
+          "cornerRadius": 0
+        }
+      },
+      {
+        "id": "composer-close-kicker",
+        "type": "text",
+        "x": 72,
+        "y": 280,
+        "width": 1000,
+        "height": 23.76,
+        "zIndex": 1,
+        "textStyle": {
+          "fontFamily": "{font.text}",
+          "fontSize": 18,
+          "fontWeight": 600,
+          "color": "{color.muted}",
+          "textAlign": "left",
+          "lineHeight": 1.2,
+          "letterSpacing": 2
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.text}",
+              "fontSize": 18,
+              "fontWeight": 600,
+              "color": "{color.muted}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "kicker",
+          "maxChars": 24,
+          "charsPerLine": 24,
+          "capacityLines": 1
+        },
+        "textMeasure": {
+          "lines": 1,
+          "fontPair": "corp-calibri",
+          "capacityChars": 24,
+          "charsPerLine": 24,
+          "width": 284.08,
+          "canvasWidth": 236.07,
+          "layoutWidth": 1000,
+          "fontCheck": true,
+          "computedFamily": "Calibri"
+        },
+        "stackId": "close-copy"
+      },
+      {
+        "id": "composer-close-title",
+        "type": "text",
+        "x": 72,
+        "y": 325.59,
+        "width": 1000,
+        "height": 166.32,
+        "zIndex": 2,
+        "textStyle": {
+          "fontFamily": "{font.display}",
+          "fontSize": 72,
+          "fontWeight": 700,
+          "color": "{color.ink}",
+          "textAlign": "left",
+          "lineHeight": 1.05,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.display}",
+              "fontSize": 72,
+              "fontWeight": 700,
+              "color": "{color.ink}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "title",
+          "maxChars": 40,
+          "charsPerLine": 20,
+          "capacityLines": 2
+        },
+        "textMeasure": {
+          "lines": 2,
+          "fontPair": "corp-calibri",
+          "capacityChars": 40,
+          "charsPerLine": 20,
+          "width": 1310.81,
+          "canvasWidth": 1327.08,
+          "layoutWidth": 1000,
+          "fontCheck": true,
+          "computedFamily": "Calibri"
+        },
+        "stackId": "close-copy"
+      },
+      {
+        "id": "composer-close-body",
+        "type": "text",
+        "x": 72,
+        "y": 500.78,
+        "width": 1000,
+        "height": 35.64,
+        "zIndex": 3,
+        "textStyle": {
+          "fontFamily": "{font.text}",
+          "fontSize": 24,
+          "fontWeight": 400,
+          "color": "{color.muted}",
+          "textAlign": "left",
+          "lineHeight": 1.35,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.text}",
+              "fontSize": 24,
+              "fontWeight": 400,
+              "color": "{color.muted}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "body",
+          "maxChars": 80,
+          "charsPerLine": 80,
+          "capacityLines": 1
+        },
+        "textMeasure": {
+          "lines": 1,
+          "fontPair": "corp-calibri",
+          "capacityChars": 80,
+          "charsPerLine": 80,
+          "width": 808.41,
+          "canvasWidth": 808.41,
+          "layoutWidth": 1000,
+          "fontCheck": true,
+          "computedFamily": "Calibri"
+        },
+        "stackId": "close-copy"
+      }
+    ],
+    "stacks": [
+      {
+        "id": "close-copy",
+        "order": [
+          "composer-close-kicker",
+          "composer-close-title",
+          "composer-close-body"
+        ],
+        "blocks": [],
+        "gap": 24,
+        "align": "start",
+        "direction": "column",
+        "box": {
+          "x": 72,
+          "y": 280,
+          "width": 1000,
+          "height": 520
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,405 @@
+{
+  "id": "agenda-numbered-list-editorial",
+  "name": "agenda numbered-list (editorial)",
+  "role": "Contents",
+  "tokens": {
+    "color": {
+      "bg": "#f3f1ee",
+      "surface": "#f3f1ee",
+      "card": "#FFFFFF",
+      "ink": "#1c1916",
+      "muted": "#5c564e",
+      "rule": "#d9d0c6",
+      "accent": "#8a8175",
+      "accent2": "#8a8175",
+      "onAccent": "#1c1916"
+    },
+    "font": {
+      "display": "Georgia",
+      "text": "Calibri"
+    },
+    "type": {
+      "h1": 120,
+      "body": 28
+    }
+  },
+  "layout": {
+    "version": 2,
+    "id": "agenda-numbered-list-editorial",
+    "canvas": {
+      "width": 1600,
+      "height": 900,
+      "aspectRatio": "16:9"
+    },
+    "elements": [
+      {
+        "id": "composer-agenda-field",
+        "type": "shape",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "zIndex": 0,
+        "opacity": 1,
+        "shapeContent": {
+          "kind": "rect",
+          "fill": "{color.bg}",
+          "cornerRadius": 0
+        }
+      },
+      {
+        "id": "composer-agenda-title",
+        "type": "text",
+        "x": 96,
+        "y": 96,
+        "width": 1400,
+        "height": 154.88,
+        "zIndex": 1,
+        "textStyle": {
+          "fontFamily": "{font.display}",
+          "fontSize": 64,
+          "fontWeight": 700,
+          "color": "{color.ink}",
+          "textAlign": "left",
+          "lineHeight": 1.1,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.display}",
+              "fontSize": 64,
+              "fontWeight": 700,
+              "color": "{color.ink}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "title",
+          "maxChars": 40,
+          "charsPerLine": 20,
+          "capacityLines": 2
+        },
+        "textMeasure": {
+          "lines": 2,
+          "fontPair": "editorial",
+          "capacityChars": 40,
+          "charsPerLine": 20,
+          "width": 1425.34,
+          "canvasWidth": 1441.59,
+          "layoutWidth": 1400,
+          "fontCheck": true,
+          "computedFamily": "Georgia"
+        },
+        "stackId": "agenda"
+      },
+      {
+        "id": "composer-agenda-item-1",
+        "type": "text",
+        "x": 96,
+        "y": 260.78,
+        "width": 1400,
+        "height": 38.5,
+        "zIndex": 2,
+        "textStyle": {
+          "fontFamily": "{font.text}",
+          "fontSize": 28,
+          "fontWeight": 400,
+          "color": "{color.ink}",
+          "textAlign": "left",
+          "lineHeight": 1.25,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.text}",
+              "fontSize": 28,
+              "fontWeight": 400,
+              "color": "{color.ink}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "item-1",
+          "maxChars": 36,
+          "charsPerLine": 36,
+          "capacityLines": 1
+        },
+        "textMeasure": {
+          "lines": 1,
+          "fontPair": "editorial",
+          "capacityChars": 36,
+          "charsPerLine": 36,
+          "width": 454.28,
+          "canvasWidth": 454.28,
+          "layoutWidth": 1400,
+          "fontCheck": true,
+          "computedFamily": "Calibri"
+        },
+        "stackId": "agenda"
+      },
+      {
+        "id": "composer-agenda-item-2",
+        "type": "text",
+        "x": 96,
+        "y": 319.78,
+        "width": 1400,
+        "height": 38.5,
+        "zIndex": 3,
+        "textStyle": {
+          "fontFamily": "{font.text}",
+          "fontSize": 28,
+          "fontWeight": 400,
+          "color": "{color.ink}",
+          "textAlign": "left",
+          "lineHeight": 1.25,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.text}",
+              "fontSize": 28,
+              "fontWeight": 400,
+              "color": "{color.ink}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "item-2",
+          "maxChars": 36,
+          "charsPerLine": 36,
+          "capacityLines": 1
+        },
+        "textMeasure": {
+          "lines": 1,
+          "fontPair": "editorial",
+          "capacityChars": 36,
+          "charsPerLine": 36,
+          "width": 454.28,
+          "canvasWidth": 454.28,
+          "layoutWidth": 1400,
+          "fontCheck": true,
+          "computedFamily": "Calibri"
+        },
+        "stackId": "agenda"
+      },
+      {
+        "id": "composer-agenda-item-3",
+        "type": "text",
+        "x": 96,
+        "y": 378.78,
+        "width": 1400,
+        "height": 38.5,
+        "zIndex": 4,
+        "textStyle": {
+          "fontFamily": "{font.text}",
+          "fontSize": 28,
+          "fontWeight": 400,
+          "color": "{color.ink}",
+          "textAlign": "left",
+          "lineHeight": 1.25,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.text}",
+              "fontSize": 28,
+              "fontWeight": 400,
+              "color": "{color.ink}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "item-3",
+          "maxChars": 36,
+          "charsPerLine": 36,
+          "capacityLines": 1
+        },
+        "textMeasure": {
+          "lines": 1,
+          "fontPair": "editorial",
+          "capacityChars": 36,
+          "charsPerLine": 36,
+          "width": 454.28,
+          "canvasWidth": 454.28,
+          "layoutWidth": 1400,
+          "fontCheck": true,
+          "computedFamily": "Calibri"
+        },
+        "stackId": "agenda"
+      },
+      {
+        "id": "composer-agenda-item-4",
+        "type": "text",
+        "x": 96,
+        "y": 437.78,
+        "width": 1400,
+        "height": 38.5,
+        "zIndex": 5,
+        "textStyle": {
+          "fontFamily": "{font.text}",
+          "fontSize": 28,
+          "fontWeight": 400,
+          "color": "{color.ink}",
+          "textAlign": "left",
+          "lineHeight": 1.25,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.text}",
+              "fontSize": 28,
+              "fontWeight": 400,
+              "color": "{color.ink}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "item-4",
+          "maxChars": 36,
+          "charsPerLine": 36,
+          "capacityLines": 1
+        },
+        "textMeasure": {
+          "lines": 1,
+          "fontPair": "editorial",
+          "capacityChars": 36,
+          "charsPerLine": 36,
+          "width": 454.28,
+          "canvasWidth": 454.28,
+          "layoutWidth": 1400,
+          "fontCheck": true,
+          "computedFamily": "Calibri"
+        },
+        "stackId": "agenda"
+      },
+      {
+        "id": "composer-agenda-item-5",
+        "type": "text",
+        "x": 96,
+        "y": 496.78,
+        "width": 1400,
+        "height": 38.5,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "{font.text}",
+          "fontSize": 28,
+          "fontWeight": 400,
+          "color": "{color.ink}",
+          "textAlign": "left",
+          "lineHeight": 1.25,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.text}",
+              "fontSize": 28,
+              "fontWeight": 400,
+              "color": "{color.ink}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "item-5",
+          "maxChars": 36,
+          "charsPerLine": 36,
+          "capacityLines": 1
+        },
+        "textMeasure": {
+          "lines": 1,
+          "fontPair": "editorial",
+          "capacityChars": 36,
+          "charsPerLine": 36,
+          "width": 454.28,
+          "canvasWidth": 454.28,
+          "layoutWidth": 1400,
+          "fontCheck": true,
+          "computedFamily": "Calibri"
+        },
+        "stackId": "agenda"
+      },
+      {
+        "id": "composer-agenda-item-6",
+        "type": "text",
+        "x": 96,
+        "y": 555.78,
+        "width": 1400,
+        "height": 38.5,
+        "zIndex": 7,
+        "textStyle": {
+          "fontFamily": "{font.text}",
+          "fontSize": 28,
+          "fontWeight": 400,
+          "color": "{color.ink}",
+          "textAlign": "left",
+          "lineHeight": 1.25,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.text}",
+              "fontSize": 28,
+              "fontWeight": 400,
+              "color": "{color.ink}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "item-6",
+          "maxChars": 36,
+          "charsPerLine": 36,
+          "capacityLines": 1
+        },
+        "textMeasure": {
+          "lines": 1,
+          "fontPair": "editorial",
+          "capacityChars": 36,
+          "charsPerLine": 36,
+          "width": 454.28,
+          "canvasWidth": 454.28,
+          "layoutWidth": 1400,
+          "fontCheck": true,
+          "computedFamily": "Calibri"
+        },
+        "stackId": "agenda"
+      }
+    ],
+    "stacks": [
+      {
+        "id": "agenda",
+        "order": [
+          "composer-agenda-title",
+          "composer-agenda-item-1",
+          "composer-agenda-item-2",
+          "composer-agenda-item-3",
+          "composer-agenda-item-4",
+          "composer-agenda-item-5",
+          "composer-agenda-item-6"
+        ],
+        "blocks": [],
+        "gap": 24,
+        "align": "start",
+        "direction": "column",
+        "box": {
+          "x": 96,
+          "y": 96,
+          "width": 1400,
+          "height": 720
+        }
+      }
+    ]
+  }
+}

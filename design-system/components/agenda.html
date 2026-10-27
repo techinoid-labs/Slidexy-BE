@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>composer agenda</title>
+  <style>
+    :root {
+      --color-bg: #f3f1ee; --color-surface: #f3f1ee; --color-card: #ffffff;
+      --color-ink: #1c1916; --color-muted: #5c564e; --color-rule: #d9d0c6;
+      --color-accent: #8a8175; --color-accent2: #8a8175; --color-on-accent: #f3f1ee;
+      --font-display: "Calibri"; --font-text: "Calibri";
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 1600px; height: 900px; overflow: hidden; background: var(--color-bg); }
+    .slide { position: relative; width: 1600px; height: 900px; background: var(--color-bg); color: var(--color-ink); font-family: var(--font-text); }
+    .field { position: absolute; left: 0; top: 0; width: 1600px; height: 900px; background: var(--color-bg); }
+    [data-stack="agenda"] {
+      position: absolute; left: 96px; top: 96px; width: 1400px; height: 720px;
+      display: flex; flex-direction: column; align-items: flex-start; gap: 24px;
+    }
+    [data-role="title"] {
+      width: 100%; font-family: var(--font-display); font-size: 64px; font-weight: 700; line-height: 1.1; color: var(--color-ink);
+    }
+    [data-role^="item-"] {
+      width: 100%; font-family: var(--font-text); font-size: 28px; font-weight: 400; line-height: 1.25; color: var(--color-ink);
+    }
+    .slide[data-variant="numbered-list"] [data-role^="item-"]::before { content: none; }
+    .slide[data-variant="two-column"] [data-stack="agenda"] { width: 640px; }
+    .slide[data-variant="two-column"] [data-stack="agenda-b"] {
+      position: absolute; left: 860px; top: 200px; width: 640px; height: 600px;
+      display: flex; flex-direction: column; align-items: flex-start; gap: 24px;
+    }
+    .slide[data-variant="numbered-list"] [data-stack="agenda-b"] { display: none; }
+    .slide[data-variant="two-column"] [data-role="item-4"],
+    .slide[data-variant="two-column"] [data-role="item-5"],
+    .slide[data-variant="two-column"] [data-role="item-6"] { /* in second stack via DOM order below */ }
+  </style>
+</head>
+<body>
+  <div class="slide" data-component="agenda" data-variant="numbered-list">
+    <div class="field" data-role="field"></div>
+    <div data-stack="agenda" data-stack-align="start">
+      <div data-role="title" data-max-chars="40">Contents</div>
+      <div data-role="item-1" data-max-chars="36">01  Agenda item one</div>
+      <div data-role="item-2" data-max-chars="36">02  Agenda item two</div>
+      <div data-role="item-3" data-max-chars="36">03  Agenda item three</div>
+      <div data-role="item-4" data-max-chars="36">04  Agenda item four</div>
+      <div data-role="item-5" data-max-chars="36">05  Agenda item five</div>
+      <div data-role="item-6" data-max-chars="36">06  Agenda item six</div>
+    </div>
+    <div data-stack="agenda-b" data-stack-align="start" style="display:none"></div>
+  </div>
+</body>
+</html>

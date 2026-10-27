@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>composer close</title>
+  <style>
+    :root {
+      --color-bg: #f3f1ee; --color-surface: #f3f1ee; --color-card: #ffffff;
+      --color-ink: #1c1916; --color-muted: #5c564e; --color-rule: #d9d0c6;
+      --color-accent: #8a8175; --color-accent2: #8a8175; --color-on-accent: #f3f1ee;
+      --font-display: "Calibri"; --font-text: "Calibri";
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 1600px; height: 900px; overflow: hidden; background: var(--color-bg); }
+    .slide { position: relative; width: 1600px; height: 900px; background: var(--color-bg); color: var(--color-ink); font-family: var(--font-text); }
+    .field { position: absolute; left: 0; top: 0; width: 1600px; height: 900px; background: var(--color-bg); }
+    [data-stack="close-copy"] {
+      position: absolute; left: 72px; top: 280px; width: 1000px; height: 520px;
+      display: flex; flex-direction: column; align-items: flex-start; gap: 24px;
+      z-index: 2;
+    }
+    [data-role="kicker"] {
+      width: 100%;
+      font-family: var(--font-text); font-size: 18px; font-weight: 600; line-height: 1.2; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--color-muted); text-align: left;
+    }
+    [data-role="title"] {
+      width: 100%;
+      font-family: var(--font-display); font-size: 72px; font-weight: 700; line-height: 1.05; color: var(--color-ink); text-align: left;
+    }
+    [data-role="body"] {
+      width: 100%;
+      font-family: var(--font-text); font-size: 24px; font-weight: 400; line-height: 1.35; color: var(--color-muted); text-align: left;
+    }
+    [data-role="photo"] { position: absolute; object-fit: cover; object-position: center; background: var(--color-rule); display: none; }
+    .slide[data-variant="photo"] [data-role="photo"] {
+      display: block; left: 1000px; top: 0; width: 600px; height: 900px; z-index: 1;
+    }
+    .slide[data-variant="photo"] [data-stack="close-copy"] { width: 860px; }
+  </style>
+</head>
+<body>
+  <div class="slide" data-component="close" data-variant="plain">
+    <div class="field" data-role="field"></div>
+    <div data-stack="close-copy" data-stack-align="start">
+      <div data-role="kicker" data-max-chars="24">Next</div>
+      <div data-role="title" data-max-chars="40">Let's talk payroll</div>
+      <div data-role="body" data-max-chars="80">A short close under eighty characters invites the next step.</div>
+    </div>
+    <img data-role="photo" alt="" width="600" height="900" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+  </div>
+</body>
+</html>

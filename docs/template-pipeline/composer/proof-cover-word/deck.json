@@ -1,0 +1,275 @@
+{
+  "schemaVersion": 2,
+  "id": "proof-cover-word",
+  "name": "Proof cover word",
+  "tokens": {
+    "color": {
+      "bg": "#f3f1ee",
+      "surface": "#f3f1ee",
+      "card": "#FFFFFF",
+      "ink": "#1c1916",
+      "muted": "#5c564e",
+      "rule": "#d9d0c6",
+      "accent": "#8a8175",
+      "accent2": "#8a8175",
+      "onAccent": "#f3f1ee"
+    },
+    "font": {
+      "display": "Calibri",
+      "text": "Calibri"
+    },
+    "type": {
+      "h1": 120,
+      "body": 28
+    }
+  },
+  "layoutSequence": [
+    "slide-1"
+  ],
+  "layouts": {
+    "slide-1": {
+      "version": 2,
+      "id": "slide-1",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-frame-top-slide-1",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 2,
+          "zIndex": 40,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "signature-frame-bottom-slide-1",
+          "type": "shape",
+          "x": 0,
+          "y": 898,
+          "width": 1600,
+          "height": 2,
+          "zIndex": 40,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "signature-frame-left-slide-1",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 2,
+          "height": 900,
+          "zIndex": 40,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "signature-frame-right-slide-1",
+          "type": "shape",
+          "x": 1598,
+          "y": 0,
+          "width": 2,
+          "height": 900,
+          "zIndex": 40,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-cover-field",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "opacity": 1,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "{color.onAccent}",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-cover-accent",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 18,
+          "height": 900,
+          "zIndex": 1,
+          "opacity": 1,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "{color.accent}",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-cover-kicker",
+          "type": "text",
+          "x": 72,
+          "y": 72,
+          "width": 900,
+          "height": 23.76,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 18,
+            "fontWeight": 400,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "lineHeight": 1.2,
+            "letterSpacing": 2
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "2026",
+                "fontFamily": "{font.text}",
+                "fontSize": 18,
+                "fontWeight": 400,
+                "color": "{color.muted}"
+              }
+            ]
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "width": 64.94,
+            "canvasWidth": 52.93,
+            "layoutWidth": 900,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          }
+        },
+        {
+          "id": "composer-cover-title",
+          "type": "text",
+          "x": 72,
+          "y": 200,
+          "width": 1400,
+          "height": 138.6,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 120,
+            "fontWeight": 800,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.05,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Apex Payroll Solutions",
+                "fontFamily": "{font.display}",
+                "fontSize": 120,
+                "fontWeight": 800,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "width": 452.53,
+            "canvasWidth": 452.52,
+            "layoutWidth": 1400,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          }
+        },
+        {
+          "id": "composer-cover-body",
+          "type": "text",
+          "x": 72,
+          "y": 560,
+          "width": 820,
+          "height": 83.16,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 28,
+            "fontWeight": 400,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "lineHeight": 1.35,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "We automate payroll, tax filings, and compliance for growing teams so founders spend less time on spreadsheets and more on people.",
+                "fontFamily": "{font.text}",
+                "fontSize": 28,
+                "fontWeight": 400,
+                "color": "{color.muted}"
+              }
+            ]
+          },
+          "textMeasure": {
+            "lines": 2,
+            "fontPair": "corp-calibri",
+            "width": 956.53,
+            "canvasWidth": 962.84,
+            "layoutWidth": 820,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          }
+        }
+      ]
+    }
+  },
+  "parametric": {
+    "cover": "skipped",
+    "coverName": "Skipped",
+    "coverTitle": "Apex Payroll Solutions",
+    "density": "balanced",
+    "marginFactor": 1,
+    "lineHeightFactor": 1,
+    "densityReverted": [],
+    "densityRevertReasons": [],
+    "marginSample": null,
+    "signature": "frame",
+    "displayFont": "{font.display}",
+    "bodyFont": "{font.text}",
+    "displayWeight": 800,
+    "bodyWeight": 400,
+    "typeShortfalls": [],
+    "geometry": [
+      {
+        "slide": 1,
+        "pass": true,
+        "reasons": []
+      }
+    ],
+    "textOverlaps": []
+  },
+  "qa": {
+    "score": 100,
+    "passed": 1,
+    "total": 1,
+    "failures": [],
+    "attempt": 1,
+    "mode": "manual"
+  }
+}

@@ -1,0 +1,198 @@
+{
+  "outDir": "docs/template-pipeline/composer/proof-stat-row-three-up",
+  "component": "stat-row",
+  "fontPair": "corp-calibri",
+  "variant": "three-up",
+  "photoUrl": null,
+  "geometry": {
+    "pass": true,
+    "reasons": []
+  },
+  "analysis": {
+    "score": 100,
+    "passed": 1,
+    "total": 1,
+    "failures": [],
+    "slides": [
+      {
+        "slide": 1,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null
+      }
+    ],
+    "vision": false,
+    "composer": true
+  },
+  "titleBoxInches": {
+    "w": 11.666375,
+    "h": 0.242,
+    "fontPt": 14
+  },
+  "bodyBoxInches": {
+    "w": 11.666375,
+    "h": 0.27225,
+    "fontPt": 13,
+    "chromeLines": 1
+  },
+  "lineTable": {
+    "title": {
+      "chromeMeasure": 1,
+      "nodeCanvas": 1,
+      "libreOffice": 1
+    },
+    "body": {
+      "chromeMeasure": 1,
+      "nodeCanvas": 1,
+      "libreOffice": 1
+    }
+  },
+  "canvasLines": {
+    "composer-stat-row-title": {
+      "lines": 1,
+      "lineWidths": [
+        214.59375
+      ],
+      "chromeMeasure": 1
+    },
+    "composer-stat-row-stat-1": {
+      "lines": 1,
+      "lineWidths": [
+        125.47265625
+      ],
+      "chromeMeasure": 1
+    },
+    "composer-stat-row-label-1": {
+      "lines": 1,
+      "lineWidths": [
+        154.052734375
+      ],
+      "chromeMeasure": 1
+    },
+    "composer-stat-row-stat-2": {
+      "lines": 1,
+      "lineWidths": [
+        111.62109375
+      ],
+      "chromeMeasure": 1
+    },
+    "composer-stat-row-label-2": {
+      "lines": 1,
+      "lineWidths": [
+        152.900390625
+      ],
+      "chromeMeasure": 1
+    },
+    "composer-stat-row-stat-3": {
+      "lines": 1,
+      "lineWidths": [
+        125.47265625
+      ],
+      "chromeMeasure": 1
+    },
+    "composer-stat-row-label-3": {
+      "lines": 1,
+      "lineWidths": [
+        166.943359375
+      ],
+      "chromeMeasure": 1
+    },
+    "composer-stat-row-body": {
+      "lines": 1,
+      "lineWidths": [
+        1196.013671875
+      ],
+      "chromeMeasure": 1
+    }
+  },
+  "loLines": {
+    "ok": true,
+    "pageW": 959.981102,
+    "pageH": 540,
+    "scaleX": 1.6666994763403167,
+    "scaleY": 1.6666666666666667,
+    "wordCount": 36,
+    "elements": {
+      "composer-stat-row-title": {
+        "lines": 1,
+        "words": 3,
+        "chromeMeasure": 1
+      },
+      "composer-stat-row-stat-1": {
+        "lines": 1,
+        "words": 1,
+        "chromeMeasure": 1
+      },
+      "composer-stat-row-label-1": {
+        "lines": 1,
+        "words": 3,
+        "chromeMeasure": 1
+      },
+      "composer-stat-row-stat-2": {
+        "lines": 1,
+        "words": 1,
+        "chromeMeasure": 1
+      },
+      "composer-stat-row-label-2": {
+        "lines": 1,
+        "words": 3,
+        "chromeMeasure": 1
+      },
+      "composer-stat-row-stat-3": {
+        "lines": 1,
+        "words": 1,
+        "chromeMeasure": 1
+      },
+      "composer-stat-row-label-3": {
+        "lines": 1,
+        "words": 3,
+        "chromeMeasure": 1
+      },
+      "composer-stat-row-body": {
+        "lines": 1,
+        "words": 21,
+        "chromeMeasure": 1
+      }
+    }
+  },
+  "pptxInspect": {
+    "mediaCount": 1,
+    "mediaNames": [
+      "ppt/media/"
+    ],
+    "picCount": 0,
+    "spCount": 13,
+    "childOrder": [
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp"
+    ],
+    "slideXmlLen": 9036
+  },
+  "paths": {
+    "chrome": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-stat-row-three-up\\chrome.png",
+    "slide": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-stat-row-three-up\\slide-01.png",
+    "lo": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-stat-row-three-up\\lo-slide.png",
+    "pptx": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-stat-row-three-up\\deck.pptx",
+    "pdf": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-stat-row-three-up\\deck.pdf"
+  },
+  "raster": {
+    "ok": true,
+    "loSlide": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-stat-row-three-up\\lo-slide.png",
+    "pdfPath": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-stat-row-three-up\\deck.pdf",
+    "sofficeBin": "C:\\Program Files\\LibreOffice\\program\\soffice.com",
+    "pdftoppmBin": "C:\\Users\\SP Grid\\AppData\\Local\\Microsoft\\WinGet\\Packages\\oschwartz10612.Poppler_Microsoft.Winget.Source_8wekyb3d8bbwe\\poppler-25.07.0\\Library\\bin\\pdftoppm.exe",
+    "userInstall": "C:\\Users\\SPGRID~1\\AppData\\Local\\Temp\\lo-profile-proof-1793116827336"
+  }
+}

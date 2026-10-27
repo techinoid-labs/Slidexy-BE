@@ -52,6 +52,19 @@
       <label>What is this template about?
         <input id="prompt" name="prompt" type="text" maxlength="500" required placeholder="A luxury boutique hotel in Paris.">
       </label>
+      <label id="mode-wrap">Mode
+        <select id="mode" name="mode">
+          <option value="composer" selected>Composer</option>
+          <option value="auto">Auto-Select</option>
+          <option value="pinned">Pinned</option>
+          <option value="assemble">Assemble</option>
+          <option value="native">Native</option>
+          <option value="remix">Remix</option>
+        </select>
+      </label>
+      <label id="nonce-wrap">Nonce
+        <input id="nonce" name="nonce" type="text" maxlength="80" placeholder="optional run id">
+      </label>
       <label id="niche-wrap">Niche
         <select id="niche" name="niche">
           <option value="">Auto-Detect</option>
@@ -98,6 +111,7 @@
   </form>
   <div id="status" role="status"></div>
   <h2 id="deck-name" hidden></h2>
+  <p id="composer-meta" class="note" hidden></p>
   <div id="preview"></div>
   <div class="actions" hidden id="actions">
     <button id="publish" type="button">Publish to Catalog</button>
@@ -141,80 +155,129 @@
     const layoutBSelect = document.getElementById("layout-b");
     const seedBWrap = document.getElementById("seed-b-wrap");
     const deckName = document.getElementById("deck-name");
+    const modeSelect = document.getElementById("mode");
+    const nonceWrap = document.getElementById("nonce-wrap");
+    const nonceInput = document.getElementById("nonce");
+    const composerMeta = document.getElementById("composer-meta");
     let currentId = "";
+    let syncingFromMode = false;
+
+    function selectedMode() {
+      return modeSelect.value || "composer";
+    }
 
     function syncModes() {
-      const assembling = assembleBox.checked;
-      const native = nativeBox.checked;
-      const remixing = remixBox.checked && !native;
+      const mode = selectedMode();
+      const composing = mode === "composer";
+      const assembling = assembleBox.checked || mode === "assemble";
+      const native = nativeBox.checked || mode === "native";
+      const remixing = (remixBox.checked || mode === "remix") && !native && !composing;
+      const autoing = autoBox.checked || mode === "auto";
+      nonceWrap.hidden = !composing;
       seedBWrap.hidden = !remixing;
       layoutBSelect.disabled = !remixing;
       layoutBSelect.required = remixing;
-      layoutSelect.disabled = assembling || autoBox.checked || native;
-      layoutSelect.required = false;
+      layoutSelect.disabled = composing || assembling || autoing || native;
+      layoutSelect.required = mode === "pinned";
     }
 
+    function applyModeToChecks() {
+      syncingFromMode = true;
+      const mode = selectedMode();
+      autoBox.checked = mode === "auto";
+      remixBox.checked = mode === "remix";
+      assembleBox.checked = mode === "assemble";
+      nativeBox.checked = mode === "native";
+      if (mode !== "native") {
+        creativeBox.checked = false;
+        if (mode !== "composer") nicheSelect.value = "";
+      }
+      syncingFromMode = false;
+      syncModes();
+    }
+
+    modeSelect.addEventListener("change", applyModeToChecks);
+
     autoBox.addEventListener("change", () => {
+      if (syncingFromMode) return;
       if (autoBox.checked) {
         remixBox.checked = false;
         assembleBox.checked = false;
         nativeBox.checked = false;
         creativeBox.checked = false;
         nicheSelect.value = "";
+        modeSelect.value = "auto";
+      } else if (selectedMode() === "auto") {
+        modeSelect.value = "pinned";
       }
       syncModes();
     });
 
     remixBox.addEventListener("change", () => {
+      if (syncingFromMode) return;
       if (remixBox.checked) {
         autoBox.checked = false;
         assembleBox.checked = false;
         nativeBox.checked = false;
         creativeBox.checked = false;
         nicheSelect.value = "";
+        modeSelect.value = "remix";
+      } else if (selectedMode() === "remix") {
+        modeSelect.value = "pinned";
       }
       syncModes();
     });
 
     assembleBox.addEventListener("change", () => {
+      if (syncingFromMode) return;
       if (assembleBox.checked) {
         autoBox.checked = false;
         remixBox.checked = false;
         nativeBox.checked = false;
         creativeBox.checked = false;
         nicheSelect.value = "";
+        modeSelect.value = "assemble";
+      } else if (selectedMode() === "assemble") {
+        modeSelect.value = "pinned";
       }
       syncModes();
     });
 
     nativeBox.addEventListener("change", () => {
+      if (syncingFromMode) return;
       if (nativeBox.checked) {
         autoBox.checked = false;
         remixBox.checked = false;
         assembleBox.checked = false;
+        modeSelect.value = "native";
       } else {
         creativeBox.checked = false;
         nicheSelect.value = "";
+        if (selectedMode() === "native") modeSelect.value = "pinned";
       }
       syncModes();
     });
 
     creativeBox.addEventListener("change", () => {
+      if (syncingFromMode) return;
       if (creativeBox.checked) {
         nativeBox.checked = true;
         autoBox.checked = false;
         remixBox.checked = false;
         assembleBox.checked = false;
+        modeSelect.value = "native";
       }
       syncModes();
     });
 
     nicheSelect.addEventListener("change", () => {
+      if (syncingFromMode) return;
       if (nicheSelect.value) {
         nativeBox.checked = true;
         autoBox.checked = false;
         remixBox.checked = false;
         assembleBox.checked = false;
+        modeSelect.value = "native";
       }
       syncModes();
     });
@@ -389,7 +452,9 @@
         status.textContent = "Type what the template is about, then press Generate.";
         return;
       }
-      if (!nativeBox.checked && !creativeBox.checked && !nicheSelect.value && !assembleBox.checked && !autoBox.checked && !layoutSelect.value) {
+      const mode = selectedMode();
+      const composing = mode === "composer";
+      if (!composing && !nativeBox.checked && !creativeBox.checked && !nicheSelect.value && !assembleBox.checked && !autoBox.checked && mode !== "auto" && mode !== "assemble" && mode !== "native" && !layoutSelect.value) {
         status.textContent = "Choose a base layout, or turn on Native Engine.";
         return;
       }
@@ -397,25 +462,31 @@
       preview.replaceChildren();
       deckName.hidden = true;
       deckName.textContent = "";
+      composerMeta.hidden = true;
+      composerMeta.textContent = "";
       actions.hidden = true;
       downloadLink.hidden = true;
       vibeLine.hidden = true;
       vibeLine.textContent = "";
       const nicheName = nicheSelect.value;
-      status.textContent = creativeBox.checked
-        ? "Drawing a creative magazine deck. No seed is opened."
-        : (nativeBox.checked || nicheName)
-          ? "Drawing a " + (nicheName || "native") + " deck. No seed is opened."
-          : "Generating the deck. This takes about a minute.";
+      status.textContent = composing
+        ? "Composing the kit deck. This takes about a minute."
+        : creativeBox.checked
+          ? "Drawing a creative magazine deck. No seed is opened."
+          : (nativeBox.checked || nicheName || mode === "native")
+            ? "Drawing a " + (nicheName || "native") + " deck. No seed is opened."
+            : "Generating the deck. This takes about a minute.";
       setBusy(true);
       try {
-        const native = nativeBox.checked || creativeBox.checked || Boolean(nicheSelect.value);
-        const assemble = !native && assembleBox.checked;
-        const remix = !native && !assemble && remixBox.checked;
-        const autoLayout = !native && !assemble && !remix && autoBox.checked;
+        const native = !composing && (nativeBox.checked || creativeBox.checked || Boolean(nicheSelect.value) || mode === "native");
+        const assemble = !composing && !native && (assembleBox.checked || mode === "assemble");
+        const remix = !composing && !native && !assemble && (remixBox.checked || mode === "remix");
+        const autoLayout = !composing && !native && !assemble && !remix && (autoBox.checked || mode === "auto");
         const data = await post("/api/admin/generate-template", {
           prompt: document.getElementById("prompt").value,
-          layoutId: native || assemble || autoLayout ? "" : layoutSelect.value,
+          mode: composing ? "composer" : (autoLayout ? "auto" : assemble ? "assemble" : remix ? "remix" : native ? "native" : "pinned"),
+          nonce: composing ? nonceInput.value.trim() : "",
+          layoutId: composing || native || assemble || autoLayout ? "" : layoutSelect.value,
           layoutIdB: remix ? layoutBSelect.value : "",
           remix,
           autoLayout,
@@ -447,11 +518,28 @@
           vibeLine.textContent = "Prompt: " + promptText + " | Vibe: " + vibeName;
           vibeLine.hidden = false;
         }
-        if (data.pptxUrl) {
-          downloadLink.href = data.pptxUrl;
-          downloadLink.hidden = false;
+        downloadLink.href = "/api/admin/download/" + data.id;
+        downloadLink.hidden = false;
+        if (composing || data.layoutId === "composer") {
+          try {
+            const rep = await fetch("/api/admin/replacements/" + encodeURIComponent(data.id)).then(async (response) => {
+              const payload = await response.json();
+              if (!response.ok) throw new Error(payload.error || "Could not load replacements");
+              return payload;
+            });
+            const plan = ((rep.brief && rep.brief.plan) || []).map((slide, index) =>
+              (index + 1) + ". " + slide.role + " · " + slide.component + " / " + slide.variant
+            ).join(" · ");
+            const fitCount = Array.isArray(rep.fits) ? rep.fits.length : 0;
+            const collapseCount = Array.isArray(rep.collapses) ? rep.collapses.length : 0;
+            composerMeta.textContent = "Plan: " + (plan || "(none)") + " | fits " + fitCount + " | collapses " + collapseCount;
+            composerMeta.hidden = false;
+          } catch (metaError) {
+            composerMeta.textContent = "Plan unavailable: " + metaError.message;
+            composerMeta.hidden = false;
+          }
         }
-        const layoutName = native ? "Native Engine, no seed" : (data.layoutId || "");
+        const layoutName = composing ? "composer" : (native ? "Native Engine, no seed" : (data.layoutId || ""));
         status.textContent = (data.slides || []).length + " slides ready. Layout " + layoutName + ". Saved as " + (data.deck && data.deck.id ? data.deck.id : data.id) + ".json." + score;
         actions.hidden = false;
       } catch (error) {
@@ -488,6 +576,9 @@
         deckName.hidden = true;
         deckName.textContent = "";
         actions.hidden = true;
+        downloadLink.hidden = true;
+        composerMeta.hidden = true;
+        composerMeta.textContent = "";
         status.textContent = "Discarded. The temporary slides and photos were deleted.";
       } catch (error) {
         status.textContent = error.message;
@@ -495,6 +586,8 @@
         setBusy(false);
       }
     });
+
+    applyModeToChecks();
   </script>
 </body>
 </html>

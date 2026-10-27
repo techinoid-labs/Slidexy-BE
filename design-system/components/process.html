@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>composer process</title>
+  <style>
+    :root {
+      --color-bg: #f3f1ee; --color-surface: #f3f1ee; --color-card: #ffffff;
+      --color-ink: #1c1916; --color-muted: #5c564e; --color-rule: #d9d0c6;
+      --color-accent: #8a8175; --color-accent2: #8a8175; --color-on-accent: #f3f1ee;
+      --font-display: "Calibri"; --font-text: "Calibri";
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 1600px; height: 900px; overflow: hidden; background: var(--color-bg); }
+    .slide { position: relative; width: 1600px; height: 900px; background: var(--color-bg); color: var(--color-ink); font-family: var(--font-text); }
+    .field { position: absolute; left: 0; top: 0; width: 1600px; height: 900px; background: var(--color-bg); }
+    [data-stack="header"] {
+      position: absolute; left: 96px; top: 72px; width: 1400px; height: 100px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    [data-role="title"] {
+      width: 100%; font-family: var(--font-display); font-size: 48px; font-weight: 700; line-height: 1.1; color: var(--color-ink);
+    }
+    [data-stack="steps"] {
+      position: absolute; left: 96px; top: 220px; width: 1408px; height: 560px;
+      display: flex; flex-direction: row; align-items: flex-start; gap: 40px;
+    }
+    [data-stack^="step-"] {
+      flex: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; min-width: 0;
+    }
+    [data-role^="step-title-"] {
+      width: 100%; font-family: var(--font-display); font-size: 28px; font-weight: 700; line-height: 1.15; color: var(--color-ink);
+    }
+    [data-role^="step-body-"] {
+      width: 100%; font-family: var(--font-text); font-size: 18px; font-weight: 400; line-height: 1.35; color: var(--color-muted);
+    }
+    .slide[data-variant="three-step"] [data-stack="step-4"] { display: none; }
+    .slide[data-variant="four-step"] [data-stack="steps"] { gap: 28px; }
+  </style>
+</head>
+<body>
+  <div class="slide" data-component="process" data-variant="three-step">
+    <div class="field" data-role="field"></div>
+    <div data-stack="header" data-stack-align="start">
+      <div data-role="title" data-max-chars="40">How onboarding works</div>
+    </div>
+    <div data-stack="steps" data-stack-align="start">
+      <div data-stack="step-1" data-stack-align="start">
+        <div data-role="step-title-1" data-max-chars="24">Connect</div>
+        <div data-role="step-body-1" data-max-chars="60">Link HRIS and bank details in a guided setup.</div>
+      </div>
+      <div data-stack="step-2" data-stack-align="start">
+        <div data-role="step-title-2" data-max-chars="24">Configure</div>
+        <div data-role="step-body-2" data-max-chars="60">Map pay codes, taxes, and approval chains once.</div>
+      </div>
+      <div data-stack="step-3" data-stack-align="start">
+        <div data-role="step-title-3" data-max-chars="24">Run</div>
+        <div data-role="step-body-3" data-max-chars="60">Approve a preview and fund payroll with one click.</div>
+      </div>
+      <div data-stack="step-4" data-stack-align="start">
+        <div data-role="step-title-4" data-max-chars="24">Review</div>
+        <div data-role="step-body-4" data-max-chars="60">Audit trails and filings stay ready for finance.</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

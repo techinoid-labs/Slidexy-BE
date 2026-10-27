@@ -1,0 +1,93 @@
+{
+  "outDir": "docs/template-pipeline/composer/proof-statement-left",
+  "component": "statement",
+  "fontPair": "corp-calibri",
+  "variant": "left",
+  "photoUrl": null,
+  "geometry": {
+    "pass": true,
+    "reasons": []
+  },
+  "analysis": {
+    "score": 100,
+    "passed": 1,
+    "total": 1,
+    "failures": [],
+    "slides": [
+      {
+        "slide": 1,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null
+      }
+    ],
+    "vision": false,
+    "composer": true,
+    "pptxGate": {
+      "skipped": false,
+      "pass": true,
+      "failures": []
+    }
+  },
+  "titleBoxInches": null,
+  "bodyBoxInches": null,
+  "lineTable": {},
+  "canvasLines": {
+    "composer-statement-statement": {
+      "lines": 2,
+      "lineWidths": [
+        1311.84375,
+        362.8125
+      ],
+      "chromeMeasure": 2
+    }
+  },
+  "loLines": {
+    "ok": true,
+    "pageW": 959.981102,
+    "pageH": 540,
+    "scaleX": 1.6666994763403167,
+    "scaleY": 1.6666666666666667,
+    "wordCount": 6,
+    "elements": {
+      "composer-statement-statement": {
+        "lines": 2,
+        "words": 6,
+        "chromeMeasure": 2
+      }
+    }
+  },
+  "pptxInspect": {
+    "mediaCount": 1,
+    "mediaNames": [
+      "ppt/media/"
+    ],
+    "picCount": 0,
+    "spCount": 6,
+    "childOrder": [
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp"
+    ],
+    "slideXmlLen": 3154
+  },
+  "paths": {
+    "chrome": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-statement-left\\chrome.png",
+    "slide": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-statement-left\\slide-01.png",
+    "lo": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-statement-left\\lo-slide.png",
+    "pptx": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-statement-left\\deck.pptx",
+    "pdf": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-statement-left\\deck.pdf"
+  },
+  "raster": {
+    "ok": true,
+    "loSlide": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-statement-left\\lo-slide.png",
+    "pdfPath": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-statement-left\\deck.pdf",
+    "sofficeBin": "C:\\Program Files\\LibreOffice\\program\\soffice.com",
+    "pdftoppmBin": "C:\\Users\\SP Grid\\AppData\\Local\\Microsoft\\WinGet\\Packages\\oschwartz10612.Poppler_Microsoft.Winget.Source_8wekyb3d8bbwe\\poppler-25.07.0\\Library\\bin\\pdftoppm.exe",
+    "userInstall": "C:\\Users\\SPGRID~1\\AppData\\Local\\Temp\\lo-profile-proof-1793124696076"
+  }
+}

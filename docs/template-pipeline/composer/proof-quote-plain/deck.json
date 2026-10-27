@@ -1,0 +1,240 @@
+{
+  "schemaVersion": 2,
+  "id": "proof-quote-plain",
+  "name": "Proof quote plain",
+  "tokens": {
+    "color": {
+      "bg": "#f3f1ee",
+      "surface": "#f3f1ee",
+      "card": "#FFFFFF",
+      "ink": "#1c1916",
+      "muted": "#5c564e",
+      "rule": "#d9d0c6",
+      "accent": "#8a8175",
+      "accent2": "#8a8175",
+      "onAccent": "#f3f1ee"
+    },
+    "font": {
+      "display": "Calibri",
+      "text": "Calibri"
+    },
+    "type": {
+      "h1": 120,
+      "body": 28
+    }
+  },
+  "layoutSequence": [
+    "slide-1"
+  ],
+  "layouts": {
+    "slide-1": {
+      "version": 2,
+      "id": "slide-1",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-frame-top-slide-1",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 2,
+          "zIndex": 40,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "signature-frame-bottom-slide-1",
+          "type": "shape",
+          "x": 0,
+          "y": 898,
+          "width": 1600,
+          "height": 2,
+          "zIndex": 40,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "signature-frame-left-slide-1",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 2,
+          "height": 900,
+          "zIndex": 40,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "signature-frame-right-slide-1",
+          "type": "shape",
+          "x": 1598,
+          "y": 0,
+          "width": 2,
+          "height": 900,
+          "zIndex": 40,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-quote-field",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "opacity": 1,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "{color.onAccent}",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-quote-quote",
+          "type": "text",
+          "x": 120,
+          "y": 200,
+          "width": 1100,
+          "height": 190.08,
+          "zIndex": 1,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 48,
+            "fontWeight": 600,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.2,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "We stopped chasing payroll deadlines and started leading again.",
+                "fontFamily": "{font.display}",
+                "fontSize": 48,
+                "fontWeight": 600,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "quote",
+            "maxChars": 140,
+            "charsPerLine": 46,
+            "capacityLines": 3
+          },
+          "textMeasure": {
+            "lines": 2,
+            "fontPair": "corp-calibri",
+            "capacityChars": 140,
+            "charsPerLine": 46,
+            "width": 2838.95,
+            "canvasWidth": 2860.64,
+            "layoutWidth": 1100,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "quote"
+        },
+        {
+          "id": "composer-quote-attribution",
+          "type": "text",
+          "x": 120,
+          "y": 408.78,
+          "width": 1100,
+          "height": 31.46,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 22,
+            "fontWeight": 400,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Jordan Lee, COO",
+                "fontFamily": "{font.text}",
+                "fontSize": 22,
+                "fontWeight": 400,
+                "color": "{color.muted}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "attribution",
+            "maxChars": 40,
+            "charsPerLine": 40,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 40,
+            "charsPerLine": 40,
+            "width": 394.81,
+            "canvasWidth": 394.81,
+            "layoutWidth": 1100,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "quote"
+        }
+      ]
+    }
+  },
+  "parametric": {
+    "cover": "skipped",
+    "coverName": "Skipped",
+    "coverTitle": "Apex Payroll Solutions",
+    "density": "skipped",
+    "marginFactor": 1,
+    "lineHeightFactor": 1,
+    "densityReverted": [],
+    "densityRevertReasons": [],
+    "marginSample": null,
+    "signature": "frame",
+    "displayFont": "{font.display}",
+    "bodyFont": "{font.text}",
+    "displayWeight": 800,
+    "bodyWeight": 400,
+    "typeShortfalls": [],
+    "geometry": [
+      {
+        "slide": 1,
+        "pass": true,
+        "reasons": []
+      }
+    ],
+    "textOverlaps": []
+  },
+  "qa": {
+    "score": 100,
+    "passed": 1,
+    "total": 1,
+    "failures": [],
+    "attempt": 1,
+    "mode": "manual"
+  }
+}

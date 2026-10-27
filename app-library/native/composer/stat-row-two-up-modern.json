@@ -1,0 +1,396 @@
+{
+  "id": "stat-row-two-up-modern",
+  "name": "stat-row two-up (modern)",
+  "role": "Proof",
+  "tokens": {
+    "color": {
+      "bg": "#f3f1ee",
+      "surface": "#f3f1ee",
+      "card": "#FFFFFF",
+      "ink": "#1c1916",
+      "muted": "#5c564e",
+      "rule": "#d9d0c6",
+      "accent": "#8a8175",
+      "accent2": "#8a8175",
+      "onAccent": "#1c1916"
+    },
+    "font": {
+      "display": "Segoe UI",
+      "text": "Segoe UI"
+    },
+    "type": {
+      "h1": 120,
+      "body": 28
+    }
+  },
+  "layout": {
+    "version": 2,
+    "id": "stat-row-two-up-modern",
+    "canvas": {
+      "width": 1600,
+      "height": 900,
+      "aspectRatio": "16:9"
+    },
+    "elements": [
+      {
+        "id": "composer-stat-row-field",
+        "type": "shape",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "zIndex": 0,
+        "opacity": 1,
+        "shapeContent": {
+          "kind": "rect",
+          "fill": "{color.bg}",
+          "cornerRadius": 0
+        }
+      },
+      {
+        "id": "composer-stat-row-title",
+        "type": "text",
+        "x": 72,
+        "y": 72,
+        "width": 1456,
+        "height": 58.08,
+        "zIndex": 1,
+        "textStyle": {
+          "fontFamily": "{font.display}",
+          "fontSize": 48,
+          "fontWeight": 700,
+          "color": "{color.ink}",
+          "textAlign": "left",
+          "lineHeight": 1.1,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.display}",
+              "fontSize": 48,
+              "fontWeight": 700,
+              "color": "{color.ink}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "title",
+          "maxChars": 48,
+          "charsPerLine": 48,
+          "capacityLines": 1
+        },
+        "textMeasure": {
+          "lines": 1,
+          "fontPair": "modern",
+          "capacityChars": 48,
+          "charsPerLine": 48,
+          "width": 1153.45,
+          "canvasWidth": 1153.45,
+          "layoutWidth": 1456,
+          "fontCheck": true,
+          "computedFamily": "\"Segoe UI\""
+        },
+        "stackId": "main"
+      },
+      {
+        "id": "composer-stat-row-stat-1",
+        "type": "text",
+        "x": 72,
+        "y": 160.8,
+        "width": 400,
+        "height": 79.2,
+        "zIndex": 2,
+        "textStyle": {
+          "fontFamily": "{font.display}",
+          "fontSize": 72,
+          "fontWeight": 700,
+          "color": "{color.ink}",
+          "textAlign": "left",
+          "lineHeight": 1,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.display}",
+              "fontSize": 72,
+              "fontWeight": 700,
+              "color": "{color.ink}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "stat-1",
+          "maxChars": 6,
+          "charsPerLine": 6,
+          "capacityLines": 1
+        },
+        "textMeasure": {
+          "lines": 1,
+          "fontPair": "modern",
+          "capacityChars": 6,
+          "charsPerLine": 6,
+          "width": 245.47,
+          "canvasWidth": 245.46,
+          "layoutWidth": 400,
+          "fontCheck": true,
+          "computedFamily": "\"Segoe UI\""
+        },
+        "stackId": "stat-1"
+      },
+      {
+        "id": "composer-stat-row-label-1",
+        "type": "text",
+        "x": 72,
+        "y": 244.8,
+        "width": 400,
+        "height": 28.6,
+        "zIndex": 3,
+        "textStyle": {
+          "fontFamily": "{font.text}",
+          "fontSize": 20,
+          "fontWeight": 400,
+          "color": "{color.ink}",
+          "textAlign": "left",
+          "lineHeight": 1.3,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.text}",
+              "fontSize": 20,
+              "fontWeight": 400,
+              "color": "{color.ink}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "label-1",
+          "maxChars": 28,
+          "charsPerLine": 28,
+          "capacityLines": 1
+        },
+        "textMeasure": {
+          "lines": 1,
+          "fontPair": "modern",
+          "capacityChars": 28,
+          "charsPerLine": 28,
+          "width": 270.09,
+          "canvasWidth": 270.09,
+          "layoutWidth": 400,
+          "fontCheck": true,
+          "computedFamily": "\"Segoe UI\""
+        },
+        "stackId": "stat-1"
+      },
+      {
+        "id": "composer-stat-row-stat-2",
+        "type": "text",
+        "x": 520,
+        "y": 160.8,
+        "width": 400,
+        "height": 79.2,
+        "zIndex": 4,
+        "textStyle": {
+          "fontFamily": "{font.display}",
+          "fontSize": 72,
+          "fontWeight": 700,
+          "color": "{color.ink}",
+          "textAlign": "left",
+          "lineHeight": 1,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.display}",
+              "fontSize": 72,
+              "fontWeight": 700,
+              "color": "{color.ink}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "stat-2",
+          "maxChars": 6,
+          "charsPerLine": 6,
+          "capacityLines": 1
+        },
+        "textMeasure": {
+          "lines": 1,
+          "fontPair": "modern",
+          "capacityChars": 6,
+          "charsPerLine": 6,
+          "width": 245.47,
+          "canvasWidth": 245.46,
+          "layoutWidth": 400,
+          "fontCheck": true,
+          "computedFamily": "\"Segoe UI\""
+        },
+        "stackId": "stat-2"
+      },
+      {
+        "id": "composer-stat-row-label-2",
+        "type": "text",
+        "x": 520,
+        "y": 244.8,
+        "width": 400,
+        "height": 28.6,
+        "zIndex": 5,
+        "textStyle": {
+          "fontFamily": "{font.text}",
+          "fontSize": 20,
+          "fontWeight": 400,
+          "color": "{color.ink}",
+          "textAlign": "left",
+          "lineHeight": 1.3,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.text}",
+              "fontSize": 20,
+              "fontWeight": 400,
+              "color": "{color.ink}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "label-2",
+          "maxChars": 28,
+          "charsPerLine": 28,
+          "capacityLines": 1
+        },
+        "textMeasure": {
+          "lines": 1,
+          "fontPair": "modern",
+          "capacityChars": 28,
+          "charsPerLine": 28,
+          "width": 270.09,
+          "canvasWidth": 270.09,
+          "layoutWidth": 400,
+          "fontCheck": true,
+          "computedFamily": "\"Segoe UI\""
+        },
+        "stackId": "stat-2"
+      },
+      {
+        "id": "composer-stat-row-body",
+        "type": "text",
+        "x": 72,
+        "y": 306.8,
+        "width": 1456,
+        "height": 32.67,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "{font.text}",
+          "fontSize": 22,
+          "fontWeight": 400,
+          "color": "{color.muted}",
+          "textAlign": "left",
+          "lineHeight": 1.35,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.text}",
+              "fontSize": 22,
+              "fontWeight": 400,
+              "color": "{color.muted}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "body",
+          "maxChars": 120,
+          "charsPerLine": 120,
+          "capacityLines": 1
+        },
+        "textMeasure": {
+          "lines": 1,
+          "fontPair": "modern",
+          "capacityChars": 120,
+          "charsPerLine": 120,
+          "width": 1187.36,
+          "canvasWidth": 1187.36,
+          "layoutWidth": 1456,
+          "fontCheck": true,
+          "computedFamily": "\"Segoe UI\""
+        },
+        "stackId": "main"
+      }
+    ],
+    "stacks": [
+      {
+        "id": "main",
+        "order": [
+          "composer-stat-row-title",
+          "main-block-1",
+          "composer-stat-row-body"
+        ],
+        "blocks": [
+          {
+            "id": "main-block-1",
+            "x": 72,
+            "y": 160.8,
+            "width": 1456,
+            "height": 110
+          }
+        ],
+        "gap": 36,
+        "align": "start",
+        "direction": "column",
+        "box": {
+          "x": 72,
+          "y": 72,
+          "width": 1456,
+          "height": 780
+        }
+      },
+      {
+        "id": "stat-1",
+        "order": [
+          "composer-stat-row-stat-1",
+          "composer-stat-row-label-1"
+        ],
+        "blocks": [],
+        "gap": 12,
+        "align": "start",
+        "direction": "column",
+        "box": {
+          "x": 72,
+          "y": 160.8,
+          "width": 400,
+          "height": 110
+        }
+      },
+      {
+        "id": "stat-2",
+        "order": [
+          "composer-stat-row-stat-2",
+          "composer-stat-row-label-2"
+        ],
+        "blocks": [],
+        "gap": 12,
+        "align": "start",
+        "direction": "column",
+        "box": {
+          "x": 520,
+          "y": 160.8,
+          "width": 400,
+          "height": 110
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 2,
+  "id": "proof-statement-left",
+  "name": "Proof statement left",
+  "tokens": {
+    "color": {
+      "bg": "#f3f1ee",
+      "surface": "#f3f1ee",
+      "card": "#FFFFFF",
+      "ink": "#1c1916",
+      "muted": "#5c564e",
+      "rule": "#d9d0c6",
+      "accent": "#8a8175",
+      "accent2": "#8a8175",
+      "onAccent": "#f3f1ee"
+    },
+    "font": {
+      "display": "Calibri",
+      "text": "Calibri"
+    },
+    "type": {
+      "h1": 120,
+      "body": 28
+    }
+  },
+  "layoutSequence": [
+    "slide-1"
+  ],
+  "layouts": {
+    "slide-1": {
+      "version": 2,
+      "id": "slide-1",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-frame-top-slide-1",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 2,
+          "zIndex": 40,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "signature-frame-bottom-slide-1",
+          "type": "shape",
+          "x": 0,
+          "y": 898,
+          "width": 1600,
+          "height": 2,
+          "zIndex": 40,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "signature-frame-left-slide-1",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 2,
+          "height": 900,
+          "zIndex": 40,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "signature-frame-right-slide-1",
+          "type": "shape",
+          "x": 1598,
+          "y": 0,
+          "width": 2,
+          "height": 900,
+          "zIndex": 40,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-statement-field",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "opacity": 1,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "{color.onAccent}",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-statement-statement",
+          "type": "text",
+          "x": 96,
+          "y": 160,
+          "width": 1408,
+          "height": 332.64,
+          "zIndex": 1,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 96,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.05,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Payroll should disappear into the workday.",
+                "fontFamily": "{font.display}",
+                "fontSize": 96,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "statement",
+            "maxChars": 90,
+            "charsPerLine": 30,
+            "capacityLines": 3
+          },
+          "textMeasure": {
+            "lines": 2,
+            "fontPair": "corp-calibri",
+            "capacityChars": 90,
+            "charsPerLine": 30,
+            "width": 3703.03,
+            "canvasWidth": 3746.44,
+            "layoutWidth": 1408,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "statement"
+        }
+      ]
+    }
+  },
+  "parametric": {
+    "cover": "skipped",
+    "coverName": "Skipped",
+    "coverTitle": "Apex Payroll Solutions",
+    "density": "skipped",
+    "marginFactor": 1,
+    "lineHeightFactor": 1,
+    "densityReverted": [],
+    "densityRevertReasons": [],
+    "marginSample": null,
+    "signature": "frame",
+    "displayFont": "{font.display}",
+    "bodyFont": "Calibri",
+    "displayWeight": 800,
+    "bodyWeight": 400,
+    "typeShortfalls": [],
+    "geometry": [
+      {
+        "slide": 1,
+        "pass": true,
+        "reasons": []
+      }
+    ],
+    "textOverlaps": []
+  },
+  "qa": {
+    "score": 100,
+    "passed": 1,
+    "total": 1,
+    "failures": [],
+    "attempt": 1,
+    "mode": "manual"
+  }
+}

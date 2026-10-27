@@ -1,0 +1,475 @@
+{
+  "schemaVersion": 2,
+  "id": "proof-process-three-step",
+  "name": "Proof process three-step",
+  "tokens": {
+    "color": {
+      "bg": "#f3f1ee",
+      "surface": "#f3f1ee",
+      "card": "#FFFFFF",
+      "ink": "#1c1916",
+      "muted": "#5c564e",
+      "rule": "#d9d0c6",
+      "accent": "#8a8175",
+      "accent2": "#8a8175",
+      "onAccent": "#f3f1ee"
+    },
+    "font": {
+      "display": "Calibri",
+      "text": "Calibri"
+    },
+    "type": {
+      "h1": 120,
+      "body": 28
+    }
+  },
+  "layoutSequence": [
+    "slide-1"
+  ],
+  "layouts": {
+    "slide-1": {
+      "version": 2,
+      "id": "slide-1",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-frame-top-slide-1",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 2,
+          "zIndex": 40,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "signature-frame-bottom-slide-1",
+          "type": "shape",
+          "x": 0,
+          "y": 898,
+          "width": 1600,
+          "height": 2,
+          "zIndex": 40,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "signature-frame-left-slide-1",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 2,
+          "height": 900,
+          "zIndex": 40,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "signature-frame-right-slide-1",
+          "type": "shape",
+          "x": 1598,
+          "y": 0,
+          "width": 2,
+          "height": 900,
+          "zIndex": 40,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-process-field",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "opacity": 1,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "{color.onAccent}",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-process-title",
+          "type": "text",
+          "x": 96,
+          "y": 72,
+          "width": 1400,
+          "height": 58.08,
+          "zIndex": 1,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 48,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Apex Payroll Solutions",
+                "fontFamily": "{font.display}",
+                "fontSize": 48,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "title",
+            "maxChars": 40,
+            "charsPerLine": 40,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 40,
+            "charsPerLine": 40,
+            "width": 884.72,
+            "canvasWidth": 884.72,
+            "layoutWidth": 1400,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "header"
+        },
+        {
+          "id": "composer-process-step-title-1",
+          "type": "text",
+          "x": 96,
+          "y": 220,
+          "width": 442.67,
+          "height": 35.42,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 28,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Connect",
+                "fontFamily": "{font.display}",
+                "fontSize": 28,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "step-title-1",
+            "maxChars": 24,
+            "charsPerLine": 24,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 24,
+            "charsPerLine": 24,
+            "width": 309.91,
+            "canvasWidth": 309.9,
+            "layoutWidth": 442.67,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "step-1"
+        },
+        {
+          "id": "composer-process-step-body-1",
+          "type": "text",
+          "x": 96,
+          "y": 268.19,
+          "width": 442.67,
+          "height": 53.46,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 18,
+            "fontWeight": 400,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "lineHeight": 1.35,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Link HRIS and bank details in a guided setup.",
+                "fontFamily": "{font.text}",
+                "fontSize": 18,
+                "fontWeight": 400,
+                "color": "{color.muted}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "step-body-1",
+            "maxChars": 60,
+            "charsPerLine": 30,
+            "capacityLines": 2
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 60,
+            "charsPerLine": 30,
+            "width": 453.48,
+            "canvasWidth": 457.54,
+            "layoutWidth": 442.67,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "step-1"
+        },
+        {
+          "id": "composer-process-step-title-2",
+          "type": "text",
+          "x": 578.67,
+          "y": 220,
+          "width": 442.67,
+          "height": 35.42,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 28,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Configure",
+                "fontFamily": "{font.display}",
+                "fontSize": 28,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "step-title-2",
+            "maxChars": 24,
+            "charsPerLine": 24,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 24,
+            "charsPerLine": 24,
+            "width": 309.91,
+            "canvasWidth": 309.9,
+            "layoutWidth": 442.67,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "step-2"
+        },
+        {
+          "id": "composer-process-step-body-2",
+          "type": "text",
+          "x": 578.67,
+          "y": 268.19,
+          "width": 442.67,
+          "height": 53.46,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 18,
+            "fontWeight": 400,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "lineHeight": 1.35,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Map pay codes, taxes, and approval chains once.",
+                "fontFamily": "{font.text}",
+                "fontSize": 18,
+                "fontWeight": 400,
+                "color": "{color.muted}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "step-body-2",
+            "maxChars": 60,
+            "charsPerLine": 30,
+            "capacityLines": 2
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 60,
+            "charsPerLine": 30,
+            "width": 453.48,
+            "canvasWidth": 457.54,
+            "layoutWidth": 442.67,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "step-2"
+        },
+        {
+          "id": "composer-process-step-title-3",
+          "type": "text",
+          "x": 1061.34,
+          "y": 220,
+          "width": 442.67,
+          "height": 35.42,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 28,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Run",
+                "fontFamily": "{font.display}",
+                "fontSize": 28,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "step-title-3",
+            "maxChars": 24,
+            "charsPerLine": 24,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 24,
+            "charsPerLine": 24,
+            "width": 309.91,
+            "canvasWidth": 309.9,
+            "layoutWidth": 442.67,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "step-3"
+        },
+        {
+          "id": "composer-process-step-body-3",
+          "type": "text",
+          "x": 1061.34,
+          "y": 268.19,
+          "width": 442.67,
+          "height": 53.46,
+          "zIndex": 7,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 18,
+            "fontWeight": 400,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "lineHeight": 1.35,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Approve a preview and fund payroll with one click.",
+                "fontFamily": "{font.text}",
+                "fontSize": 18,
+                "fontWeight": 400,
+                "color": "{color.muted}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "step-body-3",
+            "maxChars": 60,
+            "charsPerLine": 30,
+            "capacityLines": 2
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 60,
+            "charsPerLine": 30,
+            "width": 453.48,
+            "canvasWidth": 457.54,
+            "layoutWidth": 442.67,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "step-3"
+        }
+      ]
+    }
+  },
+  "parametric": {
+    "cover": "skipped",
+    "coverName": "Skipped",
+    "coverTitle": "Apex Payroll Solutions",
+    "density": "skipped",
+    "marginFactor": 1,
+    "lineHeightFactor": 1,
+    "densityReverted": [],
+    "densityRevertReasons": [],
+    "marginSample": null,
+    "signature": "frame",
+    "displayFont": "{font.display}",
+    "bodyFont": "{font.display}",
+    "displayWeight": 800,
+    "bodyWeight": 400,
+    "typeShortfalls": [],
+    "geometry": [
+      {
+        "slide": 1,
+        "pass": true,
+        "reasons": []
+      }
+    ],
+    "textOverlaps": []
+  },
+  "qa": {
+    "score": 100,
+    "passed": 1,
+    "total": 1,
+    "failures": [],
+    "attempt": 1,
+    "mode": "manual"
+  }
+}

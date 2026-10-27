@@ -293,7 +293,7 @@ function addText(slide, element, tokens, rotate) {
     runs.push({ text, options: runOptions });
   });
   if (!runs.length) return;
-  slide.addText(runs, Object.assign(boxOf(element), {
+  const options = Object.assign(boxOf(element), {
     align: style.textAlign || "left",
     valign: "top",
     margin: 0,
@@ -302,7 +302,13 @@ function addText(slide, element, tokens, rotate) {
     fontFace: fontOf(style.fontFamily, tokens),
     fontSize: points(style.fontSize || 18),
     color: colorOf(style.color, tokens) || "1A1612",
-  }));
+  });
+  // Guard: only multiples >= 1 (A0.a: no LO regression on seed with 0.95; still skip sub-1).
+  const lineHeight = Number(style.lineHeight);
+  if (Number.isFinite(lineHeight) && lineHeight >= 1) {
+    options.lineSpacingMultiple = lineHeight;
+  }
+  slide.addText(runs, options);
 }
 
 function addShape(slide, pptx, element, tokens) {
@@ -344,7 +350,7 @@ function addPicture(slide, element, content, deckId, rotate) {
     return;
   }
   if (clip.kind === "ellipse") {
-    slide.addImage(Object.assign({ path: file, rounding: true, rotate: rotate || 0 }, box, coverSizing(box)));
+    slide.addImage(Object.assign({ path: file, rounding: true, rotate: rotate || 0 }, box, coverSizing(box, content, file)));
     return;
   }
   if (clip.kind === "arch" || (clip.kind === "rect" && Number(clip.cornerRadius) > 0)) {
@@ -353,11 +359,39 @@ function addPicture(slide, element, content, deckId, rotate) {
     slide.addImage(Object.assign({ data: "image/png;base64," + png.toString("base64"), rotate: rotate || 0 }, box));
     return;
   }
-  slide.addImage(Object.assign({ path: file, rotate: rotate || 0 }, box, coverSizing(box)));
+  slide.addImage(Object.assign({ path: file, rotate: rotate || 0 }, box, coverSizing(box, content, file)));
 }
 
-function coverSizing(box) {
-  return { sizing: { type: "cover", x: 0, y: 0, w: box.w, h: box.h } };
+function coverSizing(box, content, file) {
+  const hasAlign = content && (content.alignX != null || content.alignY != null);
+  if (!hasAlign || !file) {
+    return { sizing: { type: "cover", x: 0, y: 0, w: box.w, h: box.h } };
+  }
+  const ax = content.alignX == null ? 0.5 : Number(content.alignX);
+  const ay = content.alignY == null ? 0.5 : Number(content.alignY);
+  let iw = 0;
+  let ih = 0;
+  try {
+    const image = loadImage(file);
+    iw = image.naturalWidth || image.width || 0;
+    ih = image.naturalHeight || image.height || 0;
+  } catch (error) {
+    iw = 0;
+    ih = 0;
+  }
+  if (!(iw > 0 && ih > 0 && box.w > 0 && box.h > 0)) {
+    return { sizing: { type: "cover", x: 0, y: 0, w: box.w, h: box.h } };
+  }
+  const scale = Math.max(box.w / iw, box.h / ih);
+  const scaledW = iw * scale;
+  const scaledH = ih * scale;
+  const ox = Math.max(0, (scaledW - box.w) * (Number.isFinite(ax) ? ax : 0.5));
+  const oy = Math.max(0, (scaledH - box.h) * (Number.isFinite(ay) ? ay : 0.5));
+  return {
+    w: scaledW,
+    h: scaledH,
+    sizing: { type: "crop", w: box.w, h: box.h, x: ox, y: oy },
+  };
 }
 
 function addCollage(slide, element, deckId) {

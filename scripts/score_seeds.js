@@ -94,7 +94,7 @@ async function scoreSeed(layoutId) {
   try {
     const result = await injectTheme({ prompt: PROMPT, layout: layoutId, out, qa: false });
     const generated = readJson(path.join(out, "deck.json"));
-    const analysis = await analyzeDeck(generated, result.slides || []);
+    const analysis = await analyzeDeck(generated, result.slides || [], { vision: true });
     qualityScore = analysis.score;
     failures = analysis.failures;
     reviewed = analysis.slides.filter((slide) => slide.vision).length;

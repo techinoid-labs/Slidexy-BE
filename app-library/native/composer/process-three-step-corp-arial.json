@@ -1,0 +1,490 @@
+{
+  "id": "process-three-step-corp-arial",
+  "name": "process three-step (corp-arial)",
+  "role": "Model",
+  "tokens": {
+    "color": {
+      "bg": "#f3f1ee",
+      "surface": "#f3f1ee",
+      "card": "#FFFFFF",
+      "ink": "#1c1916",
+      "muted": "#5c564e",
+      "rule": "#d9d0c6",
+      "accent": "#8a8175",
+      "accent2": "#8a8175",
+      "onAccent": "#1c1916"
+    },
+    "font": {
+      "display": "Arial",
+      "text": "Arial"
+    },
+    "type": {
+      "h1": 120,
+      "body": 28
+    }
+  },
+  "layout": {
+    "version": 2,
+    "id": "process-three-step-corp-arial",
+    "canvas": {
+      "width": 1600,
+      "height": 900,
+      "aspectRatio": "16:9"
+    },
+    "elements": [
+      {
+        "id": "composer-process-field",
+        "type": "shape",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "zIndex": 0,
+        "opacity": 1,
+        "shapeContent": {
+          "kind": "rect",
+          "fill": "{color.bg}",
+          "cornerRadius": 0
+        }
+      },
+      {
+        "id": "composer-process-title",
+        "type": "text",
+        "x": 96,
+        "y": 72,
+        "width": 1400,
+        "height": 58.08,
+        "zIndex": 1,
+        "textStyle": {
+          "fontFamily": "{font.display}",
+          "fontSize": 48,
+          "fontWeight": 700,
+          "color": "{color.ink}",
+          "textAlign": "left",
+          "lineHeight": 1.1,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.display}",
+              "fontSize": 48,
+              "fontWeight": 700,
+              "color": "{color.ink}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "title",
+          "maxChars": 40,
+          "charsPerLine": 40,
+          "capacityLines": 1
+        },
+        "textMeasure": {
+          "lines": 1,
+          "fontPair": "corp-arial",
+          "capacityChars": 40,
+          "charsPerLine": 40,
+          "width": 1008.28,
+          "canvasWidth": 1008.28,
+          "layoutWidth": 1400,
+          "fontCheck": true,
+          "computedFamily": "Arial"
+        },
+        "stackId": "header"
+      },
+      {
+        "id": "composer-process-step-title-1",
+        "type": "text",
+        "x": 96,
+        "y": 220,
+        "width": 442.67,
+        "height": 35.42,
+        "zIndex": 2,
+        "textStyle": {
+          "fontFamily": "{font.display}",
+          "fontSize": 28,
+          "fontWeight": 700,
+          "color": "{color.ink}",
+          "textAlign": "left",
+          "lineHeight": 1.15,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.display}",
+              "fontSize": 28,
+              "fontWeight": 700,
+              "color": "{color.ink}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "step-title-1",
+          "maxChars": 24,
+          "charsPerLine": 24,
+          "capacityLines": 1
+        },
+        "textMeasure": {
+          "lines": 1,
+          "fontPair": "corp-arial",
+          "capacityChars": 24,
+          "charsPerLine": 24,
+          "width": 351.64,
+          "canvasWidth": 351.64,
+          "layoutWidth": 442.67,
+          "fontCheck": true,
+          "computedFamily": "Arial"
+        },
+        "stackId": "step-1"
+      },
+      {
+        "id": "composer-process-step-body-1",
+        "type": "text",
+        "x": 96,
+        "y": 268.19,
+        "width": 442.67,
+        "height": 53.46,
+        "zIndex": 3,
+        "textStyle": {
+          "fontFamily": "{font.text}",
+          "fontSize": 18,
+          "fontWeight": 400,
+          "color": "{color.muted}",
+          "textAlign": "left",
+          "lineHeight": 1.35,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.text}",
+              "fontSize": 18,
+              "fontWeight": 400,
+              "color": "{color.muted}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "step-body-1",
+          "maxChars": 60,
+          "charsPerLine": 30,
+          "capacityLines": 2
+        },
+        "textMeasure": {
+          "lines": 2,
+          "fontPair": "corp-arial",
+          "capacityChars": 60,
+          "charsPerLine": 30,
+          "width": 496.28,
+          "canvasWidth": 501.26,
+          "layoutWidth": 442.67,
+          "fontCheck": true,
+          "computedFamily": "Arial"
+        },
+        "stackId": "step-1"
+      },
+      {
+        "id": "composer-process-step-title-2",
+        "type": "text",
+        "x": 578.67,
+        "y": 220,
+        "width": 442.67,
+        "height": 35.42,
+        "zIndex": 4,
+        "textStyle": {
+          "fontFamily": "{font.display}",
+          "fontSize": 28,
+          "fontWeight": 700,
+          "color": "{color.ink}",
+          "textAlign": "left",
+          "lineHeight": 1.15,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.display}",
+              "fontSize": 28,
+              "fontWeight": 700,
+              "color": "{color.ink}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "step-title-2",
+          "maxChars": 24,
+          "charsPerLine": 24,
+          "capacityLines": 1
+        },
+        "textMeasure": {
+          "lines": 1,
+          "fontPair": "corp-arial",
+          "capacityChars": 24,
+          "charsPerLine": 24,
+          "width": 351.64,
+          "canvasWidth": 351.64,
+          "layoutWidth": 442.67,
+          "fontCheck": true,
+          "computedFamily": "Arial"
+        },
+        "stackId": "step-2"
+      },
+      {
+        "id": "composer-process-step-body-2",
+        "type": "text",
+        "x": 578.67,
+        "y": 268.19,
+        "width": 442.67,
+        "height": 53.46,
+        "zIndex": 5,
+        "textStyle": {
+          "fontFamily": "{font.text}",
+          "fontSize": 18,
+          "fontWeight": 400,
+          "color": "{color.muted}",
+          "textAlign": "left",
+          "lineHeight": 1.35,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.text}",
+              "fontSize": 18,
+              "fontWeight": 400,
+              "color": "{color.muted}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "step-body-2",
+          "maxChars": 60,
+          "charsPerLine": 30,
+          "capacityLines": 2
+        },
+        "textMeasure": {
+          "lines": 2,
+          "fontPair": "corp-arial",
+          "capacityChars": 60,
+          "charsPerLine": 30,
+          "width": 496.28,
+          "canvasWidth": 501.26,
+          "layoutWidth": 442.67,
+          "fontCheck": true,
+          "computedFamily": "Arial"
+        },
+        "stackId": "step-2"
+      },
+      {
+        "id": "composer-process-step-title-3",
+        "type": "text",
+        "x": 1061.34,
+        "y": 220,
+        "width": 442.67,
+        "height": 35.42,
+        "zIndex": 6,
+        "textStyle": {
+          "fontFamily": "{font.display}",
+          "fontSize": 28,
+          "fontWeight": 700,
+          "color": "{color.ink}",
+          "textAlign": "left",
+          "lineHeight": 1.15,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.display}",
+              "fontSize": 28,
+              "fontWeight": 700,
+              "color": "{color.ink}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "step-title-3",
+          "maxChars": 24,
+          "charsPerLine": 24,
+          "capacityLines": 1
+        },
+        "textMeasure": {
+          "lines": 1,
+          "fontPair": "corp-arial",
+          "capacityChars": 24,
+          "charsPerLine": 24,
+          "width": 351.64,
+          "canvasWidth": 351.64,
+          "layoutWidth": 442.67,
+          "fontCheck": true,
+          "computedFamily": "Arial"
+        },
+        "stackId": "step-3"
+      },
+      {
+        "id": "composer-process-step-body-3",
+        "type": "text",
+        "x": 1061.34,
+        "y": 268.19,
+        "width": 442.67,
+        "height": 53.46,
+        "zIndex": 7,
+        "textStyle": {
+          "fontFamily": "{font.text}",
+          "fontSize": 18,
+          "fontWeight": 400,
+          "color": "{color.muted}",
+          "textAlign": "left",
+          "lineHeight": 1.35,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.text}",
+              "fontSize": 18,
+              "fontWeight": 400,
+              "color": "{color.muted}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "step-body-3",
+          "maxChars": 60,
+          "charsPerLine": 30,
+          "capacityLines": 2
+        },
+        "textMeasure": {
+          "lines": 2,
+          "fontPair": "corp-arial",
+          "capacityChars": 60,
+          "charsPerLine": 30,
+          "width": 496.28,
+          "canvasWidth": 501.26,
+          "layoutWidth": 442.67,
+          "fontCheck": true,
+          "computedFamily": "Arial"
+        },
+        "stackId": "step-3"
+      }
+    ],
+    "stacks": [
+      {
+        "id": "header",
+        "order": [
+          "composer-process-title"
+        ],
+        "blocks": [],
+        "gap": 12,
+        "align": "start",
+        "direction": "column",
+        "box": {
+          "x": 96,
+          "y": 72,
+          "width": 1400,
+          "height": 100
+        }
+      },
+      {
+        "id": "steps",
+        "order": [
+          "steps-block-0",
+          "steps-block-1",
+          "steps-block-2"
+        ],
+        "blocks": [
+          {
+            "id": "steps-block-0",
+            "x": 96,
+            "y": 220,
+            "width": 442.67,
+            "height": 96.78
+          },
+          {
+            "id": "steps-block-1",
+            "x": 578.67,
+            "y": 220,
+            "width": 442.67,
+            "height": 96.78
+          },
+          {
+            "id": "steps-block-2",
+            "x": 1061.34,
+            "y": 220,
+            "width": 442.67,
+            "height": 96.78
+          }
+        ],
+        "gap": 40,
+        "align": "start",
+        "direction": "row",
+        "box": {
+          "x": 96,
+          "y": 220,
+          "width": 1408,
+          "height": 560
+        }
+      },
+      {
+        "id": "step-1",
+        "order": [
+          "composer-process-step-title-1",
+          "composer-process-step-body-1"
+        ],
+        "blocks": [],
+        "gap": 16,
+        "align": "start",
+        "direction": "column",
+        "box": {
+          "x": 96,
+          "y": 220,
+          "width": 442.67,
+          "height": 96.78
+        }
+      },
+      {
+        "id": "step-2",
+        "order": [
+          "composer-process-step-title-2",
+          "composer-process-step-body-2"
+        ],
+        "blocks": [],
+        "gap": 16,
+        "align": "start",
+        "direction": "column",
+        "box": {
+          "x": 578.67,
+          "y": 220,
+          "width": 442.67,
+          "height": 96.78
+        }
+      },
+      {
+        "id": "step-3",
+        "order": [
+          "composer-process-step-title-3",
+          "composer-process-step-body-3"
+        ],
+        "blocks": [],
+        "gap": 16,
+        "align": "start",
+        "direction": "column",
+        "box": {
+          "x": 1061.34,
+          "y": 220,
+          "width": 442.67,
+          "height": 96.78
+        }
+      }
+    ]
+  }
+}

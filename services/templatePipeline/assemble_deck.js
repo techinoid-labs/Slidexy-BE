@@ -11,7 +11,7 @@
 
 const fs = require("fs");
 const path = require("path");
-const { injectTheme, askModel, classifyVibe, liftDarkTextBackdrops, liftDarkShapes, seedFitsPrompt } = require("./thematic");
+const { injectTheme, askModel, classifyVibe, liftDarkTextBackdrops, liftDarkShapes, seedFitsPrompt, visionQaEnabled } = require("./thematic");
 const { analyzeDeck } = require("./scoring/analyzeDeck");
 
 const ROOT = path.join(__dirname, "..", "..");
@@ -387,8 +387,9 @@ async function assembleDeck(prompt, options) {
   const avoid = [];
   const usedBuckets = [];
   const buckets = ["light-neutral", "light-warm", "dark-neutral"];
+  const manual = !visionQaEnabled(options || {});
   let lastScore = 0;
-  for (let attempt = 1; attempt <= 3; attempt += 1) {
+  for (let attempt = 1; attempt <= (manual ? 1 : 3); attempt += 1) {
     const fresh = allSeeds.filter((seed) => avoid.indexOf(seed.id) < 0);
     const seeds = fresh.length ? fresh : allSeeds;
     const deck = composeAssembly(seeds, outline, subject, designLanguage, avoid);
@@ -407,7 +408,7 @@ async function assembleDeck(prompt, options) {
     });
     const saved = JSON.parse(fs.readFileSync(path.join(themed.outDir, "deck.json"), "utf8"));
     saved.assembly = saved.assembly || deck.assembly;
-    const analysis = await analyzeDeck(saved, themed.slides);
+    const analysis = await analyzeDeck(saved, themed.slides, { vision: !manual });
     lastScore = analysis.score;
     saved.assembly.analysis = {
       score: analysis.score,
@@ -415,12 +416,13 @@ async function assembleDeck(prompt, options) {
       total: analysis.total,
       failures: analysis.failures,
       attempt,
+      mode: manual ? "manual" : "vision",
     };
     fs.writeFileSync(path.join(themed.outDir, "deck.json"), JSON.stringify(saved, null, 2) + "\n");
     const bucket = themed.report && themed.report.mood && themed.report.mood.bucket;
     if (bucket && usedBuckets.indexOf(bucket) < 0) usedBuckets.push(bucket);
-    console.log("assemble score " + analysis.score + " attempt " + attempt + " (" + analysis.passed + "/" + analysis.total + ")");
-    if (analysis.score >= 80) {
+    console.log("assemble score " + analysis.score + " attempt " + attempt + " (" + analysis.passed + "/" + analysis.total + ")" + (manual ? " manual" : ""));
+    if (manual || analysis.score >= 80) {
       return {
         outDir: themed.outDir,
         slides: themed.slides,
@@ -463,4 +465,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { assembleDeck, readSeeds, archetypeOf };
+module.exports = { assembleDeck, readSeeds, archetypeOf, pickSlide, lockTheme, outlineFor, composeAssembly };

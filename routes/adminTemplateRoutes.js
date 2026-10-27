@@ -7,6 +7,8 @@ const {
   generateTemplate,
   previewPath,
   pptxPath,
+  ensurePptx,
+  readReplacements,
   publishTemplate,
   discardTemplate,
 } = require("../services/templatePipeline/adminCatalog");
@@ -31,14 +33,14 @@ router.post("/generate-template", send(async (req, res) => {
   res.json(result);
 }));
 
-router.get("/download/:id", (req, res) => {
-  try {
-    const file = pptxPath(req.params.id);
-    res.download(file);
-  } catch (error) {
-    res.status(error.status || 500).json({ error: error.message });
-  }
-});
+router.get("/download/:id", send(async (req, res) => {
+  const file = await ensurePptx(req.params.id);
+  res.download(file);
+}));
+
+router.get("/replacements/:id", send(async (req, res) => {
+  res.json(readReplacements(req.params.id));
+}));
 
 router.get("/preview/:id/:name", (req, res) => {
   try {
@@ -69,7 +71,7 @@ router.post("/disable-seed", send(async (req, res) => {
 }));
 
 router.post("/publish-template", send(async (req, res) => {
-  res.json(publishTemplate(req.body && req.body.id));
+  res.json(await publishTemplate(req.body && req.body.id));
 }));
 
 router.post("/discard-template", send(async (req, res) => {

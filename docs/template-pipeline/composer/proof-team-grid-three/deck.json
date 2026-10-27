@@ -1,0 +1,532 @@
+{
+  "schemaVersion": 2,
+  "id": "proof-team-grid-three",
+  "name": "Proof team-grid three",
+  "tokens": {
+    "color": {
+      "bg": "#f3f1ee",
+      "surface": "#f3f1ee",
+      "card": "#FFFFFF",
+      "ink": "#1c1916",
+      "muted": "#5c564e",
+      "rule": "#d9d0c6",
+      "accent": "#8a8175",
+      "accent2": "#8a8175",
+      "onAccent": "#f3f1ee"
+    },
+    "font": {
+      "display": "Calibri",
+      "text": "Calibri"
+    },
+    "type": {
+      "h1": 120,
+      "body": 28
+    }
+  },
+  "layoutSequence": [
+    "slide-1"
+  ],
+  "layouts": {
+    "slide-1": {
+      "version": 2,
+      "id": "slide-1",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-frame-top-slide-1",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 2,
+          "zIndex": 40,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "signature-frame-bottom-slide-1",
+          "type": "shape",
+          "x": 0,
+          "y": 898,
+          "width": 1600,
+          "height": 2,
+          "zIndex": 40,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "signature-frame-left-slide-1",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 2,
+          "height": 900,
+          "zIndex": 40,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "signature-frame-right-slide-1",
+          "type": "shape",
+          "x": 1598,
+          "y": 0,
+          "width": 2,
+          "height": 900,
+          "zIndex": 40,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-team-grid-field",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "opacity": 1,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "{color.onAccent}",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-team-grid-title",
+          "type": "text",
+          "x": 96,
+          "y": 72,
+          "width": 1400,
+          "height": 58.08,
+          "zIndex": 1,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 48,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Apex Payroll Solutions",
+                "fontFamily": "{font.display}",
+                "fontSize": 48,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "title",
+            "maxChars": 40,
+            "charsPerLine": 40,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 40,
+            "charsPerLine": 40,
+            "width": 884.72,
+            "canvasWidth": 884.72,
+            "layoutWidth": 1400,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "header"
+        },
+        {
+          "id": "composer-team-grid-photo-1",
+          "type": "maskedImage",
+          "x": 234.66,
+          "y": 220,
+          "width": 160,
+          "height": 160,
+          "zIndex": 2,
+          "maskedImageContent": {
+            "url": "photos/composer/proof/landscape-01.jpg",
+            "fit": "cover",
+            "binding": "photo-1",
+            "alignX": 0.5,
+            "alignY": 0.5,
+            "clip": {
+              "kind": "ellipse"
+            }
+          }
+        },
+        {
+          "id": "composer-team-grid-name-1",
+          "type": "text",
+          "x": 96,
+          "y": 396,
+          "width": 437.33,
+          "height": 30.36,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 24,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "center",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Alex Morgan",
+                "fontFamily": "{font.display}",
+                "fontSize": 24,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "name-1",
+            "maxChars": 24,
+            "charsPerLine": 24,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 24,
+            "charsPerLine": 24,
+            "width": 265.64,
+            "canvasWidth": 265.63,
+            "layoutWidth": 437.33,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "member-1"
+        },
+        {
+          "id": "composer-team-grid-role-1",
+          "type": "text",
+          "x": 96,
+          "y": 439.59,
+          "width": 437.33,
+          "height": 25.74,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 18,
+            "fontWeight": 400,
+            "color": "{color.muted}",
+            "textAlign": "center",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Chief Executive Officer",
+                "fontFamily": "{font.text}",
+                "fontSize": 18,
+                "fontWeight": 400,
+                "color": "{color.muted}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "role-1",
+            "maxChars": 28,
+            "charsPerLine": 28,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 28,
+            "charsPerLine": 28,
+            "width": 225.52,
+            "canvasWidth": 225.5,
+            "layoutWidth": 437.33,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "member-1"
+        },
+        {
+          "id": "composer-team-grid-photo-2",
+          "type": "maskedImage",
+          "x": 719.98,
+          "y": 220,
+          "width": 160,
+          "height": 160,
+          "zIndex": 5,
+          "maskedImageContent": {
+            "url": "photos/composer/proof/landscape-01.jpg",
+            "fit": "cover",
+            "binding": "photo-2",
+            "alignX": 0.5,
+            "alignY": 0.5,
+            "clip": {
+              "kind": "ellipse"
+            }
+          }
+        },
+        {
+          "id": "composer-team-grid-name-2",
+          "type": "text",
+          "x": 581.33,
+          "y": 396,
+          "width": 437.33,
+          "height": 30.36,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 24,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "center",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Sam Rivera",
+                "fontFamily": "{font.display}",
+                "fontSize": 24,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "name-2",
+            "maxChars": 24,
+            "charsPerLine": 24,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 24,
+            "charsPerLine": 24,
+            "width": 265.64,
+            "canvasWidth": 265.63,
+            "layoutWidth": 437.33,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "member-2"
+        },
+        {
+          "id": "composer-team-grid-role-2",
+          "type": "text",
+          "x": 581.33,
+          "y": 439.59,
+          "width": 437.33,
+          "height": 25.74,
+          "zIndex": 7,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 18,
+            "fontWeight": 400,
+            "color": "{color.muted}",
+            "textAlign": "center",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Head of Customer Success",
+                "fontFamily": "{font.text}",
+                "fontSize": 18,
+                "fontWeight": 400,
+                "color": "{color.muted}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "role-2",
+            "maxChars": 28,
+            "charsPerLine": 28,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 28,
+            "charsPerLine": 28,
+            "width": 225.52,
+            "canvasWidth": 225.5,
+            "layoutWidth": 437.33,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "member-2"
+        },
+        {
+          "id": "composer-team-grid-photo-3",
+          "type": "maskedImage",
+          "x": 1205.31,
+          "y": 220,
+          "width": 160,
+          "height": 160,
+          "zIndex": 8,
+          "maskedImageContent": {
+            "url": "photos/composer/proof/landscape-01.jpg",
+            "fit": "cover",
+            "binding": "photo-3",
+            "alignX": 0.5,
+            "alignY": 0.5,
+            "clip": {
+              "kind": "ellipse"
+            }
+          }
+        },
+        {
+          "id": "composer-team-grid-name-3",
+          "type": "text",
+          "x": 1066.66,
+          "y": 396,
+          "width": 437.33,
+          "height": 30.36,
+          "zIndex": 9,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 24,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "center",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Casey Nguyen",
+                "fontFamily": "{font.display}",
+                "fontSize": 24,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "name-3",
+            "maxChars": 24,
+            "charsPerLine": 24,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 24,
+            "charsPerLine": 24,
+            "width": 265.64,
+            "canvasWidth": 265.63,
+            "layoutWidth": 437.33,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "member-3"
+        },
+        {
+          "id": "composer-team-grid-role-3",
+          "type": "text",
+          "x": 1066.66,
+          "y": 439.59,
+          "width": 437.33,
+          "height": 25.74,
+          "zIndex": 10,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 18,
+            "fontWeight": 400,
+            "color": "{color.muted}",
+            "textAlign": "center",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "VP of Engineering",
+                "fontFamily": "{font.text}",
+                "fontSize": 18,
+                "fontWeight": 400,
+                "color": "{color.muted}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "role-3",
+            "maxChars": 28,
+            "charsPerLine": 28,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 28,
+            "charsPerLine": 28,
+            "width": 225.52,
+            "canvasWidth": 225.5,
+            "layoutWidth": 437.33,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "member-3"
+        }
+      ]
+    }
+  },
+  "parametric": {
+    "cover": "skipped",
+    "coverName": "Skipped",
+    "coverTitle": "Apex Payroll Solutions",
+    "density": "skipped",
+    "marginFactor": 1,
+    "lineHeightFactor": 1,
+    "densityReverted": [],
+    "densityRevertReasons": [],
+    "marginSample": null,
+    "signature": "frame",
+    "displayFont": "{font.display}",
+    "bodyFont": "{font.display}",
+    "displayWeight": 800,
+    "bodyWeight": 400,
+    "typeShortfalls": [],
+    "geometry": [
+      {
+        "slide": 1,
+        "pass": true,
+        "reasons": []
+      }
+    ],
+    "textOverlaps": []
+  },
+  "qa": {
+    "score": 100,
+    "passed": 1,
+    "total": 1,
+    "failures": [],
+    "attempt": 1,
+    "mode": "manual"
+  }
+}

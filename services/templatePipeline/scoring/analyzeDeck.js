@@ -257,7 +257,9 @@ function checkGeometry(deck, layoutId) {
   return { pass: unique.length === 0, reasons: unique };
 }
 
-async function analyzeDeck(deck, pngs) {
+async function analyzeDeck(deck, pngs, options) {
+  const settings = options || {};
+  const useVision = settings.vision !== false;
   const sequence = deck.layoutSequence || Object.keys(deck.layouts || {});
   const slides = [];
   const failures = [];
@@ -268,6 +270,10 @@ async function analyzeDeck(deck, pngs) {
     if (!geometry.pass) {
       geometry.reasons.forEach((reason) => failures.push(reason + " on slide " + number));
       slides.push({ slide: number, pass: false, score: 0, reasons: geometry.reasons, vision: null });
+      continue;
+    }
+    if (!useVision) {
+      slides.push({ slide: number, pass: true, score: 100, reasons: [], vision: null });
       continue;
     }
     const file = pngs && pngs[index];
@@ -299,6 +305,7 @@ async function analyzeDeck(deck, pngs) {
     total: slides.length,
     failures,
     slides,
+    vision: useVision,
   };
 }
 

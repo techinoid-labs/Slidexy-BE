@@ -37,8 +37,38 @@ function loadEnv() {
   });
 }
 
+async function askCustomGenerate(url, prompt) {
+  const response = await fetch(url, {
+    method: "POST",
+    headers: { accept: "*/*", "Content-Type": "application/json" },
+    body: JSON.stringify({
+      input: String(prompt || ""),
+      max_output_tokens: Number(process.env.CUSTOM_GENERATE_MAX_TOKENS) || 16000,
+    }),
+  });
+  const body = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    const message = (body && (body.error || body.detail || body.message)) || "Custom generate request failed.";
+    throw new Error(typeof message === "string" ? message : JSON.stringify(message));
+  }
+  const text = body && (body.output != null ? body.output : body.text != null ? body.text : body.content);
+  if (text == null || text === "") throw new Error("The model did not return a design.");
+  return String(text);
+}
+
 async function askModel(prompt) {
   loadEnv();
+  const customUrl = String(process.env.CUSTOM_GENERATE_URL || "http://64.23.174.222:8010/generate").trim();
+  if (customUrl) {
+    try {
+      return await askCustomGenerate(customUrl, prompt);
+    } catch (error) {
+      const openRouter = process.env.OPENROUTER_API_KEY;
+      const google = process.env.API_KEY1 || process.env.GEMINI_API_KEY;
+      if (!openRouter && !google) throw error;
+      console.warn("custom generate failed (" + (error && error.message ? error.message : error) + "); falling back");
+    }
+  }
   const openRouter = process.env.OPENROUTER_API_KEY;
   const google = process.env.API_KEY1 || process.env.GEMINI_API_KEY;
   if (openRouter) {
@@ -50,7 +80,7 @@ async function askModel(prompt) {
     }
   }
   if (google) return askGoogle(google, prompt);
-  const error = new Error("No model key is set. Add OPENROUTER_API_KEY, API_KEY1, or GEMINI_API_KEY to .env.");
+  const error = new Error("No model endpoint is set. Set CUSTOM_GENERATE_URL, or OPENROUTER_API_KEY / API_KEY1 / GEMINI_API_KEY.");
   error.status = 500;
   throw error;
 }

@@ -1,0 +1,212 @@
+{
+  "countedAskCalls": 1,
+  "reportCalls": 2,
+  "refinement": {
+    "fired": false
+  },
+  "fits": [],
+  "plan": [
+    {
+      "role": "Cover",
+      "component": "cover",
+      "variant": "split"
+    },
+    {
+      "role": "About",
+      "component": "split-copy",
+      "variant": "photo-left"
+    },
+    {
+      "role": "Problem",
+      "component": "split-copy",
+      "variant": "photo-right"
+    },
+    {
+      "role": "Solution",
+      "component": "split-copy",
+      "variant": "photo-left"
+    },
+    {
+      "role": "Proof",
+      "component": "stat-row",
+      "variant": "three-up"
+    },
+    {
+      "role": "Close",
+      "component": "close",
+      "variant": "plain"
+    }
+  ],
+  "fallbacks": [
+    {
+      "field": "copy.Close.body",
+      "got": "len=97",
+      "used": "clamped:80"
+    }
+  ],
+  "qa": {
+    "score": 100,
+    "passed": 6,
+    "total": 6,
+    "failures": [],
+    "attempt": 1,
+    "mode": "manual",
+    "aesthetic": {
+      "slides": 6,
+      "avgWhitespace": 0.515,
+      "avgTextDensity": 144,
+      "typeScaleAllOk": false,
+      "minFontSeen": 18
+    }
+  },
+  "slides": [
+    {
+      "slide": 1,
+      "pass": true,
+      "reasons": []
+    },
+    {
+      "slide": 2,
+      "pass": true,
+      "reasons": []
+    },
+    {
+      "slide": 3,
+      "pass": true,
+      "reasons": []
+    },
+    {
+      "slide": 4,
+      "pass": true,
+      "reasons": []
+    },
+    {
+      "slide": 5,
+      "pass": true,
+      "reasons": []
+    },
+    {
+      "slide": 6,
+      "pass": true,
+      "reasons": []
+    }
+  ],
+  "aesthetic": {
+    "slides": 6,
+    "avgWhitespace": 0.515,
+    "avgTextDensity": 144,
+    "typeScaleAllOk": false,
+    "minFontSeen": 18
+  },
+  "pngs": [
+    "docs/template-pipeline/composer/proof-payroll-4d-online/slide-01.png",
+    "docs/template-pipeline/composer/proof-payroll-4d-online/slide-02.png",
+    "docs/template-pipeline/composer/proof-payroll-4d-online/slide-03.png",
+    "docs/template-pipeline/composer/proof-payroll-4d-online/slide-04.png",
+    "docs/template-pipeline/composer/proof-payroll-4d-online/slide-05.png",
+    "docs/template-pipeline/composer/proof-payroll-4d-online/slide-06.png"
+  ],
+  "brand": "SwiftPay Solutions",
+  "industry": "Payroll",
+  "bucket": "light-neutral",
+  "fontPair": "corp-calibri",
+  "photoQueries": [
+    {
+      "query": "office laptop graphs",
+      "orientation": "landscape",
+      "hits": 5
+    }
+  ],
+  "brief": {
+    "plan": [
+      {
+        "role": "Cover",
+        "component": "cover",
+        "variant": "split"
+      },
+      {
+        "role": "About",
+        "component": "split-copy",
+        "variant": "photo-left"
+      },
+      {
+        "role": "Problem",
+        "component": "split-copy",
+        "variant": "photo-right"
+      },
+      {
+        "role": "Solution",
+        "component": "split-copy",
+        "variant": "photo-left"
+      },
+      {
+        "role": "Proof",
+        "component": "stat-row",
+        "variant": "three-up"
+      },
+      {
+        "role": "Close",
+        "component": "close",
+        "variant": "plain"
+      }
+    ],
+    "paletteBucket": "light-neutral",
+    "fontPair": "corp-calibri",
+    "density": "balanced",
+    "coverPattern": "split",
+    "signature": "frame",
+    "mood": "Clean and corporate",
+    "copy": {
+      "Cover": {
+        "title": "SwiftPay Solutions",
+        "body": "Empowering businesses with seamless and accurate payroll processing",
+        "kicker": "Payroll"
+      },
+      "About": {
+        "title": "Our Mission",
+        "body": "To empower businesses with seamless and accurate payroll processing, allowing them to focus on growth.",
+        "bullets": [
+          "Dedicated to accuracy",
+          "Streamlined processes",
+          "Client-centric approach"
+        ]
+      },
+      "Problem": {
+        "title": "The Payroll Pain Points",
+        "body": "Complex regulations, manual errors, and time-consuming tasks can hinder your business",
+        "bullets": [
+          "Compliance risks",
+          "Operational inefficiencies",
+          "Employee dissatisfaction"
+        ]
+      },
+      "Solution": {
+        "title": "Your Payroll Partner",
+        "body": "SwiftPay Solutions offers a robust platform for effortless payroll management",
+        "bullets": [
+          "Automated calculations",
+          "Direct deposit",
+          "Tax filing support"
+        ]
+      },
+      "Proof": {
+        "title": "Proven Impact",
+        "stats": [
+          "99.9%",
+          "85%",
+          "24/7"
+        ],
+        "labels": [
+          "Accuracy Rate",
+          "Time Saved Annually",
+          "Support Availability"
+        ],
+        "body": "Trusted by businesses nationwide for reliable and efficient payroll"
+      },
+      "Close": {
+        "title": "Ready to Streamline?",
+        "body": "Let SwiftPay Solutions handle your payroll, so you can focus on what matters mos"
+      }
+    }
+  }
+}

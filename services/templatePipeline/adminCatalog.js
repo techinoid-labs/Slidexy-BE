@@ -1,10 +1,11 @@
 const fs = require("fs");
 const path = require("path");
-const { injectTheme } = require("./thematic");
+const pipeline = require("./pipeline");
 const { remixSeeds } = require("./mutate_layout");
 const { assembleDeck } = require("./assemble_deck");
 const { convertPptx } = require("./convert/pptxToDeck");
 const { scoreSeed } = require("../../scripts/score_seeds");
+const { safeRm } = require("./safeRm");
 
 const ROOT = path.join(__dirname, "..", "..");
 const LIBRARY = path.join(ROOT, "app-library");
@@ -95,7 +96,7 @@ function ingestPptx(buffer, filename) {
     const message = error && error.message ? error.message : "Could not read that PowerPoint";
     throw fail(400, message);
   } finally {
-    fs.rmSync(input, { force: true });
+    safeRm(input, { force: true });
   }
   const dna = path.join(LIBRARY, id + ".dna.json");
   if (fs.existsSync(dna)) fs.rmSync(dna);
@@ -179,22 +180,31 @@ async function generateTemplate(body) {
   const prompt = String(body && body.prompt || "").trim();
   if (!prompt) throw fail(400, "Prompt is required");
   if (prompt.length > 500) throw fail(400, "Prompt is too long");
+  const mode = String(body && body.mode || "").trim().toLowerCase();
+  const composer = mode === "composer";
   const niche = String(body && body.niche || "").trim().toLowerCase();
   const namedNiche = ["corporate", "elegant", "gradient", "infographic", "cartoon"].indexOf(niche) >= 0;
-  const native = namedNiche || Boolean(body && (body.native === true || body.native === "true" || body.mode === "native"));
-  const assemble = !native && Boolean(body && (body.assemble === true || body.assemble === "true" || body.mode === "assemble"));
-  const remix = !native && !assemble && Boolean(body && (body.remix === true || body.remix === "true" || body.mode === "frankenstein"));
-  const autoLayout = !native && !assemble && !remix && Boolean(body && (body.autoLayout === true || body.autoLayout === "true"));
-  const layoutId = native || assemble || autoLayout ? "" : layoutFile(body && (body.layoutId || body.layout || body.seedA));
+  const native = !composer && (namedNiche || Boolean(body && (body.native === true || body.native === "true" || mode === "native")));
+  const assemble = !composer && !native && Boolean(body && (body.assemble === true || body.assemble === "true" || mode === "assemble"));
+  const remix = !composer && !native && !assemble && Boolean(body && (body.remix === true || body.remix === "true" || mode === "frankenstein" || mode === "remix"));
+  const autoLayout = !composer && !native && !assemble && !remix && Boolean(body && (body.autoLayout === true || body.autoLayout === "true" || mode === "auto" || mode === "auto-select"));
+  const layoutId = composer || native || assemble || autoLayout ? "" : layoutFile(body && (body.layoutId || body.layout || body.seedA));
   const layoutIdB = remix ? layoutFile(body && (body.layoutIdB || body.seedB)) : "";
   if (remix && layoutId === layoutIdB) throw fail(400, "Pick two different seeds");
-  const id = slug((native ? "native" : assemble ? "assemble" : remix ? "remix-" + layoutId + "-" + layoutIdB : (layoutId || "auto")) + "-" + prompt) + "-" + Date.now().toString(36);
+  const id = slug((composer ? "composer" : native ? "native" : assemble ? "assemble" : remix ? "remix-" + layoutId + "-" + layoutIdB : (layoutId || "auto")) + "-" + prompt) + "-" + Date.now().toString(36);
   const dir = jobDir(id);
   const photoDir = path.join(ROOT, "generated-templates", "photos", native ? "native" : "thematic", id);
   fs.mkdirSync(dir, { recursive: true });
   let themed = null;
   try {
-    if (native) {
+    if (composer) {
+      themed = await pipeline.runPipeline({
+        mode: "composer",
+        prompt,
+        nonce: body && body.nonce != null ? String(body.nonce) : "",
+        out: relative(dir),
+      });
+    } else if (native) {
       const { generate } = require("./thematic-native");
       themed = await generate({
         prompt,
@@ -207,16 +217,21 @@ async function generateTemplate(body) {
         ? await assembleDeck(prompt, { out: relative(dir) })
         : remix
           ? await remixSeeds(layoutId, layoutIdB, { prompt, out: relative(dir) })
-          : await injectTheme({
+          : await pipeline.runPipeline({
             prompt,
+            mode: autoLayout ? "auto" : "pinned",
             layout: layoutId,
-            autoLayout,
             out: relative(dir),
           });
     }
   } catch (error) {
-    fs.rmSync(dir, { recursive: true, force: true });
-    fs.rmSync(photoDir, { recursive: true, force: true });
+    const partialDeck = path.join(dir, "deck.json");
+    const extraPhotos = fs.existsSync(partialDeck)
+      ? thematicPhotoDirs(JSON.parse(fs.readFileSync(partialDeck, "utf8")))
+      : [];
+    safeRm(dir, { recursive: true, force: true });
+    safeRm(photoDir, { recursive: true, force: true });
+    extraPhotos.forEach((dirPath) => safeRm(dirPath, { recursive: true, force: true }));
     throw error;
   }
   const deck = JSON.parse(fs.readFileSync(path.join(dir, "deck.json"), "utf8"));
@@ -230,16 +245,17 @@ async function generateTemplate(body) {
     }));
   return {
     id,
-    layoutId: themed.layout || layoutId,
+    layoutId: themed.layoutId || themed.layout || layoutId || (composer ? "composer" : ""),
     layoutIdB: layoutIdB || "",
     remix: themed.remix || null,
     assembly: themed.assembly || null,
     analysis: themed.analysis || null,
     prompt,
-    vibe: (themed.report && themed.report.vibe) || (themed.assembly && themed.assembly.designLanguage) || "",
-    name: deck.name || "",
+    vibe: themed.vibe || (themed.report && themed.report.vibe) || (themed.assembly && themed.assembly.designLanguage) || "",
+    name: deck.name || themed.name || "",
     deck,
     slides,
+    // PPTX is built on download; leave absent until then (same for composer and seed).
     pptxUrl: fs.readdirSync(dir).some((name) => name.endsWith(".pptx")) ? "/api/admin/download/" + id : "",
   };
 }
@@ -256,7 +272,7 @@ function thematicPhotoDirs(deck) {
   walkElements(deck, (element) => {
     const content = element.imageContent || element.maskedImageContent;
     if (!content || typeof content.url !== "string") return;
-    const match = content.url.match(/^photos\/(thematic|native)\/([a-z0-9-]+)\//);
+    const match = content.url.match(/^photos\/(thematic|native|composer)\/([a-z0-9-]+)\//);
     if (!match) return;
     dirs.add(path.join(ROOT, "generated-templates", "photos", match[1], match[2]));
   });
@@ -271,18 +287,46 @@ function pptxPath(id) {
   return path.join(dir, name);
 }
 
-function publishTemplate(id) {
+/** Build PPTX from job deck.json via catalog.exportDeckPptx when missing. Reuses deck.pptx. */
+async function ensurePptx(id) {
+  const dir = jobDir(id);
+  if (!fs.existsSync(dir)) throw fail(404, "Deck not found");
+  const deckPptx = path.join(dir, "deck.pptx");
+  if (fs.existsSync(deckPptx) && fs.statSync(deckPptx).isFile()) return deckPptx;
+  const existing = fs.readdirSync(dir).find((item) => item.endsWith(".pptx"));
+  if (existing) return path.join(dir, existing);
+  const deckFile = path.join(dir, "deck.json");
+  if (!fs.existsSync(deckFile)) throw fail(404, "Deck not found");
+  const deck = JSON.parse(fs.readFileSync(deckFile, "utf8"));
+  const out = path.join(dir, "deck.pptx");
+  const { exportDeckPptx } = require("./catalog");
+  await exportDeckPptx(deck, out);
+  return out;
+}
+
+function readReplacements(id) {
+  const file = path.join(jobDir(id), "replacements.json");
+  if (!fs.existsSync(file)) throw fail(404, "Replacements not found");
+  return JSON.parse(fs.readFileSync(file, "utf8"));
+}
+
+async function publishTemplate(id) {
   const dir = jobDir(id);
   const deckFile = path.join(dir, "deck.json");
   if (!fs.existsSync(deckFile)) throw fail(404, "Deck not found");
   const deck = JSON.parse(fs.readFileSync(deckFile, "utf8"));
+  const { runPptxGate } = require("./composer/pptxGate");
+  const gate = await runPptxGate(deck, dir);
+  if (!gate.skipped && !gate.pass) {
+    throw fail(422, "PPTX gate failed: " + (gate.failures || []).join("; "));
+  }
   const publishedId = assertId(String(deck.id || id).toLowerCase().replace(/[^a-z0-9-]+/g, "-").replace(/^-+|-+$/g, ""));
   const dest = path.join(PUBLISHED, publishedId);
   const photoDirs = thematicPhotoDirs(deck);
   walkElements(deck, (element) => {
     const content = element.imageContent || element.maskedImageContent;
     if (!content || typeof content.url !== "string") return;
-    if (!/^photos\/(thematic|native)\/[a-z0-9-]+\//.test(content.url)) return;
+    if (!/^photos\/(thematic|native|composer)\/[a-z0-9-]+\//.test(content.url)) return;
     content.url = "photos/" + path.basename(content.url);
   });
   deck.status = "published";
@@ -295,8 +339,8 @@ function publishTemplate(id) {
   const catalogFile = path.join(PUBLISHED, publishedId + ".json");
   fs.writeFileSync(catalogFile, JSON.stringify(deck, null, 2) + "\n");
   fs.writeFileSync(path.join(dest, "deck.json"), JSON.stringify(deck, null, 2) + "\n");
-  fs.rmSync(dir, { recursive: true, force: true });
-  photoDirs.forEach((photoDir) => fs.rmSync(photoDir, { recursive: true, force: true }));
+  safeRm(dir, { recursive: true, force: true });
+  photoDirs.forEach((photoDir) => safeRm(photoDir, { recursive: true, force: true }));
   return {
     id: publishedId,
     status: deck.status,
@@ -312,8 +356,9 @@ function discardTemplate(id) {
   const photoDirs = hadDeck ? thematicPhotoDirs(JSON.parse(fs.readFileSync(deckFile, "utf8"))) : [];
   photoDirs.push(path.join(ROOT, "generated-templates", "photos", "thematic", assertId(id)));
   photoDirs.push(path.join(ROOT, "generated-templates", "photos", "native", assertId(id)));
-  fs.rmSync(dir, { recursive: true, force: true });
-  photoDirs.forEach((photoDir) => fs.rmSync(photoDir, { recursive: true, force: true }));
+  photoDirs.push(path.join(ROOT, "generated-templates", "photos", "composer", assertId(id)));
+  safeRm(dir, { recursive: true, force: true });
+  photoDirs.forEach((photoDir) => safeRm(photoDir, { recursive: true, force: true }));
   if (!hadDeck) throw fail(404, "Deck not found");
   return { id, discarded: true };
 }
@@ -326,6 +371,10 @@ module.exports = {
   generateTemplate,
   previewPath,
   pptxPath,
+  ensurePptx,
+  readReplacements,
   publishTemplate,
   discardTemplate,
+  jobDir,
+  thematicPhotoDirs,
 };

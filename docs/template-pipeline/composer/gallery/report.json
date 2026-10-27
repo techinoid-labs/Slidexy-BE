@@ -1,0 +1,294 @@
+{
+  "count": 36,
+  "failed": [],
+  "entries": [
+    {
+      "component": "cover",
+      "variant": "word",
+      "bucket": "light-neutral",
+      "file": "cover__word__light-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "cover",
+      "variant": "word",
+      "bucket": "dark-neutral",
+      "file": "cover__word__dark-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "cover",
+      "variant": "split",
+      "bucket": "light-neutral",
+      "file": "cover__split__light-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "cover",
+      "variant": "split",
+      "bucket": "dark-neutral",
+      "file": "cover__split__dark-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "cover",
+      "variant": "full-bleed",
+      "bucket": "light-neutral",
+      "file": "cover__full-bleed__light-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "cover",
+      "variant": "full-bleed",
+      "bucket": "dark-neutral",
+      "file": "cover__full-bleed__dark-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "agenda",
+      "variant": "numbered-list",
+      "bucket": "light-neutral",
+      "file": "agenda__numbered-list__light-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "agenda",
+      "variant": "two-column",
+      "bucket": "light-neutral",
+      "file": "agenda__two-column__light-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "split-copy",
+      "variant": "photo-left",
+      "bucket": "light-neutral",
+      "file": "split-copy__photo-left__light-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "split-copy",
+      "variant": "photo-right",
+      "bucket": "light-neutral",
+      "file": "split-copy__photo-right__light-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "split-copy",
+      "variant": "title-bottom-left",
+      "bucket": "light-neutral",
+      "file": "split-copy__title-bottom-left__light-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "split-copy",
+      "variant": "photo-wide",
+      "bucket": "light-neutral",
+      "file": "split-copy__photo-wide__light-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "split-copy",
+      "variant": "copy-over-band",
+      "bucket": "light-neutral",
+      "file": "split-copy__copy-over-band__light-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "statement",
+      "variant": "left",
+      "bucket": "light-neutral",
+      "file": "statement__left__light-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "statement",
+      "variant": "centered",
+      "bucket": "light-neutral",
+      "file": "statement__centered__light-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "statement",
+      "variant": "with-kicker",
+      "bucket": "light-neutral",
+      "file": "statement__with-kicker__light-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "big-number",
+      "variant": "left",
+      "bucket": "light-neutral",
+      "file": "big-number__left__light-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "big-number",
+      "variant": "left",
+      "bucket": "dark-neutral",
+      "file": "big-number__left__dark-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "big-number",
+      "variant": "centered",
+      "bucket": "light-neutral",
+      "file": "big-number__centered__light-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "big-number",
+      "variant": "centered",
+      "bucket": "dark-neutral",
+      "file": "big-number__centered__dark-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "big-number",
+      "variant": "with-photo",
+      "bucket": "light-neutral",
+      "file": "big-number__with-photo__light-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "big-number",
+      "variant": "with-photo",
+      "bucket": "dark-neutral",
+      "file": "big-number__with-photo__dark-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "quote",
+      "variant": "plain",
+      "bucket": "light-neutral",
+      "file": "quote__plain__light-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "quote",
+      "variant": "portrait",
+      "bucket": "light-neutral",
+      "file": "quote__portrait__light-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "process",
+      "variant": "three-step",
+      "bucket": "light-neutral",
+      "file": "process__three-step__light-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "process",
+      "variant": "four-step",
+      "bucket": "light-neutral",
+      "file": "process__four-step__light-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "team-grid",
+      "variant": "three",
+      "bucket": "light-neutral",
+      "file": "team-grid__three__light-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "team-grid",
+      "variant": "four",
+      "bucket": "light-neutral",
+      "file": "team-grid__four__light-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "stat-row",
+      "variant": "three-up",
+      "bucket": "light-neutral",
+      "file": "stat-row__three-up__light-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "stat-row",
+      "variant": "two-up",
+      "bucket": "light-neutral",
+      "file": "stat-row__two-up__light-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "divider",
+      "variant": "number",
+      "bucket": "light-neutral",
+      "file": "divider__number__light-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "divider",
+      "variant": "number",
+      "bucket": "dark-neutral",
+      "file": "divider__number__dark-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "divider",
+      "variant": "accent-block",
+      "bucket": "light-neutral",
+      "file": "divider__accent-block__light-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "divider",
+      "variant": "accent-block",
+      "bucket": "dark-neutral",
+      "file": "divider__accent-block__dark-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "close",
+      "variant": "plain",
+      "bucket": "light-neutral",
+      "file": "close__plain__light-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "component": "close",
+      "variant": "photo",
+      "bucket": "light-neutral",
+      "file": "close__photo__light-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    }
+  ]
+}

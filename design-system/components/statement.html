@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>composer statement</title>
+  <style>
+    :root {
+      --color-bg: #f3f1ee; --color-surface: #f3f1ee; --color-card: #ffffff;
+      --color-ink: #1c1916; --color-muted: #5c564e; --color-rule: #d9d0c6;
+      --color-accent: #8a8175; --color-accent2: #8a8175; --color-on-accent: #f3f1ee;
+      --font-display: "Calibri"; --font-text: "Calibri";
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 1600px; height: 900px; overflow: hidden; background: var(--color-bg); }
+    .slide { position: relative; width: 1600px; height: 900px; background: var(--color-bg); color: var(--color-ink); font-family: var(--font-text); }
+    .field { position: absolute; left: 0; top: 0; width: 1600px; height: 900px; background: var(--color-bg); }
+    [data-stack="statement"] {
+      position: absolute; left: 96px; top: 160px; width: 1408px; height: 620px;
+      display: flex; flex-direction: column; align-items: flex-start; gap: 28px;
+    }
+    [data-role="kicker"] {
+      width: 100%; font-family: var(--font-text); font-size: 20px; font-weight: 600; line-height: 1.2;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-muted);
+    }
+    /* 96px is the ceiling that still fits maxChars=90 inside the stack (160px overflowed bounds). */
+    [data-role="statement"] {
+      width: 100%; font-family: var(--font-display); font-size: 96px; font-weight: 700; line-height: 1.05; color: var(--color-ink);
+    }
+    .slide[data-variant="left"] [data-stack="statement"] { left: 96px; align-items: flex-start; }
+    .slide[data-variant="centered"] [data-stack="statement"] {
+      left: 96px; width: 1408px; align-items: center; text-align: center;
+    }
+    .slide[data-variant="centered"] [data-role="statement"],
+    .slide[data-variant="centered"] [data-role="kicker"] { text-align: center; }
+    .slide[data-variant="with-kicker"] [data-role="kicker"] { display: block; }
+    .slide[data-variant="left"] [data-role="kicker"],
+    .slide[data-variant="centered"] [data-role="kicker"] { display: none; }
+    .slide[data-variant="with-kicker"] [data-stack="statement"] { left: 96px; }
+  </style>
+</head>
+<body>
+  <div class="slide" data-component="statement" data-variant="left">
+    <div class="field" data-role="field"></div>
+    <div data-stack="statement" data-stack-align="start">
+      <div data-role="kicker" data-max-chars="24">Belief</div>
+      <div data-role="statement" data-max-chars="90">Payroll should disappear into the workday.</div>
+    </div>
+  </div>
+</body>
+</html>

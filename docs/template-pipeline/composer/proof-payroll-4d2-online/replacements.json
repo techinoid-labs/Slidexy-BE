@@ -1,0 +1,615 @@
+{
+  "direction": {
+    "profile": {
+      "brand": "SwiftPay Solutions",
+      "industry": "Payroll",
+      "mission": "To empower businesses with seamless and accurate payroll processing, freeing them to focus on growth."
+    },
+    "mood": "Clean and corporate",
+    "keywords": [
+      "office",
+      "laptop",
+      "document"
+    ],
+    "query": "office laptop document",
+    "model": "gemini-2.5-flash-lite"
+  },
+  "brief": {
+    "plan": [
+      {
+        "role": "Cover",
+        "component": "cover",
+        "variant": "split"
+      },
+      {
+        "role": "About",
+        "component": "split-copy",
+        "variant": "photo-right"
+      },
+      {
+        "role": "Problem",
+        "component": "split-copy",
+        "variant": "photo-left"
+      },
+      {
+        "role": "Solution",
+        "component": "split-copy",
+        "variant": "photo-right"
+      },
+      {
+        "role": "Proof",
+        "component": "stat-row",
+        "variant": "three-up"
+      },
+      {
+        "role": "Close",
+        "component": "close",
+        "variant": "plain"
+      }
+    ],
+    "paletteBucket": "light-neutral",
+    "fontPair": "corp-arial",
+    "density": "balanced",
+    "coverPattern": "split",
+    "signature": "frame",
+    "mood": "Clean and corporate",
+    "copy": {
+      "Cover": {
+        "title": "SwiftPay Solutions: Payroll",
+        "body": "Empowering businesses with seamless and accurate payroll processing, freeing them to focus on growth",
+        "kicker": "Payroll"
+      },
+      "About": {
+        "title": "Our Mission: Empowering Your Growth",
+        "body": "SwiftPay Solutions is dedicated to providing businesses with reliable and efficient payroll services",
+        "bullet-1": "Accuracy you can trust",
+        "bullet-2": "Time-saving automation",
+        "bullet-3": "Dedicated client support"
+      },
+      "Problem": {
+        "title": "The Payroll Puzzle: Complexities & Risks",
+        "body": "Manual payroll is prone to errors, compliance headaches, and drains valuable resources",
+        "bullet-1": "Costly human errors",
+        "bullet-2": "Ever-changing regulations",
+        "bullet-3": "Time-consuming administration"
+      },
+      "Solution": {
+        "title": "SwiftPay: Your Payroll Advantage",
+        "body": "Our intuitive platform and expert team deliver stress-free payroll",
+        "bullet-1": "Automated tax filings",
+        "bullet-2": "Direct deposit & more",
+        "bullet-3": "Real-time reporting"
+      },
+      "Proof": {
+        "title": "Proven Results, Trusted Partners",
+        "stat-1": "99.9%",
+        "stat-2": "0",
+        "stat-3": "100%",
+        "label-1": "On-time payments",
+        "label-2": "Compliance errors",
+        "label-3": "Client satisfaction",
+        "body": "Join the growing number of businesses that rely on SwiftPay Solutions for their payroll needs"
+      },
+      "Close": {
+        "title": "Ready to Streamline Your Payroll?",
+        "body": "Discover how SwiftPay Solutions can transform your payroll process",
+        "kicker": "Get Started Today"
+      }
+    }
+  },
+  "fallbacks": [
+    {
+      "field": "copy.Proof.body",
+      "got": "len=129",
+      "used": "clamped:120"
+    },
+    {
+      "field": "copy.Close.body",
+      "got": "len=114",
+      "used": "clamped:80"
+    }
+  ],
+  "nonce": "4d2-proof-1",
+  "photoQueries": [
+    {
+      "query": "office laptop document",
+      "orientation": "landscape",
+      "hits": 5
+    }
+  ],
+  "fontPair": "corp-arial",
+  "bucket": "light-neutral",
+  "vibe": "light-neutral",
+  "fits": [],
+  "collapses": [
+    {
+      "slide": 1,
+      "stackId": "cover-copy",
+      "gap": 28,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-cover-kicker",
+          "fromY": 72,
+          "toY": 72,
+          "deltaY": 0,
+          "height": 23.76
+        },
+        {
+          "id": "composer-cover-title",
+          "fromY": 121.59,
+          "toY": 123.76,
+          "deltaY": 2.17,
+          "height": 332.64
+        },
+        {
+          "id": "composer-cover-body",
+          "fromY": 552.78,
+          "toY": 484.4,
+          "deltaY": -68.38,
+          "height": 83.16
+        }
+      ]
+    },
+    {
+      "slide": 2,
+      "stackId": "copy",
+      "gap": 28,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-split-copy-title",
+          "fromY": 96,
+          "toY": 96,
+          "deltaY": 0,
+          "height": 135.52
+        },
+        {
+          "id": "composer-split-copy-body",
+          "fromY": 247.19,
+          "toY": 259.52,
+          "deltaY": 12.33,
+          "height": 65.34
+        },
+        {
+          "id": "composer-split-copy-bullet-1",
+          "fromY": 364.25,
+          "toY": 352.86,
+          "deltaY": -11.39,
+          "height": 28.6
+        },
+        {
+          "id": "composer-split-copy-bullet-2",
+          "fromY": 444.25,
+          "toY": 409.46,
+          "deltaY": -34.79,
+          "height": 28.6
+        },
+        {
+          "id": "composer-split-copy-bullet-3",
+          "fromY": 524.25,
+          "toY": 466.06,
+          "deltaY": -58.19,
+          "height": 28.6
+        }
+      ]
+    },
+    {
+      "slide": 3,
+      "stackId": "copy",
+      "gap": 28,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-split-copy-title",
+          "fromY": 96,
+          "toY": 96,
+          "deltaY": 0,
+          "height": 135.52
+        },
+        {
+          "id": "composer-split-copy-body",
+          "fromY": 247.19,
+          "toY": 259.52,
+          "deltaY": 12.33,
+          "height": 65.34
+        },
+        {
+          "id": "composer-split-copy-bullet-1",
+          "fromY": 364.25,
+          "toY": 352.86,
+          "deltaY": -11.39,
+          "height": 28.6
+        },
+        {
+          "id": "composer-split-copy-bullet-2",
+          "fromY": 444.25,
+          "toY": 409.46,
+          "deltaY": -34.79,
+          "height": 28.6
+        },
+        {
+          "id": "composer-split-copy-bullet-3",
+          "fromY": 524.25,
+          "toY": 466.06,
+          "deltaY": -58.19,
+          "height": 28.6
+        }
+      ]
+    },
+    {
+      "slide": 4,
+      "stackId": "copy",
+      "gap": 28,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-split-copy-title",
+          "fromY": 96,
+          "toY": 96,
+          "deltaY": 0,
+          "height": 135.52
+        },
+        {
+          "id": "composer-split-copy-body",
+          "fromY": 247.19,
+          "toY": 259.52,
+          "deltaY": 12.33,
+          "height": 32.67
+        },
+        {
+          "id": "composer-split-copy-bullet-1",
+          "fromY": 364.25,
+          "toY": 320.19,
+          "deltaY": -44.06,
+          "height": 28.6
+        },
+        {
+          "id": "composer-split-copy-bullet-2",
+          "fromY": 444.25,
+          "toY": 376.79,
+          "deltaY": -67.46,
+          "height": 28.6
+        },
+        {
+          "id": "composer-split-copy-bullet-3",
+          "fromY": 524.25,
+          "toY": 433.39,
+          "deltaY": -90.86,
+          "height": 28.6
+        }
+      ]
+    },
+    {
+      "slide": 5,
+      "stackId": "stat-1",
+      "gap": 12,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-stat-row-stat-1",
+          "fromY": 160.8,
+          "toY": 160.8,
+          "deltaY": 0,
+          "height": 79.2
+        },
+        {
+          "id": "composer-stat-row-label-1",
+          "fromY": 244.8,
+          "toY": 252,
+          "deltaY": 7.2,
+          "height": 28.6
+        }
+      ]
+    },
+    {
+      "slide": 5,
+      "stackId": "stat-2",
+      "gap": 12,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-stat-row-stat-2",
+          "fromY": 160.8,
+          "toY": 160.8,
+          "deltaY": 0,
+          "height": 79.2
+        },
+        {
+          "id": "composer-stat-row-label-2",
+          "fromY": 244.8,
+          "toY": 252,
+          "deltaY": 7.2,
+          "height": 28.6
+        }
+      ]
+    },
+    {
+      "slide": 5,
+      "stackId": "stat-3",
+      "gap": 12,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-stat-row-stat-3",
+          "fromY": 160.8,
+          "toY": 160.8,
+          "deltaY": 0,
+          "height": 79.2
+        },
+        {
+          "id": "composer-stat-row-label-3",
+          "fromY": 244.8,
+          "toY": 252,
+          "deltaY": 7.2,
+          "height": 28.6
+        }
+      ]
+    },
+    {
+      "slide": 5,
+      "stackId": "main",
+      "gap": 36,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-stat-row-title",
+          "fromY": 72,
+          "toY": 72,
+          "deltaY": 0,
+          "height": 58.08
+        },
+        {
+          "id": "main-block-1",
+          "fromY": 160.8,
+          "toY": 166.08,
+          "deltaY": 5.28,
+          "height": 110
+        },
+        {
+          "id": "composer-stat-row-body",
+          "fromY": 306.8,
+          "toY": 312.08,
+          "deltaY": 5.28,
+          "height": 32.67
+        }
+      ]
+    },
+    {
+      "slide": 6,
+      "stackId": "close-copy",
+      "gap": 24,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-close-kicker",
+          "fromY": 280,
+          "toY": 280,
+          "deltaY": 0,
+          "height": 23.76
+        },
+        {
+          "id": "composer-close-title",
+          "fromY": 325.59,
+          "toY": 327.76,
+          "deltaY": 2.17,
+          "height": 166.32
+        },
+        {
+          "id": "composer-close-body",
+          "fromY": 500.78,
+          "toY": 518.08,
+          "deltaY": 17.3,
+          "height": 35.64
+        }
+      ]
+    }
+  ],
+  "analysis": {
+    "score": 100,
+    "passed": 6,
+    "total": 6,
+    "failures": [],
+    "attempt": 1,
+    "mode": "manual",
+    "aesthetic": {
+      "slides": 6,
+      "avgWhitespace": 0.538,
+      "avgTextDensity": 166,
+      "typeScaleAllOk": true,
+      "minFontSeen": 18
+    },
+    "slides": [
+      {
+        "slide": 1,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 3,
+            "right": 3,
+            "top": 4
+          },
+          "margin": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "whitespaceRatio": 0.316,
+          "minTextBox": {
+            "fontSize": 18,
+            "area": 18058
+          },
+          "typeScaleOk": true,
+          "textDensity": 134,
+          "stackGap": 0,
+          "coverVisualMass": 0.449
+        }
+      },
+      {
+        "slide": 2,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 2,
+            "right": 2,
+            "top": 6
+          },
+          "margin": {
+            "left": 72,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "whitespaceRatio": 0.415,
+          "minTextBox": {
+            "fontSize": 20,
+            "area": 20020
+          },
+          "typeScaleOk": true,
+          "textDensity": 203,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      },
+      {
+        "slide": 3,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 2,
+            "right": 2,
+            "top": 6
+          },
+          "margin": {
+            "left": 0,
+            "right": 100,
+            "top": 0,
+            "bottom": 0
+          },
+          "whitespaceRatio": 0.415,
+          "minTextBox": {
+            "fontSize": 20,
+            "area": 20020
+          },
+          "typeScaleOk": true,
+          "textDensity": 199,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      },
+      {
+        "slide": 4,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 2,
+            "right": 2,
+            "top": 6
+          },
+          "margin": {
+            "left": 72,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "whitespaceRatio": 0.431,
+          "minTextBox": {
+            "fontSize": 20,
+            "area": 20020
+          },
+          "typeScaleOk": true,
+          "textDensity": 159,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      },
+      {
+        "slide": 5,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 3,
+            "right": 4,
+            "top": 4
+          },
+          "margin": {
+            "left": 72,
+            "right": 72,
+            "top": 72,
+            "bottom": 555.25
+          },
+          "whitespaceRatio": 0.81,
+          "minTextBox": {
+            "fontSize": 20,
+            "area": 11440
+          },
+          "typeScaleOk": true,
+          "textDensity": 187,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      },
+      {
+        "slide": 6,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 1,
+            "right": 1,
+            "top": 3
+          },
+          "margin": {
+            "left": 72,
+            "right": 528,
+            "top": 280,
+            "bottom": 346.28
+          },
+          "whitespaceRatio": 0.839,
+          "minTextBox": {
+            "fontSize": 18,
+            "area": 23760
+          },
+          "typeScaleOk": true,
+          "textDensity": 116,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      }
+    ],
+    "composer": true
+  },
+  "replay": false,
+  "attempt": 1,
+  "refinement": {
+    "fired": false
+  },
+  "textModelCalls": 2
+}

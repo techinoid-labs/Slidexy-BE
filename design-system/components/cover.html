@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>composer cover</title>
+  <style>
+    :root {
+      --color-bg: #f3f1ee;
+      --color-surface: #f3f1ee;
+      --color-card: #ffffff;
+      --color-ink: #1c1916;
+      --color-muted: #5c564e;
+      --color-rule: #d9d0c6;
+      --color-accent: #8a8175;
+      --color-accent2: #8a8175;
+      --color-on-accent: #f3f1ee;
+      --font-display: "Calibri";
+      --font-text: "Calibri";
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 1600px;
+      height: 900px;
+      overflow: hidden;
+      background: var(--color-bg);
+    }
+    .slide {
+      position: relative;
+      width: 1600px;
+      height: 900px;
+      background: var(--color-bg);
+      color: var(--color-ink);
+      font-family: var(--font-text);
+    }
+    .field {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1600px;
+      height: 900px;
+      background: var(--color-bg);
+      z-index: 0;
+    }
+    .accent-bar {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 18px;
+      height: 900px;
+      background: var(--color-accent);
+      z-index: 2;
+    }
+    [data-stack="cover-copy"] {
+      position: absolute;
+      left: 72px;
+      top: 72px;
+      width: 900px;
+      height: 720px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 28px;
+      z-index: 3;
+    }
+    [data-role="kicker"] {
+      width: 100%;
+      font-family: var(--font-text);
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      text-align: left;
+    }
+    [data-role="title"] {
+      width: 100%;
+      font-family: var(--font-display);
+      font-size: 96px;
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: 0;
+      color: var(--color-ink);
+      text-align: left;
+    }
+    [data-role="body"] {
+      width: 100%;
+      font-family: var(--font-text);
+      font-size: 28px;
+      font-weight: 400;
+      line-height: 1.35;
+      letter-spacing: 0;
+      color: var(--color-muted);
+      text-align: left;
+    }
+    [data-role="photo"] {
+      object-position: center;
+      position: absolute;
+      object-fit: cover;
+      background: var(--color-rule);
+      z-index: 1;
+    }
+
+    .slide[data-variant="word"] [data-role="photo"] { display: none; }
+    .slide[data-variant="word"] [data-stack="cover-copy"] { width: 1400px; }
+    .slide[data-variant="word"] [data-role="title"] { font-size: 120px; }
+
+    .slide[data-variant="split"] [data-role="photo"] {
+      left: 900px;
+      top: 0;
+      width: 700px;
+      height: 900px;
+    }
+    .slide[data-variant="split"] [data-stack="cover-copy"] { width: 760px; }
+
+    .slide[data-variant="full-bleed"] .field {
+      background: var(--color-ink);
+      opacity: 0.45;
+      z-index: 2;
+      width: 720px;
+    }
+    .slide[data-variant="full-bleed"] [data-role="photo"] {
+      left: 0;
+      top: 0;
+      width: 1600px;
+      height: 900px;
+      z-index: 1;
+    }
+    .slide[data-variant="full-bleed"] [data-stack="cover-copy"] {
+      z-index: 3;
+      width: 600px;
+    }
+    .slide[data-variant="full-bleed"] [data-role="kicker"],
+    .slide[data-variant="full-bleed"] [data-role="title"],
+    .slide[data-variant="full-bleed"] [data-role="body"] {
+      color: var(--color-on-accent);
+    }
+    .slide[data-variant="full-bleed"] .accent-bar { display: none; }
+  </style>
+</head>
+<body>
+  <div class="slide" data-component="cover" data-variant="word" data-cover="true">
+    <div class="field" data-role="field"></div>
+    <div class="accent-bar" data-role="accent"></div>
+    <div data-stack="cover-copy" data-stack-align="start">
+      <div data-role="kicker" data-max-chars="24">Kicker</div>
+      <div data-role="title" data-max-chars="40">Title Line</div>
+      <div data-role="body" data-max-chars="160">Body copy for the cover sits here within twenty five words for the slide designer rule.</div>
+    </div>
+    <img data-role="photo" alt="" width="700" height="900" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+  </div>
+</body>
+</html>

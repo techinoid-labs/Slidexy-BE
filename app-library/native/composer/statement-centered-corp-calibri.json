@@ -1,0 +1,117 @@
+{
+  "id": "statement-centered-corp-calibri",
+  "name": "statement centered (corp-calibri)",
+  "role": "About",
+  "tokens": {
+    "color": {
+      "bg": "#f3f1ee",
+      "surface": "#f3f1ee",
+      "card": "#FFFFFF",
+      "ink": "#1c1916",
+      "muted": "#5c564e",
+      "rule": "#d9d0c6",
+      "accent": "#8a8175",
+      "accent2": "#8a8175",
+      "onAccent": "#1c1916"
+    },
+    "font": {
+      "display": "Calibri",
+      "text": "Calibri"
+    },
+    "type": {
+      "h1": 120,
+      "body": 28
+    }
+  },
+  "layout": {
+    "version": 2,
+    "id": "statement-centered-corp-calibri",
+    "canvas": {
+      "width": 1600,
+      "height": 900,
+      "aspectRatio": "16:9"
+    },
+    "elements": [
+      {
+        "id": "composer-statement-field",
+        "type": "shape",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "zIndex": 0,
+        "opacity": 1,
+        "shapeContent": {
+          "kind": "rect",
+          "fill": "{color.bg}",
+          "cornerRadius": 0
+        }
+      },
+      {
+        "id": "composer-statement-statement",
+        "type": "text",
+        "x": 96,
+        "y": 160,
+        "width": 1408,
+        "height": 332.64,
+        "zIndex": 1,
+        "textStyle": {
+          "fontFamily": "{font.display}",
+          "fontSize": 96,
+          "fontWeight": 700,
+          "color": "{color.ink}",
+          "textAlign": "center",
+          "lineHeight": 1.05,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.display}",
+              "fontSize": 96,
+              "fontWeight": 700,
+              "color": "{color.ink}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "statement",
+          "maxChars": 90,
+          "charsPerLine": 30,
+          "capacityLines": 3
+        },
+        "textMeasure": {
+          "lines": 3,
+          "fontPair": "corp-calibri",
+          "capacityChars": 90,
+          "charsPerLine": 30,
+          "width": 3703.03,
+          "canvasWidth": 3746.44,
+          "layoutWidth": 1408,
+          "fontCheck": true,
+          "computedFamily": "Calibri"
+        },
+        "stackId": "statement"
+      }
+    ],
+    "stacks": [
+      {
+        "id": "statement",
+        "order": [
+          "composer-statement-statement"
+        ],
+        "blocks": [],
+        "gap": 28,
+        "align": "start",
+        "direction": "column",
+        "box": {
+          "x": 96,
+          "y": 160,
+          "width": 1408,
+          "height": 620
+        }
+      }
+    ]
+  }
+}

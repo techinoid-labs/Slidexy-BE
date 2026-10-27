@@ -1,0 +1,325 @@
+{
+  "id": "split-copy-photo-left-corp-calibri",
+  "name": "split-copy photo-left (corp-calibri)",
+  "role": "About",
+  "tokens": {
+    "color": {
+      "bg": "#f3f1ee",
+      "surface": "#f3f1ee",
+      "card": "#FFFFFF",
+      "ink": "#1c1916",
+      "muted": "#5c564e",
+      "rule": "#d9d0c6",
+      "accent": "#8a8175",
+      "accent2": "#8a8175",
+      "onAccent": "#1c1916"
+    },
+    "font": {
+      "display": "Calibri",
+      "text": "Calibri"
+    },
+    "type": {
+      "h1": 120,
+      "body": 28
+    }
+  },
+  "layout": {
+    "version": 2,
+    "id": "split-copy-photo-left-corp-calibri",
+    "canvas": {
+      "width": 1600,
+      "height": 900,
+      "aspectRatio": "16:9"
+    },
+    "elements": [
+      {
+        "id": "composer-split-copy-field",
+        "type": "shape",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "zIndex": 0,
+        "opacity": 1,
+        "shapeContent": {
+          "kind": "rect",
+          "fill": "{color.bg}",
+          "cornerRadius": 0
+        }
+      },
+      {
+        "id": "composer-split-copy-title",
+        "type": "text",
+        "x": 800,
+        "y": 96,
+        "width": 700,
+        "height": 135.52,
+        "zIndex": 1,
+        "textStyle": {
+          "fontFamily": "{font.display}",
+          "fontSize": 56,
+          "fontWeight": 700,
+          "color": "{color.ink}",
+          "textAlign": "left",
+          "lineHeight": 1.1,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.display}",
+              "fontSize": 56,
+              "fontWeight": 700,
+              "color": "{color.ink}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "title",
+          "maxChars": 48,
+          "charsPerLine": 24,
+          "capacityLines": 2
+        },
+        "textMeasure": {
+          "lines": 2,
+          "fontPair": "corp-calibri",
+          "capacityChars": 48,
+          "charsPerLine": 24,
+          "width": 1178.25,
+          "canvasWidth": 1190.9,
+          "layoutWidth": 700,
+          "fontCheck": true,
+          "computedFamily": "Calibri"
+        },
+        "stackId": "copy"
+      },
+      {
+        "id": "composer-split-copy-body",
+        "type": "text",
+        "x": 800,
+        "y": 247.19,
+        "width": 700,
+        "height": 98.01,
+        "zIndex": 2,
+        "textStyle": {
+          "fontFamily": "{font.text}",
+          "fontSize": 22,
+          "fontWeight": 400,
+          "color": "{color.muted}",
+          "textAlign": "left",
+          "lineHeight": 1.35,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.text}",
+              "fontSize": 22,
+              "fontWeight": 400,
+              "color": "{color.muted}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "body",
+          "maxChars": 160,
+          "charsPerLine": 53,
+          "capacityLines": 3
+        },
+        "textMeasure": {
+          "lines": 3,
+          "fontPair": "corp-calibri",
+          "capacityChars": 160,
+          "charsPerLine": 53,
+          "width": 1462.89,
+          "canvasWidth": 1472.82,
+          "layoutWidth": 700,
+          "fontCheck": true,
+          "computedFamily": "Calibri"
+        },
+        "stackId": "copy"
+      },
+      {
+        "id": "composer-split-copy-bullet-1",
+        "type": "text",
+        "x": 800,
+        "y": 364.25,
+        "width": 700,
+        "height": 28.6,
+        "zIndex": 3,
+        "textStyle": {
+          "fontFamily": "{font.text}",
+          "fontSize": 20,
+          "fontWeight": 400,
+          "color": "{color.ink}",
+          "textAlign": "left",
+          "lineHeight": 1.3,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.text}",
+              "fontSize": 20,
+              "fontWeight": 400,
+              "color": "{color.ink}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "bullet-1",
+          "maxChars": 80,
+          "charsPerLine": 80,
+          "capacityLines": 1
+        },
+        "textMeasure": {
+          "lines": 1,
+          "fontPair": "corp-calibri",
+          "capacityChars": 80,
+          "charsPerLine": 80,
+          "width": 673.67,
+          "canvasWidth": 673.67,
+          "layoutWidth": 700,
+          "fontCheck": true,
+          "computedFamily": "Calibri"
+        },
+        "stackId": "copy"
+      },
+      {
+        "id": "composer-split-copy-bullet-2",
+        "type": "text",
+        "x": 800,
+        "y": 418.25,
+        "width": 700,
+        "height": 28.6,
+        "zIndex": 4,
+        "textStyle": {
+          "fontFamily": "{font.text}",
+          "fontSize": 20,
+          "fontWeight": 400,
+          "color": "{color.ink}",
+          "textAlign": "left",
+          "lineHeight": 1.3,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.text}",
+              "fontSize": 20,
+              "fontWeight": 400,
+              "color": "{color.ink}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "bullet-2",
+          "maxChars": 80,
+          "charsPerLine": 80,
+          "capacityLines": 1
+        },
+        "textMeasure": {
+          "lines": 1,
+          "fontPair": "corp-calibri",
+          "capacityChars": 80,
+          "charsPerLine": 80,
+          "width": 673.67,
+          "canvasWidth": 673.67,
+          "layoutWidth": 700,
+          "fontCheck": true,
+          "computedFamily": "Calibri"
+        },
+        "stackId": "copy"
+      },
+      {
+        "id": "composer-split-copy-bullet-3",
+        "type": "text",
+        "x": 800,
+        "y": 472.25,
+        "width": 700,
+        "height": 28.6,
+        "zIndex": 5,
+        "textStyle": {
+          "fontFamily": "{font.text}",
+          "fontSize": 20,
+          "fontWeight": 400,
+          "color": "{color.ink}",
+          "textAlign": "left",
+          "lineHeight": 1.3,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.text}",
+              "fontSize": 20,
+              "fontWeight": 400,
+              "color": "{color.ink}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "bullet-3",
+          "maxChars": 80,
+          "charsPerLine": 80,
+          "capacityLines": 1
+        },
+        "textMeasure": {
+          "lines": 1,
+          "fontPair": "corp-calibri",
+          "capacityChars": 80,
+          "charsPerLine": 80,
+          "width": 673.67,
+          "canvasWidth": 673.67,
+          "layoutWidth": 700,
+          "fontCheck": true,
+          "computedFamily": "Calibri"
+        },
+        "stackId": "copy"
+      },
+      {
+        "id": "composer-split-copy-photo",
+        "type": "image",
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 900,
+        "zIndex": 1,
+        "imageContent": {
+          "url": "",
+          "fit": "cover",
+          "binding": "photo",
+          "alignX": 0.5,
+          "alignY": 0.5
+        }
+      }
+    ],
+    "stacks": [
+      {
+        "id": "copy",
+        "order": [
+          "composer-split-copy-title",
+          "composer-split-copy-body",
+          "composer-split-copy-bullet-1",
+          "composer-split-copy-bullet-2",
+          "composer-split-copy-bullet-3"
+        ],
+        "blocks": [],
+        "gap": 28,
+        "align": "start",
+        "direction": "column",
+        "box": {
+          "x": 800,
+          "y": 96,
+          "width": 700,
+          "height": 720
+        }
+      }
+    ]
+  }
+}

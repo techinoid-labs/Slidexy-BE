@@ -1,0 +1,167 @@
+{
+  "outDir": "docs/template-pipeline/composer/proof-split-copy-title-bottom-left",
+  "component": "split-copy",
+  "fontPair": "corp-calibri",
+  "variant": "title-bottom-left",
+  "photoUrl": "photos/composer/proof/landscape-01.jpg",
+  "geometry": {
+    "pass": true,
+    "reasons": []
+  },
+  "analysis": {
+    "score": 100,
+    "passed": 1,
+    "total": 1,
+    "failures": [],
+    "slides": [
+      {
+        "slide": 1,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null
+      }
+    ],
+    "vision": false,
+    "composer": true,
+    "pptxGate": {
+      "skipped": false,
+      "pass": true,
+      "failures": []
+    }
+  },
+  "titleBoxInches": {
+    "w": 6.4998375,
+    "h": 1.1293333333333333,
+    "fontPt": 34
+  },
+  "bodyBoxInches": {
+    "w": 6.4998375,
+    "h": 0.5445,
+    "fontPt": 13,
+    "chromeLines": 2
+  },
+  "lineTable": {
+    "title": {
+      "chromeMeasure": 1,
+      "nodeCanvas": 1,
+      "libreOffice": 1
+    },
+    "body": {
+      "chromeMeasure": 2,
+      "nodeCanvas": 2,
+      "libreOffice": 2
+    }
+  },
+  "canvasLines": {
+    "composer-split-copy-title": {
+      "lines": 1,
+      "lineWidths": [
+        516.71484375
+      ],
+      "chromeMeasure": 1
+    },
+    "composer-split-copy-body": {
+      "lines": 2,
+      "lineWidths": [
+        769.0546875,
+        421.9853515625
+      ],
+      "chromeMeasure": 2
+    },
+    "composer-split-copy-bullet-1": {
+      "lines": 1,
+      "lineWidths": [
+        329.228515625
+      ],
+      "chromeMeasure": 1
+    },
+    "composer-split-copy-bullet-2": {
+      "lines": 1,
+      "lineWidths": [
+        353.515625
+      ],
+      "chromeMeasure": 1
+    },
+    "composer-split-copy-bullet-3": {
+      "lines": 1,
+      "lineWidths": [
+        336.572265625
+      ],
+      "chromeMeasure": 1
+    }
+  },
+  "loLines": {
+    "ok": true,
+    "pageW": 959.981102,
+    "pageH": 540,
+    "scaleX": 1.6666994763403167,
+    "scaleY": 1.6666666666666667,
+    "wordCount": 42,
+    "elements": {
+      "composer-split-copy-title": {
+        "lines": 1,
+        "words": 3,
+        "chromeMeasure": 1
+      },
+      "composer-split-copy-body": {
+        "lines": 2,
+        "words": 21,
+        "chromeMeasure": 2
+      },
+      "composer-split-copy-bullet-1": {
+        "lines": 1,
+        "words": 6,
+        "chromeMeasure": 1
+      },
+      "composer-split-copy-bullet-2": {
+        "lines": 1,
+        "words": 6,
+        "chromeMeasure": 1
+      },
+      "composer-split-copy-bullet-3": {
+        "lines": 1,
+        "words": 6,
+        "chromeMeasure": 1
+      }
+    }
+  },
+  "pptxInspect": {
+    "mediaCount": 2,
+    "mediaNames": [
+      "ppt/media/",
+      "ppt/media/image-1-1.jpg"
+    ],
+    "picCount": 1,
+    "spCount": 10,
+    "childOrder": [
+      "p:sp",
+      "p:sp",
+      "p:pic",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp"
+    ],
+    "slideXmlLen": 7380
+  },
+  "paths": {
+    "chrome": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-split-copy-title-bottom-left\\chrome.png",
+    "slide": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-split-copy-title-bottom-left\\slide-01.png",
+    "lo": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-split-copy-title-bottom-left\\lo-slide.png",
+    "pptx": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-split-copy-title-bottom-left\\deck.pptx",
+    "pdf": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-split-copy-title-bottom-left\\deck.pdf"
+  },
+  "raster": {
+    "ok": true,
+    "loSlide": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-split-copy-title-bottom-left\\lo-slide.png",
+    "pdfPath": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-split-copy-title-bottom-left\\deck.pdf",
+    "sofficeBin": "C:\\Program Files\\LibreOffice\\program\\soffice.com",
+    "pdftoppmBin": "C:\\Users\\SP Grid\\AppData\\Local\\Microsoft\\WinGet\\Packages\\oschwartz10612.Poppler_Microsoft.Winget.Source_8wekyb3d8bbwe\\poppler-25.07.0\\Library\\bin\\pdftoppm.exe",
+    "userInstall": "C:\\Users\\SPGRID~1\\AppData\\Local\\Temp\\lo-profile-proof-1793124729992"
+  }
+}

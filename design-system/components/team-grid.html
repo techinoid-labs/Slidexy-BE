@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>composer team-grid</title>
+  <style>
+    :root {
+      --color-bg: #f3f1ee; --color-surface: #f3f1ee; --color-card: #ffffff;
+      --color-ink: #1c1916; --color-muted: #5c564e; --color-rule: #d9d0c6;
+      --color-accent: #8a8175; --color-accent2: #8a8175; --color-on-accent: #f3f1ee;
+      --font-display: "Calibri"; --font-text: "Calibri";
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 1600px; height: 900px; overflow: hidden; background: var(--color-bg); }
+    .slide { position: relative; width: 1600px; height: 900px; background: var(--color-bg); color: var(--color-ink); font-family: var(--font-text); }
+    .field { position: absolute; left: 0; top: 0; width: 1600px; height: 900px; background: var(--color-bg); }
+    [data-stack="header"] {
+      position: absolute; left: 96px; top: 72px; width: 1400px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    [data-role="title"] {
+      width: 100%; font-family: var(--font-display); font-size: 48px; font-weight: 700; line-height: 1.1; color: var(--color-ink);
+    }
+    [data-stack="members"] {
+      position: absolute; left: 96px; top: 220px; width: 1408px; height: 560px;
+      display: flex; flex-direction: row; align-items: flex-start; gap: 48px;
+    }
+    [data-stack^="member-"] {
+      flex: 1; display: flex; flex-direction: column; align-items: center; gap: 16px; min-width: 0;
+    }
+    [data-role^="photo-"] {
+      width: 160px; height: 160px; border-radius: 50%; object-fit: cover; object-position: center; background: var(--color-rule);
+    }
+    [data-role^="name-"] {
+      width: 100%; font-family: var(--font-display); font-size: 24px; font-weight: 700; line-height: 1.15; color: var(--color-ink); text-align: center;
+    }
+    [data-role^="role-"] {
+      width: 100%; font-family: var(--font-text); font-size: 18px; font-weight: 400; line-height: 1.3; color: var(--color-muted); text-align: center;
+    }
+    .slide[data-variant="three"] [data-stack="member-4"] { display: none; }
+  </style>
+</head>
+<body>
+  <div class="slide" data-component="team-grid" data-variant="three">
+    <div class="field" data-role="field"></div>
+    <div data-stack="header" data-stack-align="start">
+      <div data-role="title" data-max-chars="40">Leadership</div>
+    </div>
+    <div data-stack="members" data-stack-align="start">
+      <div data-stack="member-1" data-stack-align="center">
+        <img data-role="photo-1" alt="" width="160" height="160" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+        <div data-role="name-1" data-max-chars="24">Alex Morgan</div>
+        <div data-role="role-1" data-max-chars="28">Chief Executive Officer</div>
+      </div>
+      <div data-stack="member-2" data-stack-align="center">
+        <img data-role="photo-2" alt="" width="160" height="160" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+        <div data-role="name-2" data-max-chars="24">Sam Rivera</div>
+        <div data-role="role-2" data-max-chars="28">Head of Customer Success</div>
+      </div>
+      <div data-stack="member-3" data-stack-align="center">
+        <img data-role="photo-3" alt="" width="160" height="160" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+        <div data-role="name-3" data-max-chars="24">Casey Nguyen</div>
+        <div data-role="role-3" data-max-chars="28">VP of Engineering</div>
+      </div>
+      <div data-stack="member-4" data-stack-align="center">
+        <img data-role="photo-4" alt="" width="160" height="160" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+        <div data-role="name-4" data-max-chars="24">Riley Chen</div>
+        <div data-role="role-4" data-max-chars="28">Finance Partner</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

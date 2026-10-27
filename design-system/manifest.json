@@ -1,0 +1,440 @@
+{
+  "version": 1,
+  "components": [
+    {
+      "id": "cover",
+      "cover": true,
+      "roles": [
+        "Cover"
+      ],
+      "variants": [
+        "word",
+        "split",
+        "full-bleed"
+      ],
+      "slots": [
+        {
+          "dataRole": "title",
+          "maxChars": 40
+        },
+        {
+          "dataRole": "body",
+          "maxChars": 160
+        },
+        {
+          "dataRole": "kicker",
+          "maxChars": 24,
+          "optional": true
+        }
+      ],
+      "photoSlots": [
+        {
+          "dataRole": "photo",
+          "fit": "cover",
+          "optional": true,
+          "variants": [
+            "split",
+            "full-bleed"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "agenda",
+      "cover": false,
+      "roles": [
+        "Contents"
+      ],
+      "variants": [
+        "numbered-list",
+        "two-column"
+      ],
+      "slots": [
+        {
+          "dataRole": "title",
+          "maxChars": 40
+        },
+        {
+          "dataRole": "item",
+          "maxChars": 36,
+          "repeat": 6,
+          "optionalFrom": 5
+        }
+      ],
+      "photoSlots": []
+    },
+    {
+      "id": "split-copy",
+      "cover": false,
+      "roles": [
+        "About",
+        "Problem",
+        "Solution"
+      ],
+      "variants": [
+        "photo-left",
+        "photo-right",
+        "title-bottom-left",
+        "photo-wide",
+        "copy-over-band"
+      ],
+      "slots": [
+        {
+          "dataRole": "title",
+          "maxChars": 48
+        },
+        {
+          "dataRole": "body",
+          "maxChars": 160
+        },
+        {
+          "dataRole": "bullet",
+          "maxChars": 80,
+          "repeat": 3
+        }
+      ],
+      "photoSlots": [
+        {
+          "dataRole": "photo",
+          "fit": "cover"
+        }
+      ]
+    },
+    {
+      "id": "statement",
+      "cover": false,
+      "roles": [
+        "About",
+        "Problem",
+        "Solution",
+        "Proof",
+        "Market",
+        "Model",
+        "People",
+        "Next",
+        "Contents"
+      ],
+      "variants": [
+        "left",
+        "centered",
+        "with-kicker"
+      ],
+      "slots": [
+        {
+          "dataRole": "statement",
+          "maxChars": 90
+        },
+        {
+          "dataRole": "kicker",
+          "maxChars": 24,
+          "optional": true
+        }
+      ],
+      "photoSlots": []
+    },
+    {
+      "id": "big-number",
+      "cover": false,
+      "roles": [
+        "Proof",
+        "Market"
+      ],
+      "variants": [
+        "left",
+        "centered",
+        "with-photo"
+      ],
+      "slots": [
+        {
+          "dataRole": "number",
+          "maxChars": 8
+        },
+        {
+          "dataRole": "label",
+          "maxChars": 40
+        },
+        {
+          "dataRole": "body",
+          "maxChars": 100
+        }
+      ],
+      "photoSlots": [
+        {
+          "dataRole": "photo",
+          "fit": "cover",
+          "optional": true,
+          "variants": [
+            "with-photo"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quote",
+      "cover": false,
+      "roles": [
+        "Proof",
+        "About"
+      ],
+      "variants": [
+        "plain",
+        "portrait"
+      ],
+      "slots": [
+        {
+          "dataRole": "quote",
+          "maxChars": 140
+        },
+        {
+          "dataRole": "attribution",
+          "maxChars": 40
+        }
+      ],
+      "photoSlots": [
+        {
+          "dataRole": "photo",
+          "fit": "cover",
+          "optional": true,
+          "variants": [
+            "portrait"
+          ],
+          "clip": "ellipse"
+        }
+      ]
+    },
+    {
+      "id": "process",
+      "cover": false,
+      "roles": [
+        "Model",
+        "Next"
+      ],
+      "variants": [
+        "three-step",
+        "four-step"
+      ],
+      "slots": [
+        {
+          "dataRole": "title",
+          "maxChars": 40
+        },
+        {
+          "dataRole": "step-title",
+          "maxChars": 24,
+          "repeat": 4
+        },
+        {
+          "dataRole": "step-body",
+          "maxChars": 60,
+          "repeat": 4
+        }
+      ],
+      "photoSlots": []
+    },
+    {
+      "id": "team-grid",
+      "cover": false,
+      "roles": [
+        "People"
+      ],
+      "variants": [
+        "three",
+        "four"
+      ],
+      "slots": [
+        {
+          "dataRole": "title",
+          "maxChars": 40
+        },
+        {
+          "dataRole": "name",
+          "maxChars": 24,
+          "repeat": 4
+        },
+        {
+          "dataRole": "role",
+          "maxChars": 28,
+          "repeat": 4
+        }
+      ],
+      "photoSlots": [
+        {
+          "dataRole": "photo-1",
+          "fit": "cover",
+          "optional": true,
+          "clip": "ellipse"
+        },
+        {
+          "dataRole": "photo-2",
+          "fit": "cover",
+          "optional": true,
+          "clip": "ellipse"
+        },
+        {
+          "dataRole": "photo-3",
+          "fit": "cover",
+          "optional": true,
+          "clip": "ellipse"
+        },
+        {
+          "dataRole": "photo-4",
+          "fit": "cover",
+          "optional": true,
+          "clip": "ellipse"
+        }
+      ]
+    },
+    {
+      "id": "stat-row",
+      "cover": false,
+      "roles": [
+        "Proof",
+        "Market"
+      ],
+      "variants": [
+        "three-up",
+        "two-up"
+      ],
+      "slots": [
+        {
+          "dataRole": "title",
+          "maxChars": 48
+        },
+        {
+          "dataRole": "stat",
+          "maxChars": 6,
+          "repeat": 3
+        },
+        {
+          "dataRole": "label",
+          "maxChars": 28,
+          "repeat": 3
+        },
+        {
+          "dataRole": "body",
+          "maxChars": 120
+        }
+      ],
+      "photoSlots": []
+    },
+    {
+      "id": "divider",
+      "cover": false,
+      "roles": [
+        "About",
+        "Problem",
+        "Solution",
+        "Proof",
+        "Market",
+        "Model",
+        "People",
+        "Next",
+        "Contents"
+      ],
+      "variants": [
+        "number",
+        "accent-block"
+      ],
+      "slots": [
+        {
+          "dataRole": "title",
+          "maxChars": 40
+        },
+        {
+          "dataRole": "kicker",
+          "maxChars": 24
+        }
+      ],
+      "photoSlots": []
+    },
+    {
+      "id": "close",
+      "cover": false,
+      "roles": [
+        "Close"
+      ],
+      "variants": [
+        "plain",
+        "photo"
+      ],
+      "slots": [
+        {
+          "dataRole": "title",
+          "maxChars": 40
+        },
+        {
+          "dataRole": "body",
+          "maxChars": 80
+        },
+        {
+          "dataRole": "kicker",
+          "maxChars": 24,
+          "optional": true
+        }
+      ],
+      "photoSlots": [
+        {
+          "dataRole": "photo",
+          "fit": "cover",
+          "optional": true,
+          "variants": [
+            "photo"
+          ]
+        }
+      ]
+    }
+  ],
+  "roles": [
+    "Cover",
+    "Contents",
+    "About",
+    "Problem",
+    "Solution",
+    "Proof",
+    "Market",
+    "Model",
+    "People",
+    "Next",
+    "Close"
+  ],
+  "fontPairs": [
+    "corp-calibri",
+    "corp-arial",
+    "editorial",
+    "modern"
+  ],
+  "paletteBuckets": [
+    "light-neutral",
+    "light-warm",
+    "dark-neutral"
+  ],
+  "densities": [
+    "airy",
+    "dense",
+    "balanced"
+  ],
+  "coverPatterns": [
+    "oversized",
+    "fullBleed",
+    "split"
+  ],
+  "signatures": [
+    "frame",
+    "rail"
+  ],
+  "typeScale": [
+    18,
+    20,
+    22,
+    24,
+    28,
+    36,
+    48,
+    56,
+    64,
+    72,
+    96,
+    120,
+    180
+  ]
+}

@@ -1,0 +1,651 @@
+{
+  "direction": {
+    "profile": {
+      "brand": "SwiftPay Solutions",
+      "industry": "Payroll",
+      "mission": "To empower businesses with seamless and accurate payroll processing, allowing them to focus on growth."
+    },
+    "mood": "Clean and corporate",
+    "keywords": [
+      "office",
+      "laptop",
+      "graphs"
+    ],
+    "query": "office laptop graphs",
+    "model": "gemini-2.5-flash-lite"
+  },
+  "brief": {
+    "plan": [
+      {
+        "role": "Cover",
+        "component": "cover",
+        "variant": "split"
+      },
+      {
+        "role": "About",
+        "component": "split-copy",
+        "variant": "photo-left"
+      },
+      {
+        "role": "Problem",
+        "component": "split-copy",
+        "variant": "photo-right"
+      },
+      {
+        "role": "Solution",
+        "component": "split-copy",
+        "variant": "photo-left"
+      },
+      {
+        "role": "Proof",
+        "component": "stat-row",
+        "variant": "three-up"
+      },
+      {
+        "role": "Close",
+        "component": "close",
+        "variant": "plain"
+      }
+    ],
+    "paletteBucket": "light-neutral",
+    "fontPair": "corp-calibri",
+    "density": "balanced",
+    "coverPattern": "split",
+    "signature": "frame",
+    "mood": "Clean and corporate",
+    "copy": {
+      "Cover": {
+        "title": "SwiftPay Solutions",
+        "body": "Empowering businesses with seamless and accurate payroll processing",
+        "kicker": "Payroll"
+      },
+      "About": {
+        "title": "Our Mission",
+        "body": "To empower businesses with seamless and accurate payroll processing, allowing them to focus on growth.",
+        "bullets": [
+          "Dedicated to accuracy",
+          "Streamlined processes",
+          "Client-centric approach"
+        ]
+      },
+      "Problem": {
+        "title": "The Payroll Pain Points",
+        "body": "Complex regulations, manual errors, and time-consuming tasks can hinder your business",
+        "bullets": [
+          "Compliance risks",
+          "Operational inefficiencies",
+          "Employee dissatisfaction"
+        ]
+      },
+      "Solution": {
+        "title": "Your Payroll Partner",
+        "body": "SwiftPay Solutions offers a robust platform for effortless payroll management",
+        "bullets": [
+          "Automated calculations",
+          "Direct deposit",
+          "Tax filing support"
+        ]
+      },
+      "Proof": {
+        "title": "Proven Impact",
+        "stats": [
+          "99.9%",
+          "85%",
+          "24/7"
+        ],
+        "labels": [
+          "Accuracy Rate",
+          "Time Saved Annually",
+          "Support Availability"
+        ],
+        "body": "Trusted by businesses nationwide for reliable and efficient payroll"
+      },
+      "Close": {
+        "title": "Ready to Streamline?",
+        "body": "Let SwiftPay Solutions handle your payroll, so you can focus on what matters mos"
+      }
+    }
+  },
+  "fallbacks": [
+    {
+      "field": "copy.Close.body",
+      "got": "len=97",
+      "used": "clamped:80"
+    }
+  ],
+  "nonce": "4d-proof-1",
+  "photoQueries": [
+    {
+      "query": "(replay)",
+      "orientation": "landscape",
+      "hits": 4
+    }
+  ],
+  "fontPair": "corp-calibri",
+  "bucket": "light-neutral",
+  "vibe": "light-neutral",
+  "fits": [],
+  "collapses": [
+    {
+      "slide": 1,
+      "stackId": "cover-copy",
+      "gap": 28,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-cover-kicker",
+          "fromY": 72,
+          "toY": 72,
+          "deltaY": 0,
+          "height": 23.76
+        },
+        {
+          "id": "composer-cover-title",
+          "fromY": 121.59,
+          "toY": 123.76,
+          "deltaY": 2.17,
+          "height": 110.88
+        },
+        {
+          "id": "composer-cover-body",
+          "fromY": 451.98,
+          "toY": 262.64,
+          "deltaY": -189.34,
+          "height": 83.16
+        }
+      ]
+    },
+    {
+      "slide": 2,
+      "stackId": "copy",
+      "gap": 28,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-split-copy-title",
+          "fromY": 96,
+          "toY": 96,
+          "deltaY": 0,
+          "height": 67.76
+        },
+        {
+          "id": "composer-split-copy-body",
+          "fromY": 247.19,
+          "toY": 191.76,
+          "deltaY": -55.43,
+          "height": 65.34
+        },
+        {
+          "id": "composer-split-copy-bullet-1",
+          "fromY": 364.25,
+          "toY": 285.1,
+          "deltaY": -79.15,
+          "height": 28.6
+        },
+        {
+          "id": "composer-split-copy-bullet-2",
+          "fromY": 418.25,
+          "toY": 341.7,
+          "deltaY": -76.55,
+          "height": 28.6
+        },
+        {
+          "id": "composer-split-copy-bullet-3",
+          "fromY": 472.25,
+          "toY": 398.3,
+          "deltaY": -73.95,
+          "height": 28.6
+        }
+      ]
+    },
+    {
+      "slide": 3,
+      "stackId": "copy",
+      "gap": 28,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-split-copy-title",
+          "fromY": 96,
+          "toY": 96,
+          "deltaY": 0,
+          "height": 67.76
+        },
+        {
+          "id": "composer-split-copy-body",
+          "fromY": 247.19,
+          "toY": 191.76,
+          "deltaY": -55.43,
+          "height": 65.34
+        },
+        {
+          "id": "composer-split-copy-bullet-1",
+          "fromY": 364.25,
+          "toY": 285.1,
+          "deltaY": -79.15,
+          "height": 28.6
+        },
+        {
+          "id": "composer-split-copy-bullet-2",
+          "fromY": 418.25,
+          "toY": 341.7,
+          "deltaY": -76.55,
+          "height": 28.6
+        },
+        {
+          "id": "composer-split-copy-bullet-3",
+          "fromY": 472.25,
+          "toY": 398.3,
+          "deltaY": -73.95,
+          "height": 28.6
+        }
+      ]
+    },
+    {
+      "slide": 4,
+      "stackId": "copy",
+      "gap": 28,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-split-copy-title",
+          "fromY": 96,
+          "toY": 96,
+          "deltaY": 0,
+          "height": 67.76
+        },
+        {
+          "id": "composer-split-copy-body",
+          "fromY": 247.19,
+          "toY": 191.76,
+          "deltaY": -55.43,
+          "height": 32.67
+        },
+        {
+          "id": "composer-split-copy-bullet-1",
+          "fromY": 364.25,
+          "toY": 252.43,
+          "deltaY": -111.82,
+          "height": 28.6
+        },
+        {
+          "id": "composer-split-copy-bullet-2",
+          "fromY": 418.25,
+          "toY": 309.03,
+          "deltaY": -109.22,
+          "height": 28.6
+        },
+        {
+          "id": "composer-split-copy-bullet-3",
+          "fromY": 472.25,
+          "toY": 365.63,
+          "deltaY": -106.62,
+          "height": 28.6
+        }
+      ]
+    },
+    {
+      "slide": 5,
+      "stackId": "stat-1",
+      "gap": 12,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-stat-row-stat-1",
+          "fromY": 160.8,
+          "toY": 160.8,
+          "deltaY": 0,
+          "height": 79.2
+        },
+        {
+          "id": "composer-stat-row-label-1",
+          "fromY": 244.8,
+          "toY": 252,
+          "deltaY": 7.2,
+          "height": 28.6
+        }
+      ]
+    },
+    {
+      "slide": 5,
+      "stackId": "stat-2",
+      "gap": 12,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-stat-row-stat-2",
+          "fromY": 160.8,
+          "toY": 160.8,
+          "deltaY": 0,
+          "height": 79.2
+        },
+        {
+          "id": "composer-stat-row-label-2",
+          "fromY": 244.8,
+          "toY": 252,
+          "deltaY": 7.2,
+          "height": 28.6
+        }
+      ]
+    },
+    {
+      "slide": 5,
+      "stackId": "stat-3",
+      "gap": 12,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-stat-row-stat-3",
+          "fromY": 160.8,
+          "toY": 160.8,
+          "deltaY": 0,
+          "height": 79.2
+        },
+        {
+          "id": "composer-stat-row-label-3",
+          "fromY": 244.8,
+          "toY": 252,
+          "deltaY": 7.2,
+          "height": 28.6
+        }
+      ]
+    },
+    {
+      "slide": 5,
+      "stackId": "main",
+      "gap": 36,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-stat-row-title",
+          "fromY": 72,
+          "toY": 72,
+          "deltaY": 0,
+          "height": 58.08
+        },
+        {
+          "id": "main-block-1",
+          "fromY": 160.8,
+          "toY": 166.08,
+          "deltaY": 5.28,
+          "height": 110
+        },
+        {
+          "id": "composer-stat-row-body",
+          "fromY": 306.8,
+          "toY": 312.08,
+          "deltaY": 5.28,
+          "height": 32.67
+        }
+      ]
+    },
+    {
+      "slide": 6,
+      "stackId": "close-copy",
+      "gap": 24,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-close-kicker",
+          "fromY": 280,
+          "toY": 280,
+          "deltaY": 0,
+          "height": 23.76
+        },
+        {
+          "id": "composer-close-title",
+          "fromY": 325.59,
+          "toY": 327.76,
+          "deltaY": 2.17,
+          "height": 83.16
+        },
+        {
+          "id": "composer-close-body",
+          "fromY": 500.78,
+          "toY": 434.92,
+          "deltaY": -65.86,
+          "height": 35.64
+        }
+      ]
+    }
+  ],
+  "analysis": {
+    "score": 33,
+    "passed": 2,
+    "total": 6,
+    "failures": [
+      "unfilled slot composer-split-copy-bullet-1 on slide 2",
+      "unfilled slot composer-split-copy-bullet-2 on slide 2",
+      "unfilled slot composer-split-copy-bullet-3 on slide 2",
+      "unfilled slot composer-split-copy-bullet-1 on slide 3",
+      "unfilled slot composer-split-copy-bullet-2 on slide 3",
+      "unfilled slot composer-split-copy-bullet-3 on slide 3",
+      "unfilled slot composer-split-copy-bullet-1 on slide 4",
+      "unfilled slot composer-split-copy-bullet-2 on slide 4",
+      "unfilled slot composer-split-copy-bullet-3 on slide 4",
+      "unfilled slot composer-stat-row-stat-1 on slide 5",
+      "unfilled slot composer-stat-row-label-1 on slide 5",
+      "unfilled slot composer-stat-row-stat-2 on slide 5",
+      "unfilled slot composer-stat-row-label-2 on slide 5",
+      "unfilled slot composer-stat-row-stat-3 on slide 5",
+      "unfilled slot composer-stat-row-label-3 on slide 5"
+    ],
+    "attempt": 1,
+    "mode": "manual",
+    "aesthetic": {
+      "slides": 6,
+      "avgWhitespace": 0.575,
+      "avgTextDensity": 98,
+      "typeScaleAllOk": true,
+      "minFontSeen": 18
+    },
+    "slides": [
+      {
+        "slide": 1,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 3,
+            "right": 3,
+            "top": 4
+          },
+          "margin": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "whitespaceRatio": 0.43,
+          "minTextBox": {
+            "fontSize": 18,
+            "area": 18058
+          },
+          "typeScaleOk": true,
+          "textDensity": 92,
+          "stackGap": 0,
+          "coverVisualMass": 0.449
+        }
+      },
+      {
+        "slide": 2,
+        "pass": false,
+        "score": 0,
+        "reasons": [
+          "unfilled slot composer-split-copy-bullet-1",
+          "unfilled slot composer-split-copy-bullet-2",
+          "unfilled slot composer-split-copy-bullet-3"
+        ],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 2,
+            "right": 2,
+            "top": 6
+          },
+          "margin": {
+            "left": 0,
+            "right": 100,
+            "top": 0,
+            "bottom": 0
+          },
+          "whitespaceRatio": 0.431,
+          "minTextBox": {
+            "fontSize": 20,
+            "area": 20020
+          },
+          "typeScaleOk": true,
+          "textDensity": 113,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      },
+      {
+        "slide": 3,
+        "pass": false,
+        "score": 0,
+        "reasons": [
+          "unfilled slot composer-split-copy-bullet-1",
+          "unfilled slot composer-split-copy-bullet-2",
+          "unfilled slot composer-split-copy-bullet-3"
+        ],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 2,
+            "right": 2,
+            "top": 6
+          },
+          "margin": {
+            "left": 72,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "whitespaceRatio": 0.431,
+          "minTextBox": {
+            "fontSize": 20,
+            "area": 20020
+          },
+          "typeScaleOk": true,
+          "textDensity": 108,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      },
+      {
+        "slide": 4,
+        "pass": false,
+        "score": 0,
+        "reasons": [
+          "unfilled slot composer-split-copy-bullet-1",
+          "unfilled slot composer-split-copy-bullet-2",
+          "unfilled slot composer-split-copy-bullet-3"
+        ],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 2,
+            "right": 2,
+            "top": 6
+          },
+          "margin": {
+            "left": 0,
+            "right": 100,
+            "top": 0,
+            "bottom": 0
+          },
+          "whitespaceRatio": 0.446,
+          "minTextBox": {
+            "fontSize": 20,
+            "area": 20020
+          },
+          "typeScaleOk": true,
+          "textDensity": 97,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      },
+      {
+        "slide": 5,
+        "pass": false,
+        "score": 0,
+        "reasons": [
+          "unfilled slot composer-stat-row-stat-1",
+          "unfilled slot composer-stat-row-label-1",
+          "unfilled slot composer-stat-row-stat-2",
+          "unfilled slot composer-stat-row-label-2",
+          "unfilled slot composer-stat-row-stat-3",
+          "unfilled slot composer-stat-row-label-3"
+        ],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 3,
+            "right": 4,
+            "top": 4
+          },
+          "margin": {
+            "left": 72,
+            "right": 72,
+            "top": 72,
+            "bottom": 555.25
+          },
+          "whitespaceRatio": 0.81,
+          "minTextBox": {
+            "fontSize": 20,
+            "area": 11440
+          },
+          "typeScaleOk": true,
+          "textDensity": 80,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      },
+      {
+        "slide": 6,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 1,
+            "right": 1,
+            "top": 3
+          },
+          "margin": {
+            "left": 72,
+            "right": 528,
+            "top": 280,
+            "bottom": 429.44
+          },
+          "whitespaceRatio": 0.9,
+          "minTextBox": {
+            "fontSize": 18,
+            "area": 23760
+          },
+          "typeScaleOk": true,
+          "textDensity": 100,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      }
+    ],
+    "composer": true
+  },
+  "replay": true,
+  "attempt": 1,
+  "textModelCalls": 0
+}

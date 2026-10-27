@@ -1,0 +1,229 @@
+{
+  "id": "big-number-with-photo-corp-arial",
+  "name": "big-number with-photo (corp-arial)",
+  "role": "Proof",
+  "tokens": {
+    "color": {
+      "bg": "#f3f1ee",
+      "surface": "#f3f1ee",
+      "card": "#FFFFFF",
+      "ink": "#1c1916",
+      "muted": "#5c564e",
+      "rule": "#d9d0c6",
+      "accent": "#8a8175",
+      "accent2": "#8a8175",
+      "onAccent": "#1c1916"
+    },
+    "font": {
+      "display": "Arial",
+      "text": "Arial"
+    },
+    "type": {
+      "h1": 120,
+      "body": 28
+    }
+  },
+  "layout": {
+    "version": 2,
+    "id": "big-number-with-photo-corp-arial",
+    "canvas": {
+      "width": 1600,
+      "height": 900,
+      "aspectRatio": "16:9"
+    },
+    "elements": [
+      {
+        "id": "composer-big-number-field",
+        "type": "shape",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "zIndex": 0,
+        "opacity": 1,
+        "shapeContent": {
+          "kind": "rect",
+          "fill": "{color.bg}",
+          "cornerRadius": 0
+        }
+      },
+      {
+        "id": "composer-big-number-number",
+        "type": "text",
+        "x": 96,
+        "y": 160,
+        "width": 780,
+        "height": 188.1,
+        "zIndex": 1,
+        "textStyle": {
+          "fontFamily": "{font.display}",
+          "fontSize": 180,
+          "fontWeight": 700,
+          "color": "{color.ink}",
+          "textAlign": "left",
+          "lineHeight": 0.95,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.display}",
+              "fontSize": 180,
+              "fontWeight": 700,
+              "color": "{color.ink}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "number",
+          "maxChars": 8,
+          "charsPerLine": 8,
+          "capacityLines": 1
+        },
+        "textMeasure": {
+          "lines": 1,
+          "fontPair": "corp-arial",
+          "capacityChars": 8,
+          "charsPerLine": 8,
+          "width": 830.39,
+          "canvasWidth": 830.39,
+          "layoutWidth": 780,
+          "fontCheck": true,
+          "computedFamily": "Arial"
+        },
+        "stackId": "number"
+      },
+      {
+        "id": "composer-big-number-label",
+        "type": "text",
+        "x": 96,
+        "y": 351,
+        "width": 780,
+        "height": 45.54,
+        "zIndex": 2,
+        "textStyle": {
+          "fontFamily": "{font.text}",
+          "fontSize": 36,
+          "fontWeight": 600,
+          "color": "{color.ink}",
+          "textAlign": "left",
+          "lineHeight": 1.15,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.text}",
+              "fontSize": 36,
+              "fontWeight": 600,
+              "color": "{color.ink}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "label",
+          "maxChars": 40,
+          "charsPerLine": 40,
+          "capacityLines": 1
+        },
+        "textMeasure": {
+          "lines": 1,
+          "fontPair": "corp-arial",
+          "capacityChars": 40,
+          "charsPerLine": 40,
+          "width": 756.22,
+          "canvasWidth": 756.21,
+          "layoutWidth": 780,
+          "fontCheck": true,
+          "computedFamily": "Arial"
+        },
+        "stackId": "number"
+      },
+      {
+        "id": "composer-big-number-body",
+        "type": "text",
+        "x": 96,
+        "y": 412.39,
+        "width": 780,
+        "height": 65.34,
+        "zIndex": 3,
+        "textStyle": {
+          "fontFamily": "{font.text}",
+          "fontSize": 22,
+          "fontWeight": 400,
+          "color": "{color.muted}",
+          "textAlign": "left",
+          "lineHeight": 1.35,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.text}",
+              "fontSize": 22,
+              "fontWeight": 400,
+              "color": "{color.muted}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "body",
+          "maxChars": 100,
+          "charsPerLine": 50,
+          "capacityLines": 2
+        },
+        "textMeasure": {
+          "lines": 2,
+          "fontPair": "corp-arial",
+          "capacityChars": 100,
+          "charsPerLine": 50,
+          "width": 1000.25,
+          "canvasWidth": 1006.35,
+          "layoutWidth": 780,
+          "fontCheck": true,
+          "computedFamily": "Arial"
+        },
+        "stackId": "number"
+      },
+      {
+        "id": "composer-big-number-photo",
+        "type": "image",
+        "x": 960,
+        "y": 0,
+        "width": 640,
+        "height": 900,
+        "zIndex": 1,
+        "imageContent": {
+          "url": "",
+          "fit": "cover",
+          "binding": "photo",
+          "alignX": 0.5,
+          "alignY": 0.5
+        }
+      }
+    ],
+    "stacks": [
+      {
+        "id": "number",
+        "order": [
+          "composer-big-number-number",
+          "composer-big-number-label",
+          "composer-big-number-body"
+        ],
+        "blocks": [],
+        "gap": 20,
+        "align": "start",
+        "direction": "column",
+        "box": {
+          "x": 96,
+          "y": 160,
+          "width": 780,
+          "height": 600
+        }
+      }
+    ]
+  }
+}

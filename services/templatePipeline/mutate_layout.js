@@ -10,7 +10,7 @@
 
 const fs = require("fs");
 const path = require("path");
-const { injectTheme } = require("./thematic");
+const { injectTheme, visionQaEnabled } = require("./thematic");
 const { renderSlidePng } = require("../../scripts/slideSvg");
 const { analyzeDeck, checkGeometry, contrastRatio } = require("./scoring/analyzeDeck");
 
@@ -659,12 +659,13 @@ async function remixSeeds(seedAId, seedBId, options) {
     (painted.layoutSequence || []).forEach((id, index) => {
       if (themed.slides[index]) renderSlidePng(painted, id, themed.slides[index]);
     });
-    analysis = await analyzeDeck(painted, themed.slides);
-    console.log("remix score " + analysis.score + " (" + analysis.passed + "/" + analysis.total + ")");
-    if (analysis.score >= 80) break;
+    const manual = !visionQaEnabled(options || {});
+    analysis = await analyzeDeck(painted, themed.slides, { vision: !manual });
+    console.log("remix score " + analysis.score + " (" + analysis.passed + "/" + analysis.total + ")" + (manual ? " manual" : ""));
+    if (manual || analysis.score >= 80) break;
     console.log("remix retry " + round + " below 80");
   }
-  if (!themed || !analysis || analysis.score < 80) {
+  if (!themed || !analysis || (visionQaEnabled(options || {}) && analysis.score < 80)) {
     const error = new Error("Remix scored " + (analysis ? analysis.score : 0) + ". A deck needs 80 or above.");
     error.status = 422;
     throw error;

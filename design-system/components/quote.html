@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>composer quote</title>
+  <style>
+    :root {
+      --color-bg: #f3f1ee; --color-surface: #f3f1ee; --color-card: #ffffff;
+      --color-ink: #1c1916; --color-muted: #5c564e; --color-rule: #d9d0c6;
+      --color-accent: #8a8175; --color-accent2: #8a8175; --color-on-accent: #f3f1ee;
+      --font-display: "Calibri"; --font-text: "Calibri";
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 1600px; height: 900px; overflow: hidden; background: var(--color-bg); }
+    .slide { position: relative; width: 1600px; height: 900px; background: var(--color-bg); color: var(--color-ink); font-family: var(--font-text); }
+    .field { position: absolute; left: 0; top: 0; width: 1600px; height: 900px; background: var(--color-bg); }
+    [data-stack="quote"] {
+      position: absolute; left: 120px; top: 200px; width: 1100px; height: 520px;
+      display: flex; flex-direction: column; align-items: flex-start; gap: 36px;
+    }
+    [data-role="quote"] {
+      width: 100%; font-family: var(--font-display); font-size: 48px; font-weight: 600; line-height: 1.2; color: var(--color-ink);
+    }
+    [data-role="attribution"] {
+      width: 100%; font-family: var(--font-text); font-size: 22px; font-weight: 400; line-height: 1.3; color: var(--color-muted);
+    }
+    [data-role="photo"] {
+      position: absolute; object-fit: cover; object-position: center; background: var(--color-rule); display: none;
+      border-radius: 50%;
+    }
+    .slide[data-variant="plain"] [data-role="photo"] { display: none; }
+    .slide[data-variant="portrait"] [data-role="photo"] {
+      display: block; left: 1180px; top: 260px; width: 280px; height: 280px; z-index: 2;
+    }
+    .slide[data-variant="portrait"] [data-stack="quote"] { width: 960px; }
+  </style>
+</head>
+<body>
+  <div class="slide" data-component="quote" data-variant="plain">
+    <div class="field" data-role="field"></div>
+    <div data-stack="quote" data-stack-align="start">
+      <div data-role="quote" data-max-chars="140">We stopped chasing payroll deadlines and started leading the company again.</div>
+      <div data-role="attribution" data-max-chars="40">Jordan Lee, COO</div>
+    </div>
+    <img data-role="photo" alt="" width="280" height="280" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+  </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>composer divider</title>
+  <style>
+    :root {
+      --color-bg: #f3f1ee; --color-surface: #f3f1ee; --color-card: #ffffff;
+      --color-ink: #1c1916; --color-muted: #5c564e; --color-rule: #d9d0c6;
+      --color-accent: #8a8175; --color-accent2: #8a8175; --color-on-accent: #f3f1ee;
+      --font-display: "Calibri"; --font-text: "Calibri";
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 1600px; height: 900px; overflow: hidden; background: var(--color-bg); }
+    .slide { position: relative; width: 1600px; height: 900px; background: var(--color-bg); color: var(--color-ink); font-family: var(--font-text); }
+    .field { position: absolute; left: 0; top: 0; width: 1600px; height: 900px; background: var(--color-bg); }
+    [data-stack="divider"] {
+      position: absolute; left: 120px; top: 280px; width: 1360px; height: 360px;
+      display: flex; flex-direction: column; align-items: flex-start; gap: 28px;
+    }
+    [data-role="kicker"] {
+      width: 100%; font-family: var(--font-text); font-size: 22px; font-weight: 600; line-height: 1.2;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-muted);
+    }
+    [data-role="title"] {
+      width: 100%; font-family: var(--font-display); font-size: 72px; font-weight: 700; line-height: 1.05; color: var(--color-ink);
+    }
+    .slide[data-variant="number"] .field { background: var(--color-bg); }
+    /* ink (not accent) — accent-on-bg failed geometry contrast (<4.5). */
+    .slide[data-variant="number"] [data-role="kicker"] { font-size: 96px; letter-spacing: 0; color: var(--color-ink); }
+    .slide[data-variant="accent-block"] .field {
+      background: var(--color-accent); width: 1600px; height: 900px;
+    }
+    .slide[data-variant="accent-block"] [data-role="title"],
+    .slide[data-variant="accent-block"] [data-role="kicker"] {
+      color: var(--color-on-accent);
+    }
+  </style>
+</head>
+<body>
+  <div class="slide" data-component="divider" data-variant="number">
+    <div class="field" data-role="field"></div>
+    <div data-stack="divider" data-stack-align="start">
+      <div data-role="kicker" data-max-chars="24">02</div>
+      <div data-role="title" data-max-chars="40">The operating model</div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,1969 @@
+{
+  "schemaVersion": 2,
+  "id": "swiftpay-solutions",
+  "name": "SwiftPay Solutions: A corporate payroll company",
+  "tokens": {
+    "color": {
+      "bg": "#f3f1ee",
+      "surface": "#f3f1ee",
+      "card": "#FFFFFF",
+      "ink": "#1c1916",
+      "muted": "#5c564e",
+      "rule": "#d9d0c6",
+      "accent": "#8a8175",
+      "accent2": "#8a8175",
+      "onAccent": "#f3f1ee"
+    },
+    "font": {
+      "display": "Arial",
+      "text": "Arial"
+    },
+    "type": {
+      "h1": 64,
+      "body": 22
+    }
+  },
+  "layoutSequence": [
+    "slide-1",
+    "slide-2",
+    "slide-3",
+    "slide-4",
+    "slide-5",
+    "slide-6"
+  ],
+  "layouts": {
+    "slide-1": {
+      "version": 2,
+      "id": "slide-1",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-1",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-cover-field",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "opacity": 1,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "{color.onAccent}",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-cover-accent",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 18,
+          "height": 900,
+          "zIndex": 2,
+          "opacity": 1,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "{color.accent}",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-cover-kicker",
+          "type": "text",
+          "x": 72,
+          "y": 72,
+          "width": 760,
+          "height": 23.76,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 18,
+            "fontWeight": 600,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "lineHeight": 1.2,
+            "letterSpacing": 2
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "PAYROLL",
+                "fontFamily": "{font.text}",
+                "fontSize": 18,
+                "fontWeight": 600,
+                "color": "{color.muted}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "kicker",
+            "maxChars": 24,
+            "charsPerLine": 24,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-arial",
+            "capacityChars": 24,
+            "charsPerLine": 24,
+            "width": 330,
+            "canvasWidth": 282.67,
+            "layoutWidth": 760,
+            "fontCheck": true,
+            "computedFamily": "Arial"
+          },
+          "stackId": "cover-copy"
+        },
+        {
+          "id": "composer-cover-title",
+          "type": "text",
+          "x": 72,
+          "y": 123.76,
+          "width": 760,
+          "height": 332.64,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 96,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.05,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "SwiftPay Solutions: Payroll",
+                "fontFamily": "{font.display}",
+                "fontSize": 96,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "title",
+            "maxChars": 40,
+            "charsPerLine": 10,
+            "capacityLines": 4
+          },
+          "textMeasure": {
+            "lines": 3,
+            "fontPair": "corp-arial",
+            "capacityChars": 40,
+            "charsPerLine": 10,
+            "width": 1936.55,
+            "canvasWidth": 2016.56,
+            "layoutWidth": 760,
+            "fontCheck": true,
+            "computedFamily": "Arial"
+          },
+          "stackId": "cover-copy"
+        },
+        {
+          "id": "composer-cover-body",
+          "type": "text",
+          "x": 72,
+          "y": 484.4,
+          "width": 760,
+          "height": 83.16,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 28,
+            "fontWeight": 400,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "lineHeight": 1.35,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Empowering businesses with seamless and accurate payroll processing, freeing them to focus on growth",
+                "fontFamily": "{font.text}",
+                "fontSize": 28,
+                "fontWeight": 400,
+                "color": "{color.muted}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "body",
+            "maxChars": 160,
+            "charsPerLine": 53,
+            "capacityLines": 3
+          },
+          "textMeasure": {
+            "lines": 2,
+            "fontPair": "corp-arial",
+            "capacityChars": 160,
+            "charsPerLine": 53,
+            "width": 2033.59,
+            "canvasWidth": 2049.13,
+            "layoutWidth": 760,
+            "fontCheck": true,
+            "computedFamily": "Arial"
+          },
+          "stackId": "cover-copy"
+        },
+        {
+          "id": "composer-cover-photo",
+          "type": "image",
+          "x": 900,
+          "y": 0,
+          "width": 700,
+          "height": 900,
+          "zIndex": 1,
+          "imageContent": {
+            "url": "photos/composer/swiftpay-solutions/photo-01.jpg",
+            "fit": "cover",
+            "binding": "photo"
+          }
+        }
+      ],
+      "stacks": [
+        {
+          "id": "cover-copy",
+          "order": [
+            "composer-cover-kicker",
+            "composer-cover-title",
+            "composer-cover-body"
+          ],
+          "blocks": [],
+          "gap": 28,
+          "align": "start",
+          "box": {
+            "x": 72,
+            "y": 72,
+            "width": 760,
+            "height": 720
+          }
+        }
+      ],
+      "role": "Cover",
+      "component": "cover",
+      "variant": "split"
+    },
+    "slide-2": {
+      "version": 2,
+      "id": "slide-2",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-2",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-split-copy-field",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "opacity": 1,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "{color.onAccent}",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-split-copy-title",
+          "type": "text",
+          "x": 72,
+          "y": 96,
+          "width": 700,
+          "height": 135.52,
+          "zIndex": 1,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 56,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Our Mission: Empowering Your Growth",
+                "fontFamily": "{font.display}",
+                "fontSize": 56,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "title",
+            "maxChars": 48,
+            "charsPerLine": 24,
+            "capacityLines": 2
+          },
+          "textMeasure": {
+            "lines": 2,
+            "fontPair": "corp-arial",
+            "capacityChars": 48,
+            "charsPerLine": 24,
+            "width": 1347.45,
+            "canvasWidth": 1363,
+            "layoutWidth": 700,
+            "fontCheck": true,
+            "computedFamily": "Arial"
+          },
+          "stackId": "copy"
+        },
+        {
+          "id": "composer-split-copy-body",
+          "type": "text",
+          "x": 72,
+          "y": 259.52,
+          "width": 700,
+          "height": 65.34,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 22,
+            "fontWeight": 400,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "lineHeight": 1.35,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "SwiftPay Solutions is dedicated to providing businesses with reliable and efficient payroll services",
+                "fontFamily": "{font.text}",
+                "fontSize": 22,
+                "fontWeight": 400,
+                "color": "{color.muted}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "body",
+            "maxChars": 160,
+            "charsPerLine": 53,
+            "capacityLines": 3
+          },
+          "textMeasure": {
+            "lines": 2,
+            "fontPair": "corp-arial",
+            "capacityChars": 160,
+            "charsPerLine": 53,
+            "width": 1597.81,
+            "canvasWidth": 1610.03,
+            "layoutWidth": 700,
+            "fontCheck": true,
+            "computedFamily": "Arial"
+          },
+          "stackId": "copy"
+        },
+        {
+          "id": "composer-split-copy-bullet-1",
+          "type": "text",
+          "x": 72,
+          "y": 352.86,
+          "width": 700,
+          "height": 28.6,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Accuracy you can trust",
+                "fontFamily": "{font.text}",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "bullet-1",
+            "maxChars": 80,
+            "charsPerLine": 40,
+            "capacityLines": 2
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-arial",
+            "capacityChars": 80,
+            "charsPerLine": 40,
+            "width": 727.05,
+            "canvasWidth": 732.58,
+            "layoutWidth": 700,
+            "fontCheck": true,
+            "computedFamily": "Arial"
+          },
+          "stackId": "copy"
+        },
+        {
+          "id": "composer-split-copy-bullet-2",
+          "type": "text",
+          "x": 72,
+          "y": 409.46,
+          "width": 700,
+          "height": 28.6,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Time-saving automation",
+                "fontFamily": "{font.text}",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "bullet-2",
+            "maxChars": 80,
+            "charsPerLine": 40,
+            "capacityLines": 2
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-arial",
+            "capacityChars": 80,
+            "charsPerLine": 40,
+            "width": 727.05,
+            "canvasWidth": 732.58,
+            "layoutWidth": 700,
+            "fontCheck": true,
+            "computedFamily": "Arial"
+          },
+          "stackId": "copy"
+        },
+        {
+          "id": "composer-split-copy-bullet-3",
+          "type": "text",
+          "x": 72,
+          "y": 466.06,
+          "width": 700,
+          "height": 28.6,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Dedicated client support",
+                "fontFamily": "{font.text}",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "bullet-3",
+            "maxChars": 80,
+            "charsPerLine": 40,
+            "capacityLines": 2
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-arial",
+            "capacityChars": 80,
+            "charsPerLine": 40,
+            "width": 727.05,
+            "canvasWidth": 732.58,
+            "layoutWidth": 700,
+            "fontCheck": true,
+            "computedFamily": "Arial"
+          },
+          "stackId": "copy"
+        },
+        {
+          "id": "composer-split-copy-photo",
+          "type": "image",
+          "x": 880,
+          "y": 0,
+          "width": 720,
+          "height": 900,
+          "zIndex": 1,
+          "imageContent": {
+            "url": "photos/composer/swiftpay-solutions/photo-02.jpg",
+            "fit": "cover",
+            "binding": "photo"
+          }
+        }
+      ],
+      "stacks": [
+        {
+          "id": "copy",
+          "order": [
+            "composer-split-copy-title",
+            "composer-split-copy-body",
+            "composer-split-copy-bullet-1",
+            "composer-split-copy-bullet-2",
+            "composer-split-copy-bullet-3"
+          ],
+          "blocks": [],
+          "gap": 28,
+          "align": "start",
+          "box": {
+            "x": 72,
+            "y": 96,
+            "width": 700,
+            "height": 720
+          }
+        }
+      ],
+      "role": "About",
+      "component": "split-copy",
+      "variant": "photo-right"
+    },
+    "slide-3": {
+      "version": 2,
+      "id": "slide-3",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-3",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-split-copy-field",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "opacity": 1,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "{color.onAccent}",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-split-copy-title",
+          "type": "text",
+          "x": 800,
+          "y": 96,
+          "width": 700,
+          "height": 135.52,
+          "zIndex": 1,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 56,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "The Payroll Puzzle: Complexities & Risks",
+                "fontFamily": "{font.display}",
+                "fontSize": 56,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "title",
+            "maxChars": 48,
+            "charsPerLine": 24,
+            "capacityLines": 2
+          },
+          "textMeasure": {
+            "lines": 2,
+            "fontPair": "corp-arial",
+            "capacityChars": 48,
+            "charsPerLine": 24,
+            "width": 1347.45,
+            "canvasWidth": 1363,
+            "layoutWidth": 700,
+            "fontCheck": true,
+            "computedFamily": "Arial"
+          },
+          "stackId": "copy"
+        },
+        {
+          "id": "composer-split-copy-body",
+          "type": "text",
+          "x": 800,
+          "y": 259.52,
+          "width": 700,
+          "height": 65.34,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 22,
+            "fontWeight": 400,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "lineHeight": 1.35,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Manual payroll is prone to errors, compliance headaches, and drains valuable resources",
+                "fontFamily": "{font.text}",
+                "fontSize": 22,
+                "fontWeight": 400,
+                "color": "{color.muted}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "body",
+            "maxChars": 160,
+            "charsPerLine": 53,
+            "capacityLines": 3
+          },
+          "textMeasure": {
+            "lines": 2,
+            "fontPair": "corp-arial",
+            "capacityChars": 160,
+            "charsPerLine": 53,
+            "width": 1597.81,
+            "canvasWidth": 1610.03,
+            "layoutWidth": 700,
+            "fontCheck": true,
+            "computedFamily": "Arial"
+          },
+          "stackId": "copy"
+        },
+        {
+          "id": "composer-split-copy-bullet-1",
+          "type": "text",
+          "x": 800,
+          "y": 352.86,
+          "width": 700,
+          "height": 28.6,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Costly human errors",
+                "fontFamily": "{font.text}",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "bullet-1",
+            "maxChars": 80,
+            "charsPerLine": 40,
+            "capacityLines": 2
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-arial",
+            "capacityChars": 80,
+            "charsPerLine": 40,
+            "width": 727.05,
+            "canvasWidth": 732.58,
+            "layoutWidth": 700,
+            "fontCheck": true,
+            "computedFamily": "Arial"
+          },
+          "stackId": "copy"
+        },
+        {
+          "id": "composer-split-copy-bullet-2",
+          "type": "text",
+          "x": 800,
+          "y": 409.46,
+          "width": 700,
+          "height": 28.6,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Ever-changing regulations",
+                "fontFamily": "{font.text}",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "bullet-2",
+            "maxChars": 80,
+            "charsPerLine": 40,
+            "capacityLines": 2
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-arial",
+            "capacityChars": 80,
+            "charsPerLine": 40,
+            "width": 727.05,
+            "canvasWidth": 732.58,
+            "layoutWidth": 700,
+            "fontCheck": true,
+            "computedFamily": "Arial"
+          },
+          "stackId": "copy"
+        },
+        {
+          "id": "composer-split-copy-bullet-3",
+          "type": "text",
+          "x": 800,
+          "y": 466.06,
+          "width": 700,
+          "height": 28.6,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Time-consuming administration",
+                "fontFamily": "{font.text}",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "bullet-3",
+            "maxChars": 80,
+            "charsPerLine": 40,
+            "capacityLines": 2
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-arial",
+            "capacityChars": 80,
+            "charsPerLine": 40,
+            "width": 727.05,
+            "canvasWidth": 732.58,
+            "layoutWidth": 700,
+            "fontCheck": true,
+            "computedFamily": "Arial"
+          },
+          "stackId": "copy"
+        },
+        {
+          "id": "composer-split-copy-photo",
+          "type": "image",
+          "x": 0,
+          "y": 0,
+          "width": 720,
+          "height": 900,
+          "zIndex": 1,
+          "imageContent": {
+            "url": "photos/composer/swiftpay-solutions/photo-03.jpg",
+            "fit": "cover",
+            "binding": "photo"
+          }
+        }
+      ],
+      "stacks": [
+        {
+          "id": "copy",
+          "order": [
+            "composer-split-copy-title",
+            "composer-split-copy-body",
+            "composer-split-copy-bullet-1",
+            "composer-split-copy-bullet-2",
+            "composer-split-copy-bullet-3"
+          ],
+          "blocks": [],
+          "gap": 28,
+          "align": "start",
+          "box": {
+            "x": 800,
+            "y": 96,
+            "width": 700,
+            "height": 720
+          }
+        }
+      ],
+      "role": "Problem",
+      "component": "split-copy",
+      "variant": "photo-left"
+    },
+    "slide-4": {
+      "version": 2,
+      "id": "slide-4",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-4",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-split-copy-field",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "opacity": 1,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "{color.onAccent}",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-split-copy-title",
+          "type": "text",
+          "x": 72,
+          "y": 96,
+          "width": 700,
+          "height": 135.52,
+          "zIndex": 1,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 56,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "SwiftPay: Your Payroll Advantage",
+                "fontFamily": "{font.display}",
+                "fontSize": 56,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "title",
+            "maxChars": 48,
+            "charsPerLine": 24,
+            "capacityLines": 2
+          },
+          "textMeasure": {
+            "lines": 2,
+            "fontPair": "corp-arial",
+            "capacityChars": 48,
+            "charsPerLine": 24,
+            "width": 1347.45,
+            "canvasWidth": 1363,
+            "layoutWidth": 700,
+            "fontCheck": true,
+            "computedFamily": "Arial"
+          },
+          "stackId": "copy"
+        },
+        {
+          "id": "composer-split-copy-body",
+          "type": "text",
+          "x": 72,
+          "y": 259.52,
+          "width": 700,
+          "height": 32.67,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 22,
+            "fontWeight": 400,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "lineHeight": 1.35,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Our intuitive platform and expert team deliver stress-free payroll",
+                "fontFamily": "{font.text}",
+                "fontSize": 22,
+                "fontWeight": 400,
+                "color": "{color.muted}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "body",
+            "maxChars": 160,
+            "charsPerLine": 53,
+            "capacityLines": 3
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-arial",
+            "capacityChars": 160,
+            "charsPerLine": 53,
+            "width": 1597.81,
+            "canvasWidth": 1610.03,
+            "layoutWidth": 700,
+            "fontCheck": true,
+            "computedFamily": "Arial"
+          },
+          "stackId": "copy"
+        },
+        {
+          "id": "composer-split-copy-bullet-1",
+          "type": "text",
+          "x": 72,
+          "y": 320.19,
+          "width": 700,
+          "height": 28.6,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Automated tax filings",
+                "fontFamily": "{font.text}",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "bullet-1",
+            "maxChars": 80,
+            "charsPerLine": 40,
+            "capacityLines": 2
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-arial",
+            "capacityChars": 80,
+            "charsPerLine": 40,
+            "width": 727.05,
+            "canvasWidth": 732.58,
+            "layoutWidth": 700,
+            "fontCheck": true,
+            "computedFamily": "Arial"
+          },
+          "stackId": "copy"
+        },
+        {
+          "id": "composer-split-copy-bullet-2",
+          "type": "text",
+          "x": 72,
+          "y": 376.79,
+          "width": 700,
+          "height": 28.6,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Direct deposit & more",
+                "fontFamily": "{font.text}",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "bullet-2",
+            "maxChars": 80,
+            "charsPerLine": 40,
+            "capacityLines": 2
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-arial",
+            "capacityChars": 80,
+            "charsPerLine": 40,
+            "width": 727.05,
+            "canvasWidth": 732.58,
+            "layoutWidth": 700,
+            "fontCheck": true,
+            "computedFamily": "Arial"
+          },
+          "stackId": "copy"
+        },
+        {
+          "id": "composer-split-copy-bullet-3",
+          "type": "text",
+          "x": 72,
+          "y": 433.39,
+          "width": 700,
+          "height": 28.6,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Real-time reporting",
+                "fontFamily": "{font.text}",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "bullet-3",
+            "maxChars": 80,
+            "charsPerLine": 40,
+            "capacityLines": 2
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-arial",
+            "capacityChars": 80,
+            "charsPerLine": 40,
+            "width": 727.05,
+            "canvasWidth": 732.58,
+            "layoutWidth": 700,
+            "fontCheck": true,
+            "computedFamily": "Arial"
+          },
+          "stackId": "copy"
+        },
+        {
+          "id": "composer-split-copy-photo",
+          "type": "image",
+          "x": 880,
+          "y": 0,
+          "width": 720,
+          "height": 900,
+          "zIndex": 1,
+          "imageContent": {
+            "url": "photos/composer/swiftpay-solutions/photo-04.jpg",
+            "fit": "cover",
+            "binding": "photo"
+          }
+        }
+      ],
+      "stacks": [
+        {
+          "id": "copy",
+          "order": [
+            "composer-split-copy-title",
+            "composer-split-copy-body",
+            "composer-split-copy-bullet-1",
+            "composer-split-copy-bullet-2",
+            "composer-split-copy-bullet-3"
+          ],
+          "blocks": [],
+          "gap": 28,
+          "align": "start",
+          "box": {
+            "x": 72,
+            "y": 96,
+            "width": 700,
+            "height": 720
+          }
+        }
+      ],
+      "role": "Solution",
+      "component": "split-copy",
+      "variant": "photo-right"
+    },
+    "slide-5": {
+      "version": 2,
+      "id": "slide-5",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-5",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-stat-row-field",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "opacity": 1,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "{color.onAccent}",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-stat-row-title",
+          "type": "text",
+          "x": 72,
+          "y": 72,
+          "width": 1456,
+          "height": 58.08,
+          "zIndex": 1,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 48,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Proven Results, Trusted Partners",
+                "fontFamily": "{font.display}",
+                "fontSize": 48,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "title",
+            "maxChars": 48,
+            "charsPerLine": 48,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-arial",
+            "capacityChars": 48,
+            "charsPerLine": 48,
+            "width": 1168.3,
+            "canvasWidth": 1168.29,
+            "layoutWidth": 1456,
+            "fontCheck": true,
+            "computedFamily": "Arial"
+          },
+          "stackId": "main"
+        },
+        {
+          "id": "composer-stat-row-stat-1",
+          "type": "text",
+          "x": 72,
+          "y": 166.08,
+          "width": 400,
+          "height": 79.2,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 72,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "99.9%",
+                "fontFamily": "{font.display}",
+                "fontSize": 72,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "stat-1",
+            "maxChars": 6,
+            "charsPerLine": 6,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-arial",
+            "capacityChars": 6,
+            "charsPerLine": 6,
+            "width": 252.08,
+            "canvasWidth": 252.07,
+            "layoutWidth": 400,
+            "fontCheck": true,
+            "computedFamily": "Arial"
+          },
+          "stackId": "stat-1"
+        },
+        {
+          "id": "composer-stat-row-label-1",
+          "type": "text",
+          "x": 72,
+          "y": 252,
+          "width": 400,
+          "height": 28.6,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "On-time payments",
+                "fontFamily": "{font.text}",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "label-1",
+            "maxChars": 28,
+            "charsPerLine": 28,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-arial",
+            "capacityChars": 28,
+            "charsPerLine": 28,
+            "width": 273.47,
+            "canvasWidth": 273.47,
+            "layoutWidth": 400,
+            "fontCheck": true,
+            "computedFamily": "Arial"
+          },
+          "stackId": "stat-1"
+        },
+        {
+          "id": "composer-stat-row-stat-2",
+          "type": "text",
+          "x": 520,
+          "y": 166.08,
+          "width": 400,
+          "height": 79.2,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 72,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "0",
+                "fontFamily": "{font.display}",
+                "fontSize": 72,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "stat-2",
+            "maxChars": 6,
+            "charsPerLine": 6,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-arial",
+            "capacityChars": 6,
+            "charsPerLine": 6,
+            "width": 252.08,
+            "canvasWidth": 252.07,
+            "layoutWidth": 400,
+            "fontCheck": true,
+            "computedFamily": "Arial"
+          },
+          "stackId": "stat-2"
+        },
+        {
+          "id": "composer-stat-row-label-2",
+          "type": "text",
+          "x": 520,
+          "y": 252,
+          "width": 400,
+          "height": 28.6,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Compliance errors",
+                "fontFamily": "{font.text}",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "label-2",
+            "maxChars": 28,
+            "charsPerLine": 28,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-arial",
+            "capacityChars": 28,
+            "charsPerLine": 28,
+            "width": 273.47,
+            "canvasWidth": 273.47,
+            "layoutWidth": 400,
+            "fontCheck": true,
+            "computedFamily": "Arial"
+          },
+          "stackId": "stat-2"
+        },
+        {
+          "id": "composer-stat-row-stat-3",
+          "type": "text",
+          "x": 968,
+          "y": 166.08,
+          "width": 400,
+          "height": 79.2,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 72,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "100%",
+                "fontFamily": "{font.display}",
+                "fontSize": 72,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "stat-3",
+            "maxChars": 6,
+            "charsPerLine": 6,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-arial",
+            "capacityChars": 6,
+            "charsPerLine": 6,
+            "width": 252.08,
+            "canvasWidth": 252.07,
+            "layoutWidth": 400,
+            "fontCheck": true,
+            "computedFamily": "Arial"
+          },
+          "stackId": "stat-3"
+        },
+        {
+          "id": "composer-stat-row-label-3",
+          "type": "text",
+          "x": 968,
+          "y": 252,
+          "width": 400,
+          "height": 28.6,
+          "zIndex": 7,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Client satisfaction",
+                "fontFamily": "{font.text}",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "label-3",
+            "maxChars": 28,
+            "charsPerLine": 28,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-arial",
+            "capacityChars": 28,
+            "charsPerLine": 28,
+            "width": 273.47,
+            "canvasWidth": 273.47,
+            "layoutWidth": 400,
+            "fontCheck": true,
+            "computedFamily": "Arial"
+          },
+          "stackId": "stat-3"
+        },
+        {
+          "id": "composer-stat-row-body",
+          "type": "text",
+          "x": 72,
+          "y": 312.08,
+          "width": 1456,
+          "height": 32.67,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 22,
+            "fontWeight": 400,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "lineHeight": 1.35,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Join the growing number of businesses that rely on SwiftPay Solutions for their payroll needs",
+                "fontFamily": "{font.text}",
+                "fontSize": 22,
+                "fontWeight": 400,
+                "color": "{color.muted}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "body",
+            "maxChars": 120,
+            "charsPerLine": 120,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-arial",
+            "capacityChars": 120,
+            "charsPerLine": 120,
+            "width": 1195.5,
+            "canvasWidth": 1195.49,
+            "layoutWidth": 1456,
+            "fontCheck": true,
+            "computedFamily": "Arial"
+          },
+          "stackId": "main"
+        }
+      ],
+      "stacks": [
+        {
+          "id": "main",
+          "order": [
+            "composer-stat-row-title",
+            "main-block-1",
+            "composer-stat-row-body"
+          ],
+          "blocks": [
+            {
+              "id": "main-block-1",
+              "x": 72,
+              "y": 166.08,
+              "width": 1456,
+              "height": 110
+            }
+          ],
+          "gap": 36,
+          "align": "start",
+          "box": {
+            "x": 72,
+            "y": 72,
+            "width": 1456,
+            "height": 780
+          }
+        },
+        {
+          "id": "stat-1",
+          "order": [
+            "composer-stat-row-stat-1",
+            "composer-stat-row-label-1"
+          ],
+          "blocks": [],
+          "gap": 12,
+          "align": "start",
+          "box": {
+            "x": 72,
+            "y": 166.08,
+            "width": 400,
+            "height": 110
+          }
+        },
+        {
+          "id": "stat-2",
+          "order": [
+            "composer-stat-row-stat-2",
+            "composer-stat-row-label-2"
+          ],
+          "blocks": [],
+          "gap": 12,
+          "align": "start",
+          "box": {
+            "x": 520,
+            "y": 166.08,
+            "width": 400,
+            "height": 110
+          }
+        },
+        {
+          "id": "stat-3",
+          "order": [
+            "composer-stat-row-stat-3",
+            "composer-stat-row-label-3"
+          ],
+          "blocks": [],
+          "gap": 12,
+          "align": "start",
+          "box": {
+            "x": 968,
+            "y": 166.08,
+            "width": 400,
+            "height": 110
+          }
+        }
+      ],
+      "role": "Proof",
+      "component": "stat-row",
+      "variant": "three-up"
+    },
+    "slide-6": {
+      "version": 2,
+      "id": "slide-6",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-6",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-close-field",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "opacity": 1,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "{color.onAccent}",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-close-kicker",
+          "type": "text",
+          "x": 72,
+          "y": 280,
+          "width": 1000,
+          "height": 23.76,
+          "zIndex": 1,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 18,
+            "fontWeight": 600,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "lineHeight": 1.2,
+            "letterSpacing": 2
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "GET STARTED TODAY",
+                "fontFamily": "{font.text}",
+                "fontSize": 18,
+                "fontWeight": 600,
+                "color": "{color.muted}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "kicker",
+            "maxChars": 24,
+            "charsPerLine": 24,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-arial",
+            "capacityChars": 24,
+            "charsPerLine": 24,
+            "width": 330,
+            "canvasWidth": 282.67,
+            "layoutWidth": 1000,
+            "fontCheck": true,
+            "computedFamily": "Arial"
+          },
+          "stackId": "close-copy"
+        },
+        {
+          "id": "composer-close-title",
+          "type": "text",
+          "x": 72,
+          "y": 327.76,
+          "width": 1000,
+          "height": 166.32,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 72,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.05,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Ready to Streamline Your Payroll?",
+                "fontFamily": "{font.display}",
+                "fontSize": 72,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "title",
+            "maxChars": 40,
+            "charsPerLine": 20,
+            "capacityLines": 2
+          },
+          "textMeasure": {
+            "lines": 2,
+            "fontPair": "corp-arial",
+            "capacityChars": 40,
+            "charsPerLine": 20,
+            "width": 1492.44,
+            "canvasWidth": 1512.42,
+            "layoutWidth": 1000,
+            "fontCheck": true,
+            "computedFamily": "Arial"
+          },
+          "stackId": "close-copy"
+        },
+        {
+          "id": "composer-close-body",
+          "type": "text",
+          "x": 72,
+          "y": 518.08,
+          "width": 1000,
+          "height": 35.64,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 24,
+            "fontWeight": 400,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "lineHeight": 1.35,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Discover how SwiftPay Solutions can transform your payroll process",
+                "fontFamily": "{font.text}",
+                "fontSize": 24,
+                "fontWeight": 400,
+                "color": "{color.muted}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "body",
+            "maxChars": 80,
+            "charsPerLine": 80,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-arial",
+            "capacityChars": 80,
+            "charsPerLine": 80,
+            "width": 879.09,
+            "canvasWidth": 879.09,
+            "layoutWidth": 1000,
+            "fontCheck": true,
+            "computedFamily": "Arial"
+          },
+          "stackId": "close-copy"
+        }
+      ],
+      "stacks": [
+        {
+          "id": "close-copy",
+          "order": [
+            "composer-close-kicker",
+            "composer-close-title",
+            "composer-close-body"
+          ],
+          "blocks": [],
+          "gap": 24,
+          "align": "start",
+          "box": {
+            "x": 72,
+            "y": 280,
+            "width": 1000,
+            "height": 520
+          }
+        }
+      ],
+      "role": "Close",
+      "component": "close",
+      "variant": "plain"
+    }
+  },
+  "parametric": {
+    "cover": "skipped",
+    "coverName": "Skipped",
+    "coverTitle": "SwiftPay Solutions: Payroll",
+    "density": "skipped",
+    "marginFactor": 1,
+    "lineHeightFactor": 1,
+    "densityReverted": [],
+    "densityRevertReasons": [],
+    "marginSample": null,
+    "signature": "rail",
+    "displayFont": "{font.display}",
+    "bodyFont": "{font.text}",
+    "displayWeight": 800,
+    "bodyWeight": 400,
+    "typeShortfalls": [],
+    "geometry": [
+      {
+        "slide": 1,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 2,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 3,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 4,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 5,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 6,
+        "pass": true,
+        "reasons": []
+      }
+    ],
+    "textOverlaps": []
+  },
+  "qa": {
+    "score": 100,
+    "passed": 6,
+    "total": 6,
+    "failures": [],
+    "attempt": 1,
+    "mode": "manual",
+    "aesthetic": {
+      "slides": 6,
+      "avgWhitespace": 0.538,
+      "avgTextDensity": 166,
+      "typeScaleAllOk": true,
+      "minFontSeen": 18
+    }
+  }
+}

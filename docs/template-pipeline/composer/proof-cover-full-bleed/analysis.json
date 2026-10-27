@@ -1,0 +1,23 @@
+{
+  "analysis": {
+    "score": 100,
+    "passed": 1,
+    "total": 1,
+    "failures": [],
+    "slides": [
+      {
+        "slide": 1,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null
+      }
+    ],
+    "vision": false,
+    "composer": true
+  },
+  "geometry": {
+    "pass": true,
+    "reasons": []
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "id": "quote-plain-corp-arial",
+  "name": "quote plain (corp-arial)",
+  "role": "Proof",
+  "tokens": {
+    "color": {
+      "bg": "#f3f1ee",
+      "surface": "#f3f1ee",
+      "card": "#FFFFFF",
+      "ink": "#1c1916",
+      "muted": "#5c564e",
+      "rule": "#d9d0c6",
+      "accent": "#8a8175",
+      "accent2": "#8a8175",
+      "onAccent": "#1c1916"
+    },
+    "font": {
+      "display": "Arial",
+      "text": "Arial"
+    },
+    "type": {
+      "h1": 120,
+      "body": 28
+    }
+  },
+  "layout": {
+    "version": 2,
+    "id": "quote-plain-corp-arial",
+    "canvas": {
+      "width": 1600,
+      "height": 900,
+      "aspectRatio": "16:9"
+    },
+    "elements": [
+      {
+        "id": "composer-quote-field",
+        "type": "shape",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "zIndex": 0,
+        "opacity": 1,
+        "shapeContent": {
+          "kind": "rect",
+          "fill": "{color.bg}",
+          "cornerRadius": 0
+        }
+      },
+      {
+        "id": "composer-quote-quote",
+        "type": "text",
+        "x": 120,
+        "y": 200,
+        "width": 1100,
+        "height": 253.44,
+        "zIndex": 1,
+        "textStyle": {
+          "fontFamily": "{font.display}",
+          "fontSize": 48,
+          "fontWeight": 600,
+          "color": "{color.ink}",
+          "textAlign": "left",
+          "lineHeight": 1.2,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.display}",
+              "fontSize": 48,
+              "fontWeight": 600,
+              "color": "{color.ink}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "quote",
+          "maxChars": 140,
+          "charsPerLine": 35,
+          "capacityLines": 4
+        },
+        "textMeasure": {
+          "lines": 4,
+          "fontPair": "corp-arial",
+          "capacityChars": 140,
+          "charsPerLine": 35,
+          "width": 3270.45,
+          "canvasWidth": 3310.45,
+          "layoutWidth": 1100,
+          "fontCheck": true,
+          "computedFamily": "Arial"
+        },
+        "stackId": "quote"
+      },
+      {
+        "id": "composer-quote-attribution",
+        "type": "text",
+        "x": 120,
+        "y": 466.38,
+        "width": 1100,
+        "height": 31.46,
+        "zIndex": 2,
+        "textStyle": {
+          "fontFamily": "{font.text}",
+          "fontSize": 22,
+          "fontWeight": 400,
+          "color": "{color.muted}",
+          "textAlign": "left",
+          "lineHeight": 1.3,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.text}",
+              "fontSize": 22,
+              "fontWeight": 400,
+              "color": "{color.muted}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "attribution",
+          "maxChars": 40,
+          "charsPerLine": 40,
+          "capacityLines": 1
+        },
+        "textMeasure": {
+          "lines": 1,
+          "fontPair": "corp-arial",
+          "capacityChars": 40,
+          "charsPerLine": 40,
+          "width": 427.98,
+          "canvasWidth": 427.98,
+          "layoutWidth": 1100,
+          "fontCheck": true,
+          "computedFamily": "Arial"
+        },
+        "stackId": "quote"
+      }
+    ],
+    "stacks": [
+      {
+        "id": "quote",
+        "order": [
+          "composer-quote-quote",
+          "composer-quote-attribution"
+        ],
+        "blocks": [],
+        "gap": 36,
+        "align": "start",
+        "direction": "column",
+        "box": {
+          "x": 120,
+          "y": 200,
+          "width": 1100,
+          "height": 520
+        }
+      }
+    ]
+  }
+}

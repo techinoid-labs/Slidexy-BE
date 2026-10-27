@@ -1,0 +1,304 @@
+{
+  "direction": {
+    "profile": {
+      "brand": "SwiftPay Solutions",
+      "industry": "Payroll",
+      "mission": "To empower businesses with seamless and accurate payroll processing, fostering financial peace of mind."
+    },
+    "mood": "Clean and corporate",
+    "keywords": [
+      "office",
+      "laptop",
+      "document"
+    ],
+    "query": "office laptop document",
+    "model": "gemini-2.5-flash-lite"
+  },
+  "brief": {
+    "plan": [
+      {
+        "role": "Cover",
+        "component": "cover",
+        "variant": "split"
+      },
+      {
+        "role": "About",
+        "component": "split-copy",
+        "variant": "photo-right"
+      },
+      {
+        "role": "Problem",
+        "component": "split-copy",
+        "variant": "photo-left"
+      },
+      {
+        "role": "Solution",
+        "component": "split-copy",
+        "variant": "photo-right"
+      },
+      {
+        "role": "Proof",
+        "component": "stat-row",
+        "variant": "three-up"
+      },
+      {
+        "role": "Close",
+        "component": "close",
+        "variant": "plain"
+      }
+    ],
+    "paletteBucket": "light-neutral",
+    "fontPair": "corp-calibri",
+    "density": "balanced",
+    "coverPattern": "split",
+    "signature": "frame",
+    "mood": "Clean and corporate",
+    "copy": {
+      "Cover": {
+        "title": "SwiftPay Solutions: Payroll, Perfected",
+        "body": "Empowering businesses with seamless and accurate payroll processing, fostering financial peace of mind."
+      },
+      "About": {
+        "title": "Our Mission: Financial Peace of Mind",
+        "body": "We streamline payroll, so you can focus on growth",
+        "bullet": [
+          "Accuracy guaranteed",
+          "Time saved",
+          "Compliance ensured"
+        ]
+      },
+      "Problem": {
+        "title": "The Payroll Puzzle",
+        "body": "Manual errors, complex regulations, and time-consuming tasks",
+        "bullet": [
+          "Costly mistakes",
+          "Compliance risks",
+          "Operational drain"
+        ]
+      },
+      "Solution": {
+        "title": "SwiftPay: Your Payroll Advantage",
+        "body": "Intuitive, automated, and secure payroll solutions",
+        "bullet": [
+          "Effortless processing",
+          "Real-time insights",
+          "Dedicated support"
+        ]
+      },
+      "Proof": {
+        "title": "Proven Impact",
+        "stat": [
+          "99.9%",
+          "24/7",
+          "1000+"
+        ],
+        "label": [
+          "Accuracy rate",
+          "Support availability",
+          "Clients served"
+        ],
+        "body": "Trusted by businesses of all sizes for reliable payroll"
+      },
+      "Close": {
+        "title": "Ready for Effortless Payroll?",
+        "body": "Let SwiftPay Solutions bring you financial peace of mind"
+      }
+    }
+  },
+  "fallbacks": [],
+  "nonce": "4c-proof-1",
+  "photoQueries": [
+    {
+      "query": "(replay)",
+      "orientation": "landscape",
+      "hits": 4
+    }
+  ],
+  "fontPair": "corp-calibri",
+  "bucket": "light-neutral",
+  "vibe": "light-neutral",
+  "fits": [],
+  "analysis": {
+    "score": 100,
+    "passed": 6,
+    "total": 6,
+    "failures": [],
+    "attempt": 1,
+    "mode": "manual",
+    "aesthetic": {
+      "slides": 6,
+      "avgWhitespace": 0.515,
+      "avgTextDensity": 133,
+      "typeScaleAllOk": false,
+      "minFontSeen": 18
+    },
+    "slides": [
+      {
+        "slide": 1,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 3,
+            "right": 3,
+            "top": 4
+          },
+          "margin": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "whitespaceRatio": 0.29,
+          "minTextBox": {
+            "fontSize": 18,
+            "area": 18058
+          },
+          "typeScaleOk": true,
+          "textDensity": 165
+        }
+      },
+      {
+        "slide": 2,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 2,
+            "right": 2,
+            "top": 6
+          },
+          "margin": {
+            "left": 72,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "whitespaceRatio": 0.392,
+          "minTextBox": {
+            "fontSize": 18.67,
+            "area": 20020
+          },
+          "typeScaleOk": false,
+          "textDensity": 132
+        }
+      },
+      {
+        "slide": 3,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 2,
+            "right": 2,
+            "top": 6
+          },
+          "margin": {
+            "left": 0,
+            "right": 100,
+            "top": 0,
+            "bottom": 0
+          },
+          "whitespaceRatio": 0.392,
+          "minTextBox": {
+            "fontSize": 18.67,
+            "area": 20020
+          },
+          "typeScaleOk": false,
+          "textDensity": 126
+        }
+      },
+      {
+        "slide": 4,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 2,
+            "right": 2,
+            "top": 6
+          },
+          "margin": {
+            "left": 72,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "whitespaceRatio": 0.392,
+          "minTextBox": {
+            "fontSize": 18.67,
+            "area": 20020
+          },
+          "typeScaleOk": false,
+          "textDensity": 138
+        }
+      },
+      {
+        "slide": 5,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 3,
+            "right": 4,
+            "top": 4
+          },
+          "margin": {
+            "left": 72,
+            "right": 72,
+            "top": 72,
+            "bottom": 147.33
+          },
+          "whitespaceRatio": 0.806,
+          "minTextBox": {
+            "fontSize": 20,
+            "area": 11440
+          },
+          "typeScaleOk": true,
+          "textDensity": 129
+        }
+      },
+      {
+        "slide": 6,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 1,
+            "right": 3,
+            "top": 3
+          },
+          "margin": {
+            "left": 72,
+            "right": 328,
+            "top": 280,
+            "bottom": 344.36
+          },
+          "whitespaceRatio": 0.818,
+          "minTextBox": {
+            "fontSize": 18,
+            "area": 23760
+          },
+          "typeScaleOk": true,
+          "textDensity": 109
+        }
+      }
+    ],
+    "composer": true
+  },
+  "replay": true,
+  "attempt": 1,
+  "textModelCalls": 0
+}

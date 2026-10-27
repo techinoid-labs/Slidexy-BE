@@ -1,0 +1,165 @@
+{
+  "id": "statement-with-kicker-modern",
+  "name": "statement with-kicker (modern)",
+  "role": "About",
+  "tokens": {
+    "color": {
+      "bg": "#f3f1ee",
+      "surface": "#f3f1ee",
+      "card": "#FFFFFF",
+      "ink": "#1c1916",
+      "muted": "#5c564e",
+      "rule": "#d9d0c6",
+      "accent": "#8a8175",
+      "accent2": "#8a8175",
+      "onAccent": "#1c1916"
+    },
+    "font": {
+      "display": "Segoe UI",
+      "text": "Segoe UI"
+    },
+    "type": {
+      "h1": 120,
+      "body": 28
+    }
+  },
+  "layout": {
+    "version": 2,
+    "id": "statement-with-kicker-modern",
+    "canvas": {
+      "width": 1600,
+      "height": 900,
+      "aspectRatio": "16:9"
+    },
+    "elements": [
+      {
+        "id": "composer-statement-field",
+        "type": "shape",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "zIndex": 0,
+        "opacity": 1,
+        "shapeContent": {
+          "kind": "rect",
+          "fill": "{color.bg}",
+          "cornerRadius": 0
+        }
+      },
+      {
+        "id": "composer-statement-kicker",
+        "type": "text",
+        "x": 96,
+        "y": 160,
+        "width": 1408,
+        "height": 26.4,
+        "zIndex": 1,
+        "textStyle": {
+          "fontFamily": "{font.text}",
+          "fontSize": 20,
+          "fontWeight": 600,
+          "color": "{color.muted}",
+          "textAlign": "left",
+          "lineHeight": 1.2,
+          "letterSpacing": 1.6
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.text}",
+              "fontSize": 20,
+              "fontWeight": 600,
+              "color": "{color.muted}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "kicker",
+          "maxChars": 24,
+          "charsPerLine": 24,
+          "capacityLines": 1
+        },
+        "textMeasure": {
+          "lines": 1,
+          "fontPair": "modern",
+          "capacityChars": 24,
+          "charsPerLine": 24,
+          "width": 329.31,
+          "canvasWidth": 301.34,
+          "layoutWidth": 1408,
+          "fontCheck": true,
+          "computedFamily": "\"Segoe UI\""
+        },
+        "stackId": "statement"
+      },
+      {
+        "id": "composer-statement-statement",
+        "type": "text",
+        "x": 96,
+        "y": 212,
+        "width": 1408,
+        "height": 443.52,
+        "zIndex": 2,
+        "textStyle": {
+          "fontFamily": "{font.display}",
+          "fontSize": 96,
+          "fontWeight": 700,
+          "color": "{color.ink}",
+          "textAlign": "left",
+          "lineHeight": 1.05,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.display}",
+              "fontSize": 96,
+              "fontWeight": 700,
+              "color": "{color.ink}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "statement",
+          "maxChars": 90,
+          "charsPerLine": 22,
+          "capacityLines": 4
+        },
+        "textMeasure": {
+          "lines": 4,
+          "fontPair": "modern",
+          "capacityChars": 90,
+          "charsPerLine": 22,
+          "width": 4179.05,
+          "canvasWidth": 4258.5,
+          "layoutWidth": 1408,
+          "fontCheck": true,
+          "computedFamily": "\"Segoe UI\""
+        },
+        "stackId": "statement"
+      }
+    ],
+    "stacks": [
+      {
+        "id": "statement",
+        "order": [
+          "composer-statement-kicker",
+          "composer-statement-statement"
+        ],
+        "blocks": [],
+        "gap": 28,
+        "align": "start",
+        "direction": "column",
+        "box": {
+          "x": 96,
+          "y": 160,
+          "width": 1408,
+          "height": 620
+        }
+      }
+    ]
+  }
+}

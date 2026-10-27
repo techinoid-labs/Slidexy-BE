@@ -1,0 +1,165 @@
+{
+  "id": "divider-number-editorial",
+  "name": "divider number (editorial)",
+  "role": "About",
+  "tokens": {
+    "color": {
+      "bg": "#f3f1ee",
+      "surface": "#f3f1ee",
+      "card": "#FFFFFF",
+      "ink": "#1c1916",
+      "muted": "#5c564e",
+      "rule": "#d9d0c6",
+      "accent": "#8a8175",
+      "accent2": "#8a8175",
+      "onAccent": "#1c1916"
+    },
+    "font": {
+      "display": "Georgia",
+      "text": "Calibri"
+    },
+    "type": {
+      "h1": 120,
+      "body": 28
+    }
+  },
+  "layout": {
+    "version": 2,
+    "id": "divider-number-editorial",
+    "canvas": {
+      "width": 1600,
+      "height": 900,
+      "aspectRatio": "16:9"
+    },
+    "elements": [
+      {
+        "id": "composer-divider-field",
+        "type": "shape",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "zIndex": 0,
+        "opacity": 1,
+        "shapeContent": {
+          "kind": "rect",
+          "fill": "{color.bg}",
+          "cornerRadius": 0
+        }
+      },
+      {
+        "id": "composer-divider-kicker",
+        "type": "text",
+        "x": 120,
+        "y": 280,
+        "width": 1360,
+        "height": 126.72,
+        "zIndex": 1,
+        "textStyle": {
+          "fontFamily": "{font.text}",
+          "fontSize": 96,
+          "fontWeight": 600,
+          "color": "{color.ink}",
+          "textAlign": "left",
+          "lineHeight": 1.2,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.text}",
+              "fontSize": 96,
+              "fontWeight": 600,
+              "color": "{color.ink}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "kicker",
+          "maxChars": 24,
+          "charsPerLine": 24,
+          "capacityLines": 1
+        },
+        "textMeasure": {
+          "lines": 1,
+          "fontPair": "editorial",
+          "capacityChars": 24,
+          "charsPerLine": 24,
+          "width": 97.31,
+          "canvasWidth": 97.31,
+          "layoutWidth": 1360,
+          "fontCheck": true,
+          "computedFamily": "Calibri"
+        },
+        "stackId": "divider"
+      },
+      {
+        "id": "composer-divider-title",
+        "type": "text",
+        "x": 120,
+        "y": 423.19,
+        "width": 1360,
+        "height": 83.16,
+        "zIndex": 2,
+        "textStyle": {
+          "fontFamily": "{font.display}",
+          "fontSize": 72,
+          "fontWeight": 700,
+          "color": "{color.ink}",
+          "textAlign": "left",
+          "lineHeight": 1.05,
+          "letterSpacing": 0
+        },
+        "textContent": {
+          "spans": [
+            {
+              "text": "",
+              "fontFamily": "{font.display}",
+              "fontSize": 72,
+              "fontWeight": 700,
+              "color": "{color.ink}"
+            }
+          ]
+        },
+        "slot": {
+          "dataRole": "title",
+          "maxChars": 40,
+          "charsPerLine": 40,
+          "capacityLines": 1
+        },
+        "textMeasure": {
+          "lines": 1,
+          "fontPair": "editorial",
+          "capacityChars": 40,
+          "charsPerLine": 40,
+          "width": 768.42,
+          "canvasWidth": 768.41,
+          "layoutWidth": 1360,
+          "fontCheck": true,
+          "computedFamily": "Georgia"
+        },
+        "stackId": "divider"
+      }
+    ],
+    "stacks": [
+      {
+        "id": "divider",
+        "order": [
+          "composer-divider-kicker",
+          "composer-divider-title"
+        ],
+        "blocks": [],
+        "gap": 28,
+        "align": "start",
+        "direction": "column",
+        "box": {
+          "x": 120,
+          "y": 280,
+          "width": 1360,
+          "height": 360
+        }
+      }
+    ]
+  }
+}

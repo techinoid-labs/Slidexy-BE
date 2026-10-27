@@ -1,0 +1,130 @@
+{
+  "outDir": "docs/template-pipeline/composer/proof-big-number-left",
+  "component": "big-number",
+  "fontPair": "corp-calibri",
+  "variant": "left",
+  "photoUrl": "photos/composer/proof/landscape-01.jpg",
+  "geometry": {
+    "pass": true,
+    "reasons": []
+  },
+  "analysis": {
+    "score": 100,
+    "passed": 1,
+    "total": 1,
+    "failures": [],
+    "slides": [
+      {
+        "slide": 1,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null
+      }
+    ],
+    "vision": false,
+    "composer": true,
+    "pptxGate": {
+      "skipped": false,
+      "pass": true,
+      "failures": []
+    }
+  },
+  "titleBoxInches": null,
+  "bodyBoxInches": {
+    "w": 7.4998125,
+    "h": 0.5445,
+    "fontPt": 13,
+    "chromeLines": 2
+  },
+  "lineTable": {
+    "body": {
+      "chromeMeasure": 2,
+      "nodeCanvas": 2,
+      "libreOffice": 2
+    }
+  },
+  "canvasLines": {
+    "composer-big-number-number": {
+      "lines": 1,
+      "lineWidths": [
+        452.98828125
+      ],
+      "chromeMeasure": 1
+    },
+    "composer-big-number-label": {
+      "lines": 1,
+      "lineWidths": [
+        371.443359375
+      ],
+      "chromeMeasure": 1
+    },
+    "composer-big-number-body": {
+      "lines": 2,
+      "lineWidths": [
+        881.1171875,
+        309.9228515625
+      ],
+      "chromeMeasure": 2
+    }
+  },
+  "loLines": {
+    "ok": true,
+    "pageW": 959.981102,
+    "pageH": 540,
+    "scaleX": 1.6666994763403167,
+    "scaleY": 1.6666666666666667,
+    "wordCount": 25,
+    "elements": {
+      "composer-big-number-number": {
+        "lines": 1,
+        "words": 1,
+        "chromeMeasure": 1
+      },
+      "composer-big-number-label": {
+        "lines": 1,
+        "words": 3,
+        "chromeMeasure": 1
+      },
+      "composer-big-number-body": {
+        "lines": 2,
+        "words": 21,
+        "chromeMeasure": 2
+      }
+    }
+  },
+  "pptxInspect": {
+    "mediaCount": 1,
+    "mediaNames": [
+      "ppt/media/"
+    ],
+    "picCount": 0,
+    "spCount": 8,
+    "childOrder": [
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp"
+    ],
+    "slideXmlLen": 4957
+  },
+  "paths": {
+    "chrome": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-big-number-left\\chrome.png",
+    "slide": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-big-number-left\\slide-01.png",
+    "lo": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-big-number-left\\lo-slide.png",
+    "pptx": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-big-number-left\\deck.pptx",
+    "pdf": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-big-number-left\\deck.pdf"
+  },
+  "raster": {
+    "ok": true,
+    "loSlide": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-big-number-left\\lo-slide.png",
+    "pdfPath": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-big-number-left\\deck.pdf",
+    "sofficeBin": "C:\\Program Files\\LibreOffice\\program\\soffice.com",
+    "pdftoppmBin": "C:\\Users\\SP Grid\\AppData\\Local\\Microsoft\\WinGet\\Packages\\oschwartz10612.Poppler_Microsoft.Winget.Source_8wekyb3d8bbwe\\poppler-25.07.0\\Library\\bin\\pdftoppm.exe",
+    "userInstall": "C:\\Users\\SPGRID~1\\AppData\\Local\\Temp\\lo-profile-proof-1793124701521"
+  }
+}

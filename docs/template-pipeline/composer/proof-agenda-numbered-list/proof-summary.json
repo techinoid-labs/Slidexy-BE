@@ -1,0 +1,180 @@
+{
+  "outDir": "docs/template-pipeline/composer/proof-agenda-numbered-list",
+  "component": "agenda",
+  "fontPair": "corp-calibri",
+  "variant": "numbered-list",
+  "photoUrl": null,
+  "geometry": {
+    "pass": true,
+    "reasons": []
+  },
+  "analysis": {
+    "score": 100,
+    "passed": 1,
+    "total": 1,
+    "failures": [],
+    "slides": [
+      {
+        "slide": 1,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null
+      }
+    ],
+    "vision": false,
+    "composer": true,
+    "pptxGate": {
+      "skipped": false,
+      "pass": true,
+      "failures": []
+    }
+  },
+  "titleBoxInches": {
+    "w": 11.666375,
+    "h": 0.6453333333333333,
+    "fontPt": 38
+  },
+  "bodyBoxInches": null,
+  "lineTable": {
+    "title": {
+      "chromeMeasure": 1,
+      "nodeCanvas": 1,
+      "libreOffice": 1
+    }
+  },
+  "canvasLines": {
+    "composer-agenda-title": {
+      "lines": 1,
+      "lineWidths": [
+        590.53125
+      ],
+      "chromeMeasure": 1
+    },
+    "composer-agenda-item-1": {
+      "lines": 1,
+      "lineWidths": [
+        190.421875
+      ],
+      "chromeMeasure": 1
+    },
+    "composer-agenda-item-2": {
+      "lines": 1,
+      "lineWidths": [
+        156.884765625
+      ],
+      "chromeMeasure": 1
+    },
+    "composer-agenda-item-3": {
+      "lines": 1,
+      "lineWidths": [
+        152.345703125
+      ],
+      "chromeMeasure": 1
+    },
+    "composer-agenda-item-4": {
+      "lines": 1,
+      "lineWidths": [
+        104.439453125
+      ],
+      "chromeMeasure": 1
+    },
+    "composer-agenda-item-5": {
+      "lines": 1,
+      "lineWidths": [
+        157.30859375
+      ],
+      "chromeMeasure": 1
+    },
+    "composer-agenda-item-6": {
+      "lines": 1,
+      "lineWidths": [
+        129.787109375
+      ],
+      "chromeMeasure": 1
+    }
+  },
+  "loLines": {
+    "ok": true,
+    "pageW": 959.981102,
+    "pageH": 540,
+    "scaleX": 1.6666994763403167,
+    "scaleY": 1.6666666666666667,
+    "wordCount": 15,
+    "elements": {
+      "composer-agenda-title": {
+        "lines": 1,
+        "words": 3,
+        "chromeMeasure": 1
+      },
+      "composer-agenda-item-1": {
+        "lines": 1,
+        "words": 2,
+        "chromeMeasure": 1
+      },
+      "composer-agenda-item-2": {
+        "lines": 1,
+        "words": 2,
+        "chromeMeasure": 1
+      },
+      "composer-agenda-item-3": {
+        "lines": 1,
+        "words": 2,
+        "chromeMeasure": 1
+      },
+      "composer-agenda-item-4": {
+        "lines": 1,
+        "words": 2,
+        "chromeMeasure": 1
+      },
+      "composer-agenda-item-5": {
+        "lines": 1,
+        "words": 2,
+        "chromeMeasure": 1
+      },
+      "composer-agenda-item-6": {
+        "lines": 1,
+        "words": 2,
+        "chromeMeasure": 1
+      }
+    }
+  },
+  "pptxInspect": {
+    "mediaCount": 1,
+    "mediaNames": [
+      "ppt/media/"
+    ],
+    "picCount": 0,
+    "spCount": 12,
+    "childOrder": [
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp"
+    ],
+    "slideXmlLen": 8385
+  },
+  "paths": {
+    "chrome": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-agenda-numbered-list\\chrome.png",
+    "slide": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-agenda-numbered-list\\slide-01.png",
+    "lo": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-agenda-numbered-list\\lo-slide.png",
+    "pptx": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-agenda-numbered-list\\deck.pptx",
+    "pdf": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-agenda-numbered-list\\deck.pdf"
+  },
+  "raster": {
+    "ok": true,
+    "loSlide": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-agenda-numbered-list\\lo-slide.png",
+    "pdfPath": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-agenda-numbered-list\\deck.pdf",
+    "sofficeBin": "C:\\Program Files\\LibreOffice\\program\\soffice.com",
+    "pdftoppmBin": "C:\\Users\\SP Grid\\AppData\\Local\\Microsoft\\WinGet\\Packages\\oschwartz10612.Poppler_Microsoft.Winget.Source_8wekyb3d8bbwe\\poppler-25.07.0\\Library\\bin\\pdftoppm.exe",
+    "userInstall": "C:\\Users\\SPGRID~1\\AppData\\Local\\Temp\\lo-profile-proof-1793124690539"
+  }
+}

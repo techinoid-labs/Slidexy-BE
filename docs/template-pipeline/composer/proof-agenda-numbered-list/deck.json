@@ -1,0 +1,475 @@
+{
+  "schemaVersion": 2,
+  "id": "proof-agenda-numbered-list",
+  "name": "Proof agenda numbered-list",
+  "tokens": {
+    "color": {
+      "bg": "#f3f1ee",
+      "surface": "#f3f1ee",
+      "card": "#FFFFFF",
+      "ink": "#1c1916",
+      "muted": "#5c564e",
+      "rule": "#d9d0c6",
+      "accent": "#8a8175",
+      "accent2": "#8a8175",
+      "onAccent": "#f3f1ee"
+    },
+    "font": {
+      "display": "Calibri",
+      "text": "Calibri"
+    },
+    "type": {
+      "h1": 120,
+      "body": 28
+    }
+  },
+  "layoutSequence": [
+    "slide-1"
+  ],
+  "layouts": {
+    "slide-1": {
+      "version": 2,
+      "id": "slide-1",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-frame-top-slide-1",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 2,
+          "zIndex": 40,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "signature-frame-bottom-slide-1",
+          "type": "shape",
+          "x": 0,
+          "y": 898,
+          "width": 1600,
+          "height": 2,
+          "zIndex": 40,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "signature-frame-left-slide-1",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 2,
+          "height": 900,
+          "zIndex": 40,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "signature-frame-right-slide-1",
+          "type": "shape",
+          "x": 1598,
+          "y": 0,
+          "width": 2,
+          "height": 900,
+          "zIndex": 40,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-agenda-field",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "opacity": 1,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "{color.onAccent}",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-agenda-title",
+          "type": "text",
+          "x": 96,
+          "y": 96,
+          "width": 1400,
+          "height": 77.44,
+          "zIndex": 1,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 64,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Apex Payroll Solutions",
+                "fontFamily": "{font.display}",
+                "fontSize": 64,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "title",
+            "maxChars": 40,
+            "charsPerLine": 40,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 40,
+            "charsPerLine": 40,
+            "width": 1179.63,
+            "canvasWidth": 1179.63,
+            "layoutWidth": 1400,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "agenda"
+        },
+        {
+          "id": "composer-agenda-item-1",
+          "type": "text",
+          "x": 96,
+          "y": 190.39,
+          "width": 1400,
+          "height": 38.5,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 28,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.25,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Connect systems",
+                "fontFamily": "{font.text}",
+                "fontSize": 28,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "item-1",
+            "maxChars": 36,
+            "charsPerLine": 36,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 36,
+            "charsPerLine": 36,
+            "width": 454.28,
+            "canvasWidth": 454.28,
+            "layoutWidth": 1400,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "agenda"
+        },
+        {
+          "id": "composer-agenda-item-2",
+          "type": "text",
+          "x": 96,
+          "y": 249.39,
+          "width": 1400,
+          "height": 38.5,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 28,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.25,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Configure pay",
+                "fontFamily": "{font.text}",
+                "fontSize": 28,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "item-2",
+            "maxChars": 36,
+            "charsPerLine": 36,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 36,
+            "charsPerLine": 36,
+            "width": 454.28,
+            "canvasWidth": 454.28,
+            "layoutWidth": 1400,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "agenda"
+        },
+        {
+          "id": "composer-agenda-item-3",
+          "type": "text",
+          "x": 96,
+          "y": 308.39,
+          "width": 1400,
+          "height": 38.5,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 28,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.25,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Approve runs",
+                "fontFamily": "{font.text}",
+                "fontSize": 28,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "item-3",
+            "maxChars": 36,
+            "charsPerLine": 36,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 36,
+            "charsPerLine": 36,
+            "width": 454.28,
+            "canvasWidth": 454.28,
+            "layoutWidth": 1400,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "agenda"
+        },
+        {
+          "id": "composer-agenda-item-4",
+          "type": "text",
+          "x": 96,
+          "y": 367.39,
+          "width": 1400,
+          "height": 38.5,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 28,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.25,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "File taxes",
+                "fontFamily": "{font.text}",
+                "fontSize": 28,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "item-4",
+            "maxChars": 36,
+            "charsPerLine": 36,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 36,
+            "charsPerLine": 36,
+            "width": 454.28,
+            "canvasWidth": 454.28,
+            "layoutWidth": 1400,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "agenda"
+        },
+        {
+          "id": "composer-agenda-item-5",
+          "type": "text",
+          "x": 96,
+          "y": 426.39,
+          "width": 1400,
+          "height": 38.5,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 28,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.25,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Review audits",
+                "fontFamily": "{font.text}",
+                "fontSize": 28,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "item-5",
+            "maxChars": 36,
+            "charsPerLine": 36,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 36,
+            "charsPerLine": 36,
+            "width": 454.28,
+            "canvasWidth": 454.28,
+            "layoutWidth": 1400,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "agenda"
+        },
+        {
+          "id": "composer-agenda-item-6",
+          "type": "text",
+          "x": 96,
+          "y": 485.39,
+          "width": 1400,
+          "height": 38.5,
+          "zIndex": 7,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 28,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.25,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Scale hiring",
+                "fontFamily": "{font.text}",
+                "fontSize": 28,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "item-6",
+            "maxChars": 36,
+            "charsPerLine": 36,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 36,
+            "charsPerLine": 36,
+            "width": 454.28,
+            "canvasWidth": 454.28,
+            "layoutWidth": 1400,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "agenda"
+        }
+      ]
+    }
+  },
+  "parametric": {
+    "cover": "skipped",
+    "coverName": "Skipped",
+    "coverTitle": "Apex Payroll Solutions",
+    "density": "skipped",
+    "marginFactor": 1,
+    "lineHeightFactor": 1,
+    "densityReverted": [],
+    "densityRevertReasons": [],
+    "marginSample": null,
+    "signature": "frame",
+    "displayFont": "{font.display}",
+    "bodyFont": "{font.text}",
+    "displayWeight": 800,
+    "bodyWeight": 400,
+    "typeShortfalls": [],
+    "geometry": [
+      {
+        "slide": 1,
+        "pass": true,
+        "reasons": []
+      }
+    ],
+    "textOverlaps": []
+  },
+  "qa": {
+    "score": 100,
+    "passed": 1,
+    "total": 1,
+    "failures": [],
+    "attempt": 1,
+    "mode": "manual"
+  }
+}

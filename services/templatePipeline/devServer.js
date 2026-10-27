@@ -19,6 +19,8 @@ const {
   generateTemplate,
   previewPath,
   pptxPath,
+  ensurePptx,
+  readReplacements,
   publishTemplate,
   discardTemplate,
 } = require("./adminCatalog");
@@ -139,7 +141,7 @@ const server = http.createServer(async (req, res) => {
       }
       const download = url.match(/^\/api\/admin\/download\/([^/]+)$/);
       if (req.method === "GET" && download) {
-        const file = pptxPath(decodeURIComponent(download[1]));
+        const file = await ensurePptx(decodeURIComponent(download[1]));
         const bytes = fs.readFileSync(file);
         res.writeHead(200, {
           "Content-Type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -148,6 +150,10 @@ const server = http.createServer(async (req, res) => {
         });
         res.end(bytes);
         return;
+      }
+      const replacements = url.match(/^\/api\/admin\/replacements\/([^/]+)$/);
+      if (req.method === "GET" && replacements) {
+        return send(res, 200, readReplacements(decodeURIComponent(replacements[1])));
       }
       const preview = url.match(/^\/api\/admin\/preview\/([^/]+)\/([^/]+)$/);
       if (req.method === "GET" && preview) {
@@ -159,7 +165,7 @@ const server = http.createServer(async (req, res) => {
       }
       if (req.method === "POST" && url === "/api/admin/publish-template") {
         const body = await readBody(req);
-        return send(res, 200, publishTemplate(body.id));
+        return send(res, 200, await publishTemplate(body.id));
       }
       if (req.method === "POST" && url === "/api/admin/discard-template") {
         const body = await readBody(req);

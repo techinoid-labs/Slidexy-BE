@@ -1,0 +1,184 @@
+{
+  "outDir": "docs/template-pipeline/composer/proof-team-grid-three",
+  "component": "team-grid",
+  "fontPair": "corp-calibri",
+  "variant": "three",
+  "photoUrl": "photos/composer/proof/landscape-01.jpg",
+  "geometry": {
+    "pass": true,
+    "reasons": []
+  },
+  "analysis": {
+    "score": 100,
+    "passed": 1,
+    "total": 1,
+    "failures": [],
+    "slides": [
+      {
+        "slide": 1,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null
+      }
+    ],
+    "vision": false,
+    "composer": true,
+    "pptxGate": {
+      "skipped": false,
+      "pass": true,
+      "failures": []
+    }
+  },
+  "titleBoxInches": {
+    "w": 11.666375,
+    "h": 0.484,
+    "fontPt": 29
+  },
+  "bodyBoxInches": null,
+  "lineTable": {
+    "title": {
+      "chromeMeasure": 1,
+      "nodeCanvas": 1,
+      "libreOffice": 1
+    }
+  },
+  "canvasLines": {
+    "composer-team-grid-title": {
+      "lines": 1,
+      "lineWidths": [
+        442.8984375
+      ],
+      "chromeMeasure": 1
+    },
+    "composer-team-grid-name-1": {
+      "lines": 1,
+      "lineWidths": [
+        126.421875
+      ],
+      "chromeMeasure": 1
+    },
+    "composer-team-grid-role-1": {
+      "lines": 1,
+      "lineWidths": [
+        163.986328125
+      ],
+      "chromeMeasure": 1
+    },
+    "composer-team-grid-name-2": {
+      "lines": 1,
+      "lineWidths": [
+        110.61328125
+      ],
+      "chromeMeasure": 1
+    },
+    "composer-team-grid-role-2": {
+      "lines": 1,
+      "lineWidths": [
+        192.2783203125
+      ],
+      "chromeMeasure": 1
+    },
+    "composer-team-grid-name-3": {
+      "lines": 1,
+      "lineWidths": [
+        138.90234375
+      ],
+      "chromeMeasure": 1
+    },
+    "composer-team-grid-role-3": {
+      "lines": 1,
+      "lineWidths": [
+        129.1904296875
+      ],
+      "chromeMeasure": 1
+    }
+  },
+  "loLines": {
+    "ok": true,
+    "pageW": 959.981102,
+    "pageH": 540,
+    "scaleX": 1.6666994763403167,
+    "scaleY": 1.6666666666666667,
+    "wordCount": 19,
+    "elements": {
+      "composer-team-grid-title": {
+        "lines": 1,
+        "words": 3,
+        "chromeMeasure": 1
+      },
+      "composer-team-grid-name-1": {
+        "lines": 1,
+        "words": 2,
+        "chromeMeasure": 1
+      },
+      "composer-team-grid-role-1": {
+        "lines": 1,
+        "words": 3,
+        "chromeMeasure": 1
+      },
+      "composer-team-grid-name-2": {
+        "lines": 1,
+        "words": 2,
+        "chromeMeasure": 1
+      },
+      "composer-team-grid-role-2": {
+        "lines": 1,
+        "words": 4,
+        "chromeMeasure": 1
+      },
+      "composer-team-grid-name-3": {
+        "lines": 1,
+        "words": 2,
+        "chromeMeasure": 1
+      },
+      "composer-team-grid-role-3": {
+        "lines": 1,
+        "words": 3,
+        "chromeMeasure": 1
+      }
+    }
+  },
+  "pptxInspect": {
+    "mediaCount": 2,
+    "mediaNames": [
+      "ppt/media/",
+      "ppt/media/image-1-1.jpg"
+    ],
+    "picCount": 3,
+    "spCount": 12,
+    "childOrder": [
+      "p:sp",
+      "p:sp",
+      "p:pic",
+      "p:sp",
+      "p:sp",
+      "p:pic",
+      "p:sp",
+      "p:sp",
+      "p:pic",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp"
+    ],
+    "slideXmlLen": 10094
+  },
+  "paths": {
+    "chrome": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-team-grid-three\\chrome.png",
+    "slide": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-team-grid-three\\slide-01.png",
+    "lo": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-team-grid-three\\lo-slide.png",
+    "pptx": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-team-grid-three\\deck.pptx",
+    "pdf": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-team-grid-three\\deck.pdf"
+  },
+  "raster": {
+    "ok": true,
+    "loSlide": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-team-grid-three\\lo-slide.png",
+    "pdfPath": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-team-grid-three\\deck.pdf",
+    "sofficeBin": "C:\\Program Files\\LibreOffice\\program\\soffice.com",
+    "pdftoppmBin": "C:\\Users\\SP Grid\\AppData\\Local\\Microsoft\\WinGet\\Packages\\oschwartz10612.Poppler_Microsoft.Winget.Source_8wekyb3d8bbwe\\poppler-25.07.0\\Library\\bin\\pdftoppm.exe",
+    "userInstall": "C:\\Users\\SPGRID~1\\AppData\\Local\\Temp\\lo-profile-proof-1793124718054"
+  }
+}

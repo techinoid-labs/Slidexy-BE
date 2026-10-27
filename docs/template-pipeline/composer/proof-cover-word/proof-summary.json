@@ -1,0 +1,135 @@
+{
+  "outDir": "docs/template-pipeline/composer/proof-cover-word",
+  "component": "cover",
+  "fontPair": "corp-calibri",
+  "variant": "word",
+  "photoUrl": null,
+  "geometry": {
+    "pass": true,
+    "reasons": []
+  },
+  "analysis": {
+    "score": 100,
+    "passed": 1,
+    "total": 1,
+    "failures": [],
+    "slides": [
+      {
+        "slide": 1,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null
+      }
+    ],
+    "vision": false,
+    "composer": true
+  },
+  "titleBoxInches": {
+    "w": 11.666375,
+    "h": 1.155,
+    "fontPt": 72
+  },
+  "bodyBoxInches": {
+    "w": 6.8331625,
+    "h": 0.693,
+    "fontPt": 17,
+    "chromeLines": 2
+  },
+  "lineTable": {
+    "title": {
+      "chromeMeasure": 1,
+      "nodeCanvas": 1,
+      "libreOffice": 1
+    },
+    "body": {
+      "chromeMeasure": 2,
+      "nodeCanvas": 2,
+      "libreOffice": 2
+    }
+  },
+  "canvasLines": {
+    "composer-cover-kicker": {
+      "lines": 1,
+      "lineWidths": [
+        42.4921875
+      ],
+      "chromeMeasure": 1
+    },
+    "composer-cover-title": {
+      "lines": 1,
+      "lineWidths": [
+        1107.24609375
+      ],
+      "chromeMeasure": 1
+    },
+    "composer-cover-body": {
+      "lines": 2,
+      "lineWidths": [
+        796.099609375,
+        719.76953125
+      ],
+      "chromeMeasure": 2
+    }
+  },
+  "loLines": {
+    "ok": true,
+    "pageW": 959.981102,
+    "pageH": 540,
+    "scaleX": 1.6666994763403167,
+    "scaleY": 1.6666666666666667,
+    "wordCount": 25,
+    "elements": {
+      "composer-cover-kicker": {
+        "lines": 1,
+        "words": 1,
+        "chromeMeasure": 1
+      },
+      "composer-cover-title": {
+        "lines": 1,
+        "words": 3,
+        "chromeMeasure": 1
+      },
+      "composer-cover-body": {
+        "lines": 2,
+        "words": 21,
+        "chromeMeasure": 2
+      }
+    }
+  },
+  "pptxInspect": {
+    "mediaCount": 1,
+    "mediaNames": [
+      "ppt/media/"
+    ],
+    "picCount": 0,
+    "spCount": 9,
+    "childOrder": [
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp",
+      "p:sp"
+    ],
+    "slideXmlLen": 5192
+  },
+  "paths": {
+    "chrome": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-cover-word\\chrome.png",
+    "slide": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-cover-word\\slide-01.png",
+    "lo": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-cover-word\\lo-slide.png",
+    "pptx": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-cover-word\\deck.pptx",
+    "pdf": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-cover-word\\deck.pdf"
+  },
+  "raster": {
+    "ok": true,
+    "loSlide": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-cover-word\\lo-slide.png",
+    "pdfPath": "C:\\Users\\SP Grid\\Desktop\\Techinoid\\Slidexy-BE\\docs\\template-pipeline\\composer\\proof-cover-word\\deck.pdf",
+    "sofficeBin": "C:\\Program Files\\LibreOffice\\program\\soffice.com",
+    "pdftoppmBin": "C:\\Users\\SP Grid\\AppData\\Local\\Microsoft\\WinGet\\Packages\\oschwartz10612.Poppler_Microsoft.Winget.Source_8wekyb3d8bbwe\\poppler-25.07.0\\Library\\bin\\pdftoppm.exe",
+    "userInstall": "C:\\Users\\SPGRID~1\\AppData\\Local\\Temp\\lo-profile-proof-1793116556882"
+  }
+}

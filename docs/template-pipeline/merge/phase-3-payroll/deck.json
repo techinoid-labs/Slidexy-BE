@@ -1,0 +1,3747 @@
+{
+  "schemaVersion": 2,
+  "id": "swiftpay-solutions",
+  "name": "SwiftPay Solutions: A corporate payroll company",
+  "description": "Themed for A corporate payroll company",
+  "category": "converted",
+  "visualMode": "hybrid",
+  "source": "beige-and-brown-minimalist-creative-portfolio-presentation.pptx",
+  "taste": {
+    "designLanguage": "editorial",
+    "cover": "type",
+    "density": "balanced",
+    "align": "left",
+    "groundMode": "flat"
+  },
+  "tokens": {
+    "color": {
+      "bg": "#fcf7f2",
+      "surface": "#fcf7f2",
+      "card": "#FFFFFF",
+      "ink": "#1C1916",
+      "muted": "#1C1916",
+      "rule": "#D9D0C6",
+      "accent": "#63482e",
+      "accent2": "#63482e",
+      "onAccent": "#F6F1E8"
+    },
+    "font": {
+      "display": "Calibri",
+      "text": "Calibri"
+    },
+    "type": {
+      "h1": 64,
+      "body": 22
+    }
+  },
+  "theme": {
+    "backgroundColor": "#FFFFFF",
+    "fontFamily": "Calibri",
+    "titleColor": "#1C1916",
+    "bodyColor": "#1C1916"
+  },
+  "layoutSequence": [
+    "slide-1",
+    "slide-2",
+    "slide-3",
+    "slide-4",
+    "slide-5",
+    "slide-6",
+    "slide-7",
+    "slide-8",
+    "slide-9",
+    "slide-10"
+  ],
+  "layouts": {
+    "slide-1": {
+      "version": 2,
+      "id": "slide-1",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-1",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#1E3A32",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "cover-photo",
+          "type": "image",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 1,
+          "imageContent": {
+            "url": "photos/thematic/phase-3-payroll/landscape-01.jpg",
+            "fit": "cover",
+            "alignX": 0.5,
+            "alignY": 0.5
+          }
+        },
+        {
+          "id": "cover-scrim",
+          "type": "shape",
+          "x": 0,
+          "y": 520,
+          "width": 1600,
+          "height": 380,
+          "zIndex": 2,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#000000",
+            "cornerRadius": 0
+          },
+          "opacity": 0.55
+        },
+        {
+          "id": "cover-title",
+          "type": "text",
+          "x": 48,
+          "y": 620,
+          "width": 1100,
+          "height": 200,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 72,
+            "fontWeight": 800,
+            "color": "#FFF9F4",
+            "textAlign": "left",
+            "lineHeight": 0.95,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "SwiftPay Solutions",
+                "fontFamily": "Yeseva One",
+                "fontSize": 72,
+                "fontWeight": 800,
+                "color": "#FFF9F4"
+              }
+            ]
+          }
+        }
+      ],
+      "generatedCover": "fullBleed"
+    },
+    "slide-2": {
+      "version": 2,
+      "id": "slide-2",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-2",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#1E3A32",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "s2-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#FFFFFF"
+          }
+        },
+        {
+          "id": "s2-e2",
+          "type": "illustration",
+          "x": 1248.62,
+          "y": -24.26,
+          "width": 423.43,
+          "height": 440.12,
+          "zIndex": 2,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 1274671 0 L 1274671 1324936 L 0 1324936 Z",
+            "viewBox": "0 0 1274671 1324936",
+            "fill": "#1C1916",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s2-e3-rot",
+          "type": "rotated",
+          "x": 0,
+          "y": 706.06,
+          "width": 227.1,
+          "height": 193.94,
+          "zIndex": 3,
+          "degrees": -12.42,
+          "element": {
+            "id": "s2-e3",
+            "type": "maskedImage",
+            "x": 0,
+            "y": 706.06,
+            "width": 227.1,
+            "height": 193.94,
+            "zIndex": 3,
+            "opacity": 1,
+            "maskedImageContent": {
+              "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-2-img-8.png",
+              "binding": "",
+              "fit": "cover",
+              "clip": {
+                "kind": "path",
+                "d": "M 0 0 L 3627734 0 L 3627734 4306649 L 0 4306649 L 0 0 Z",
+                "viewBox": "0 0 3627734 4306649",
+                "cornerRadius": 0
+              },
+              "alignX": 0.5,
+              "alignY": 0.5
+            },
+            "isDecoration": true,
+            "originalRole": "decoration"
+          }
+        },
+        {
+          "id": "s2-e4-rot",
+          "type": "rotated",
+          "x": 1263.7,
+          "y": 614.9,
+          "width": 336.3,
+          "height": 285.1,
+          "zIndex": 4,
+          "degrees": 71.62,
+          "element": {
+            "id": "s2-e4",
+            "type": "maskedImage",
+            "x": 1263.7,
+            "y": 614.9,
+            "width": 336.3,
+            "height": 285.1,
+            "zIndex": 4,
+            "opacity": 1,
+            "maskedImageContent": {
+              "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-2-img-9.png",
+              "binding": "",
+              "fit": "cover",
+              "clip": {
+                "kind": "path",
+                "d": "M 0 0 L 5257755 0 L 5257755 6241721 L 0 6241721 L 0 0 Z",
+                "viewBox": "0 0 5257755 6241721",
+                "cornerRadius": 0
+              },
+              "alignX": 0.5,
+              "alignY": 0.5
+            },
+            "isDecoration": true,
+            "originalRole": "decoration"
+          }
+        },
+        {
+          "id": "s2-e5",
+          "type": "maskedImage",
+          "x": 976.02,
+          "y": 122.09,
+          "width": 480.81,
+          "height": 655.82,
+          "zIndex": 5,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-2-img-10.jpeg",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 179338 8003753 L 0 7825011 L 0 178761 L 179338 0 L 5690567 0 L 5867884 178028 L 5867884 7826549 L 5690890 8003753 Z",
+              "viewBox": "0 0 5867884 8003753",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s2-e6",
+          "type": "illustration",
+          "x": 922.85,
+          "y": 90.09,
+          "width": 587.15,
+          "height": 719.82,
+          "zIndex": 6,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 824297 381000 L 639366 565329 L 639366 8219490 L 824297 8403801 L 6343725 8403801 L 6526300 8221016 L 6526300 564623 L 6343415 381000 L 824297 381000 Z M 6507250 8213129 L 6335837 8384753 L 832161 8384753 L 658416 8211580 L 658416 573242 L 832161 400050 L 6335503 400050 L 6507252 572485 L 6507252 8213129 Z M 7165673 4409192 C 7023623 4388765 6947807 4301789 6907300 4211781 L 6907300 424798 C 6907300 413462 6902897 402809 6894910 394810 L 6515412 13797 L 6514457 12818 C 6506519 4670 6495444 0 6484058 0 L 684412 0 C 673076 0 662423 4403 654398 12403 L 270868 394698 C 262918 402616 258366 413587 258366 424798 L 258366 4211796 C 217859 4301800 142042 4388768 0 4409192 C 142042 4429616 217859 4516584 258366 4606588 L 258366 8360010 C 258366 8371258 262720 8381876 270645 8389887 L 654385 8772399 C 662409 8780398 673076 8784802 684412 8784802 L 6484058 8784802 C 6495418 8784802 6506098 8780375 6514121 8772339 L 6894885 8391128 C 6902884 8383104 6907299 8372450 6907299 8361101 L 6907299 4606604 C 6947807 4516595 7023623 4429619 7165673 4409192 Z M 6881404 8377672 L 6500639 8758883 C 6496223 8763310 6490333 8765754 6484057 8765754 L 684412 8765754 C 678148 8765754 672270 8763323 667842 8758907 L 285442 8377758 L 284189 8376493 C 279823 8372077 277418 8366224 277418 8360009 L 277418 4606597 C 317926 4516591 393741 4429618 535788 4409192 C 393741 4388767 317926 4301792 277418 4211786 L 277418 424798 C 277418 418616 279935 412563 284314 408192 L 667842 25895 C 672270 21479 678161 19049 684412 19049 L 6484058 19049 C 6490333 19049 6496435 21622 6500813 26112 L 6881417 408259 C 6885819 412675 6888250 418547 6888250 424797 L 6888250 4211801 C 6847741 4301802 6771926 4388767 6629886 4409192 C 6771926 4429616 6847741 4516582 6888250 4606582 L 6888250 8361101 C 6888250 8367364 6885819 8373243 6881404 8377672 Z",
+            "viewBox": "0 0 7165673 8784802",
+            "fill": "#63482e",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s2-e7-rot",
+          "type": "rotated",
+          "x": -147.43,
+          "y": -164.92,
+          "width": 474.87,
+          "height": 365.21,
+          "zIndex": 7,
+          "degrees": 147.33,
+          "element": {
+            "id": "s2-e7",
+            "type": "maskedImage",
+            "x": -147.43,
+            "y": -164.92,
+            "width": 474.87,
+            "height": 365.21,
+            "zIndex": 7,
+            "opacity": 1,
+            "maskedImageContent": {
+              "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-2-img-11.png",
+              "binding": "",
+              "fit": "cover",
+              "clip": {
+                "kind": "path",
+                "d": "M 0 0 L 5427714 0 L 5427714 4174405 L 0 4174405 L 0 0 Z",
+                "viewBox": "0 0 5427713 4174405",
+                "cornerRadius": 0
+              },
+              "alignX": 0.5,
+              "alignY": 0.5
+            },
+            "isDecoration": true,
+            "originalRole": "decoration"
+          }
+        },
+        {
+          "id": "s2-e8",
+          "type": "maskedImage",
+          "x": 808.48,
+          "y": 167.33,
+          "width": 56.94,
+          "height": 56.94,
+          "zIndex": 8,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-2-img-12.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 650850 0 L 650850 650850 L 0 650850 L 0 0 Z",
+              "viewBox": "0 0 650849 650849",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s2-e9",
+          "type": "maskedImage",
+          "x": 553.79,
+          "y": 753.06,
+          "width": 56.94,
+          "height": 56.94,
+          "zIndex": 9,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-2-img-13.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 650850 0 L 650850 650849 L 0 650849 L 0 0 Z",
+              "viewBox": "0 0 650849 650849",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s2-e10-t",
+          "type": "text",
+          "x": 152.07,
+          "y": 253.96,
+          "width": 647.93,
+          "height": 136.44,
+          "zIndex": 10,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 101.11,
+            "fontWeight": 800,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": -3.63
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Welcome SwiftPay",
+                "fontFamily": "Yeseva One",
+                "fontSize": 101.11,
+                "fontWeight": 800,
+                "color": "#1C1916",
+                "letterSpacing": -3.63
+              }
+            ]
+          }
+        },
+        {
+          "id": "s2-e11-t",
+          "type": "text",
+          "x": 152.07,
+          "y": 399.84,
+          "width": 623.95,
+          "height": 276.5,
+          "zIndex": 11,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "SwiftPay: Your payroll partner",
+                "fontFamily": "Yeseva One",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "slide-3": {
+      "version": 2,
+      "id": "slide-3",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-3",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#1E3A32",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "s3-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#FFFFFF"
+          }
+        },
+        {
+          "id": "s3-e2",
+          "type": "illustration",
+          "x": 1248.62,
+          "y": -24.26,
+          "width": 423.43,
+          "height": 440.12,
+          "zIndex": 2,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 1274671 0 L 1274671 1324936 L 0 1324936 Z",
+            "viewBox": "0 0 1274671 1324936",
+            "fill": "#1C1916",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s3-e3-rot",
+          "type": "rotated",
+          "x": 0,
+          "y": 706.06,
+          "width": 227.1,
+          "height": 193.94,
+          "zIndex": 3,
+          "degrees": -12.42,
+          "element": {
+            "id": "s3-e3",
+            "type": "maskedImage",
+            "x": 0,
+            "y": 706.06,
+            "width": 227.1,
+            "height": 193.94,
+            "zIndex": 3,
+            "opacity": 1,
+            "maskedImageContent": {
+              "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-3-img-14.png",
+              "binding": "",
+              "fit": "cover",
+              "clip": {
+                "kind": "path",
+                "d": "M 0 0 L 3627734 0 L 3627734 4306649 L 0 4306649 L 0 0 Z",
+                "viewBox": "0 0 3627734 4306649",
+                "cornerRadius": 0
+              },
+              "alignX": 0.5,
+              "alignY": 0.5
+            },
+            "isDecoration": true,
+            "originalRole": "decoration"
+          }
+        },
+        {
+          "id": "s3-e4-rot",
+          "type": "rotated",
+          "x": 1263.7,
+          "y": 614.9,
+          "width": 336.3,
+          "height": 285.1,
+          "zIndex": 4,
+          "degrees": 71.62,
+          "element": {
+            "id": "s3-e4",
+            "type": "maskedImage",
+            "x": 1263.7,
+            "y": 614.9,
+            "width": 336.3,
+            "height": 285.1,
+            "zIndex": 4,
+            "opacity": 1,
+            "maskedImageContent": {
+              "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-3-img-15.png",
+              "binding": "",
+              "fit": "cover",
+              "clip": {
+                "kind": "path",
+                "d": "M 0 0 L 5257755 0 L 5257755 6241721 L 0 6241721 L 0 0 Z",
+                "viewBox": "0 0 5257755 6241721",
+                "cornerRadius": 0
+              },
+              "alignX": 0.5,
+              "alignY": 0.5
+            },
+            "isDecoration": true,
+            "originalRole": "decoration"
+          }
+        },
+        {
+          "id": "s3-e5",
+          "type": "maskedImage",
+          "x": 976.02,
+          "y": 122.09,
+          "width": 480.81,
+          "height": 655.82,
+          "zIndex": 5,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-3-img-16.jpeg",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 179338 8003753 L 0 7825011 L 0 178761 L 179338 0 L 5690567 0 L 5867884 178028 L 5867884 7826549 L 5690890 8003753 Z",
+              "viewBox": "0 0 5867884 8003753",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s3-e6",
+          "type": "illustration",
+          "x": 922.85,
+          "y": 90.09,
+          "width": 587.15,
+          "height": 719.82,
+          "zIndex": 6,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 824297 381000 L 639366 565329 L 639366 8219490 L 824297 8403801 L 6343725 8403801 L 6526300 8221016 L 6526300 564623 L 6343415 381000 L 824297 381000 Z M 6507250 8213129 L 6335837 8384753 L 832161 8384753 L 658416 8211580 L 658416 573242 L 832161 400050 L 6335503 400050 L 6507252 572485 L 6507252 8213129 Z M 7165673 4409192 C 7023623 4388765 6947807 4301789 6907300 4211781 L 6907300 424798 C 6907300 413462 6902897 402809 6894910 394810 L 6515412 13797 L 6514457 12818 C 6506519 4670 6495444 0 6484058 0 L 684412 0 C 673076 0 662423 4403 654398 12403 L 270868 394698 C 262918 402616 258366 413587 258366 424798 L 258366 4211796 C 217859 4301800 142042 4388768 0 4409192 C 142042 4429616 217859 4516584 258366 4606588 L 258366 8360010 C 258366 8371258 262720 8381876 270645 8389887 L 654385 8772399 C 662409 8780398 673076 8784802 684412 8784802 L 6484058 8784802 C 6495418 8784802 6506098 8780375 6514121 8772339 L 6894885 8391128 C 6902884 8383104 6907299 8372450 6907299 8361101 L 6907299 4606604 C 6947807 4516595 7023623 4429619 7165673 4409192 Z M 6881404 8377672 L 6500639 8758883 C 6496223 8763310 6490333 8765754 6484057 8765754 L 684412 8765754 C 678148 8765754 672270 8763323 667842 8758907 L 285442 8377758 L 284189 8376493 C 279823 8372077 277418 8366224 277418 8360009 L 277418 4606597 C 317926 4516591 393741 4429618 535788 4409192 C 393741 4388767 317926 4301792 277418 4211786 L 277418 424798 C 277418 418616 279935 412563 284314 408192 L 667842 25895 C 672270 21479 678161 19049 684412 19049 L 6484058 19049 C 6490333 19049 6496435 21622 6500813 26112 L 6881417 408259 C 6885819 412675 6888250 418547 6888250 424797 L 6888250 4211801 C 6847741 4301802 6771926 4388767 6629886 4409192 C 6771926 4429616 6847741 4516582 6888250 4606582 L 6888250 8361101 C 6888250 8367364 6885819 8373243 6881404 8377672 Z",
+            "viewBox": "0 0 7165673 8784802",
+            "fill": "#63482e",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s3-e7-rot",
+          "type": "rotated",
+          "x": -146.75,
+          "y": -152.41,
+          "width": 453,
+          "height": 348.39,
+          "zIndex": 7,
+          "degrees": 147.33,
+          "element": {
+            "id": "s3-e7",
+            "type": "maskedImage",
+            "x": -146.75,
+            "y": -152.41,
+            "width": 453,
+            "height": 348.39,
+            "zIndex": 7,
+            "opacity": 1,
+            "maskedImageContent": {
+              "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-3-img-17.png",
+              "binding": "",
+              "fit": "cover",
+              "clip": {
+                "kind": "path",
+                "d": "M 0 0 L 5177737 0 L 5177737 3982151 L 0 3982151 L 0 0 Z",
+                "viewBox": "0 0 5177737 3982150",
+                "cornerRadius": 0
+              },
+              "alignX": 0.5,
+              "alignY": 0.5
+            },
+            "isDecoration": true,
+            "originalRole": "decoration"
+          }
+        },
+        {
+          "id": "s3-e8-t",
+          "type": "text",
+          "x": 152.07,
+          "y": 251.14,
+          "width": 615.25,
+          "height": 140.78,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 104.44,
+            "fontWeight": 800,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": -3.76
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "About SwiftPay",
+                "fontFamily": "Yeseva One",
+                "fontSize": 104.44,
+                "fontWeight": 800,
+                "color": "#1C1916",
+                "letterSpacing": -3.76
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e9-t",
+          "type": "text",
+          "x": 152.07,
+          "y": 399.84,
+          "width": 623.95,
+          "height": 276.5,
+          "zIndex": 9,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "SwiftPay: Your payroll partner",
+                "fontFamily": "Yeseva One",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e10",
+          "type": "maskedImage",
+          "x": 800,
+          "y": 158.85,
+          "width": 65.42,
+          "height": 65.42,
+          "zIndex": 10,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-3-img-18.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 747791 0 L 747791 747791 L 0 747791 L 0 0 Z",
+              "viewBox": "0 0 747791 747791",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s3-e11",
+          "type": "maskedImage",
+          "x": 553.79,
+          "y": 753.06,
+          "width": 56.94,
+          "height": 56.94,
+          "zIndex": 11,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-3-img-19.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 650850 0 L 650850 650849 L 0 650849 L 0 0 Z",
+              "viewBox": "0 0 650849 650849",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        }
+      ]
+    },
+    "slide-4": {
+      "version": 2,
+      "id": "slide-4",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-4",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#1E3A32",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "s4-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#FFFFFF"
+          }
+        },
+        {
+          "id": "s4-e2",
+          "type": "illustration",
+          "x": 1248.62,
+          "y": -24.26,
+          "width": 423.43,
+          "height": 440.12,
+          "zIndex": 2,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 1274671 0 L 1274671 1324936 L 0 1324936 Z",
+            "viewBox": "0 0 1274671 1324936",
+            "fill": "#1C1916",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s4-e3-rot",
+          "type": "rotated",
+          "x": 0,
+          "y": 706.06,
+          "width": 227.1,
+          "height": 193.94,
+          "zIndex": 3,
+          "degrees": -12.42,
+          "element": {
+            "id": "s4-e3",
+            "type": "maskedImage",
+            "x": 0,
+            "y": 706.06,
+            "width": 227.1,
+            "height": 193.94,
+            "zIndex": 3,
+            "opacity": 1,
+            "maskedImageContent": {
+              "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-4-img-20.png",
+              "binding": "",
+              "fit": "cover",
+              "clip": {
+                "kind": "path",
+                "d": "M 0 0 L 3627734 0 L 3627734 4306649 L 0 4306649 L 0 0 Z",
+                "viewBox": "0 0 3627734 4306649",
+                "cornerRadius": 0
+              },
+              "alignX": 0.5,
+              "alignY": 0.5
+            },
+            "isDecoration": true,
+            "originalRole": "decoration"
+          }
+        },
+        {
+          "id": "s4-e4-rot",
+          "type": "rotated",
+          "x": 1263.7,
+          "y": 614.9,
+          "width": 336.3,
+          "height": 285.1,
+          "zIndex": 4,
+          "degrees": 71.62,
+          "element": {
+            "id": "s4-e4",
+            "type": "maskedImage",
+            "x": 1263.7,
+            "y": 614.9,
+            "width": 336.3,
+            "height": 285.1,
+            "zIndex": 4,
+            "opacity": 1,
+            "maskedImageContent": {
+              "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-4-img-21.png",
+              "binding": "",
+              "fit": "cover",
+              "clip": {
+                "kind": "path",
+                "d": "M 0 0 L 5257755 0 L 5257755 6241721 L 0 6241721 L 0 0 Z",
+                "viewBox": "0 0 5257755 6241721",
+                "cornerRadius": 0
+              },
+              "alignX": 0.5,
+              "alignY": 0.5
+            },
+            "isDecoration": true,
+            "originalRole": "decoration"
+          }
+        },
+        {
+          "id": "s4-e5",
+          "type": "maskedImage",
+          "x": 976.02,
+          "y": 122.09,
+          "width": 480.81,
+          "height": 655.82,
+          "zIndex": 5,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-4-img-22.jpeg",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 179338 8003753 L 0 7825011 L 0 178761 L 179338 0 L 5690567 0 L 5867884 178028 L 5867884 7826549 L 5690890 8003753 Z",
+              "viewBox": "0 0 5867884 8003753",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s4-e6",
+          "type": "illustration",
+          "x": 922.85,
+          "y": 90.09,
+          "width": 587.15,
+          "height": 719.82,
+          "zIndex": 6,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 824297 381000 L 639366 565329 L 639366 8219490 L 824297 8403801 L 6343725 8403801 L 6526300 8221016 L 6526300 564623 L 6343415 381000 L 824297 381000 Z M 6507250 8213129 L 6335837 8384753 L 832161 8384753 L 658416 8211580 L 658416 573242 L 832161 400050 L 6335503 400050 L 6507252 572485 L 6507252 8213129 Z M 7165673 4409192 C 7023623 4388765 6947807 4301789 6907300 4211781 L 6907300 424798 C 6907300 413462 6902897 402809 6894910 394810 L 6515412 13797 L 6514457 12818 C 6506519 4670 6495444 0 6484058 0 L 684412 0 C 673076 0 662423 4403 654398 12403 L 270868 394698 C 262918 402616 258366 413587 258366 424798 L 258366 4211796 C 217859 4301800 142042 4388768 0 4409192 C 142042 4429616 217859 4516584 258366 4606588 L 258366 8360010 C 258366 8371258 262720 8381876 270645 8389887 L 654385 8772399 C 662409 8780398 673076 8784802 684412 8784802 L 6484058 8784802 C 6495418 8784802 6506098 8780375 6514121 8772339 L 6894885 8391128 C 6902884 8383104 6907299 8372450 6907299 8361101 L 6907299 4606604 C 6947807 4516595 7023623 4429619 7165673 4409192 Z M 6881404 8377672 L 6500639 8758883 C 6496223 8763310 6490333 8765754 6484057 8765754 L 684412 8765754 C 678148 8765754 672270 8763323 667842 8758907 L 285442 8377758 L 284189 8376493 C 279823 8372077 277418 8366224 277418 8360009 L 277418 4606597 C 317926 4516591 393741 4429618 535788 4409192 C 393741 4388767 317926 4301792 277418 4211786 L 277418 424798 C 277418 418616 279935 412563 284314 408192 L 667842 25895 C 672270 21479 678161 19049 684412 19049 L 6484058 19049 C 6490333 19049 6496435 21622 6500813 26112 L 6881417 408259 C 6885819 412675 6888250 418547 6888250 424797 L 6888250 4211801 C 6847741 4301802 6771926 4388767 6629886 4409192 C 6771926 4429616 6847741 4516582 6888250 4606582 L 6888250 8361101 C 6888250 8367364 6885819 8373243 6881404 8377672 Z",
+            "viewBox": "0 0 7165673 8784802",
+            "fill": "#63482e",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s4-e7-rot",
+          "type": "rotated",
+          "x": -146.75,
+          "y": -152.41,
+          "width": 453,
+          "height": 348.39,
+          "zIndex": 7,
+          "degrees": 147.33,
+          "element": {
+            "id": "s4-e7",
+            "type": "maskedImage",
+            "x": -146.75,
+            "y": -152.41,
+            "width": 453,
+            "height": 348.39,
+            "zIndex": 7,
+            "opacity": 1,
+            "maskedImageContent": {
+              "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-4-img-23.png",
+              "binding": "",
+              "fit": "cover",
+              "clip": {
+                "kind": "path",
+                "d": "M 0 0 L 5177737 0 L 5177737 3982151 L 0 3982151 L 0 0 Z",
+                "viewBox": "0 0 5177737 3982150",
+                "cornerRadius": 0
+              },
+              "alignX": 0.5,
+              "alignY": 0.5
+            },
+            "isDecoration": true,
+            "originalRole": "decoration"
+          }
+        },
+        {
+          "id": "s4-e8-t",
+          "type": "text",
+          "x": 177.86,
+          "y": 251.94,
+          "width": 654.85,
+          "height": 105.28,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 77.78,
+            "fontWeight": 800,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": -2.8
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Our Vision",
+                "fontFamily": "Yeseva One",
+                "fontSize": 77.78,
+                "fontWeight": 800,
+                "color": "#1C1916",
+                "letterSpacing": -2.8
+              }
+            ]
+          }
+        },
+        {
+          "id": "s4-e9-t",
+          "type": "text",
+          "x": 177.86,
+          "y": 356.07,
+          "width": 654.85,
+          "height": 116.5,
+          "zIndex": 9,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Seamless payroll empowerment",
+                "fontFamily": "Yeseva One",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s4-e10",
+          "type": "maskedImage",
+          "x": 800,
+          "y": 158.85,
+          "width": 65.42,
+          "height": 65.42,
+          "zIndex": 10,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-4-img-24.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 747791 0 L 747791 747791 L 0 747791 L 0 0 Z",
+              "viewBox": "0 0 747791 747791",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s4-e11",
+          "type": "maskedImage",
+          "x": 553.79,
+          "y": 753.06,
+          "width": 56.94,
+          "height": 56.94,
+          "zIndex": 11,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-4-img-25.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 650850 0 L 650850 650849 L 0 650849 L 0 0 Z",
+              "viewBox": "0 0 650849 650849",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s4-e12-t",
+          "type": "text",
+          "x": 177.86,
+          "y": 492.26,
+          "width": 654.85,
+          "height": 98.89,
+          "zIndex": 12,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 72.22,
+            "fontWeight": 800,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": -2.6
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Our Mission",
+                "fontFamily": "Yeseva One",
+                "fontSize": 72.22,
+                "fontWeight": 800,
+                "color": "#1C1916",
+                "letterSpacing": -2.6
+              }
+            ]
+          }
+        },
+        {
+          "id": "s4-e13-t",
+          "type": "text",
+          "x": 177.86,
+          "y": 596.39,
+          "width": 654.85,
+          "height": 116.5,
+          "zIndex": 13,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Seamless payroll empowerment",
+                "fontFamily": "Yeseva One",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "slide-5": {
+      "version": 2,
+      "id": "slide-5",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-5",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#1E3A32",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "s5-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#FFFFFF"
+          }
+        },
+        {
+          "id": "s5-e2",
+          "type": "illustration",
+          "x": 1248.62,
+          "y": -24.26,
+          "width": 423.43,
+          "height": 440.12,
+          "zIndex": 2,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 1274671 0 L 1274671 1324936 L 0 1324936 Z",
+            "viewBox": "0 0 1274671 1324936",
+            "fill": "#1C1916",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s5-e3-rot",
+          "type": "rotated",
+          "x": 0,
+          "y": 706.06,
+          "width": 227.1,
+          "height": 193.94,
+          "zIndex": 3,
+          "degrees": -12.42,
+          "element": {
+            "id": "s5-e3",
+            "type": "maskedImage",
+            "x": 0,
+            "y": 706.06,
+            "width": 227.1,
+            "height": 193.94,
+            "zIndex": 3,
+            "opacity": 1,
+            "maskedImageContent": {
+              "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-5-img-26.png",
+              "binding": "",
+              "fit": "cover",
+              "clip": {
+                "kind": "path",
+                "d": "M 0 0 L 3627734 0 L 3627734 4306649 L 0 4306649 L 0 0 Z",
+                "viewBox": "0 0 3627734 4306649",
+                "cornerRadius": 0
+              },
+              "alignX": 0.5,
+              "alignY": 0.5
+            },
+            "isDecoration": true,
+            "originalRole": "decoration"
+          }
+        },
+        {
+          "id": "s5-e4-rot",
+          "type": "rotated",
+          "x": 1263.7,
+          "y": 614.9,
+          "width": 336.3,
+          "height": 285.1,
+          "zIndex": 4,
+          "degrees": 71.62,
+          "element": {
+            "id": "s5-e4",
+            "type": "maskedImage",
+            "x": 1263.7,
+            "y": 614.9,
+            "width": 336.3,
+            "height": 285.1,
+            "zIndex": 4,
+            "opacity": 1,
+            "maskedImageContent": {
+              "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-5-img-27.png",
+              "binding": "",
+              "fit": "cover",
+              "clip": {
+                "kind": "path",
+                "d": "M 0 0 L 5257755 0 L 5257755 6241721 L 0 6241721 L 0 0 Z",
+                "viewBox": "0 0 5257755 6241721",
+                "cornerRadius": 0
+              },
+              "alignX": 0.5,
+              "alignY": 0.5
+            },
+            "isDecoration": true,
+            "originalRole": "decoration"
+          }
+        },
+        {
+          "id": "s5-e5",
+          "type": "maskedImage",
+          "x": 976.02,
+          "y": 122.09,
+          "width": 480.81,
+          "height": 655.82,
+          "zIndex": 5,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-5-img-28.jpeg",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 179338 8003753 L 0 7825011 L 0 178761 L 179338 0 L 5690567 0 L 5867884 178028 L 5867884 7826549 L 5690890 8003753 Z",
+              "viewBox": "0 0 5867884 8003753",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s5-e6",
+          "type": "illustration",
+          "x": 922.85,
+          "y": 90.09,
+          "width": 587.15,
+          "height": 719.82,
+          "zIndex": 6,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 824297 381000 L 639366 565329 L 639366 8219490 L 824297 8403801 L 6343725 8403801 L 6526300 8221016 L 6526300 564623 L 6343415 381000 L 824297 381000 Z M 6507250 8213129 L 6335837 8384753 L 832161 8384753 L 658416 8211580 L 658416 573242 L 832161 400050 L 6335503 400050 L 6507252 572485 L 6507252 8213129 Z M 7165673 4409192 C 7023623 4388765 6947807 4301789 6907300 4211781 L 6907300 424798 C 6907300 413462 6902897 402809 6894910 394810 L 6515412 13797 L 6514457 12818 C 6506519 4670 6495444 0 6484058 0 L 684412 0 C 673076 0 662423 4403 654398 12403 L 270868 394698 C 262918 402616 258366 413587 258366 424798 L 258366 4211796 C 217859 4301800 142042 4388768 0 4409192 C 142042 4429616 217859 4516584 258366 4606588 L 258366 8360010 C 258366 8371258 262720 8381876 270645 8389887 L 654385 8772399 C 662409 8780398 673076 8784802 684412 8784802 L 6484058 8784802 C 6495418 8784802 6506098 8780375 6514121 8772339 L 6894885 8391128 C 6902884 8383104 6907299 8372450 6907299 8361101 L 6907299 4606604 C 6947807 4516595 7023623 4429619 7165673 4409192 Z M 6881404 8377672 L 6500639 8758883 C 6496223 8763310 6490333 8765754 6484057 8765754 L 684412 8765754 C 678148 8765754 672270 8763323 667842 8758907 L 285442 8377758 L 284189 8376493 C 279823 8372077 277418 8366224 277418 8360009 L 277418 4606597 C 317926 4516591 393741 4429618 535788 4409192 C 393741 4388767 317926 4301792 277418 4211786 L 277418 424798 C 277418 418616 279935 412563 284314 408192 L 667842 25895 C 672270 21479 678161 19049 684412 19049 L 6484058 19049 C 6490333 19049 6496435 21622 6500813 26112 L 6881417 408259 C 6885819 412675 6888250 418547 6888250 424797 L 6888250 4211801 C 6847741 4301802 6771926 4388767 6629886 4409192 C 6771926 4429616 6847741 4516582 6888250 4606582 L 6888250 8361101 C 6888250 8367364 6885819 8373243 6881404 8377672 Z",
+            "viewBox": "0 0 7165673 8784802",
+            "fill": "#63482e",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s5-e7-rot",
+          "type": "rotated",
+          "x": -143.07,
+          "y": -153.48,
+          "width": 447.84,
+          "height": 344.43,
+          "zIndex": 7,
+          "degrees": 147.33,
+          "element": {
+            "id": "s5-e7",
+            "type": "maskedImage",
+            "x": -143.07,
+            "y": -153.48,
+            "width": 447.84,
+            "height": 344.43,
+            "zIndex": 7,
+            "opacity": 1,
+            "maskedImageContent": {
+              "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-5-img-29.png",
+              "binding": "",
+              "fit": "cover",
+              "clip": {
+                "kind": "path",
+                "d": "M 0 0 L 5118801 0 L 5118801 3936824 L 0 3936824 L 0 0 Z",
+                "viewBox": "0 0 5118801 3936824",
+                "cornerRadius": 0
+              },
+              "alignX": 0.5,
+              "alignY": 0.5
+            },
+            "isDecoration": true,
+            "originalRole": "decoration"
+          }
+        },
+        {
+          "id": "s5-e8-t",
+          "type": "text",
+          "x": 200.36,
+          "y": 359.44,
+          "width": 608.3,
+          "height": 67.5,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 33.7,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": -1.8
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Industry Knowledge",
+                "fontFamily": "Yeseva One",
+                "fontSize": 33.7,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": -1.8
+              }
+            ]
+          }
+        },
+        {
+          "id": "s5-e9-t",
+          "type": "text",
+          "x": 200.36,
+          "y": 434.44,
+          "width": 608.3,
+          "height": 116.5,
+          "zIndex": 9,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Seamless payroll empowerment",
+                "fontFamily": "Yeseva One",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s5-e10",
+          "type": "maskedImage",
+          "x": 800,
+          "y": 158.85,
+          "width": 65.42,
+          "height": 65.42,
+          "zIndex": 10,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-5-img-30.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 747791 0 L 747791 747791 L 0 747791 L 0 0 Z",
+              "viewBox": "0 0 747791 747791",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s5-e11",
+          "type": "maskedImage",
+          "x": 447.56,
+          "y": 810,
+          "width": 56.94,
+          "height": 56.94,
+          "zIndex": 11,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-5-img-31.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 650850 0 L 650850 650849 L 0 650849 L 0 0 Z",
+              "viewBox": "0 0 650849 650849",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s5-e12-t",
+          "type": "text",
+          "x": 123.6,
+          "y": 208.44,
+          "width": 647.93,
+          "height": 136.44,
+          "zIndex": 12,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 101.11,
+            "fontWeight": 800,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": -3.63
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Expertise",
+                "fontFamily": "Yeseva One",
+                "fontSize": 101.11,
+                "fontWeight": 800,
+                "color": "#1C1916",
+                "letterSpacing": -3.63
+              }
+            ]
+          }
+        },
+        {
+          "id": "s5-e13-t",
+          "type": "text",
+          "x": 200.36,
+          "y": 581.39,
+          "width": 608.3,
+          "height": 67.5,
+          "zIndex": 13,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 33.7,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": -1.8
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Client Success",
+                "fontFamily": "Yeseva One",
+                "fontSize": 33.7,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": -1.8
+              }
+            ]
+          }
+        },
+        {
+          "id": "s5-e14-t",
+          "type": "text",
+          "x": 200.36,
+          "y": 651.39,
+          "width": 608.3,
+          "height": 116.5,
+          "zIndex": 14,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Seamless payroll empowerment",
+                "fontFamily": "Yeseva One",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "slide-6": {
+      "version": 2,
+      "id": "slide-6",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-6",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#1E3A32",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "s6-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#FFFFFF"
+          }
+        },
+        {
+          "id": "s6-e2",
+          "type": "illustration",
+          "x": 1248.62,
+          "y": -24.26,
+          "width": 423.43,
+          "height": 440.12,
+          "zIndex": 2,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 1274671 0 L 1274671 1324936 L 0 1324936 Z",
+            "viewBox": "0 0 1274671 1324936",
+            "fill": "#1C1916",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s6-e3-rot",
+          "type": "rotated",
+          "x": 0,
+          "y": 706.06,
+          "width": 227.1,
+          "height": 193.94,
+          "zIndex": 3,
+          "degrees": -12.42,
+          "element": {
+            "id": "s6-e3",
+            "type": "maskedImage",
+            "x": 0,
+            "y": 706.06,
+            "width": 227.1,
+            "height": 193.94,
+            "zIndex": 3,
+            "opacity": 1,
+            "maskedImageContent": {
+              "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-6-img-32.png",
+              "binding": "",
+              "fit": "cover",
+              "clip": {
+                "kind": "path",
+                "d": "M 0 0 L 3627734 0 L 3627734 4306649 L 0 4306649 L 0 0 Z",
+                "viewBox": "0 0 3627734 4306649",
+                "cornerRadius": 0
+              },
+              "alignX": 0.5,
+              "alignY": 0.5
+            },
+            "isDecoration": true,
+            "originalRole": "decoration"
+          }
+        },
+        {
+          "id": "s6-e4-rot",
+          "type": "rotated",
+          "x": 1263.7,
+          "y": 614.9,
+          "width": 336.3,
+          "height": 285.1,
+          "zIndex": 4,
+          "degrees": 71.62,
+          "element": {
+            "id": "s6-e4",
+            "type": "maskedImage",
+            "x": 1263.7,
+            "y": 614.9,
+            "width": 336.3,
+            "height": 285.1,
+            "zIndex": 4,
+            "opacity": 1,
+            "maskedImageContent": {
+              "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-6-img-33.png",
+              "binding": "",
+              "fit": "cover",
+              "clip": {
+                "kind": "path",
+                "d": "M 0 0 L 5257755 0 L 5257755 6241721 L 0 6241721 L 0 0 Z",
+                "viewBox": "0 0 5257755 6241721",
+                "cornerRadius": 0
+              },
+              "alignX": 0.5,
+              "alignY": 0.5
+            },
+            "isDecoration": true,
+            "originalRole": "decoration"
+          }
+        },
+        {
+          "id": "s6-e5",
+          "type": "maskedImage",
+          "x": 976.02,
+          "y": 122.09,
+          "width": 480.81,
+          "height": 655.82,
+          "zIndex": 5,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-6-img-34.jpeg",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 179338 8003753 L 0 7825011 L 0 178761 L 179338 0 L 5690567 0 L 5867884 178028 L 5867884 7826549 L 5690890 8003753 Z",
+              "viewBox": "0 0 5867884 8003753",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s6-e6",
+          "type": "illustration",
+          "x": 922.85,
+          "y": 90.09,
+          "width": 587.15,
+          "height": 719.82,
+          "zIndex": 6,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 824297 381000 L 639366 565329 L 639366 8219490 L 824297 8403801 L 6343725 8403801 L 6526300 8221016 L 6526300 564623 L 6343415 381000 L 824297 381000 Z M 6507250 8213129 L 6335837 8384753 L 832161 8384753 L 658416 8211580 L 658416 573242 L 832161 400050 L 6335503 400050 L 6507252 572485 L 6507252 8213129 Z M 7165673 4409192 C 7023623 4388765 6947807 4301789 6907300 4211781 L 6907300 424798 C 6907300 413462 6902897 402809 6894910 394810 L 6515412 13797 L 6514457 12818 C 6506519 4670 6495444 0 6484058 0 L 684412 0 C 673076 0 662423 4403 654398 12403 L 270868 394698 C 262918 402616 258366 413587 258366 424798 L 258366 4211796 C 217859 4301800 142042 4388768 0 4409192 C 142042 4429616 217859 4516584 258366 4606588 L 258366 8360010 C 258366 8371258 262720 8381876 270645 8389887 L 654385 8772399 C 662409 8780398 673076 8784802 684412 8784802 L 6484058 8784802 C 6495418 8784802 6506098 8780375 6514121 8772339 L 6894885 8391128 C 6902884 8383104 6907299 8372450 6907299 8361101 L 6907299 4606604 C 6947807 4516595 7023623 4429619 7165673 4409192 Z M 6881404 8377672 L 6500639 8758883 C 6496223 8763310 6490333 8765754 6484057 8765754 L 684412 8765754 C 678148 8765754 672270 8763323 667842 8758907 L 285442 8377758 L 284189 8376493 C 279823 8372077 277418 8366224 277418 8360009 L 277418 4606597 C 317926 4516591 393741 4429618 535788 4409192 C 393741 4388767 317926 4301792 277418 4211786 L 277418 424798 C 277418 418616 279935 412563 284314 408192 L 667842 25895 C 672270 21479 678161 19049 684412 19049 L 6484058 19049 C 6490333 19049 6496435 21622 6500813 26112 L 6881417 408259 C 6885819 412675 6888250 418547 6888250 424797 L 6888250 4211801 C 6847741 4301802 6771926 4388767 6629886 4409192 C 6771926 4429616 6847741 4516582 6888250 4606582 L 6888250 8361101 C 6888250 8367364 6885819 8373243 6881404 8377672 Z",
+            "viewBox": "0 0 7165673 8784802",
+            "fill": "#63482e",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s6-e7-rot",
+          "type": "rotated",
+          "x": -146.75,
+          "y": -152.41,
+          "width": 453,
+          "height": 348.39,
+          "zIndex": 7,
+          "degrees": 147.33,
+          "element": {
+            "id": "s6-e7",
+            "type": "maskedImage",
+            "x": -146.75,
+            "y": -152.41,
+            "width": 453,
+            "height": 348.39,
+            "zIndex": 7,
+            "opacity": 1,
+            "maskedImageContent": {
+              "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-6-img-35.png",
+              "binding": "",
+              "fit": "cover",
+              "clip": {
+                "kind": "path",
+                "d": "M 0 0 L 5177737 0 L 5177737 3982151 L 0 3982151 L 0 0 Z",
+                "viewBox": "0 0 5177737 3982150",
+                "cornerRadius": 0
+              },
+              "alignX": 0.5,
+              "alignY": 0.5
+            },
+            "isDecoration": true,
+            "originalRole": "decoration"
+          }
+        },
+        {
+          "id": "s6-e8-t",
+          "type": "text",
+          "x": 205.81,
+          "y": 368.61,
+          "width": 608.3,
+          "height": 67.5,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 33.7,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": -1.8
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Payroll Proc",
+                "fontFamily": "Yeseva One",
+                "fontSize": 33.7,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": -1.8
+              }
+            ]
+          }
+        },
+        {
+          "id": "s6-e9-t",
+          "type": "text",
+          "x": 205.81,
+          "y": 443.61,
+          "width": 608.3,
+          "height": 116.5,
+          "zIndex": 9,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Seamless payroll empowerment",
+                "fontFamily": "Yeseva One",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s6-e10",
+          "type": "maskedImage",
+          "x": 800,
+          "y": 158.85,
+          "width": 65.42,
+          "height": 65.42,
+          "zIndex": 10,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-6-img-36.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 747791 0 L 747791 747791 L 0 747791 L 0 0 Z",
+              "viewBox": "0 0 747791 747791",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s6-e11",
+          "type": "maskedImage",
+          "x": 447.56,
+          "y": 810,
+          "width": 56.94,
+          "height": 56.94,
+          "zIndex": 11,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-6-img-37.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 650850 0 L 650850 650849 L 0 650849 L 0 0 Z",
+              "viewBox": "0 0 650849 650849",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s6-e12-t",
+          "type": "text",
+          "x": 137.96,
+          "y": 208.44,
+          "width": 647.93,
+          "height": 136.44,
+          "zIndex": 12,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 101.11,
+            "fontWeight": 800,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": -3.63
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Services",
+                "fontFamily": "Yeseva One",
+                "fontSize": 101.11,
+                "fontWeight": 800,
+                "color": "#1C1916",
+                "letterSpacing": -3.63
+              }
+            ]
+          }
+        },
+        {
+          "id": "s6-e13-t",
+          "type": "text",
+          "x": 205.81,
+          "y": 590.55,
+          "width": 608.3,
+          "height": 67.5,
+          "zIndex": 13,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 33.7,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": -1.8
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "HR Solutions",
+                "fontFamily": "Yeseva One",
+                "fontSize": 33.7,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": -1.8
+              }
+            ]
+          }
+        },
+        {
+          "id": "s6-e14-t",
+          "type": "text",
+          "x": 205.81,
+          "y": 660.55,
+          "width": 608.3,
+          "height": 116.5,
+          "zIndex": 14,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Seamless payroll empowerment",
+                "fontFamily": "Yeseva One",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "slide-7": {
+      "version": 2,
+      "id": "slide-7",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-7",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#1E3A32",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "s7-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#FFFFFF"
+          }
+        },
+        {
+          "id": "s7-e2",
+          "type": "illustration",
+          "x": 1248.62,
+          "y": -24.26,
+          "width": 423.43,
+          "height": 440.12,
+          "zIndex": 2,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 1274671 0 L 1274671 1324936 L 0 1324936 Z",
+            "viewBox": "0 0 1274671 1324936",
+            "fill": "#1C1916",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s7-e3-rot",
+          "type": "rotated",
+          "x": 0,
+          "y": 706.06,
+          "width": 227.1,
+          "height": 193.94,
+          "zIndex": 3,
+          "degrees": -12.42,
+          "element": {
+            "id": "s7-e3",
+            "type": "maskedImage",
+            "x": 0,
+            "y": 706.06,
+            "width": 227.1,
+            "height": 193.94,
+            "zIndex": 3,
+            "opacity": 1,
+            "maskedImageContent": {
+              "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-7-img-38.png",
+              "binding": "",
+              "fit": "cover",
+              "clip": {
+                "kind": "path",
+                "d": "M 0 0 L 3627734 0 L 3627734 4306649 L 0 4306649 L 0 0 Z",
+                "viewBox": "0 0 3627734 4306649",
+                "cornerRadius": 0
+              },
+              "alignX": 0.5,
+              "alignY": 0.5
+            },
+            "isDecoration": true,
+            "originalRole": "decoration"
+          }
+        },
+        {
+          "id": "s7-e4-rot",
+          "type": "rotated",
+          "x": 1263.7,
+          "y": 614.9,
+          "width": 336.3,
+          "height": 285.1,
+          "zIndex": 4,
+          "degrees": 71.62,
+          "element": {
+            "id": "s7-e4",
+            "type": "maskedImage",
+            "x": 1263.7,
+            "y": 614.9,
+            "width": 336.3,
+            "height": 285.1,
+            "zIndex": 4,
+            "opacity": 1,
+            "maskedImageContent": {
+              "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-7-img-39.png",
+              "binding": "",
+              "fit": "cover",
+              "clip": {
+                "kind": "path",
+                "d": "M 0 0 L 5257755 0 L 5257755 6241721 L 0 6241721 L 0 0 Z",
+                "viewBox": "0 0 5257755 6241721",
+                "cornerRadius": 0
+              },
+              "alignX": 0.5,
+              "alignY": 0.5
+            },
+            "isDecoration": true,
+            "originalRole": "decoration"
+          }
+        },
+        {
+          "id": "s7-e5",
+          "type": "maskedImage",
+          "x": 976.02,
+          "y": 122.09,
+          "width": 480.81,
+          "height": 655.82,
+          "zIndex": 5,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-7-img-40.jpeg",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 179338 8003753 L 0 7825011 L 0 178761 L 179338 0 L 5690567 0 L 5867884 178028 L 5867884 7826549 L 5690890 8003753 Z",
+              "viewBox": "0 0 5867884 8003753",
+              "cornerRadius": 0
+            },
+            "alignX": 0.4272,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s7-e6",
+          "type": "illustration",
+          "x": 922.85,
+          "y": 90.09,
+          "width": 587.15,
+          "height": 719.82,
+          "zIndex": 6,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 824297 381000 L 639366 565329 L 639366 8219490 L 824297 8403801 L 6343725 8403801 L 6526300 8221016 L 6526300 564623 L 6343415 381000 L 824297 381000 Z M 6507250 8213129 L 6335837 8384753 L 832161 8384753 L 658416 8211580 L 658416 573242 L 832161 400050 L 6335503 400050 L 6507252 572485 L 6507252 8213129 Z M 7165673 4409192 C 7023623 4388765 6947807 4301789 6907300 4211781 L 6907300 424798 C 6907300 413462 6902897 402809 6894910 394810 L 6515412 13797 L 6514457 12818 C 6506519 4670 6495444 0 6484058 0 L 684412 0 C 673076 0 662423 4403 654398 12403 L 270868 394698 C 262918 402616 258366 413587 258366 424798 L 258366 4211796 C 217859 4301800 142042 4388768 0 4409192 C 142042 4429616 217859 4516584 258366 4606588 L 258366 8360010 C 258366 8371258 262720 8381876 270645 8389887 L 654385 8772399 C 662409 8780398 673076 8784802 684412 8784802 L 6484058 8784802 C 6495418 8784802 6506098 8780375 6514121 8772339 L 6894885 8391128 C 6902884 8383104 6907299 8372450 6907299 8361101 L 6907299 4606604 C 6947807 4516595 7023623 4429619 7165673 4409192 Z M 6881404 8377672 L 6500639 8758883 C 6496223 8763310 6490333 8765754 6484057 8765754 L 684412 8765754 C 678148 8765754 672270 8763323 667842 8758907 L 285442 8377758 L 284189 8376493 C 279823 8372077 277418 8366224 277418 8360009 L 277418 4606597 C 317926 4516591 393741 4429618 535788 4409192 C 393741 4388767 317926 4301792 277418 4211786 L 277418 424798 C 277418 418616 279935 412563 284314 408192 L 667842 25895 C 672270 21479 678161 19049 684412 19049 L 6484058 19049 C 6490333 19049 6496435 21622 6500813 26112 L 6881417 408259 C 6885819 412675 6888250 418547 6888250 424797 L 6888250 4211801 C 6847741 4301802 6771926 4388767 6629886 4409192 C 6771926 4429616 6847741 4516582 6888250 4606582 L 6888250 8361101 C 6888250 8367364 6885819 8373243 6881404 8377672 Z",
+            "viewBox": "0 0 7165673 8784802",
+            "fill": "#63482e",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s7-e7-rot",
+          "type": "rotated",
+          "x": -146.75,
+          "y": -152.41,
+          "width": 453,
+          "height": 348.39,
+          "zIndex": 7,
+          "degrees": 147.33,
+          "element": {
+            "id": "s7-e7",
+            "type": "maskedImage",
+            "x": -146.75,
+            "y": -152.41,
+            "width": 453,
+            "height": 348.39,
+            "zIndex": 7,
+            "opacity": 1,
+            "maskedImageContent": {
+              "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-7-img-41.png",
+              "binding": "",
+              "fit": "cover",
+              "clip": {
+                "kind": "path",
+                "d": "M 0 0 L 5177737 0 L 5177737 3982151 L 0 3982151 L 0 0 Z",
+                "viewBox": "0 0 5177737 3982150",
+                "cornerRadius": 0
+              },
+              "alignX": 0.5,
+              "alignY": 0.5
+            },
+            "isDecoration": true,
+            "originalRole": "decoration"
+          }
+        },
+        {
+          "id": "s7-e8-t",
+          "type": "text",
+          "x": 205.81,
+          "y": 368.61,
+          "width": 608.3,
+          "height": 67.5,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 33.7,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": -1.8
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "SwiftPay Clients",
+                "fontFamily": "Yeseva One",
+                "fontSize": 33.7,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": -1.8
+              }
+            ]
+          }
+        },
+        {
+          "id": "s7-e9-t",
+          "type": "text",
+          "x": 205.81,
+          "y": 443.61,
+          "width": 608.3,
+          "height": 116.5,
+          "zIndex": 9,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Seamless payroll empowerment",
+                "fontFamily": "Yeseva One",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s7-e10",
+          "type": "maskedImage",
+          "x": 800,
+          "y": 158.85,
+          "width": 65.42,
+          "height": 65.42,
+          "zIndex": 10,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-7-img-42.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 747791 0 L 747791 747791 L 0 747791 L 0 0 Z",
+              "viewBox": "0 0 747791 747791",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s7-e11",
+          "type": "maskedImage",
+          "x": 447.56,
+          "y": 810,
+          "width": 56.94,
+          "height": 56.94,
+          "zIndex": 11,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-7-img-43.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 650850 0 L 650850 650849 L 0 650849 L 0 0 Z",
+              "viewBox": "0 0 650849 650849",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s7-e12-t",
+          "type": "text",
+          "x": 137.96,
+          "y": 208.44,
+          "width": 676.14,
+          "height": 136.44,
+          "zIndex": 12,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 101.11,
+            "fontWeight": 800,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": -3.63
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Our Track Record",
+                "fontFamily": "Yeseva One",
+                "fontSize": 101.11,
+                "fontWeight": 800,
+                "color": "#1C1916",
+                "letterSpacing": -3.63
+              }
+            ]
+          }
+        },
+        {
+          "id": "s7-e13-t",
+          "type": "text",
+          "x": 205.81,
+          "y": 590.55,
+          "width": 608.3,
+          "height": 67.5,
+          "zIndex": 13,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 33.7,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": -1.8
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Trusted Partners",
+                "fontFamily": "Yeseva One",
+                "fontSize": 33.7,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": -1.8
+              }
+            ]
+          }
+        },
+        {
+          "id": "s7-e14-t",
+          "type": "text",
+          "x": 205.81,
+          "y": 660.55,
+          "width": 608.3,
+          "height": 116.5,
+          "zIndex": 14,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Seamless payroll empowerment",
+                "fontFamily": "Yeseva One",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "slide-8": {
+      "version": 2,
+      "id": "slide-8",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-8",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#1E3A32",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "s8-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#FFFFFF"
+          }
+        },
+        {
+          "id": "s8-e2",
+          "type": "illustration",
+          "x": 1248.62,
+          "y": -24.26,
+          "width": 423.43,
+          "height": 440.12,
+          "zIndex": 2,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 1274671 0 L 1274671 1324936 L 0 1324936 Z",
+            "viewBox": "0 0 1274671 1324936",
+            "fill": "#1C1916",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s8-e3-rot",
+          "type": "rotated",
+          "x": 0,
+          "y": 706.06,
+          "width": 227.1,
+          "height": 193.94,
+          "zIndex": 3,
+          "degrees": -12.42,
+          "element": {
+            "id": "s8-e3",
+            "type": "maskedImage",
+            "x": 0,
+            "y": 706.06,
+            "width": 227.1,
+            "height": 193.94,
+            "zIndex": 3,
+            "opacity": 1,
+            "maskedImageContent": {
+              "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-8-img-44.png",
+              "binding": "",
+              "fit": "cover",
+              "clip": {
+                "kind": "path",
+                "d": "M 0 0 L 3627734 0 L 3627734 4306649 L 0 4306649 L 0 0 Z",
+                "viewBox": "0 0 3627734 4306649",
+                "cornerRadius": 0
+              },
+              "alignX": 0.5,
+              "alignY": 0.5
+            },
+            "isDecoration": true,
+            "originalRole": "decoration"
+          }
+        },
+        {
+          "id": "s8-e4-rot",
+          "type": "rotated",
+          "x": 1263.7,
+          "y": 614.9,
+          "width": 336.3,
+          "height": 285.1,
+          "zIndex": 4,
+          "degrees": 71.62,
+          "element": {
+            "id": "s8-e4",
+            "type": "maskedImage",
+            "x": 1263.7,
+            "y": 614.9,
+            "width": 336.3,
+            "height": 285.1,
+            "zIndex": 4,
+            "opacity": 1,
+            "maskedImageContent": {
+              "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-8-img-45.png",
+              "binding": "",
+              "fit": "cover",
+              "clip": {
+                "kind": "path",
+                "d": "M 0 0 L 5257755 0 L 5257755 6241721 L 0 6241721 L 0 0 Z",
+                "viewBox": "0 0 5257755 6241721",
+                "cornerRadius": 0
+              },
+              "alignX": 0.5,
+              "alignY": 0.5
+            },
+            "isDecoration": true,
+            "originalRole": "decoration"
+          }
+        },
+        {
+          "id": "s8-e5",
+          "type": "maskedImage",
+          "x": 976.02,
+          "y": 122.09,
+          "width": 480.81,
+          "height": 655.82,
+          "zIndex": 5,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-8-img-46.jpeg",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 179338 8003753 L 0 7825011 L 0 178761 L 179338 0 L 5690567 0 L 5867884 178028 L 5867884 7826549 L 5690890 8003753 Z",
+              "viewBox": "0 0 5867884 8003753",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s8-e6",
+          "type": "illustration",
+          "x": 922.85,
+          "y": 90.09,
+          "width": 587.15,
+          "height": 719.82,
+          "zIndex": 6,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 824297 381000 L 639366 565329 L 639366 8219490 L 824297 8403801 L 6343725 8403801 L 6526300 8221016 L 6526300 564623 L 6343415 381000 L 824297 381000 Z M 6507250 8213129 L 6335837 8384753 L 832161 8384753 L 658416 8211580 L 658416 573242 L 832161 400050 L 6335503 400050 L 6507252 572485 L 6507252 8213129 Z M 7165673 4409192 C 7023623 4388765 6947807 4301789 6907300 4211781 L 6907300 424798 C 6907300 413462 6902897 402809 6894910 394810 L 6515412 13797 L 6514457 12818 C 6506519 4670 6495444 0 6484058 0 L 684412 0 C 673076 0 662423 4403 654398 12403 L 270868 394698 C 262918 402616 258366 413587 258366 424798 L 258366 4211796 C 217859 4301800 142042 4388768 0 4409192 C 142042 4429616 217859 4516584 258366 4606588 L 258366 8360010 C 258366 8371258 262720 8381876 270645 8389887 L 654385 8772399 C 662409 8780398 673076 8784802 684412 8784802 L 6484058 8784802 C 6495418 8784802 6506098 8780375 6514121 8772339 L 6894885 8391128 C 6902884 8383104 6907299 8372450 6907299 8361101 L 6907299 4606604 C 6947807 4516595 7023623 4429619 7165673 4409192 Z M 6881404 8377672 L 6500639 8758883 C 6496223 8763310 6490333 8765754 6484057 8765754 L 684412 8765754 C 678148 8765754 672270 8763323 667842 8758907 L 285442 8377758 L 284189 8376493 C 279823 8372077 277418 8366224 277418 8360009 L 277418 4606597 C 317926 4516591 393741 4429618 535788 4409192 C 393741 4388767 317926 4301792 277418 4211786 L 277418 424798 C 277418 418616 279935 412563 284314 408192 L 667842 25895 C 672270 21479 678161 19049 684412 19049 L 6484058 19049 C 6490333 19049 6496435 21622 6500813 26112 L 6881417 408259 C 6885819 412675 6888250 418547 6888250 424797 L 6888250 4211801 C 6847741 4301802 6771926 4388767 6629886 4409192 C 6771926 4429616 6847741 4516582 6888250 4606582 L 6888250 8361101 C 6888250 8367364 6885819 8373243 6881404 8377672 Z",
+            "viewBox": "0 0 7165673 8784802",
+            "fill": "#63482e",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s8-e7-rot",
+          "type": "rotated",
+          "x": -146.75,
+          "y": -152.41,
+          "width": 453,
+          "height": 348.39,
+          "zIndex": 7,
+          "degrees": 147.33,
+          "element": {
+            "id": "s8-e7",
+            "type": "maskedImage",
+            "x": -146.75,
+            "y": -152.41,
+            "width": 453,
+            "height": 348.39,
+            "zIndex": 7,
+            "opacity": 1,
+            "maskedImageContent": {
+              "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-8-img-47.png",
+              "binding": "",
+              "fit": "cover",
+              "clip": {
+                "kind": "path",
+                "d": "M 0 0 L 5177737 0 L 5177737 3982151 L 0 3982151 L 0 0 Z",
+                "viewBox": "0 0 5177737 3982150",
+                "cornerRadius": 0
+              },
+              "alignX": 0.5,
+              "alignY": 0.5
+            },
+            "isDecoration": true,
+            "originalRole": "decoration"
+          }
+        },
+        {
+          "id": "s8-e8-t",
+          "type": "text",
+          "x": 152.07,
+          "y": 260.7,
+          "width": 615.25,
+          "height": 113.33,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 83.33,
+            "fontWeight": 800,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": -3
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Recent Success",
+                "fontFamily": "Yeseva One",
+                "fontSize": 83.33,
+                "fontWeight": 800,
+                "color": "#1C1916",
+                "letterSpacing": -3
+              }
+            ]
+          }
+        },
+        {
+          "id": "s8-e9-t",
+          "type": "text",
+          "x": 152.07,
+          "y": 399.84,
+          "width": 623.95,
+          "height": 276.5,
+          "zIndex": 9,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "SwiftPay: Your payroll partner",
+                "fontFamily": "Yeseva One",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s8-e10",
+          "type": "maskedImage",
+          "x": 800,
+          "y": 158.85,
+          "width": 65.42,
+          "height": 65.42,
+          "zIndex": 10,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-8-img-48.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 747791 0 L 747791 747791 L 0 747791 L 0 0 Z",
+              "viewBox": "0 0 747791 747791",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s8-e11",
+          "type": "maskedImage",
+          "x": 553.79,
+          "y": 753.06,
+          "width": 56.94,
+          "height": 56.94,
+          "zIndex": 11,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-8-img-49.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 650850 0 L 650850 650849 L 0 650849 L 0 0 Z",
+              "viewBox": "0 0 650849 650849",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        }
+      ]
+    },
+    "slide-9": {
+      "version": 2,
+      "id": "slide-9",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-9",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#1E3A32",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "s9-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#FFFFFF"
+          }
+        },
+        {
+          "id": "s9-e2",
+          "type": "illustration",
+          "x": 1248.62,
+          "y": -24.26,
+          "width": 423.43,
+          "height": 440.12,
+          "zIndex": 2,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 1274671 0 L 1274671 1324936 L 0 1324936 Z",
+            "viewBox": "0 0 1274671 1324936",
+            "fill": "#1C1916",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s9-e3-rot",
+          "type": "rotated",
+          "x": 0,
+          "y": 706.06,
+          "width": 227.1,
+          "height": 193.94,
+          "zIndex": 3,
+          "degrees": -12.42,
+          "element": {
+            "id": "s9-e3",
+            "type": "maskedImage",
+            "x": 0,
+            "y": 706.06,
+            "width": 227.1,
+            "height": 193.94,
+            "zIndex": 3,
+            "opacity": 1,
+            "maskedImageContent": {
+              "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-9-img-50.png",
+              "binding": "",
+              "fit": "cover",
+              "clip": {
+                "kind": "path",
+                "d": "M 0 0 L 3627734 0 L 3627734 4306649 L 0 4306649 L 0 0 Z",
+                "viewBox": "0 0 3627734 4306649",
+                "cornerRadius": 0
+              },
+              "alignX": 0.5,
+              "alignY": 0.5
+            },
+            "isDecoration": true,
+            "originalRole": "decoration"
+          }
+        },
+        {
+          "id": "s9-e4-rot",
+          "type": "rotated",
+          "x": 1263.7,
+          "y": 614.9,
+          "width": 336.3,
+          "height": 285.1,
+          "zIndex": 4,
+          "degrees": 71.62,
+          "element": {
+            "id": "s9-e4",
+            "type": "maskedImage",
+            "x": 1263.7,
+            "y": 614.9,
+            "width": 336.3,
+            "height": 285.1,
+            "zIndex": 4,
+            "opacity": 1,
+            "maskedImageContent": {
+              "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-9-img-51.png",
+              "binding": "",
+              "fit": "cover",
+              "clip": {
+                "kind": "path",
+                "d": "M 0 0 L 5257755 0 L 5257755 6241721 L 0 6241721 L 0 0 Z",
+                "viewBox": "0 0 5257755 6241721",
+                "cornerRadius": 0
+              },
+              "alignX": 0.5,
+              "alignY": 0.5
+            },
+            "isDecoration": true,
+            "originalRole": "decoration"
+          }
+        },
+        {
+          "id": "s9-e5-rot",
+          "type": "rotated",
+          "x": -146.75,
+          "y": -152.41,
+          "width": 453,
+          "height": 348.39,
+          "zIndex": 5,
+          "degrees": 147.33,
+          "element": {
+            "id": "s9-e5",
+            "type": "maskedImage",
+            "x": -146.75,
+            "y": -152.41,
+            "width": 453,
+            "height": 348.39,
+            "zIndex": 5,
+            "opacity": 1,
+            "maskedImageContent": {
+              "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-9-img-52.png",
+              "binding": "",
+              "fit": "cover",
+              "clip": {
+                "kind": "path",
+                "d": "M 0 0 L 5177737 0 L 5177737 3982151 L 0 3982151 L 0 0 Z",
+                "viewBox": "0 0 5177737 3982150",
+                "cornerRadius": 0
+              },
+              "alignX": 0.5,
+              "alignY": 0.5
+            },
+            "isDecoration": true,
+            "originalRole": "decoration"
+          }
+        },
+        {
+          "id": "s9-e6",
+          "type": "illustration",
+          "x": 932.06,
+          "y": 175.85,
+          "width": 456.83,
+          "height": 724.15,
+          "zIndex": 6,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 2159000 0 L 354330 0 C 158750 0 0 158750 0 354330 L 0 4777740 C 0 4973320 158750 5132070 354330 5132070 L 2159000 5132070 C 2354580 5132070 2513330 4973320 2513330 4777740 L 2513330 354330 C 2513330 158750 2354580 0 2159000 0 Z M 1558290 162560 C 1576070 162560 1590040 176530 1590040 194310 C 1590040 212090 1576070 226060 1558290 226060 C 1540510 226060 1526540 212090 1526540 194310 C 1526540 176530 1541780 162560 1558290 162560 Z M 1089660 172720 L 1394460 172720 C 1405890 172720 1416050 181610 1416050 194310 C 1416050 207010 1405890 215900 1394460 215900 L 1089660 215900 C 1078230 215900 1068070 207010 1068070 194310 C 1068070 181610 1078230 172720 1089660 172720 Z M 2383790 4798060 C 2383790 4913630 2289810 5007610 2174240 5007610 L 341630 5007610 C 226060 5007610 132080 4913630 132080 4798060 L 132080 340360 C 132080 224790 226060 130810 341630 130810 L 614680 130810 L 614680 187960 C 614680 252730 668020 306070 732790 306070 L 1783080 306070 C 1847850 306070 1901190 252730 1901190 187960 L 1901190 130810 L 2172970 130810 C 2288540 130810 2382520 224790 2382520 340360 L 2382520 4798060 Z",
+            "viewBox": "0 0 2513330 5132070",
+            "fill": "#1C1916",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s9-e7",
+          "type": "maskedImage",
+          "x": 956.07,
+          "y": 199.63,
+          "width": 409.05,
+          "height": 700.37,
+          "zIndex": 7,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-9-img-53.jpeg",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 2040890 0 L 1769110 0 L 1769110 57150 C 1769110 121920 1715770 175260 1651000 175260 L 601980 175260 C 537210 175260 483870 121920 483870 57150 L 483870 0 L 209550 0 C 93980 0 0 93980 0 209550 L 0 4667250 C 0 4782820 93980 4876800 209550 4876800 L 2040890 4876800 C 2156460 4876800 2250440 4782820 2250440 4667250 L 2250440 209550 C 2251710 93980 2157730 0 2040890 0 Z",
+              "viewBox": "0 0 2250453 4876800",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s9-e8",
+          "type": "illustration",
+          "x": 1126.2,
+          "y": 207.24,
+          "width": 63.25,
+          "height": 7.85,
+          "zIndex": 8,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 326390 0 L 21590 0 C 10160 0 0 8890 0 21590 C 0 34290 10160 43180 21590 43180 L 326390 43180 C 337820 43180 347980 34290 347980 21590 C 347980 8890 337820 0 326390 0 Z",
+            "viewBox": "0 0 347980 43180",
+            "fill": "#1C1916",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s9-e9",
+          "type": "illustration",
+          "x": 1209.51,
+          "y": 205.4,
+          "width": 11.59,
+          "height": 11.54,
+          "zIndex": 9,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 31892 0 C 20515 -51 9980 5989 4277 15834 C -1426 25678 -1426 37822 4277 47666 C 9980 57511 20515 63551 31892 63500 C 43269 63551 53804 57511 59507 47666 C 65210 37822 65210 25678 59507 15834 C 53804 5989 43269 -51 31892 0 Z",
+            "viewBox": "0 0 63785 63501",
+            "fill": "#1C1916",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s9-e10",
+          "type": "illustration",
+          "x": 922.37,
+          "y": 295.89,
+          "width": 5.08,
+          "height": 38.78,
+          "zIndex": 10,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 26670 L 0 185420 C 0 200660 12700 213360 27940 213360 L 27940 0 C 12700 0 0 11430 0 26670 Z",
+            "viewBox": "0 0 27940 213360",
+            "fill": "#1C1916",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s9-e11",
+          "type": "illustration",
+          "x": 922.37,
+          "y": 363.52,
+          "width": 5.08,
+          "height": 69.94,
+          "zIndex": 11,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 26670 L 0 356870 C 0 372110 12700 384810 27940 384810 L 27940 0 C 12700 0 0 11430 0 26670 Z",
+            "viewBox": "0 0 27940 384810",
+            "fill": "#1C1916",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s9-e12",
+          "type": "illustration",
+          "x": 922.37,
+          "y": 448.7,
+          "width": 5.08,
+          "height": 70.18,
+          "zIndex": 12,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 27940 L 0 358140 C 0 373380 12700 386080 27940 386080 L 27940 0 C 12700 0 0 12700 0 27940 Z",
+            "viewBox": "0 0 27940 386080",
+            "fill": "#1C1916",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s9-e13",
+          "type": "illustration",
+          "x": 1393.51,
+          "y": 386.61,
+          "width": 5.08,
+          "height": 112.42,
+          "zIndex": 13,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 0 618490 C 15240 618490 27940 605790 27940 590550 L 27940 27940 C 27940 12700 15240 0 0 0 Z",
+            "viewBox": "0 0 27940 618490",
+            "fill": "#1C1916",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s9-e14",
+          "type": "illustration",
+          "x": 927.45,
+          "y": 171.23,
+          "width": 466.07,
+          "height": 728.77,
+          "zIndex": 14,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 2564130 1184910 L 2564130 379730 C 2564130 353060 2561590 327660 2556510 303530 C 2553970 290830 2551430 279400 2547620 266700 C 2542540 248920 2534920 231140 2527300 214630 C 2522220 203200 2515870 193040 2509520 182880 C 2503170 172720 2496820 162560 2489200 152400 C 2477770 137160 2466340 124460 2453640 110490 C 2444750 101600 2435860 93980 2426970 86360 C 2360930 31750 2277110 0 2185670 0 L 379730 0 C 288290 0 203200 33020 138430 86360 C 129540 93980 120650 102870 111760 110490 C 99060 123190 86360 137160 76200 152400 C 68580 162560 62230 172720 55880 182880 C 49530 193040 43180 204470 38100 214630 C 29210 232410 22860 248920 16510 266700 C 12700 279400 10160 290830 7620 303530 C 2540 327660 0 354330 0 379730 L 0 4803140 C 0 5012690 170180 5182870 379730 5182870 L 2184400 5182870 C 2393950 5182870 2564130 5012690 2564130 4803140 L 2564130 1184910 Z M 2538730 1184910 L 2538730 4804410 C 2538730 4999990 2379980 5158740 2184400 5158740 L 379730 5158740 C 184150 5158740 25400 4999990 25400 4804410 L 25400 381000 C 25400 184150 184150 25400 379730 25400 L 2184400 25400 C 2379980 25400 2538730 184150 2538730 379730 L 2538730 1184910 Z",
+            "viewBox": "0 0 2564130 5182870",
+            "fill": "#FFFFFF",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s9-e15",
+          "type": "maskedImage",
+          "x": 158.23,
+          "y": 540.04,
+          "width": 39.78,
+          "height": 39.78,
+          "zIndex": 15,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-9-img-54.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 454681 0 L 454681 454681 L 0 454681 L 0 0 Z",
+              "viewBox": "0 0 454681 454681",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s9-e16",
+          "type": "maskedImage",
+          "x": 158.58,
+          "y": 593.98,
+          "width": 39.07,
+          "height": 39.07,
+          "zIndex": 16,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-9-img-55.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 446619 0 L 446619 446618 L 0 446618 L 0 0 Z",
+              "viewBox": "0 0 446619 446619",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s9-e17",
+          "type": "maskedImage",
+          "x": 158.23,
+          "y": 647.22,
+          "width": 38.24,
+          "height": 38.24,
+          "zIndex": 17,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-9-img-56.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 437094 0 L 437094 437094 L 0 437094 L 0 0 Z",
+              "viewBox": "0 0 437094 437094",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s9-e18",
+          "type": "maskedImage",
+          "x": 156.13,
+          "y": 481.73,
+          "width": 43.96,
+          "height": 43.96,
+          "zIndex": 18,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-9-img-57.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 502513 0 L 502513 502514 L 0 502514 L 0 0 Z",
+              "viewBox": "0 0 502514 502514",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s9-e19-t",
+          "type": "text",
+          "x": 90,
+          "y": 247,
+          "width": 696.42,
+          "height": 188.9,
+          "zIndex": 19,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 97.78,
+            "fontWeight": 800,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Partner SwiftPay",
+                "fontFamily": "Yeseva One",
+                "fontSize": 97.78,
+                "fontWeight": 800,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s9-e20-t",
+          "type": "text",
+          "x": 222.89,
+          "y": 469.85,
+          "width": 431.61,
+          "height": 51.06,
+          "zIndex": 20,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 28.88,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "www.swiftpaysolutions.com",
+                "fontFamily": "Yeseva One",
+                "fontSize": 28.88,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s9-e21-t",
+          "type": "text",
+          "x": 222.89,
+          "y": 526.07,
+          "width": 431.61,
+          "height": 51.06,
+          "zIndex": 21,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 28.88,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "contact@swiftpaysolutions.com",
+                "fontFamily": "Yeseva One",
+                "fontSize": 28.88,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s9-e22-t",
+          "type": "text",
+          "x": 222.89,
+          "y": 579.66,
+          "width": 431.61,
+          "height": 51.06,
+          "zIndex": 22,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 28.88,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "@swiftpaysolutions",
+                "fontFamily": "Yeseva One",
+                "fontSize": 28.88,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s9-e23-t",
+          "type": "text",
+          "x": 222.89,
+          "y": 632.48,
+          "width": 431.61,
+          "height": 51.06,
+          "zIndex": 23,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 28.88,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "+123-456-7890",
+                "fontFamily": "Yeseva One",
+                "fontSize": 28.88,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "slide-10": {
+      "version": 2,
+      "id": "slide-10",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-10",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#1E3A32",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "s10-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#FFFFFF"
+          }
+        },
+        {
+          "id": "s10-e2",
+          "type": "illustration",
+          "x": -8.46,
+          "y": 0,
+          "width": 441.77,
+          "height": 900,
+          "zIndex": 2,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 1329877 0 L 1329877 2709333 L 0 2709333 Z",
+            "viewBox": "0 0 1329877 2709333",
+            "fill": "#1C1916",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s10-e3-rot",
+          "type": "rotated",
+          "x": 1406.03,
+          "y": -117.34,
+          "width": 325.82,
+          "height": 386.8,
+          "zIndex": 3,
+          "degrees": -12.42,
+          "element": {
+            "id": "s10-e3",
+            "type": "maskedImage",
+            "x": 1406.03,
+            "y": -117.34,
+            "width": 325.82,
+            "height": 386.8,
+            "zIndex": 3,
+            "opacity": 1,
+            "maskedImageContent": {
+              "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-10-img-58.png",
+              "binding": "",
+              "fit": "cover",
+              "clip": {
+                "kind": "path",
+                "d": "M 0 0 L 3724131 0 L 3724131 4421085 L 0 4421085 L 0 0 Z",
+                "viewBox": "0 0 3724131 4421085",
+                "cornerRadius": 0
+              },
+              "alignX": 0.5,
+              "alignY": 0.5
+            },
+            "isDecoration": true,
+            "originalRole": "decoration"
+          }
+        },
+        {
+          "id": "s10-e4-rot",
+          "type": "rotated",
+          "x": 0,
+          "y": 695.25,
+          "width": 234.36,
+          "height": 204.75,
+          "zIndex": 4,
+          "degrees": -12.42,
+          "element": {
+            "id": "s10-e4",
+            "type": "maskedImage",
+            "x": 0,
+            "y": 695.25,
+            "width": 234.36,
+            "height": 204.75,
+            "zIndex": 4,
+            "opacity": 1,
+            "maskedImageContent": {
+              "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-10-img-59.png",
+              "binding": "",
+              "fit": "cover",
+              "clip": {
+                "kind": "path",
+                "d": "M 0 0 L 3724131 0 L 3724131 4421085 L 0 4421085 L 0 0 Z",
+                "viewBox": "0 0 3724131 4421085",
+                "cornerRadius": 0
+              },
+              "alignX": 0.5,
+              "alignY": 0.5
+            },
+            "isDecoration": true,
+            "originalRole": "decoration"
+          }
+        },
+        {
+          "id": "s10-e5",
+          "type": "maskedImage",
+          "x": 170.63,
+          "y": 180.69,
+          "width": 411.43,
+          "height": 561.19,
+          "zIndex": 5,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-10-img-60.jpeg",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 179338 8003753 L 0 7825011 L 0 178761 L 179338 0 L 5690567 0 L 5867884 178028 L 5867884 7826549 L 5690890 8003753 Z",
+              "viewBox": "0 0 5867884 8003753",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s10-e6",
+          "type": "illustration",
+          "x": 125.13,
+          "y": 153.31,
+          "width": 502.43,
+          "height": 615.95,
+          "zIndex": 6,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 824297 381000 L 639366 565329 L 639366 8219490 L 824297 8403801 L 6343725 8403801 L 6526300 8221016 L 6526300 564623 L 6343415 381000 L 824297 381000 Z M 6507250 8213129 L 6335837 8384753 L 832161 8384753 L 658416 8211580 L 658416 573242 L 832161 400050 L 6335503 400050 L 6507252 572485 L 6507252 8213129 Z M 7165673 4409192 C 7023623 4388765 6947807 4301789 6907300 4211781 L 6907300 424798 C 6907300 413462 6902897 402809 6894910 394810 L 6515412 13797 L 6514457 12818 C 6506519 4670 6495444 0 6484058 0 L 684412 0 C 673076 0 662423 4403 654398 12403 L 270868 394698 C 262918 402616 258366 413587 258366 424798 L 258366 4211796 C 217859 4301800 142042 4388768 0 4409192 C 142042 4429616 217859 4516584 258366 4606588 L 258366 8360010 C 258366 8371258 262720 8381876 270645 8389887 L 654385 8772399 C 662409 8780398 673076 8784802 684412 8784802 L 6484058 8784802 C 6495418 8784802 6506098 8780375 6514121 8772339 L 6894885 8391128 C 6902884 8383104 6907299 8372450 6907299 8361101 L 6907299 4606604 C 6947807 4516595 7023623 4429619 7165673 4409192 Z M 6881404 8377672 L 6500639 8758883 C 6496223 8763310 6490333 8765754 6484057 8765754 L 684412 8765754 C 678148 8765754 672270 8763323 667842 8758907 L 285442 8377758 L 284189 8376493 C 279823 8372077 277418 8366224 277418 8360009 L 277418 4606597 C 317926 4516591 393741 4429618 535788 4409192 C 393741 4388767 317926 4301792 277418 4211786 L 277418 424798 C 277418 418616 279935 412563 284314 408192 L 667842 25895 C 672270 21479 678161 19049 684412 19049 L 6484058 19049 C 6490333 19049 6496435 21622 6500813 26112 L 6881417 408259 C 6885819 412675 6888250 418547 6888250 424797 L 6888250 4211801 C 6847741 4301802 6771926 4388767 6629886 4409192 C 6771926 4429616 6847741 4516582 6888250 4606582 L 6888250 8361101 C 6888250 8367364 6885819 8373243 6881404 8377672 Z",
+            "viewBox": "0 0 7165673 8784802",
+            "fill": "#63482e",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s10-e7-t",
+          "type": "text",
+          "x": 721.17,
+          "y": 314.47,
+          "width": 754.96,
+          "height": 203.94,
+          "zIndex": 7,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 151.1,
+            "fontWeight": 800,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Thank You",
+                "fontFamily": "Yeseva One",
+                "fontSize": 151.1,
+                "fontWeight": 800,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s10-e8",
+          "type": "illustration",
+          "x": 721.17,
+          "y": 519.46,
+          "width": 1022.98,
+          "height": 101.56,
+          "zIndex": 8,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 3079552 0 L 3079552 305739 L 0 305739 Z",
+            "viewBox": "0 0 3079552 305739",
+            "fill": "#1C1916",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s10-e9-t",
+          "type": "text",
+          "x": 783.23,
+          "y": 530.16,
+          "width": 493.97,
+          "height": 66.89,
+          "zIndex": 9,
+          "textStyle": {
+            "fontFamily": "Yeseva One",
+            "fontSize": 48.89,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "SwiftPay Team",
+                "fontFamily": "Yeseva One",
+                "fontSize": 48.89,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s10-e10-rot",
+          "type": "rotated",
+          "x": 1302.27,
+          "y": 748.5,
+          "width": 405.15,
+          "height": 311.6,
+          "zIndex": 10,
+          "degrees": -17.01,
+          "element": {
+            "id": "s10-e10",
+            "type": "maskedImage",
+            "x": 1302.27,
+            "y": 748.5,
+            "width": 405.15,
+            "height": 311.6,
+            "zIndex": 10,
+            "opacity": 1,
+            "maskedImageContent": {
+              "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-10-img-61.png",
+              "binding": "",
+              "fit": "cover",
+              "clip": {
+                "kind": "path",
+                "d": "M 0 0 L 4630900 0 L 4630900 3561582 L 0 3561582 L 0 0 Z",
+                "viewBox": "0 0 4630899 3561583",
+                "cornerRadius": 0
+              },
+              "alignX": 0.5,
+              "alignY": 0.5
+            },
+            "isDecoration": true,
+            "originalRole": "decoration"
+          }
+        },
+        {
+          "id": "s10-e11-rot",
+          "type": "rotated",
+          "x": -152.89,
+          "y": -136.58,
+          "width": 405.15,
+          "height": 311.6,
+          "zIndex": 11,
+          "degrees": 147.33,
+          "element": {
+            "id": "s10-e11",
+            "type": "maskedImage",
+            "x": -152.89,
+            "y": -136.58,
+            "width": 405.15,
+            "height": 311.6,
+            "zIndex": 11,
+            "opacity": 1,
+            "maskedImageContent": {
+              "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-10-img-62.png",
+              "binding": "",
+              "fit": "cover",
+              "clip": {
+                "kind": "path",
+                "d": "M 0 0 L 4630899 0 L 4630899 3561583 L 0 3561583 L 0 0 Z",
+                "viewBox": "0 0 4630899 3561583",
+                "cornerRadius": 0
+              },
+              "alignX": 0.5,
+              "alignY": 0.5
+            },
+            "isDecoration": true,
+            "originalRole": "decoration"
+          }
+        },
+        {
+          "id": "s10-e12",
+          "type": "maskedImage",
+          "x": 1311.31,
+          "y": 220.19,
+          "width": 56.94,
+          "height": 56.94,
+          "zIndex": 12,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-10-img-63.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 650850 0 L 650850 650850 L 0 650850 L 0 0 Z",
+              "viewBox": "0 0 650849 650849",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s10-e13",
+          "type": "maskedImage",
+          "x": 675.51,
+          "y": 723.43,
+          "width": 56.94,
+          "height": 56.94,
+          "zIndex": 13,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/beige-and-brown-minimalist-creative-portfolio-presentation/slide-10-img-64.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 650850 0 L 650850 650850 L 0 650850 L 0 0 Z",
+              "viewBox": "0 0 650849 650849",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        }
+      ]
+    }
+  },
+  "previewSlides": [
+    {
+      "id": "beige-and-brown-minimalist-creative-portfolio-presentation-p1",
+      "layout": "slide-1",
+      "title": "SwiftPay Solutions",
+      "bullets": []
+    },
+    {
+      "id": "beige-and-brown-minimalist-creative-portfolio-presentation-p2",
+      "layout": "slide-2",
+      "title": "Introduction",
+      "bullets": []
+    },
+    {
+      "id": "beige-and-brown-minimalist-creative-portfolio-presentation-p3",
+      "layout": "slide-3",
+      "title": "About Me",
+      "bullets": []
+    },
+    {
+      "id": "beige-and-brown-minimalist-creative-portfolio-presentation-p4",
+      "layout": "slide-4",
+      "title": "Vision",
+      "bullets": []
+    },
+    {
+      "id": "beige-and-brown-minimalist-creative-portfolio-presentation-p5",
+      "layout": "slide-5",
+      "title": "Rimberio High school",
+      "bullets": []
+    },
+    {
+      "id": "beige-and-brown-minimalist-creative-portfolio-presentation-p6",
+      "layout": "slide-6",
+      "title": "Graphic Design",
+      "bullets": []
+    },
+    {
+      "id": "beige-and-brown-minimalist-creative-portfolio-presentation-p7",
+      "layout": "slide-7",
+      "title": "Larana, Inc.",
+      "bullets": []
+    },
+    {
+      "id": "beige-and-brown-minimalist-creative-portfolio-presentation-p8",
+      "layout": "slide-8",
+      "title": "2022 Project",
+      "bullets": []
+    },
+    {
+      "id": "beige-and-brown-minimalist-creative-portfolio-presentation-p9",
+      "layout": "slide-9",
+      "title": "Let's collaborate",
+      "bullets": []
+    },
+    {
+      "id": "beige-and-brown-minimalist-creative-portfolio-presentation-p10",
+      "layout": "slide-10",
+      "title": "Thank You",
+      "bullets": []
+    }
+  ],
+  "parametric": {
+    "cover": "fullBleed",
+    "coverName": "Full-Bleed",
+    "coverTitle": "SwiftPay Solutions",
+    "density": "balanced",
+    "marginFactor": 1,
+    "lineHeightFactor": 1,
+    "densityReverted": [],
+    "densityRevertReasons": [],
+    "marginSample": {
+      "before": {
+        "id": "s2-e10-t",
+        "x": 152.07,
+        "y": 253.96,
+        "width": 647.93,
+        "height": 136.44,
+        "lineHeight": 1.15
+      },
+      "after": {
+        "id": "s2-e10-t",
+        "x": 152.07,
+        "y": 253.96,
+        "width": 647.93,
+        "height": 136.44,
+        "lineHeight": 1.15
+      }
+    },
+    "signature": "rail",
+    "displayFont": "Yeseva One",
+    "bodyFont": "Yeseva One",
+    "displayWeight": 800,
+    "bodyWeight": 400,
+    "typeShortfalls": [],
+    "geometry": [
+      {
+        "slide": 1,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 2,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 3,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 4,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 5,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 6,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 7,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 8,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 9,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 10,
+        "pass": true,
+        "reasons": []
+      }
+    ],
+    "textOverlaps": []
+  },
+  "qa": {
+    "score": 100,
+    "passed": 10,
+    "total": 10,
+    "failures": [],
+    "attempt": 2
+  }
+}

@@ -1,0 +1,510 @@
+{
+  "prompt": "A corporate payroll company",
+  "layout": "beige-and-brown-minimalist-creative-portfolio-presentation",
+  "parametric": {
+    "cover": "fullBleed",
+    "coverName": "Full-Bleed",
+    "coverTitle": "SwiftPay Solutions",
+    "density": "balanced",
+    "marginFactor": 1,
+    "lineHeightFactor": 1,
+    "densityReverted": [],
+    "densityRevertReasons": [],
+    "marginSample": {
+      "before": {
+        "id": "s2-e10-t",
+        "x": 152.07,
+        "y": 253.96,
+        "width": 647.93,
+        "height": 136.44,
+        "lineHeight": 1.15
+      },
+      "after": {
+        "id": "s2-e10-t",
+        "x": 152.07,
+        "y": 253.96,
+        "width": 647.93,
+        "height": 136.44,
+        "lineHeight": 1.15
+      }
+    },
+    "signature": "rail",
+    "displayFont": "Yeseva One",
+    "bodyFont": "Yeseva One",
+    "displayWeight": 800,
+    "bodyWeight": 400,
+    "typeShortfalls": [],
+    "geometry": [
+      {
+        "slide": 1,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 2,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 3,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 4,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 5,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 6,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 7,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 8,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 9,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 10,
+        "pass": true,
+        "reasons": []
+      }
+    ],
+    "textOverlaps": []
+  },
+  "vibe": "Corporate",
+  "autoLayout": true,
+  "model": "gemini-2.5-flash-lite+gemini-2.5-flash-lite+gemini-2.5-flash-lite",
+  "profile": {
+    "brand": "SwiftPay Solutions",
+    "industry": "Payroll",
+    "mission": "To empower businesses with seamless and accurate payroll processing, fostering financial peace of mind."
+  },
+  "mood": {
+    "mood": "light-warm",
+    "bucket": "light-warm",
+    "palette": {
+      "bg": "#fcf7f2",
+      "surface": "#fcf7f2",
+      "card": "#FFFFFF",
+      "ink": "#1C1916",
+      "muted": "#1C1916",
+      "rule": "#D9D0C6",
+      "accent": "#63482e",
+      "accent2": "#63482e",
+      "onAccent": "#F6F1E8"
+    }
+  },
+  "photoKeywords": [
+    "office",
+    "laptop",
+    "graphs"
+  ],
+  "photoQuery": "office laptop graphs",
+  "photos": {
+    "landscape": [
+      {
+        "file": "photos/thematic/phase-3-payroll/landscape-01.jpg",
+        "bytes": 313600,
+        "photographer": "Nataliya Vaitkevich",
+        "page": "https://www.pexels.com/photo/gray-laptop-beside-white-printer-paper-8062289/",
+        "alt": "Overhead view of laptops, charts, and reports used for data analysis on a desk."
+      },
+      {
+        "file": "photos/thematic/phase-3-payroll/landscape-02.jpg",
+        "bytes": 285951,
+        "photographer": "Lukas Blazek",
+        "page": "https://www.pexels.com/photo/person-holding-chart-and-bar-graph-669612/",
+        "alt": "Detailed charts and graphs on a document next to a laptop, representing data analysis."
+      },
+      {
+        "file": "photos/thematic/phase-3-payroll/landscape-03.jpg",
+        "bytes": 186919,
+        "photographer": "Yan Krukau",
+        "page": "https://www.pexels.com/photo/a-person-holding-white-printer-paper-7793118/",
+        "alt": "Professionals analyzing charts and graphs on laptops during a business meeting."
+      },
+      {
+        "file": "photos/thematic/phase-3-payroll/landscape-04.jpg",
+        "bytes": 146717,
+        "photographer": "ThisIsEngineering",
+        "page": "https://www.pexels.com/photo/graph-on-laptop-screen-3861957/",
+        "alt": "Laptop displaying data analytics graph in a modern office setting, symbolizing growth and technology."
+      },
+      {
+        "file": "photos/thematic/phase-3-payroll/landscape-05.jpg",
+        "bytes": 152418,
+        "photographer": "https://kaboompics.com/",
+        "page": "https://www.pexels.com/photo/a-person-using-a-laptop-5717760/",
+        "alt": "Man working on a laptop analyzing business data and financial graphs indoors."
+      }
+    ],
+    "portrait": [
+      {
+        "file": "photos/thematic/phase-3-payroll/portrait-01.jpg",
+        "bytes": 134828,
+        "photographer": "olia danilevich",
+        "page": "https://www.pexels.com/photo/a-woman-in-black-blazer-sitting-at-the-table-with-laptop-8145346/",
+        "alt": "Focused businesswoman working on laptop at desk with charts and graphs in a modern office setting."
+      },
+      {
+        "file": "photos/thematic/phase-3-payroll/portrait-02.jpg",
+        "bytes": 132367,
+        "photographer": "Tiger Lily",
+        "page": "https://www.pexels.com/photo/gray-laptop-on-the-table-7108131/",
+        "alt": "Close-up of financial documents and a laptop displaying graphs, perfect for business analysis."
+      },
+      {
+        "file": "photos/thematic/phase-3-payroll/portrait-03.jpg",
+        "bytes": 97564,
+        "photographer": "Nataliya Vaitkevich",
+        "page": "https://www.pexels.com/photo/a-laptop-and-smartphone-on-the-table-8062354/",
+        "alt": "A workspace featuring a laptop displaying graphs, calculator, notebook, and a red flower."
+      },
+      {
+        "file": "photos/thematic/phase-3-payroll/portrait-04.jpg",
+        "bytes": 65777,
+        "photographer": "Hanna Pad",
+        "page": "https://www.pexels.com/photo/person-hand-laptop-working-6801643/",
+        "alt": "Person analyzing business reports with charts on a laptop in a modern office setting."
+      },
+      {
+        "file": "photos/thematic/phase-3-payroll/portrait-05.jpg",
+        "bytes": 93624,
+        "photographer": "Nataliya Vaitkevich",
+        "page": "https://www.pexels.com/photo/laptops-on-a-white-table-8062272/",
+        "alt": "A bright office setup featuring laptops, charts, and paperwork for business analysis."
+      }
+    ],
+    "landscapeSlots": 0,
+    "portraitSlots": 0,
+    "decorations": 0
+  },
+  "replacements": [
+    {
+      "from": "Creative",
+      "to": "SwiftPay",
+      "fromChars": 8,
+      "toChars": 8,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": true,
+      "clamped": false
+    },
+    {
+      "from": "Portfolio",
+      "to": "Payroll",
+      "fromChars": 9,
+      "toChars": 7,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": true,
+      "clamped": false
+    },
+    {
+      "from": "By Juliana Silva",
+      "to": "SwiftPay Team",
+      "fromChars": 16,
+      "toChars": 13,
+      "fromWords": 3,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": true,
+      "clamped": false
+    },
+    {
+      "from": "Introduction",
+      "to": "Welcome SwiftPay",
+      "fromChars": 12,
+      "toChars": 16,
+      "fromWords": 1,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": true,
+      "clamped": false
+    },
+    {
+      "from": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+      "to": "SwiftPay: Your payroll partner",
+      "fromChars": 444,
+      "toChars": 30,
+      "fromWords": 69,
+      "toWords": 4,
+      "replaced": true,
+      "rejected": false,
+      "retried": true,
+      "clamped": false
+    },
+    {
+      "from": "About Me",
+      "to": "About SwiftPay",
+      "fromChars": 8,
+      "toChars": 14,
+      "fromWords": 2,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": true,
+      "clamped": false
+    },
+    {
+      "from": "Vision",
+      "to": "Our Vision",
+      "fromChars": 6,
+      "toChars": 10,
+      "fromWords": 1,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": true,
+      "clamped": false
+    },
+    {
+      "from": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ",
+      "to": "Seamless payroll empowerment",
+      "fromChars": 175,
+      "toChars": 28,
+      "fromWords": 27,
+      "toWords": 3,
+      "replaced": true,
+      "rejected": false,
+      "retried": true,
+      "clamped": false
+    },
+    {
+      "from": "Mission",
+      "to": "Our Mission",
+      "fromChars": 7,
+      "toChars": 11,
+      "fromWords": 1,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": true,
+      "clamped": false
+    },
+    {
+      "from": "Rimberio High school",
+      "to": "Industry Knowledge",
+      "fromChars": 20,
+      "toChars": 18,
+      "fromWords": 3,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "Education",
+      "to": "Expertise",
+      "fromChars": 9,
+      "toChars": 9,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": true,
+      "clamped": false
+    },
+    {
+      "from": "Wardiere university",
+      "to": "Client Success",
+      "fromChars": 19,
+      "toChars": 14,
+      "fromWords": 2,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "Graphic Design",
+      "to": "Payroll Proc",
+      "fromChars": 14,
+      "toChars": 12,
+      "fromWords": 2,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": true,
+      "clamped": false
+    },
+    {
+      "from": "Skill",
+      "to": "Services",
+      "fromChars": 5,
+      "toChars": 8,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "Marketing",
+      "to": "HR Solutions",
+      "fromChars": 9,
+      "toChars": 12,
+      "fromWords": 1,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": true,
+      "clamped": false
+    },
+    {
+      "from": "Larana, Inc.",
+      "to": "SwiftPay Clients",
+      "fromChars": 12,
+      "toChars": 16,
+      "fromWords": 2,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": true,
+      "clamped": false
+    },
+    {
+      "from": "Experience",
+      "to": "Our Track Record",
+      "fromChars": 10,
+      "toChars": 16,
+      "fromWords": 1,
+      "toWords": 3,
+      "replaced": true,
+      "rejected": false,
+      "retried": true,
+      "clamped": false
+    },
+    {
+      "from": "Salford & Co.",
+      "to": "Trusted Partners",
+      "fromChars": 13,
+      "toChars": 16,
+      "fromWords": 3,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": true,
+      "clamped": false
+    },
+    {
+      "from": "2022 Project",
+      "to": "Recent Success",
+      "fromChars": 12,
+      "toChars": 14,
+      "fromWords": 2,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": true,
+      "clamped": false
+    },
+    {
+      "from": "Let's collaborate",
+      "to": "Partner SwiftPay",
+      "fromChars": 17,
+      "toChars": 16,
+      "fromWords": 2,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": true,
+      "clamped": false
+    },
+    {
+      "from": "www.reallygreatsite.com",
+      "to": "www.swiftpaysolutions.com",
+      "fromChars": 23,
+      "toChars": 25,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "hello@reallygreatsite.com",
+      "to": "contact@swiftpaysolutions.com",
+      "fromChars": 25,
+      "toChars": 29,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "@reallygreatsite",
+      "to": "@swiftpaysolutions",
+      "fromChars": 16,
+      "toChars": 18,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "+123-456-7890",
+      "to": "+123-456-7890",
+      "fromChars": 13,
+      "toChars": 13,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "Thank You",
+      "to": "Thank You",
+      "fromChars": 9,
+      "toChars": 9,
+      "fromWords": 2,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    }
+  ],
+  "missed": 0,
+  "rejected": 0,
+  "analysis": {
+    "score": 100,
+    "passed": 10,
+    "total": 10,
+    "failures": [],
+    "attempt": 2
+  }
+}

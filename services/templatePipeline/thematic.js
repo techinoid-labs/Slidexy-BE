@@ -41,7 +41,7 @@ function loadEnv() {
 }
 
 function parseArgs(argv) {
-  const args = { prompt: "", layout: "", out: "", autoLayout: false, density: "balanced" };
+  const args = { prompt: "", layout: "", out: "", autoLayout: false, density: "balanced", qa: "" };
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
     if (arg === "--prompt") args.prompt = argv[++i] || "";
@@ -53,6 +53,8 @@ function parseArgs(argv) {
     else if (arg === "--density") args.density = argv[++i] || "";
     else if (arg.startsWith("--density=")) args.density = arg.slice("--density=".length);
     else if (arg === "--auto-layout") args.autoLayout = true;
+    else if (arg === "--manual-qa") args.qa = "manual";
+    else if (arg === "--vision-qa") args.qa = true;
     else throw new Error("Unknown argument " + arg);
   }
   if (!args.prompt) throw new Error("Pass --prompt \"A pitch deck for a sustainable fashion brand\"");
@@ -61,6 +63,16 @@ function parseArgs(argv) {
     throw new Error("Pass --density airy, balanced, or dense");
   }
   return args;
+}
+
+function visionQaEnabled(options) {
+  loadEnv();
+  const settings = options || {};
+  if (settings.vision === false || settings.qa === "manual") return false;
+  if (settings.vision === true || settings.qa === true) return true;
+  const raw = String(process.env.VISION_QA == null ? "0" : process.env.VISION_QA).trim().toLowerCase();
+  if (raw === "1" || raw === "true" || raw === "on") return true;
+  return false;
 }
 
 function slug(value) {
@@ -305,6 +317,31 @@ function buildPrompt(strings, subject, profile) {
   ].join(" ");
 }
 
+/** Custom generate gateway (replaces Gemini for pipeline text). Body: { input, max_output_tokens }. */
+async function askCustomGenerate(url, prompt) {
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      accept: "*/*",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      input: String(prompt || ""),
+      max_output_tokens: Number(process.env.CUSTOM_GENERATE_MAX_TOKENS) || 16000,
+    }),
+  });
+  const body = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    const message = (body && (body.error || body.detail || body.message)) || "Custom generate request failed";
+    const error = new Error(typeof message === "string" ? message : JSON.stringify(message));
+    error.status = response.status;
+    throw error;
+  }
+  const text = body && (body.output != null ? body.output : body.text != null ? body.text : body.content);
+  if (text == null || text === "") throw new Error("The model did not return text");
+  return { text: String(text), model: (body && body.model) || "custom-generate" };
+}
+
 async function askOpenRouter(key, prompt) {
   const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
     method: "POST",
@@ -354,6 +391,18 @@ async function askGoogle(key, prompt) {
 
 async function askModel(prompt) {
   loadEnv();
+  const customUrl = String(process.env.CUSTOM_GENERATE_URL || "http://64.23.174.222:8010/generate").trim();
+  if (customUrl) {
+    try {
+      return await askCustomGenerate(customUrl, prompt);
+    } catch (error) {
+      // Fall through to legacy keys only when the custom gateway is unreachable / misconfigured.
+      const openRouter = process.env.OPENROUTER_API_KEY;
+      const google = process.env.API_KEY1 || process.env.GEMINI_API_KEY;
+      if (!openRouter && !google) throw error;
+      console.warn("custom generate failed (" + (error && error.message ? error.message : error) + "); falling back");
+    }
+  }
   const openRouter = process.env.OPENROUTER_API_KEY;
   const google = process.env.API_KEY1 || process.env.GEMINI_API_KEY;
   if (openRouter) {
@@ -365,7 +414,7 @@ async function askModel(prompt) {
     }
   }
   if (google) return askGoogle(google, prompt);
-  throw new Error("No model key is set. Add OPENROUTER_API_KEY, API_KEY1, or GEMINI_API_KEY to .env.");
+  throw new Error("No model endpoint is set. Set CUSTOM_GENERATE_URL, or OPENROUTER_API_KEY / API_KEY1 / GEMINI_API_KEY.");
 }
 
 const VIBES = ["Photo-heavy", "Text-heavy", "Corporate"];
@@ -1814,7 +1863,8 @@ async function themeOnce(options) {
   ]);
   const photoSlug = slug(path.basename(outDir));
   const photoDir = path.join(ROOT, "generated-templates", "photos", "thematic", photoSlug);
-  fs.rmSync(photoDir, { recursive: true, force: true });
+  const { safeRm } = require("./safeRm");
+  safeRm(photoDir, { recursive: true, force: true });
   async function saveSet(hits, prefix) {
     const saved = [];
     for (let index = 0; index < hits.length; index += 1) {
@@ -1891,7 +1941,7 @@ async function themeOnce(options) {
   };
   fs.writeFileSync(path.join(outDir, "replacements.json"), JSON.stringify(report, null, 2) + "\n");
   if (fs.existsSync(outDir)) {
-    fs.readdirSync(outDir).filter((name) => /^slide-\d{2}\.png$/.test(name)).forEach((name) => fs.rmSync(path.join(outDir, name)));
+    fs.readdirSync(outDir).filter((name) => /^slide-\d{2}\.png$/.test(name)).forEach((name) => safeRm(path.join(outDir, name), { force: true }));
   }
   console.log("render " + (deck.layoutSequence || []).length + " slides");
   const slides = renderDeck(deck, outDir);
@@ -1903,9 +1953,39 @@ const QA_SCORE = 80;
 const QA_TRIES = 3;
 const PALETTE_BUCKETS = ["light-neutral", "light-warm", "dark-neutral"];
 
-async function injectTheme(options) {
+async function writeQa(result, analysis, attempt, mode) {
+  const summary = {
+    score: analysis.score,
+    passed: analysis.passed,
+    total: analysis.total,
+    failures: analysis.failures,
+    attempt,
+    mode: mode || (analysis.vision === false ? "manual" : "vision"),
+  };
+  result.analysis = summary;
+  if (result.report) result.report.analysis = summary;
+  const generated = JSON.parse(fs.readFileSync(path.join(result.outDir, "deck.json"), "utf8"));
+  generated.qa = summary;
+  fs.writeFileSync(path.join(result.outDir, "deck.json"), JSON.stringify(generated, null, 2) + "\n");
+  if (result.report) {
+    fs.writeFileSync(path.join(result.outDir, "replacements.json"), JSON.stringify(result.report, null, 2) + "\n");
+  }
+  return summary;
+}
+
+async function injectTheme(options, deps = {}) {
   const settings = options || {};
-  if (settings.qa === false) return themeOnce(settings);
+  const runOnce = deps.themeOnce || themeOnce;
+  const analyze = deps.analyzeDeck || analyzeDeck;
+  if (settings.qa === false) return runOnce(settings);
+  if (settings.qa === "manual" || !visionQaEnabled(settings)) {
+    const result = await runOnce(settings);
+    const generated = JSON.parse(fs.readFileSync(path.join(result.outDir, "deck.json"), "utf8"));
+    const analysis = await analyze(generated, result.slides || [], { vision: false });
+    const summary = await writeQa(result, analysis, 1, "manual");
+    console.log("qa manual geometry " + summary.score + " (" + summary.passed + "/" + summary.total + ") — review slides before publish");
+    return result;
+  }
   const exclude = [];
   const usedBuckets = [];
   let knownVibe = null;
@@ -1917,7 +1997,7 @@ async function injectTheme(options) {
       : (PALETTE_BUCKETS.find((bucket) => usedBuckets.indexOf(bucket) < 0) || PALETTE_BUCKETS[0]);
     let result;
     try {
-      result = await themeOnce(Object.assign({}, settings, {
+      result = await runOnce(Object.assign({}, settings, {
         excludeLayouts: exclude.slice(),
         knownVibe,
         forcedBucket,
@@ -1932,20 +2012,9 @@ async function injectTheme(options) {
     lastDir = result.outDir;
     if (result.selection) knownVibe = { vibe: result.selection.vibe, model: result.selection.model };
     const generated = JSON.parse(fs.readFileSync(path.join(result.outDir, "deck.json"), "utf8"));
-    const analysis = await analyzeDeck(generated, result.slides || []);
+    const analysis = await analyze(generated, result.slides || [], { vision: true });
     lastScore = analysis.score;
-    const summary = {
-      score: analysis.score,
-      passed: analysis.passed,
-      total: analysis.total,
-      failures: analysis.failures,
-      attempt,
-    };
-    result.analysis = summary;
-    result.report.analysis = summary;
-    generated.qa = summary;
-    fs.writeFileSync(path.join(result.outDir, "deck.json"), JSON.stringify(generated, null, 2) + "\n");
-    fs.writeFileSync(path.join(result.outDir, "replacements.json"), JSON.stringify(result.report, null, 2) + "\n");
+    await writeQa(result, analysis, attempt, "vision");
     console.log("qa score " + analysis.score + " attempt " + attempt + " (" + analysis.passed + "/" + analysis.total + ")");
     if (analysis.score >= QA_SCORE) return result;
     if (attempt === QA_TRIES) break;
@@ -1954,15 +2023,27 @@ async function injectTheme(options) {
     const bucket = result.report && result.report.mood && result.report.mood.bucket;
     if (bucket && usedBuckets.indexOf(bucket) < 0) usedBuckets.push(bucket);
   }
-  if (lastDir) fs.rmSync(lastDir, { recursive: true, force: true });
+  if (lastDir) {
+    const { safeRm } = require("./safeRm");
+    safeRm(lastDir, { recursive: true, force: true });
+  }
   throw new Error("No deck scored " + QA_SCORE + " or above (last score " + lastScore + ")");
 }
 
+module.exports = { injectTheme, themeOnce, inventDirection, askModel, searchPexels, downloadPhoto, classifyVibe, seedFitsPrompt, photoQuery, collectStrings, chooseLayout, splitsContiguousWord, splitProportional, liftDarkTextBackdrops, liftDarkShapes, fitDecorationBox, getAvailableVibes, settleAssetVibe, parseAssetVibe, steerAssetVibe, countLargePhotoSlides, forcePhotoSlides, photographicSubject, decorationKind, assetFits, assignImages, minimalistRequest, removeDecoration, subjectAssetVibe, pruneSlideText, visionQaEnabled, writeQa, clampCopy, COPY_RULES, QA_SCORE, QA_TRIES };
+
 if (require.main === module) {
-  injectTheme(parseArgs(process.argv.slice(2))).catch((error) => {
+  const { runPipeline } = require("./pipeline");
+  const args = parseArgs(process.argv.slice(2));
+  runPipeline({
+    prompt: args.prompt,
+    mode: args.autoLayout ? "auto" : "pinned",
+    layout: args.layout,
+    out: args.out,
+    density: args.density,
+    qa: args.qa === "" ? undefined : args.qa,
+  }).catch((error) => {
     console.error(error && error.message ? error.message : error);
     process.exit(1);
   });
 }
-
-module.exports = { injectTheme, askModel, searchPexels, downloadPhoto, classifyVibe, seedFitsPrompt, photoQuery, collectStrings, chooseLayout, splitsContiguousWord, splitProportional, liftDarkTextBackdrops, liftDarkShapes, fitDecorationBox, getAvailableVibes, settleAssetVibe, parseAssetVibe, steerAssetVibe, countLargePhotoSlides, forcePhotoSlides, photographicSubject, decorationKind, assetFits, assignImages, minimalistRequest, removeDecoration, subjectAssetVibe, pruneSlideText };

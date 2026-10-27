@@ -1,0 +1,397 @@
+{
+  "schemaVersion": 2,
+  "id": "proof-split-copy-title-bottom-left",
+  "name": "Proof split-copy title-bottom-left",
+  "tokens": {
+    "color": {
+      "bg": "#f3f1ee",
+      "surface": "#f3f1ee",
+      "card": "#FFFFFF",
+      "ink": "#1c1916",
+      "muted": "#5c564e",
+      "rule": "#d9d0c6",
+      "accent": "#8a8175",
+      "accent2": "#8a8175",
+      "onAccent": "#f3f1ee"
+    },
+    "font": {
+      "display": "Calibri",
+      "text": "Calibri"
+    },
+    "type": {
+      "h1": 120,
+      "body": 28
+    }
+  },
+  "layoutSequence": [
+    "slide-1"
+  ],
+  "layouts": {
+    "slide-1": {
+      "version": 2,
+      "id": "slide-1",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-frame-top-slide-1",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 2,
+          "zIndex": 40,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "signature-frame-bottom-slide-1",
+          "type": "shape",
+          "x": 0,
+          "y": 898,
+          "width": 1600,
+          "height": 2,
+          "zIndex": 40,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "signature-frame-left-slide-1",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 2,
+          "height": 900,
+          "zIndex": 40,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "signature-frame-right-slide-1",
+          "type": "shape",
+          "x": 1598,
+          "y": 0,
+          "width": 2,
+          "height": 900,
+          "zIndex": 40,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-split-copy-field",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "opacity": 1,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "{color.onAccent}",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-split-copy-title",
+          "type": "text",
+          "x": 72,
+          "y": 420,
+          "width": 780,
+          "height": 135.52,
+          "zIndex": 1,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 56,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Apex Payroll Solutions",
+                "fontFamily": "{font.display}",
+                "fontSize": 56,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "title",
+            "maxChars": 48,
+            "charsPerLine": 24,
+            "capacityLines": 2
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 48,
+            "charsPerLine": 24,
+            "width": 1178.25,
+            "canvasWidth": 1190.9,
+            "layoutWidth": 780,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "copy"
+        },
+        {
+          "id": "composer-split-copy-body",
+          "type": "text",
+          "x": 72,
+          "y": 571.19,
+          "width": 780,
+          "height": 65.34,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 22,
+            "fontWeight": 400,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "lineHeight": 1.35,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "We automate payroll, tax filings, and compliance for growing teams so founders spend less time on spreadsheets and more on people.",
+                "fontFamily": "{font.text}",
+                "fontSize": 22,
+                "fontWeight": 400,
+                "color": "{color.muted}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "body",
+            "maxChars": 160,
+            "charsPerLine": 80,
+            "capacityLines": 2
+          },
+          "textMeasure": {
+            "lines": 2,
+            "fontPair": "corp-calibri",
+            "capacityChars": 160,
+            "charsPerLine": 80,
+            "width": 1467.86,
+            "canvasWidth": 1472.82,
+            "layoutWidth": 780,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "copy"
+        },
+        {
+          "id": "composer-split-copy-bullet-1",
+          "type": "text",
+          "x": 72,
+          "y": 658.56,
+          "width": 780,
+          "height": 28.6,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "First bullet point under eighty characters",
+                "fontFamily": "{font.text}",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "bullet-1",
+            "maxChars": 80,
+            "charsPerLine": 80,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 80,
+            "charsPerLine": 80,
+            "width": 673.67,
+            "canvasWidth": 673.67,
+            "layoutWidth": 780,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "copy"
+        },
+        {
+          "id": "composer-split-copy-bullet-2",
+          "type": "text",
+          "x": 72,
+          "y": 712.56,
+          "width": 780,
+          "height": 28.6,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Second bullet point under eighty characters",
+                "fontFamily": "{font.text}",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "bullet-2",
+            "maxChars": 80,
+            "charsPerLine": 80,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 80,
+            "charsPerLine": 80,
+            "width": 673.67,
+            "canvasWidth": 673.67,
+            "layoutWidth": 780,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "copy"
+        },
+        {
+          "id": "composer-split-copy-bullet-3",
+          "type": "text",
+          "x": 72,
+          "y": 766.56,
+          "width": 780,
+          "height": 28.6,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Third bullet point under eighty characters",
+                "fontFamily": "{font.text}",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "bullet-3",
+            "maxChars": 80,
+            "charsPerLine": 80,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 80,
+            "charsPerLine": 80,
+            "width": 673.67,
+            "canvasWidth": 673.67,
+            "layoutWidth": 780,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "copy"
+        },
+        {
+          "id": "composer-split-copy-photo",
+          "type": "image",
+          "x": 720,
+          "y": 0,
+          "width": 880,
+          "height": 900,
+          "zIndex": 1,
+          "imageContent": {
+            "url": "photos/composer/proof/landscape-01.jpg",
+            "fit": "cover",
+            "binding": "photo",
+            "alignX": 0.5,
+            "alignY": 0.5
+          }
+        }
+      ]
+    }
+  },
+  "parametric": {
+    "cover": "skipped",
+    "coverName": "Skipped",
+    "coverTitle": "Apex Payroll Solutions",
+    "density": "skipped",
+    "marginFactor": 1,
+    "lineHeightFactor": 1,
+    "densityReverted": [],
+    "densityRevertReasons": [],
+    "marginSample": null,
+    "signature": "frame",
+    "displayFont": "{font.display}",
+    "bodyFont": "{font.text}",
+    "displayWeight": 800,
+    "bodyWeight": 400,
+    "typeShortfalls": [],
+    "geometry": [
+      {
+        "slide": 1,
+        "pass": true,
+        "reasons": []
+      }
+    ],
+    "textOverlaps": []
+  },
+  "qa": {
+    "score": 100,
+    "passed": 1,
+    "total": 1,
+    "failures": [],
+    "attempt": 1,
+    "mode": "manual"
+  }
+}

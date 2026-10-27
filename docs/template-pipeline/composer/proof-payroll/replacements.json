@@ -1,0 +1,131 @@
+{
+  "direction": {
+    "profile": {
+      "brand": "SwiftPay Solutions",
+      "industry": "Payroll",
+      "mission": "To empower businesses with seamless and accurate payroll processing, fostering financial peace of mind."
+    },
+    "mood": "Clean and corporate",
+    "keywords": [
+      "office",
+      "laptop",
+      "document"
+    ],
+    "query": "office laptop document",
+    "model": "gemini-2.5-flash-lite"
+  },
+  "brief": {
+    "plan": [
+      {
+        "role": "Cover",
+        "component": "cover",
+        "variant": "split"
+      },
+      {
+        "role": "About",
+        "component": "split-copy",
+        "variant": "photo-right"
+      },
+      {
+        "role": "Problem",
+        "component": "split-copy",
+        "variant": "photo-left"
+      },
+      {
+        "role": "Solution",
+        "component": "split-copy",
+        "variant": "photo-right"
+      },
+      {
+        "role": "Proof",
+        "component": "stat-row",
+        "variant": "three-up"
+      },
+      {
+        "role": "Close",
+        "component": "close",
+        "variant": "plain"
+      }
+    ],
+    "paletteBucket": "light-neutral",
+    "fontPair": "corp-calibri",
+    "density": "balanced",
+    "coverPattern": "split",
+    "signature": "frame",
+    "mood": "Clean and corporate",
+    "copy": {
+      "Cover": {
+        "title": "SwiftPay Solutions: Payroll, Perfected",
+        "body": "Empowering businesses with seamless and accurate payroll processing, fostering financial peace of mind."
+      },
+      "About": {
+        "title": "Our Mission: Financial Peace of Mind",
+        "body": "We streamline payroll, so you can focus on growth",
+        "bullet": [
+          "Accuracy guaranteed",
+          "Time saved",
+          "Compliance ensured"
+        ]
+      },
+      "Problem": {
+        "title": "The Payroll Puzzle",
+        "body": "Manual errors, complex regulations, and time-consuming tasks",
+        "bullet": [
+          "Costly mistakes",
+          "Compliance risks",
+          "Operational drain"
+        ]
+      },
+      "Solution": {
+        "title": "SwiftPay: Your Payroll Advantage",
+        "body": "Intuitive, automated, and secure payroll solutions",
+        "bullet": [
+          "Effortless processing",
+          "Real-time insights",
+          "Dedicated support"
+        ]
+      },
+      "Proof": {
+        "title": "Proven Impact",
+        "stat": [
+          "99.9%",
+          "24/7",
+          "1000+"
+        ],
+        "label": [
+          "Accuracy rate",
+          "Support availability",
+          "Clients served"
+        ],
+        "body": "Trusted by businesses of all sizes for reliable payroll"
+      },
+      "Close": {
+        "title": "Ready for Effortless Payroll?",
+        "body": "Let SwiftPay Solutions bring you financial peace of mind"
+      }
+    }
+  },
+  "fallbacks": [],
+  "nonce": "4c-proof-1",
+  "photoQueries": [
+    {
+      "query": "office laptop document",
+      "orientation": "landscape",
+      "hits": 5
+    }
+  ],
+  "fontPair": "corp-calibri",
+  "bucket": "light-neutral",
+  "vibe": "light-neutral",
+  "analysis": {
+    "score": 67,
+    "passed": 4,
+    "total": 6,
+    "failures": [
+      "text overlap on slide 2",
+      "text overlap on slide 4"
+    ],
+    "attempt": 1,
+    "mode": "manual"
+  }
+}

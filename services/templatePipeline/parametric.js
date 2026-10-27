@@ -591,11 +591,17 @@ function applyParametric(deck, options) {
   const palette = options.seedTokens && options.seedTokens.color ? options.seedTokens.color : ((deck.tokens && deck.tokens.color) || {});
   const fonts = seedTypefaces(deck);
   fonts.displayWeight = /minimal/i.test(prompt) ? 300 : 800;
-  const density = applyDensity(deck, options.density || "balanced");
+  const density = options.skipDensity
+    ? { density: "skipped", marginFactor: 1, lineHeightFactor: 1, reverted: [], revertReasons: [], sample: null }
+    : applyDensity(deck, options.density || "balanced");
   const title = coverTitle(options.title, prompt);
-  const cover = replaceCover(deck, prompt, title, options.photoUrl || "", palette, fonts);
+  const cover = options.skipCover
+    ? { id: "skipped", name: "Skipped" }
+    : replaceCover(deck, prompt, title, options.photoUrl || "", palette, fonts);
   const signature = injectSignature(deck, prompt, palette);
-  const type = applyTypeContrast(deck, fonts, prompt);
+  const type = options.skipTypeContrast
+    ? { displayWeight: fonts.displayWeight, bodyWeight: 400, shortfalls: [] }
+    : applyTypeContrast(deck, fonts, prompt);
   const geometry = auditGeometry(deck);
   const overlaps = geometry.filter((slide) => slide.reasons.indexOf("text overlap") >= 0).map((slide) => slide.slide);
   deck.parametric = {
