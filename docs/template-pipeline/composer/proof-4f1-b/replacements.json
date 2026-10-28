@@ -1,0 +1,1204 @@
+{
+  "direction": {
+    "profile": {
+      "brand": "Vertex Payroll",
+      "industry": "payroll",
+      "mission": "Simplifying complex payroll compliance for growing businesses."
+    },
+    "mood": "clean and corporate",
+    "keywords": [
+      "office",
+      "laptop",
+      "spreadsheet"
+    ],
+    "query": "office laptop spreadsheet",
+    "model": "qwen/qwen3.8-27b"
+  },
+  "brief": {
+    "plan": [
+      {
+        "role": "Cover",
+        "component": "cover",
+        "variant": "split"
+      },
+      {
+        "role": "Contents",
+        "component": "agenda",
+        "variant": "two-column"
+      },
+      {
+        "role": "Problem",
+        "component": "statement",
+        "variant": "with-kicker"
+      },
+      {
+        "role": "Solution",
+        "component": "split-copy",
+        "variant": "photo-right"
+      },
+      {
+        "role": "Proof",
+        "component": "big-number",
+        "variant": "left"
+      },
+      {
+        "role": "Model",
+        "component": "process",
+        "variant": "four-step"
+      },
+      {
+        "role": "Market",
+        "component": "stat-row",
+        "variant": "three-up"
+      },
+      {
+        "role": "People",
+        "component": "team-grid",
+        "variant": "four"
+      },
+      {
+        "role": "Next",
+        "component": "statement",
+        "variant": "with-kicker"
+      },
+      {
+        "role": "About",
+        "component": "split-copy",
+        "variant": "photo-left"
+      },
+      {
+        "role": "Close",
+        "component": "close",
+        "variant": "plain"
+      }
+    ],
+    "accentRole": "Next",
+    "paletteBucket": "light-neutral",
+    "fontPair": "corp-arial",
+    "density": "balanced",
+    "coverPattern": "split",
+    "signature": "rail",
+    "mood": "clean and corporate",
+    "copy": {
+      "0": {
+        "title": "Streamline Your Payroll Operations",
+        "body": "Vertex Payroll eliminates compliance headaches for growing teams, ensuring accuracy and speed",
+        "kicker": "Precision Payroll Soluti"
+      },
+      "1": {
+        "title": "Agenda",
+        "item-1": "The Compliance Challenge",
+        "item-2": "Vertex Strategic Solution",
+        "item-3": "Operational Efficiency",
+        "item-4": "Process Workflow",
+        "item-5": "Market Position",
+        "item-6": "Leadership Team"
+      },
+      "2": {
+        "statement": "Rising tax complexity stalls growth and creates costly compliance risks",
+        "kicker": "The Current Landscape"
+      },
+      "3": {
+        "title": "Automated Compliance Engine",
+        "body": "Real-time updates ensure perfect accuracy across all jurisdictions",
+        "bullet-1": "Instant tax rule updates",
+        "bullet-2": "Multi-state filing automation",
+        "bullet-3": "Secure encrypted data handling"
+      },
+      "4": {
+        "number": "99.8%",
+        "label": "Filing Accuracy Rate",
+        "body": "Consistent compliance results across all client portfolios"
+      },
+      "5": {
+        "title": "How It Works",
+        "step-title-1": "Connect",
+        "step-title-2": "Configure",
+        "step-title-3": "Process",
+        "step-title-4": "Report",
+        "step-body-1": "Secure data integration",
+        "step-body-2": "Custom tax rules setup",
+        "step-body-3": "Automated pay runs",
+        "step-body-4": "Compliance dashboards"
+      },
+      "6": {
+        "title": "Market Performance",
+        "stat-1": "45%",
+        "stat-2": "12k",
+        "stat-3": "98%",
+        "label-1": "Time saved on payroll",
+        "label-2": "Active business clients",
+        "label-3": "Client retention rate",
+        "body": "Scalable infrastructure supports rapid enterprise expansion needs"
+      },
+      "7": {
+        "title": "Leadership",
+        "name-1": "Sarah Chen",
+        "name-2": "Michael Ross",
+        "name-3": "David Klein",
+        "name-4": "Emily Watts",
+        "role-1": "Chief Executive Officer",
+        "role-2": "Chief Technology Officer",
+        "role-3": "VP of Compliance",
+        "role-4": "Head of Customer Success"
+      },
+      "8": {
+        "statement": "Schedule a demo to see how Vertex simplifies your payroll",
+        "kicker": "Start Today"
+      },
+      "9": {
+        "title": "Why Choose Vertex",
+        "body": "Dedicated support and transparent pricing for every business size",
+        "bullet-1": "Dedicated account managers",
+        "bullet-2": "No hidden monthly fees",
+        "bullet-3": "Scalable infrastructure"
+      },
+      "10": {
+        "title": "Let's Talk",
+        "body": "Transform your payroll operations with Vertex Payroll",
+        "kicker": "Get In Touch"
+      }
+    }
+  },
+  "fallbacks": [
+    {
+      "field": "plan[8].component",
+      "got": "close",
+      "used": "statement",
+      "reason": "component not allowed for role"
+    },
+    {
+      "field": "plan[8].variant",
+      "got": "plain",
+      "used": "with-kicker",
+      "reason": "variant not in component"
+    },
+    {
+      "field": "plan.close",
+      "got": null,
+      "used": "Close",
+      "reason": "Close must be last"
+    },
+    {
+      "field": "plan.aps",
+      "got": null,
+      "used": "About",
+      "reason": "at least three of About/Problem/Solution"
+    },
+    {
+      "field": "accentRole",
+      "got": "Solution",
+      "used": "Next",
+      "reason": "exactly one accentRole by hash"
+    },
+    {
+      "field": "copy.0.kicker",
+      "got": "len=27",
+      "used": "clamped:24",
+      "reason": "over maxChars"
+    }
+  ],
+  "nonce": "4f1-b",
+  "photoQueries": [
+    {
+      "query": "office laptop",
+      "bucket": "subject",
+      "orientation": "landscape",
+      "hits": 5
+    },
+    {
+      "query": "spreadsheet abstract",
+      "bucket": "texture",
+      "orientation": "landscape",
+      "hits": 5
+    },
+    {
+      "query": "people team office",
+      "bucket": "people",
+      "orientation": "portrait",
+      "hits": 5
+    }
+  ],
+  "fontPair": "corp-arial",
+  "bucket": "light-neutral",
+  "vibe": "light-neutral",
+  "fits": [],
+  "collapses": [
+    {
+      "slide": 1,
+      "stackId": "cover-copy",
+      "gap": 28,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-cover-kicker",
+          "fromY": 72,
+          "toY": 72,
+          "deltaY": 0,
+          "height": 23.76
+        },
+        {
+          "id": "composer-cover-title",
+          "fromY": 121.59,
+          "toY": 123.76,
+          "deltaY": 2.17,
+          "height": 332.64
+        },
+        {
+          "id": "composer-cover-body",
+          "fromY": 552.78,
+          "toY": 484.4,
+          "deltaY": -68.38,
+          "height": 83.16
+        }
+      ]
+    },
+    {
+      "slide": 2,
+      "stackId": "agenda",
+      "gap": 24,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-agenda-title",
+          "fromY": 96,
+          "toY": 96,
+          "deltaY": 0,
+          "height": 77.44
+        },
+        {
+          "id": "composer-agenda-item-1",
+          "fromY": 331.17,
+          "toY": 197.44,
+          "deltaY": -133.73,
+          "height": 38.5
+        },
+        {
+          "id": "composer-agenda-item-2",
+          "fromY": 390.17,
+          "toY": 259.94,
+          "deltaY": -130.23,
+          "height": 38.5
+        },
+        {
+          "id": "composer-agenda-item-3",
+          "fromY": 449.17,
+          "toY": 322.44,
+          "deltaY": -126.73,
+          "height": 38.5
+        },
+        {
+          "id": "composer-agenda-item-4",
+          "fromY": 508.17,
+          "toY": 384.94,
+          "deltaY": -123.23,
+          "height": 38.5
+        },
+        {
+          "id": "composer-agenda-item-5",
+          "fromY": 567.17,
+          "toY": 447.44,
+          "deltaY": -119.73,
+          "height": 38.5
+        },
+        {
+          "id": "composer-agenda-item-6",
+          "fromY": 626.17,
+          "toY": 509.94,
+          "deltaY": -116.23,
+          "height": 38.5
+        }
+      ]
+    },
+    {
+      "slide": 3,
+      "stackId": "statement",
+      "gap": 28,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-statement-kicker",
+          "fromY": 160,
+          "toY": 160,
+          "deltaY": 0,
+          "height": 26.4
+        },
+        {
+          "id": "composer-statement-statement",
+          "fromY": 212,
+          "toY": 214.4,
+          "deltaY": 2.4,
+          "height": 332.64
+        }
+      ]
+    },
+    {
+      "slide": 4,
+      "stackId": "copy",
+      "gap": 28,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-split-copy-title",
+          "fromY": 96,
+          "toY": 96,
+          "deltaY": 0,
+          "height": 135.52
+        },
+        {
+          "id": "composer-split-copy-body",
+          "fromY": 247.19,
+          "toY": 259.52,
+          "deltaY": 12.33,
+          "height": 32.67
+        },
+        {
+          "id": "composer-split-copy-bullet-1",
+          "fromY": 364.25,
+          "toY": 320.19,
+          "deltaY": -44.06,
+          "height": 28.6
+        },
+        {
+          "id": "composer-split-copy-bullet-2",
+          "fromY": 444.25,
+          "toY": 376.79,
+          "deltaY": -67.46,
+          "height": 28.6
+        },
+        {
+          "id": "composer-split-copy-bullet-3",
+          "fromY": 524.25,
+          "toY": 433.39,
+          "deltaY": -90.86,
+          "height": 28.6
+        }
+      ]
+    },
+    {
+      "slide": 5,
+      "stackId": "number",
+      "gap": 20,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-big-number-number",
+          "fromY": 160,
+          "toY": 160,
+          "deltaY": 0,
+          "height": 188.1
+        },
+        {
+          "id": "composer-big-number-label",
+          "fromY": 351,
+          "toY": 368.1,
+          "deltaY": 17.1,
+          "height": 45.54
+        },
+        {
+          "id": "composer-big-number-body",
+          "fromY": 412.39,
+          "toY": 433.64,
+          "deltaY": 21.25,
+          "height": 32.67
+        }
+      ]
+    },
+    {
+      "slide": 6,
+      "stackId": "step-1",
+      "gap": 16,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-process-step-title-1",
+          "fromY": 220,
+          "toY": 220,
+          "deltaY": 0,
+          "height": 35.42
+        },
+        {
+          "id": "composer-process-step-body-1",
+          "fromY": 300.38,
+          "toY": 271.42,
+          "deltaY": -28.96,
+          "height": 26.73
+        }
+      ]
+    },
+    {
+      "slide": 6,
+      "stackId": "step-2",
+      "gap": 16,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-process-step-title-2",
+          "fromY": 220,
+          "toY": 220,
+          "deltaY": 0,
+          "height": 35.42
+        },
+        {
+          "id": "composer-process-step-body-2",
+          "fromY": 300.38,
+          "toY": 271.42,
+          "deltaY": -28.96,
+          "height": 26.73
+        }
+      ]
+    },
+    {
+      "slide": 6,
+      "stackId": "step-3",
+      "gap": 16,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-process-step-title-3",
+          "fromY": 220,
+          "toY": 220,
+          "deltaY": 0,
+          "height": 35.42
+        },
+        {
+          "id": "composer-process-step-body-3",
+          "fromY": 300.38,
+          "toY": 271.42,
+          "deltaY": -28.96,
+          "height": 26.73
+        }
+      ]
+    },
+    {
+      "slide": 6,
+      "stackId": "step-4",
+      "gap": 16,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-process-step-title-4",
+          "fromY": 220,
+          "toY": 220,
+          "deltaY": 0,
+          "height": 35.42
+        },
+        {
+          "id": "composer-process-step-body-4",
+          "fromY": 300.38,
+          "toY": 271.42,
+          "deltaY": -28.96,
+          "height": 26.73
+        }
+      ]
+    },
+    {
+      "slide": 6,
+      "stackId": "header",
+      "gap": 12,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-process-title",
+          "fromY": 72,
+          "toY": 72,
+          "deltaY": 0,
+          "height": 58.08
+        }
+      ]
+    },
+    {
+      "slide": 7,
+      "stackId": "stat-1",
+      "gap": 12,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-stat-row-stat-1",
+          "fromY": 160.8,
+          "toY": 160.8,
+          "deltaY": 0,
+          "height": 79.2
+        },
+        {
+          "id": "composer-stat-row-label-1",
+          "fromY": 244.8,
+          "toY": 252,
+          "deltaY": 7.2,
+          "height": 28.6
+        }
+      ]
+    },
+    {
+      "slide": 7,
+      "stackId": "stat-2",
+      "gap": 12,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-stat-row-stat-2",
+          "fromY": 160.8,
+          "toY": 160.8,
+          "deltaY": 0,
+          "height": 79.2
+        },
+        {
+          "id": "composer-stat-row-label-2",
+          "fromY": 244.8,
+          "toY": 252,
+          "deltaY": 7.2,
+          "height": 28.6
+        }
+      ]
+    },
+    {
+      "slide": 7,
+      "stackId": "stat-3",
+      "gap": 12,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-stat-row-stat-3",
+          "fromY": 160.8,
+          "toY": 160.8,
+          "deltaY": 0,
+          "height": 79.2
+        },
+        {
+          "id": "composer-stat-row-label-3",
+          "fromY": 244.8,
+          "toY": 252,
+          "deltaY": 7.2,
+          "height": 28.6
+        }
+      ]
+    },
+    {
+      "slide": 7,
+      "stackId": "main",
+      "gap": 36,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-stat-row-title",
+          "fromY": 72,
+          "toY": 72,
+          "deltaY": 0,
+          "height": 58.08
+        },
+        {
+          "id": "main-block-1",
+          "fromY": 160.8,
+          "toY": 166.08,
+          "deltaY": 5.28,
+          "height": 110
+        },
+        {
+          "id": "composer-stat-row-body",
+          "fromY": 306.8,
+          "toY": 312.08,
+          "deltaY": 5.28,
+          "height": 32.67
+        }
+      ]
+    },
+    {
+      "slide": 8,
+      "stackId": "header",
+      "gap": 12,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-team-grid-title",
+          "fromY": 72,
+          "toY": 72,
+          "deltaY": 0,
+          "height": 58.08
+        }
+      ]
+    },
+    {
+      "slide": 8,
+      "stackId": "member-1",
+      "gap": 16,
+      "align": "center",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-team-grid-photo-1",
+          "fromY": 220,
+          "toY": 220,
+          "deltaY": 0,
+          "height": 160
+        },
+        {
+          "id": "composer-team-grid-name-1",
+          "fromY": 396,
+          "toY": 396,
+          "deltaY": 0,
+          "height": 30.36
+        },
+        {
+          "id": "composer-team-grid-role-1",
+          "fromY": 439.59,
+          "toY": 442.36,
+          "deltaY": 2.77,
+          "height": 25.74
+        }
+      ]
+    },
+    {
+      "slide": 8,
+      "stackId": "member-2",
+      "gap": 16,
+      "align": "center",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-team-grid-photo-2",
+          "fromY": 220,
+          "toY": 220,
+          "deltaY": 0,
+          "height": 160
+        },
+        {
+          "id": "composer-team-grid-name-2",
+          "fromY": 396,
+          "toY": 396,
+          "deltaY": 0,
+          "height": 30.36
+        },
+        {
+          "id": "composer-team-grid-role-2",
+          "fromY": 439.59,
+          "toY": 442.36,
+          "deltaY": 2.77,
+          "height": 25.74
+        }
+      ]
+    },
+    {
+      "slide": 8,
+      "stackId": "member-3",
+      "gap": 16,
+      "align": "center",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-team-grid-photo-3",
+          "fromY": 220,
+          "toY": 220,
+          "deltaY": 0,
+          "height": 160
+        },
+        {
+          "id": "composer-team-grid-name-3",
+          "fromY": 396,
+          "toY": 396,
+          "deltaY": 0,
+          "height": 30.36
+        },
+        {
+          "id": "composer-team-grid-role-3",
+          "fromY": 439.59,
+          "toY": 442.36,
+          "deltaY": 2.77,
+          "height": 25.74
+        }
+      ]
+    },
+    {
+      "slide": 8,
+      "stackId": "member-4",
+      "gap": 16,
+      "align": "center",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-team-grid-photo-4",
+          "fromY": 220,
+          "toY": 220,
+          "deltaY": 0,
+          "height": 160
+        },
+        {
+          "id": "composer-team-grid-name-4",
+          "fromY": 396,
+          "toY": 396,
+          "deltaY": 0,
+          "height": 30.36
+        },
+        {
+          "id": "composer-team-grid-role-4",
+          "fromY": 439.59,
+          "toY": 442.36,
+          "deltaY": 2.77,
+          "height": 25.74
+        }
+      ]
+    },
+    {
+      "slide": 9,
+      "stackId": "statement",
+      "gap": 28,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-statement-kicker",
+          "fromY": 160,
+          "toY": 160,
+          "deltaY": 0,
+          "height": 26.4
+        },
+        {
+          "id": "composer-statement-statement",
+          "fromY": 212,
+          "toY": 214.4,
+          "deltaY": 2.4,
+          "height": 221.76
+        }
+      ]
+    },
+    {
+      "slide": 10,
+      "stackId": "copy",
+      "gap": 28,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-split-copy-title",
+          "fromY": 96,
+          "toY": 96,
+          "deltaY": 0,
+          "height": 67.76
+        },
+        {
+          "id": "composer-split-copy-body",
+          "fromY": 247.19,
+          "toY": 191.76,
+          "deltaY": -55.43,
+          "height": 32.67
+        },
+        {
+          "id": "composer-split-copy-bullet-1",
+          "fromY": 364.25,
+          "toY": 252.43,
+          "deltaY": -111.82,
+          "height": 28.6
+        },
+        {
+          "id": "composer-split-copy-bullet-2",
+          "fromY": 444.25,
+          "toY": 309.03,
+          "deltaY": -135.22,
+          "height": 28.6
+        },
+        {
+          "id": "composer-split-copy-bullet-3",
+          "fromY": 524.25,
+          "toY": 365.63,
+          "deltaY": -158.62,
+          "height": 28.6
+        }
+      ]
+    },
+    {
+      "slide": 11,
+      "stackId": "close-copy",
+      "gap": 24,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-close-kicker",
+          "fromY": 280,
+          "toY": 280,
+          "deltaY": 0,
+          "height": 23.76
+        },
+        {
+          "id": "composer-close-title",
+          "fromY": 325.59,
+          "toY": 327.76,
+          "deltaY": 2.17,
+          "height": 83.16
+        },
+        {
+          "id": "composer-close-body",
+          "fromY": 500.78,
+          "toY": 434.92,
+          "deltaY": -65.86,
+          "height": 35.64
+        }
+      ]
+    }
+  ],
+  "analysis": {
+    "score": 91,
+    "passed": 10,
+    "total": 11,
+    "failures": [
+      "pptx mismatch: composer-close-title missing text on slide 11"
+    ],
+    "attempt": 1,
+    "mode": "manual",
+    "aesthetic": {
+      "slides": 11,
+      "avgWhitespace": 0.699,
+      "avgTextDensity": 122,
+      "typeScaleAllOk": true,
+      "minFontSeen": 18
+    },
+    "slides": [
+      {
+        "slide": 1,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 3,
+            "right": 3,
+            "top": 4
+          },
+          "margin": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "whitespaceRatio": 0.316,
+          "minTextBox": {
+            "fontSize": 18,
+            "area": 18058
+          },
+          "typeScaleOk": true,
+          "textDensity": 151,
+          "stackGap": 0,
+          "coverVisualMass": 0.449
+        }
+      },
+      {
+        "slide": 2,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 1,
+            "right": 1,
+            "top": 7
+          },
+          "margin": {
+            "left": 96,
+            "right": 864,
+            "top": 96,
+            "bottom": 351.56
+          },
+          "whitespaceRatio": 0.861,
+          "minTextBox": {
+            "fontSize": 28,
+            "area": 24640
+          },
+          "typeScaleOk": true,
+          "textDensity": 123,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      },
+      {
+        "slide": 3,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 1,
+            "right": 1,
+            "top": 2
+          },
+          "margin": {
+            "left": 96,
+            "right": 96,
+            "top": 160,
+            "bottom": 352.96
+          },
+          "whitespaceRatio": 0.64,
+          "minTextBox": {
+            "fontSize": 20,
+            "area": 37171
+          },
+          "typeScaleOk": true,
+          "textDensity": 92,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      },
+      {
+        "slide": 4,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 2,
+            "right": 2,
+            "top": 6
+          },
+          "margin": {
+            "left": 72,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "whitespaceRatio": 0.431,
+          "minTextBox": {
+            "fontSize": 20,
+            "area": 20020
+          },
+          "typeScaleOk": true,
+          "textDensity": 176,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      },
+      {
+        "slide": 5,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 1,
+            "right": 1,
+            "top": 3
+          },
+          "margin": {
+            "left": 96,
+            "right": 604,
+            "top": 160,
+            "bottom": 433.69
+          },
+          "whitespaceRatio": 0.834,
+          "minTextBox": {
+            "fontSize": 22,
+            "area": 29403
+          },
+          "typeScaleOk": true,
+          "textDensity": 83,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      },
+      {
+        "slide": 6,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 4,
+            "right": 5,
+            "top": 3
+          },
+          "margin": {
+            "left": 96,
+            "right": 96,
+            "top": 72,
+            "bottom": 601.85
+          },
+          "whitespaceRatio": 0.878,
+          "minTextBox": {
+            "fontSize": 18,
+            "area": 8848
+          },
+          "typeScaleOk": true,
+          "textDensity": 125,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      },
+      {
+        "slide": 7,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 3,
+            "right": 4,
+            "top": 4
+          },
+          "margin": {
+            "left": 72,
+            "right": 72,
+            "top": 72,
+            "bottom": 555.25
+          },
+          "whitespaceRatio": 0.81,
+          "minTextBox": {
+            "fontSize": 20,
+            "area": 11440
+          },
+          "typeScaleOk": true,
+          "textDensity": 157,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      },
+      {
+        "slide": 8,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 8,
+            "right": 9,
+            "top": 4
+          },
+          "margin": {
+            "left": 96,
+            "right": 96,
+            "top": 72,
+            "bottom": 431.9
+          },
+          "whitespaceRatio": 0.818,
+          "minTextBox": {
+            "fontSize": 18,
+            "area": 8134
+          },
+          "typeScaleOk": true,
+          "textDensity": 141,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      },
+      {
+        "slide": 9,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 1,
+            "right": 1,
+            "top": 2
+          },
+          "margin": {
+            "left": 96,
+            "right": 96,
+            "top": 160,
+            "bottom": 463.84
+          },
+          "whitespaceRatio": 0.75,
+          "minTextBox": {
+            "fontSize": 20,
+            "area": 37171
+          },
+          "typeScaleOk": true,
+          "textDensity": 68,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      },
+      {
+        "slide": 10,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 2,
+            "right": 2,
+            "top": 6
+          },
+          "margin": {
+            "left": 0,
+            "right": 100,
+            "top": 0,
+            "bottom": 0
+          },
+          "whitespaceRatio": 0.446,
+          "minTextBox": {
+            "fontSize": 20,
+            "area": 20020
+          },
+          "typeScaleOk": true,
+          "textDensity": 153,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      },
+      {
+        "slide": 11,
+        "pass": false,
+        "score": 0,
+        "reasons": [
+          "pptx mismatch: composer-close-title missing text"
+        ],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 1,
+            "right": 1,
+            "top": 3
+          },
+          "margin": {
+            "left": 72,
+            "right": 528,
+            "top": 280,
+            "bottom": 429.44
+          },
+          "whitespaceRatio": 0.9,
+          "minTextBox": {
+            "fontSize": 18,
+            "area": 23760
+          },
+          "typeScaleOk": true,
+          "textDensity": 75,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      }
+    ],
+    "composer": true
+  },
+  "replay": false,
+  "attempt": 1,
+  "refinement": {
+    "fired": false,
+    "note": "component-swap refinement removed in 4f-1"
+  },
+  "copyFill": {
+    "fired": false
+  },
+  "textModelCalls": 3
+}

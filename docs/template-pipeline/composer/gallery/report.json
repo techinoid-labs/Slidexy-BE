@@ -1,6 +1,192 @@
 {
   "count": 36,
+  "seedCount": 107,
   "failed": [],
+  "seedFailed": [
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "dependent-and-independent-variables-lesson-for-middle-school / slide 14",
+      "bucket": "light-neutral",
+      "seed": "dependent-and-independent-variables-lesson-for-middle-school",
+      "slide": 14,
+      "layoutId": "slide-14",
+      "file": "seed__dependent-and-independent-variables-lesson-for-middle-school__slide-14.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "text overlap"
+      ]
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "geometric-history-of-graphic-design-slides / slide 1",
+      "bucket": "light-neutral",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 1,
+      "layoutId": "slide-1",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-01.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "text overlap",
+        "contrast"
+      ]
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "geometric-history-of-graphic-design-slides / slide 12",
+      "bucket": "light-neutral",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 12,
+      "layoutId": "slide-12",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-12.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "split word"
+      ]
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "geometric-history-of-graphic-design-slides / slide 16",
+      "bucket": "light-neutral",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 16,
+      "layoutId": "slide-16",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-16.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "contrast"
+      ]
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "geometric-history-of-graphic-design-slides / slide 17",
+      "bucket": "light-neutral",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 17,
+      "layoutId": "slide-17",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-17.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "contrast"
+      ]
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "pitch-deck-competitor-analysis-slides / slide 2",
+      "bucket": "light-neutral",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 2,
+      "layoutId": "slide-2",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-02.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "contrast"
+      ]
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "pitch-deck-competitor-analysis-slides / slide 5",
+      "bucket": "light-neutral",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 5,
+      "layoutId": "slide-5",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-05.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "contrast"
+      ]
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "pitch-deck-competitor-analysis-slides / slide 6",
+      "bucket": "light-neutral",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 6,
+      "layoutId": "slide-6",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-06.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "contrast"
+      ]
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "pitch-deck-competitor-analysis-slides / slide 8",
+      "bucket": "light-neutral",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 8,
+      "layoutId": "slide-8",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-08.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "contrast"
+      ]
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "pitch-deck-competitor-analysis-slides / slide 12",
+      "bucket": "light-neutral",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 12,
+      "layoutId": "slide-12",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-12.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "contrast"
+      ]
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "pitch-deck-competitor-analysis-slides / slide 15",
+      "bucket": "light-neutral",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 15,
+      "layoutId": "slide-15",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-15.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "contrast"
+      ]
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "pitch-deck-competitor-analysis-slides / slide 19",
+      "bucket": "light-neutral",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 19,
+      "layoutId": "slide-19",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-19.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "text overlap"
+      ]
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "seo-competitor-analysis-slides / slide 19",
+      "bucket": "light-neutral",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 19,
+      "layoutId": "slide-19",
+      "file": "seed__seo-competitor-analysis-slides__slide-19.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "text overlap"
+      ]
+    }
+  ],
   "entries": [
     {
       "component": "cover",
@@ -287,6 +473,2309 @@
       "variant": "photo",
       "bucket": "light-neutral",
       "file": "close__photo__light-neutral.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "dependent-and-independent-variables-lesson-for-middle-school / slide 1",
+      "bucket": "light-neutral",
+      "seed": "dependent-and-independent-variables-lesson-for-middle-school",
+      "slide": 1,
+      "layoutId": "slide-1",
+      "file": "seed__dependent-and-independent-variables-lesson-for-middle-school__slide-01.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "dependent-and-independent-variables-lesson-for-middle-school / slide 2",
+      "bucket": "light-neutral",
+      "seed": "dependent-and-independent-variables-lesson-for-middle-school",
+      "slide": 2,
+      "layoutId": "slide-2",
+      "file": "seed__dependent-and-independent-variables-lesson-for-middle-school__slide-02.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "dependent-and-independent-variables-lesson-for-middle-school / slide 3",
+      "bucket": "light-neutral",
+      "seed": "dependent-and-independent-variables-lesson-for-middle-school",
+      "slide": 3,
+      "layoutId": "slide-3",
+      "file": "seed__dependent-and-independent-variables-lesson-for-middle-school__slide-03.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "dependent-and-independent-variables-lesson-for-middle-school / slide 4",
+      "bucket": "light-neutral",
+      "seed": "dependent-and-independent-variables-lesson-for-middle-school",
+      "slide": 4,
+      "layoutId": "slide-4",
+      "file": "seed__dependent-and-independent-variables-lesson-for-middle-school__slide-04.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "dependent-and-independent-variables-lesson-for-middle-school / slide 5",
+      "bucket": "light-neutral",
+      "seed": "dependent-and-independent-variables-lesson-for-middle-school",
+      "slide": 5,
+      "layoutId": "slide-5",
+      "file": "seed__dependent-and-independent-variables-lesson-for-middle-school__slide-05.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "dependent-and-independent-variables-lesson-for-middle-school / slide 6",
+      "bucket": "light-neutral",
+      "seed": "dependent-and-independent-variables-lesson-for-middle-school",
+      "slide": 6,
+      "layoutId": "slide-6",
+      "file": "seed__dependent-and-independent-variables-lesson-for-middle-school__slide-06.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "dependent-and-independent-variables-lesson-for-middle-school / slide 7",
+      "bucket": "light-neutral",
+      "seed": "dependent-and-independent-variables-lesson-for-middle-school",
+      "slide": 7,
+      "layoutId": "slide-7",
+      "file": "seed__dependent-and-independent-variables-lesson-for-middle-school__slide-07.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "dependent-and-independent-variables-lesson-for-middle-school / slide 8",
+      "bucket": "light-neutral",
+      "seed": "dependent-and-independent-variables-lesson-for-middle-school",
+      "slide": 8,
+      "layoutId": "slide-8",
+      "file": "seed__dependent-and-independent-variables-lesson-for-middle-school__slide-08.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "dependent-and-independent-variables-lesson-for-middle-school / slide 9",
+      "bucket": "light-neutral",
+      "seed": "dependent-and-independent-variables-lesson-for-middle-school",
+      "slide": 9,
+      "layoutId": "slide-9",
+      "file": "seed__dependent-and-independent-variables-lesson-for-middle-school__slide-09.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "dependent-and-independent-variables-lesson-for-middle-school / slide 10",
+      "bucket": "light-neutral",
+      "seed": "dependent-and-independent-variables-lesson-for-middle-school",
+      "slide": 10,
+      "layoutId": "slide-10",
+      "file": "seed__dependent-and-independent-variables-lesson-for-middle-school__slide-10.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "dependent-and-independent-variables-lesson-for-middle-school / slide 11",
+      "bucket": "light-neutral",
+      "seed": "dependent-and-independent-variables-lesson-for-middle-school",
+      "slide": 11,
+      "layoutId": "slide-11",
+      "file": "seed__dependent-and-independent-variables-lesson-for-middle-school__slide-11.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "dependent-and-independent-variables-lesson-for-middle-school / slide 12",
+      "bucket": "light-neutral",
+      "seed": "dependent-and-independent-variables-lesson-for-middle-school",
+      "slide": 12,
+      "layoutId": "slide-12",
+      "file": "seed__dependent-and-independent-variables-lesson-for-middle-school__slide-12.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "dependent-and-independent-variables-lesson-for-middle-school / slide 13",
+      "bucket": "light-neutral",
+      "seed": "dependent-and-independent-variables-lesson-for-middle-school",
+      "slide": 13,
+      "layoutId": "slide-13",
+      "file": "seed__dependent-and-independent-variables-lesson-for-middle-school__slide-13.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "dependent-and-independent-variables-lesson-for-middle-school / slide 14",
+      "bucket": "light-neutral",
+      "seed": "dependent-and-independent-variables-lesson-for-middle-school",
+      "slide": 14,
+      "layoutId": "slide-14",
+      "file": "seed__dependent-and-independent-variables-lesson-for-middle-school__slide-14.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "text overlap"
+      ]
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "dependent-and-independent-variables-lesson-for-middle-school / slide 15",
+      "bucket": "light-neutral",
+      "seed": "dependent-and-independent-variables-lesson-for-middle-school",
+      "slide": 15,
+      "layoutId": "slide-15",
+      "file": "seed__dependent-and-independent-variables-lesson-for-middle-school__slide-15.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "first-aid-medicine-life-skills-presentation / slide 1",
+      "bucket": "light-neutral",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 1,
+      "layoutId": "slide-1",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-01.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "first-aid-medicine-life-skills-presentation / slide 2",
+      "bucket": "light-neutral",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 2,
+      "layoutId": "slide-2",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-02.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "first-aid-medicine-life-skills-presentation / slide 3",
+      "bucket": "light-neutral",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 3,
+      "layoutId": "slide-3",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-03.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "first-aid-medicine-life-skills-presentation / slide 4",
+      "bucket": "light-neutral",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 4,
+      "layoutId": "slide-4",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-04.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "first-aid-medicine-life-skills-presentation / slide 5",
+      "bucket": "light-neutral",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 5,
+      "layoutId": "slide-5",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-05.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "first-aid-medicine-life-skills-presentation / slide 6",
+      "bucket": "light-neutral",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 6,
+      "layoutId": "slide-6",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-06.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "first-aid-medicine-life-skills-presentation / slide 7",
+      "bucket": "light-neutral",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 7,
+      "layoutId": "slide-7",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-07.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "first-aid-medicine-life-skills-presentation / slide 8",
+      "bucket": "light-neutral",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 8,
+      "layoutId": "slide-8",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-08.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "first-aid-medicine-life-skills-presentation / slide 9",
+      "bucket": "light-neutral",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 9,
+      "layoutId": "slide-9",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-09.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "first-aid-medicine-life-skills-presentation / slide 10",
+      "bucket": "light-neutral",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 10,
+      "layoutId": "slide-10",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-10.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "first-aid-medicine-life-skills-presentation / slide 11",
+      "bucket": "light-neutral",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 11,
+      "layoutId": "slide-11",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-11.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "first-aid-medicine-life-skills-presentation / slide 12",
+      "bucket": "light-neutral",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 12,
+      "layoutId": "slide-12",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-12.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "first-aid-medicine-life-skills-presentation / slide 13",
+      "bucket": "light-neutral",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 13,
+      "layoutId": "slide-13",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-13.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "first-aid-medicine-life-skills-presentation / slide 14",
+      "bucket": "light-neutral",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 14,
+      "layoutId": "slide-14",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-14.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "first-aid-medicine-life-skills-presentation / slide 15",
+      "bucket": "light-neutral",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 15,
+      "layoutId": "slide-15",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-15.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "first-aid-medicine-life-skills-presentation / slide 16",
+      "bucket": "light-neutral",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 16,
+      "layoutId": "slide-16",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-16.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "first-aid-medicine-life-skills-presentation / slide 17",
+      "bucket": "light-neutral",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 17,
+      "layoutId": "slide-17",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-17.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "first-aid-medicine-life-skills-presentation / slide 18",
+      "bucket": "light-neutral",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 18,
+      "layoutId": "slide-18",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-18.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "geometric-history-of-graphic-design-slides / slide 1",
+      "bucket": "light-neutral",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 1,
+      "layoutId": "slide-1",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-01.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "text overlap",
+        "contrast"
+      ]
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "geometric-history-of-graphic-design-slides / slide 2",
+      "bucket": "light-neutral",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 2,
+      "layoutId": "slide-2",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-02.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "geometric-history-of-graphic-design-slides / slide 3",
+      "bucket": "light-neutral",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 3,
+      "layoutId": "slide-3",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-03.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "geometric-history-of-graphic-design-slides / slide 4",
+      "bucket": "light-neutral",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 4,
+      "layoutId": "slide-4",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-04.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "geometric-history-of-graphic-design-slides / slide 5",
+      "bucket": "light-neutral",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 5,
+      "layoutId": "slide-5",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-05.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "geometric-history-of-graphic-design-slides / slide 6",
+      "bucket": "light-neutral",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 6,
+      "layoutId": "slide-6",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-06.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "geometric-history-of-graphic-design-slides / slide 7",
+      "bucket": "light-neutral",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 7,
+      "layoutId": "slide-7",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-07.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "geometric-history-of-graphic-design-slides / slide 8",
+      "bucket": "light-neutral",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 8,
+      "layoutId": "slide-8",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-08.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "geometric-history-of-graphic-design-slides / slide 9",
+      "bucket": "light-neutral",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 9,
+      "layoutId": "slide-9",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-09.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "geometric-history-of-graphic-design-slides / slide 10",
+      "bucket": "light-neutral",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 10,
+      "layoutId": "slide-10",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-10.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "geometric-history-of-graphic-design-slides / slide 11",
+      "bucket": "light-neutral",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 11,
+      "layoutId": "slide-11",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-11.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "geometric-history-of-graphic-design-slides / slide 12",
+      "bucket": "light-neutral",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 12,
+      "layoutId": "slide-12",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-12.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "split word"
+      ]
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "geometric-history-of-graphic-design-slides / slide 13",
+      "bucket": "light-neutral",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 13,
+      "layoutId": "slide-13",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-13.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "geometric-history-of-graphic-design-slides / slide 14",
+      "bucket": "light-neutral",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 14,
+      "layoutId": "slide-14",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-14.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "geometric-history-of-graphic-design-slides / slide 15",
+      "bucket": "light-neutral",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 15,
+      "layoutId": "slide-15",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-15.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "geometric-history-of-graphic-design-slides / slide 16",
+      "bucket": "light-neutral",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 16,
+      "layoutId": "slide-16",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-16.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "contrast"
+      ]
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "geometric-history-of-graphic-design-slides / slide 17",
+      "bucket": "light-neutral",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 17,
+      "layoutId": "slide-17",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-17.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "contrast"
+      ]
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation / slide 1",
+      "bucket": "light-neutral",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 1,
+      "layoutId": "slide-1",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-01.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation / slide 2",
+      "bucket": "light-neutral",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 2,
+      "layoutId": "slide-2",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-02.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation / slide 3",
+      "bucket": "light-neutral",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 3,
+      "layoutId": "slide-3",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-03.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation / slide 4",
+      "bucket": "light-neutral",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 4,
+      "layoutId": "slide-4",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-04.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation / slide 5",
+      "bucket": "light-neutral",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 5,
+      "layoutId": "slide-5",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-05.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation / slide 6",
+      "bucket": "light-neutral",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 6,
+      "layoutId": "slide-6",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-06.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation / slide 7",
+      "bucket": "light-neutral",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 7,
+      "layoutId": "slide-7",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-07.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation / slide 8",
+      "bucket": "light-neutral",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 8,
+      "layoutId": "slide-8",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-08.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation / slide 9",
+      "bucket": "light-neutral",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 9,
+      "layoutId": "slide-9",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-09.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation / slide 10",
+      "bucket": "light-neutral",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 10,
+      "layoutId": "slide-10",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-10.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation / slide 11",
+      "bucket": "light-neutral",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 11,
+      "layoutId": "slide-11",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-11.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation / slide 12",
+      "bucket": "light-neutral",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 12,
+      "layoutId": "slide-12",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-12.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation / slide 13",
+      "bucket": "light-neutral",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 13,
+      "layoutId": "slide-13",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-13.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation / slide 14",
+      "bucket": "light-neutral",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 14,
+      "layoutId": "slide-14",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-14.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation / slide 15",
+      "bucket": "light-neutral",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 15,
+      "layoutId": "slide-15",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-15.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation / slide 16",
+      "bucket": "light-neutral",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 16,
+      "layoutId": "slide-16",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-16.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation / slide 17",
+      "bucket": "light-neutral",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 17,
+      "layoutId": "slide-17",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-17.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "pitch-deck-competitor-analysis-slides / slide 1",
+      "bucket": "light-neutral",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 1,
+      "layoutId": "slide-1",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-01.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "pitch-deck-competitor-analysis-slides / slide 2",
+      "bucket": "light-neutral",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 2,
+      "layoutId": "slide-2",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-02.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "contrast"
+      ]
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "pitch-deck-competitor-analysis-slides / slide 3",
+      "bucket": "light-neutral",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 3,
+      "layoutId": "slide-3",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-03.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "pitch-deck-competitor-analysis-slides / slide 4",
+      "bucket": "light-neutral",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 4,
+      "layoutId": "slide-4",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-04.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "pitch-deck-competitor-analysis-slides / slide 5",
+      "bucket": "light-neutral",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 5,
+      "layoutId": "slide-5",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-05.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "contrast"
+      ]
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "pitch-deck-competitor-analysis-slides / slide 6",
+      "bucket": "light-neutral",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 6,
+      "layoutId": "slide-6",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-06.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "contrast"
+      ]
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "pitch-deck-competitor-analysis-slides / slide 7",
+      "bucket": "light-neutral",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 7,
+      "layoutId": "slide-7",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-07.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "pitch-deck-competitor-analysis-slides / slide 8",
+      "bucket": "light-neutral",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 8,
+      "layoutId": "slide-8",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-08.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "contrast"
+      ]
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "pitch-deck-competitor-analysis-slides / slide 9",
+      "bucket": "light-neutral",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 9,
+      "layoutId": "slide-9",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-09.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "pitch-deck-competitor-analysis-slides / slide 10",
+      "bucket": "light-neutral",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 10,
+      "layoutId": "slide-10",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-10.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "pitch-deck-competitor-analysis-slides / slide 11",
+      "bucket": "light-neutral",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 11,
+      "layoutId": "slide-11",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-11.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "pitch-deck-competitor-analysis-slides / slide 12",
+      "bucket": "light-neutral",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 12,
+      "layoutId": "slide-12",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-12.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "contrast"
+      ]
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "pitch-deck-competitor-analysis-slides / slide 13",
+      "bucket": "light-neutral",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 13,
+      "layoutId": "slide-13",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-13.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "pitch-deck-competitor-analysis-slides / slide 14",
+      "bucket": "light-neutral",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 14,
+      "layoutId": "slide-14",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-14.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "pitch-deck-competitor-analysis-slides / slide 15",
+      "bucket": "light-neutral",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 15,
+      "layoutId": "slide-15",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-15.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "contrast"
+      ]
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "pitch-deck-competitor-analysis-slides / slide 16",
+      "bucket": "light-neutral",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 16,
+      "layoutId": "slide-16",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-16.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "pitch-deck-competitor-analysis-slides / slide 17",
+      "bucket": "light-neutral",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 17,
+      "layoutId": "slide-17",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-17.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "pitch-deck-competitor-analysis-slides / slide 18",
+      "bucket": "light-neutral",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 18,
+      "layoutId": "slide-18",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-18.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "pitch-deck-competitor-analysis-slides / slide 19",
+      "bucket": "light-neutral",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 19,
+      "layoutId": "slide-19",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-19.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "text overlap"
+      ]
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "pitch-deck-competitor-analysis-slides / slide 20",
+      "bucket": "light-neutral",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 20,
+      "layoutId": "slide-20",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-20.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "seo-competitor-analysis-slides / slide 1",
+      "bucket": "light-neutral",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 1,
+      "layoutId": "slide-1",
+      "file": "seed__seo-competitor-analysis-slides__slide-01.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "seo-competitor-analysis-slides / slide 2",
+      "bucket": "light-neutral",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 2,
+      "layoutId": "slide-2",
+      "file": "seed__seo-competitor-analysis-slides__slide-02.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "seo-competitor-analysis-slides / slide 3",
+      "bucket": "light-neutral",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 3,
+      "layoutId": "slide-3",
+      "file": "seed__seo-competitor-analysis-slides__slide-03.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "seo-competitor-analysis-slides / slide 4",
+      "bucket": "light-neutral",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 4,
+      "layoutId": "slide-4",
+      "file": "seed__seo-competitor-analysis-slides__slide-04.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "seo-competitor-analysis-slides / slide 5",
+      "bucket": "light-neutral",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 5,
+      "layoutId": "slide-5",
+      "file": "seed__seo-competitor-analysis-slides__slide-05.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "seo-competitor-analysis-slides / slide 6",
+      "bucket": "light-neutral",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 6,
+      "layoutId": "slide-6",
+      "file": "seed__seo-competitor-analysis-slides__slide-06.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "seo-competitor-analysis-slides / slide 7",
+      "bucket": "light-neutral",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 7,
+      "layoutId": "slide-7",
+      "file": "seed__seo-competitor-analysis-slides__slide-07.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "seo-competitor-analysis-slides / slide 8",
+      "bucket": "light-neutral",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 8,
+      "layoutId": "slide-8",
+      "file": "seed__seo-competitor-analysis-slides__slide-08.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "seo-competitor-analysis-slides / slide 9",
+      "bucket": "light-neutral",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 9,
+      "layoutId": "slide-9",
+      "file": "seed__seo-competitor-analysis-slides__slide-09.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "seo-competitor-analysis-slides / slide 10",
+      "bucket": "light-neutral",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 10,
+      "layoutId": "slide-10",
+      "file": "seed__seo-competitor-analysis-slides__slide-10.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "seo-competitor-analysis-slides / slide 11",
+      "bucket": "light-neutral",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 11,
+      "layoutId": "slide-11",
+      "file": "seed__seo-competitor-analysis-slides__slide-11.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "seo-competitor-analysis-slides / slide 12",
+      "bucket": "light-neutral",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 12,
+      "layoutId": "slide-12",
+      "file": "seed__seo-competitor-analysis-slides__slide-12.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "seo-competitor-analysis-slides / slide 13",
+      "bucket": "light-neutral",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 13,
+      "layoutId": "slide-13",
+      "file": "seed__seo-competitor-analysis-slides__slide-13.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "seo-competitor-analysis-slides / slide 14",
+      "bucket": "light-neutral",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 14,
+      "layoutId": "slide-14",
+      "file": "seed__seo-competitor-analysis-slides__slide-14.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "seo-competitor-analysis-slides / slide 15",
+      "bucket": "light-neutral",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 15,
+      "layoutId": "slide-15",
+      "file": "seed__seo-competitor-analysis-slides__slide-15.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "seo-competitor-analysis-slides / slide 16",
+      "bucket": "light-neutral",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 16,
+      "layoutId": "slide-16",
+      "file": "seed__seo-competitor-analysis-slides__slide-16.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "seo-competitor-analysis-slides / slide 17",
+      "bucket": "light-neutral",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 17,
+      "layoutId": "slide-17",
+      "file": "seed__seo-competitor-analysis-slides__slide-17.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "seo-competitor-analysis-slides / slide 18",
+      "bucket": "light-neutral",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 18,
+      "layoutId": "slide-18",
+      "file": "seed__seo-competitor-analysis-slides__slide-18.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "seo-competitor-analysis-slides / slide 19",
+      "bucket": "light-neutral",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 19,
+      "layoutId": "slide-19",
+      "file": "seed__seo-competitor-analysis-slides__slide-19.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "text overlap"
+      ]
+    },
+    {
+      "kind": "seed",
+      "component": "seed",
+      "variant": "seo-competitor-analysis-slides / slide 20",
+      "bucket": "light-neutral",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 20,
+      "layoutId": "slide-20",
+      "file": "seed__seo-competitor-analysis-slides__slide-20.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    }
+  ],
+  "seedEntries": [
+    {
+      "kind": "seed",
+      "seed": "dependent-and-independent-variables-lesson-for-middle-school",
+      "slide": 1,
+      "layoutId": "slide-1",
+      "file": "seed__dependent-and-independent-variables-lesson-for-middle-school__slide-01.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "dependent-and-independent-variables-lesson-for-middle-school",
+      "slide": 2,
+      "layoutId": "slide-2",
+      "file": "seed__dependent-and-independent-variables-lesson-for-middle-school__slide-02.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "dependent-and-independent-variables-lesson-for-middle-school",
+      "slide": 3,
+      "layoutId": "slide-3",
+      "file": "seed__dependent-and-independent-variables-lesson-for-middle-school__slide-03.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "dependent-and-independent-variables-lesson-for-middle-school",
+      "slide": 4,
+      "layoutId": "slide-4",
+      "file": "seed__dependent-and-independent-variables-lesson-for-middle-school__slide-04.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "dependent-and-independent-variables-lesson-for-middle-school",
+      "slide": 5,
+      "layoutId": "slide-5",
+      "file": "seed__dependent-and-independent-variables-lesson-for-middle-school__slide-05.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "dependent-and-independent-variables-lesson-for-middle-school",
+      "slide": 6,
+      "layoutId": "slide-6",
+      "file": "seed__dependent-and-independent-variables-lesson-for-middle-school__slide-06.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "dependent-and-independent-variables-lesson-for-middle-school",
+      "slide": 7,
+      "layoutId": "slide-7",
+      "file": "seed__dependent-and-independent-variables-lesson-for-middle-school__slide-07.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "dependent-and-independent-variables-lesson-for-middle-school",
+      "slide": 8,
+      "layoutId": "slide-8",
+      "file": "seed__dependent-and-independent-variables-lesson-for-middle-school__slide-08.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "dependent-and-independent-variables-lesson-for-middle-school",
+      "slide": 9,
+      "layoutId": "slide-9",
+      "file": "seed__dependent-and-independent-variables-lesson-for-middle-school__slide-09.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "dependent-and-independent-variables-lesson-for-middle-school",
+      "slide": 10,
+      "layoutId": "slide-10",
+      "file": "seed__dependent-and-independent-variables-lesson-for-middle-school__slide-10.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "dependent-and-independent-variables-lesson-for-middle-school",
+      "slide": 11,
+      "layoutId": "slide-11",
+      "file": "seed__dependent-and-independent-variables-lesson-for-middle-school__slide-11.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "dependent-and-independent-variables-lesson-for-middle-school",
+      "slide": 12,
+      "layoutId": "slide-12",
+      "file": "seed__dependent-and-independent-variables-lesson-for-middle-school__slide-12.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "dependent-and-independent-variables-lesson-for-middle-school",
+      "slide": 13,
+      "layoutId": "slide-13",
+      "file": "seed__dependent-and-independent-variables-lesson-for-middle-school__slide-13.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "dependent-and-independent-variables-lesson-for-middle-school",
+      "slide": 14,
+      "layoutId": "slide-14",
+      "file": "seed__dependent-and-independent-variables-lesson-for-middle-school__slide-14.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "text overlap"
+      ]
+    },
+    {
+      "kind": "seed",
+      "seed": "dependent-and-independent-variables-lesson-for-middle-school",
+      "slide": 15,
+      "layoutId": "slide-15",
+      "file": "seed__dependent-and-independent-variables-lesson-for-middle-school__slide-15.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 1,
+      "layoutId": "slide-1",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-01.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 2,
+      "layoutId": "slide-2",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-02.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 3,
+      "layoutId": "slide-3",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-03.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 4,
+      "layoutId": "slide-4",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-04.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 5,
+      "layoutId": "slide-5",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-05.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 6,
+      "layoutId": "slide-6",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-06.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 7,
+      "layoutId": "slide-7",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-07.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 8,
+      "layoutId": "slide-8",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-08.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 9,
+      "layoutId": "slide-9",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-09.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 10,
+      "layoutId": "slide-10",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-10.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 11,
+      "layoutId": "slide-11",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-11.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 12,
+      "layoutId": "slide-12",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-12.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 13,
+      "layoutId": "slide-13",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-13.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 14,
+      "layoutId": "slide-14",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-14.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 15,
+      "layoutId": "slide-15",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-15.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 16,
+      "layoutId": "slide-16",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-16.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 17,
+      "layoutId": "slide-17",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-17.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "first-aid-medicine-life-skills-presentation",
+      "slide": 18,
+      "layoutId": "slide-18",
+      "file": "seed__first-aid-medicine-life-skills-presentation__slide-18.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 1,
+      "layoutId": "slide-1",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-01.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "text overlap",
+        "contrast"
+      ]
+    },
+    {
+      "kind": "seed",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 2,
+      "layoutId": "slide-2",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-02.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 3,
+      "layoutId": "slide-3",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-03.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 4,
+      "layoutId": "slide-4",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-04.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 5,
+      "layoutId": "slide-5",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-05.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 6,
+      "layoutId": "slide-6",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-06.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 7,
+      "layoutId": "slide-7",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-07.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 8,
+      "layoutId": "slide-8",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-08.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 9,
+      "layoutId": "slide-9",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-09.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 10,
+      "layoutId": "slide-10",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-10.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 11,
+      "layoutId": "slide-11",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-11.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 12,
+      "layoutId": "slide-12",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-12.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "split word"
+      ]
+    },
+    {
+      "kind": "seed",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 13,
+      "layoutId": "slide-13",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-13.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 14,
+      "layoutId": "slide-14",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-14.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 15,
+      "layoutId": "slide-15",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-15.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 16,
+      "layoutId": "slide-16",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-16.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "contrast"
+      ]
+    },
+    {
+      "kind": "seed",
+      "seed": "geometric-history-of-graphic-design-slides",
+      "slide": 17,
+      "layoutId": "slide-17",
+      "file": "seed__geometric-history-of-graphic-design-slides__slide-17.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "contrast"
+      ]
+    },
+    {
+      "kind": "seed",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 1,
+      "layoutId": "slide-1",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-01.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 2,
+      "layoutId": "slide-2",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-02.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 3,
+      "layoutId": "slide-3",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-03.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 4,
+      "layoutId": "slide-4",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-04.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 5,
+      "layoutId": "slide-5",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-05.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 6,
+      "layoutId": "slide-6",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-06.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 7,
+      "layoutId": "slide-7",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-07.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 8,
+      "layoutId": "slide-8",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-08.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 9,
+      "layoutId": "slide-9",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-09.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 10,
+      "layoutId": "slide-10",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-10.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 11,
+      "layoutId": "slide-11",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-11.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 12,
+      "layoutId": "slide-12",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-12.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 13,
+      "layoutId": "slide-13",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-13.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 14,
+      "layoutId": "slide-14",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-14.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 15,
+      "layoutId": "slide-15",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-15.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 16,
+      "layoutId": "slide-16",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-16.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "personal-trainer-portfolio-black-and-beige-modern-minimal-presentation",
+      "slide": 17,
+      "layoutId": "slide-17",
+      "file": "seed__personal-trainer-portfolio-black-and-beige-modern-minimal-presentation__slide-17.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 1,
+      "layoutId": "slide-1",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-01.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 2,
+      "layoutId": "slide-2",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-02.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "contrast"
+      ]
+    },
+    {
+      "kind": "seed",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 3,
+      "layoutId": "slide-3",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-03.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 4,
+      "layoutId": "slide-4",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-04.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 5,
+      "layoutId": "slide-5",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-05.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "contrast"
+      ]
+    },
+    {
+      "kind": "seed",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 6,
+      "layoutId": "slide-6",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-06.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "contrast"
+      ]
+    },
+    {
+      "kind": "seed",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 7,
+      "layoutId": "slide-7",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-07.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 8,
+      "layoutId": "slide-8",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-08.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "contrast"
+      ]
+    },
+    {
+      "kind": "seed",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 9,
+      "layoutId": "slide-9",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-09.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 10,
+      "layoutId": "slide-10",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-10.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 11,
+      "layoutId": "slide-11",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-11.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 12,
+      "layoutId": "slide-12",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-12.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "contrast"
+      ]
+    },
+    {
+      "kind": "seed",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 13,
+      "layoutId": "slide-13",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-13.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 14,
+      "layoutId": "slide-14",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-14.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 15,
+      "layoutId": "slide-15",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-15.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "contrast"
+      ]
+    },
+    {
+      "kind": "seed",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 16,
+      "layoutId": "slide-16",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-16.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 17,
+      "layoutId": "slide-17",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-17.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 18,
+      "layoutId": "slide-18",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-18.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 19,
+      "layoutId": "slide-19",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-19.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "text overlap"
+      ]
+    },
+    {
+      "kind": "seed",
+      "seed": "pitch-deck-competitor-analysis-slides",
+      "slide": 20,
+      "layoutId": "slide-20",
+      "file": "seed__pitch-deck-competitor-analysis-slides__slide-20.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 1,
+      "layoutId": "slide-1",
+      "file": "seed__seo-competitor-analysis-slides__slide-01.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 2,
+      "layoutId": "slide-2",
+      "file": "seed__seo-competitor-analysis-slides__slide-02.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 3,
+      "layoutId": "slide-3",
+      "file": "seed__seo-competitor-analysis-slides__slide-03.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 4,
+      "layoutId": "slide-4",
+      "file": "seed__seo-competitor-analysis-slides__slide-04.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 5,
+      "layoutId": "slide-5",
+      "file": "seed__seo-competitor-analysis-slides__slide-05.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 6,
+      "layoutId": "slide-6",
+      "file": "seed__seo-competitor-analysis-slides__slide-06.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 7,
+      "layoutId": "slide-7",
+      "file": "seed__seo-competitor-analysis-slides__slide-07.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 8,
+      "layoutId": "slide-8",
+      "file": "seed__seo-competitor-analysis-slides__slide-08.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 9,
+      "layoutId": "slide-9",
+      "file": "seed__seo-competitor-analysis-slides__slide-09.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 10,
+      "layoutId": "slide-10",
+      "file": "seed__seo-competitor-analysis-slides__slide-10.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 11,
+      "layoutId": "slide-11",
+      "file": "seed__seo-competitor-analysis-slides__slide-11.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 12,
+      "layoutId": "slide-12",
+      "file": "seed__seo-competitor-analysis-slides__slide-12.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 13,
+      "layoutId": "slide-13",
+      "file": "seed__seo-competitor-analysis-slides__slide-13.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 14,
+      "layoutId": "slide-14",
+      "file": "seed__seo-competitor-analysis-slides__slide-14.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 15,
+      "layoutId": "slide-15",
+      "file": "seed__seo-competitor-analysis-slides__slide-15.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 16,
+      "layoutId": "slide-16",
+      "file": "seed__seo-competitor-analysis-slides__slide-16.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 17,
+      "layoutId": "slide-17",
+      "file": "seed__seo-competitor-analysis-slides__slide-17.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 18,
+      "layoutId": "slide-18",
+      "file": "seed__seo-competitor-analysis-slides__slide-18.png",
+      "geometryPass": true,
+      "geometryReasons": []
+    },
+    {
+      "kind": "seed",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 19,
+      "layoutId": "slide-19",
+      "file": "seed__seo-competitor-analysis-slides__slide-19.png",
+      "geometryPass": false,
+      "geometryReasons": [
+        "text overlap"
+      ]
+    },
+    {
+      "kind": "seed",
+      "seed": "seo-competitor-analysis-slides",
+      "slide": 20,
+      "layoutId": "slide-20",
+      "file": "seed__seo-competitor-analysis-slides__slide-20.png",
       "geometryPass": true,
       "geometryReasons": []
     }

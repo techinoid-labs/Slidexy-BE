@@ -1,0 +1,933 @@
+{
+  "direction": {
+    "profile": {
+      "brand": "Apex Payroll",
+      "industry": "payroll"
+    },
+    "mood": "confident",
+    "keywords": [
+      "office",
+      "team",
+      "desk"
+    ],
+    "query": "office team desk",
+    "model": "stub"
+  },
+  "brief": {
+    "plan": [
+      {
+        "role": "Cover",
+        "component": "cover",
+        "variant": "word"
+      },
+      {
+        "role": "Contents",
+        "component": "agenda",
+        "variant": "numbered-list"
+      },
+      {
+        "role": "About",
+        "component": "split-copy",
+        "variant": "photo-right"
+      },
+      {
+        "role": "Problem",
+        "component": "statement",
+        "variant": "left"
+      },
+      {
+        "role": "Solution",
+        "component": "split-copy",
+        "variant": "photo-left"
+      },
+      {
+        "role": "Proof",
+        "component": "big-number",
+        "variant": "left"
+      },
+      {
+        "role": "Market",
+        "component": "stat-row",
+        "variant": "three-up"
+      },
+      {
+        "role": "People",
+        "component": "team-grid",
+        "variant": "three"
+      },
+      {
+        "role": "Close",
+        "component": "close",
+        "variant": "plain"
+      }
+    ],
+    "accentRole": "Proof",
+    "paletteBucket": "light-neutral",
+    "fontPair": "corp-calibri",
+    "density": "balanced",
+    "coverPattern": "oversized",
+    "signature": "frame",
+    "mood": "confident",
+    "copy": {
+      "0": {
+        "title": "Cover title for payroll",
+        "body": "Cover body stays short",
+        "kicker": "2026"
+      },
+      "1": {
+        "title": "Contents",
+        "item-1": "About",
+        "item-2": "Problem",
+        "item-3": "Solution",
+        "item-4": "Proof",
+        "item-5": "Market",
+        "item-6": "People"
+      },
+      "2": {
+        "title": "Section title for About",
+        "body": "Body copy for About under one hundred sixty",
+        "bullet-1": "First bullet point under eighty characters",
+        "bullet-2": "Filled bullet-2",
+        "bullet-3": "Filled bullet-3"
+      },
+      "3": {
+        "statement": "Payroll should disappear into the workday",
+        "kicker": "Note"
+      },
+      "4": {
+        "title": "Section title for Solution",
+        "body": "Body copy for Solution under one hundred sixty",
+        "bullet-1": "First bullet point under eighty characters",
+        "bullet-2": "Second bullet point under eighty characters",
+        "bullet-3": "Third bullet point under eighty characters"
+      },
+      "5": {
+        "number": "99.9%",
+        "label": "Accuracy",
+        "body": "Proof body text under limit"
+      },
+      "6": {
+        "title": "Proof title",
+        "stat-1": "47%",
+        "stat-2": "12d",
+        "stat-3": "98%",
+        "label-1": "Churn",
+        "label-2": "Close",
+        "label-3": "On-time",
+        "body": "Proof body text under limit"
+      },
+      "7": {
+        "title": "People title",
+        "name-1": "Alex",
+        "name-2": "Sam",
+        "name-3": "Casey",
+        "name-4": "Riley",
+        "role-1": "CEO",
+        "role-2": "CS",
+        "role-3": "Eng",
+        "role-4": "Finance"
+      },
+      "8": {
+        "title": "Close title here",
+        "body": "Close body invite",
+        "kicker": "Next"
+      }
+    }
+  },
+  "fallbacks": [
+    {
+      "field": "copyFill.2.bullet-2",
+      "got": "",
+      "used": "filled",
+      "reason": "copyFill"
+    },
+    {
+      "field": "copyFill.2.bullet-3",
+      "got": "",
+      "used": "filled",
+      "reason": "copyFill"
+    }
+  ],
+  "nonce": "test-copyfill-4f1",
+  "photoQueries": [
+    {
+      "query": "office team",
+      "bucket": "subject",
+      "orientation": "landscape",
+      "hits": 1
+    },
+    {
+      "query": "desk abstract",
+      "bucket": "texture",
+      "orientation": "landscape",
+      "hits": 1
+    },
+    {
+      "query": "people team office",
+      "bucket": "people",
+      "orientation": "portrait",
+      "hits": 1
+    }
+  ],
+  "fontPair": "corp-calibri",
+  "bucket": "light-neutral",
+  "vibe": "light-neutral",
+  "fits": [],
+  "collapses": [
+    {
+      "slide": 1,
+      "stackId": "cover-copy",
+      "gap": 28,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-cover-kicker",
+          "fromY": 72,
+          "toY": 72,
+          "deltaY": 0,
+          "height": 23.76
+        },
+        {
+          "id": "composer-cover-title",
+          "fromY": 121.59,
+          "toY": 123.76,
+          "deltaY": 2.17,
+          "height": 138.6
+        },
+        {
+          "id": "composer-cover-body",
+          "fromY": 401.59,
+          "toY": 290.36,
+          "deltaY": -111.23,
+          "height": 41.58
+        }
+      ]
+    },
+    {
+      "slide": 2,
+      "stackId": "agenda",
+      "gap": 24,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-agenda-title",
+          "fromY": 96,
+          "toY": 96,
+          "deltaY": 0,
+          "height": 77.44
+        },
+        {
+          "id": "composer-agenda-item-1",
+          "fromY": 190.39,
+          "toY": 197.44,
+          "deltaY": 7.05,
+          "height": 38.5
+        },
+        {
+          "id": "composer-agenda-item-2",
+          "fromY": 249.39,
+          "toY": 259.94,
+          "deltaY": 10.55,
+          "height": 38.5
+        },
+        {
+          "id": "composer-agenda-item-3",
+          "fromY": 308.39,
+          "toY": 322.44,
+          "deltaY": 14.05,
+          "height": 38.5
+        },
+        {
+          "id": "composer-agenda-item-4",
+          "fromY": 367.39,
+          "toY": 384.94,
+          "deltaY": 17.55,
+          "height": 38.5
+        },
+        {
+          "id": "composer-agenda-item-5",
+          "fromY": 426.39,
+          "toY": 447.44,
+          "deltaY": 21.05,
+          "height": 38.5
+        },
+        {
+          "id": "composer-agenda-item-6",
+          "fromY": 485.39,
+          "toY": 509.94,
+          "deltaY": 24.55,
+          "height": 38.5
+        }
+      ]
+    },
+    {
+      "slide": 3,
+      "stackId": "copy",
+      "gap": 28,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-split-copy-title",
+          "fromY": 96,
+          "toY": 96,
+          "deltaY": 0,
+          "height": 67.76
+        },
+        {
+          "id": "composer-split-copy-body",
+          "fromY": 247.19,
+          "toY": 191.76,
+          "deltaY": -55.43,
+          "height": 32.67
+        },
+        {
+          "id": "composer-split-copy-bullet-1",
+          "fromY": 364.25,
+          "toY": 252.43,
+          "deltaY": -111.82,
+          "height": 28.6
+        },
+        {
+          "id": "composer-split-copy-bullet-2",
+          "fromY": 418.25,
+          "toY": 309.03,
+          "deltaY": -109.22,
+          "height": 28.6
+        },
+        {
+          "id": "composer-split-copy-bullet-3",
+          "fromY": 472.25,
+          "toY": 365.63,
+          "deltaY": -106.62,
+          "height": 28.6
+        }
+      ]
+    },
+    {
+      "slide": 4,
+      "stackId": "statement",
+      "gap": 28,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-statement-statement",
+          "fromY": 160,
+          "toY": 160,
+          "deltaY": 0,
+          "height": 221.76
+        }
+      ]
+    },
+    {
+      "slide": 5,
+      "stackId": "copy",
+      "gap": 28,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-split-copy-title",
+          "fromY": 96,
+          "toY": 96,
+          "deltaY": 0,
+          "height": 67.76
+        },
+        {
+          "id": "composer-split-copy-body",
+          "fromY": 247.19,
+          "toY": 191.76,
+          "deltaY": -55.43,
+          "height": 32.67
+        },
+        {
+          "id": "composer-split-copy-bullet-1",
+          "fromY": 364.25,
+          "toY": 252.43,
+          "deltaY": -111.82,
+          "height": 28.6
+        },
+        {
+          "id": "composer-split-copy-bullet-2",
+          "fromY": 418.25,
+          "toY": 309.03,
+          "deltaY": -109.22,
+          "height": 28.6
+        },
+        {
+          "id": "composer-split-copy-bullet-3",
+          "fromY": 472.25,
+          "toY": 365.63,
+          "deltaY": -106.62,
+          "height": 28.6
+        }
+      ]
+    },
+    {
+      "slide": 6,
+      "stackId": "number",
+      "gap": 20,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-big-number-number",
+          "fromY": 160,
+          "toY": 160,
+          "deltaY": 0,
+          "height": 188.1
+        },
+        {
+          "id": "composer-big-number-label",
+          "fromY": 351,
+          "toY": 368.1,
+          "deltaY": 17.1,
+          "height": 45.54
+        },
+        {
+          "id": "composer-big-number-body",
+          "fromY": 412.39,
+          "toY": 433.64,
+          "deltaY": 21.25,
+          "height": 32.67
+        }
+      ]
+    },
+    {
+      "slide": 7,
+      "stackId": "stat-1",
+      "gap": 12,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-stat-row-stat-1",
+          "fromY": 160.8,
+          "toY": 160.8,
+          "deltaY": 0,
+          "height": 79.2
+        },
+        {
+          "id": "composer-stat-row-label-1",
+          "fromY": 244.8,
+          "toY": 252,
+          "deltaY": 7.2,
+          "height": 28.6
+        }
+      ]
+    },
+    {
+      "slide": 7,
+      "stackId": "stat-2",
+      "gap": 12,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-stat-row-stat-2",
+          "fromY": 160.8,
+          "toY": 160.8,
+          "deltaY": 0,
+          "height": 79.2
+        },
+        {
+          "id": "composer-stat-row-label-2",
+          "fromY": 244.8,
+          "toY": 252,
+          "deltaY": 7.2,
+          "height": 28.6
+        }
+      ]
+    },
+    {
+      "slide": 7,
+      "stackId": "stat-3",
+      "gap": 12,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-stat-row-stat-3",
+          "fromY": 160.8,
+          "toY": 160.8,
+          "deltaY": 0,
+          "height": 79.2
+        },
+        {
+          "id": "composer-stat-row-label-3",
+          "fromY": 244.8,
+          "toY": 252,
+          "deltaY": 7.2,
+          "height": 28.6
+        }
+      ]
+    },
+    {
+      "slide": 7,
+      "stackId": "main",
+      "gap": 36,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-stat-row-title",
+          "fromY": 72,
+          "toY": 72,
+          "deltaY": 0,
+          "height": 58.08
+        },
+        {
+          "id": "main-block-1",
+          "fromY": 160.8,
+          "toY": 166.08,
+          "deltaY": 5.28,
+          "height": 110
+        },
+        {
+          "id": "composer-stat-row-body",
+          "fromY": 306.8,
+          "toY": 312.08,
+          "deltaY": 5.28,
+          "height": 32.67
+        }
+      ]
+    },
+    {
+      "slide": 8,
+      "stackId": "header",
+      "gap": 12,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-team-grid-title",
+          "fromY": 72,
+          "toY": 72,
+          "deltaY": 0,
+          "height": 58.08
+        }
+      ]
+    },
+    {
+      "slide": 8,
+      "stackId": "member-1",
+      "gap": 16,
+      "align": "center",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-team-grid-photo-1",
+          "fromY": 220,
+          "toY": 220,
+          "deltaY": 0,
+          "height": 160
+        },
+        {
+          "id": "composer-team-grid-name-1",
+          "fromY": 396,
+          "toY": 396,
+          "deltaY": 0,
+          "height": 30.36
+        },
+        {
+          "id": "composer-team-grid-role-1",
+          "fromY": 439.59,
+          "toY": 442.36,
+          "deltaY": 2.77,
+          "height": 25.74
+        }
+      ]
+    },
+    {
+      "slide": 8,
+      "stackId": "member-2",
+      "gap": 16,
+      "align": "center",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-team-grid-photo-2",
+          "fromY": 220,
+          "toY": 220,
+          "deltaY": 0,
+          "height": 160
+        },
+        {
+          "id": "composer-team-grid-name-2",
+          "fromY": 396,
+          "toY": 396,
+          "deltaY": 0,
+          "height": 30.36
+        },
+        {
+          "id": "composer-team-grid-role-2",
+          "fromY": 439.59,
+          "toY": 442.36,
+          "deltaY": 2.77,
+          "height": 25.74
+        }
+      ]
+    },
+    {
+      "slide": 8,
+      "stackId": "member-3",
+      "gap": 16,
+      "align": "center",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-team-grid-photo-3",
+          "fromY": 220,
+          "toY": 220,
+          "deltaY": 0,
+          "height": 160
+        },
+        {
+          "id": "composer-team-grid-name-3",
+          "fromY": 396,
+          "toY": 396,
+          "deltaY": 0,
+          "height": 30.36
+        },
+        {
+          "id": "composer-team-grid-role-3",
+          "fromY": 439.59,
+          "toY": 442.36,
+          "deltaY": 2.77,
+          "height": 25.74
+        }
+      ]
+    },
+    {
+      "slide": 9,
+      "stackId": "close-copy",
+      "gap": 24,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-close-kicker",
+          "fromY": 280,
+          "toY": 280,
+          "deltaY": 0,
+          "height": 23.76
+        },
+        {
+          "id": "composer-close-title",
+          "fromY": 325.59,
+          "toY": 327.76,
+          "deltaY": 2.17,
+          "height": 83.16
+        },
+        {
+          "id": "composer-close-body",
+          "fromY": 500.78,
+          "toY": 434.92,
+          "deltaY": -65.86,
+          "height": 35.64
+        }
+      ]
+    }
+  ],
+  "analysis": {
+    "score": 100,
+    "passed": 9,
+    "total": 9,
+    "failures": [],
+    "attempt": 1,
+    "mode": "manual",
+    "aesthetic": {
+      "slides": 9,
+      "avgWhitespace": 0.726,
+      "avgTextDensity": 72,
+      "typeScaleAllOk": true,
+      "minFontSeen": 18
+    },
+    "slides": [
+      {
+        "slide": 1,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 2,
+            "right": 2,
+            "top": 4
+          },
+          "margin": {
+            "left": 0,
+            "right": 128,
+            "top": 0,
+            "bottom": 0
+          },
+          "whitespaceRatio": 0.79,
+          "minTextBox": {
+            "fontSize": 18,
+            "area": 33264
+          },
+          "typeScaleOk": true,
+          "textDensity": 49,
+          "stackGap": 0,
+          "coverVisualMass": 0.011
+        }
+      },
+      {
+        "slide": 2,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 1,
+            "right": 1,
+            "top": 7
+          },
+          "margin": {
+            "left": 96,
+            "right": 104,
+            "top": 96,
+            "bottom": 351.56
+          },
+          "whitespaceRatio": 0.697,
+          "minTextBox": {
+            "fontSize": 28,
+            "area": 53900
+          },
+          "typeScaleOk": true,
+          "textDensity": 45,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      },
+      {
+        "slide": 3,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 2,
+            "right": 2,
+            "top": 6
+          },
+          "margin": {
+            "left": 72,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "whitespaceRatio": 0.446,
+          "minTextBox": {
+            "fontSize": 20,
+            "area": 20020
+          },
+          "typeScaleOk": true,
+          "textDensity": 138,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      },
+      {
+        "slide": 4,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 1,
+            "right": 1,
+            "top": 1
+          },
+          "margin": {
+            "left": 96,
+            "right": 96,
+            "top": 160,
+            "bottom": 518.24
+          },
+          "whitespaceRatio": 0.781,
+          "minTextBox": {
+            "fontSize": 96,
+            "area": 312238
+          },
+          "typeScaleOk": true,
+          "textDensity": 41,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      },
+      {
+        "slide": 5,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 2,
+            "right": 2,
+            "top": 6
+          },
+          "margin": {
+            "left": 0,
+            "right": 100,
+            "top": 0,
+            "bottom": 0
+          },
+          "whitespaceRatio": 0.446,
+          "minTextBox": {
+            "fontSize": 20,
+            "area": 20020
+          },
+          "typeScaleOk": true,
+          "textDensity": 199,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      },
+      {
+        "slide": 6,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 1,
+            "right": 1,
+            "top": 3
+          },
+          "margin": {
+            "left": 96,
+            "right": 604,
+            "top": 160,
+            "bottom": 433.69
+          },
+          "whitespaceRatio": 0.834,
+          "minTextBox": {
+            "fontSize": 22,
+            "area": 29403
+          },
+          "typeScaleOk": true,
+          "textDensity": 40,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      },
+      {
+        "slide": 7,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 3,
+            "right": 4,
+            "top": 4
+          },
+          "margin": {
+            "left": 72,
+            "right": 72,
+            "top": 72,
+            "bottom": 555.25
+          },
+          "whitespaceRatio": 0.81,
+          "minTextBox": {
+            "fontSize": 20,
+            "area": 11440
+          },
+          "typeScaleOk": true,
+          "textDensity": 64,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      },
+      {
+        "slide": 8,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 6,
+            "right": 7,
+            "top": 4
+          },
+          "margin": {
+            "left": 96,
+            "right": 96.01,
+            "top": 72,
+            "bottom": 431.9
+          },
+          "whitespaceRatio": 0.833,
+          "minTextBox": {
+            "fontSize": 18,
+            "area": 11257
+          },
+          "typeScaleOk": true,
+          "textDensity": 32,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      },
+      {
+        "slide": 9,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 1,
+            "right": 1,
+            "top": 3
+          },
+          "margin": {
+            "left": 72,
+            "right": 528,
+            "top": 280,
+            "bottom": 429.44
+          },
+          "whitespaceRatio": 0.9,
+          "minTextBox": {
+            "fontSize": 18,
+            "area": 23760
+          },
+          "typeScaleOk": true,
+          "textDensity": 37,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      }
+    ],
+    "composer": true,
+    "pptxGate": {
+      "skipped": false,
+      "pass": true,
+      "failures": []
+    }
+  },
+  "replay": false,
+  "attempt": 1,
+  "refinement": {
+    "fired": false,
+    "note": "component-swap refinement removed in 4f-1"
+  },
+  "copyFill": {
+    "fired": true,
+    "slots": [
+      "2.bullet-2",
+      "2.bullet-3"
+    ]
+  },
+  "textModelCalls": 4
+}

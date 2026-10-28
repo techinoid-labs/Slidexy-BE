@@ -23,6 +23,7 @@ const {
   readReplacements,
   publishTemplate,
   discardTemplate,
+  reviewConsole,
 } = require("./adminCatalog");
 const { listCatalog, readCatalog, slideFile, buildPptx } = require("./catalog");
 
@@ -170,6 +171,49 @@ const server = http.createServer(async (req, res) => {
       if (req.method === "POST" && url === "/api/admin/discard-template") {
         const body = await readBody(req);
         return send(res, 200, discardTemplate(body.id));
+      }
+      const reviewOne = url.match(/^\/api\/admin\/review\/([^/]+)$/);
+      if (req.method === "GET" && reviewOne) {
+        return send(res, 200, reviewConsole.getReviewPayload(decodeURIComponent(reviewOne[1])));
+      }
+      if (req.method === "POST" && reviewOne) {
+        const body = await readBody(req);
+        return send(res, 200, reviewConsole.submitReview(decodeURIComponent(reviewOne[1]), body));
+      }
+      if (req.method === "GET" && url === "/api/admin/reviews") {
+        return send(res, 200, { reviews: reviewConsole.listReviews(), jobs: reviewConsole.listJobsForReview() });
+      }
+      const replayOne = url.match(/^\/api\/admin\/replay\/([^/]+)$/);
+      if (req.method === "POST" && replayOne) {
+        return send(res, 200, await reviewConsole.replayReview(decodeURIComponent(replayOne[1])));
+      }
+      if (req.method === "GET" && url === "/api/admin/gallery") {
+        return send(res, 200, await reviewConsole.getGallery());
+      }
+      if (req.method === "POST" && url === "/api/admin/gallery/flag") {
+        const body = await readBody(req);
+        return send(res, 200, reviewConsole.setGalleryFlag(body));
+      }
+      const galleryPng = url.match(/^\/api\/admin\/gallery\/png\/([^/]+)$/);
+      if (req.method === "GET" && galleryPng) {
+        const file = reviewConsole.galleryPngPath(decodeURIComponent(galleryPng[1]));
+        const bytes = fs.readFileSync(file);
+        res.writeHead(200, { "Content-Type": "image/png", "Content-Length": bytes.length, "Cache-Control": "no-store" });
+        res.end(bytes);
+        return;
+      }
+      if (req.method === "GET" && url === "/api/admin/panel") {
+        return send(res, 200, reviewConsole.getPanel());
+      }
+      if (req.method === "POST" && url === "/api/admin/panel/run") {
+        return send(res, 200, await reviewConsole.runPanel());
+      }
+      if (req.method === "POST" && url === "/api/admin/ppt-check") {
+        const body = await readBody(req);
+        return send(res, 200, reviewConsole.setPptCheck(body));
+      }
+      if (req.method === "GET" && url === "/api/admin/git-status") {
+        return send(res, 200, reviewConsole.gitDirtyCount());
       }
     }
     if (req.method === "GET" && url === "/api/template-pipeline") {

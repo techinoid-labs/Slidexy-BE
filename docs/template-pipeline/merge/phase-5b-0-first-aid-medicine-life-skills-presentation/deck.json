@@ -1,0 +1,5467 @@
+{
+  "schemaVersion": 2,
+  "id": "vantage-pay",
+  "name": "Vantage Pay: A corporate payroll company",
+  "description": "Themed for A corporate payroll company",
+  "category": "converted",
+  "visualMode": "hybrid",
+  "source": "first-aid-medicine-life-skills-presentation.pptx",
+  "taste": {
+    "designLanguage": "editorial",
+    "cover": "type",
+    "density": "balanced",
+    "align": "left",
+    "groundMode": "flat"
+  },
+  "tokens": {
+    "color": {
+      "bg": "#f2e7e3",
+      "surface": "#f2e7e3",
+      "card": "#FFFFFF",
+      "ink": "#1C1916",
+      "muted": "#1C1916",
+      "rule": "#D9D0C6",
+      "accent": "#4f5a50",
+      "accent2": "#4f5a50",
+      "onAccent": "#F6F1E8"
+    },
+    "font": {
+      "display": "Arial",
+      "text": "Arial"
+    },
+    "type": {
+      "h1": 64,
+      "body": 22
+    }
+  },
+  "theme": {
+    "backgroundColor": "#4f5a50",
+    "fontFamily": "Arial",
+    "titleColor": "#1C1916",
+    "bodyColor": "#1C1916"
+  },
+  "layoutSequence": [
+    "slide-1",
+    "slide-2",
+    "slide-3",
+    "slide-4",
+    "slide-5",
+    "slide-6",
+    "slide-7",
+    "slide-8",
+    "slide-9",
+    "slide-10",
+    "slide-11",
+    "slide-12",
+    "slide-13",
+    "slide-14",
+    "slide-15",
+    "slide-16",
+    "slide-17",
+    "slide-18"
+  ],
+  "layouts": {
+    "slide-1": {
+      "version": 2,
+      "id": "slide-1",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-1",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#1E3A32",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "cover-photo",
+          "type": "image",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 1,
+          "imageContent": {
+            "url": "photos/thematic/phase-5b-0-first-aid-medicine-life-skills-presen/landscape-01.jpg",
+            "fit": "cover",
+            "alignX": 0.5,
+            "alignY": 0.5
+          }
+        },
+        {
+          "id": "cover-scrim",
+          "type": "shape",
+          "x": 0,
+          "y": 520,
+          "width": 1600,
+          "height": 380,
+          "zIndex": 2,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#000000",
+            "cornerRadius": 0
+          },
+          "opacity": 0.55
+        },
+        {
+          "id": "cover-title",
+          "type": "text",
+          "x": 48,
+          "y": 620,
+          "width": 1100,
+          "height": 200,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "Amiko",
+            "fontSize": 72,
+            "fontWeight": 800,
+            "color": "#E16358",
+            "textAlign": "left",
+            "lineHeight": 0.95,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Vantage Pay",
+                "fontFamily": "Amiko",
+                "fontSize": 72,
+                "fontWeight": 800,
+                "color": "#E16358"
+              }
+            ]
+          }
+        }
+      ],
+      "generatedCover": "fullBleed"
+    },
+    "slide-2": {
+      "version": 2,
+      "id": "slide-2",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-2",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#1E3A32",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "s2-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#4f5a50"
+          }
+        },
+        {
+          "id": "s2-e2-t",
+          "type": "text",
+          "x": 182.07,
+          "y": 72.98,
+          "width": 1235.85,
+          "height": 118.5,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "Amiko",
+            "fontSize": 97.77,
+            "fontWeight": 800,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.07,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "AGO",
+                "fontFamily": "Amiko",
+                "fontSize": 97.77,
+                "fontWeight": 800,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s2-e3-t",
+          "type": "text",
+          "x": 103.65,
+          "y": 660.05,
+          "width": 331.8,
+          "height": 48.72,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 32.59,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Agenda Overview",
+                "fontFamily": "Roboto",
+                "fontSize": 32.59,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s2-e4-t",
+          "type": "text",
+          "x": 103.65,
+          "y": 745.5,
+          "width": 331.8,
+          "height": 64.5,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 23.33,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Key topics for the quarterly review",
+                "fontFamily": "Roboto",
+                "fontSize": 23.33,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s2-e5",
+          "type": "maskedImage",
+          "x": 117.97,
+          "y": 290.86,
+          "width": 317.48,
+          "height": 318.27,
+          "zIndex": 5,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-2-img-2.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 3628775 0 L 3628775 3637870 L 0 3637870 L 0 0 Z",
+              "viewBox": "0 0 3628775 3637869",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s2-e6-t",
+          "type": "text",
+          "x": 634.1,
+          "y": 660.05,
+          "width": 331.8,
+          "height": 48.72,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 32.59,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Agenda Overview",
+                "fontFamily": "Roboto",
+                "fontSize": 32.59,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s2-e7-t",
+          "type": "text",
+          "x": 634.1,
+          "y": 745.5,
+          "width": 331.8,
+          "height": 64.5,
+          "zIndex": 7,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 23.33,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Key topics for the quarterly review",
+                "fontFamily": "Roboto",
+                "fontSize": 23.33,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s2-e8-t",
+          "type": "text",
+          "x": 1164.55,
+          "y": 660.05,
+          "width": 331.8,
+          "height": 48.72,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 32.59,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Agenda Overview",
+                "fontFamily": "Roboto",
+                "fontSize": 32.59,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s2-e9-t",
+          "type": "text",
+          "x": 1164.55,
+          "y": 745.5,
+          "width": 331.8,
+          "height": 64.5,
+          "zIndex": 9,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 23.33,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Key topics for the quarterly review",
+                "fontFamily": "Roboto",
+                "fontSize": 23.33,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s2-e10",
+          "type": "maskedImage",
+          "x": 705.05,
+          "y": 270,
+          "width": 189.9,
+          "height": 360,
+          "zIndex": 10,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-2-img-3.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 2170556 0 L 2170556 4114800 L 0 4114800 L 0 0 Z",
+              "viewBox": "0 0 2170557 4114800",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s2-e11",
+          "type": "maskedImage",
+          "x": 1164.39,
+          "y": 301.76,
+          "width": 297.6,
+          "height": 296.48,
+          "zIndex": 11,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-2-img-4.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 3401522 0 L 3401522 3388766 L 0 3388766 L 0 0 Z",
+              "viewBox": "0 0 3401523 3388767",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        }
+      ]
+    },
+    "slide-3": {
+      "version": 2,
+      "id": "slide-3",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-3",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#1E3A32",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "s3-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#4f5a50"
+          }
+        },
+        {
+          "id": "s3-e2-t",
+          "type": "text",
+          "x": 1037.99,
+          "y": 118.66,
+          "width": 546.34,
+          "height": 47.06,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 32.59,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Meeting agenda",
+                "fontFamily": "Roboto",
+                "fontSize": 32.59,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e3-t",
+          "type": "text",
+          "x": 1037.99,
+          "y": 37.43,
+          "width": 114.39,
+          "height": 70.38,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 32.59,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.39979,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "01",
+                "fontFamily": "Roboto",
+                "fontSize": 32.59,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e4-t",
+          "type": "text",
+          "x": 1037.99,
+          "y": 291.16,
+          "width": 546.34,
+          "height": 47.06,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 32.59,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Meeting agenda",
+                "fontFamily": "Roboto",
+                "fontSize": 32.59,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e5-t",
+          "type": "text",
+          "x": 1037.99,
+          "y": 209.92,
+          "width": 114.39,
+          "height": 70.38,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 32.59,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.39979,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "02",
+                "fontFamily": "Roboto",
+                "fontSize": 32.59,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e6-t",
+          "type": "text",
+          "x": 1037.99,
+          "y": 463.65,
+          "width": 546.34,
+          "height": 47.06,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 32.59,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Meeting agenda",
+                "fontFamily": "Roboto",
+                "fontSize": 32.59,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e7-t",
+          "type": "text",
+          "x": 1037.99,
+          "y": 382.42,
+          "width": 114.39,
+          "height": 70.38,
+          "zIndex": 7,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 32.59,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.39979,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "03",
+                "fontFamily": "Roboto",
+                "fontSize": 32.59,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e8-t",
+          "type": "text",
+          "x": 1037.99,
+          "y": 636.15,
+          "width": 546.34,
+          "height": 47.06,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 32.59,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Meeting agenda",
+                "fontFamily": "Roboto",
+                "fontSize": 32.59,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e9-t",
+          "type": "text",
+          "x": 1037.99,
+          "y": 554.91,
+          "width": 114.39,
+          "height": 70.38,
+          "zIndex": 9,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 32.59,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.39979,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "04",
+                "fontFamily": "Roboto",
+                "fontSize": 32.59,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e10-t",
+          "type": "text",
+          "x": 1037.99,
+          "y": 808.64,
+          "width": 546.34,
+          "height": 47.06,
+          "zIndex": 10,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 32.59,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Meeting agenda",
+                "fontFamily": "Roboto",
+                "fontSize": 32.59,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e11-t",
+          "type": "text",
+          "x": 1037.99,
+          "y": 727.41,
+          "width": 114.39,
+          "height": 70.38,
+          "zIndex": 11,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 32.59,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.39979,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "05",
+                "fontFamily": "Roboto",
+                "fontSize": 32.59,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e12-t",
+          "type": "text",
+          "x": 119.2,
+          "y": 79.69,
+          "width": 733.46,
+          "height": 118.5,
+          "zIndex": 12,
+          "textStyle": {
+            "fontFamily": "Amiko",
+            "fontSize": 97.77,
+            "fontWeight": 800,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.07,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "CONTENTS",
+                "fontFamily": "Amiko",
+                "fontSize": 97.77,
+                "fontWeight": 800,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e13-t",
+          "type": "text",
+          "x": 87.05,
+          "y": 721.77,
+          "width": 733.46,
+          "height": 118.5,
+          "zIndex": 13,
+          "textStyle": {
+            "fontFamily": "Amiko",
+            "fontSize": 97.77,
+            "fontWeight": 800,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.07,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "INDEX",
+                "fontFamily": "Amiko",
+                "fontSize": 97.77,
+                "fontWeight": 800,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s3-e14",
+          "type": "image",
+          "x": 23.11,
+          "y": 198.19,
+          "width": 925.64,
+          "height": 524.2,
+          "zIndex": 14,
+          "imageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-3-img-5.png",
+            "fit": "cover",
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        }
+      ]
+    },
+    "slide-4": {
+      "version": 2,
+      "id": "slide-4",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-4",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#1E3A32",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "s4-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#4f5a50"
+          }
+        },
+        {
+          "id": "s4-e2",
+          "type": "illustration",
+          "x": -44.65,
+          "y": 455.75,
+          "width": 1689.31,
+          "height": 1.67,
+          "zIndex": 2,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 50 L 100 50",
+            "viewBox": "0 0 100 100",
+            "fill": "none",
+            "stroke": "#981D13",
+            "strokeWidth": 3.33
+          }
+        },
+        {
+          "id": "s4-e3-t",
+          "type": "text",
+          "x": 95.25,
+          "y": 326.7,
+          "width": 339.47,
+          "height": 48.72,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "Amiko",
+            "fontSize": 35.56,
+            "fontWeight": 800,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Agenda Overview",
+                "fontFamily": "Amiko",
+                "fontSize": 35.56,
+                "fontWeight": 800,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s4-e4-t",
+          "type": "text",
+          "x": 426.78,
+          "y": 539.08,
+          "width": 393.13,
+          "height": 48.72,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "Amiko",
+            "fontSize": 35.56,
+            "fontWeight": 800,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Agenda Overview",
+                "fontFamily": "Amiko",
+                "fontSize": 35.56,
+                "fontWeight": 800,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s4-e5-t",
+          "type": "text",
+          "x": 794.97,
+          "y": 334.53,
+          "width": 360.03,
+          "height": 48.72,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "Amiko",
+            "fontSize": 35.56,
+            "fontWeight": 800,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Agenda Overview",
+                "fontFamily": "Amiko",
+                "fontSize": 35.56,
+                "fontWeight": 800,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s4-e6-t",
+          "type": "text",
+          "x": 1140.31,
+          "y": 539.08,
+          "width": 388.23,
+          "height": 48.72,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "Amiko",
+            "fontSize": 35.56,
+            "fontWeight": 800,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Agenda Overview",
+                "fontFamily": "Amiko",
+                "fontSize": 35.56,
+                "fontWeight": 800,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s4-e9",
+          "type": "illustration",
+          "x": 58.87,
+          "y": 519.18,
+          "width": 413.9,
+          "height": 413.9,
+          "zIndex": 9,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#FFFFFF",
+            "stroke": "#981D13",
+            "strokeWidth": 3.33
+          }
+        },
+        {
+          "id": "s4-e10",
+          "type": "illustration",
+          "x": 427.92,
+          "y": -19.91,
+          "width": 413.9,
+          "height": 413.9,
+          "zIndex": 10,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#FFFFFF",
+            "stroke": "#981D13",
+            "strokeWidth": 3.33
+          }
+        },
+        {
+          "id": "s4-e11",
+          "type": "illustration",
+          "x": 768.04,
+          "y": 519.18,
+          "width": 413.9,
+          "height": 413.9,
+          "zIndex": 11,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#FFFFFF",
+            "stroke": "#981D13",
+            "strokeWidth": 3.33
+          }
+        },
+        {
+          "id": "s4-e12",
+          "type": "illustration",
+          "x": 1127.47,
+          "y": -19.91,
+          "width": 413.9,
+          "height": 413.9,
+          "zIndex": 12,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#FFFFFF",
+            "stroke": "#981D13",
+            "strokeWidth": 3.33
+          }
+        },
+        {
+          "id": "s4-e15",
+          "type": "maskedImage",
+          "x": 83.92,
+          "y": 616.79,
+          "width": 344,
+          "height": 181.03,
+          "zIndex": 15,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-4-img-6.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 3931921 0 L 3931921 2069174 L 0 2069174 L 0 0 Z",
+              "viewBox": "0 0 3931921 2069174",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s4-e16",
+          "type": "maskedImage",
+          "x": 480.82,
+          "y": 54.89,
+          "width": 308.1,
+          "height": 244.56,
+          "zIndex": 16,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-4-img-7.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 3521624 0 L 3521624 2795288 L 0 2795288 L 0 0 Z",
+              "viewBox": "0 0 3521624 2795289",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s4-e17",
+          "type": "maskedImage",
+          "x": 818.4,
+          "y": 566.78,
+          "width": 300.64,
+          "height": 287.86,
+          "zIndex": 17,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-4-img-8.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 3436305 0 L 3436305 3290261 L 0 3290261 L 0 0 Z",
+              "viewBox": "0 0 3436305 3290262",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s4-e18",
+          "type": "maskedImage",
+          "x": 1169.19,
+          "y": 63.15,
+          "width": 330.47,
+          "height": 228.03,
+          "zIndex": 18,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-4-img-9.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 3777324 0 L 3777324 2606353 L 0 2606353 L 0 0 Z",
+              "viewBox": "0 0 3777323 2606353",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        }
+      ]
+    },
+    "slide-5": {
+      "version": 2,
+      "id": "slide-5",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-5",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#1E3A32",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "s5-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#4f5a50"
+          }
+        },
+        {
+          "id": "s5-e2-t-p1",
+          "type": "text",
+          "x": 294.95,
+          "y": 131.15,
+          "width": 859.66,
+          "height": 122.64,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "Amiko",
+            "fontSize": 97.77,
+            "fontWeight": 800,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.07,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "VANTAGE PAY",
+                "fontFamily": "Amiko",
+                "fontSize": 97.77,
+                "fontWeight": 800,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s5-e2-t-p2",
+          "type": "text",
+          "x": 294.95,
+          "y": 253.79,
+          "width": 859.66,
+          "height": 122.64,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "Amiko",
+            "fontSize": 97.77,
+            "fontWeight": 800,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.07,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "OVERVIEW",
+                "fontFamily": "Amiko",
+                "fontSize": 97.77,
+                "fontWeight": 800,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s5-e4",
+          "type": "maskedImage",
+          "x": 1123.44,
+          "y": 53.08,
+          "width": 773.11,
+          "height": 423.28,
+          "zIndex": 4,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-5-img-10.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 8836678 0 L 8836678 4838081 L 0 4838081 L 0 0 Z",
+              "viewBox": "0 0 8836678 4838081",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s5-e5-t",
+          "type": "text",
+          "x": 824.94,
+          "y": 596.82,
+          "width": 655.32,
+          "height": 183,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 26.67,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.39958,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Vantage Pay simplifies corporate compensation with precise accuracy",
+                "fontFamily": "Roboto",
+                "fontSize": 26.67,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s5-e6",
+          "type": "image",
+          "x": 0,
+          "y": 201.92,
+          "width": 770.51,
+          "height": 698.08,
+          "zIndex": 6,
+          "imageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-5-img-11.png",
+            "fit": "cover",
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        }
+      ]
+    },
+    "slide-6": {
+      "version": 2,
+      "id": "slide-6",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-6",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#1E3A32",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "s6-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#4f5a50"
+          }
+        },
+        {
+          "id": "s6-e2-rot",
+          "type": "rotated",
+          "x": 712.77,
+          "y": -118.87,
+          "width": 1.67,
+          "height": 1132.75,
+          "zIndex": 2,
+          "degrees": 180,
+          "element": {
+            "id": "s6-e2",
+            "type": "illustration",
+            "x": 712.77,
+            "y": -118.87,
+            "width": 1.67,
+            "height": 1132.75,
+            "zIndex": 2,
+            "opacity": 1,
+            "illustrationContent": {
+              "d": "M 0 50 L 100 50",
+              "viewBox": "0 0 100 100",
+              "fill": "none",
+              "stroke": "#981D13",
+              "strokeWidth": 3.33
+            }
+          }
+        },
+        {
+          "id": "s6-e9",
+          "type": "illustration",
+          "x": 770.72,
+          "y": 113.43,
+          "width": 118.18,
+          "height": 118.18,
+          "zIndex": 9,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#FFFFFF",
+            "stroke": "#981D13",
+            "strokeWidth": 3.33
+          }
+        },
+        {
+          "id": "s6-e10",
+          "type": "illustration",
+          "x": 770.72,
+          "y": 286.94,
+          "width": 118.18,
+          "height": 118.18,
+          "zIndex": 10,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#FFFFFF",
+            "stroke": "#981D13",
+            "strokeWidth": 3.33
+          }
+        },
+        {
+          "id": "s6-e11",
+          "type": "illustration",
+          "x": 770.72,
+          "y": 458.28,
+          "width": 118.18,
+          "height": 118.18,
+          "zIndex": 11,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#FFFFFF",
+            "stroke": "#981D13",
+            "strokeWidth": 3.33
+          }
+        },
+        {
+          "id": "s6-e12-t",
+          "type": "text",
+          "x": 788.25,
+          "y": 137.98,
+          "width": 83.12,
+          "height": 64.65,
+          "zIndex": 12,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 32.59,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.39979,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "01",
+                "fontFamily": "Roboto",
+                "fontSize": 32.59,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s6-e13-t",
+          "type": "text",
+          "x": 788.25,
+          "y": 311.49,
+          "width": 83.12,
+          "height": 64.65,
+          "zIndex": 13,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 32.59,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.39979,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "02",
+                "fontFamily": "Roboto",
+                "fontSize": 32.59,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s6-e14-t",
+          "type": "text",
+          "x": 788.25,
+          "y": 482.82,
+          "width": 83.12,
+          "height": 64.65,
+          "zIndex": 14,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 32.59,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.39979,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "03",
+                "fontFamily": "Roboto",
+                "fontSize": 32.59,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s6-e17",
+          "type": "illustration",
+          "x": 770.72,
+          "y": 632.85,
+          "width": 118.18,
+          "height": 118.18,
+          "zIndex": 17,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#FFFFFF",
+            "stroke": "#981D13",
+            "strokeWidth": 3.33
+          }
+        },
+        {
+          "id": "s6-e19-t",
+          "type": "text",
+          "x": 32.09,
+          "y": 49.15,
+          "width": 656.09,
+          "height": 236.98,
+          "zIndex": 19,
+          "textStyle": {
+            "fontFamily": "Amiko",
+            "fontSize": 97.77,
+            "fontWeight": 800,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "WORKFLOW",
+                "fontFamily": "Amiko",
+                "fontSize": 97.77,
+                "fontWeight": 800,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s6-e20",
+          "type": "image",
+          "x": 92.67,
+          "y": 292.41,
+          "width": 527.43,
+          "height": 607.59,
+          "zIndex": 20,
+          "imageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-6-img-12.png",
+            "fit": "cover",
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        }
+      ]
+    },
+    "slide-7": {
+      "version": 2,
+      "id": "slide-7",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-7",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#1E3A32",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "s7-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#4f5a50"
+          }
+        },
+        {
+          "id": "s7-e2",
+          "type": "illustration",
+          "x": 30.52,
+          "y": -15.57,
+          "width": 481.36,
+          "height": 481.36,
+          "zIndex": 2,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#FFFFFF",
+            "stroke": "#981D13",
+            "strokeWidth": 3.33
+          }
+        },
+        {
+          "id": "s7-e3-t",
+          "type": "text",
+          "x": 561.15,
+          "y": 202.76,
+          "width": 493.96,
+          "height": 355.49,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "Amiko",
+            "fontSize": 97.77,
+            "fontWeight": 800,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "SOLUTIONS",
+                "fontFamily": "Amiko",
+                "fontSize": 97.77,
+                "fontWeight": 800,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s7-e5",
+          "type": "maskedImage",
+          "x": 203.06,
+          "y": 47.55,
+          "width": 136.27,
+          "height": 179.59,
+          "zIndex": 5,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-7-img-13.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 1557533 0 L 1557533 2052762 L 0 2052762 L 0 0 Z",
+              "viewBox": "0 0 1557533 2052761",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s7-e6-t",
+          "type": "text",
+          "x": 153.22,
+          "y": 247.2,
+          "width": 235.95,
+          "height": 48.72,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 32.59,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "ITEM 01",
+                "fontFamily": "Roboto",
+                "fontSize": 32.59,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s7-e8",
+          "type": "illustration",
+          "x": 46.52,
+          "y": 434.22,
+          "width": 481.36,
+          "height": 481.36,
+          "zIndex": 8,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#FFFFFF",
+            "stroke": "#981D13",
+            "strokeWidth": 3.33
+          }
+        },
+        {
+          "id": "s7-e9-t",
+          "type": "text",
+          "x": 169.22,
+          "y": 696.99,
+          "width": 235.95,
+          "height": 48.72,
+          "zIndex": 9,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 32.59,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "ITEM 02",
+                "fontFamily": "Roboto",
+                "fontSize": 32.59,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s7-e11",
+          "type": "illustration",
+          "x": 1088.4,
+          "y": -15.57,
+          "width": 481.36,
+          "height": 481.36,
+          "zIndex": 11,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#FFFFFF",
+            "stroke": "#981D13",
+            "strokeWidth": 3.33
+          }
+        },
+        {
+          "id": "s7-e12-t",
+          "type": "text",
+          "x": 1211.1,
+          "y": 247.2,
+          "width": 235.95,
+          "height": 48.72,
+          "zIndex": 12,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 32.59,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "ITEM 03",
+                "fontFamily": "Roboto",
+                "fontSize": 32.59,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s7-e14",
+          "type": "illustration",
+          "x": 1104.4,
+          "y": 434.22,
+          "width": 481.36,
+          "height": 481.36,
+          "zIndex": 14,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#FFFFFF",
+            "stroke": "#981D13",
+            "strokeWidth": 3.33
+          }
+        },
+        {
+          "id": "s7-e17",
+          "type": "maskedImage",
+          "x": 203.06,
+          "y": 532.3,
+          "width": 163.02,
+          "height": 140.8,
+          "zIndex": 17,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-7-img-14.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 1863270 0 L 1863270 1609399 L 0 1609399 L 0 0 Z",
+              "viewBox": "0 0 1863270 1609399",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s7-e18",
+          "type": "maskedImage",
+          "x": 1217.51,
+          "y": 90,
+          "width": 223.13,
+          "height": 101.24,
+          "zIndex": 18,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-7-img-15.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 2550365 0 L 2550365 1157228 L 0 1157228 L 0 0 Z",
+              "viewBox": "0 0 2550366 1157228",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s7-e19",
+          "type": "maskedImage",
+          "x": 1247.66,
+          "y": 529.87,
+          "width": 215.4,
+          "height": 145.66,
+          "zIndex": 19,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-7-img-16.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 2461975 0 L 2461975 1664911 L 0 1664911 L 0 0 Z",
+              "viewBox": "0 0 2461975 1664911",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        }
+      ]
+    },
+    "slide-8": {
+      "version": 2,
+      "id": "slide-8",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-8",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#1E3A32",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "s8-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#4f5a50"
+          }
+        },
+        {
+          "id": "s8-e2",
+          "type": "illustration",
+          "x": 0,
+          "y": 865.95,
+          "width": 1600,
+          "height": 34.05,
+          "zIndex": 2,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 4816592 0 L 4816592 102495 L 0 102495 Z",
+            "viewBox": "0 0 4816592 102495",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s8-e3",
+          "type": "illustration",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 34.05,
+          "zIndex": 3,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 4816592 0 L 4816592 102495 L 0 102495 Z",
+            "viewBox": "0 0 4816592 102495",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s8-e4-t",
+          "type": "text",
+          "x": 874.62,
+          "y": 245.57,
+          "width": 680.03,
+          "height": 236.98,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "Amiko",
+            "fontSize": 97.77,
+            "fontWeight": 800,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "SECURITY & COMPLIANCE",
+                "fontFamily": "Amiko",
+                "fontSize": 97.77,
+                "fontWeight": 800,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s8-e5-t",
+          "type": "text",
+          "x": 874.62,
+          "y": 521.11,
+          "width": 578.71,
+          "height": 109.66,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 26.67,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.39958,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Bank-grade encryption protects sensitive payroll data",
+                "fontFamily": "Roboto",
+                "fontSize": 26.67,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s8-e6",
+          "type": "image",
+          "x": 55.45,
+          "y": 11.26,
+          "width": 886.47,
+          "height": 888.74,
+          "zIndex": 6,
+          "imageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-8-img-17.png",
+            "fit": "cover",
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s8-e7",
+          "type": "illustration",
+          "x": 90,
+          "y": 95.56,
+          "width": 173.67,
+          "height": 173.67,
+          "zIndex": 7,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#FFFFFF",
+            "stroke": "#981D13",
+            "strokeWidth": 3.33
+          }
+        },
+        {
+          "id": "s8-e8-t",
+          "type": "text",
+          "x": 121.13,
+          "y": 134.09,
+          "width": 111.42,
+          "height": 86.17,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 32.59,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.40006,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "01",
+                "fontFamily": "Roboto",
+                "fontSize": 32.59,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "slide-9": {
+      "version": 2,
+      "id": "slide-9",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-9",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#1E3A32",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "s9-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#4f5a50"
+          }
+        },
+        {
+          "id": "s9-e2",
+          "type": "illustration",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 554.61,
+          "zIndex": 2,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 4816592 0 L 4816592 1669572 L 0 1669572 Z",
+            "viewBox": "0 0 4816592 1669572",
+            "fill": "#FFFFFF",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s9-e3-t",
+          "type": "text",
+          "x": 376.24,
+          "y": 598.06,
+          "width": 208.2,
+          "height": 48.72,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 32.59,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "STEP 02",
+                "fontFamily": "Roboto",
+                "fontSize": 32.59,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s9-e4",
+          "type": "illustration",
+          "x": 470.39,
+          "y": 544.66,
+          "width": 19.9,
+          "height": 19.9,
+          "zIndex": 4,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s9-e5-t",
+          "type": "text",
+          "x": 686.34,
+          "y": 598.06,
+          "width": 208.2,
+          "height": 48.72,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 32.59,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "STEP 03",
+                "fontFamily": "Roboto",
+                "fontSize": 32.59,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s9-e6",
+          "type": "illustration",
+          "x": 780.49,
+          "y": 544.66,
+          "width": 19.9,
+          "height": 19.9,
+          "zIndex": 6,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s9-e7-t",
+          "type": "text",
+          "x": 65.75,
+          "y": 598.06,
+          "width": 208.2,
+          "height": 48.72,
+          "zIndex": 7,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 32.59,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "STEP 01",
+                "fontFamily": "Roboto",
+                "fontSize": 32.59,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s9-e8",
+          "type": "illustration",
+          "x": 159.9,
+          "y": 544.66,
+          "width": 19.9,
+          "height": 19.9,
+          "zIndex": 8,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s9-e10",
+          "type": "illustration",
+          "x": 1093.34,
+          "y": 544.66,
+          "width": 19.9,
+          "height": 19.9,
+          "zIndex": 10,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s9-e12",
+          "type": "illustration",
+          "x": 1410.64,
+          "y": 544.66,
+          "width": 19.9,
+          "height": 19.9,
+          "zIndex": 12,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s9-e18-t",
+          "type": "text",
+          "x": 90,
+          "y": 94.23,
+          "width": 639.08,
+          "height": 245.28,
+          "zIndex": 18,
+          "textStyle": {
+            "fontFamily": "Amiko",
+            "fontSize": 97.77,
+            "fontWeight": 800,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.07,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "BILLING",
+                "fontFamily": "Amiko",
+                "fontSize": 97.77,
+                "fontWeight": 800,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s9-e20",
+          "type": "image",
+          "x": 686.34,
+          "y": 0,
+          "width": 868.25,
+          "height": 537.87,
+          "zIndex": 20,
+          "imageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-9-img-18.png",
+            "fit": "cover",
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        }
+      ]
+    },
+    "slide-10": {
+      "version": 2,
+      "id": "slide-10",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-10",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#1E3A32",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "s10-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#4f5a50"
+          }
+        },
+        {
+          "id": "s10-e2-t",
+          "type": "text",
+          "x": 90,
+          "y": 164.6,
+          "width": 929.95,
+          "height": 118.5,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "Amiko",
+            "fontSize": 97.77,
+            "fontWeight": 800,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.07,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "PRICING",
+                "fontFamily": "Amiko",
+                "fontSize": 97.77,
+                "fontWeight": 800,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s10-e3-t",
+          "type": "text",
+          "x": 90,
+          "y": 298.75,
+          "width": 370.85,
+          "height": 259.5,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 23.33,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Vantage Pay simplifies corporate compensation with precise accuracy",
+                "fontFamily": "Roboto",
+                "fontSize": 23.33,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s10-e4-t",
+          "type": "text",
+          "x": 554.98,
+          "y": 298.75,
+          "width": 370.85,
+          "height": 259.5,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 23.33,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Vantage Pay simplifies corporate compensation with precise accuracy",
+                "fontFamily": "Roboto",
+                "fontSize": 23.33,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s10-e5",
+          "type": "image",
+          "x": 441.92,
+          "y": 223.79,
+          "width": 1125.22,
+          "height": 676.21,
+          "zIndex": 5,
+          "imageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-10-img-19.png",
+            "fit": "cover",
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        }
+      ]
+    },
+    "slide-11": {
+      "version": 2,
+      "id": "slide-11",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-11",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#1E3A32",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "s11-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#4f5a50"
+          }
+        },
+        {
+          "id": "s11-e2-t",
+          "type": "text",
+          "x": 643.16,
+          "y": 140.36,
+          "width": 929.95,
+          "height": 118.5,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "Amiko",
+            "fontSize": 97.77,
+            "fontWeight": 800,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.07,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "PRICING",
+                "fontFamily": "Amiko",
+                "fontSize": 97.77,
+                "fontWeight": 800,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s11-e3-t",
+          "type": "text",
+          "x": 730.26,
+          "y": 283.08,
+          "width": 755.75,
+          "height": 129.5,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 23.33,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Vantage Pay simplifies corporate compensation with precise accuracy",
+                "fontFamily": "Roboto",
+                "fontSize": 23.33,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s11-e4",
+          "type": "illustration",
+          "x": 784.83,
+          "y": 463.1,
+          "width": 308.38,
+          "height": 308.38,
+          "zIndex": 4,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#FFFFFF",
+            "stroke": "#981D13",
+            "strokeWidth": 3.33
+          }
+        },
+        {
+          "id": "s11-e5-t",
+          "type": "text",
+          "x": 828.86,
+          "y": 515.31,
+          "width": 220.31,
+          "height": 86.17,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 32.59,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.07001,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "99.9%",
+                "fontFamily": "Roboto",
+                "fontSize": 32.59,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s11-e6-t",
+          "type": "text",
+          "x": 773.12,
+          "y": 599.49,
+          "width": 331.81,
+          "height": 32.31,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 26.67,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.39958,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "SUPPORT",
+                "fontFamily": "Roboto",
+                "fontSize": 26.67,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s11-e7-t",
+          "type": "text",
+          "x": 866.84,
+          "y": 646.54,
+          "width": 144.36,
+          "height": 71.65,
+          "zIndex": 7,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 15.56,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Key topics for the quarterly review",
+                "fontFamily": "Roboto",
+                "fontSize": 15.56,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s11-e8",
+          "type": "illustration",
+          "x": 1116.63,
+          "y": 463.1,
+          "width": 308.38,
+          "height": 308.38,
+          "zIndex": 8,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#FFFFFF",
+            "stroke": "#981D13",
+            "strokeWidth": 3.33
+          }
+        },
+        {
+          "id": "s11-e9-t",
+          "type": "text",
+          "x": 1160.66,
+          "y": 515.31,
+          "width": 220.31,
+          "height": 86.17,
+          "zIndex": 9,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 32.59,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.07001,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "24/7",
+                "fontFamily": "Roboto",
+                "fontSize": 32.59,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s11-e11-t",
+          "type": "text",
+          "x": 1198.64,
+          "y": 646.54,
+          "width": 144.36,
+          "height": 71.65,
+          "zIndex": 11,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 15.56,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Key topics for the quarterly review",
+                "fontFamily": "Roboto",
+                "fontSize": 15.56,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s11-e12",
+          "type": "image",
+          "x": 0,
+          "y": 0,
+          "width": 724.6,
+          "height": 900,
+          "zIndex": 12,
+          "imageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-11-img-20.png",
+            "fit": "cover",
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        }
+      ]
+    },
+    "slide-12": {
+      "version": 2,
+      "id": "slide-12",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-12",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#1E3A32",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "s12-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#4f5a50"
+          }
+        },
+        {
+          "id": "s12-e2-t",
+          "type": "text",
+          "x": 872.16,
+          "y": 103.82,
+          "width": 430.58,
+          "height": 158.48,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "Amiko",
+            "fontSize": 130.76,
+            "fontWeight": 800,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.06993,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "67%",
+                "fontFamily": "Amiko",
+                "fontSize": 130.76,
+                "fontWeight": 800,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s12-e3-t",
+          "type": "text",
+          "x": 872.16,
+          "y": 273.46,
+          "width": 331.8,
+          "height": 48.72,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 35.56,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "SUPPORT",
+                "fontFamily": "Roboto",
+                "fontSize": 35.56,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s12-e4",
+          "type": "image",
+          "x": 0,
+          "y": 294.6,
+          "width": 727.83,
+          "height": 605.4,
+          "zIndex": 4,
+          "imageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-12-img-21.png",
+            "fit": "cover",
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s12-e5-t",
+          "type": "text",
+          "x": 872.16,
+          "y": 338.46,
+          "width": 331.8,
+          "height": 64.5,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 23.33,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Key topics for the quarterly review",
+                "fontFamily": "Roboto",
+                "fontSize": 23.33,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s12-e6-t",
+          "type": "text",
+          "x": 872.16,
+          "y": 510.86,
+          "width": 430.58,
+          "height": 158.48,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "Amiko",
+            "fontSize": 130.76,
+            "fontWeight": 800,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.06993,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "45%",
+                "fontFamily": "Amiko",
+                "fontSize": 130.76,
+                "fontWeight": 800,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s12-e7-t",
+          "type": "text",
+          "x": 872.16,
+          "y": 680.5,
+          "width": 331.8,
+          "height": 48.72,
+          "zIndex": 7,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 35.56,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "SUPPORT",
+                "fontFamily": "Roboto",
+                "fontSize": 35.56,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s12-e8-t",
+          "type": "text",
+          "x": 872.16,
+          "y": 745.5,
+          "width": 331.8,
+          "height": 64.5,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 23.33,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Key topics for the quarterly review",
+                "fontFamily": "Roboto",
+                "fontSize": 23.33,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s12-e9",
+          "type": "image",
+          "x": 1163.37,
+          "y": 109.14,
+          "width": 436.63,
+          "height": 790.86,
+          "zIndex": 9,
+          "imageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-12-img-22.png",
+            "fit": "cover",
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s12-e10-t",
+          "type": "text",
+          "x": 297.25,
+          "y": 103.82,
+          "width": 430.58,
+          "height": 158.48,
+          "zIndex": 10,
+          "textStyle": {
+            "fontFamily": "Amiko",
+            "fontSize": 130.76,
+            "fontWeight": 800,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.06993,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "50%",
+                "fontFamily": "Amiko",
+                "fontSize": 130.76,
+                "fontWeight": 800,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s12-e11-t",
+          "type": "text",
+          "x": 297.25,
+          "y": 273.46,
+          "width": 331.81,
+          "height": 43.1,
+          "zIndex": 11,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 35.56,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "SUPPORT",
+                "fontFamily": "Roboto",
+                "fontSize": 35.56,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s12-e12-t",
+          "type": "text",
+          "x": 297.25,
+          "y": 338.46,
+          "width": 331.81,
+          "height": 67.87,
+          "zIndex": 12,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 23.33,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "left",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Key topics for the quarterly review",
+                "fontFamily": "Roboto",
+                "fontSize": 23.33,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "slide-13": {
+      "version": 2,
+      "id": "slide-13",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-13",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#1E3A32",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "s13-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#4f5a50"
+          }
+        },
+        {
+          "id": "s13-e2",
+          "type": "image",
+          "x": 526.07,
+          "y": 0.55,
+          "width": 1073.37,
+          "height": 800.96,
+          "zIndex": 2,
+          "imageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-13-img-23.png",
+            "fit": "cover"
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s13-e5-t",
+          "type": "text",
+          "x": 79.73,
+          "y": 222.22,
+          "width": 393.13,
+          "height": 55,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "Amiko",
+            "fontSize": 39,
+            "fontWeight": 800,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Agenda Overview",
+                "fontFamily": "Amiko",
+                "fontSize": 39,
+                "fontWeight": 800,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s13-e6-t",
+          "type": "text",
+          "x": 121.11,
+          "y": 288.94,
+          "width": 310.38,
+          "height": 129.5,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 13,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Streamlined workflows for modern finance teams",
+                "fontFamily": "Roboto",
+                "fontSize": 13,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s13-e7-t",
+          "type": "text",
+          "x": 79.73,
+          "y": 500.94,
+          "width": 393.13,
+          "height": 55,
+          "zIndex": 7,
+          "textStyle": {
+            "fontFamily": "Amiko",
+            "fontSize": 39,
+            "fontWeight": 800,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Agenda Overview",
+                "fontFamily": "Amiko",
+                "fontSize": 39,
+                "fontWeight": 800,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s13-e8-t",
+          "type": "text",
+          "x": 121.11,
+          "y": 567.66,
+          "width": 310.38,
+          "height": 129.5,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 13,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Streamlined workflows for modern finance teams",
+                "fontFamily": "Roboto",
+                "fontSize": 13,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "slide-14": {
+      "version": 2,
+      "id": "slide-14",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-14",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#1E3A32",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "s14-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#4f5a50"
+          }
+        },
+        {
+          "id": "s14-e2",
+          "type": "illustration",
+          "x": 57.36,
+          "y": 41.39,
+          "width": 425.67,
+          "height": 425.67,
+          "zIndex": 2,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#FFFFFF",
+            "stroke": "#981D13",
+            "strokeWidth": 3.33
+          }
+        },
+        {
+          "id": "s14-e3-t",
+          "type": "text",
+          "x": 822.1,
+          "y": 252.37,
+          "width": 687.9,
+          "height": 245.28,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "Amiko",
+            "fontSize": 97.77,
+            "fontWeight": 800,
+            "color": "#F6F1E8",
+            "textAlign": "right",
+            "lineHeight": 1.07,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "OUR EXPERTS",
+                "fontFamily": "Amiko",
+                "fontSize": 97.77,
+                "fontWeight": 800,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s14-e4-t",
+          "type": "text",
+          "x": 1097.12,
+          "y": 515.16,
+          "width": 412.88,
+          "height": 97,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 23.33,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "right",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Automated data integration and validation",
+                "fontFamily": "Roboto",
+                "fontSize": 23.33,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s14-e5-t",
+          "type": "text",
+          "x": 553.42,
+          "y": 186.14,
+          "width": 331.8,
+          "height": 48.72,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 32.59,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "TEAM",
+                "fontFamily": "Roboto",
+                "fontSize": 32.59,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s14-e6-t",
+          "type": "text",
+          "x": 553.42,
+          "y": 251.14,
+          "width": 331.8,
+          "height": 64.5,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 23.33,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "left",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Key topics for the quarterly review",
+                "fontFamily": "Roboto",
+                "fontSize": 23.33,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s14-e7",
+          "type": "illustration",
+          "x": 439.73,
+          "y": 435.37,
+          "width": 425.67,
+          "height": 425.67,
+          "zIndex": 7,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 C 181951 0 0 181951 0 406400 C 0 630849 181951 812800 406400 812800 C 630849 812800 812800 630849 812800 406400 C 812800 181951 630849 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#FFFFFF",
+            "stroke": "#981D13",
+            "strokeWidth": 3.33
+          }
+        },
+        {
+          "id": "s14-e8-t",
+          "type": "text",
+          "x": 57.36,
+          "y": 580.12,
+          "width": 331.8,
+          "height": 48.72,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 32.59,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "right",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "TEAM",
+                "fontFamily": "Roboto",
+                "fontSize": 32.59,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s14-e9-t",
+          "type": "text",
+          "x": 57.36,
+          "y": 645.12,
+          "width": 331.8,
+          "height": 64.5,
+          "zIndex": 9,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 23.33,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "right",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Key topics for the quarterly review",
+                "fontFamily": "Roboto",
+                "fontSize": 23.33,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s14-e10",
+          "type": "maskedImage",
+          "x": 97.43,
+          "y": 81.46,
+          "width": 345.54,
+          "height": 345.54,
+          "zIndex": 10,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-14-img-24.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "ellipse",
+              "d": "",
+              "viewBox": "0 0 100 100",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s14-e11",
+          "type": "maskedImage",
+          "x": 479.79,
+          "y": 475.99,
+          "width": 345.54,
+          "height": 344.41,
+          "zIndex": 11,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-14-img-25.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "ellipse",
+              "d": "",
+              "viewBox": "0 0 100 100",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        }
+      ]
+    },
+    "slide-15": {
+      "version": 2,
+      "id": "slide-15",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-15",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#1E3A32",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "s15-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#4f5a50"
+          }
+        },
+        {
+          "id": "s15-e2",
+          "type": "illustration",
+          "x": 0,
+          "y": 865.95,
+          "width": 1600,
+          "height": 34.05,
+          "zIndex": 2,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 4816592 0 L 4816592 102495 L 0 102495 Z",
+            "viewBox": "0 0 4816592 102495",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s15-e3",
+          "type": "illustration",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 34.05,
+          "zIndex": 3,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 0 0 L 4816592 0 L 4816592 102495 L 0 102495 Z",
+            "viewBox": "0 0 4816592 102495",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s15-e4",
+          "type": "illustration",
+          "x": 903,
+          "y": 288.77,
+          "width": 481.89,
+          "height": 97.19,
+          "zIndex": 4,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 71684 0 L 1378996 0 C 1398007 0 1416241 7552 1429684 20996 C 1443127 34439 1450680 52672 1450680 71684 L 1450680 220882 C 1450680 239894 1443127 258127 1429684 271570 C 1416241 285013 1398007 292566 1378996 292566 L 71684 292566 C 52672 292566 34439 285013 20996 271570 C 7552 258127 0 239894 0 220882 L 0 71684 C 0 52672 7552 34439 20996 20996 C 34439 7552 52672 0 71684 0 Z",
+            "viewBox": "0 0 1450680 292566",
+            "fill": "none",
+            "stroke": "#FFFFFF",
+            "strokeWidth": 3.33
+          }
+        },
+        {
+          "id": "s15-e5-t",
+          "type": "text",
+          "x": 800,
+          "y": 137.97,
+          "width": 687.9,
+          "height": 118.5,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "Amiko",
+            "fontSize": 97.77,
+            "fontWeight": 800,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.07,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "CONTACT",
+                "fontFamily": "Amiko",
+                "fontSize": 97.77,
+                "fontWeight": 800,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s15-e6-t",
+          "type": "text",
+          "x": 1020.98,
+          "y": 309.67,
+          "width": 245.93,
+          "height": 48.72,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 32.59,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "1-800-VANTAGE",
+                "fontFamily": "Roboto",
+                "fontSize": 32.59,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s15-e7-t",
+          "type": "text",
+          "x": 885.24,
+          "y": 545.62,
+          "width": 517.42,
+          "height": 48.72,
+          "zIndex": 7,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 32.59,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "hello@vantagepay.com",
+                "fontFamily": "Roboto",
+                "fontSize": 32.59,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s15-e8-t",
+          "type": "text",
+          "x": 919.45,
+          "y": 427.09,
+          "width": 449.01,
+          "height": 48.72,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 32.59,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.4,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "vantagepay.com",
+                "fontFamily": "Roboto",
+                "fontSize": 32.59,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s15-e9",
+          "type": "illustration",
+          "x": 903,
+          "y": 406.19,
+          "width": 481.89,
+          "height": 97.19,
+          "zIndex": 9,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 71684 0 L 1378996 0 C 1398007 0 1416241 7552 1429684 20996 C 1443127 34439 1450680 52672 1450680 71684 L 1450680 220882 C 1450680 239894 1443127 258127 1429684 271570 C 1416241 285013 1398007 292566 1378996 292566 L 71684 292566 C 52672 292566 34439 285013 20996 271570 C 7552 258127 0 239894 0 220882 L 0 71684 C 0 52672 7552 34439 20996 20996 C 34439 7552 52672 0 71684 0 Z",
+            "viewBox": "0 0 1450680 292566",
+            "fill": "none",
+            "stroke": "#FFFFFF",
+            "strokeWidth": 3.33
+          }
+        },
+        {
+          "id": "s15-e10",
+          "type": "illustration",
+          "x": 903,
+          "y": 524.73,
+          "width": 481.89,
+          "height": 97.19,
+          "zIndex": 10,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 71684 0 L 1378996 0 C 1398007 0 1416241 7552 1429684 20996 C 1443127 34439 1450680 52672 1450680 71684 L 1450680 220882 C 1450680 239894 1443127 258127 1429684 271570 C 1416241 285013 1398007 292566 1378996 292566 L 71684 292566 C 52672 292566 34439 285013 20996 271570 C 7552 258127 0 239894 0 220882 L 0 71684 C 0 52672 7552 34439 20996 20996 C 34439 7552 52672 0 71684 0 Z",
+            "viewBox": "0 0 1450680 292566",
+            "fill": "none",
+            "stroke": "#FFFFFF",
+            "strokeWidth": 3.33
+          }
+        },
+        {
+          "id": "s15-e11",
+          "type": "image",
+          "x": 0,
+          "y": 0,
+          "width": 1443.65,
+          "height": 900,
+          "zIndex": 11,
+          "imageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-15-img-26.png",
+            "fit": "cover",
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        }
+      ]
+    },
+    "slide-16": {
+      "version": 2,
+      "id": "slide-16",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-16",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#1E3A32",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "s16-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#4f5a50"
+          }
+        },
+        {
+          "id": "s16-e2",
+          "type": "illustration",
+          "x": 67.74,
+          "y": 199.99,
+          "width": 445.99,
+          "height": 647.45,
+          "zIndex": 2,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 36449 0 L 1306139 0 C 1315806 0 1325077 3840 1331913 10676 C 1338748 17511 1342589 26782 1342589 36449 L 1342589 1912607 C 1342589 1932737 1326270 1949056 1306139 1949056 L 36449 1949056 C 16319 1949056 0 1932737 0 1912607 L 0 36449 C 0 16319 16319 0 36449 0 Z",
+            "viewBox": "0 0 1342589 1949056",
+            "fill": "#FFFFFF",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s16-e3",
+          "type": "illustration",
+          "x": 534.56,
+          "y": 199.99,
+          "width": 1007.26,
+          "height": 647.45,
+          "zIndex": 3,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 16139 0 L 3016086 0 C 3020366 0 3024471 1700 3027498 4727 C 3030525 7754 3032225 11859 3032225 16139 L 3032225 1932917 C 3032225 1937197 3030525 1941302 3027498 1944329 C 3024471 1947356 3020366 1949056 3016086 1949056 L 16139 1949056 C 11859 1949056 7754 1947356 4727 1944329 C 1700 1941302 0 1937197 0 1932917 L 0 16139 C 0 11859 1700 7754 4727 4727 C 7754 1700 11859 0 16139 0 Z",
+            "viewBox": "0 0 3032225 1949056",
+            "fill": "#FFFFFF",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s16-e4",
+          "type": "illustration",
+          "x": 99.65,
+          "y": 224.55,
+          "width": 382.16,
+          "height": 56.63,
+          "zIndex": 4,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 31903 0 L 1118534 0 C 1126995 0 1135110 3361 1141093 9344 C 1147076 15327 1150437 23442 1150437 31903 L 1150437 138563 C 1150437 147024 1147076 155139 1141093 161122 C 1135110 167104 1126995 170466 1118534 170466 L 31903 170466 C 23442 170466 15327 167104 9344 161122 C 3361 155139 0 147024 0 138563 L 0 31903 C 0 23442 3361 15327 9344 9344 C 15327 3361 23442 0 31903 0 Z",
+            "viewBox": "0 0 1150437 170466",
+            "fill": "none",
+            "stroke": "#0F1A38",
+            "strokeWidth": 1.67
+          }
+        },
+        {
+          "id": "s16-e5",
+          "type": "illustration",
+          "x": 847.11,
+          "y": 224.55,
+          "width": 382.16,
+          "height": 56.63,
+          "zIndex": 5,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 31903 0 L 1118534 0 C 1126995 0 1135110 3361 1141093 9344 C 1147076 15327 1150437 23442 1150437 31903 L 1150437 138563 C 1150437 147024 1147076 155139 1141093 161122 C 1135110 167104 1126995 170466 1118534 170466 L 31903 170466 C 23442 170466 15327 167104 9344 161122 C 3361 155139 0 147024 0 138563 L 0 31903 C 0 23442 3361 15327 9344 9344 C 15327 3361 23442 0 31903 0 Z",
+            "viewBox": "0 0 1150437 170466",
+            "fill": "none",
+            "stroke": "#0F1A38",
+            "strokeWidth": 1.67
+          }
+        },
+        {
+          "id": "s16-e6",
+          "type": "illustration",
+          "x": 99.65,
+          "y": 630.01,
+          "width": 382.16,
+          "height": 56.63,
+          "zIndex": 6,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 31903 0 L 1118534 0 C 1126995 0 1135110 3361 1141093 9344 C 1147076 15327 1150437 23442 1150437 31903 L 1150437 138563 C 1150437 147024 1147076 155139 1141093 161122 C 1135110 167104 1126995 170466 1118534 170466 L 31903 170466 C 23442 170466 15327 167104 9344 161122 C 3361 155139 0 147024 0 138563 L 0 31903 C 0 23442 3361 15327 9344 9344 C 15327 3361 23442 0 31903 0 Z",
+            "viewBox": "0 0 1150437 170466",
+            "fill": "none",
+            "stroke": "#0F1A38",
+            "strokeWidth": 1.67
+          }
+        },
+        {
+          "id": "s16-e7",
+          "type": "illustration",
+          "x": 92.83,
+          "y": 709.97,
+          "width": 65.98,
+          "height": 65.98,
+          "zIndex": 7,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 L 406400 0 C 630849 0 812800 181951 812800 406400 L 812800 406400 C 812800 630849 630849 812800 406400 812800 L 406400 812800 C 181951 812800 0 630849 0 406400 L 0 406400 C 0 181951 181951 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s16-e8",
+          "type": "illustration",
+          "x": 176.88,
+          "y": 709.97,
+          "width": 65.98,
+          "height": 65.98,
+          "zIndex": 8,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 L 406400 0 C 630849 0 812800 181951 812800 406400 L 812800 406400 C 812800 630849 630849 812800 406400 812800 L 406400 812800 C 181951 812800 0 630849 0 406400 L 0 406400 C 0 181951 181951 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#1C1916",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s16-e9",
+          "type": "illustration",
+          "x": 260.93,
+          "y": 709.97,
+          "width": 65.98,
+          "height": 65.98,
+          "zIndex": 9,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 L 406400 0 C 630849 0 812800 181951 812800 406400 L 812800 406400 C 812800 630849 630849 812800 406400 812800 L 406400 812800 C 181951 812800 0 630849 0 406400 L 0 406400 C 0 181951 181951 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s16-e10",
+          "type": "illustration",
+          "x": 344.97,
+          "y": 709.97,
+          "width": 65.98,
+          "height": 65.98,
+          "zIndex": 10,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 L 406400 0 C 630849 0 812800 181951 812800 406400 L 812800 406400 C 812800 630849 630849 812800 406400 812800 L 406400 812800 C 181951 812800 0 630849 0 406400 L 0 406400 C 0 181951 181951 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#4f5a50",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s16-e26-t",
+          "type": "text",
+          "x": 478.56,
+          "y": 47.59,
+          "width": 642.87,
+          "height": 67.68,
+          "zIndex": 26,
+          "textStyle": {
+            "fontFamily": "Amiko",
+            "fontSize": 63.4,
+            "fontWeight": 800,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "RESOURCES",
+                "fontFamily": "Amiko",
+                "fontSize": 63.4,
+                "fontWeight": 800,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s16-e27-t",
+          "type": "text",
+          "x": 152.91,
+          "y": 235.64,
+          "width": 275.64,
+          "height": 33.61,
+          "zIndex": 27,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 21.13,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.22008,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "FONTS",
+                "fontFamily": "Roboto",
+                "fontSize": 21.13,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s16-e28-t",
+          "type": "text",
+          "x": 900.37,
+          "y": 235.64,
+          "width": 275.64,
+          "height": 33.61,
+          "zIndex": 28,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 21.13,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.22008,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "ELEMENTS",
+                "fontFamily": "Roboto",
+                "fontSize": 21.13,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s16-e29-t",
+          "type": "text",
+          "x": 152.91,
+          "y": 638.37,
+          "width": 275.64,
+          "height": 33.61,
+          "zIndex": 29,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 21.13,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.22008,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "COLORS",
+                "fontFamily": "Roboto",
+                "fontSize": 21.13,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s16-e30",
+          "type": "illustration",
+          "x": 429.02,
+          "y": 709.97,
+          "width": 65.98,
+          "height": 65.98,
+          "zIndex": 30,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 406400 0 L 406400 0 C 630849 0 812800 181951 812800 406400 L 812800 406400 C 812800 630849 630849 812800 406400 812800 L 406400 812800 C 181951 812800 0 630849 0 406400 L 0 406400 C 0 181951 181951 0 406400 0 Z",
+            "viewBox": "0 0 812800 812800",
+            "fill": "#FFFFFF",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s16-e32",
+          "type": "maskedImage",
+          "x": 1199.77,
+          "y": 343.04,
+          "width": 265.79,
+          "height": 145.52,
+          "zIndex": 32,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-16-img-27.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 3037950 0 L 3037950 1663277 L 0 1663277 L 0 0 Z",
+              "viewBox": "0 0 3037950 1663277",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s16-e33",
+          "type": "maskedImage",
+          "x": 592.27,
+          "y": 324.61,
+          "width": 242.44,
+          "height": 163.95,
+          "zIndex": 33,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-16-img-28.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 2771122 0 L 2771122 1873971 L 0 1873971 L 0 0 Z",
+              "viewBox": "0 0 2771122 1873971",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s16-e34",
+          "type": "maskedImage",
+          "x": 889.6,
+          "y": 354.22,
+          "width": 255.29,
+          "height": 134.34,
+          "zIndex": 34,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-16-img-29.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 2917916 0 L 2917916 1535553 L 0 1535553 L 0 0 Z",
+              "viewBox": "0 0 2917915 1535553",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s16-e35",
+          "type": "maskedImage",
+          "x": 616.22,
+          "y": 584.09,
+          "width": 243.63,
+          "height": 193.38,
+          "zIndex": 35,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-16-img-30.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 2784711 0 L 2784711 2210365 L 0 2210365 L 0 0 Z",
+              "viewBox": "0 0 2784711 2210365",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s16-e36",
+          "type": "maskedImage",
+          "x": 902.59,
+          "y": 615.68,
+          "width": 286.35,
+          "height": 161.79,
+          "zIndex": 36,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-16-img-31.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 3273034 0 L 3273034 1849264 L 0 1849264 L 0 0 Z",
+              "viewBox": "0 0 3273034 1849264",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s16-e37",
+          "type": "maskedImage",
+          "x": 1231.67,
+          "y": 607.45,
+          "width": 246.4,
+          "height": 170.02,
+          "zIndex": 37,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-16-img-32.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 2816365 0 L 2816365 1943292 L 0 1943292 L 0 0 Z",
+              "viewBox": "0 0 2816365 1943292",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        }
+      ]
+    },
+    "slide-17": {
+      "version": 2,
+      "id": "slide-17",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-17",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#1E3A32",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "s17-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#4f5a50"
+          }
+        },
+        {
+          "id": "s17-e2",
+          "type": "illustration",
+          "x": 63.26,
+          "y": 199.99,
+          "width": 1478.56,
+          "height": 647.45,
+          "zIndex": 2,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 10995 0 L 4440009 0 C 4446081 0 4451004 4922 4451004 10995 L 4451004 1938062 C 4451004 1944134 4446081 1949056 4440009 1949056 L 10995 1949056 C 4922 1949056 0 1944134 0 1938062 L 0 10995 C 0 4922 4922 0 10995 0 Z",
+            "viewBox": "0 0 4451004 1949056",
+            "fill": "#FFFFFF",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s17-e3-t",
+          "type": "text",
+          "x": 368.33,
+          "y": 126.51,
+          "width": 863.34,
+          "height": 28.4,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 21.13,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.2201,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Download brand assets and templates here",
+                "fontFamily": "Roboto",
+                "fontSize": 21.13,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s17-e4-t",
+          "type": "text",
+          "x": 478.56,
+          "y": 47.59,
+          "width": 642.87,
+          "height": 67.68,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "Amiko",
+            "fontSize": 63.4,
+            "fontWeight": 800,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "RESOURCES",
+                "fontFamily": "Amiko",
+                "fontSize": 63.4,
+                "fontWeight": 800,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s17-e5",
+          "type": "illustration",
+          "x": 556.75,
+          "y": 224.55,
+          "width": 491.58,
+          "height": 56.63,
+          "zIndex": 5,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 24802 0 L 1455038 0 C 1468735 0 1479840 11104 1479840 24802 L 1479840 145664 C 1479840 152242 1477226 158550 1472575 163201 C 1467924 167853 1461616 170466 1455038 170466 L 24802 170466 C 11104 170466 0 159362 0 145664 L 0 24802 C 0 11104 11104 0 24802 0 Z",
+            "viewBox": "0 0 1479840 170466",
+            "fill": "none",
+            "stroke": "#0F1A38",
+            "strokeWidth": 1.67
+          }
+        },
+        {
+          "id": "s17-e6-t",
+          "type": "text",
+          "x": 625.26,
+          "y": 235.85,
+          "width": 354.56,
+          "height": 33.4,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 21.13,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.22008,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "ICONS",
+                "fontFamily": "Roboto",
+                "fontSize": 21.13,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s17-e7-t",
+          "type": "text",
+          "x": 1024.17,
+          "y": 867.53,
+          "width": 517.65,
+          "height": 14.61,
+          "zIndex": 7,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 13.32,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "right",
+            "lineHeight": 1.22018,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Internal use only",
+                "fontFamily": "Roboto",
+                "fontSize": 13.32,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s17-e8",
+          "type": "maskedImage",
+          "x": 257.12,
+          "y": 338.52,
+          "width": 222.41,
+          "height": 222.97,
+          "zIndex": 8,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-17-img-33.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 2542144 0 L 2542144 2548516 L 0 2548516 L 0 0 Z",
+              "viewBox": "0 0 2542145 2548516",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s17-e9",
+          "type": "maskedImage",
+          "x": 527.82,
+          "y": 348.17,
+          "width": 201.88,
+          "height": 206.27,
+          "zIndex": 9,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-17-img-34.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 2307530 0 L 2307530 2357630 L 0 2357630 L 0 0 Z",
+              "viewBox": "0 0 2307530 2357630",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s17-e10",
+          "type": "maskedImage",
+          "x": 778.04,
+          "y": 361.79,
+          "width": 276.21,
+          "height": 176.43,
+          "zIndex": 10,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-17-img-35.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 3157031 0 L 3157031 2016554 L 0 2016554 L 0 0 Z",
+              "viewBox": "0 0 3157030 2016553",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s17-e11",
+          "type": "maskedImage",
+          "x": 1117.8,
+          "y": 338.52,
+          "width": 225.08,
+          "height": 215.51,
+          "zIndex": 11,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-17-img-36.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 2572660 0 L 2572660 2463323 L 0 2463323 L 0 0 Z",
+              "viewBox": "0 0 2572661 2463322",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s17-e12",
+          "type": "maskedImage",
+          "x": 203.61,
+          "y": 586.16,
+          "width": 131.23,
+          "height": 223.84,
+          "zIndex": 12,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-17-img-37.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 1499944 0 L 1499944 2558540 L 0 2558540 L 0 0 Z",
+              "viewBox": "0 0 1499944 2558540",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s17-e13",
+          "type": "maskedImage",
+          "x": 410.67,
+          "y": 589.97,
+          "width": 114.05,
+          "height": 216.21,
+          "zIndex": 13,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-17-img-38.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 1303580 0 L 1303580 2471241 L 0 2471241 L 0 0 Z",
+              "viewBox": "0 0 1303580 2471241",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s17-e14",
+          "type": "maskedImage",
+          "x": 600.56,
+          "y": 633.25,
+          "width": 98.37,
+          "height": 129.65,
+          "zIndex": 14,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-17-img-39.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 1124378 0 L 1124378 1481882 L 0 1481882 L 0 0 Z",
+              "viewBox": "0 0 1124378 1481882",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s17-e15",
+          "type": "maskedImage",
+          "x": 1234.35,
+          "y": 660.16,
+          "width": 167.12,
+          "height": 75.83,
+          "zIndex": 15,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-17-img-40.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 1910229 0 L 1910229 866766 L 0 866766 L 0 0 Z",
+              "viewBox": "0 0 1910229 866767",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s17-e16",
+          "type": "maskedImage",
+          "x": 1005.59,
+          "y": 646.37,
+          "width": 152.92,
+          "height": 103.41,
+          "zIndex": 16,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-17-img-41.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 1747824 0 L 1747824 1181966 L 0 1181966 L 0 0 Z",
+              "viewBox": "0 0 1747823 1181965",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        },
+        {
+          "id": "s17-e17",
+          "type": "maskedImage",
+          "x": 774.76,
+          "y": 631.14,
+          "width": 154.99,
+          "height": 133.88,
+          "zIndex": 17,
+          "opacity": 1,
+          "maskedImageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-17-img-42.png",
+            "binding": "",
+            "fit": "cover",
+            "clip": {
+              "kind": "path",
+              "d": "M 0 0 L 1771571 0 L 1771571 1530194 L 0 1530194 L 0 0 Z",
+              "viewBox": "0 0 1771571 1530194",
+              "cornerRadius": 0
+            },
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        }
+      ]
+    },
+    "slide-18": {
+      "version": 2,
+      "id": "slide-18",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-18",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#1E3A32",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "s18-bg",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "shapeContent": {
+            "kind": "rectangle",
+            "fill": "#4f5a50"
+          }
+        },
+        {
+          "id": "s18-e2",
+          "type": "illustration",
+          "x": 524.52,
+          "y": 219.59,
+          "width": 550.96,
+          "height": 219,
+          "zIndex": 2,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 29505 0 L 1629084 0 C 1636910 0 1644414 3109 1649948 8642 C 1655481 14175 1658589 21680 1658589 29505 L 1658589 629752 C 1658589 637577 1655481 645082 1649948 650615 C 1644414 656149 1636910 659257 1629084 659257 L 29505 659257 C 21680 659257 14175 656149 8642 650615 C 3109 645082 0 637577 0 629752 L 0 29505 C 0 21680 3109 14175 8642 8642 C 14175 3109 21680 0 29505 0 Z",
+            "viewBox": "0 0 1658589 659257",
+            "fill": "#FFFFFF",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s18-e3",
+          "type": "illustration",
+          "x": 524.52,
+          "y": 488.58,
+          "width": 550.96,
+          "height": 219,
+          "zIndex": 3,
+          "opacity": 1,
+          "illustrationContent": {
+            "d": "M 29505 0 L 1629084 0 C 1636910 0 1644414 3109 1649948 8642 C 1655481 14175 1658589 21680 1658589 29505 L 1658589 629752 C 1658589 637577 1655481 645082 1649948 650615 C 1644414 656149 1636910 659257 1629084 659257 L 29505 659257 C 21680 659257 14175 656149 8642 650615 C 3109 645082 0 637577 0 629752 L 0 29505 C 0 21680 3109 14175 8642 8642 C 14175 3109 21680 0 29505 0 Z",
+            "viewBox": "0 0 1658589 659257",
+            "fill": "#FFFFFF",
+            "stroke": "none",
+            "strokeWidth": 0
+          }
+        },
+        {
+          "id": "s18-e4-t",
+          "type": "text",
+          "x": 295.49,
+          "y": 143.74,
+          "width": 1009.01,
+          "height": 28.4,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 21.13,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.2201,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Assets provided by Vantage Pay partners",
+                "fontFamily": "Roboto",
+                "fontSize": 21.13,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s18-e5-t",
+          "type": "text",
+          "x": 621.94,
+          "y": 773.12,
+          "width": 356.13,
+          "height": 36.88,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 21.13,
+            "fontWeight": 400,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1.22007,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Let's build",
+                "fontFamily": "Roboto",
+                "fontSize": 21.13,
+                "fontWeight": 400,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s18-e6-t",
+          "type": "text",
+          "x": 368.33,
+          "y": 380.43,
+          "width": 863.34,
+          "height": 27.06,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 21.13,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.22,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "for the template",
+                "fontFamily": "Roboto",
+                "fontSize": 21.13,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s18-e7-t",
+          "type": "text",
+          "x": 368.33,
+          "y": 617.04,
+          "width": 863.34,
+          "height": 27.06,
+          "zIndex": 7,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 21.13,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1.22,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "for the imagery",
+                "fontFamily": "Roboto",
+                "fontSize": 21.13,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s18-e8-t",
+          "type": "text",
+          "x": 478.56,
+          "y": 64.81,
+          "width": 642.87,
+          "height": 67.68,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "Amiko",
+            "fontSize": 63.4,
+            "fontWeight": 800,
+            "color": "#F6F1E8",
+            "textAlign": "center",
+            "lineHeight": 1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "CREDITS",
+                "fontFamily": "Amiko",
+                "fontSize": 63.4,
+                "fontWeight": 800,
+                "color": "#F6F1E8",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s18-e9-t",
+          "type": "text",
+          "x": 534.56,
+          "y": 552.96,
+          "width": 530.88,
+          "height": 54.08,
+          "zIndex": 9,
+          "textStyle": {
+            "fontFamily": "Roboto",
+            "fontSize": 21.13,
+            "fontWeight": 400,
+            "color": "#1C1916",
+            "textAlign": "center",
+            "lineHeight": 1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Vecteezy",
+                "fontFamily": "Roboto",
+                "fontSize": 21.13,
+                "fontWeight": 400,
+                "color": "#1C1916",
+                "letterSpacing": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "s18-e10",
+          "type": "image",
+          "x": 588.96,
+          "y": 254.06,
+          "width": 422.09,
+          "height": 106.63,
+          "zIndex": 10,
+          "imageContent": {
+            "url": "photos/first-aid-medicine-life-skills-presentation/slide-18-img-43.png",
+            "fit": "cover",
+            "alignX": 0.5,
+            "alignY": 0.5
+          },
+          "isDecoration": true,
+          "originalRole": "decoration"
+        }
+      ]
+    }
+  },
+  "previewSlides": [
+    {
+      "id": "first-aid-medicine-life-skills-presentation-p1",
+      "layout": "slide-1",
+      "title": "Vantage Pay",
+      "bullets": []
+    },
+    {
+      "id": "first-aid-medicine-life-skills-presentation-p2",
+      "layout": "slide-2",
+      "title": "AGENDA",
+      "bullets": []
+    },
+    {
+      "id": "first-aid-medicine-life-skills-presentation-p3",
+      "layout": "slide-3",
+      "title": "WRITE AN AGENDA HERE.",
+      "bullets": []
+    },
+    {
+      "id": "first-aid-medicine-life-skills-presentation-p4",
+      "layout": "slide-4",
+      "title": "ADD A MAIN POINT",
+      "bullets": []
+    },
+    {
+      "id": "first-aid-medicine-life-skills-presentation-p5",
+      "layout": "slide-5",
+      "title": "INTRODUCTION",
+      "bullets": []
+    },
+    {
+      "id": "first-aid-medicine-life-skills-presentation-p6",
+      "layout": "slide-6",
+      "title": "PROCESS 01",
+      "bullets": []
+    },
+    {
+      "id": "first-aid-medicine-life-skills-presentation-p7",
+      "layout": "slide-7",
+      "title": "WHAT DO YOU NEED?",
+      "bullets": []
+    },
+    {
+      "id": "first-aid-medicine-life-skills-presentation-p8",
+      "layout": "slide-8",
+      "title": "SECTION TITLE HERE",
+      "bullets": []
+    },
+    {
+      "id": "first-aid-medicine-life-skills-presentation-p9",
+      "layout": "slide-9",
+      "title": "STEP 02",
+      "bullets": []
+    },
+    {
+      "id": "first-aid-medicine-life-skills-presentation-p10",
+      "layout": "slide-10",
+      "title": "ADD TOPIC HERE",
+      "bullets": []
+    },
+    {
+      "id": "first-aid-medicine-life-skills-presentation-p11",
+      "layout": "slide-11",
+      "title": "ADD TOPIC HERE",
+      "bullets": []
+    },
+    {
+      "id": "first-aid-medicine-life-skills-presentation-p12",
+      "layout": "slide-12",
+      "title": "67%",
+      "bullets": []
+    },
+    {
+      "id": "first-aid-medicine-life-skills-presentation-p13",
+      "layout": "slide-13",
+      "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vulputate vel i",
+      "bullets": []
+    },
+    {
+      "id": "first-aid-medicine-life-skills-presentation-p14",
+      "layout": "slide-14",
+      "title": "OUR FIRST AID EXPERTS",
+      "bullets": []
+    },
+    {
+      "id": "first-aid-medicine-life-skills-presentation-p15",
+      "layout": "slide-15",
+      "title": "CONTACT US",
+      "bullets": []
+    },
+    {
+      "id": "first-aid-medicine-life-skills-presentation-p16",
+      "layout": "slide-16",
+      "title": "This presentation template",
+      "bullets": []
+    },
+    {
+      "id": "first-aid-medicine-life-skills-presentation-p17",
+      "layout": "slide-17",
+      "title": "Use these design resources in your Canva Presentation.",
+      "bullets": []
+    },
+    {
+      "id": "first-aid-medicine-life-skills-presentation-p18",
+      "layout": "slide-18",
+      "title": "This presentation template is free for everyone to use thanks to the following:",
+      "bullets": []
+    }
+  ],
+  "parametric": {
+    "cover": "fullBleed",
+    "coverName": "Full-Bleed",
+    "coverTitle": "Vantage Pay",
+    "density": "balanced",
+    "marginFactor": 1,
+    "lineHeightFactor": 1,
+    "densityReverted": [],
+    "densityRevertReasons": [],
+    "marginSample": {
+      "before": {
+        "id": "s2-e2-t",
+        "x": 182.07,
+        "y": 72.98,
+        "width": 1235.85,
+        "height": 118.5,
+        "lineHeight": 1.07
+      },
+      "after": {
+        "id": "s2-e2-t",
+        "x": 182.07,
+        "y": 72.98,
+        "width": 1235.85,
+        "height": 118.5,
+        "lineHeight": 1.07
+      }
+    },
+    "signature": "rail",
+    "displayFont": "Amiko",
+    "bodyFont": "Roboto",
+    "displayWeight": 800,
+    "bodyWeight": 400,
+    "typeShortfalls": [],
+    "geometry": [
+      {
+        "slide": 1,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 2,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 3,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 4,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 5,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 6,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 7,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 8,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 9,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 10,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 11,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 12,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 13,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 14,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 15,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 16,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 17,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 18,
+        "pass": true,
+        "reasons": []
+      }
+    ],
+    "textOverlaps": []
+  },
+  "qa": {
+    "score": 39,
+    "passed": 7,
+    "total": 18,
+    "failures": [
+      "text under picture (s3-e13-t under s3-e14) on slide 3",
+      "text under picture (s4-e4-t under s4-e17) on slide 4",
+      "text under picture (s5-e2-t-p1 under s5-e4) on slide 5",
+      "text under picture (s5-e2-t-p1 under s5-e6) on slide 5",
+      "text under picture (s5-e2-t-p2 under s5-e4) on slide 5",
+      "text under picture (s5-e2-t-p2 under s5-e6) on slide 5",
+      "text under picture (s8-e4-t under s8-e6) on slide 8",
+      "text under picture (s8-e5-t under s8-e6) on slide 8",
+      "text under picture (s9-e18-t under s9-e20) on slide 9",
+      "text under picture (s10-e2-t under s10-e5) on slide 10",
+      "text under picture (s10-e3-t under s10-e5) on slide 10",
+      "text under picture (s10-e4-t under s10-e5) on slide 10",
+      "text under picture (s11-e2-t under s11-e12) on slide 11",
+      "text under picture (s12-e2-t under s12-e9) on slide 12",
+      "text under picture (s12-e3-t under s12-e9) on slide 12",
+      "text under picture (s12-e5-t under s12-e9) on slide 12",
+      "text under picture (s12-e6-t under s12-e9) on slide 12",
+      "text under picture (s12-e7-t under s12-e9) on slide 12",
+      "text under picture (s12-e8-t under s12-e9) on slide 12",
+      "text under picture (s14-e3-t under s14-e11) on slide 14",
+      "text under picture (s15-e5-t under s15-e11) on slide 15",
+      "text under picture (s15-e6-t under s15-e11) on slide 15",
+      "text under picture (s15-e7-t under s15-e11) on slide 15",
+      "text under picture (s15-e8-t under s15-e11) on slide 15",
+      "pptx mismatch: s7-e3-t line count on slide 7",
+      "pptx mismatch: s8-e5-t line count on slide 8"
+    ],
+    "attempt": 1,
+    "mode": "manual",
+    "aesthetic": {
+      "slides": 18,
+      "avgWhitespace": 0.641,
+      "avgTextDensity": 83,
+      "typeScaleAllOk": false,
+      "minFontSeen": 13
+    },
+    "pptxGate": {
+      "skipped": false,
+      "pass": false,
+      "failures": [
+        "pptx mismatch: s7-e3-t line count on slide 7",
+        "pptx mismatch: s8-e5-t line count on slide 8"
+      ]
+    }
+  }
+}

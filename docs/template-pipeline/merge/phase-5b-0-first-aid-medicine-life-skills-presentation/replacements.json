@@ -1,0 +1,1214 @@
+{
+  "prompt": "A corporate payroll company",
+  "layout": "first-aid-medicine-life-skills-presentation",
+  "parametric": {
+    "cover": "fullBleed",
+    "coverName": "Full-Bleed",
+    "coverTitle": "Vantage Pay",
+    "density": "balanced",
+    "marginFactor": 1,
+    "lineHeightFactor": 1,
+    "densityReverted": [],
+    "densityRevertReasons": [],
+    "marginSample": {
+      "before": {
+        "id": "s2-e2-t",
+        "x": 182.07,
+        "y": 72.98,
+        "width": 1235.85,
+        "height": 118.5,
+        "lineHeight": 1.07
+      },
+      "after": {
+        "id": "s2-e2-t",
+        "x": 182.07,
+        "y": 72.98,
+        "width": 1235.85,
+        "height": 118.5,
+        "lineHeight": 1.07
+      }
+    },
+    "signature": "rail",
+    "displayFont": "Amiko",
+    "bodyFont": "Roboto",
+    "displayWeight": 800,
+    "bodyWeight": 400,
+    "typeShortfalls": [],
+    "geometry": [
+      {
+        "slide": 1,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 2,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 3,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 4,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 5,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 6,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 7,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 8,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 9,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 10,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 11,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 12,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 13,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 14,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 15,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 16,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 17,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 18,
+        "pass": true,
+        "reasons": []
+      }
+    ],
+    "textOverlaps": []
+  },
+  "vibe": "",
+  "autoLayout": false,
+  "model": "qwen/qwen3.8-27b+qwen/qwen3.8-27b+gemini-2.5-flash-lite",
+  "profile": {
+    "brand": "Vantage Pay",
+    "industry": "Payroll",
+    "mission": "Simplifying corporate compensation with precise, automated accuracy."
+  },
+  "mood": {
+    "mood": "clean and corporate",
+    "bucket": "light-neutral",
+    "palette": {
+      "bg": "#f2e7e3",
+      "surface": "#f2e7e3",
+      "card": "#FFFFFF",
+      "ink": "#1C1916",
+      "muted": "#1C1916",
+      "rule": "#D9D0C6",
+      "accent": "#4f5a50",
+      "accent2": "#4f5a50",
+      "onAccent": "#F6F1E8"
+    }
+  },
+  "photoKeywords": [
+    "spreadsheets",
+    "calculator",
+    "badge"
+  ],
+  "photoQuery": "spreadsheets calculator badge",
+  "photos": {
+    "landscape": [
+      {
+        "file": "photos/thematic/phase-5b-0-first-aid-medicine-life-skills-presen/landscape-01.jpg",
+        "bytes": 116297,
+        "photographer": "Kindel Media",
+        "page": "https://www.pexels.com/photo/close-up-shot-of-a-calculator-on-white-surface-7688365/",
+        "alt": "Close-up of a white calculator next to a financial spreadsheet on a desk."
+      },
+      {
+        "file": "photos/thematic/phase-5b-0-first-aid-medicine-life-skills-presen/landscape-02.jpg",
+        "bytes": 84141,
+        "photographer": "RDNE Stock project",
+        "page": "https://www.pexels.com/photo/calculator-on-top-of-the-paper-7580852/",
+        "alt": "Close-up of a calculator on financial documents with graphs and analysis papers."
+      },
+      {
+        "file": "photos/thematic/phase-5b-0-first-aid-medicine-life-skills-presen/landscape-03.jpg",
+        "bytes": 206399,
+        "photographer": "RDNE Stock project",
+        "page": "https://www.pexels.com/photo/person-using-black-desk-calculator-5915236/",
+        "alt": "Person using calculator on desk with financial charts and graphs, ideal for business and finance themes."
+      },
+      {
+        "file": "photos/thematic/phase-5b-0-first-aid-medicine-life-skills-presen/landscape-04.jpg",
+        "bytes": 172848,
+        "photographer": "Hanna Pad",
+        "page": "https://www.pexels.com/photo/calculator-near-documents-6801682/",
+        "alt": "Overhead view of a person analyzing financial documents using a calculator for investment planning."
+      },
+      {
+        "file": "photos/thematic/phase-5b-0-first-aid-medicine-life-skills-presen/landscape-05.jpg",
+        "bytes": 180143,
+        "photographer": "Kindel Media",
+        "page": "https://www.pexels.com/photo/person-using-a-calculator-7651738/",
+        "alt": "Person using a calculator at a desk with financial documents. Modern business concept."
+      }
+    ],
+    "portrait": [
+      {
+        "file": "photos/thematic/phase-5b-0-first-aid-medicine-life-skills-presen/portrait-01.jpg",
+        "bytes": 99871,
+        "photographer": "Hanna Pad",
+        "page": "https://www.pexels.com/photo/person-using-black-calculator-6801680/",
+        "alt": "A hand using a calculator with financial documents and notebook, depicting an office setup for financial analysis."
+      },
+      {
+        "file": "photos/thematic/phase-5b-0-first-aid-medicine-life-skills-presen/portrait-02.jpg",
+        "bytes": 90965,
+        "photographer": "Mohamed hamdi",
+        "page": "https://www.pexels.com/photo/a-person-using-a-calculator-16282306/",
+        "alt": "A person calculating finances with a calculator and pen on a desk indoors."
+      },
+      {
+        "file": "photos/thematic/phase-5b-0-first-aid-medicine-life-skills-presen/portrait-03.jpg",
+        "bytes": 117829,
+        "photographer": "Mikhail Nilov",
+        "page": "https://www.pexels.com/photo/a-person-working-on-the-documents-using-a-calculator-8297220/",
+        "alt": "Accountant calculates finances with a calculator and documents on a desk."
+      },
+      {
+        "file": "photos/thematic/phase-5b-0-first-aid-medicine-life-skills-presen/portrait-04.jpg",
+        "bytes": 81554,
+        "photographer": "Artem Podrez",
+        "page": "https://www.pexels.com/photo/a-person-using-a-smartphone-6779224/",
+        "alt": "Hand using smartphone calculator for analyzing business summary and accounting data."
+      },
+      {
+        "file": "photos/thematic/phase-5b-0-first-aid-medicine-life-skills-presen/portrait-05.jpg",
+        "bytes": 121498,
+        "photographer": "RDNE Stock project",
+        "page": "https://www.pexels.com/photo/a-document-and-calculator-on-the-table-7947637/",
+        "alt": "Top view of financial reports with a calculator app open on a smartphone."
+      }
+    ],
+    "landscapeSlots": 0,
+    "portraitSlots": 0,
+    "decorations": 0
+  },
+  "replacements": [
+    {
+      "from": "TITLE HERETITLE HERE",
+      "to": "SUPPORT",
+      "fromChars": 20,
+      "toChars": 7,
+      "fromWords": 3,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "FIRST AID & ",
+      "to": "PAYROLL &",
+      "fromChars": 12,
+      "toChars": 9,
+      "fromWords": 3,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "MEDICINE ",
+      "to": "COMPLIANCE",
+      "fromChars": 9,
+      "toChars": 10,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "LIFE SKILLS",
+      "to": "ACCURACY",
+      "fromChars": 11,
+      "toChars": 8,
+      "fromWords": 2,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "Healthcare Presentation",
+      "to": "Corporate Payroll Profile",
+      "fromChars": 23,
+      "toChars": 25,
+      "fromWords": 2,
+      "toWords": 3,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "AGENDA",
+      "to": "AGO",
+      "fromChars": 6,
+      "toChars": 3,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "ADD A MAIN POINT",
+      "to": "Agenda Overview",
+      "fromChars": 16,
+      "toChars": 15,
+      "fromWords": 4,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "Briefly elaborate on what you want to discuss. ",
+      "to": "Key topics for the quarterly review",
+      "fromChars": 47,
+      "toChars": 35,
+      "fromWords": 8,
+      "toWords": 6,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "WRITE AN AGENDA HERE.",
+      "to": "Meeting agenda",
+      "fromChars": 21,
+      "toChars": 14,
+      "fromWords": 4,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "01.",
+      "to": "01",
+      "fromChars": 3,
+      "toChars": 2,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "02.",
+      "to": "02",
+      "fromChars": 3,
+      "toChars": 2,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "03.",
+      "to": "03",
+      "fromChars": 3,
+      "toChars": 2,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "04.",
+      "to": "04",
+      "fromChars": 3,
+      "toChars": 2,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "05.",
+      "to": "05",
+      "fromChars": 3,
+      "toChars": 2,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "TABLE OF",
+      "to": "CONTENTS",
+      "fromChars": 8,
+      "toChars": 8,
+      "fromWords": 2,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "CONTENTS",
+      "to": "INDEX",
+      "fromChars": 8,
+      "toChars": 5,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "Proin sed mattis diam, non efficitur sem. Phasellus diam erat, lacinia non turpis non, finibus luctus erat. ",
+      "to": "Streamlined workflows for modern finance teams",
+      "fromChars": 108,
+      "toChars": 46,
+      "fromWords": 17,
+      "toWords": 6,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "INTRODUCTION",
+      "to": "VANTAGE PAY",
+      "fromChars": 12,
+      "toChars": 11,
+      "fromWords": 1,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "TO FIRST AID",
+      "to": "OVERVIEW",
+      "fromChars": 12,
+      "toChars": 8,
+      "fromWords": 3,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Integer vitae justo eget magna fermentum iaculis. Fames ac turpis egestas sed tempus urna et pharetra.",
+      "to": "Vantage Pay simplifies corporate compensation with precise accuracy",
+      "fromChars": 226,
+      "toChars": 67,
+      "fromWords": 35,
+      "toWords": 8,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "PROCESS 01",
+      "to": "PROCESS 01",
+      "fromChars": 10,
+      "toChars": 10,
+      "fromWords": 2,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "PROCESS 02",
+      "to": "PROCESS 02",
+      "fromChars": 10,
+      "toChars": 10,
+      "fromWords": 2,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "PROCESS 03",
+      "to": "PROCESS 03",
+      "fromChars": 10,
+      "toChars": 10,
+      "fromWords": 2,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vulputate vel ipsum ac fringilla.",
+      "to": "Automated data integration and validation",
+      "fromChars": 98,
+      "toChars": 41,
+      "fromWords": 14,
+      "toWords": 5,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "PROCESS 04",
+      "to": "PROCESS 04",
+      "fromChars": 10,
+      "toChars": 10,
+      "fromWords": 2,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "THE PROCESS",
+      "to": "WORKFLOW",
+      "fromChars": 11,
+      "toChars": 8,
+      "fromWords": 2,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "WHAT DO YOU NEED?",
+      "to": "SOLUTIONS",
+      "fromChars": 17,
+      "toChars": 9,
+      "fromWords": 4,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "ITEM 01",
+      "to": "ITEM 01",
+      "fromChars": 7,
+      "toChars": 7,
+      "fromWords": 2,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "ITEM 02",
+      "to": "ITEM 02",
+      "fromChars": 7,
+      "toChars": 7,
+      "fromWords": 2,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "ITEM 03",
+      "to": "ITEM 03",
+      "fromChars": 7,
+      "toChars": 7,
+      "fromWords": 2,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "ITEM 04",
+      "to": "ITEM 04",
+      "fromChars": 7,
+      "toChars": 7,
+      "fromWords": 2,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "SECTION TITLE HERE",
+      "to": "SECURITY & COMPLIANCE",
+      "fromChars": 18,
+      "toChars": 21,
+      "fromWords": 3,
+      "toWords": 3,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "to": "Bank-grade encryption protects sensitive payroll data",
+      "fromChars": 123,
+      "toChars": 53,
+      "fromWords": 19,
+      "toWords": 6,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "STEP 02",
+      "to": "STEP 02",
+      "fromChars": 7,
+      "toChars": 7,
+      "fromWords": 2,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "STEP 03",
+      "to": "STEP 03",
+      "fromChars": 7,
+      "toChars": 7,
+      "fromWords": 2,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "STEP 01",
+      "to": "STEP 01",
+      "fromChars": 7,
+      "toChars": 7,
+      "fromWords": 2,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "STEP 04",
+      "to": "STEP 04",
+      "fromChars": 7,
+      "toChars": 7,
+      "fromWords": 2,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "STEP 05",
+      "to": "STEP 05",
+      "fromChars": 7,
+      "toChars": 7,
+      "fromWords": 2,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "WHAT TO DO WHEN...",
+      "to": "BILLING",
+      "fromChars": 18,
+      "toChars": 7,
+      "fromWords": 4,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "ADD TOPIC HERE",
+      "to": "PRICING",
+      "fromChars": 14,
+      "toChars": 7,
+      "fromWords": 3,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "100",
+      "to": "99.9%",
+      "fromChars": 3,
+      "toChars": 5,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "36",
+      "to": "24/7",
+      "fromChars": 2,
+      "toChars": 4,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "67%",
+      "to": "67%",
+      "fromChars": 3,
+      "toChars": 3,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": true,
+      "clamped": false
+    },
+    {
+      "from": "TITLE HERE",
+      "to": "SUPPORT",
+      "fromChars": 10,
+      "toChars": 7,
+      "fromWords": 2,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "45%",
+      "to": "45%",
+      "fromChars": 3,
+      "toChars": 3,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": true,
+      "clamped": false
+    },
+    {
+      "from": "50%",
+      "to": "50%",
+      "fromChars": 3,
+      "toChars": 3,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": true,
+      "clamped": false
+    },
+    {
+      "from": "OUR FIRST AID EXPERTS",
+      "to": "OUR EXPERTS",
+      "fromChars": 21,
+      "toChars": 11,
+      "fromWords": 4,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "NAME HERE",
+      "to": "TEAM",
+      "fromChars": 9,
+      "toChars": 4,
+      "fromWords": 2,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "CONTACT US",
+      "to": "CONTACT",
+      "fromChars": 10,
+      "toChars": 7,
+      "fromWords": 2,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": true,
+      "clamped": false
+    },
+    {
+      "from": "1234-5678",
+      "to": "1-800-VANTAGE",
+      "fromChars": 9,
+      "toChars": 13,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "hello@reallygreatsite.com",
+      "to": "hello@vantagepay.com",
+      "fromChars": 25,
+      "toChars": 20,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "Reallygreatsite.com",
+      "to": "vantagepay.com",
+      "fromChars": 19,
+      "toChars": 14,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "This presentation template",
+      "to": "Brand Guide",
+      "fromChars": 26,
+      "toChars": 11,
+      "fromWords": 3,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "uses the following free fonts:",
+      "to": "Typography recommendations:",
+      "fromChars": 30,
+      "toChars": 27,
+      "fromWords": 5,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "You can find these fonts online too.",
+      "to": "Available on all major platforms",
+      "fromChars": 36,
+      "toChars": 32,
+      "fromWords": 7,
+      "toWords": 5,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "TITLES:",
+      "to": "TITLES:",
+      "fromChars": 7,
+      "toChars": 7,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "AMIKO",
+      "to": "LATO",
+      "fromChars": 5,
+      "toChars": 4,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "HEADERS:",
+      "to": "HEADERS:",
+      "fromChars": 8,
+      "toChars": 8,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "ROBOTO",
+      "to": "SOURCE SANS",
+      "fromChars": 6,
+      "toChars": 11,
+      "fromWords": 1,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": true,
+      "clamped": false
+    },
+    {
+      "from": "BODY COPY:",
+      "to": "BODY:",
+      "fromChars": 10,
+      "toChars": 5,
+      "fromWords": 2,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "#981D13",
+      "to": "#0052CC",
+      "fromChars": 7,
+      "toChars": 7,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "#000000",
+      "to": "#000000",
+      "fromChars": 7,
+      "toChars": 7,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "#5F3A10",
+      "to": "#1D1D1D",
+      "fromChars": 7,
+      "toChars": 7,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "#E16358",
+      "to": "#F5F5F5",
+      "fromChars": 7,
+      "toChars": 7,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "Use these design resources in your Canva Presentation.",
+      "to": "Download brand assets and templates here",
+      "fromChars": 54,
+      "toChars": 40,
+      "fromWords": 8,
+      "toWords": 6,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "DON'T FORGET TO DELETE THIS PAGE BEFORE PRESENTING. ",
+      "to": "Internal use only",
+      "fromChars": 52,
+      "toChars": 17,
+      "fromWords": 8,
+      "toWords": 3,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "RESOURCE PAGE",
+      "to": "RESOURCES",
+      "fromChars": 13,
+      "toChars": 9,
+      "fromWords": 2,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "Fonts",
+      "to": "FONTS",
+      "fromChars": 5,
+      "toChars": 5,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "Design Elements",
+      "to": "ELEMENTS",
+      "fromChars": 15,
+      "toChars": 8,
+      "fromWords": 2,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "Colors",
+      "to": "COLORS",
+      "fromChars": 6,
+      "toChars": 6,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "#FAFBFC",
+      "to": "#FFFFFF",
+      "fromChars": 7,
+      "toChars": 7,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "Design Elements / Icons",
+      "to": "ICONS",
+      "fromChars": 23,
+      "toChars": 5,
+      "fromWords": 4,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "This presentation template is free for everyone to use thanks to the following:",
+      "to": "Assets provided by Vantage Pay partners",
+      "fromChars": 79,
+      "toChars": 39,
+      "fromWords": 13,
+      "toWords": 6,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "Happy designing!",
+      "to": "Let's build",
+      "fromChars": 16,
+      "toChars": 11,
+      "fromWords": 2,
+      "toWords": 2,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "for the presentation template",
+      "to": "for the template",
+      "fromChars": 29,
+      "toChars": 16,
+      "fromWords": 4,
+      "toWords": 3,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "for the photos",
+      "to": "for the imagery",
+      "fromChars": 14,
+      "toChars": 15,
+      "fromWords": 3,
+      "toWords": 3,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "CREDITS",
+      "to": "CREDITS",
+      "fromChars": 7,
+      "toChars": 7,
+      "fromWords": 1,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    },
+    {
+      "from": "Pexels, Pixabay",
+      "to": "Vecteezy",
+      "fromChars": 15,
+      "toChars": 8,
+      "fromWords": 2,
+      "toWords": 1,
+      "replaced": true,
+      "rejected": false,
+      "retried": false,
+      "clamped": false
+    }
+  ],
+  "missed": 0,
+  "rejected": 0,
+  "analysis": {
+    "score": 39,
+    "passed": 7,
+    "total": 18,
+    "failures": [
+      "text under picture (s3-e13-t under s3-e14) on slide 3",
+      "text under picture (s4-e4-t under s4-e17) on slide 4",
+      "text under picture (s5-e2-t-p1 under s5-e4) on slide 5",
+      "text under picture (s5-e2-t-p1 under s5-e6) on slide 5",
+      "text under picture (s5-e2-t-p2 under s5-e4) on slide 5",
+      "text under picture (s5-e2-t-p2 under s5-e6) on slide 5",
+      "text under picture (s8-e4-t under s8-e6) on slide 8",
+      "text under picture (s8-e5-t under s8-e6) on slide 8",
+      "text under picture (s9-e18-t under s9-e20) on slide 9",
+      "text under picture (s10-e2-t under s10-e5) on slide 10",
+      "text under picture (s10-e3-t under s10-e5) on slide 10",
+      "text under picture (s10-e4-t under s10-e5) on slide 10",
+      "text under picture (s11-e2-t under s11-e12) on slide 11",
+      "text under picture (s12-e2-t under s12-e9) on slide 12",
+      "text under picture (s12-e3-t under s12-e9) on slide 12",
+      "text under picture (s12-e5-t under s12-e9) on slide 12",
+      "text under picture (s12-e6-t under s12-e9) on slide 12",
+      "text under picture (s12-e7-t under s12-e9) on slide 12",
+      "text under picture (s12-e8-t under s12-e9) on slide 12",
+      "text under picture (s14-e3-t under s14-e11) on slide 14",
+      "text under picture (s15-e5-t under s15-e11) on slide 15",
+      "text under picture (s15-e6-t under s15-e11) on slide 15",
+      "text under picture (s15-e7-t under s15-e11) on slide 15",
+      "text under picture (s15-e8-t under s15-e11) on slide 15",
+      "pptx mismatch: s7-e3-t line count on slide 7",
+      "pptx mismatch: s8-e5-t line count on slide 8"
+    ],
+    "attempt": 1,
+    "mode": "manual"
+  }
+}

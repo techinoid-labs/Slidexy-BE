@@ -11,6 +11,7 @@ const {
   readReplacements,
   publishTemplate,
   discardTemplate,
+  reviewConsole,
 } = require("../services/templatePipeline/adminCatalog");
 
 const router = express.Router();
@@ -76,6 +77,54 @@ router.post("/publish-template", send(async (req, res) => {
 
 router.post("/discard-template", send(async (req, res) => {
   res.json(discardTemplate(req.body && req.body.id));
+}));
+
+router.get("/review/:id", send(async (req, res) => {
+  res.json(reviewConsole.getReviewPayload(req.params.id));
+}));
+
+router.post("/review/:id", send(async (req, res) => {
+  res.json(reviewConsole.submitReview(req.params.id, req.body || {}));
+}));
+
+router.get("/reviews", send(async (req, res) => {
+  res.json({ reviews: reviewConsole.listReviews(), jobs: reviewConsole.listJobsForReview() });
+}));
+
+router.post("/replay/:id", send(async (req, res) => {
+  res.json(await reviewConsole.replayReview(req.params.id));
+}));
+
+router.get("/gallery", send(async (req, res) => {
+  res.json(await reviewConsole.getGallery());
+}));
+
+router.post("/gallery/flag", send(async (req, res) => {
+  res.json(reviewConsole.setGalleryFlag(req.body || {}));
+}));
+
+router.get("/gallery/png/:name", (req, res) => {
+  try {
+    res.type("png").sendFile(reviewConsole.galleryPngPath(req.params.name));
+  } catch (error) {
+    res.status(error.status || 500).json({ error: error.message });
+  }
+});
+
+router.get("/panel", send(async (req, res) => {
+  res.json(reviewConsole.getPanel());
+}));
+
+router.post("/panel/run", send(async (req, res) => {
+  res.json(await reviewConsole.runPanel());
+}));
+
+router.post("/ppt-check", send(async (req, res) => {
+  res.json(reviewConsole.setPptCheck(req.body || {}));
+}));
+
+router.get("/git-status", send(async (req, res) => {
+  res.json(reviewConsole.gitDirtyCount());
 }));
 
 module.exports = router;

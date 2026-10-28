@@ -1,0 +1,2670 @@
+{
+  "schemaVersion": 2,
+  "id": "apex-payroll-solutions",
+  "name": "Apex Payroll Solutions: A corporate payroll company",
+  "tokens": {
+    "color": {
+      "bg": "#f3f1ee",
+      "surface": "#f3f1ee",
+      "card": "#FFFFFF",
+      "ink": "#1c1916",
+      "muted": "#5c564e",
+      "rule": "#d9d0c6",
+      "accent": "#8a8175",
+      "accent2": "#8a8175",
+      "onAccent": "#1c1916"
+    },
+    "font": {
+      "display": "Calibri",
+      "text": "Calibri"
+    },
+    "type": {
+      "h1": 64,
+      "body": 22
+    }
+  },
+  "layoutSequence": [
+    "slide-1",
+    "slide-2",
+    "slide-3",
+    "slide-4",
+    "slide-5",
+    "slide-6",
+    "slide-7",
+    "slide-8",
+    "slide-9"
+  ],
+  "layouts": {
+    "slide-1": {
+      "version": 2,
+      "id": "slide-1",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-1",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-cover-field",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "opacity": 1,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "{color.bg}",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-cover-accent",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 18,
+          "height": 900,
+          "zIndex": 2,
+          "opacity": 1,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "{color.accent}",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-cover-kicker",
+          "type": "text",
+          "x": 72,
+          "y": 72,
+          "width": 760,
+          "height": 23.76,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 18,
+            "fontWeight": 600,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "lineHeight": 1.2,
+            "letterSpacing": 2
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "CORPORATE PAYROLL",
+                "fontFamily": "{font.text}",
+                "fontSize": 18,
+                "fontWeight": 600,
+                "color": "{color.muted}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "kicker",
+            "maxChars": 24,
+            "charsPerLine": 24,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 24,
+            "charsPerLine": 24,
+            "width": 284.08,
+            "canvasWidth": 236.07,
+            "layoutWidth": 760,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "cover-copy"
+        },
+        {
+          "id": "composer-cover-title",
+          "type": "text",
+          "x": 72,
+          "y": 123.76,
+          "width": 760,
+          "height": 221.76,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 96,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.05,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Apex Payroll Solutions",
+                "fontFamily": "{font.display}",
+                "fontSize": 96,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "title",
+            "maxChars": 40,
+            "charsPerLine": 13,
+            "capacityLines": 3
+          },
+          "textMeasure": {
+            "lines": 2,
+            "fontPair": "corp-calibri",
+            "capacityChars": 40,
+            "charsPerLine": 13,
+            "width": 1726.03,
+            "canvasWidth": 1769.44,
+            "layoutWidth": 760,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "cover-copy"
+        },
+        {
+          "id": "composer-cover-body",
+          "type": "text",
+          "x": 72,
+          "y": 373.52,
+          "width": 760,
+          "height": 83.16,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 28,
+            "fontWeight": 400,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "lineHeight": 1.35,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Streamlined payroll management designed for growing financial services firms",
+                "fontFamily": "{font.text}",
+                "fontSize": 28,
+                "fontWeight": 400,
+                "color": "{color.muted}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "body",
+            "maxChars": 160,
+            "charsPerLine": 53,
+            "capacityLines": 3
+          },
+          "textMeasure": {
+            "lines": 2,
+            "fontPair": "corp-calibri",
+            "capacityChars": 160,
+            "charsPerLine": 53,
+            "width": 1861.86,
+            "canvasWidth": 1874.5,
+            "layoutWidth": 760,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "cover-copy"
+        },
+        {
+          "id": "composer-cover-photo",
+          "type": "image",
+          "x": 900,
+          "y": 0,
+          "width": 700,
+          "height": 900,
+          "zIndex": 1,
+          "imageContent": {
+            "url": "photos/composer/apex-payroll-solutions/photo-01.jpg",
+            "fit": "cover",
+            "binding": "photo",
+            "alignX": 0.5,
+            "alignY": 0.5
+          }
+        }
+      ],
+      "stacks": [
+        {
+          "id": "cover-copy",
+          "order": [
+            "composer-cover-kicker",
+            "composer-cover-title",
+            "composer-cover-body"
+          ],
+          "blocks": [],
+          "gap": 28,
+          "align": "start",
+          "direction": "column",
+          "box": {
+            "x": 72,
+            "y": 72,
+            "width": 760,
+            "height": 720
+          }
+        }
+      ],
+      "role": "Cover",
+      "component": "cover",
+      "variant": "split"
+    },
+    "slide-2": {
+      "version": 2,
+      "id": "slide-2",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-2",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-agenda-field",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "opacity": 1,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "{color.bg}",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-agenda-title",
+          "type": "text",
+          "x": 96,
+          "y": 96,
+          "width": 1400,
+          "height": 77.44,
+          "zIndex": 1,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 64,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Agenda",
+                "fontFamily": "{font.display}",
+                "fontSize": 64,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "title",
+            "maxChars": 40,
+            "charsPerLine": 40,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 40,
+            "charsPerLine": 40,
+            "width": 1179.63,
+            "canvasWidth": 1179.63,
+            "layoutWidth": 1400,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "agenda"
+        },
+        {
+          "id": "composer-agenda-item-1",
+          "type": "text",
+          "x": 96,
+          "y": 197.44,
+          "width": 1400,
+          "height": 38.5,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 28,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.25,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Our Mission",
+                "fontFamily": "{font.text}",
+                "fontSize": 28,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "item-1",
+            "maxChars": 36,
+            "charsPerLine": 36,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 36,
+            "charsPerLine": 36,
+            "width": 454.28,
+            "canvasWidth": 454.28,
+            "layoutWidth": 1400,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "agenda"
+        },
+        {
+          "id": "composer-agenda-item-2",
+          "type": "text",
+          "x": 96,
+          "y": 259.94,
+          "width": 1400,
+          "height": 38.5,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 28,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.25,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "The Payroll Problem",
+                "fontFamily": "{font.text}",
+                "fontSize": 28,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "item-2",
+            "maxChars": 36,
+            "charsPerLine": 36,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 36,
+            "charsPerLine": 36,
+            "width": 454.28,
+            "canvasWidth": 454.28,
+            "layoutWidth": 1400,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "agenda"
+        },
+        {
+          "id": "composer-agenda-item-3",
+          "type": "text",
+          "x": 96,
+          "y": 322.44,
+          "width": 1400,
+          "height": 38.5,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 28,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.25,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Our Solution",
+                "fontFamily": "{font.text}",
+                "fontSize": 28,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "item-3",
+            "maxChars": 36,
+            "charsPerLine": 36,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 36,
+            "charsPerLine": 36,
+            "width": 454.28,
+            "canvasWidth": 454.28,
+            "layoutWidth": 1400,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "agenda"
+        },
+        {
+          "id": "composer-agenda-item-4",
+          "type": "text",
+          "x": 96,
+          "y": 384.94,
+          "width": 1400,
+          "height": 38.5,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 28,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.25,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Proven Results",
+                "fontFamily": "{font.text}",
+                "fontSize": 28,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "item-4",
+            "maxChars": 36,
+            "charsPerLine": 36,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 36,
+            "charsPerLine": 36,
+            "width": 454.28,
+            "canvasWidth": 454.28,
+            "layoutWidth": 1400,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "agenda"
+        },
+        {
+          "id": "composer-agenda-item-5",
+          "type": "text",
+          "x": 96,
+          "y": 447.44,
+          "width": 1400,
+          "height": 38.5,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 28,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.25,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Implementation Process",
+                "fontFamily": "{font.text}",
+                "fontSize": 28,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "item-5",
+            "maxChars": 36,
+            "charsPerLine": 36,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 36,
+            "charsPerLine": 36,
+            "width": 454.28,
+            "canvasWidth": 454.28,
+            "layoutWidth": 1400,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "agenda"
+        },
+        {
+          "id": "composer-agenda-item-6",
+          "type": "text",
+          "x": 96,
+          "y": 509.94,
+          "width": 1400,
+          "height": 38.5,
+          "zIndex": 7,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 28,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.25,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Get Started",
+                "fontFamily": "{font.text}",
+                "fontSize": 28,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "item-6",
+            "maxChars": 36,
+            "charsPerLine": 36,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 36,
+            "charsPerLine": 36,
+            "width": 454.28,
+            "canvasWidth": 454.28,
+            "layoutWidth": 1400,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "agenda"
+        }
+      ],
+      "stacks": [
+        {
+          "id": "agenda",
+          "order": [
+            "composer-agenda-title",
+            "composer-agenda-item-1",
+            "composer-agenda-item-2",
+            "composer-agenda-item-3",
+            "composer-agenda-item-4",
+            "composer-agenda-item-5",
+            "composer-agenda-item-6"
+          ],
+          "blocks": [],
+          "gap": 24,
+          "align": "start",
+          "direction": "column",
+          "box": {
+            "x": 96,
+            "y": 96,
+            "width": 1400,
+            "height": 720
+          }
+        }
+      ],
+      "role": "Contents",
+      "component": "agenda",
+      "variant": "numbered-list"
+    },
+    "slide-3": {
+      "version": 2,
+      "id": "slide-3",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-3",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-statement-field",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "opacity": 1,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "{color.bg}",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-statement-kicker",
+          "type": "text",
+          "x": 96,
+          "y": 160,
+          "width": 1408,
+          "height": 26.4,
+          "zIndex": 1,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 20,
+            "fontWeight": 600,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "lineHeight": 1.2,
+            "letterSpacing": 1.6
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "ABOUT APEX",
+                "fontFamily": "{font.text}",
+                "fontSize": 20,
+                "fontWeight": 600,
+                "color": "{color.muted}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "kicker",
+            "maxChars": 24,
+            "charsPerLine": 24,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 24,
+            "charsPerLine": 24,
+            "width": 300.7,
+            "canvasWidth": 262.29,
+            "layoutWidth": 1408,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "statement"
+        },
+        {
+          "id": "composer-statement-statement",
+          "type": "text",
+          "x": 96,
+          "y": 214.4,
+          "width": 1408,
+          "height": 332.64,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 96,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.05,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Simplifying complex payroll management for growing businesses",
+                "fontFamily": "{font.display}",
+                "fontSize": 96,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "statement",
+            "maxChars": 90,
+            "charsPerLine": 30,
+            "capacityLines": 3
+          },
+          "textMeasure": {
+            "lines": 3,
+            "fontPair": "corp-calibri",
+            "capacityChars": 90,
+            "charsPerLine": 30,
+            "width": 3703.03,
+            "canvasWidth": 3746.44,
+            "layoutWidth": 1408,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "statement"
+        }
+      ],
+      "stacks": [
+        {
+          "id": "statement",
+          "order": [
+            "composer-statement-kicker",
+            "composer-statement-statement"
+          ],
+          "blocks": [],
+          "gap": 28,
+          "align": "start",
+          "direction": "column",
+          "box": {
+            "x": 96,
+            "y": 160,
+            "width": 1408,
+            "height": 620
+          }
+        }
+      ],
+      "role": "About",
+      "component": "statement",
+      "variant": "with-kicker"
+    },
+    "slide-4": {
+      "version": 2,
+      "id": "slide-4",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-4",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-split-copy-field",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "opacity": 1,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "{color.bg}",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-split-copy-title",
+          "type": "text",
+          "x": 800,
+          "y": 96,
+          "width": 700,
+          "height": 67.76,
+          "zIndex": 1,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 56,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "The Cost of Complexity",
+                "fontFamily": "{font.display}",
+                "fontSize": 56,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "title",
+            "maxChars": 48,
+            "charsPerLine": 24,
+            "capacityLines": 2
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 48,
+            "charsPerLine": 24,
+            "width": 1178.25,
+            "canvasWidth": 1190.9,
+            "layoutWidth": 700,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "copy"
+        },
+        {
+          "id": "composer-split-copy-body",
+          "type": "text",
+          "x": 800,
+          "y": 191.76,
+          "width": 700,
+          "height": 32.67,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 22,
+            "fontWeight": 400,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "lineHeight": 1.35,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Manual processes drain resources and expose you to compliance risks",
+                "fontFamily": "{font.text}",
+                "fontSize": 22,
+                "fontWeight": 400,
+                "color": "{color.muted}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "body",
+            "maxChars": 160,
+            "charsPerLine": 53,
+            "capacityLines": 3
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 160,
+            "charsPerLine": 53,
+            "width": 1462.89,
+            "canvasWidth": 1472.82,
+            "layoutWidth": 700,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "copy"
+        },
+        {
+          "id": "composer-split-copy-bullet-1",
+          "type": "text",
+          "x": 800,
+          "y": 252.43,
+          "width": 700,
+          "height": 28.6,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "High operational overhead",
+                "fontFamily": "{font.text}",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "bullet-1",
+            "maxChars": 80,
+            "charsPerLine": 80,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 80,
+            "charsPerLine": 80,
+            "width": 673.67,
+            "canvasWidth": 673.67,
+            "layoutWidth": 700,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "copy"
+        },
+        {
+          "id": "composer-split-copy-bullet-2",
+          "type": "text",
+          "x": 800,
+          "y": 309.03,
+          "width": 700,
+          "height": 28.6,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Compliance exposure",
+                "fontFamily": "{font.text}",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "bullet-2",
+            "maxChars": 80,
+            "charsPerLine": 80,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 80,
+            "charsPerLine": 80,
+            "width": 673.67,
+            "canvasWidth": 673.67,
+            "layoutWidth": 700,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "copy"
+        },
+        {
+          "id": "composer-split-copy-bullet-3",
+          "type": "text",
+          "x": 800,
+          "y": 365.63,
+          "width": 700,
+          "height": 28.6,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Slow response times",
+                "fontFamily": "{font.text}",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "bullet-3",
+            "maxChars": 80,
+            "charsPerLine": 80,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 80,
+            "charsPerLine": 80,
+            "width": 673.67,
+            "canvasWidth": 673.67,
+            "layoutWidth": 700,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "copy"
+        },
+        {
+          "id": "composer-split-copy-photo",
+          "type": "image",
+          "x": 0,
+          "y": 0,
+          "width": 720,
+          "height": 900,
+          "zIndex": 1,
+          "imageContent": {
+            "url": "photos/composer/apex-payroll-solutions/photo-02.jpg",
+            "fit": "cover",
+            "binding": "photo",
+            "alignX": 0.5,
+            "alignY": 0.5
+          }
+        }
+      ],
+      "stacks": [
+        {
+          "id": "copy",
+          "order": [
+            "composer-split-copy-title",
+            "composer-split-copy-body",
+            "composer-split-copy-bullet-1",
+            "composer-split-copy-bullet-2",
+            "composer-split-copy-bullet-3"
+          ],
+          "blocks": [],
+          "gap": 28,
+          "align": "start",
+          "direction": "column",
+          "box": {
+            "x": 800,
+            "y": 96,
+            "width": 700,
+            "height": 720
+          }
+        }
+      ],
+      "role": "Problem",
+      "component": "split-copy",
+      "variant": "photo-left"
+    },
+    "slide-5": {
+      "version": 2,
+      "id": "slide-5",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-5",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-split-copy-field",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "opacity": 1,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "{color.bg}",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-split-copy-title",
+          "type": "text",
+          "x": 72,
+          "y": 96,
+          "width": 700,
+          "height": 67.76,
+          "zIndex": 1,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 56,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "The Apex Approach",
+                "fontFamily": "{font.display}",
+                "fontSize": 56,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "title",
+            "maxChars": 48,
+            "charsPerLine": 24,
+            "capacityLines": 2
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 48,
+            "charsPerLine": 24,
+            "width": 1178.25,
+            "canvasWidth": 1190.9,
+            "layoutWidth": 700,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "copy"
+        },
+        {
+          "id": "composer-split-copy-body",
+          "type": "text",
+          "x": 72,
+          "y": 191.76,
+          "width": 700,
+          "height": 32.67,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 22,
+            "fontWeight": 400,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "lineHeight": 1.35,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Automated, secure payroll infrastructure built for scale and precision",
+                "fontFamily": "{font.text}",
+                "fontSize": 22,
+                "fontWeight": 400,
+                "color": "{color.muted}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "body",
+            "maxChars": 160,
+            "charsPerLine": 53,
+            "capacityLines": 3
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 160,
+            "charsPerLine": 53,
+            "width": 1462.89,
+            "canvasWidth": 1472.82,
+            "layoutWidth": 700,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "copy"
+        },
+        {
+          "id": "composer-split-copy-bullet-1",
+          "type": "text",
+          "x": 72,
+          "y": 252.43,
+          "width": 700,
+          "height": 28.6,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Automated processing",
+                "fontFamily": "{font.text}",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "bullet-1",
+            "maxChars": 80,
+            "charsPerLine": 80,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 80,
+            "charsPerLine": 80,
+            "width": 673.67,
+            "canvasWidth": 673.67,
+            "layoutWidth": 700,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "copy"
+        },
+        {
+          "id": "composer-split-copy-bullet-2",
+          "type": "text",
+          "x": 72,
+          "y": 309.03,
+          "width": 700,
+          "height": 28.6,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Real-time compliance tracking",
+                "fontFamily": "{font.text}",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "bullet-2",
+            "maxChars": 80,
+            "charsPerLine": 80,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 80,
+            "charsPerLine": 80,
+            "width": 673.67,
+            "canvasWidth": 673.67,
+            "layoutWidth": 700,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "copy"
+        },
+        {
+          "id": "composer-split-copy-bullet-3",
+          "type": "text",
+          "x": 72,
+          "y": 365.63,
+          "width": 700,
+          "height": 28.6,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 20,
+            "fontWeight": 400,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.3,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Dedicated account support",
+                "fontFamily": "{font.text}",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "bullet-3",
+            "maxChars": 80,
+            "charsPerLine": 80,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 80,
+            "charsPerLine": 80,
+            "width": 673.67,
+            "canvasWidth": 673.67,
+            "layoutWidth": 700,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "copy"
+        },
+        {
+          "id": "composer-split-copy-photo",
+          "type": "image",
+          "x": 880,
+          "y": 0,
+          "width": 720,
+          "height": 900,
+          "zIndex": 1,
+          "imageContent": {
+            "url": "photos/composer/apex-payroll-solutions/photo-03.jpg",
+            "fit": "cover",
+            "binding": "photo",
+            "alignX": 0.5,
+            "alignY": 0.5
+          }
+        }
+      ],
+      "stacks": [
+        {
+          "id": "copy",
+          "order": [
+            "composer-split-copy-title",
+            "composer-split-copy-body",
+            "composer-split-copy-bullet-1",
+            "composer-split-copy-bullet-2",
+            "composer-split-copy-bullet-3"
+          ],
+          "blocks": [],
+          "gap": 28,
+          "align": "start",
+          "direction": "column",
+          "box": {
+            "x": 72,
+            "y": 96,
+            "width": 700,
+            "height": 720
+          }
+        }
+      ],
+      "role": "Solution",
+      "component": "split-copy",
+      "variant": "photo-right"
+    },
+    "slide-6": {
+      "version": 2,
+      "id": "slide-6",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-6",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-statement-field",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "opacity": 1,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "{color.bg}",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-statement-statement",
+          "type": "text",
+          "x": 96,
+          "y": 160,
+          "width": 1408,
+          "height": 221.76,
+          "zIndex": 1,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 96,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.05,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Reducing risk and friction in payroll execution",
+                "fontFamily": "{font.display}",
+                "fontSize": 96,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "statement",
+            "maxChars": 90,
+            "charsPerLine": 30,
+            "capacityLines": 3
+          },
+          "textMeasure": {
+            "lines": 2,
+            "fontPair": "corp-calibri",
+            "capacityChars": 90,
+            "charsPerLine": 30,
+            "width": 3703.03,
+            "canvasWidth": 3746.44,
+            "layoutWidth": 1408,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "statement"
+        }
+      ],
+      "stacks": [
+        {
+          "id": "statement",
+          "order": [
+            "composer-statement-statement"
+          ],
+          "blocks": [],
+          "gap": 28,
+          "align": "start",
+          "direction": "column",
+          "box": {
+            "x": 96,
+            "y": 160,
+            "width": 1408,
+            "height": 620
+          }
+        }
+      ],
+      "role": "About",
+      "component": "statement",
+      "variant": "left"
+    },
+    "slide-7": {
+      "version": 2,
+      "id": "slide-7",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-7",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-big-number-field",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "opacity": 1,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "{color.bg}",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-big-number-number",
+          "type": "text",
+          "x": 250,
+          "y": 160,
+          "width": 1100,
+          "height": 188.1,
+          "zIndex": 1,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 180,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "center",
+            "lineHeight": 0.95,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "99.9%",
+                "fontFamily": "{font.display}",
+                "fontSize": 180,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "number",
+            "maxChars": 8,
+            "charsPerLine": 8,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 8,
+            "charsPerLine": 8,
+            "width": 705.77,
+            "canvasWidth": 705.76,
+            "layoutWidth": 1100,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "number"
+        },
+        {
+          "id": "composer-big-number-label",
+          "type": "text",
+          "x": 250,
+          "y": 368.1,
+          "width": 1100,
+          "height": 45.54,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 36,
+            "fontWeight": 600,
+            "color": "{color.ink}",
+            "textAlign": "center",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Accuracy Rate",
+                "fontFamily": "{font.text}",
+                "fontSize": 36,
+                "fontWeight": 600,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "label",
+            "maxChars": 40,
+            "charsPerLine": 40,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 40,
+            "charsPerLine": 40,
+            "width": 663.55,
+            "canvasWidth": 663.54,
+            "layoutWidth": 1100,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "number"
+        },
+        {
+          "id": "composer-big-number-body",
+          "type": "text",
+          "x": 250,
+          "y": 433.64,
+          "width": 1100,
+          "height": 32.67,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 22,
+            "fontWeight": 400,
+            "color": "{color.muted}",
+            "textAlign": "center",
+            "lineHeight": 1.35,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Verified across all processed pay cycles",
+                "fontFamily": "{font.text}",
+                "fontSize": 22,
+                "fontWeight": 400,
+                "color": "{color.muted}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "body",
+            "maxChars": 100,
+            "charsPerLine": 100,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 100,
+            "charsPerLine": 100,
+            "width": 922.94,
+            "canvasWidth": 922.93,
+            "layoutWidth": 1100,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "number"
+        }
+      ],
+      "stacks": [
+        {
+          "id": "number",
+          "order": [
+            "composer-big-number-number",
+            "composer-big-number-label",
+            "composer-big-number-body"
+          ],
+          "blocks": [],
+          "gap": 20,
+          "align": "start",
+          "direction": "column",
+          "box": {
+            "x": 250,
+            "y": 160,
+            "width": 1100,
+            "height": 600
+          }
+        }
+      ],
+      "role": "Proof",
+      "component": "big-number",
+      "variant": "centered"
+    },
+    "slide-8": {
+      "version": 2,
+      "id": "slide-8",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-8",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-process-field",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "opacity": 1,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "{color.bg}",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-process-title",
+          "type": "text",
+          "x": 96,
+          "y": 72,
+          "width": 1400,
+          "height": 58.08,
+          "zIndex": 1,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 48,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.1,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "How It Works",
+                "fontFamily": "{font.display}",
+                "fontSize": 48,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "title",
+            "maxChars": 40,
+            "charsPerLine": 40,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 40,
+            "charsPerLine": 40,
+            "width": 884.72,
+            "canvasWidth": 884.72,
+            "layoutWidth": 1400,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "header"
+        },
+        {
+          "id": "composer-process-step-title-1",
+          "type": "text",
+          "x": 96,
+          "y": 220,
+          "width": 331,
+          "height": 35.42,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 28,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Audit",
+                "fontFamily": "{font.display}",
+                "fontSize": 28,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "step-title-1",
+            "maxChars": 24,
+            "charsPerLine": 24,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 24,
+            "charsPerLine": 24,
+            "width": 309.91,
+            "canvasWidth": 309.9,
+            "layoutWidth": 331,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "step-1"
+        },
+        {
+          "id": "composer-process-step-body-1",
+          "type": "text",
+          "x": 96,
+          "y": 271.42,
+          "width": 331,
+          "height": 26.73,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 18,
+            "fontWeight": 400,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "lineHeight": 1.35,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Assess current payroll needs",
+                "fontFamily": "{font.text}",
+                "fontSize": 18,
+                "fontWeight": 400,
+                "color": "{color.muted}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "step-body-1",
+            "maxChars": 60,
+            "charsPerLine": 30,
+            "capacityLines": 2
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 60,
+            "charsPerLine": 30,
+            "width": 453.48,
+            "canvasWidth": 457.54,
+            "layoutWidth": 331,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "step-1"
+        },
+        {
+          "id": "composer-process-step-title-2",
+          "type": "text",
+          "x": 455,
+          "y": 220,
+          "width": 331,
+          "height": 35.42,
+          "zIndex": 4,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 28,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Setup",
+                "fontFamily": "{font.display}",
+                "fontSize": 28,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "step-title-2",
+            "maxChars": 24,
+            "charsPerLine": 24,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 24,
+            "charsPerLine": 24,
+            "width": 309.91,
+            "canvasWidth": 309.9,
+            "layoutWidth": 331,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "step-2"
+        },
+        {
+          "id": "composer-process-step-body-2",
+          "type": "text",
+          "x": 455,
+          "y": 271.42,
+          "width": 331,
+          "height": 26.73,
+          "zIndex": 5,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 18,
+            "fontWeight": 400,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "lineHeight": 1.35,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Configure system parameters",
+                "fontFamily": "{font.text}",
+                "fontSize": 18,
+                "fontWeight": 400,
+                "color": "{color.muted}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "step-body-2",
+            "maxChars": 60,
+            "charsPerLine": 30,
+            "capacityLines": 2
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 60,
+            "charsPerLine": 30,
+            "width": 453.48,
+            "canvasWidth": 457.54,
+            "layoutWidth": 331,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "step-2"
+        },
+        {
+          "id": "composer-process-step-title-3",
+          "type": "text",
+          "x": 814,
+          "y": 220,
+          "width": 331,
+          "height": 35.42,
+          "zIndex": 6,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 28,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Migrate",
+                "fontFamily": "{font.display}",
+                "fontSize": 28,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "step-title-3",
+            "maxChars": 24,
+            "charsPerLine": 24,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 24,
+            "charsPerLine": 24,
+            "width": 309.91,
+            "canvasWidth": 309.9,
+            "layoutWidth": 331,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "step-3"
+        },
+        {
+          "id": "composer-process-step-body-3",
+          "type": "text",
+          "x": 814,
+          "y": 271.42,
+          "width": 331,
+          "height": 26.73,
+          "zIndex": 7,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 18,
+            "fontWeight": 400,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "lineHeight": 1.35,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Transfer historical data",
+                "fontFamily": "{font.text}",
+                "fontSize": 18,
+                "fontWeight": 400,
+                "color": "{color.muted}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "step-body-3",
+            "maxChars": 60,
+            "charsPerLine": 30,
+            "capacityLines": 2
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 60,
+            "charsPerLine": 30,
+            "width": 453.48,
+            "canvasWidth": 457.54,
+            "layoutWidth": 331,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "step-3"
+        },
+        {
+          "id": "composer-process-step-title-4",
+          "type": "text",
+          "x": 1173,
+          "y": 220,
+          "width": 331,
+          "height": 35.42,
+          "zIndex": 8,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 28,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.15,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Run",
+                "fontFamily": "{font.display}",
+                "fontSize": 28,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "step-title-4",
+            "maxChars": 24,
+            "charsPerLine": 24,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 24,
+            "charsPerLine": 24,
+            "width": 309.91,
+            "canvasWidth": 309.9,
+            "layoutWidth": 331,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "step-4"
+        },
+        {
+          "id": "composer-process-step-body-4",
+          "type": "text",
+          "x": 1173,
+          "y": 271.42,
+          "width": 331,
+          "height": 26.73,
+          "zIndex": 9,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 18,
+            "fontWeight": 400,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "lineHeight": 1.35,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Automate future payouts",
+                "fontFamily": "{font.text}",
+                "fontSize": 18,
+                "fontWeight": 400,
+                "color": "{color.muted}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "step-body-4",
+            "maxChars": 60,
+            "charsPerLine": 30,
+            "capacityLines": 2
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 60,
+            "charsPerLine": 30,
+            "width": 453.48,
+            "canvasWidth": 457.54,
+            "layoutWidth": 331,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "step-4"
+        }
+      ],
+      "stacks": [
+        {
+          "id": "header",
+          "order": [
+            "composer-process-title"
+          ],
+          "blocks": [],
+          "gap": 12,
+          "align": "start",
+          "direction": "column",
+          "box": {
+            "x": 96,
+            "y": 72,
+            "width": 1400,
+            "height": 100
+          }
+        },
+        {
+          "id": "steps",
+          "order": [
+            "steps-block-0",
+            "steps-block-1",
+            "steps-block-2",
+            "steps-block-3"
+          ],
+          "blocks": [
+            {
+              "id": "steps-block-0",
+              "x": 96,
+              "y": 220,
+              "width": 331,
+              "height": 96.78
+            },
+            {
+              "id": "steps-block-1",
+              "x": 455,
+              "y": 220,
+              "width": 331,
+              "height": 96.78
+            },
+            {
+              "id": "steps-block-2",
+              "x": 814,
+              "y": 220,
+              "width": 331,
+              "height": 96.78
+            },
+            {
+              "id": "steps-block-3",
+              "x": 1173,
+              "y": 220,
+              "width": 331,
+              "height": 96.78
+            }
+          ],
+          "gap": 28,
+          "align": "start",
+          "direction": "row",
+          "box": {
+            "x": 96,
+            "y": 220,
+            "width": 1408,
+            "height": 560
+          }
+        },
+        {
+          "id": "step-1",
+          "order": [
+            "composer-process-step-title-1",
+            "composer-process-step-body-1"
+          ],
+          "blocks": [],
+          "gap": 16,
+          "align": "start",
+          "direction": "column",
+          "box": {
+            "x": 96,
+            "y": 220,
+            "width": 331,
+            "height": 96.78
+          }
+        },
+        {
+          "id": "step-2",
+          "order": [
+            "composer-process-step-title-2",
+            "composer-process-step-body-2"
+          ],
+          "blocks": [],
+          "gap": 16,
+          "align": "start",
+          "direction": "column",
+          "box": {
+            "x": 455,
+            "y": 220,
+            "width": 331,
+            "height": 96.78
+          }
+        },
+        {
+          "id": "step-3",
+          "order": [
+            "composer-process-step-title-3",
+            "composer-process-step-body-3"
+          ],
+          "blocks": [],
+          "gap": 16,
+          "align": "start",
+          "direction": "column",
+          "box": {
+            "x": 814,
+            "y": 220,
+            "width": 331,
+            "height": 96.78
+          }
+        },
+        {
+          "id": "step-4",
+          "order": [
+            "composer-process-step-title-4",
+            "composer-process-step-body-4"
+          ],
+          "blocks": [],
+          "gap": 16,
+          "align": "start",
+          "direction": "column",
+          "box": {
+            "x": 1173,
+            "y": 220,
+            "width": 331,
+            "height": 96.78
+          }
+        }
+      ],
+      "role": "Model",
+      "component": "process",
+      "variant": "four-step"
+    },
+    "slide-9": {
+      "version": 2,
+      "id": "slide-9",
+      "canvas": {
+        "width": 1600,
+        "height": 900,
+        "aspectRatio": "16:9"
+      },
+      "elements": [
+        {
+          "id": "signature-rail-slide-9",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 900,
+          "zIndex": 3,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "#8a8175",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-close-field",
+          "type": "shape",
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 900,
+          "zIndex": 0,
+          "opacity": 1,
+          "shapeContent": {
+            "kind": "rect",
+            "fill": "{color.bg}",
+            "cornerRadius": 0
+          }
+        },
+        {
+          "id": "composer-close-kicker",
+          "type": "text",
+          "x": 72,
+          "y": 280,
+          "width": 860,
+          "height": 23.76,
+          "zIndex": 1,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 18,
+            "fontWeight": 600,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "lineHeight": 1.2,
+            "letterSpacing": 2
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "NEXT STEPS",
+                "fontFamily": "{font.text}",
+                "fontSize": 18,
+                "fontWeight": 600,
+                "color": "{color.muted}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "kicker",
+            "maxChars": 24,
+            "charsPerLine": 24,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 24,
+            "charsPerLine": 24,
+            "width": 284.08,
+            "canvasWidth": 236.07,
+            "layoutWidth": 860,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "close-copy"
+        },
+        {
+          "id": "composer-close-title",
+          "type": "text",
+          "x": 72,
+          "y": 327.76,
+          "width": 860,
+          "height": 83.16,
+          "zIndex": 2,
+          "textStyle": {
+            "fontFamily": "{font.display}",
+            "fontSize": 72,
+            "fontWeight": 700,
+            "color": "{color.ink}",
+            "textAlign": "left",
+            "lineHeight": 1.05,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Let's Simplify Payroll",
+                "fontFamily": "{font.display}",
+                "fontSize": 72,
+                "fontWeight": 700,
+                "color": "{color.ink}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "title",
+            "maxChars": 40,
+            "charsPerLine": 20,
+            "capacityLines": 2
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 40,
+            "charsPerLine": 20,
+            "width": 1310.81,
+            "canvasWidth": 1327.08,
+            "layoutWidth": 860,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "close-copy"
+        },
+        {
+          "id": "composer-close-body",
+          "type": "text",
+          "x": 72,
+          "y": 434.92,
+          "width": 860,
+          "height": 35.64,
+          "zIndex": 3,
+          "textStyle": {
+            "fontFamily": "{font.text}",
+            "fontSize": 24,
+            "fontWeight": 400,
+            "color": "{color.muted}",
+            "textAlign": "left",
+            "lineHeight": 1.35,
+            "letterSpacing": 0
+          },
+          "textContent": {
+            "spans": [
+              {
+                "text": "Schedule a consultation with our solutions team",
+                "fontFamily": "{font.text}",
+                "fontSize": 24,
+                "fontWeight": 400,
+                "color": "{color.muted}"
+              }
+            ]
+          },
+          "slot": {
+            "dataRole": "body",
+            "maxChars": 80,
+            "charsPerLine": 80,
+            "capacityLines": 1
+          },
+          "textMeasure": {
+            "lines": 1,
+            "fontPair": "corp-calibri",
+            "capacityChars": 80,
+            "charsPerLine": 80,
+            "width": 808.41,
+            "canvasWidth": 808.41,
+            "layoutWidth": 860,
+            "fontCheck": true,
+            "computedFamily": "Calibri"
+          },
+          "stackId": "close-copy"
+        },
+        {
+          "id": "composer-close-photo",
+          "type": "image",
+          "x": 1000,
+          "y": 0,
+          "width": 600,
+          "height": 900,
+          "zIndex": 1,
+          "imageContent": {
+            "url": "photos/composer/apex-payroll-solutions/photo-04.jpg",
+            "fit": "cover",
+            "binding": "photo",
+            "alignX": 0.5,
+            "alignY": 0.5
+          }
+        }
+      ],
+      "stacks": [
+        {
+          "id": "close-copy",
+          "order": [
+            "composer-close-kicker",
+            "composer-close-title",
+            "composer-close-body"
+          ],
+          "blocks": [],
+          "gap": 24,
+          "align": "start",
+          "direction": "column",
+          "box": {
+            "x": 72,
+            "y": 280,
+            "width": 860,
+            "height": 520
+          }
+        }
+      ],
+      "role": "Close",
+      "component": "close",
+      "variant": "photo"
+    }
+  },
+  "parametric": {
+    "cover": "skipped",
+    "coverName": "Skipped",
+    "coverTitle": "Apex Payroll Solutions",
+    "density": "skipped",
+    "marginFactor": 1,
+    "lineHeightFactor": 1,
+    "densityReverted": [],
+    "densityRevertReasons": [],
+    "marginSample": null,
+    "signature": "rail",
+    "displayFont": "{font.display}",
+    "bodyFont": "{font.text}",
+    "displayWeight": 800,
+    "bodyWeight": 400,
+    "typeShortfalls": [],
+    "geometry": [
+      {
+        "slide": 1,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 2,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 3,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 4,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 5,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 6,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 7,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 8,
+        "pass": true,
+        "reasons": []
+      },
+      {
+        "slide": 9,
+        "pass": true,
+        "reasons": []
+      }
+    ],
+    "textOverlaps": []
+  },
+  "qa": {
+    "score": 100,
+    "passed": 9,
+    "total": 9,
+    "failures": [],
+    "attempt": 1,
+    "mode": "manual",
+    "aesthetic": {
+      "slides": 9,
+      "avgWhitespace": 0.622,
+      "avgTextDensity": 101,
+      "typeScaleAllOk": true,
+      "minFontSeen": 18
+    }
+  }
+}

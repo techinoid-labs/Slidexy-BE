@@ -1,0 +1,14 @@
+{
+  "prompts": [
+    { "prompt": "A neighborhood dental clinic expanding to a second location", "industry": "clinic", "mood": "calm clinical", "nonce": "panel-clinic" },
+    { "prompt": "A farm-to-table restaurant pitching a second site", "industry": "restaurant", "mood": "warm hospitable", "nonce": "panel-restaurant" },
+    { "prompt": "A B2B SaaS startup raising a Series A", "industry": "SaaS startup", "mood": "sharp confident", "nonce": "panel-saas" },
+    { "prompt": "A regional nonprofit seeking corporate sponsors", "industry": "nonprofit", "mood": "earnest hopeful", "nonce": "panel-nonprofit" },
+    { "prompt": "A boutique law firm specializing in employment law", "industry": "law firm", "mood": "precise authoritative", "nonce": "panel-law" },
+    { "prompt": "A boutique fitness studio opening a membership drive", "industry": "fitness studio", "mood": "energetic clean", "nonce": "panel-fitness" },
+    { "prompt": "A mid-size construction firm bidding on civic work", "industry": "construction", "mood": "sturdy practical", "nonce": "panel-construction" },
+    { "prompt": "An independent school presenting its five-year plan", "industry": "school", "mood": "thoughtful academic", "nonce": "panel-school" },
+    { "prompt": "A community bank launching small-business lending", "industry": "bank", "mood": "trustworthy steady", "nonce": "panel-bank" },
+    { "prompt": "A travel agency packaging slow-travel tours", "industry": "travel agency", "mood": "curious inviting", "nonce": "panel-travel" }
+  ]
+}

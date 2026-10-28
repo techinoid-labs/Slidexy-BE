@@ -1,8 +1,6 @@
 const fs = require("fs");
 const path = require("path");
 const pipeline = require("./pipeline");
-const { remixSeeds } = require("./mutate_layout");
-const { assembleDeck } = require("./assemble_deck");
 const { convertPptx } = require("./convert/pptxToDeck");
 const { scoreSeed } = require("../../scripts/score_seeds");
 const { safeRm } = require("./safeRm");
@@ -180,50 +178,41 @@ async function generateTemplate(body) {
   const prompt = String(body && body.prompt || "").trim();
   if (!prompt) throw fail(400, "Prompt is required");
   if (prompt.length > 500) throw fail(400, "Prompt is too long");
-  const mode = String(body && body.mode || "").trim().toLowerCase();
-  const composer = mode === "composer";
+  const modeIn = String(body && body.mode || "").trim().toLowerCase();
   const niche = String(body && body.niche || "").trim().toLowerCase();
   const namedNiche = ["corporate", "elegant", "gradient", "infographic", "cartoon"].indexOf(niche) >= 0;
-  const native = !composer && (namedNiche || Boolean(body && (body.native === true || body.native === "true" || mode === "native")));
-  const assemble = !composer && !native && Boolean(body && (body.assemble === true || body.assemble === "true" || mode === "assemble"));
-  const remix = !composer && !native && !assemble && Boolean(body && (body.remix === true || body.remix === "true" || mode === "frankenstein" || mode === "remix"));
-  const autoLayout = !composer && !native && !assemble && !remix && Boolean(body && (body.autoLayout === true || body.autoLayout === "true" || mode === "auto" || mode === "auto-select"));
-  const layoutId = composer || native || assemble || autoLayout ? "" : layoutFile(body && (body.layoutId || body.layout || body.seedA));
-  const layoutIdB = remix ? layoutFile(body && (body.layoutIdB || body.seedB)) : "";
-  if (remix && layoutId === layoutIdB) throw fail(400, "Pick two different seeds");
-  const id = slug((composer ? "composer" : native ? "native" : assemble ? "assemble" : remix ? "remix-" + layoutId + "-" + layoutIdB : (layoutId || "auto")) + "-" + prompt) + "-" + Date.now().toString(36);
+  let mode = "pinned";
+  if (modeIn === "composer") mode = "composer";
+  else if (modeIn === "native" || namedNiche || body && (body.native === true || body.native === "true")) mode = "native";
+  else if (modeIn === "assemble" || body && (body.assemble === true || body.assemble === "true")) mode = "assemble";
+  else if (modeIn === "remix" || modeIn === "frankenstein" || body && (body.remix === true || body.remix === "true")) mode = "remix";
+  else if (modeIn === "auto" || modeIn === "auto-select" || body && (body.autoLayout === true || body.autoLayout === "true")) mode = "auto";
+  else if (modeIn === "pinned") mode = "pinned";
+  else if (modeIn) mode = modeIn;
+
+  const layoutId = (mode === "composer" || mode === "native" || mode === "assemble" || mode === "auto")
+    ? ""
+    : layoutFile(body && (body.layoutId || body.layout || body.seedA));
+  const layoutIdB = mode === "remix" ? layoutFile(body && (body.layoutIdB || body.seedB)) : "";
+  if (mode === "remix" && layoutId === layoutIdB) throw fail(400, "Pick two different seeds");
+
+  const id = slug((mode === "composer" ? "composer" : mode === "native" ? "native" : mode === "assemble" ? "assemble" : mode === "remix" ? "remix-" + layoutId + "-" + layoutIdB : (layoutId || "auto")) + "-" + prompt) + "-" + Date.now().toString(36);
   const dir = jobDir(id);
-  const photoDir = path.join(ROOT, "generated-templates", "photos", native ? "native" : "thematic", id);
+  const photoDir = path.join(ROOT, "generated-templates", "photos", mode === "native" ? "native" : (mode === "composer" ? "composer" : "thematic"), id);
   fs.mkdirSync(dir, { recursive: true });
   let themed = null;
   try {
-    if (composer) {
-      themed = await pipeline.runPipeline({
-        mode: "composer",
-        prompt,
-        nonce: body && body.nonce != null ? String(body.nonce) : "",
-        out: relative(dir),
-      });
-    } else if (native) {
-      const { generate } = require("./thematic-native");
-      themed = await generate({
-        prompt,
-        out: relative(dir),
-        creative: body.creative === true || body.creative === "true",
-        niche: namedNiche ? niche : "",
-      });
-    } else {
-      themed = assemble
-        ? await assembleDeck(prompt, { out: relative(dir) })
-        : remix
-          ? await remixSeeds(layoutId, layoutIdB, { prompt, out: relative(dir) })
-          : await pipeline.runPipeline({
-            prompt,
-            mode: autoLayout ? "auto" : "pinned",
-            layout: layoutId,
-            out: relative(dir),
-          });
-    }
+    themed = await pipeline.runPipeline({
+      mode,
+      prompt,
+      nonce: body && body.nonce != null ? String(body.nonce) : "",
+      layout: layoutId,
+      layoutIdB,
+      out: relative(dir),
+      creative: body && (body.creative === true || body.creative === "true"),
+      niche: namedNiche ? niche : "",
+      deps: pipeline.getTestDeps && pipeline.getTestDeps(),
+    });
   } catch (error) {
     const partialDeck = path.join(dir, "deck.json");
     const extraPhotos = fs.existsSync(partialDeck)
@@ -234,29 +223,36 @@ async function generateTemplate(body) {
     extraPhotos.forEach((dirPath) => safeRm(dirPath, { recursive: true, force: true }));
     throw error;
   }
-  const deck = JSON.parse(fs.readFileSync(path.join(dir, "deck.json"), "utf8"));
-  const slides = fs.readdirSync(dir)
-    .filter((name) => /^slide-\d{2}\.png$/.test(name))
-    .sort()
-    .map((name) => ({
-      name,
-      path: relative(path.join(dir, name)),
-      url: "/api/admin/preview/" + id + "/" + name,
-    }));
+  const deck = themed.deck || JSON.parse(fs.readFileSync(path.join(dir, "deck.json"), "utf8"));
+  const slides = (themed.slides && themed.slides.length
+    ? themed.slides
+    : fs.readdirSync(dir).filter((name) => /^slide-\d{2}\.png$/.test(name)).sort().map((name) => ({ name })))
+    .map((slide) => {
+      const name = slide.name || path.basename(slide.url || slide.path || "");
+      return {
+        name,
+        path: relative(path.join(dir, name)),
+        url: "/api/admin/preview/" + id + "/" + name,
+      };
+    });
   return {
     id,
-    layoutId: themed.layoutId || themed.layout || layoutId || (composer ? "composer" : ""),
-    layoutIdB: layoutIdB || "",
+    layoutId: themed.layoutId || layoutId || (mode === "composer" ? "composer" : ""),
+    layoutIdB: themed.layoutIdB || layoutIdB || "",
     remix: themed.remix || null,
     assembly: themed.assembly || null,
     analysis: themed.analysis || null,
     prompt,
-    vibe: themed.vibe || (themed.report && themed.report.vibe) || (themed.assembly && themed.assembly.designLanguage) || "",
-    name: deck.name || themed.name || "",
+    vibe: themed.vibe || "",
+    name: themed.name || deck.name || "",
     deck,
     slides,
-    // PPTX is built on download; leave absent until then (same for composer and seed).
     pptxUrl: fs.readdirSync(dir).some((name) => name.endsWith(".pptx")) ? "/api/admin/download/" + id : "",
+    plan: themed.plan,
+    fallbacks: themed.fallbacks,
+    fits: themed.fits,
+    nonce: themed.nonce,
+    outDir: themed.outDir,
   };
 }
 
@@ -363,13 +359,23 @@ function discardTemplate(id) {
   return { id, discarded: true };
 }
 
+const reviewConsole = require("./composer/reviewConsole");
+
+function previewPathExtended(id, name) {
+  try {
+    return previewPath(id, name);
+  } catch (error) {
+    return reviewConsole.reviewPreviewPath(id, name);
+  }
+}
+
 module.exports = {
   listLayouts,
   setLayoutDisabled,
   ingestPptx,
   scoreLayout,
   generateTemplate,
-  previewPath,
+  previewPath: previewPathExtended,
   pptxPath,
   ensurePptx,
   readReplacements,
@@ -377,4 +383,5 @@ module.exports = {
   discardTemplate,
   jobDir,
   thematicPhotoDirs,
+  reviewConsole,
 };

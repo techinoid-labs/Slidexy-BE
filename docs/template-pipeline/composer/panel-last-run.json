@@ -1,0 +1,158 @@
+{
+  "status": "done",
+  "startedAt": "2026-10-28T11:08:14.962Z",
+  "finishedAt": "2026-10-28T11:08:14.965Z",
+  "results": [
+    {
+      "prompt": "A neighborhood dental clinic expanding to a second location",
+      "nonce": "panel-clinic",
+      "industry": "clinic",
+      "id": "stub-panel-clinic",
+      "score": 100,
+      "failures": [],
+      "textModelCalls": 3,
+      "plan": [
+        {
+          "role": "Cover"
+        }
+      ],
+      "outDir": "docs/template-pipeline/admin-dashboard/tmp/panel-panel-clinic"
+    },
+    {
+      "prompt": "A farm-to-table restaurant pitching a second site",
+      "nonce": "panel-restaurant",
+      "industry": "restaurant",
+      "id": "stub-panel-restaurant",
+      "score": 100,
+      "failures": [],
+      "textModelCalls": 3,
+      "plan": [
+        {
+          "role": "Cover"
+        }
+      ],
+      "outDir": "docs/template-pipeline/admin-dashboard/tmp/panel-panel-restaurant"
+    },
+    {
+      "prompt": "A B2B SaaS startup raising a Series A",
+      "nonce": "panel-saas",
+      "industry": "SaaS startup",
+      "id": "stub-panel-saas",
+      "score": 100,
+      "failures": [],
+      "textModelCalls": 3,
+      "plan": [
+        {
+          "role": "Cover"
+        }
+      ],
+      "outDir": "docs/template-pipeline/admin-dashboard/tmp/panel-panel-saas"
+    },
+    {
+      "prompt": "A regional nonprofit seeking corporate sponsors",
+      "nonce": "panel-nonprofit",
+      "industry": "nonprofit",
+      "id": "stub-panel-nonprofit",
+      "score": 100,
+      "failures": [],
+      "textModelCalls": 3,
+      "plan": [
+        {
+          "role": "Cover"
+        }
+      ],
+      "outDir": "docs/template-pipeline/admin-dashboard/tmp/panel-panel-nonprofit"
+    },
+    {
+      "prompt": "A boutique law firm specializing in employment law",
+      "nonce": "panel-law",
+      "industry": "law firm",
+      "id": "stub-panel-law",
+      "score": 100,
+      "failures": [],
+      "textModelCalls": 3,
+      "plan": [
+        {
+          "role": "Cover"
+        }
+      ],
+      "outDir": "docs/template-pipeline/admin-dashboard/tmp/panel-panel-law"
+    },
+    {
+      "prompt": "A boutique fitness studio opening a membership drive",
+      "nonce": "panel-fitness",
+      "industry": "fitness studio",
+      "id": "stub-panel-fitness",
+      "score": 100,
+      "failures": [],
+      "textModelCalls": 3,
+      "plan": [
+        {
+          "role": "Cover"
+        }
+      ],
+      "outDir": "docs/template-pipeline/admin-dashboard/tmp/panel-panel-fitness"
+    },
+    {
+      "prompt": "A mid-size construction firm bidding on civic work",
+      "nonce": "panel-construction",
+      "industry": "construction",
+      "id": "stub-panel-construction",
+      "score": 100,
+      "failures": [],
+      "textModelCalls": 3,
+      "plan": [
+        {
+          "role": "Cover"
+        }
+      ],
+      "outDir": "docs/template-pipeline/admin-dashboard/tmp/panel-panel-construction"
+    },
+    {
+      "prompt": "An independent school presenting its five-year plan",
+      "nonce": "panel-school",
+      "industry": "school",
+      "id": "stub-panel-school",
+      "score": 100,
+      "failures": [],
+      "textModelCalls": 3,
+      "plan": [
+        {
+          "role": "Cover"
+        }
+      ],
+      "outDir": "docs/template-pipeline/admin-dashboard/tmp/panel-panel-school"
+    },
+    {
+      "prompt": "A community bank launching small-business lending",
+      "nonce": "panel-bank",
+      "industry": "bank",
+      "id": "stub-panel-bank",
+      "score": 100,
+      "failures": [],
+      "textModelCalls": 3,
+      "plan": [
+        {
+          "role": "Cover"
+        }
+      ],
+      "outDir": "docs/template-pipeline/admin-dashboard/tmp/panel-panel-bank"
+    },
+    {
+      "prompt": "A travel agency packaging slow-travel tours",
+      "nonce": "panel-travel",
+      "industry": "travel agency",
+      "id": "stub-panel-travel",
+      "score": 100,
+      "failures": [],
+      "textModelCalls": 3,
+      "plan": [
+        {
+          "role": "Cover"
+        }
+      ],
+      "outDir": "docs/template-pipeline/admin-dashboard/tmp/panel-panel-travel"
+    }
+  ],
+  "total": 10
+}

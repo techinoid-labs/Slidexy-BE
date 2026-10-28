@@ -21,9 +21,62 @@
     #deck-name { margin: 8px 32px 0; font-size: 22px; font-weight: 600; }
     button { font: inherit; padding: 10px 16px; border-radius: 8px; border: 0; cursor: pointer; }
     button:disabled { cursor: wait; opacity: 0.6; }
+    button.is-busy::before {
+      content: "";
+      display: inline-block;
+      width: 0.85em;
+      height: 0.85em;
+      margin-right: 0.45em;
+      border: 2px solid currentColor;
+      border-right-color: transparent;
+      border-radius: 50%;
+      vertical-align: -0.1em;
+      animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
     #generate { background: #1c1916; color: #f4f1ea; }
     #status { min-height: 1.4em; padding: 8px 32px; font-family: "Segoe UI", sans-serif; }
-    #preview { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; padding: 8px 32px 24px; }
+    #status.busy {
+      color: #1c1916;
+      font-weight: 600;
+    }
+    #status.busy::before {
+      content: "";
+      display: inline-block;
+      width: 0.85em;
+      height: 0.85em;
+      margin-right: 0.5em;
+      border: 2px solid #1c1916;
+      border-right-color: transparent;
+      border-radius: 50%;
+      vertical-align: -0.1em;
+      animation: spin 0.7s linear infinite;
+    }
+    .panel-busy {
+      margin: 8px 0 12px;
+      padding: 10px 12px;
+      background: #ebe4d8;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      display: none;
+    }
+    .panel-busy.on { display: block; }
+    .panel-busy.on::before {
+      content: "";
+      display: inline-block;
+      width: 0.85em;
+      height: 0.85em;
+      margin-right: 0.5em;
+      border: 2px solid #1c1916;
+      border-right-color: transparent;
+      border-radius: 50%;
+      vertical-align: -0.1em;
+      animation: spin 0.7s linear infinite;
+    }
+    label.check.is-busy { opacity: 0.55; pointer-events: none; }
+    #preview, #review-preview { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; padding: 8px 0 24px; }
+    #preview { padding: 8px 32px 24px; }
     figure { margin: 0; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
     figcaption { padding: 8px 10px; font-family: "Segoe UI", sans-serif; font-size: 13px; }
     img { display: block; width: 100%; height: auto; background: #ddd; }
@@ -39,14 +92,35 @@
     th { font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: #5c564e; }
     tr.disabled td { color: #8a8176; }
     .seed-disable { background: #fff; color: #1c1916; border: 1px solid #1c1916; padding: 6px 10px; }
-    @media (max-width: 800px) { #preview { grid-template-columns: 1fr; } }
+    .tabs { display: flex; gap: 8px; padding: 8px 32px 0; font-family: "Segoe UI", sans-serif; flex-wrap: wrap; }
+    .tabs button { background: #fff; color: #1c1916; border: 1px solid #c8c0b4; }
+    .tabs button.active { background: #1c1916; color: #f4f1ea; border-color: #1c1916; }
+    .tab-panel { display: none; padding: 8px 32px 32px; font-family: "Segoe UI", sans-serif; }
+    .tab-panel.active { display: block; }
+    .review-form { display: grid; gap: 8px; max-width: 720px; margin-top: 12px; background: #fff; padding: 16px; border-radius: 10px; }
+    .review-form .checks { display: grid; gap: 6px; }
+    .ab-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .thumb-toggle { display: flex; gap: 8px; align-items: center; margin: 8px 0; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+    .gallery-grid figure { background: #fff; }
+    .meta-bar { font-family: "Segoe UI", sans-serif; font-size: 13px; color: #5c564e; }
+    @media (max-width: 800px) { #preview, #review-preview, .ab-cols { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
   <header>
     <h1>Admin Template Generator</h1>
     <p class="note">Internal curator. Generated decks stay temporary until you publish them.</p>
+    <p class="meta-bar" id="meta-bar">Git dirty: … · PowerPoint checked: …</p>
   </header>
+  <nav class="tabs" id="main-tabs">
+    <button type="button" class="active" data-tab="generate-tab">Generate</button>
+    <button type="button" data-tab="reviews-tab">Reviews</button>
+    <button type="button" data-tab="gallery-tab">Gallery</button>
+    <button type="button" data-tab="panel-tab">Panel</button>
+  </nav>
+  <div id="status" role="status" aria-live="polite"></div>
+  <div id="generate-tab" class="tab-panel active">
   <form id="form" novalidate>
     <div class="row">
       <label>What is this template about?
@@ -109,10 +183,17 @@
       Creative Mode
     </label>
   </form>
-  <div id="status" role="status"></div>
   <h2 id="deck-name" hidden></h2>
   <p id="composer-meta" class="note" hidden></p>
+  <div class="thumb-toggle" id="thumb-toggle" hidden>
+    <span>Thumbnails:</span>
+    <label class="check"><input type="radio" name="thumb-src" value="lo" checked> LibreOffice</label>
+    <label class="check"><input type="radio" name="thumb-src" value="canvas"> File/canvas</label>
+    <button type="button" id="ab-btn">A/B generate</button>
+  </div>
   <div id="preview"></div>
+  <div id="ab-preview" class="ab-cols" hidden></div>
+  <div id="review-form-slot-generate"></div>
   <div class="actions" hidden id="actions">
     <button id="publish" type="button">Publish to Catalog</button>
     <a id="download" hidden>Download PPTX</a>
@@ -134,6 +215,81 @@
       <tbody id="seed-list"></tbody>
     </table>
   </section>
+  </div>
+
+  <div id="reviews-tab" class="tab-panel">
+    <h2>Reviews</h2>
+    <p class="note">Stored human reviews and composer proof jobs (including <code>proof-4f1-a-replay</code>). Select a job, submit a review, or Replay.</p>
+    <div id="reviews-busy" class="panel-busy" aria-live="polite">Loading reviews…</div>
+    <div class="row">
+      <label>Job / proof id
+        <select id="review-job"></select>
+      </label>
+      <button type="button" id="review-load">Load</button>
+      <button type="button" id="review-replay">Replay</button>
+    </div>
+    <div id="review-detail"></div>
+    <div class="thumb-toggle" id="review-thumb-toggle" hidden>
+      <span>Thumbnails:</span>
+      <label class="check"><input type="radio" name="review-thumb-src" value="lo" checked> LibreOffice</label>
+      <label class="check"><input type="radio" name="review-thumb-src" value="canvas"> File/canvas</label>
+    </div>
+    <div id="review-preview"></div>
+    <div id="review-form-slot-reviews"></div>
+    <form class="review-form" id="review-form" hidden>
+      <strong>Human review</strong>
+      <div class="checks">
+        <label class="check"><input type="checkbox" id="rv-stock"> Stock / placeholder text</label>
+        <label class="check"><input type="checkbox" id="rv-spacing"> Spacing / collapse issues</label>
+        <label class="check"><input type="checkbox" id="rv-cover"> Cover photo weak</label>
+        <label class="check"><input type="checkbox" id="rv-below"> Text below box / overflow</label>
+        <label class="check"><input type="checkbox" id="rv-designed"> Reads as designed</label>
+        <label class="check"><input type="checkbox" id="rv-different"> Reads as different decks (A/B)</label>
+        <label class="check"><input type="checkbox" id="rv-kept" checked> Kept</label>
+      </div>
+      <label>Worst three notes
+        <input id="rv-worst" type="text" maxlength="500" placeholder="optional">
+      </label>
+      <label>Fix type
+        <select id="rv-fix">
+          <option value="none">none</option>
+          <option value="kit">kit</option>
+          <option value="check">check</option>
+          <option value="brief">brief</option>
+        </select>
+      </label>
+      <button type="submit" id="rv-submit">Submit review</button>
+    </form>
+    <h3>Stored reviews</h3>
+    <table>
+      <thead><tr><th>Id</th><th>Score</th><th>Kept</th><th>When</th><th></th></tr></thead>
+      <tbody id="reviews-list"></tbody>
+    </table>
+    <div id="replay-compare" class="ab-cols" hidden></div>
+  </div>
+
+  <div id="gallery-tab" class="tab-panel">
+    <h2>Gallery</h2>
+    <div id="gallery-busy" class="panel-busy" aria-live="polite">Loading gallery…</div>
+    <div class="gallery-grid" id="gallery-grid"></div>
+  </div>
+
+  <div id="panel-tab" class="tab-panel">
+    <h2>Prompt panel</h2>
+    <p class="note">Ten fixed prompts. Each deck costs <strong id="panel-cost">3–4</strong> text-model calls. Sequential run.</p>
+    <div id="panel-busy" class="panel-busy" aria-live="polite">Loading panel…</div>
+    <button type="button" id="panel-run">Run Panel</button>
+    <table>
+      <thead><tr><th>#</th><th>Industry</th><th>Prompt</th><th>Nonce</th></tr></thead>
+      <tbody id="panel-prompts"></tbody>
+    </table>
+    <h3>Last run</h3>
+    <table>
+      <thead><tr><th>Prompt</th><th>Score</th><th>Fails</th><th>Calls</th><th></th></tr></thead>
+      <tbody id="panel-results"></tbody>
+    </table>
+  </div>
+
   <script>
     const form = document.getElementById("form");
     const folderButton = document.getElementById("add-folder");
@@ -160,7 +316,123 @@
     const nonceInput = document.getElementById("nonce");
     const composerMeta = document.getElementById("composer-meta");
     let currentId = "";
+    let currentReview = null;
+    let abId = "";
     let syncingFromMode = false;
+    let thumbSrc = "lo";
+    const busyButtons = new WeakMap();
+
+    function setStatus(message, waiting) {
+      status.textContent = message || "";
+      status.classList.toggle("busy", Boolean(waiting));
+    }
+
+    function setButtonBusy(button, busy, busyLabel) {
+      if (!button) return;
+      if (busy) {
+        if (!busyButtons.has(button)) {
+          busyButtons.set(button, button.textContent);
+        }
+        button.disabled = true;
+        button.classList.add("is-busy");
+        if (busyLabel) button.textContent = busyLabel;
+      } else {
+        button.disabled = false;
+        button.classList.remove("is-busy");
+        if (busyButtons.has(button)) {
+          button.textContent = busyButtons.get(button);
+          busyButtons.delete(button);
+        }
+      }
+    }
+
+    function setPanelBusy(id, on, message) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (message) el.textContent = message;
+      el.classList.toggle("on", Boolean(on));
+    }
+
+    document.querySelectorAll("#main-tabs button").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll("#main-tabs button").forEach((b) => b.classList.remove("active"));
+        document.querySelectorAll(".tab-panel").forEach((p) => p.classList.remove("active"));
+        btn.classList.add("active");
+        document.getElementById(btn.getAttribute("data-tab")).classList.add("active");
+        if (btn.getAttribute("data-tab") === "reviews-tab") loadReviewsTab();
+        if (btn.getAttribute("data-tab") === "gallery-tab") loadGalleryTab();
+        if (btn.getAttribute("data-tab") === "panel-tab") loadPanelTab();
+      });
+    });
+
+    async function refreshMetaBar() {
+      const bar = document.getElementById("meta-bar");
+      bar.textContent = "Git dirty: … · PowerPoint checked: …";
+      try {
+        const [git, panel] = await Promise.all([
+          fetch("/api/admin/git-status").then((r) => r.json()),
+          fetch("/api/admin/panel").then((r) => r.json()),
+        ]);
+        const ppt = (panel.pptCheck && panel.pptCheck.checkedAt) || "(not set)";
+        bar.textContent =
+          "Git dirty: " + (git.count != null ? git.count : "?") + " · PowerPoint checked: " + ppt;
+      } catch (error) {
+        bar.textContent = "Meta unavailable: " + error.message;
+      }
+    }
+    refreshMetaBar();
+
+    function placeReviewForm(where) {
+      const formEl = document.getElementById("review-form");
+      const slot = document.getElementById(where === "generate" ? "review-form-slot-generate" : "review-form-slot-reviews");
+      if (formEl && slot) slot.appendChild(formEl);
+    }
+
+    function renderPreviewFromPayload(target, payload, preferLo) {
+      if (!target) return;
+      target.replaceChildren();
+      const useLo = preferLo !== false && thumbSrc === "lo" && payload.loSlides && payload.loSlides.length;
+      const list = useLo ? payload.loSlides : (payload.slides || []);
+      list.forEach((slide) => {
+        const figure = document.createElement("figure");
+        const image = document.createElement("img");
+        image.src = slide.url;
+        image.alt = slide.name;
+        const caption = document.createElement("figcaption");
+        caption.textContent = slide.name;
+        figure.append(image, caption);
+        target.append(figure);
+      });
+    }
+
+    function paintCurrentReview(payload) {
+      currentReview = payload || currentReview;
+      if (!currentReview) return;
+      renderPreviewFromPayload(preview, currentReview, true);
+      renderPreviewFromPayload(document.getElementById("review-preview"), currentReview, true);
+    }
+
+    async function refreshThumbnails() {
+      if (!currentId) return;
+      setStatus("Refreshing thumbnails…", true);
+      try {
+        const payload = await fetch("/api/admin/review/" + encodeURIComponent(currentId)).then((r) => r.json());
+        paintCurrentReview(payload);
+        setStatus("Thumbnails: " + (thumbSrc === "lo" ? "LibreOffice" : "File/canvas") + ".", false);
+      } catch (error) {
+        setStatus(error.message || "Could not refresh thumbnails.", false);
+      }
+    }
+
+    document.querySelectorAll('input[name="thumb-src"], input[name="review-thumb-src"]').forEach((input) => {
+      input.addEventListener("change", () => {
+        thumbSrc = input.value;
+        document.querySelectorAll('input[name="thumb-src"], input[name="review-thumb-src"]').forEach((other) => {
+          if (other.value === thumbSrc) other.checked = true;
+        });
+        refreshThumbnails();
+      });
+    });
 
     function selectedMode() {
       return modeSelect.value || "composer";
@@ -285,6 +557,7 @@
     async function loadLayouts(message) {
       const select = document.getElementById("layout");
       const list = document.getElementById("seed-list");
+      setStatus(message || "Reading app-library…", true);
       try {
         const response = await fetch("/api/admin/layouts");
         const data = await response.json().catch(() => ({}));
@@ -299,7 +572,7 @@
           option.textContent = "Upload a folder to add layouts";
           select.append(option);
           list.replaceChildren();
-          status.textContent = message || "No seeds yet. Upload a folder of PowerPoint files.";
+          setStatus(message || "No seeds yet. Upload a folder of PowerPoint files.", false);
           return;
         }
         enabled.forEach((item) => {
@@ -338,28 +611,46 @@
           row.append(name, score, use, failures, action);
           list.append(row);
         });
-        status.textContent = message || (enabled.length + " enabled layouts. " + layouts.length + " seeds in the library.");
+        setStatus(message || (enabled.length + " enabled layouts. " + layouts.length + " seeds in the library."), false);
       } catch (error) {
-        status.textContent = error.message;
+        setStatus(error.message, false);
       }
     }
 
     async function toggleSeed(item, button) {
-      button.disabled = true;
+      setButtonBusy(button, true, item.disabled ? "Enabling…" : "Disabling…");
+      setStatus((item.disabled ? "Enabling " : "Disabling ") + item.id + "…", true);
       try {
         await post("/api/admin/disable-seed", { id: item.id, disabled: !item.disabled });
         await loadLayouts();
       } catch (error) {
-        status.textContent = error.message;
-        button.disabled = false;
+        setStatus(error.message, false);
+        setButtonBusy(button, false);
       }
     }
 
     function setBusy(busy) {
-      generateButton.disabled = busy;
-      generateButton.textContent = busy ? "Working…" : "Generate";
+      setButtonBusy(generateButton, busy, "Working…");
       publishButton.disabled = busy;
       discardButton.disabled = busy;
+      const abBtn = document.getElementById("ab-btn");
+      const rvSubmit = document.getElementById("rv-submit");
+      const reviewLoad = document.getElementById("review-load");
+      const reviewReplay = document.getElementById("review-replay");
+      const panelRun = document.getElementById("panel-run");
+      if (!busy) {
+        setButtonBusy(abBtn, false);
+        setButtonBusy(rvSubmit, false);
+        setButtonBusy(reviewLoad, false);
+        setButtonBusy(reviewReplay, false);
+        setButtonBusy(panelRun, false);
+      } else {
+        if (abBtn) abBtn.disabled = true;
+        if (rvSubmit) rvSubmit.disabled = true;
+        if (reviewLoad) reviewLoad.disabled = true;
+        if (reviewReplay) reviewReplay.disabled = true;
+        if (panelRun) panelRun.disabled = true;
+      }
     }
 
     async function post(url, body) {
@@ -392,7 +683,7 @@
     }
 
     function setUploading(busy) {
-      folderButton.disabled = busy;
+      setButtonBusy(folderButton, busy, "Uploading…");
     }
 
     loadLayouts();
@@ -400,7 +691,7 @@
     folderButton.addEventListener("click", async () => {
       const files = pptxFiles(document.getElementById("folder").files);
       if (!files.length) {
-        status.textContent = "That folder has no PowerPoint files.";
+        setStatus("That folder has no PowerPoint files.", false);
         return;
       }
       setUploading(true);
@@ -412,7 +703,7 @@
         for (let index = 0; index < files.length; index += 1) {
           const file = files[index];
           const place = (index + 1) + " of " + files.length;
-          status.textContent = "Converting " + place + ": " + file.name;
+          setStatus("Converting " + place + ": " + file.name, true);
           let data = null;
           try {
             data = await uploadSeed(file);
@@ -422,7 +713,7 @@
             failed.push(file.name + " (" + error.message + ")");
           }
           if (!data) continue;
-          status.textContent = "Scoring " + place + ": " + data.id + ". This takes a few minutes.";
+          setStatus("Scoring " + place + ": " + data.id + ". This takes a few minutes.", true);
           try {
             scores.push(await post("/api/admin/score-seed", { id: data.id }));
           } catch (error) {
@@ -439,7 +730,7 @@
         if (lastId && [...layoutSelect.options].some((option) => option.value === lastId)) layoutSelect.value = lastId;
         document.getElementById("folder").value = "";
       } catch (error) {
-        status.textContent = error.message;
+        setStatus(error.message, false);
       } finally {
         setUploading(false);
       }
@@ -449,13 +740,13 @@
       event.preventDefault();
       const promptValue = document.getElementById("prompt").value.trim();
       if (!promptValue) {
-        status.textContent = "Type what the template is about, then press Generate.";
+        setStatus("Type what the template is about, then press Generate.", false);
         return;
       }
       const mode = selectedMode();
       const composing = mode === "composer";
       if (!composing && !nativeBox.checked && !creativeBox.checked && !nicheSelect.value && !assembleBox.checked && !autoBox.checked && mode !== "auto" && mode !== "assemble" && mode !== "native" && !layoutSelect.value) {
-        status.textContent = "Choose a base layout, or turn on Native Engine.";
+        setStatus("Choose a base layout, or turn on Native Engine.", false);
         return;
       }
       currentId = "";
@@ -469,13 +760,13 @@
       vibeLine.hidden = true;
       vibeLine.textContent = "";
       const nicheName = nicheSelect.value;
-      status.textContent = composing
+      setStatus(composing
         ? "Composing the kit deck. This takes about a minute."
         : creativeBox.checked
           ? "Drawing a creative magazine deck. No seed is opened."
           : (nativeBox.checked || nicheName || mode === "native")
             ? "Drawing a " + (nicheName || "native") + " deck. No seed is opened."
-            : "Generating the deck. This takes about a minute.";
+            : "Generating the deck. This takes about a minute.", true);
       setBusy(true);
       try {
         const native = !composing && (nativeBox.checked || creativeBox.checked || Boolean(nicheSelect.value) || mode === "native");
@@ -496,22 +787,48 @@
           niche: nicheSelect.value,
         });
         currentId = data.id;
+        abId = "";
+        document.getElementById("ab-preview").hidden = true;
+        document.getElementById("ab-preview").replaceChildren();
         const title = data.name || (data.deck && data.deck.name) || "";
         if (title) {
           deckName.textContent = title;
           deckName.hidden = false;
         }
-        (data.slides || []).forEach((slide) => {
-          const figure = document.createElement("figure");
-          const image = document.createElement("img");
-          image.src = slide.url;
-          image.alt = slide.name;
-          const caption = document.createElement("figcaption");
-          caption.textContent = slide.name;
-          figure.append(image, caption);
-          preview.append(figure);
-        });
-        const score = data.analysis ? " Vision score " + data.analysis.score + " (" + data.analysis.passed + "/" + data.analysis.total + " slides passed)." : "";
+        placeReviewForm("generate");
+        document.getElementById("thumb-toggle").hidden = false;
+        document.getElementById("review-form").hidden = false;
+        document.getElementById("review-thumb-toggle").hidden = false;
+        try {
+          const payload = await fetch("/api/admin/review/" + encodeURIComponent(data.id)).then(async (response) => {
+            const body = await response.json();
+            if (!response.ok) throw new Error(body.error || "review load failed");
+            return body;
+          });
+          paintCurrentReview(payload);
+        } catch (revErr) {
+          (data.slides || []).forEach((slide) => {
+            const figure = document.createElement("figure");
+            const image = document.createElement("img");
+            image.src = slide.url;
+            image.alt = slide.name;
+            const caption = document.createElement("figcaption");
+            caption.textContent = slide.name;
+            figure.append(image, caption);
+            preview.append(figure);
+          });
+        }
+        const failures = (data.analysis && Array.isArray(data.analysis.failures)) ? data.analysis.failures : [];
+        const allMissingImage = failures.length > 0 && failures.every((reason) => /missing image/i.test(String(reason)));
+        const score = data.analysis
+          ? " Score " + data.analysis.score + " (" + data.analysis.passed + "/" + data.analysis.total + " slides passed)."
+          : "";
+        const failNote = failures.length
+          ? " Failures: " + failures.slice(0, 6).join("; ") + (failures.length > 6 ? "…" : "") + "."
+          : "";
+        const seedAssetsNote = allMissingImage
+          ? " seed assets missing; restore generated-templates/photos/<id>/ or use Composer."
+          : "";
         const promptText = document.getElementById("prompt").value.trim();
         const vibeName = data.vibe || (data.assembly && data.assembly.designLanguage) || "";
         if (vibeName) {
@@ -520,30 +837,42 @@
         }
         downloadLink.href = "/api/admin/download/" + data.id;
         downloadLink.hidden = false;
-        if (composing || data.layoutId === "composer") {
+        if (composing || data.layoutId === "composer" || data.plan) {
           try {
-            const rep = await fetch("/api/admin/replacements/" + encodeURIComponent(data.id)).then(async (response) => {
-              const payload = await response.json();
-              if (!response.ok) throw new Error(payload.error || "Could not load replacements");
-              return payload;
-            });
-            const plan = ((rep.brief && rep.brief.plan) || []).map((slide, index) =>
-              (index + 1) + ". " + slide.role + " · " + slide.component + " / " + slide.variant
-            ).join(" · ");
-            const fitCount = Array.isArray(rep.fits) ? rep.fits.length : 0;
-            const collapseCount = Array.isArray(rep.collapses) ? rep.collapses.length : 0;
-            composerMeta.textContent = "Plan: " + (plan || "(none)") + " | fits " + fitCount + " | collapses " + collapseCount;
-            composerMeta.hidden = false;
+            const planFromData = Array.isArray(data.plan) ? data.plan : null;
+            if (planFromData) {
+              const plan = planFromData.map((slide, index) =>
+                (index + 1) + ". " + slide.role + " · " + slide.component + " / " + slide.variant
+              ).join(" · ");
+              const fitCount = Array.isArray(data.fits) ? data.fits.length : 0;
+              composerMeta.textContent = "Plan: " + (plan || "(none)") + " | fits " + fitCount;
+              composerMeta.hidden = false;
+            } else {
+              const rep = await fetch("/api/admin/replacements/" + encodeURIComponent(data.id)).then(async (response) => {
+                const payload = await response.json();
+                if (!response.ok) throw new Error(payload.error || "Could not load replacements");
+                return payload;
+              });
+              const plan = ((rep.brief && rep.brief.plan) || []).map((slide, index) =>
+                (index + 1) + ". " + slide.role + " · " + slide.component + " / " + slide.variant
+              ).join(" · ");
+              const fitCount = Array.isArray(rep.fits) ? rep.fits.length : 0;
+              const collapseCount = Array.isArray(rep.collapses) ? rep.collapses.length : 0;
+              composerMeta.textContent = "Plan: " + (plan || "(none)") + " | fits " + fitCount + " | collapses " + collapseCount;
+              composerMeta.hidden = false;
+            }
           } catch (metaError) {
-            composerMeta.textContent = "Plan unavailable: " + metaError.message;
-            composerMeta.hidden = false;
+            if (composing || data.layoutId === "composer") {
+              composerMeta.textContent = "Plan unavailable: " + metaError.message;
+              composerMeta.hidden = false;
+            }
           }
         }
         const layoutName = composing ? "composer" : (native ? "Native Engine, no seed" : (data.layoutId || ""));
-        status.textContent = (data.slides || []).length + " slides ready. Layout " + layoutName + ". Saved as " + (data.deck && data.deck.id ? data.deck.id : data.id) + ".json." + score;
+        setStatus((data.slides || []).length + " slides ready. Layout " + layoutName + ". Saved as " + (data.deck && data.deck.id ? data.deck.id : data.id) + ".json." + score + failNote + seedAssetsNote, false);
         actions.hidden = false;
       } catch (error) {
-        status.textContent = error.message;
+        setStatus(error.message, false);
       } finally {
         setBusy(false);
       }
@@ -552,15 +881,17 @@
     publishButton.addEventListener("click", async () => {
       if (!currentId) return;
       setBusy(true);
-      status.textContent = "Publishing to the catalog.";
+      setButtonBusy(publishButton, true, "Publishing…");
+      setStatus("Publishing to the catalog…", true);
       try {
         const data = await post("/api/admin/publish-template", { id: currentId });
         currentId = "";
         actions.hidden = true;
-        status.textContent = "Published. Saved at " + data.deckPath + ".";
+        setStatus("Published. Saved at " + data.deckPath + ".", false);
       } catch (error) {
-        status.textContent = error.message;
+        setStatus(error.message, false);
       } finally {
+        setButtonBusy(publishButton, false);
         setBusy(false);
       }
     });
@@ -568,7 +899,8 @@
     discardButton.addEventListener("click", async () => {
       if (!currentId) return;
       setBusy(true);
-      status.textContent = "Discarding the render.";
+      setButtonBusy(discardButton, true, "Discarding…");
+      setStatus("Discarding the render…", true);
       try {
         await post("/api/admin/discard-template", { id: currentId });
         currentId = "";
@@ -579,10 +911,309 @@
         downloadLink.hidden = true;
         composerMeta.hidden = true;
         composerMeta.textContent = "";
-        status.textContent = "Discarded. The temporary slides and photos were deleted.";
+        setStatus("Discarded. The temporary slides and photos were deleted.", false);
       } catch (error) {
-        status.textContent = error.message;
+        setStatus(error.message, false);
       } finally {
+        setButtonBusy(discardButton, false);
+        setBusy(false);
+      }
+    });
+
+    document.getElementById("review-form").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const rvSubmit = document.getElementById("rv-submit");
+      if (!currentId) {
+        setStatus("Generate or load a job before submitting a review.", false);
+        return;
+      }
+      setButtonBusy(rvSubmit, true, "Saving…");
+      setStatus("Saving review for " + currentId + "…", true);
+      try {
+        const data = await post("/api/admin/review/" + encodeURIComponent(currentId), {
+          stockText: document.getElementById("rv-stock").checked,
+          spacing: document.getElementById("rv-spacing").checked,
+          coverPhoto: document.getElementById("rv-cover").checked,
+          belowBox: document.getElementById("rv-below").checked,
+          readsDesigned: document.getElementById("rv-designed").checked,
+          readsAsDifferent: document.getElementById("rv-different").checked,
+          kept: document.getElementById("rv-kept").checked,
+          worstThree: document.getElementById("rv-worst").value,
+          fixType: document.getElementById("rv-fix").value,
+        });
+        setStatus("Review saved at " + data.path, false);
+        loadReviewsTab();
+      } catch (error) {
+        setStatus(error.message, false);
+      } finally {
+        setButtonBusy(rvSubmit, false);
+      }
+    });
+
+    document.getElementById("ab-btn").addEventListener("click", async () => {
+      const abBtn = document.getElementById("ab-btn");
+      const promptValue = document.getElementById("prompt").value.trim();
+      if (!promptValue || selectedMode() !== "composer") {
+        setStatus("A/B needs Composer mode and a prompt.", false);
+        return;
+      }
+      setBusy(true);
+      setButtonBusy(abBtn, true, "A/B running…");
+      setStatus("A/B: generating second nonce…", true);
+      try {
+        const nonceB = (nonceInput.value.trim() || "ab") + "-b-" + Date.now().toString(36);
+        const data = await post("/api/admin/generate-template", {
+          prompt: promptValue,
+          mode: "composer",
+          nonce: nonceB,
+        });
+        abId = data.id;
+        setStatus("A/B: loading both decks…", true);
+        const left = await fetch("/api/admin/review/" + encodeURIComponent(currentId)).then((r) => r.json());
+        const right = await fetch("/api/admin/review/" + encodeURIComponent(abId)).then((r) => r.json());
+        const box = document.getElementById("ab-preview");
+        box.hidden = false;
+        box.replaceChildren();
+        const colA = document.createElement("div");
+        const colB = document.createElement("div");
+        colA.innerHTML = "<h3>A · " + currentId + "</h3>";
+        colB.innerHTML = "<h3>B · " + abId + "</h3>";
+        renderPreviewFromPayload(colA, left, true);
+        renderPreviewFromPayload(colB, right, true);
+        box.append(colA, colB);
+        placeReviewForm("generate");
+        document.getElementById("review-form").hidden = false;
+        setStatus("A/B ready. Check “reads as different decks” if they diverge.", false);
+      } catch (error) {
+        setStatus(error.message, false);
+      } finally {
+        setButtonBusy(abBtn, false);
+        setBusy(false);
+      }
+    });
+
+    async function loadReviewsTab() {
+      setPanelBusy("reviews-busy", true, "Loading reviews…");
+      try {
+        const data = await fetch("/api/admin/reviews").then((r) => r.json());
+        const jobSelect = document.getElementById("review-job");
+        jobSelect.replaceChildren();
+        (data.jobs || []).forEach((job) => {
+          const opt = document.createElement("option");
+          opt.value = job.id;
+          opt.textContent = job.id + (job.score != null ? " · " + job.score : "");
+          jobSelect.append(opt);
+        });
+        const proof = [...jobSelect.options].find((o) => o.value === "proof-4f1-a-replay");
+        if (proof) jobSelect.value = "proof-4f1-a-replay";
+        const list = document.getElementById("reviews-list");
+        list.replaceChildren();
+        (data.reviews || []).forEach((item) => {
+          const row = document.createElement("tr");
+          row.innerHTML = "<td>" + item.id + "</td><td>" + (item.score != null ? item.score : "—") +
+            "</td><td>" + (item.kept ? "yes" : "no") + "</td><td>" + (item.timestamp || "") + "</td>";
+          const td = document.createElement("td");
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.textContent = "Open";
+          btn.addEventListener("click", () => {
+            jobSelect.value = item.id;
+            loadReviewJob(item.id);
+          });
+          td.append(btn);
+          row.append(td);
+          list.append(row);
+        });
+      } catch (error) {
+        setStatus(error.message, false);
+      } finally {
+        setPanelBusy("reviews-busy", false);
+      }
+    }
+
+    async function loadReviewJob(id) {
+      const loadBtn = document.getElementById("review-load");
+      if (!id) {
+        setStatus("Pick a job id first.", false);
+        return;
+      }
+      setButtonBusy(loadBtn, true, "Loading…");
+      setPanelBusy("reviews-busy", true, "Loading " + id + "…");
+      setStatus("Loading " + id + "…", true);
+      try {
+        const payload = await fetch("/api/admin/review/" + encodeURIComponent(id)).then(async (r) => {
+          const body = await r.json();
+          if (!r.ok) throw new Error(body.error || "load failed");
+          return body;
+        });
+        currentId = id;
+        placeReviewForm("reviews");
+        document.getElementById("review-form").hidden = false;
+        document.getElementById("review-thumb-toggle").hidden = false;
+        document.getElementById("thumb-toggle").hidden = false;
+        const detail = document.getElementById("review-detail");
+        const slideCount = (payload.loSlides && payload.loSlides.length) || (payload.slides || []).length;
+        detail.innerHTML = "<p><strong>Loaded " + id + "</strong> · Score " +
+          ((payload.qa && payload.qa.score) != null ? payload.qa.score : "?") +
+          " · nonce " + (payload.nonce || "") + " · slides " + slideCount + "</p>";
+        paintCurrentReview(payload);
+        setStatus("Loaded " + id + " for review. Submit saves under reviews/.", false);
+      } finally {
+        setButtonBusy(loadBtn, false);
+        setPanelBusy("reviews-busy", false);
+      }
+    }
+
+    document.getElementById("review-load").addEventListener("click", async () => {
+      try {
+        await loadReviewJob(document.getElementById("review-job").value);
+      } catch (error) {
+        setStatus(error.message, false);
+        setButtonBusy(document.getElementById("review-load"), false);
+        setPanelBusy("reviews-busy", false);
+      }
+    });
+
+    document.getElementById("review-replay").addEventListener("click", async () => {
+      const id = document.getElementById("review-job").value || currentId;
+      const replayBtn = document.getElementById("review-replay");
+      if (!id) return;
+      setBusy(true);
+      setButtonBusy(replayBtn, true, "Replaying…");
+      setPanelBusy("reviews-busy", true, "Replaying " + id + " (zero network)…");
+      setStatus("Replaying " + id + " (zero network)…", true);
+      try {
+        // Ensure a review snapshot exists so discard-safe replacements are stored
+        if (!(await fetch("/api/admin/reviews").then((r) => r.json())).reviews.some((r) => r.id === id)) {
+          setStatus("Saving review snapshot before replay…", true);
+          await post("/api/admin/review/" + encodeURIComponent(id), {
+            stockText: false, spacing: false, coverPhoto: false, belowBox: false,
+            readsDesigned: true, kept: true, worstThree: "auto-before-replay", fixType: "none",
+          });
+        }
+        const data = await post("/api/admin/replay/" + encodeURIComponent(id), {});
+        const box = document.getElementById("replay-compare");
+        box.hidden = false;
+        box.replaceChildren();
+        const oldP = await fetch("/api/admin/review/" + encodeURIComponent(id)).then((r) => r.json());
+        const colA = document.createElement("div");
+        const colB = document.createElement("div");
+        colA.innerHTML = "<h3>Original qa " + ((oldP.qa && oldP.qa.score) != null ? oldP.qa.score : "?") + "</h3>";
+        colB.innerHTML = "<h3>Replay qa " + ((data.qa && data.qa.score) != null ? data.qa.score : "?") + "</h3>";
+        renderPreviewFromPayload(colA, oldP, true);
+        renderPreviewFromPayload(colB, data, true);
+        box.append(colA, colB);
+        setStatus("Replay at " + data.outDir + " · qa " + ((data.qa && data.qa.score) != null ? data.qa.score : "?") +
+          " · calls " + data.textModelCalls, false);
+      } catch (error) {
+        setStatus(error.message, false);
+      } finally {
+        setButtonBusy(replayBtn, false);
+        setPanelBusy("reviews-busy", false);
+        setBusy(false);
+      }
+    });
+
+    async function loadGalleryTab() {
+      setPanelBusy("gallery-busy", true, "Loading gallery…");
+      const grid = document.getElementById("gallery-grid");
+      try {
+        const data = await fetch("/api/admin/gallery").then((r) => r.json());
+        grid.replaceChildren();
+        (data.entries || []).filter((e) => e.bucket === "light-neutral").forEach((entry) => {
+          const figure = document.createElement("figure");
+          const img = document.createElement("img");
+          img.src = entry.pngUrl;
+          img.alt = entry.component + " " + entry.variant;
+          const cap = document.createElement("figcaption");
+          cap.textContent = entry.component + " / " + entry.variant +
+            " · geo " + (entry.geometryPass ? "pass" : "FAIL");
+          const label = document.createElement("label");
+          label.className = "check";
+          const box = document.createElement("input");
+          box.type = "checkbox";
+          box.checked = Boolean(entry.weak);
+          box.addEventListener("change", async () => {
+            label.classList.add("is-busy");
+            setStatus("Updating flag for " + entry.component + "/" + entry.variant + "…", true);
+            try {
+              await post("/api/admin/gallery/flag", {
+                component: entry.component,
+                variant: entry.variant,
+                weak: box.checked,
+              });
+              setStatus(entry.component + "/" + entry.variant + (box.checked ? " flagged weak" : " cleared"), false);
+            } catch (error) {
+              box.checked = !box.checked;
+              setStatus(error.message, false);
+            } finally {
+              label.classList.remove("is-busy");
+            }
+          });
+          label.append(box, document.createTextNode(" Weak"));
+          figure.append(img, cap, label);
+          grid.append(figure);
+        });
+      } catch (error) {
+        setStatus(error.message, false);
+      } finally {
+        setPanelBusy("gallery-busy", false);
+      }
+    }
+
+    async function loadPanelTab() {
+      setPanelBusy("panel-busy", true, "Loading panel…");
+      let keepBusy = false;
+      try {
+        const data = await fetch("/api/admin/panel").then((r) => r.json());
+        document.getElementById("panel-cost").textContent = data.callCostPerDeck || "3–4";
+        const body = document.getElementById("panel-prompts");
+        body.replaceChildren();
+        (data.panel.prompts || []).forEach((item, index) => {
+          const row = document.createElement("tr");
+          row.innerHTML = "<td>" + (index + 1) + "</td><td>" + (item.industry || "") +
+            "</td><td>" + item.prompt + "</td><td>" + item.nonce + "</td>";
+          body.append(row);
+        });
+        const results = document.getElementById("panel-results");
+        results.replaceChildren();
+        const last = (data.lastRun && data.lastRun.results) || [];
+        last.forEach((item) => {
+          const row = document.createElement("tr");
+          const fails = Array.isArray(item.failures) ? item.failures.length : (item.error ? 1 : 0);
+          row.innerHTML = "<td>" + item.prompt + "</td><td>" + (item.score != null ? item.score : "—") +
+            "</td><td>" + fails + "</td><td>" + (item.textModelCalls != null ? item.textModelCalls : "—") +
+            "</td><td>" + (item.id || "") + "</td>";
+          results.append(row);
+        });
+        if (data.lastRun && data.lastRun.status === "running") {
+          setPanelBusy("panel-busy", true, "Panel run in progress…");
+          keepBusy = true;
+        }
+      } catch (error) {
+        setStatus(error.message, false);
+      } finally {
+        if (!keepBusy) setPanelBusy("panel-busy", false);
+      }
+    }
+
+    document.getElementById("panel-run").addEventListener("click", async () => {
+      const panelRun = document.getElementById("panel-run");
+      const cost = document.getElementById("panel-cost").textContent;
+      if (!window.confirm("Run the panel? About " + cost + " text-model calls per deck × 10 prompts (sequential).")) return;
+      setBusy(true);
+      setButtonBusy(panelRun, true, "Running…");
+      setPanelBusy("panel-busy", true, "Panel running (sequential, ~3–4 calls per deck)…");
+      setStatus("Panel running…", true);
+      try {
+        const data = await post("/api/admin/panel/run", {});
+        setStatus("Panel " + data.status + " · " + (data.results || []).length + " results", false);
+        await loadPanelTab();
+      } catch (error) {
+        setStatus(error.message, false);
+      } finally {
+        setButtonBusy(panelRun, false);
+        setPanelBusy("panel-busy", false);
         setBusy(false);
       }
     });

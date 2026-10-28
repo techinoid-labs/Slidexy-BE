@@ -137,8 +137,7 @@ dist
 .pnp.*
 
 # Generated deck templates (same JSON the phone app loads)
-generated-templates/*.json
-generated-templates/photos/
+generated-templates/
 
 # Seeds and published decks are produced by the admin upload. The folder stays.
 app-library/*
@@ -150,6 +149,9 @@ app-library/*
 docs/template-pipeline/admin-dashboard/tmp/
 docs/template-pipeline/admin-dashboard/uploads/
 docs/template-pipeline/seed-scores/
+docs/template-pipeline/composer/replays/
+docs/template-pipeline/composer/**/_pptx-gate/
+docs/**/*.pptx
 
 # Generated test renders. The admin page and catalog stay tracked.
 docs/template-pipeline/asset-fix-v2/

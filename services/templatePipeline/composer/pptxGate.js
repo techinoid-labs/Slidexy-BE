@@ -9,6 +9,7 @@ const os = require("os");
 const { spawnSync } = require("child_process");
 const { exportDeckPptx } = require("../catalog");
 const { findPdftotext } = require("./loLines");
+const { countCanvasLines } = require("./canvasLines");
 
 const ROOT = path.join(__dirname, "..", "..", "..");
 
@@ -43,6 +44,20 @@ function spanText(el) {
   return spans.map((s) => String(s && s.text != null ? s.text : "")).join("");
 }
 
+/** pdftotext -bbox emits HTML entities (&amp;, &apos;, &#39;, …). */
+function decodePdfText(raw) {
+  return String(raw || "")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, "\"")
+    .replace(/&apos;/g, "'")
+    .replace(/&#39;/g, "'")
+    .replace(/&#x27;/gi, "'")
+    .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(Number(n)))
+    .replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCharCode(parseInt(h, 16)));
+}
+
 function parseBboxPage(xml, pageIndex1) {
   const pages = [];
   const pageRe = /<page\b[^>]*>[\s\S]*?<\/page>/gi;
@@ -64,7 +79,8 @@ function parseBboxPage(xml, pageIndex1) {
       yMin: Number(m[2]) * scaleY,
       xMax: Number(m[3]) * scaleX,
       yMax: Number(m[4]) * scaleY,
-      text: m[5],
+      // pdftotext -bbox HTML-escapes entities; decode so needles match deck copy
+      text: decodePdfText(m[5]),
     });
   }
   return { words, pageW, pageH };
@@ -110,7 +126,10 @@ function checkSlide(deck, layoutId, words) {
     });
     baselines.sort((a, b) => a - b);
     const measured = el.textMeasure && Number(el.textMeasure.lines);
-    if (Number.isFinite(measured) && baselines.length > measured) {
+    const expected = Number.isFinite(measured)
+      ? measured
+      : countCanvasLines(el, deck.tokens).lines;
+    if (Number.isFinite(expected) && baselines.length > expected) {
       reasons.push("pptx mismatch: " + el.id + " line count");
     }
     const last = baselines[baselines.length - 1];

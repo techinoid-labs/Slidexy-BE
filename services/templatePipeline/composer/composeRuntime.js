@@ -6,19 +6,26 @@
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
-const { inventDirection, searchPexels, downloadPhoto, writeQa, clampCopy } = require("../thematic");
+const { inventDirection, searchPexels, downloadPhoto, clampCopy } = require("../thematic");
 const { applyParametric } = require("../parametric");
-const { analyzeDeck } = require("../scoring/analyzeDeck");
 const { renderSlidePng } = require("../../../scripts/slideSvg");
 const { safeRm } = require("../safeRm");
-const { designBrief, validateBrief, refineBrief } = require("./brief");
+const {
+  planBrief,
+  copyBrief,
+  copyFill,
+  validatePlan,
+  validateCopy,
+  listEmptySlots,
+  mergeCopyFill,
+  migrateLegacyBrief,
+  remapCopyToPlan,
+} = require("./brief");
 const { FONT_PAIRS, OUT_DIR, DESIGN, ANCHORS, getSlacks } = require("./compileKit");
 const catalogCaps = require("../catalogCaps");
 const PALETTE_ANCHORS = catalogCaps.ANCHORS || ANCHORS;
-const { applyComposerFails } = require("./hardFails");
-const { runPptxGate, applyPptxGate } = require("./pptxGate");
 const { countCanvasLines } = require("./canvasLines");
-const { attachAesthetics } = require("./aesthetics");
+const { finishDeck } = require("./finishDeck");
 
 const ROOT = path.join(__dirname, "..", "..", "..");
 
@@ -384,7 +391,8 @@ function buildDeckFromBrief(brief, direction, prompt, slugName) {
     const layoutId = "slide-" + String(index + 1);
     const elements = JSON.parse(JSON.stringify(compiled.layout.elements));
     const stacks = JSON.parse(JSON.stringify(compiled.layout.stacks || []));
-    applySlotCopy(elements, slide.role, brief.copy[slide.role], slide.component);
+    const copyBlock = (brief.copy && (brief.copy[String(index)] || brief.copy[index] || brief.copy[slide.role])) || {};
+    applySlotCopy(elements, slide.role, copyBlock, slide.component);
     elements.forEach((el) => {
       if (el.type === "image" || el.type === "maskedImage") {
         const content = el.imageContent || el.maskedImageContent;
@@ -506,7 +514,8 @@ async function runOnce(options) {
 
   applyParametric(built.deck, {
     prompt,
-    title: brief.copy.Cover && brief.copy.Cover.title,
+    title: (brief.copy && brief.copy["0"] && brief.copy["0"].title)
+      || (brief.copy && brief.copy.Cover && brief.copy.Cover.title),
     density: brief.density || "balanced",
     skipCover: true,
     skipDensity: true,
@@ -518,67 +527,41 @@ async function runOnce(options) {
   fs.mkdirSync(outDir, { recursive: true });
   fs.writeFileSync(path.join(outDir, "deck.json"), JSON.stringify(built.deck, null, 2) + "\n");
   const slides = renderDeck(built.deck, outDir);
-  let analysis = await analyzeDeck(built.deck, slides, { vision: false });
-  analysis = applyComposerFails(analysis, built.deck);
-  const pptxGate = await runPptxGate(built.deck, outDir);
-  analysis = applyPptxGate(analysis, pptxGate);
-  analysis = attachAesthetics(analysis, built.deck);
-  analysis.attempt = attempt;
-
+  const report = {
+    direction,
+    brief,
+    fallbacks,
+    nonce,
+    photoQueries,
+    fontPair: built.fontPair,
+    bucket: built.bucket,
+    vibe: built.bucket,
+    fits,
+    collapses,
+    analysis: null,
+    replay: Boolean(replay),
+    attempt,
+  };
+  const finished = await finishDeck(built.deck, outDir, {
+    slides,
+    report,
+    attempt,
+    layout: "composer",
+  });
   const result = {
     outDir,
-    slides,
-    report: {
-      direction,
-      brief,
-      fallbacks,
-      nonce,
-      photoQueries,
-      fontPair: built.fontPair,
-      bucket: built.bucket,
-      vibe: built.bucket,
-      fits,
-      collapses,
-      analysis: null,
-      replay: Boolean(replay),
-      attempt,
-    },
+    slides: finished.slides,
+    report: finished.report || report,
     layout: "composer",
-    name: built.deck.name,
-    deckId: built.deck.id,
+    name: finished.name || built.deck.name,
+    deckId: finished.deckId || built.deck.id,
     selection: { vibe: built.bucket, model: direction.model || "composer" },
-    analysis: null,
-    deck: built.deck,
+    analysis: finished.analysis,
+    deck: finished.deck,
   };
-  await writeQa(result, analysis, attempt, "manual");
-  if (result.analysis && typeof result.analysis === "object") {
-    result.analysis.aesthetic = analysis.aesthetic;
-    result.analysis.slides = analysis.slides;
-    result.analysis.composer = analysis.composer;
-  }
   if (result.report) result.report.analysis = result.analysis;
-  const deckPath = path.join(outDir, "deck.json");
-  if (fs.existsSync(deckPath)) {
-    const written = JSON.parse(fs.readFileSync(deckPath, "utf8"));
-    if (written.qa) {
-      written.qa.aesthetic = analysis.aesthetic;
-      fs.writeFileSync(deckPath, JSON.stringify(written, null, 2) + "\n");
-    }
-  }
-  result.deck = JSON.parse(fs.readFileSync(deckPath, "utf8"));
   fs.writeFileSync(path.join(outDir, "replacements.json"), JSON.stringify(result.report, null, 2) + "\n");
   return result;
-}
-
-function failingRoles(analysis, brief) {
-  const roles = [];
-  const slides = (analysis && analysis.slides) || [];
-  slides.forEach((slide, index) => {
-    if (slide.pass) return;
-    const plan = brief.plan[index];
-    if (plan && roles.indexOf(plan.role) < 0) roles.push(plan.role);
-  });
-  return roles;
 }
 
 async function compose(options, deps) {
@@ -597,41 +580,57 @@ async function compose(options, deps) {
   }
 
   const invent = (deps && deps.inventDirection) || inventDirection;
-  const briefFn = (deps && deps.designBrief) || designBrief;
-  const refineFn = (deps && deps.refineBrief) || refineBrief;
+  const planFn = (deps && deps.planBrief) || planBrief;
+  const copyFn = (deps && deps.copyBrief) || copyBrief;
+  const fillFn = (deps && deps.copyFill) || copyFill;
 
   let direction;
-  let rawBrief;
   let nonce;
   let fallbacks = [];
   let callCount = 0;
+  let brief;
+  let copyFillReport = { fired: false };
+
+  const manifest = loadManifest();
 
   if (replay) {
     direction = replay.report.direction;
-    rawBrief = replay.report.brief;
     nonce = replay.report.nonce || settings.nonce || "replay";
     fallbacks = replay.report.fallbacks || [];
+    // Map legacy role-keyed copy (proof-4f-a/b) into index-keyed shape.
+    const migrated = migrateLegacyBrief(replay.report.brief);
+    if (migrated && migrated._migratedFromRoleCopy) {
+      fallbacks = fallbacks.concat([{ field: "replay.copy", got: "role-keyed", used: "index-keyed", reason: "migrated legacy 4f brief" }]);
+    }
+    const oldPlan = (migrated && migrated.plan) || [];
+    const oldCopy = (migrated && migrated.copy) || {};
+    // Re-apply hard plan repairs (e.g. narrative band) and remap copy to new indices.
+    const planResult = validatePlan(migrated, manifest, prompt || (replay.report.prompt || ""), nonce);
+    const remapped = remapCopyToPlan(oldPlan, oldCopy, planResult.plan.plan);
+    const copyResult = validateCopy(remapped, planResult.plan, manifest);
+    brief = Object.assign({}, planResult.plan, { copy: copyResult.copy });
+    fallbacks = fallbacks.concat(planResult.fallbacks).concat(copyResult.fallbacks);
   } else {
     nonce = settings.nonce || crypto.randomBytes(8).toString("hex");
     direction = await invent(prompt);
     callCount += 1;
-    const manifest = loadManifest();
-    rawBrief = await briefFn(prompt, direction, manifest, nonce, deps);
-    callCount += 1;
-  }
 
-  const manifest = loadManifest();
-  // Replay keeps the stored brief as-is (pre-step-7 may lack named keys → unfilled).
-  // Online runs validate so missing required slots become empty strings.
-  const validated = replay
-    ? { brief: rawBrief, fallbacks }
-    : validateBrief(rawBrief, manifest, prompt, nonce);
-  const brief = validated.brief;
-  fallbacks = validated.fallbacks;
+    const planRaw = await planFn(prompt, direction, manifest, nonce, deps);
+    callCount += 1;
+    const planResult = validatePlan(planRaw, manifest, prompt, nonce);
+    fallbacks = planResult.fallbacks.slice();
+
+    const copyRaw = await copyFn(prompt, direction, planResult.plan, manifest, deps);
+    callCount += 1;
+    const copyResult = validateCopy(copyRaw, planResult.plan, manifest);
+    fallbacks = fallbacks.concat(copyResult.fallbacks);
+
+    brief = Object.assign({}, planResult.plan, { copy: copyResult.copy });
+  }
 
   const slugName = slug(
     settings.outSlug
-    || (direction.profile && direction.profile.brand)
+    || (direction && direction.profile && direction.profile.brand)
     || (replay && path.basename(replay.dir))
     || prompt
   );
@@ -644,7 +643,7 @@ async function compose(options, deps) {
       Object.keys(d.layouts || {}).some((id) => {
         return (d.layouts[id].elements || []).some((el) => {
           const c = el.imageContent || el.maskedImageContent;
-          const m = c && c.url && String(c.url).match(/^photos\/composer\/([^/]+)\//);
+          const m = c && c.url && String(c.url).match(/^photos\/composer\/([^/]+)\//); // eslint-disable-line
           if (m) { found = m[1]; return true; }
           return false;
         });
@@ -661,7 +660,7 @@ async function compose(options, deps) {
     throw new Error("composer out refuses docs/template-pipeline/native/");
   }
 
-  const attempt1 = await runOnce({
+  let chosen = await runOnce({
     prompt,
     nonce,
     direction,
@@ -675,77 +674,44 @@ async function compose(options, deps) {
   });
   callCount = replay ? 0 : callCount;
 
-  let chosen = attempt1;
-
-  const hardFails = hardFailCount(attempt1.analysis);
-  if (!replay && hardFails > 0 && callCount < 3) {
-    const roles = failingRoles(attempt1.analysis, brief);
-    let refinedRaw = null;
-    try {
-      refinedRaw = await refineFn(prompt, direction, manifest, nonce, brief, roles, attempt1.analysis.failures, deps);
-      callCount += 1;
-    } catch (error) {
-      chosen.report.refinement = {
-        fired: true,
-        roles,
-        error: String(error && error.message ? error.message : error),
-        note: "refine failed; keeping attempt 1",
-      };
-      refinedRaw = null;
-    }
-    if (refinedRaw) {
-      const refinedValidated = validateBrief(refinedRaw, manifest, prompt, nonce + "|refine");
-      const merged = JSON.parse(JSON.stringify(brief));
-      merged.paletteBucket = brief.paletteBucket;
-      merged.fontPair = brief.fontPair;
-      merged.density = brief.density;
-      refinedValidated.brief.plan.forEach((slide, index) => {
-        if (roles.indexOf(slide.role) >= 0) {
-          merged.plan[index] = slide;
-        }
-      });
-      roles.forEach((role) => {
-        if (refinedValidated.brief.copy && refinedValidated.brief.copy[role]) {
-          merged.copy[role] = refinedValidated.brief.copy[role];
-        }
-      });
-
-      const attempt1Dir = path.join(outDir, "attempt-1");
-      safeRm(attempt1Dir, { recursive: true, force: true });
-      fs.mkdirSync(attempt1Dir, { recursive: true });
-      copyDirIfNeeded(outDir, attempt1Dir);
-      safeRm(path.join(attempt1Dir, "attempt-1"), { recursive: true, force: true });
-
-      const attempt2 = await runOnce({
-        prompt,
-        nonce,
-        direction,
-        brief: merged,
-        fallbacks: fallbacks.concat(refinedValidated.fallbacks),
-        outDir,
-        slugName: photoSlug,
-        replay: false,
-        deps,
-        attempt: 2,
-      });
-      attempt2.report.refinement = { fired: true, roles, failures: attempt1.analysis.failures };
-      attempt2.report.fits = attempt2.report.fits || [];
-      fs.writeFileSync(path.join(outDir, "replacements.json"), JSON.stringify(attempt2.report, null, 2) + "\n");
-
-      const score1 = Number(attempt1.analysis && attempt1.analysis.score) || 0;
-      const score2 = Number(attempt2.analysis && attempt2.analysis.score) || 0;
-      if (score2 >= score1) {
-        chosen = attempt2;
-      } else {
-        chosen = attempt1;
-        chosen.report.refinement = { fired: true, roles, returned: 1, note: "attempt-1 higher score; files under attempt-1/" };
+  // Copy-fill for remaining empty required slots (one shot, cap 4 total calls).
+  if (!replay && callCount < 4) {
+    const empties = listEmptySlots(brief, brief.copy, manifest);
+    if (empties.length) {
+      try {
+        const fillRaw = await fillFn(prompt, empties, deps);
+        callCount += 1;
+        const merged = mergeCopyFill(brief.copy, fillRaw, empties, manifest, brief);
+        brief.copy = merged.copy;
+        fallbacks = fallbacks.concat(merged.fallbacks);
+        copyFillReport = { fired: true, slots: empties.map((t) => t.index + "." + t.key) };
+        chosen = await runOnce({
+          prompt,
+          nonce,
+          direction,
+          brief,
+          fallbacks,
+          outDir,
+          slugName: photoSlug,
+          replay: false,
+          deps,
+          attempt: 1,
+        });
+      } catch (error) {
+        copyFillReport = {
+          fired: true,
+          error: String(error && error.message ? error.message : error),
+          slots: empties.map((t) => t.index + "." + t.key),
+        };
       }
     }
-  } else if (!replay) {
-    chosen.report.refinement = { fired: false };
   }
 
+  chosen.report.refinement = { fired: false, note: "component-swap refinement removed in 4f-1" };
+  chosen.report.copyFill = copyFillReport;
   chosen.report.textModelCalls = replay ? 0 : callCount;
+  chosen.report.brief = brief;
+  chosen.report.fallbacks = fallbacks;
   fs.writeFileSync(path.join(chosen.outDir, "replacements.json"), JSON.stringify(chosen.report, null, 2) + "\n");
 
   const slideMeta = chosen.slides.map((file) => ({

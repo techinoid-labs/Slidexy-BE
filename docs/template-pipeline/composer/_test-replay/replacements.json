@@ -1,0 +1,967 @@
+{
+  "direction": {
+    "profile": {
+      "brand": "SwiftPay Solutions",
+      "industry": "Payroll",
+      "mission": "To empower businesses with seamless and accurate payroll processing, fostering financial peace of mind."
+    },
+    "mood": "Clean and corporate",
+    "keywords": [
+      "office",
+      "laptop",
+      "document"
+    ],
+    "query": "office laptop document",
+    "model": "gemini-2.5-flash-lite"
+  },
+  "brief": {
+    "plan": [
+      {
+        "role": "Cover",
+        "component": "cover",
+        "variant": "split"
+      },
+      {
+        "role": "Contents",
+        "component": "agenda",
+        "variant": "numbered-list"
+      },
+      {
+        "role": "About",
+        "component": "statement",
+        "variant": "left"
+      },
+      {
+        "role": "About",
+        "component": "split-copy",
+        "variant": "photo-right"
+      },
+      {
+        "role": "Problem",
+        "component": "split-copy",
+        "variant": "photo-left"
+      },
+      {
+        "role": "Solution",
+        "component": "statement",
+        "variant": "left"
+      },
+      {
+        "role": "Proof",
+        "component": "stat-row",
+        "variant": "three-up"
+      },
+      {
+        "role": "Model",
+        "component": "process",
+        "variant": "three-step"
+      },
+      {
+        "role": "Close",
+        "component": "close",
+        "variant": "plain"
+      }
+    ],
+    "accentRole": "Solution",
+    "paletteBucket": "light-neutral",
+    "fontPair": "corp-calibri",
+    "density": "balanced",
+    "coverPattern": "split",
+    "signature": "frame",
+    "mood": "Clean and corporate",
+    "copy": {
+      "0": {
+        "title": "SwiftPay Solutions: Payroll, Perfected",
+        "body": "Empowering businesses with seamless and accurate payroll processing, fostering financial peace of mind."
+      },
+      "1": {
+        "title": "",
+        "item-1": "",
+        "item-2": "",
+        "item-3": "",
+        "item-4": ""
+      },
+      "2": {
+        "statement": ""
+      },
+      "3": {
+        "title": "",
+        "body": "",
+        "bullet-1": "",
+        "bullet-2": "",
+        "bullet-3": ""
+      },
+      "4": {
+        "title": "The Payroll Puzzle",
+        "body": "Manual errors, complex regulations, and time-consuming tasks",
+        "bullet-1": "",
+        "bullet-2": "",
+        "bullet-3": ""
+      },
+      "5": {
+        "statement": ""
+      },
+      "6": {
+        "title": "Proven Impact",
+        "stat-1": "",
+        "stat-2": "",
+        "stat-3": "",
+        "label-1": "",
+        "label-2": "",
+        "label-3": "",
+        "body": "Trusted by businesses of all sizes for reliable payroll"
+      },
+      "7": {
+        "title": "",
+        "step-title-1": "",
+        "step-title-2": "",
+        "step-title-3": "",
+        "step-title-4": "",
+        "step-body-1": "",
+        "step-body-2": "",
+        "step-body-3": "",
+        "step-body-4": ""
+      },
+      "8": {
+        "title": "Ready for Effortless Payroll?",
+        "body": "Let SwiftPay Solutions bring you financial peace of mind"
+      }
+    }
+  },
+  "fallbacks": [
+    {
+      "field": "replay.copy",
+      "got": "role-keyed",
+      "used": "index-keyed",
+      "reason": "migrated legacy 4f brief"
+    },
+    {
+      "field": "plan.contents",
+      "got": null,
+      "used": "Contents",
+      "reason": "Contents required"
+    },
+    {
+      "field": "plan.modelPeopleNext",
+      "got": null,
+      "used": "Model",
+      "reason": "at least one of Model/People/Next"
+    },
+    {
+      "field": "plan.accentMoment",
+      "got": "split-copy",
+      "used": "statement",
+      "reason": "at least one statement/big-number/divider"
+    },
+    {
+      "field": "plan.length",
+      "got": 8,
+      "used": "About@2",
+      "reason": "9 to 11 slides; narrative after Contents before Proof/Market"
+    },
+    {
+      "field": "accentRole",
+      "used": "Solution",
+      "reason": "exactly one accentRole by hash"
+    }
+  ],
+  "nonce": "4c-proof-1",
+  "photoQueries": [
+    {
+      "query": "(replay)",
+      "orientation": "landscape",
+      "hits": 0
+    }
+  ],
+  "fontPair": "corp-calibri",
+  "bucket": "light-neutral",
+  "vibe": "light-neutral",
+  "fits": [],
+  "collapses": [
+    {
+      "slide": 1,
+      "stackId": "cover-copy",
+      "gap": 28,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-cover-kicker",
+          "fromY": 72,
+          "toY": 72,
+          "deltaY": 0,
+          "height": 23.76
+        },
+        {
+          "id": "composer-cover-title",
+          "fromY": 121.59,
+          "toY": 123.76,
+          "deltaY": 2.17,
+          "height": 221.76
+        },
+        {
+          "id": "composer-cover-body",
+          "fromY": 451.98,
+          "toY": 373.52,
+          "deltaY": -78.46,
+          "height": 83.16
+        }
+      ]
+    },
+    {
+      "slide": 2,
+      "stackId": "agenda",
+      "gap": 24,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-agenda-title",
+          "fromY": 96,
+          "toY": 96,
+          "deltaY": 0,
+          "height": 77.44
+        },
+        {
+          "id": "composer-agenda-item-1",
+          "fromY": 190.39,
+          "toY": 197.44,
+          "deltaY": 7.05,
+          "height": 38.5
+        },
+        {
+          "id": "composer-agenda-item-2",
+          "fromY": 249.39,
+          "toY": 259.94,
+          "deltaY": 10.55,
+          "height": 38.5
+        },
+        {
+          "id": "composer-agenda-item-3",
+          "fromY": 308.39,
+          "toY": 322.44,
+          "deltaY": 14.05,
+          "height": 38.5
+        },
+        {
+          "id": "composer-agenda-item-4",
+          "fromY": 367.39,
+          "toY": 384.94,
+          "deltaY": 17.55,
+          "height": 38.5
+        },
+        {
+          "id": "composer-agenda-item-5",
+          "fromY": 426.39,
+          "toY": 447.44,
+          "deltaY": 21.05,
+          "height": 38.5
+        },
+        {
+          "id": "composer-agenda-item-6",
+          "fromY": 485.39,
+          "toY": 509.94,
+          "deltaY": 24.55,
+          "height": 38.5
+        }
+      ]
+    },
+    {
+      "slide": 3,
+      "stackId": "statement",
+      "gap": 28,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-statement-statement",
+          "fromY": 160,
+          "toY": 160,
+          "deltaY": 0,
+          "height": 110.88
+        }
+      ]
+    },
+    {
+      "slide": 4,
+      "stackId": "copy",
+      "gap": 28,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-split-copy-title",
+          "fromY": 96,
+          "toY": 96,
+          "deltaY": 0,
+          "height": 67.76
+        },
+        {
+          "id": "composer-split-copy-body",
+          "fromY": 247.19,
+          "toY": 191.76,
+          "deltaY": -55.43,
+          "height": 32.67
+        },
+        {
+          "id": "composer-split-copy-bullet-1",
+          "fromY": 364.25,
+          "toY": 252.43,
+          "deltaY": -111.82,
+          "height": 28.6
+        },
+        {
+          "id": "composer-split-copy-bullet-2",
+          "fromY": 418.25,
+          "toY": 309.03,
+          "deltaY": -109.22,
+          "height": 28.6
+        },
+        {
+          "id": "composer-split-copy-bullet-3",
+          "fromY": 472.25,
+          "toY": 365.63,
+          "deltaY": -106.62,
+          "height": 28.6
+        }
+      ]
+    },
+    {
+      "slide": 5,
+      "stackId": "copy",
+      "gap": 28,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-split-copy-title",
+          "fromY": 96,
+          "toY": 96,
+          "deltaY": 0,
+          "height": 67.76
+        },
+        {
+          "id": "composer-split-copy-body",
+          "fromY": 247.19,
+          "toY": 191.76,
+          "deltaY": -55.43,
+          "height": 32.67
+        },
+        {
+          "id": "composer-split-copy-bullet-1",
+          "fromY": 364.25,
+          "toY": 252.43,
+          "deltaY": -111.82,
+          "height": 28.6
+        },
+        {
+          "id": "composer-split-copy-bullet-2",
+          "fromY": 418.25,
+          "toY": 309.03,
+          "deltaY": -109.22,
+          "height": 28.6
+        },
+        {
+          "id": "composer-split-copy-bullet-3",
+          "fromY": 472.25,
+          "toY": 365.63,
+          "deltaY": -106.62,
+          "height": 28.6
+        }
+      ]
+    },
+    {
+      "slide": 6,
+      "stackId": "statement",
+      "gap": 28,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-statement-statement",
+          "fromY": 160,
+          "toY": 160,
+          "deltaY": 0,
+          "height": 110.88
+        }
+      ]
+    },
+    {
+      "slide": 7,
+      "stackId": "stat-1",
+      "gap": 12,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-stat-row-stat-1",
+          "fromY": 160.8,
+          "toY": 160.8,
+          "deltaY": 0,
+          "height": 79.2
+        },
+        {
+          "id": "composer-stat-row-label-1",
+          "fromY": 244.8,
+          "toY": 252,
+          "deltaY": 7.2,
+          "height": 28.6
+        }
+      ]
+    },
+    {
+      "slide": 7,
+      "stackId": "stat-2",
+      "gap": 12,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-stat-row-stat-2",
+          "fromY": 160.8,
+          "toY": 160.8,
+          "deltaY": 0,
+          "height": 79.2
+        },
+        {
+          "id": "composer-stat-row-label-2",
+          "fromY": 244.8,
+          "toY": 252,
+          "deltaY": 7.2,
+          "height": 28.6
+        }
+      ]
+    },
+    {
+      "slide": 7,
+      "stackId": "stat-3",
+      "gap": 12,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-stat-row-stat-3",
+          "fromY": 160.8,
+          "toY": 160.8,
+          "deltaY": 0,
+          "height": 79.2
+        },
+        {
+          "id": "composer-stat-row-label-3",
+          "fromY": 244.8,
+          "toY": 252,
+          "deltaY": 7.2,
+          "height": 28.6
+        }
+      ]
+    },
+    {
+      "slide": 7,
+      "stackId": "main",
+      "gap": 36,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-stat-row-title",
+          "fromY": 72,
+          "toY": 72,
+          "deltaY": 0,
+          "height": 58.08
+        },
+        {
+          "id": "main-block-1",
+          "fromY": 160.8,
+          "toY": 166.08,
+          "deltaY": 5.28,
+          "height": 110
+        },
+        {
+          "id": "composer-stat-row-body",
+          "fromY": 306.8,
+          "toY": 312.08,
+          "deltaY": 5.28,
+          "height": 32.67
+        }
+      ]
+    },
+    {
+      "slide": 8,
+      "stackId": "step-1",
+      "gap": 16,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-process-step-title-1",
+          "fromY": 220,
+          "toY": 220,
+          "deltaY": 0,
+          "height": 35.42
+        },
+        {
+          "id": "composer-process-step-body-1",
+          "fromY": 268.19,
+          "toY": 271.42,
+          "deltaY": 3.23,
+          "height": 26.73
+        }
+      ]
+    },
+    {
+      "slide": 8,
+      "stackId": "step-2",
+      "gap": 16,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-process-step-title-2",
+          "fromY": 220,
+          "toY": 220,
+          "deltaY": 0,
+          "height": 35.42
+        },
+        {
+          "id": "composer-process-step-body-2",
+          "fromY": 268.19,
+          "toY": 271.42,
+          "deltaY": 3.23,
+          "height": 26.73
+        }
+      ]
+    },
+    {
+      "slide": 8,
+      "stackId": "step-3",
+      "gap": 16,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-process-step-title-3",
+          "fromY": 220,
+          "toY": 220,
+          "deltaY": 0,
+          "height": 35.42
+        },
+        {
+          "id": "composer-process-step-body-3",
+          "fromY": 268.19,
+          "toY": 271.42,
+          "deltaY": 3.23,
+          "height": 26.73
+        }
+      ]
+    },
+    {
+      "slide": 8,
+      "stackId": "header",
+      "gap": 12,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-process-title",
+          "fromY": 72,
+          "toY": 72,
+          "deltaY": 0,
+          "height": 58.08
+        }
+      ]
+    },
+    {
+      "slide": 9,
+      "stackId": "close-copy",
+      "gap": 24,
+      "align": "start",
+      "shift": 0,
+      "members": [
+        {
+          "id": "composer-close-kicker",
+          "fromY": 280,
+          "toY": 280,
+          "deltaY": 0,
+          "height": 23.76
+        },
+        {
+          "id": "composer-close-title",
+          "fromY": 325.59,
+          "toY": 327.76,
+          "deltaY": 2.17,
+          "height": 83.16
+        },
+        {
+          "id": "composer-close-body",
+          "fromY": 500.78,
+          "toY": 434.92,
+          "deltaY": -65.86,
+          "height": 35.64
+        }
+      ]
+    }
+  ],
+  "analysis": {
+    "score": 11,
+    "passed": 1,
+    "total": 9,
+    "failures": [
+      "unfilled slot composer-agenda-title on slide 2",
+      "unfilled slot composer-agenda-item-1 on slide 2",
+      "unfilled slot composer-agenda-item-2 on slide 2",
+      "unfilled slot composer-agenda-item-3 on slide 2",
+      "unfilled slot composer-agenda-item-4 on slide 2",
+      "unfilled slot composer-statement-statement on slide 3",
+      "unfilled slot composer-split-copy-title on slide 4",
+      "unfilled slot composer-split-copy-body on slide 4",
+      "unfilled slot composer-split-copy-bullet-1 on slide 4",
+      "unfilled slot composer-split-copy-bullet-2 on slide 4",
+      "unfilled slot composer-split-copy-bullet-3 on slide 4",
+      "unfilled slot composer-split-copy-bullet-1 on slide 5",
+      "unfilled slot composer-split-copy-bullet-2 on slide 5",
+      "unfilled slot composer-split-copy-bullet-3 on slide 5",
+      "unfilled slot composer-statement-statement on slide 6",
+      "unfilled slot composer-stat-row-stat-1 on slide 7",
+      "unfilled slot composer-stat-row-label-1 on slide 7",
+      "unfilled slot composer-stat-row-stat-2 on slide 7",
+      "unfilled slot composer-stat-row-label-2 on slide 7",
+      "unfilled slot composer-stat-row-stat-3 on slide 7",
+      "unfilled slot composer-stat-row-label-3 on slide 7",
+      "unfilled slot composer-process-title on slide 8",
+      "unfilled slot composer-process-step-title-1 on slide 8",
+      "unfilled slot composer-process-step-body-1 on slide 8",
+      "unfilled slot composer-process-step-title-2 on slide 8",
+      "unfilled slot composer-process-step-body-2 on slide 8",
+      "unfilled slot composer-process-step-title-3 on slide 8",
+      "unfilled slot composer-process-step-body-3 on slide 8",
+      "pptx mismatch: composer-cover-body line count on slide 1"
+    ],
+    "attempt": 1,
+    "mode": "manual",
+    "aesthetic": {
+      "slides": 9,
+      "avgWhitespace": 0.703,
+      "avgTextDensity": 41,
+      "typeScaleAllOk": true,
+      "minFontSeen": 18
+    },
+    "slides": [
+      {
+        "slide": 1,
+        "pass": false,
+        "score": 0,
+        "reasons": [
+          "pptx mismatch: composer-cover-body line count"
+        ],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 3,
+            "right": 3,
+            "top": 4
+          },
+          "margin": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "whitespaceRatio": 0.371,
+          "minTextBox": {
+            "fontSize": 18,
+            "area": 18058
+          },
+          "typeScaleOk": true,
+          "textDensity": 141,
+          "stackGap": 0,
+          "coverVisualMass": 0.449
+        }
+      },
+      {
+        "slide": 2,
+        "pass": false,
+        "score": 0,
+        "reasons": [
+          "unfilled slot composer-agenda-title",
+          "unfilled slot composer-agenda-item-1",
+          "unfilled slot composer-agenda-item-2",
+          "unfilled slot composer-agenda-item-3",
+          "unfilled slot composer-agenda-item-4"
+        ],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 1,
+            "right": 1,
+            "top": 7
+          },
+          "margin": {
+            "left": 96,
+            "right": 104,
+            "top": 96,
+            "bottom": 351.56
+          },
+          "whitespaceRatio": 0.697,
+          "minTextBox": {
+            "fontSize": 28,
+            "area": 53900
+          },
+          "typeScaleOk": true,
+          "textDensity": 0,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      },
+      {
+        "slide": 3,
+        "pass": false,
+        "score": 0,
+        "reasons": [
+          "unfilled slot composer-statement-statement"
+        ],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 1,
+            "right": 1,
+            "top": 1
+          },
+          "margin": {
+            "left": 96,
+            "right": 96,
+            "top": 160,
+            "bottom": 629.12
+          },
+          "whitespaceRatio": 0.89,
+          "minTextBox": {
+            "fontSize": 96,
+            "area": 156119
+          },
+          "typeScaleOk": true,
+          "textDensity": 0,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      },
+      {
+        "slide": 4,
+        "pass": false,
+        "score": 0,
+        "reasons": [
+          "unfilled slot composer-split-copy-title",
+          "unfilled slot composer-split-copy-body",
+          "unfilled slot composer-split-copy-bullet-1",
+          "unfilled slot composer-split-copy-bullet-2",
+          "unfilled slot composer-split-copy-bullet-3"
+        ],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 2,
+            "right": 2,
+            "top": 6
+          },
+          "margin": {
+            "left": 72,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "whitespaceRatio": 0.446,
+          "minTextBox": {
+            "fontSize": 20,
+            "area": 20020
+          },
+          "typeScaleOk": true,
+          "textDensity": 0,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      },
+      {
+        "slide": 5,
+        "pass": false,
+        "score": 0,
+        "reasons": [
+          "unfilled slot composer-split-copy-bullet-1",
+          "unfilled slot composer-split-copy-bullet-2",
+          "unfilled slot composer-split-copy-bullet-3"
+        ],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 2,
+            "right": 2,
+            "top": 6
+          },
+          "margin": {
+            "left": 0,
+            "right": 100,
+            "top": 0,
+            "bottom": 0
+          },
+          "whitespaceRatio": 0.446,
+          "minTextBox": {
+            "fontSize": 20,
+            "area": 20020
+          },
+          "typeScaleOk": true,
+          "textDensity": 78,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      },
+      {
+        "slide": 6,
+        "pass": false,
+        "score": 0,
+        "reasons": [
+          "unfilled slot composer-statement-statement"
+        ],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 1,
+            "right": 1,
+            "top": 1
+          },
+          "margin": {
+            "left": 96,
+            "right": 96,
+            "top": 160,
+            "bottom": 629.12
+          },
+          "whitespaceRatio": 0.89,
+          "minTextBox": {
+            "fontSize": 96,
+            "area": 156119
+          },
+          "typeScaleOk": true,
+          "textDensity": 0,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      },
+      {
+        "slide": 7,
+        "pass": false,
+        "score": 0,
+        "reasons": [
+          "unfilled slot composer-stat-row-stat-1",
+          "unfilled slot composer-stat-row-label-1",
+          "unfilled slot composer-stat-row-stat-2",
+          "unfilled slot composer-stat-row-label-2",
+          "unfilled slot composer-stat-row-stat-3",
+          "unfilled slot composer-stat-row-label-3"
+        ],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 3,
+            "right": 4,
+            "top": 4
+          },
+          "margin": {
+            "left": 72,
+            "right": 72,
+            "top": 72,
+            "bottom": 555.25
+          },
+          "whitespaceRatio": 0.81,
+          "minTextBox": {
+            "fontSize": 20,
+            "area": 11440
+          },
+          "typeScaleOk": true,
+          "textDensity": 68,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      },
+      {
+        "slide": 8,
+        "pass": false,
+        "score": 0,
+        "reasons": [
+          "unfilled slot composer-process-title",
+          "unfilled slot composer-process-step-title-1",
+          "unfilled slot composer-process-step-body-1",
+          "unfilled slot composer-process-step-title-2",
+          "unfilled slot composer-process-step-body-2",
+          "unfilled slot composer-process-step-title-3",
+          "unfilled slot composer-process-step-body-3"
+        ],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 3,
+            "right": 4,
+            "top": 3
+          },
+          "margin": {
+            "left": 96,
+            "right": 95.99,
+            "top": 72,
+            "bottom": 601.85
+          },
+          "whitespaceRatio": 0.878,
+          "minTextBox": {
+            "fontSize": 18,
+            "area": 11833
+          },
+          "typeScaleOk": true,
+          "textDensity": 0,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      },
+      {
+        "slide": 9,
+        "pass": true,
+        "score": 100,
+        "reasons": [],
+        "vision": null,
+        "aesthetic": {
+          "edgeAlignment": {
+            "left": 1,
+            "right": 1,
+            "top": 3
+          },
+          "margin": {
+            "left": 72,
+            "right": 528,
+            "top": 280,
+            "bottom": 429.44
+          },
+          "whitespaceRatio": 0.9,
+          "minTextBox": {
+            "fontSize": 18,
+            "area": 23760
+          },
+          "typeScaleOk": true,
+          "textDensity": 85,
+          "stackGap": 0,
+          "coverVisualMass": null
+        }
+      }
+    ],
+    "composer": true,
+    "pptxGate": {
+      "skipped": false,
+      "pass": false,
+      "failures": [
+        "pptx mismatch: composer-cover-body line count on slide 1"
+      ]
+    }
+  },
+  "replay": true,
+  "attempt": 1,
+  "refinement": {
+    "fired": false,
+    "note": "component-swap refinement removed in 4f-1"
+  },
+  "copyFill": {
+    "fired": false
+  },
+  "textModelCalls": 0
+}

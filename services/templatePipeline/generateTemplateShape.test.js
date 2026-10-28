@@ -29,8 +29,8 @@ const GENERATE_TEMPLATE_FIELDS = [
   { field: "slides", line: lineOf("(data.slides || []).forEach"), note: "preview figures" },
   { field: "slides[].url", line: lineOf("image.src = slide.url"), note: "preview image src" },
   { field: "slides[].name", line: lineOf("image.alt = slide.name"), note: "caption / alt" },
-  { field: "analysis", line: lineOf("data.analysis ? \" Vision score \""), note: "optional QA summary" },
-  { field: "analysis.score", line: lineOf("data.analysis.score"), note: "vision score" },
+  { field: "analysis", line: lineOf("data.analysis"), note: "optional QA summary" },
+  { field: "analysis.score", line: lineOf("data.analysis.score"), note: "qa score" },
   { field: "analysis.passed", line: lineOf("data.analysis.passed"), note: "passed slide count" },
   { field: "analysis.total", line: lineOf("data.analysis.total"), note: "total slide count" },
   { field: "vibe", line: lineOf("data.vibe || (data.assembly && data.assembly.designLanguage)"), note: "vibe line" },
@@ -40,6 +40,7 @@ const GENERATE_TEMPLATE_FIELDS = [
   { field: "mode", line: lineOf("name=\"mode\""), note: "Mode selector" },
   { field: "nonce", line: lineOf("name=\"nonce\""), note: "Composer nonce field" },
   { field: "composer-meta", line: lineOf("composer-meta"), note: "plan / fits / collapses" },
+  { field: "seed-assets", line: lineOf("seed assets missing"), note: "missing-image guidance" },
 ];
 
 GENERATE_TEMPLATE_FIELDS.forEach((item) => {
@@ -76,21 +77,58 @@ function fixtureBrief() {
     signature: "frame",
     mood: "confident",
     copy: {
-      Cover: { title: "Apex Payroll", body: "Short cover body.", kicker: "2026" },
-      About: {
+      "0": { title: "Apex Payroll", body: "Short cover body.", kicker: "2026" },
+      "1": {
         title: "About Apex",
         body: "About body under the limit for the slot.",
         "bullet-1": "One",
         "bullet-2": "Two",
         "bullet-3": "Three",
       },
-      Close: { title: "Let's talk", body: "Short close invite.", kicker: "Next" },
+      "2": { title: "Let's talk", body: "Short close invite.", kicker: "Next" },
     },
   };
 }
 
+function assertHttpShape(result, mode) {
+  assert.ok(result.id, mode + " id");
+  assert.ok(result.name || (result.deck && result.deck.name), mode + " name");
+  assert.ok(result.deck && typeof result.deck === "object", mode + " deck");
+  assert.ok(Array.isArray(result.slides) && result.slides.length >= 1, mode + " slides");
+  assert.ok(result.slides[0].url && result.slides[0].name, mode + " slides[].url and name");
+  assert.ok(result.analysis && typeof result.analysis.score === "number", mode + " analysis.score");
+  assert.ok(typeof result.analysis.passed === "number", mode + " analysis.passed");
+  assert.ok(typeof result.analysis.total === "number", mode + " analysis.total");
+  assert.ok(typeof result.vibe === "string", mode + " vibe");
+  assert.ok(result.layoutId, mode + " layoutId");
+  assert.ok(result.pptxUrl === "" || /\/api\/admin\/download\//.test(result.pptxUrl), mode + " pptxUrl");
+}
+
+function stubBuilderResult(outDir, extras) {
+  fs.mkdirSync(outDir, { recursive: true });
+  const deck = {
+    id: "shape-deck",
+    name: "Shape Deck",
+    layoutSequence: ["s1"],
+    layouts: { s1: { elements: [] } },
+    qa: { score: 100, passed: 1, total: 1, failures: [], mode: "manual", attempt: 1 },
+  };
+  fs.writeFileSync(path.join(outDir, "deck.json"), JSON.stringify(deck, null, 2));
+  fs.writeFileSync(path.join(outDir, "slide-01.png"), Buffer.from([137, 80, 78, 71]));
+  return Object.assign({
+    outDir,
+    slides: [path.join(outDir, "slide-01.png")],
+    report: { vibe: "light-neutral" },
+    layout: "stub-layout",
+    name: deck.name,
+    deckId: deck.id,
+    analysis: deck.qa,
+    deck,
+  }, extras || {});
+}
+
 async function assertComposerShape() {
-  const { setTestDeps } = require("./composer/composeRuntime");
+  const { setTestDeps } = require("./pipeline");
   setTestDeps({
     inventDirection: async () => ({
       profile: { brand: "Apex Payroll", industry: "payroll" },
@@ -99,7 +137,8 @@ async function assertComposerShape() {
       query: "office",
       model: "stub",
     }),
-    designBrief: async () => fixtureBrief(),
+    planBrief: async () => fixtureBrief(),
+    copyBrief: async () => ({ copy: fixtureBrief().copy }),
     searchPexels: async () => [{ download: "file://" + FIXTURE_PHOTO, url: "file://" + FIXTURE_PHOTO }],
     downloadPhoto: async (url, file) => {
       fs.mkdirSync(path.dirname(file), { recursive: true });
@@ -118,23 +157,26 @@ async function assertComposerShape() {
     setTestDeps(null);
   }
 
-  assert.ok(result.id, "id");
-  assert.ok(result.name || (result.deck && result.deck.name), "name");
-  assert.ok(result.deck && typeof result.deck === "object", "deck");
-  assert.ok(Array.isArray(result.slides) && result.slides.length >= 1, "slides");
-  assert.ok(result.slides[0].url && result.slides[0].name, "slides[].url and name");
-  assert.ok(result.analysis && typeof result.analysis.score === "number", "analysis.score");
-  assert.ok(typeof result.analysis.passed === "number", "analysis.passed");
-  assert.ok(typeof result.analysis.total === "number", "analysis.total");
-  assert.ok(result.vibe, "vibe (bucket)");
+  assertHttpShape(result, "composer");
   assert.strictEqual(result.layoutId, "composer", "layoutId composer");
-  // 4f-0: compose writes deck.pptx for the round-trip gate, so pptxUrl is present after generate.
-  assert.ok(result.pptxUrl === "" || /\/api\/admin\/download\//.test(result.pptxUrl), "pptxUrl empty or download path");
-
-  // Cleanup stub job so admin-dashboard/tmp does not accumulate.
   const { discardTemplate } = require("./adminCatalog");
   discardTemplate(result.id);
   console.log("composer generateTemplate shape ok id=" + result.id + " vibe=" + result.vibe + " score=" + result.analysis.score);
+}
+
+async function assertModeShape(mode, body, installDeps) {
+  const { setTestDeps } = require("./pipeline");
+  setTestDeps(installDeps);
+  let result;
+  try {
+    result = await generateTemplate(Object.assign({ prompt: "A corporate payroll company" }, body));
+  } finally {
+    setTestDeps(null);
+  }
+  assertHttpShape(result, mode);
+  const { discardTemplate } = require("./adminCatalog");
+  discardTemplate(result.id);
+  console.log(mode + " generateTemplate shape ok id=" + result.id);
 }
 
 module.exports = { GENERATE_TEMPLATE_FIELDS };
@@ -142,6 +184,49 @@ module.exports = { GENERATE_TEMPLATE_FIELDS };
 (async () => {
   console.log("generateTemplateShape fields: " + GENERATE_TEMPLATE_FIELDS.map((item) => item.field + "@" + item.line).join(", "));
   await assertComposerShape();
+
+  await assertModeShape("pinned", { mode: "pinned", layoutId: "blue-and-white-modern-business-proposal-presentation" }, {
+    skipFinishDeck: true,
+    injectTheme: async (options) => stubBuilderResult(path.resolve(ROOT, options.out), {
+      layout: "blue-and-white-modern-business-proposal-presentation",
+      selection: { vibe: "light-neutral" },
+      report: { vibe: "light-neutral" },
+    }),
+  });
+  await assertModeShape("auto", { mode: "auto" }, {
+    skipFinishDeck: true,
+    injectTheme: async (options) => stubBuilderResult(path.resolve(ROOT, options.out), {
+      layout: "auto-seed",
+      selection: { vibe: "light-warm" },
+      report: { vibe: "light-warm" },
+    }),
+  });
+  await assertModeShape("assemble", { mode: "assemble" }, {
+    skipFinishDeck: true,
+    assembleDeck: async (prompt, options) => stubBuilderResult(path.resolve(ROOT, options.out), {
+      layout: "assembled",
+      assembly: { designLanguage: "assembled" },
+    }),
+  });
+  await assertModeShape("remix", {
+    mode: "remix",
+    layoutId: "blue-and-white-modern-business-proposal-presentation",
+    layoutIdB: "black-and-white-minimalist-pitch-deck-presentation",
+  }, {
+    skipFinishDeck: true,
+    remixSeeds: async (a, b, options) => stubBuilderResult(path.resolve(ROOT, options.out), {
+      layout: a + "+" + b,
+      remix: { strategies: [] },
+    }),
+  });
+  await assertModeShape("native", { mode: "native" }, {
+    skipFinishDeck: true,
+    generateNative: async (options) => stubBuilderResult(path.resolve(ROOT, options.out), {
+      layout: "native",
+      vibe: "native",
+    }),
+  });
+
   console.log("generateTemplateShape test passed");
 })().catch((error) => {
   console.error(error && error.stack ? error.stack : error);

@@ -1,0 +1,1274 @@
+{
+  "id": "first-aid-medicine-life-skills-prese-mvs0b9v3",
+  "prompt": "A corporate payroll company",
+  "nonce": "",
+  "plan": [],
+  "qa": {
+    "score": 44,
+    "passed": 8,
+    "total": 18,
+    "failures": [
+      "text under picture (s3-e13-t under s3-e14) on slide 3",
+      "text under picture (s4-e4-t under s4-e17) on slide 4",
+      "text under picture (s5-e2-t-p1 under s5-e4) on slide 5",
+      "text under picture (s5-e2-t-p1 under s5-e6) on slide 5",
+      "text under picture (s5-e2-t-p2 under s5-e4) on slide 5",
+      "text under picture (s5-e2-t-p2 under s5-e6) on slide 5",
+      "text under picture (s8-e4-t under s8-e6) on slide 8",
+      "text under picture (s8-e5-t under s8-e6) on slide 8",
+      "text under picture (s9-e18-t under s9-e20) on slide 9",
+      "text under picture (s10-e2-t under s10-e5) on slide 10",
+      "text under picture (s10-e3-t under s10-e5) on slide 10",
+      "text under picture (s10-e4-t under s10-e5) on slide 10",
+      "text under picture (s11-e2-t under s11-e12) on slide 11",
+      "text under picture (s12-e2-t under s12-e9) on slide 12",
+      "text under picture (s12-e3-t under s12-e9) on slide 12",
+      "text under picture (s12-e6-t under s12-e9) on slide 12",
+      "text under picture (s14-e3-t under s14-e11) on slide 14",
+      "text under picture (s15-e5-t under s15-e11) on slide 15",
+      "text under picture (s15-e6-t under s15-e11) on slide 15",
+      "text under picture (s15-e7-t under s15-e11) on slide 15",
+      "text under picture (s15-e8-t under s15-e11) on slide 15",
+      "pptx mismatch: s14-e4-t line count on slide 14",
+      "pptx mismatch: s15-e6-t line count on slide 15"
+    ],
+    "attempt": 1,
+    "mode": "manual",
+    "aesthetic": {
+      "slides": 18,
+      "avgWhitespace": 0.617,
+      "avgTextDensity": 86,
+      "typeScaleAllOk": false,
+      "minFontSeen": 13
+    },
+    "pptxGate": {
+      "skipped": false,
+      "pass": false,
+      "failures": [
+        "pptx mismatch: s14-e4-t line count on slide 14",
+        "pptx mismatch: s15-e6-t line count on slide 15"
+      ]
+    }
+  },
+  "timestamp": "2026-10-28T11:06:56.575Z",
+  "stockText": false,
+  "spacing": false,
+  "coverPhoto": false,
+  "belowBox": false,
+  "readsDesigned": false,
+  "worstThree": "",
+  "fixType": "none",
+  "kept": true,
+  "readsAsDifferent": false,
+  "replacements": {
+    "prompt": "A corporate payroll company",
+    "layout": "first-aid-medicine-life-skills-presentation",
+    "parametric": {
+      "cover": "fullBleed",
+      "coverName": "Full-Bleed",
+      "coverTitle": "Apex Payroll Partners",
+      "density": "balanced",
+      "marginFactor": 1,
+      "lineHeightFactor": 1,
+      "densityReverted": [],
+      "densityRevertReasons": [],
+      "marginSample": {
+        "before": {
+          "id": "s2-e2-t",
+          "x": 182.07,
+          "y": 72.98,
+          "width": 1235.85,
+          "height": 118.5,
+          "lineHeight": 1.07
+        },
+        "after": {
+          "id": "s2-e2-t",
+          "x": 182.07,
+          "y": 72.98,
+          "width": 1235.85,
+          "height": 118.5,
+          "lineHeight": 1.07
+        }
+      },
+      "signature": "rail",
+      "displayFont": "Amiko",
+      "bodyFont": "Roboto",
+      "displayWeight": 800,
+      "bodyWeight": 400,
+      "typeShortfalls": [],
+      "geometry": [
+        {
+          "slide": 1,
+          "pass": true,
+          "reasons": []
+        },
+        {
+          "slide": 2,
+          "pass": true,
+          "reasons": []
+        },
+        {
+          "slide": 3,
+          "pass": true,
+          "reasons": []
+        },
+        {
+          "slide": 4,
+          "pass": true,
+          "reasons": []
+        },
+        {
+          "slide": 5,
+          "pass": true,
+          "reasons": []
+        },
+        {
+          "slide": 6,
+          "pass": true,
+          "reasons": []
+        },
+        {
+          "slide": 7,
+          "pass": true,
+          "reasons": []
+        },
+        {
+          "slide": 8,
+          "pass": true,
+          "reasons": []
+        },
+        {
+          "slide": 9,
+          "pass": true,
+          "reasons": []
+        },
+        {
+          "slide": 10,
+          "pass": true,
+          "reasons": []
+        },
+        {
+          "slide": 11,
+          "pass": true,
+          "reasons": []
+        },
+        {
+          "slide": 12,
+          "pass": true,
+          "reasons": []
+        },
+        {
+          "slide": 13,
+          "pass": true,
+          "reasons": []
+        },
+        {
+          "slide": 14,
+          "pass": true,
+          "reasons": []
+        },
+        {
+          "slide": 15,
+          "pass": true,
+          "reasons": []
+        },
+        {
+          "slide": 16,
+          "pass": true,
+          "reasons": []
+        },
+        {
+          "slide": 17,
+          "pass": true,
+          "reasons": []
+        },
+        {
+          "slide": 18,
+          "pass": true,
+          "reasons": []
+        }
+      ],
+      "textOverlaps": []
+    },
+    "vibe": "",
+    "autoLayout": false,
+    "model": "qwen/qwen3.8-27b+qwen/qwen3.8-27b+qwen/qwen3.8-27b",
+    "profile": {
+      "brand": "Apex Payroll Partners",
+      "industry": "Financial Services",
+      "mission": "Simplifying workforce compensation for growing businesses."
+    },
+    "mood": {
+      "mood": "clean and corporate",
+      "bucket": "light-neutral",
+      "palette": {
+        "bg": "#f2e7e3",
+        "surface": "#f2e7e3",
+        "card": "#FFFFFF",
+        "ink": "#1C1916",
+        "muted": "#1C1916",
+        "rule": "#D9D0C6",
+        "accent": "#4f5a50",
+        "accent2": "#4f5a50",
+        "onAccent": "#F6F1E8"
+      }
+    },
+    "photoKeywords": [
+      "laptop",
+      "documents",
+      "handshake"
+    ],
+    "photoQuery": "laptop documents handshake",
+    "photos": {
+      "landscape": [
+        {
+          "file": "photos/thematic/first-aid-medicine-life-skills-prese-mvs0b9v3/landscape-01.jpg",
+          "bytes": 199781,
+          "photographer": "Tiger Lily",
+          "page": "https://www.pexels.com/photo/people-doing-hand-shake-at-work-7109292/",
+          "alt": "Business professionals engaging in a handshake over a desk filled with financial documents and a laptop."
+        },
+        {
+          "file": "photos/thematic/first-aid-medicine-life-skills-prese-mvs0b9v3/landscape-02.jpg",
+          "bytes": 195454,
+          "photographer": "Kindel Media",
+          "page": "https://www.pexels.com/photo/caucasian-and-african-american-people-handshaking-7979601/",
+          "alt": "Two people shaking hands over a desk signifies a business agreement or partnership."
+        },
+        {
+          "file": "photos/thematic/first-aid-medicine-life-skills-prese-mvs0b9v3/landscape-03.jpg",
+          "bytes": 147531,
+          "photographer": "Mikhail Nilov",
+          "page": "https://www.pexels.com/photo/two-people-doing-handshake-6931353/",
+          "alt": "Two business professionals shaking hands over graphs and reports in an office setting."
+        },
+        {
+          "file": "photos/thematic/first-aid-medicine-life-skills-prese-mvs0b9v3/landscape-04.jpg",
+          "bytes": 287383,
+          "photographer": "Ron Lach",
+          "page": "https://www.pexels.com/photo/unrecognizable-female-hands-handing-each-other-pen-10347141/",
+          "alt": "Two professionals collaborating over documents in an office setting, exchanging a pen."
+        },
+        {
+          "file": "photos/thematic/first-aid-medicine-life-skills-prese-mvs0b9v3/landscape-05.jpg",
+          "bytes": 135565,
+          "photographer": "KATRIN  BOLOVTSOVA",
+          "page": "https://www.pexels.com/photo/two-business-people-making-a-handshake-6077983/",
+          "alt": "Overhead view of a professional handshake over a laptop, symbolizing business agreement."
+        }
+      ],
+      "portrait": [
+        {
+          "file": "photos/thematic/first-aid-medicine-life-skills-prese-mvs0b9v3/portrait-01.jpg",
+          "bytes": 79138,
+          "photographer": "Pavel Danilyuk",
+          "page": "https://www.pexels.com/photo/photo-of-people-shaking-hands-8112186/",
+          "alt": "Close-up of two people shaking hands in an office, symbolizing agreement and partnership."
+        },
+        {
+          "file": "photos/thematic/first-aid-medicine-life-skills-prese-mvs0b9v3/portrait-02.jpg",
+          "bytes": 94099,
+          "photographer": "Mikhail Nilov",
+          "page": "https://www.pexels.com/photo/high-angle-shot-of-a-people-doing-shaking-hands-7989239/",
+          "alt": "Two people shaking hands over laptops and documents in an office, symbolizing a business deal."
+        },
+        {
+          "file": "photos/thematic/first-aid-medicine-life-skills-prese-mvs0b9v3/portrait-03.jpg",
+          "bytes": 186962,
+          "photographer": "Pavel Danilyuk",
+          "page": "https://www.pexels.com/photo/woman-signing-a-document-near-a-laptop-7518972/",
+          "alt": "High angle shot of a business meeting with a woman signing a contract on a table with a laptop."
+        },
+        {
+          "file": "photos/thematic/first-aid-medicine-life-skills-prese-mvs0b9v3/portrait-04.jpg",
+          "bytes": 95573,
+          "photographer": "Mikhail Nilov",
+          "page": "https://www.pexels.com/photo/people-doing-shake-hands-6931020/",
+          "alt": "Two professionals seal a business deal with a handshake over a desk with reports."
+        },
+        {
+          "file": "photos/thematic/first-aid-medicine-life-skills-prese-mvs0b9v3/portrait-05.jpg",
+          "bytes": 152157,
+          "photographer": "Sora Shimazaki",
+          "page": "https://www.pexels.com/photo/crop-colleagues-shaking-hands-in-office-5668526/",
+          "alt": "Crop faceless multiracial coworkers sitting at table and shaking hands after successful agreement in workspace"
+        }
+      ],
+      "landscapeSlots": 0,
+      "portraitSlots": 0,
+      "decorations": 0
+    },
+    "replacements": [
+      {
+        "from": "TITLE HERETITLE HERE",
+        "to": "98%: accuracy, after onboarding",
+        "fromChars": 20,
+        "toChars": 31,
+        "fromWords": 3,
+        "toWords": 4,
+        "replaced": true,
+        "rejected": false,
+        "retried": true,
+        "clamped": false
+      },
+      {
+        "from": "FIRST AID & ",
+        "to": "APEX PAYROLL",
+        "fromChars": 12,
+        "toChars": 12,
+        "fromWords": 3,
+        "toWords": 2,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "MEDICINE ",
+        "to": "PARTNERS",
+        "fromChars": 9,
+        "toChars": 8,
+        "fromWords": 1,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "LIFE SKILLS",
+        "to": "WORKFORCE",
+        "fromChars": 11,
+        "toChars": 9,
+        "fromWords": 2,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": true,
+        "clamped": false
+      },
+      {
+        "from": "Healthcare Presentation",
+        "to": "Payroll Deck",
+        "fromChars": 23,
+        "toChars": 12,
+        "fromWords": 2,
+        "toWords": 2,
+        "replaced": true,
+        "rejected": false,
+        "retried": true,
+        "clamped": false
+      },
+      {
+        "from": "AGENDA",
+        "to": "AGENDA",
+        "fromChars": 6,
+        "toChars": 6,
+        "fromWords": 1,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "ADD A MAIN POINT",
+        "to": "OUR MISSION",
+        "fromChars": 16,
+        "toChars": 11,
+        "fromWords": 4,
+        "toWords": 2,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "Briefly elaborate on what you want to discuss. ",
+        "to": "Simplifying workforce compensation for growth",
+        "fromChars": 47,
+        "toChars": 45,
+        "fromWords": 8,
+        "toWords": 5,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "WRITE AN AGENDA HERE.",
+        "to": "Compliance & Fit",
+        "fromChars": 21,
+        "toChars": 16,
+        "fromWords": 4,
+        "toWords": 3,
+        "replaced": true,
+        "rejected": false,
+        "retried": true,
+        "clamped": false
+      },
+      {
+        "from": "01.",
+        "to": "01",
+        "fromChars": 3,
+        "toChars": 2,
+        "fromWords": 1,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "02.",
+        "to": "02",
+        "fromChars": 3,
+        "toChars": 2,
+        "fromWords": 1,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "03.",
+        "to": "03",
+        "fromChars": 3,
+        "toChars": 2,
+        "fromWords": 1,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "04.",
+        "to": "04",
+        "fromChars": 3,
+        "toChars": 2,
+        "fromWords": 1,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "05.",
+        "to": "05",
+        "fromChars": 3,
+        "toChars": 2,
+        "fromWords": 1,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "TABLE OF",
+        "to": "PAYROLL",
+        "fromChars": 8,
+        "toChars": 7,
+        "fromWords": 2,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "CONTENTS",
+        "to": "SERVICES",
+        "fromChars": 8,
+        "toChars": 8,
+        "fromWords": 1,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "Proin sed mattis diam, non efficitur sem. Phasellus diam erat, lacinia non turpis non, finibus luctus erat. ",
+        "to": "Automate payroll",
+        "fromChars": 108,
+        "toChars": 16,
+        "fromWords": 17,
+        "toWords": 2,
+        "replaced": true,
+        "rejected": false,
+        "retried": true,
+        "clamped": false
+      },
+      {
+        "from": "INTRODUCTION",
+        "to": "INTRODUCTION",
+        "fromChars": 12,
+        "toChars": 12,
+        "fromWords": 1,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "TO FIRST AID",
+        "to": "TO APEX",
+        "fromChars": 12,
+        "toChars": 7,
+        "fromWords": 3,
+        "toWords": 2,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Integer vitae justo eget magna fermentum iaculis. Fames ac turpis egestas sed tempus urna et pharetra.",
+        "to": "We handle taxes and deposits",
+        "fromChars": 226,
+        "toChars": 28,
+        "fromWords": 35,
+        "toWords": 5,
+        "replaced": true,
+        "rejected": false,
+        "retried": true,
+        "clamped": false
+      },
+      {
+        "from": "PROCESS 01",
+        "to": "ONBOARDING",
+        "fromChars": 10,
+        "toChars": 10,
+        "fromWords": 2,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "PROCESS 02",
+        "to": "PAYROLL RUN",
+        "fromChars": 10,
+        "toChars": 11,
+        "fromWords": 2,
+        "toWords": 2,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "PROCESS 03",
+        "to": "CHECK",
+        "fromChars": 10,
+        "toChars": 5,
+        "fromWords": 2,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": true,
+        "clamped": false
+      },
+      {
+        "from": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vulputate vel ipsum ac fringilla.",
+        "to": "Connect HR",
+        "fromChars": 98,
+        "toChars": 10,
+        "fromWords": 14,
+        "toWords": 2,
+        "replaced": true,
+        "rejected": false,
+        "retried": true,
+        "clamped": false
+      },
+      {
+        "from": "PROCESS 04",
+        "to": "FILING",
+        "fromChars": 10,
+        "toChars": 6,
+        "fromWords": 2,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": true,
+        "clamped": false
+      },
+      {
+        "from": "THE PROCESS",
+        "to": "THE PROCESS",
+        "fromChars": 11,
+        "toChars": 11,
+        "fromWords": 2,
+        "toWords": 2,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "WHAT DO YOU NEED?",
+        "to": "WHAT YOU NEED",
+        "fromChars": 17,
+        "toChars": 13,
+        "fromWords": 4,
+        "toWords": 3,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "ITEM 01",
+        "to": "ACCURACY",
+        "fromChars": 7,
+        "toChars": 8,
+        "fromWords": 2,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "ITEM 02",
+        "to": "SECURITY",
+        "fromChars": 7,
+        "toChars": 8,
+        "fromWords": 2,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "ITEM 03",
+        "to": "SPEED",
+        "fromChars": 7,
+        "toChars": 5,
+        "fromWords": 2,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "ITEM 04",
+        "to": "SUPPORT",
+        "fromChars": 7,
+        "toChars": 7,
+        "fromWords": 2,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "SECTION TITLE HERE",
+        "to": "Why Apex Partners",
+        "fromChars": 18,
+        "toChars": 17,
+        "fromWords": 3,
+        "toWords": 3,
+        "replaced": true,
+        "rejected": false,
+        "retried": true,
+        "clamped": false
+      },
+      {
+        "from": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "to": "Streamlined operations and guaranteed accuracy for growing businesses",
+        "fromChars": 123,
+        "toChars": 69,
+        "fromWords": 19,
+        "toWords": 8,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "STEP 02",
+        "to": "DATA",
+        "fromChars": 7,
+        "toChars": 4,
+        "fromWords": 2,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": true,
+        "clamped": false
+      },
+      {
+        "from": "STEP 03",
+        "to": "CONFIG",
+        "fromChars": 7,
+        "toChars": 6,
+        "fromWords": 2,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": true,
+        "clamped": false
+      },
+      {
+        "from": "STEP 01",
+        "to": "SIGN UP",
+        "fromChars": 7,
+        "toChars": 7,
+        "fromWords": 2,
+        "toWords": 2,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "STEP 04",
+        "to": "RUN TEST",
+        "fromChars": 7,
+        "toChars": 8,
+        "fromWords": 2,
+        "toWords": 2,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "STEP 05",
+        "to": "GO LIVE",
+        "fromChars": 7,
+        "toChars": 7,
+        "fromWords": 2,
+        "toWords": 2,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "WHAT TO DO WHEN...",
+        "to": "HOW IT WORKS",
+        "fromChars": 18,
+        "toChars": 12,
+        "fromWords": 4,
+        "toWords": 3,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "ADD TOPIC HERE",
+        "to": "RESULTS",
+        "fromChars": 14,
+        "toChars": 7,
+        "fromWords": 3,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "100",
+        "to": "98",
+        "fromChars": 3,
+        "toChars": 2,
+        "fromWords": 1,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "36",
+        "to": "24",
+        "fromChars": 2,
+        "toChars": 2,
+        "fromWords": 1,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "67%",
+        "to": "60",
+        "fromChars": 3,
+        "toChars": 2,
+        "fromWords": 1,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "TITLE HERE",
+        "to": "40%: time saved",
+        "fromChars": 10,
+        "toChars": 15,
+        "fromWords": 2,
+        "toWords": 3,
+        "replaced": true,
+        "rejected": false,
+        "retried": true,
+        "clamped": false
+      },
+      {
+        "from": "45%",
+        "to": "30",
+        "fromChars": 3,
+        "toChars": 2,
+        "fromWords": 1,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "50%",
+        "to": "40",
+        "fromChars": 3,
+        "toChars": 2,
+        "fromWords": 1,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "OUR FIRST AID EXPERTS",
+        "to": "OUR PAYROLL EXPERTS",
+        "fromChars": 21,
+        "toChars": 19,
+        "fromWords": 4,
+        "toWords": 3,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "NAME HERE",
+        "to": "30%: cloud",
+        "fromChars": 9,
+        "toChars": 10,
+        "fromWords": 2,
+        "toWords": 2,
+        "replaced": true,
+        "rejected": false,
+        "retried": true,
+        "clamped": false
+      },
+      {
+        "from": "CONTACT US",
+        "to": "CONTACT US",
+        "fromChars": 10,
+        "toChars": 10,
+        "fromWords": 2,
+        "toWords": 2,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "1234-5678",
+        "to": "555-0199",
+        "fromChars": 9,
+        "toChars": 8,
+        "fromWords": 1,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "hello@reallygreatsite.com",
+        "to": "hello@apexpayroll.com",
+        "fromChars": 25,
+        "toChars": 21,
+        "fromWords": 1,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "Reallygreatsite.com",
+        "to": "apexpayroll.com",
+        "fromChars": 19,
+        "toChars": 15,
+        "fromWords": 1,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "This presentation template",
+        "to": "Apex Payroll Partners",
+        "fromChars": 26,
+        "toChars": 21,
+        "fromWords": 3,
+        "toWords": 3,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "uses the following free fonts:",
+        "to": "uses the following systems:",
+        "fromChars": 30,
+        "toChars": 27,
+        "fromWords": 5,
+        "toWords": 4,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "You can find these fonts online too.",
+        "to": "View integrations on our portal",
+        "fromChars": 36,
+        "toChars": 31,
+        "fromWords": 7,
+        "toWords": 5,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "TITLES:",
+        "to": "HR:",
+        "fromChars": 7,
+        "toChars": 3,
+        "fromWords": 1,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "AMIKO",
+        "to": "WORKDAY",
+        "fromChars": 5,
+        "toChars": 7,
+        "fromWords": 1,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "HEADERS:",
+        "to": "PAY:",
+        "fromChars": 8,
+        "toChars": 4,
+        "fromWords": 1,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "ROBOTO",
+        "to": "ADP",
+        "fromChars": 6,
+        "toChars": 3,
+        "fromWords": 1,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "BODY COPY:",
+        "to": "TAX:",
+        "fromChars": 10,
+        "toChars": 4,
+        "fromWords": 2,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "#981D13",
+        "to": "99.9%",
+        "fromChars": 7,
+        "toChars": 5,
+        "fromWords": 1,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "#000000",
+        "to": "24/7",
+        "fromChars": 7,
+        "toChars": 4,
+        "fromWords": 1,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "#5F3A10",
+        "to": "ISO",
+        "fromChars": 7,
+        "toChars": 3,
+        "fromWords": 1,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "#E16358",
+        "to": "GDPR",
+        "fromChars": 7,
+        "toChars": 4,
+        "fromWords": 1,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "Use these design resources in your Canva Presentation.",
+        "to": "Download reports and guides here",
+        "fromChars": 54,
+        "toChars": 32,
+        "fromWords": 8,
+        "toWords": 5,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "DON'T FORGET TO DELETE THIS PAGE BEFORE PRESENTING. ",
+        "to": "Contact Apex Payroll Partners today",
+        "fromChars": 52,
+        "toChars": 35,
+        "fromWords": 8,
+        "toWords": 5,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "RESOURCE PAGE",
+        "to": "RESOURCES",
+        "fromChars": 13,
+        "toChars": 9,
+        "fromWords": 2,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "Fonts",
+        "to": "Compliance",
+        "fromChars": 5,
+        "toChars": 10,
+        "fromWords": 1,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "Design Elements",
+        "to": "Integrations",
+        "fromChars": 15,
+        "toChars": 12,
+        "fromWords": 2,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "Colors",
+        "to": "Metrics",
+        "fromChars": 6,
+        "toChars": 7,
+        "fromWords": 1,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "#FAFBFC",
+        "to": "SOC2",
+        "fromChars": 7,
+        "toChars": 4,
+        "fromWords": 1,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "Design Elements / Icons",
+        "to": "Partnerships / Credits",
+        "fromChars": 23,
+        "toChars": 22,
+        "fromWords": 4,
+        "toWords": 3,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "This presentation template is free for everyone to use thanks to the following:",
+        "to": "Special thanks to our partners:",
+        "fromChars": 79,
+        "toChars": 31,
+        "fromWords": 13,
+        "toWords": 5,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "Happy designing!",
+        "to": "Growth guaranteed",
+        "fromChars": 16,
+        "toChars": 17,
+        "fromWords": 2,
+        "toWords": 2,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "for the presentation template",
+        "to": "for software",
+        "fromChars": 29,
+        "toChars": 12,
+        "fromWords": 4,
+        "toWords": 2,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "for the photos",
+        "to": "for integration",
+        "fromChars": 14,
+        "toChars": 15,
+        "fromWords": 3,
+        "toWords": 2,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "CREDITS",
+        "to": "CREDITS",
+        "fromChars": 7,
+        "toChars": 7,
+        "fromWords": 1,
+        "toWords": 1,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      },
+      {
+        "from": "Pexels, Pixabay",
+        "to": "Workday, HRD",
+        "fromChars": 15,
+        "toChars": 12,
+        "fromWords": 2,
+        "toWords": 2,
+        "replaced": true,
+        "rejected": false,
+        "retried": false,
+        "clamped": false
+      }
+    ],
+    "missed": 0,
+    "rejected": 0,
+    "analysis": {
+      "score": 44,
+      "passed": 8,
+      "total": 18,
+      "failures": [
+        "text under picture (s3-e13-t under s3-e14) on slide 3",
+        "text under picture (s4-e4-t under s4-e17) on slide 4",
+        "text under picture (s5-e2-t-p1 under s5-e4) on slide 5",
+        "text under picture (s5-e2-t-p1 under s5-e6) on slide 5",
+        "text under picture (s5-e2-t-p2 under s5-e4) on slide 5",
+        "text under picture (s5-e2-t-p2 under s5-e6) on slide 5",
+        "text under picture (s8-e4-t under s8-e6) on slide 8",
+        "text under picture (s8-e5-t under s8-e6) on slide 8",
+        "text under picture (s9-e18-t under s9-e20) on slide 9",
+        "text under picture (s10-e2-t under s10-e5) on slide 10",
+        "text under picture (s10-e3-t under s10-e5) on slide 10",
+        "text under picture (s10-e4-t under s10-e5) on slide 10",
+        "text under picture (s11-e2-t under s11-e12) on slide 11",
+        "text under picture (s12-e2-t under s12-e9) on slide 12",
+        "text under picture (s12-e3-t under s12-e9) on slide 12",
+        "text under picture (s12-e6-t under s12-e9) on slide 12",
+        "text under picture (s14-e3-t under s14-e11) on slide 14",
+        "text under picture (s15-e5-t under s15-e11) on slide 15",
+        "text under picture (s15-e6-t under s15-e11) on slide 15",
+        "text under picture (s15-e7-t under s15-e11) on slide 15",
+        "text under picture (s15-e8-t under s15-e11) on slide 15",
+        "pptx mismatch: s14-e4-t line count on slide 14",
+        "pptx mismatch: s15-e6-t line count on slide 15"
+      ],
+      "attempt": 1,
+      "mode": "manual"
+    }
+  }
+}
