@@ -16,71 +16,63 @@
     {
       "role": "problem",
       "title": "Generic dealers",
-      "body": [
-        "No brand soul",
-        "Stock photos everywhere"
-      ],
+      "body": ["No brand soul", "Stock photos everywhere"],
       "photoQuery": "empty showroom",
       "photoOrientation": "landscape"
     },
     {
       "role": "solution",
       "title": "Curated space",
-      "body": [
-        "Signature lighting",
-        "Member nights"
-      ],
+      "body": ["Signature lighting", "Member nights"],
       "photoQuery": "luxury car workshop",
       "photoOrientation": "landscape"
     },
     {
       "role": "how-it-works",
       "title": "Three moves",
-      "body": [
-        "Scout",
-        "Stage",
-        "Host"
-      ],
+      "body": ["Scout", "Stage", "Host"],
       "photoQuery": "mechanic detailing car",
       "photoOrientation": "landscape"
     },
     {
       "role": "feature",
       "title": "Member pit",
-      "body": [
-        "Private bays",
-        "Tool wall",
-        "Late hours"
-      ],
+      "body": ["Private bays", "Tool wall", "Late hours"],
       "photoQuery": "car tools wall",
       "photoOrientation": "landscape"
     },
     {
       "role": "stats",
       "title": "Proof",
-      "stat": "40%",
-      "body": [
-        "12",
-        "3.2x"
-      ],
-      "caption": "repeat bookings"
+      "stats": [
+        { "value": "40%", "label": "repeat bookings" },
+        { "value": "12", "label": "member nights" },
+        { "value": "3.2x", "label": "referral lift" }
+      ]
     },
     {
       "role": "testimonial",
       "title": "Voice",
-      "body": [
-        "They rebuilt how we show cars"
-      ],
+      "body": ["They rebuilt how we show cars"],
       "caption": "A. Rivera, founder",
       "photoQuery": "confident founder portrait",
       "photoOrientation": "portrait"
     },
     {
+      "role": "team",
+      "title": "Crew",
+      "members": [
+        { "name": "A. Rivera", "role": "Founder" },
+        { "name": "J. Cole", "role": "Curator" },
+        { "name": "M. Park", "role": "Host" }
+      ],
+      "photoQuery": "team in luxury garage",
+      "photoOrientation": "landscape"
+    },
+    {
       "role": "closing",
       "title": "Book a bay",
-      "body": [
-        "hello@garage.example"
-      ],
+      "body": ["hello@garage.example"],
       "photoQuery": "garage doors open night",
       "photoOrientation": "landscape"
     }

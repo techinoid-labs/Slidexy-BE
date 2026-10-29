@@ -6,6 +6,7 @@ const fs = require("fs");
 const path = require("path");
 const { createCanvas } = require("canvas");
 
+require("../services/templatePipeline/fonts"); // register Office faces for canvas
 const tokens = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "engine", "tokens.json"), "utf8"));
 const outDir = path.join(__dirname, "..", "out", "contact-sheet");
 fs.mkdirSync(outDir, { recursive: true });
@@ -35,10 +36,10 @@ palettes.forEach((pName, r) => {
     ctx.fillStyle = p.surface;
     ctx.fillRect(x + 24, y + 40, cellW - 64, 120);
     ctx.fillStyle = p.ink;
-    ctx.font = "bold 28px " + t.display;
+    ctx.font = 'bold 28px "' + t.display + '"';
     ctx.fillText("Aa Title", x + 40, y + 90);
     ctx.fillStyle = p.muted;
-    ctx.font = "16px " + t.body;
+    ctx.font = '16px "' + t.body + '"';
     ctx.fillText(pName + " / " + tName, x + 40, y + 130);
     ctx.fillStyle = p.accent;
     ctx.fillRect(x + 40, y + 150, 64, 8);

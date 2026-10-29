@@ -1,11 +1,7 @@
 /**
  * Facade for the live template builders.
- * This is not the old inventor (inventBrief / reasonDeck / generateDeck / learn).
- * Convert a deck with services/templatePipeline/convert/pptxToDeck.js.
- * Mutate a seed with services/templatePipeline/mutate.js.
- *
- * Phase 5a: every mode returns one normalized result shape; non-composer modes
- * share composer/finishDeck after their existing geometry analyze.
+ * Run 2: only Engine v1 kit path (`kit-v1` / generateKitV1).
+ * Seed rewrite / native / composer / assemble / remix are no longer callable here.
  */
 
 const fs = require("fs");
@@ -88,136 +84,37 @@ function normalizeResult(mode, raw) {
   };
 }
 
-async function applyFinishTail(raw, mode) {
-  const outDir = path.resolve(ROOT, raw.outDir);
-  const deck = raw.deck || JSON.parse(fs.readFileSync(path.join(outDir, "deck.json"), "utf8"));
-  const slides = raw.slides && raw.slides.length
-    ? (Array.isArray(raw.slides) && typeof raw.slides[0] === "string"
-      ? raw.slides
-      : raw.slides.map((s) => (typeof s === "string" ? s : (s.path || s.url))).filter(Boolean))
-    : listSlideFiles(outDir);
-  const finished = await finishDeck(deck, outDir, {
-    slides,
-    analysis: raw.analysis || null,
-    report: raw.report || null,
-    attempt: (raw.analysis && raw.analysis.attempt) || 1,
-    layout: raw.layout || mode,
-  });
-  return Object.assign({}, raw, {
-    outDir: finished.outDir,
-    slides: finished.slides,
-    analysis: finished.analysis,
-    deck: finished.deck,
-    report: finished.report || raw.report,
-    name: finished.name || raw.name,
-    deckId: finished.deckId || raw.deckId,
-  });
-}
-
 async function runPipeline(options) {
   const settings = options || {};
   const mode = settings.mode;
-  const deps = settings.deps || testDeps || null;
 
-  // Engine v1 kit path — default when ENGINE_V1=true (no new public mode name).
-  if (process.env.ENGINE_V1 === "true" || mode === "kit-v1") {
-    require("ts-node/register/transpile-only");
-    const { generateKitV1 } = require("../../engine/generateKitV1");
-    const deckType = settings.deckType || settings.deck_type || "Pitch";
-    const outDir = settings.out
-      ? (path.isAbsolute(settings.out) ? settings.out : path.join(ROOT, settings.out))
-      : path.join(ROOT, "docs", "template-pipeline", "admin-dashboard", "tmp", "kit-v1-" + Date.now().toString(36));
-    const result = await generateKitV1(settings.prompt || "", deckType, {
-      outDir,
-      id: path.basename(outDir),
-    });
-    return normalizeResult("kit-v1", {
-      outDir,
-      deck: result.deck,
-      slides: fs.readdirSync(outDir).filter((n) => /^slide-\d+\.png$/.test(n)).map((n) => path.join(outDir, n)),
-      analysis: { score: result.gates && result.gates.pass ? 90 : 50, gates: result.gates },
-      name: result.deck.name,
-      deckId: result.deck.id,
-      report: { engine: "v1", repaired: result.repaired, failedAfterRepair: result.failedAfterRepair || null },
-    });
+  if (mode && mode !== "kit-v1" && process.env.ENGINE_V1 !== "true") {
+    throw new Error(
+      "unsupported mode '" +
+        mode +
+        "' — seed rewrite / native / composer / assemble / remix were removed in run 2; use kit-v1"
+    );
   }
 
-  const allowed = {
-    auto: true,
-    pinned: true,
-    composer: true,
-    assemble: true,
-    remix: true,
-    native: true,
-  };
-  if (!allowed[mode]) {
-    throw new Error("unsupported mode");
-  }
-
-  if (mode === "composer") {
-    const { compose } = require("./composer/composeRuntime");
-    const raw = await compose(settings, deps);
-    return normalizeResult("composer", raw);
-  }
-
-  if (mode === "pinned" && !settings.layout) {
-    throw new Error("layout is required for mode pinned");
-  }
-
-  let raw;
-  if (mode === "assemble") {
-    const runAssemble = (deps && deps.assembleDeck) || assembleDeck;
-    raw = await runAssemble(settings.prompt, {
-      out: settings.out,
-      creative: settings.creative,
-    });
-  } else if (mode === "remix") {
-    const runRemix = (deps && deps.remixSeeds) || remixSeeds;
-    raw = await runRemix(settings.layout, settings.layoutIdB || settings.layoutB, {
-      prompt: settings.prompt,
-      out: settings.out,
-    });
-  } else if (mode === "native") {
-    const runNative = (deps && deps.generateNative) || generateNative;
-    raw = await runNative({
-      prompt: settings.prompt,
-      out: settings.out,
-      creative: settings.creative === true || settings.creative === "true",
-      niche: settings.niche || "",
-    });
-  } else {
-    const { injectTheme, visionQaEnabled } = require("./thematic");
-    let qa = settings.qa;
-    if (qa === undefined || qa === "") {
-      qa = visionQaEnabled() ? true : "manual";
-    }
-    const runInject = (deps && deps.injectTheme) || injectTheme;
-    raw = await runInject({
-      prompt: settings.prompt,
-      layout: settings.layout || "",
-      autoLayout: mode === "auto",
-      out: settings.out,
-      qa,
-      forcedBucket: settings.forcedBucket,
-      excludeLayouts: settings.excludeLayouts,
-      density: settings.density,
-    }, deps || {});
-  }
-
-  if (!(deps && deps.skipFinishDeck)) {
-    raw = await applyFinishTail(raw, mode);
-  }
-  return normalizeResult(mode, raw);
-}
-
-if (process.env.PIPELINE_5A_STUB === "1") {
-  try {
-    const stub = require("./composer/pinnedStub5a");
-    setTestDeps({ themeOnce: stub.themeOnce });
-    console.log("PIPELINE_5A_STUB: pinned themeOnce stub armed (zero network)");
-  } catch (error) {
-    console.log("PIPELINE_5A_STUB failed to load: " + (error && error.message ? error.message : error));
-  }
+  require("ts-node/register/transpile-only");
+  const { generateKitV1 } = require("../../engine/generateKitV1");
+  const deckType = settings.deckType || settings.deck_type || "Pitch";
+  const outDir = settings.out
+    ? (path.isAbsolute(settings.out) ? settings.out : path.join(ROOT, settings.out))
+    : path.join(ROOT, "docs", "template-pipeline", "admin-dashboard", "tmp", "kit-v1-" + Date.now().toString(36));
+  const result = await generateKitV1(settings.prompt || "", deckType, {
+    outDir,
+    id: path.basename(outDir),
+  });
+  return normalizeResult("kit-v1", {
+    outDir,
+    deck: result.deck,
+    slides: fs.readdirSync(outDir).filter((n) => /^slide-\d+\.png$/.test(n)).map((n) => path.join(outDir, n)),
+    analysis: { score: result.gates && result.gates.pass ? 90 : 50, gates: result.gates },
+    name: result.deck.name,
+    deckId: result.deck.id,
+    report: { engine: "v1", repaired: result.repaired, failedAfterRepair: result.failedAfterRepair || null },
+  });
 }
 
 module.exports = {

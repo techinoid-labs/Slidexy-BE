@@ -4,21 +4,17 @@
   "variant": "b",
   "steal": "One hero number ~6× caption; photo strip across bottom.",
   "requiresPhoto": true,
-  "photoSlots": [
-    "strip1",
-    "strip2",
-    "strip3"
-  ],
+  "photoSlots": ["strip1", "strip2", "strip3"],
   "slots": {
-    "stat": {
+    "v1": {
       "kind": "text",
       "optional": false,
-      "from": "stat"
+      "from": "stats0.value"
     },
-    "caption": {
+    "l1": {
       "kind": "text",
       "optional": true,
-      "from": "caption"
+      "from": "stats0.label"
     },
     "title": {
       "kind": "text",
@@ -46,13 +42,13 @@
     }
   },
   "fit": {
-    "stat": {
+    "v1": {
       "maxFont": 160,
       "minFont": 72,
       "lineClamp": 1,
       "shrinkMin": 0.75
     },
-    "caption": {
+    "l1": {
       "maxFont": 28,
       "minFont": 18,
       "lineClamp": 2,
@@ -66,35 +62,21 @@
     }
   },
   "pptxMapping": {
-    "stat": {
-      "kind": "text"
-    },
-    "caption": {
-      "kind": "text"
-    },
-    "title": {
-      "kind": "text"
-    },
-    "strip1": {
-      "kind": "picture"
-    },
-    "strip2": {
-      "kind": "picture"
-    },
-    "strip3": {
-      "kind": "picture"
-    },
-    "accent": {
-      "kind": "shape"
-    }
+    "v1": { "kind": "text" },
+    "l1": { "kind": "text" },
+    "title": { "kind": "text" },
+    "strip1": { "kind": "picture" },
+    "strip2": { "kind": "picture" },
+    "strip3": { "kind": "picture" },
+    "accent": { "kind": "shape" }
   },
   "layout": {
     "elements": [
       {
         "z": 2,
-        "id": "stat",
+        "id": "v1",
         "type": "text",
-        "slot": "stat",
+        "slot": "v1",
         "tokenColor": "ink",
         "fontRole": "display",
         "fontSize": 140,
@@ -106,9 +88,9 @@
       },
       {
         "z": 2,
-        "id": "caption",
+        "id": "l1",
         "type": "text",
-        "slot": "caption",
+        "slot": "l1",
         "tokenColor": "muted",
         "fontRole": "body",
         "fontSize": 24,

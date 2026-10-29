@@ -17,10 +17,30 @@ function slotText(slide: any, from: string): string {
   if (!from) return "";
   if (from === "title") return slide.title || "";
   if (from === "caption") return slide.caption || "";
-  if (from === "stat") return slide.stat || "";
   if (from === "body") return (slide.body || []).join("\n");
-  const m = String(from).match(/^body(\d)$/);
-  if (m) return (slide.body && slide.body[Number(m[1])]) || "";
+  const bodyM = String(from).match(/^body(\d)$/);
+  if (bodyM) return (slide.body && slide.body[Number(bodyM[1])]) || "";
+  const statsM = String(from).match(/^stats(\d)\.(value|label)$/);
+  if (statsM) {
+    const item = slide.stats && slide.stats[Number(statsM[1])];
+    return (item && item[statsM[2]]) || "";
+  }
+  const memM = String(from).match(/^members(\d)\.(name|role)$/);
+  if (memM) {
+    const item = slide.members && slide.members[Number(memM[1])];
+    return (item && item[memM[2]]) || "";
+  }
+  if (from === "memberLine") {
+    return (slide.members || [])
+      .map((m: any) => (m.name || "") + (m.role ? " — " + m.role : ""))
+      .join("\n");
+  }
+  if (from === "memberCard") {
+    // name + role stacked for a portrait caption
+    const m = slide.members && slide.members[0];
+    if (!m) return "";
+    return (m.name || "") + (m.role ? "\n" + m.role : "");
+  }
   return "";
 }
 
@@ -45,7 +65,7 @@ export async function renderDeckFromSpec(
   const layoutSequence: string[] = [];
   const photoCache: Record<string, string> = {};
 
-  async function photoRel(slide: any, slotId: string): Promise<string> {
+  async function photoRel(slide: any, _slotId: string): Promise<string> {
     const key = (slide.photoQuery || "abstract") + "|" + (slide.photoOrientation || "landscape") + "|" + treatment;
     if (photoCache[key]) return photoCache[key];
     const abs = await safePhoto(
@@ -82,7 +102,6 @@ export async function renderDeckFromSpec(
       if (el.type === "shape") {
         const fillKey = el.tokenFill || "surface";
         next.shapeContent = {
-          // slideSvg paints circle via cornerRadius; non-square ellipses approximate as circle
           kind: el.shape === "ellipse" ? "circle" : "rect",
           fill: palette[fillKey] || palette.surface,
           cornerRadius: el.radius || 0,
@@ -101,17 +120,18 @@ export async function renderDeckFromSpec(
         const colorKey = el.tokenColor || "ink";
         const color = palette[colorKey] || palette.ink;
         const size = fitted.fontSize || el.fontSize || 24;
+        const weight = el.fontRole === "display" ? 700 : 400;
         next.textStyle = {
           fontFamily: fontName,
           fontSize: size,
-          fontWeight: el.fontRole === "display" ? 700 : 400,
+          fontWeight: weight,
           color,
           textAlign: el.align || "left",
           verticalAlign: el.verticalAlign || "top",
           lineHeight: 1.2,
         };
         next.textContent = {
-          spans: [{ text: fitted.text || " ", fontFamily: fontName, fontSize: size, color }],
+          spans: [{ text: fitted.text || " ", fontFamily: fontName, fontSize: size, fontWeight: weight, color }],
         };
       } else if (el.type === "image") {
         const url = await photoRel(slide, el.id);
@@ -168,4 +188,4 @@ export async function renderDeckFromSpec(
   };
 }
 
-module.exports = { renderDeckFromSpec, loadVariant, tokens: tokensDoc };
+module.exports = { renderDeckFromSpec, loadVariant, tokens: tokensDoc, slotText };

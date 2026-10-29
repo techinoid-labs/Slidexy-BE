@@ -16,7 +16,7 @@ function placeholderSpec(role: string, variant: string): any {
   return {
     style: {
       palette: "slate-light",
-      typePair: "technical-sans",
+      typePair: "corp-calibri",
       imageTreatment: "full-bleed",
       motif: "bar-accent",
     },
@@ -26,9 +26,19 @@ function placeholderSpec(role: string, variant: string): any {
         variantHint: variant,
         title: role.replace(/-/g, " "),
         body: ["Fragment one", "Fragment two", "Fragment three", "Fragment four"],
-        stat: "98%",
+        stats: [
+          { value: "98%", label: "retention" },
+          { value: "4.9", label: "nps" },
+          { value: "120+", label: "accounts" },
+        ],
+        members: [
+          { name: "Ada Lee", role: "CEO" },
+          { name: "Ken Wu", role: "CTO" },
+          { name: "Pri Shah", role: "CS" },
+          { name: "Jo Park", role: "Design" },
+        ],
         caption: "Placeholder caption line",
-        photoQuery: "abstract architectural texture",
+        photoQuery: "people in modern workspace",
         photoOrientation: "landscape",
       },
     ],

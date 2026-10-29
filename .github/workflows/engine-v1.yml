@@ -1,0 +1,49 @@
+name: Engine v1
+
+on:
+  push:
+    paths:
+      - "engine/**"
+      - "kit/**"
+      - "services/templatePipeline/fonts.js"
+      - "services/templatePipeline/fonts/Carlito*"
+      - "services/templatePipeline/fonts/Caladea*"
+      - ".github/workflows/engine-v1.yml"
+  pull_request:
+    paths:
+      - "engine/**"
+      - "kit/**"
+      - "services/templatePipeline/fonts.js"
+      - ".github/workflows/engine-v1.yml"
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+      - run: npm ci
+      - name: Engine unit tests
+        run: node -r ts-node/register/transpile-only engine/engine.test.ts
+      - name: Validate golden DeckSpecs
+        run: |
+          node -e "
+          const fs=require('fs');
+          const path=require('path');
+          require('ts-node/register/transpile-only');
+          const {validateDeckSpec}=require('./engine/validate');
+          const dir=path.join('engine','golden','specs');
+          let bad=0;
+          for (const f of fs.readdirSync(dir).filter(n=>n.endsWith('.json'))) {
+            const r=validateDeckSpec(JSON.parse(fs.readFileSync(path.join(dir,f),'utf8')));
+            if (!r.ok) { console.error(f, r.errors); bad++; }
+            else console.log('ok', f);
+          }
+          if (bad) process.exit(1);
+          "

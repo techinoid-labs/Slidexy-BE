@@ -33,7 +33,8 @@ export function selectVariant(
   const rand = mulberry32(hashSeed(deckSeed + ":" + slideIndex + ":" + slide.role));
   const hint = slide.variantHint;
   const bodyLen = (slide.body || []).length;
-  const hasStat = !!(slide.stat && String(slide.stat).trim());
+  const statsLen = (slide.stats || []).length;
+  const membersLen = (slide.members || []).length;
   const hasPhoto = !!(slide.photoQuery && String(slide.photoQuery).trim());
 
   let variant: "a" | "b" = "a";
@@ -41,7 +42,7 @@ export function selectVariant(
   switch (slide.role) {
     case "stats":
       if (!hasPhoto) variant = hint || "a";
-      else if (hasStat && !hint) variant = rand() < 0.6 ? "b" : "a";
+      else if (statsLen === 1 && !hint) variant = rand() < 0.6 ? "b" : "a";
       else variant = pickAB(rand, false, hint || "a");
       break;
     case "feature":
@@ -60,7 +61,7 @@ export function selectVariant(
       variant = pickAB(rand, bodyLen <= 2, hint);
       break;
     case "team":
-      variant = bodyLen >= 3 ? pickAB(rand, true, hint || "b") : pickAB(rand, false, hint || "a");
+      variant = membersLen >= 3 ? pickAB(rand, true, hint || "b") : pickAB(rand, false, hint || "a");
       break;
     case "cover":
       variant = pickAB(rand, false, hint);

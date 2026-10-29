@@ -16,43 +16,31 @@
     {
       "role": "agenda",
       "title": "Today",
-      "body": [
-        "Care model",
-        "Team",
-        "Outcomes"
-      ],
+      "body": ["Care model", "Team", "Outcomes"],
       "photoQuery": "soft clinic hallway",
       "photoOrientation": "landscape"
     },
     {
       "role": "feature",
       "title": "Gentle care",
-      "body": [
-        "Play check-in",
-        "Quiet rooms",
-        "Parent notes"
-      ],
+      "body": ["Play check-in", "Quiet rooms", "Parent notes"],
       "photoQuery": "pediatric dental chair",
       "photoOrientation": "landscape"
     },
     {
       "role": "how-it-works",
       "title": "Visit flow",
-      "body": [
-        "Welcome",
-        "Exam",
-        "Plan"
-      ],
+      "body": ["Welcome", "Exam", "Plan"],
       "photoQuery": "dentist talking to child",
       "photoOrientation": "landscape"
     },
     {
       "role": "team",
       "title": "Clinicians",
-      "body": [
-        "Dr. Lee — Lead",
-        "Sam — Hygienist",
-        "Mia — Care"
+      "members": [
+        { "name": "Dr. Lee", "role": "Lead" },
+        { "name": "Sam Ortiz", "role": "Hygienist" },
+        { "name": "Mia Chen", "role": "Care lead" }
       ],
       "photoQuery": "friendly dentist portrait",
       "photoOrientation": "portrait"
@@ -60,20 +48,24 @@
     {
       "role": "stats",
       "title": "Trust",
-      "stat": "4.9",
-      "body": [
-        "2k+",
-        "98%"
-      ],
-      "caption": "family rating"
+      "stats": [
+        { "value": "4.9", "label": "family rating" },
+        { "value": "2k+", "label": "visits yearly" },
+        { "value": "98%", "label": "return rate" }
+      ]
+    },
+    {
+      "role": "testimonial",
+      "title": "Parents",
+      "body": ["My kids ask to come back"],
+      "caption": "J. Morgan",
+      "photoQuery": "parent and child smiling clinic",
+      "photoOrientation": "landscape"
     },
     {
       "role": "closing",
       "title": "Visit us",
-      "body": [
-        "Mon–Sat",
-        "hello@clinic.example"
-      ],
+      "body": ["Mon–Sat", "hello@clinic.example"],
       "photoQuery": "clinic reception warm light",
       "photoOrientation": "landscape"
     }

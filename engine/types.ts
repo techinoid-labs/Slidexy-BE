@@ -19,12 +19,23 @@ export interface DeckSpecStyle {
   motif: string;
 }
 
+export interface StatItem {
+  value: string;
+  label: string;
+}
+
+export interface TeamMember {
+  name: string;
+  role: string;
+}
+
 export interface DeckSpecSlide {
   role: Role;
   variantHint?: "a" | "b";
   title: string;
   body?: string[];
-  stat?: string;
+  stats?: StatItem[];
+  members?: TeamMember[];
   caption?: string;
   photoQuery?: string;
   photoOrientation?: "landscape" | "portrait" | "square";
@@ -59,3 +70,10 @@ export interface FitSlotResult {
   rejected: boolean;
   reason?: string;
 }
+
+export const DECK_TYPE_MIN_SLIDES: Record<DeckType, number> = {
+  Pitch: 9,
+  Overview: 8,
+  Report: 8,
+  Proposal: 8,
+};

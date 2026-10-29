@@ -2,11 +2,9 @@
   "id": "team/a",
   "role": "team",
   "variant": "a",
-  "steal": "Bottom-left portrait with bio copy on the right.",
+  "steal": "Bottom-left portrait with member list on the right.",
   "requiresPhoto": true,
-  "photoSlots": [
-    "photo"
-  ],
+  "photoSlots": ["photo"],
   "slots": {
     "title": {
       "kind": "text",
@@ -16,7 +14,7 @@
     "body": {
       "kind": "text",
       "optional": false,
-      "from": "body"
+      "from": "memberLine"
     },
     "photo": {
       "kind": "image",
@@ -43,18 +41,10 @@
     }
   },
   "pptxMapping": {
-    "title": {
-      "kind": "text"
-    },
-    "body": {
-      "kind": "text"
-    },
-    "photo": {
-      "kind": "picture"
-    },
-    "accent": {
-      "kind": "shape"
-    }
+    "title": { "kind": "text" },
+    "body": { "kind": "text" },
+    "photo": { "kind": "picture" },
+    "accent": { "kind": "shape" }
   },
   "layout": {
     "elements": [

@@ -103,118 +103,58 @@
     .thumb-toggle { display: flex; gap: 8px; align-items: center; margin: 8px 0; }
     .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
     .gallery-grid figure { background: #fff; }
+    .compare-host { margin: 12px 0 24px; }
+    .compare-host .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+    .compare-host img { width: 100%; border: 1px solid #d9d0c6; background: #fff; }
+    .compare-host .qa { font-size: 13px; padding: 8px; background: #fff; border: 1px solid #d9d0c6; margin-bottom: 12px; }
     .meta-bar { font-family: "Segoe UI", sans-serif; font-size: 13px; color: #5c564e; }
-    @media (max-width: 800px) { #preview, #review-preview, .ab-cols { grid-template-columns: 1fr; } }
+    @media (max-width: 800px) { #preview, #review-preview, .ab-cols, .compare-host .row { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
   <header>
-    <h1>Admin Template Generator</h1>
-    <p class="note">Internal curator. Generated decks stay temporary until you publish them.</p>
+    <h1>Engine v1 curator</h1>
+    <p class="note">Kit + DeckSpec generate · review · publish · download. No seed / native modes.</p>
     <p class="meta-bar" id="meta-bar">Git dirty: … · PowerPoint checked: …</p>
   </header>
-  <nav class="tabs" id="main-tabs">
+  <nav class="tabs" id="main-tabs" hidden>
     <button type="button" class="active" data-tab="generate-tab">Generate</button>
     <button type="button" data-tab="reviews-tab">Reviews</button>
     <button type="button" data-tab="gallery-tab">Gallery</button>
-    <button type="button" data-tab="panel-tab">Panel</button>
   </nav>
   <div id="status" role="status" aria-live="polite"></div>
   <div id="generate-tab" class="tab-panel active">
   <form id="form" novalidate>
     <div class="row">
-      <label>What is this template about?
-        <input id="prompt" name="prompt" type="text" maxlength="500" required placeholder="A luxury boutique hotel in Paris.">
-      </label>
-      <label id="mode-wrap">Mode
-        <select id="mode" name="mode">
-          <option value="composer" selected>Composer</option>
-          <option value="auto">Auto-Select</option>
-          <option value="pinned">Pinned</option>
-          <option value="assemble">Assemble</option>
-          <option value="native">Native</option>
-          <option value="remix">Remix</option>
-        </select>
-      </label>
-      <label id="nonce-wrap">Nonce
-        <input id="nonce" name="nonce" type="text" maxlength="80" placeholder="optional run id">
-      </label>
-      <label id="niche-wrap">Niche
-        <select id="niche" name="niche">
-          <option value="">Auto-Detect</option>
-          <option value="corporate">Corporate</option>
-          <option value="elegant">Elegant</option>
-          <option value="gradient">Gradient</option>
-          <option value="infographic">Infographic</option>
-          <option value="cartoon">Cartoon</option>
-        </select>
+      <label>Your idea (what should this deck be about?)
+        <input id="prompt" name="prompt" type="text" maxlength="500" required placeholder="A supercars garage brand pitch.">
       </label>
     </div>
-    <p id="vibe" class="note" hidden></p>
     <div class="row">
-      <label>Base layout
-        <select id="layout" name="layoutId" required>
-          <option value="" disabled selected>Reading app-library…</option>
+      <label>Deck type
+        <select id="deckType" name="deckType">
+          <option value="Pitch" selected>Pitch (≥9)</option>
+          <option value="Overview">Overview (≥8)</option>
+          <option value="Report">Report (≥8)</option>
+          <option value="Proposal">Proposal (≥8)</option>
         </select>
-      </label>
-      <label id="seed-b-wrap" hidden>Second seed
-        <select id="layout-b" name="layoutIdB"></select>
       </label>
       <button id="generate" type="submit">Generate</button>
     </div>
-    <label class="check">
-      <input id="auto" name="autoLayout" type="checkbox">
-      Auto-Select Best Layout
-    </label>
-    <label class="check">
-      <input id="remix" name="remix" type="checkbox">
-      Frankenstein Remix
-    </label>
-    <label class="check">
-      <input id="assemble" name="assemble" type="checkbox">
-      Auto-Assemble Deck (Max Variety)
-    </label>
-    <label class="check">
-      <input id="native" name="native" type="checkbox">
-      Native Engine (100% Original)
-    </label>
-    <label class="check">
-      <input id="creative" name="creative" type="checkbox">
-      Creative Mode
-    </label>
+    <p id="vibe" class="note" hidden></p>
+    <select id="layout" name="layoutId" hidden aria-hidden="true"></select>
   </form>
   <h2 id="deck-name" hidden></h2>
   <p id="composer-meta" class="note" hidden></p>
-  <div class="thumb-toggle" id="thumb-toggle" hidden>
-    <span>Thumbnails:</span>
-    <label class="check"><input type="radio" name="thumb-src" value="lo" checked> LibreOffice</label>
-    <label class="check"><input type="radio" name="thumb-src" value="canvas"> File/canvas</label>
-    <button type="button" id="ab-btn">A/B generate</button>
-  </div>
+  <div class="thumb-toggle" id="thumb-toggle" hidden></div>
   <div id="preview"></div>
   <div id="ab-preview" class="ab-cols" hidden></div>
-  <div id="review-form-slot-generate"></div>
+  <div id="review-form-slot-generate" hidden></div>
   <div class="actions" hidden id="actions">
     <button id="publish" type="button">Publish to Catalog</button>
     <a id="download" hidden>Download PPTX</a>
     <button id="discard" type="button">Discard</button>
   </div>
-    <section id="seeds">
-      <h2>Seed library</h2>
-      <form id="upload-form" class="row">
-        <label>Upload a folder of seeds
-          <input id="folder" name="folder" type="file" accept=".pptx,application/vnd.openxmlformats-officedocument.presentationml.presentation" webkitdirectory directory multiple>
-        </label>
-        <button id="add-folder" type="button">Add folder</button>
-      </form>
-      <p class="note">Every PowerPoint in the folder is converted, then scored. Scoring takes a few minutes per deck. A score of 70 or more can be used by Auto-Select.</p>
-    <table>
-      <thead>
-        <tr><th>Layout</th><th>Score</th><th>Use</th><th>Failures</th><th></th></tr>
-      </thead>
-      <tbody id="seed-list"></tbody>
-    </table>
-  </section>
   </div>
 
   <div id="reviews-tab" class="tab-panel">
@@ -270,25 +210,13 @@
 
   <div id="gallery-tab" class="tab-panel">
     <h2>Gallery</h2>
+    <p class="note"><a id="compare-link" href="#compare">Pinned seed vs kit compare</a> — side-by-side LO slides for the 5b-0 first-aid pin and proof-4f1-a-replay (also <code>docs/template-pipeline/composer/compare.html</code>).</p>
+    <div id="compare-host" class="compare-host" hidden></div>
     <div id="gallery-busy" class="panel-busy" aria-live="polite">Loading gallery…</div>
     <div class="gallery-grid" id="gallery-grid"></div>
   </div>
 
-  <div id="panel-tab" class="tab-panel">
-    <h2>Prompt panel</h2>
-    <p class="note">Ten fixed prompts. Each deck costs <strong id="panel-cost">3–4</strong> text-model calls. Sequential run.</p>
-    <div id="panel-busy" class="panel-busy" aria-live="polite">Loading panel…</div>
-    <button type="button" id="panel-run">Run Panel</button>
-    <table>
-      <thead><tr><th>#</th><th>Industry</th><th>Prompt</th><th>Nonce</th></tr></thead>
-      <tbody id="panel-prompts"></tbody>
-    </table>
-    <h3>Last run</h3>
-    <table>
-      <thead><tr><th>Prompt</th><th>Score</th><th>Fails</th><th>Calls</th><th></th></tr></thead>
-      <tbody id="panel-results"></tbody>
-    </table>
-  </div>
+  <div id="panel-tab" class="tab-panel" hidden aria-hidden="true"></div>
 
   <script>
     const form = document.getElementById("form");
@@ -300,26 +228,14 @@
     const generateButton = document.getElementById("generate");
     const publishButton = document.getElementById("publish");
     const discardButton = document.getElementById("discard");
-    const autoBox = document.getElementById("auto");
-    const remixBox = document.getElementById("remix");
-    const assembleBox = document.getElementById("assemble");
-    const nativeBox = document.getElementById("native");
-    const creativeBox = document.getElementById("creative");
-    const nicheSelect = document.getElementById("niche");
     const downloadLink = document.getElementById("download");
     const layoutSelect = document.getElementById("layout");
-    const layoutBSelect = document.getElementById("layout-b");
-    const seedBWrap = document.getElementById("seed-b-wrap");
     const deckName = document.getElementById("deck-name");
-    const modeSelect = document.getElementById("mode");
-    const nonceWrap = document.getElementById("nonce-wrap");
-    const nonceInput = document.getElementById("nonce");
     const composerMeta = document.getElementById("composer-meta");
     let currentId = "";
     let currentReview = null;
     let abId = "";
-    let syncingFromMode = false;
-    let thumbSrc = "lo";
+    let thumbSrc = "canvas";
     const busyButtons = new WeakMap();
 
     function setStatus(message, waiting) {
@@ -434,187 +350,9 @@
       });
     });
 
-    function selectedMode() {
-      return modeSelect.value || "composer";
-    }
-
-    function syncModes() {
-      const mode = selectedMode();
-      const composing = mode === "composer";
-      const assembling = assembleBox.checked || mode === "assemble";
-      const native = nativeBox.checked || mode === "native";
-      const remixing = (remixBox.checked || mode === "remix") && !native && !composing;
-      const autoing = autoBox.checked || mode === "auto";
-      nonceWrap.hidden = !composing;
-      seedBWrap.hidden = !remixing;
-      layoutBSelect.disabled = !remixing;
-      layoutBSelect.required = remixing;
-      layoutSelect.disabled = composing || assembling || autoing || native;
-      layoutSelect.required = mode === "pinned";
-    }
-
-    function applyModeToChecks() {
-      syncingFromMode = true;
-      const mode = selectedMode();
-      autoBox.checked = mode === "auto";
-      remixBox.checked = mode === "remix";
-      assembleBox.checked = mode === "assemble";
-      nativeBox.checked = mode === "native";
-      if (mode !== "native") {
-        creativeBox.checked = false;
-        if (mode !== "composer") nicheSelect.value = "";
-      }
-      syncingFromMode = false;
-      syncModes();
-    }
-
-    modeSelect.addEventListener("change", applyModeToChecks);
-
-    autoBox.addEventListener("change", () => {
-      if (syncingFromMode) return;
-      if (autoBox.checked) {
-        remixBox.checked = false;
-        assembleBox.checked = false;
-        nativeBox.checked = false;
-        creativeBox.checked = false;
-        nicheSelect.value = "";
-        modeSelect.value = "auto";
-      } else if (selectedMode() === "auto") {
-        modeSelect.value = "pinned";
-      }
-      syncModes();
-    });
-
-    remixBox.addEventListener("change", () => {
-      if (syncingFromMode) return;
-      if (remixBox.checked) {
-        autoBox.checked = false;
-        assembleBox.checked = false;
-        nativeBox.checked = false;
-        creativeBox.checked = false;
-        nicheSelect.value = "";
-        modeSelect.value = "remix";
-      } else if (selectedMode() === "remix") {
-        modeSelect.value = "pinned";
-      }
-      syncModes();
-    });
-
-    assembleBox.addEventListener("change", () => {
-      if (syncingFromMode) return;
-      if (assembleBox.checked) {
-        autoBox.checked = false;
-        remixBox.checked = false;
-        nativeBox.checked = false;
-        creativeBox.checked = false;
-        nicheSelect.value = "";
-        modeSelect.value = "assemble";
-      } else if (selectedMode() === "assemble") {
-        modeSelect.value = "pinned";
-      }
-      syncModes();
-    });
-
-    nativeBox.addEventListener("change", () => {
-      if (syncingFromMode) return;
-      if (nativeBox.checked) {
-        autoBox.checked = false;
-        remixBox.checked = false;
-        assembleBox.checked = false;
-        modeSelect.value = "native";
-      } else {
-        creativeBox.checked = false;
-        nicheSelect.value = "";
-        if (selectedMode() === "native") modeSelect.value = "pinned";
-      }
-      syncModes();
-    });
-
-    creativeBox.addEventListener("change", () => {
-      if (syncingFromMode) return;
-      if (creativeBox.checked) {
-        nativeBox.checked = true;
-        autoBox.checked = false;
-        remixBox.checked = false;
-        assembleBox.checked = false;
-        modeSelect.value = "native";
-      }
-      syncModes();
-    });
-
-    nicheSelect.addEventListener("change", () => {
-      if (syncingFromMode) return;
-      if (nicheSelect.value) {
-        nativeBox.checked = true;
-        autoBox.checked = false;
-        remixBox.checked = false;
-        assembleBox.checked = false;
-        modeSelect.value = "native";
-      }
-      syncModes();
-    });
-
     async function loadLayouts(message) {
-      const select = document.getElementById("layout");
-      const list = document.getElementById("seed-list");
-      setStatus(message || "Reading app-library…", true);
-      try {
-        const response = await fetch("/api/admin/layouts");
-        const data = await response.json().catch(() => ({}));
-        if (!response.ok) throw new Error(data.error || "Could not read app-library");
-        const layouts = data.layouts || [];
-        const enabled = layouts.filter((item) => !item.disabled);
-        select.replaceChildren();
-        layoutBSelect.replaceChildren();
-        if (!layouts.length) {
-          const option = document.createElement("option");
-          option.value = "";
-          option.textContent = "Upload a folder to add layouts";
-          select.append(option);
-          list.replaceChildren();
-          setStatus(message || "No seeds yet. Upload a folder of PowerPoint files.", false);
-          return;
-        }
-        enabled.forEach((item) => {
-          const option = document.createElement("option");
-          option.value = item.id;
-          option.textContent = item.id;
-          select.append(option);
-          layoutBSelect.append(option.cloneNode(true));
-        });
-        if (!enabled.length) {
-          const option = document.createElement("option");
-          option.value = "";
-          option.textContent = "No enabled layouts";
-          select.append(option);
-        } else if (enabled.length > 1) layoutBSelect.value = enabled[1].id;
-        list.replaceChildren();
-        layouts.forEach((item) => {
-          const row = document.createElement("tr");
-          if (item.disabled) row.className = "disabled";
-          const name = document.createElement("td");
-          name.textContent = item.id;
-          const score = document.createElement("td");
-          score.textContent = item.qualityScore == null ? "Not scored" : String(item.qualityScore);
-          const use = document.createElement("td");
-          use.textContent = item.recommendedUse || "—";
-          const failures = document.createElement("td");
-          const reasons = Array.isArray(item.scoreFailures) ? item.scoreFailures : [];
-          failures.textContent = reasons.length ? reasons.join("; ") : "—";
-          const action = document.createElement("td");
-          const button = document.createElement("button");
-          button.type = "button";
-          button.className = "seed-disable";
-          button.textContent = item.disabled ? "Enable Seed" : "Disable Seed";
-          button.addEventListener("click", () => toggleSeed(item, button));
-          action.append(button);
-          row.append(name, score, use, failures, action);
-          list.append(row);
-        });
-        setStatus(message || (enabled.length + " enabled layouts. " + layouts.length + " seeds in the library."), false);
-      } catch (error) {
-        setStatus(error.message, false);
-      }
+      // Run 2: seed library UI removed; kit-v1 does not need layouts.
+      if (message) setStatus(message, false);
     }
 
     async function toggleSeed(item, button) {
@@ -686,69 +424,21 @@
       setButtonBusy(folderButton, busy, "Uploading…");
     }
 
-    loadLayouts();
-
-    folderButton.addEventListener("click", async () => {
-      const files = pptxFiles(document.getElementById("folder").files);
-      if (!files.length) {
-        setStatus("That folder has no PowerPoint files.", false);
-        return;
-      }
-      setUploading(true);
-      const failed = [];
-      const scores = [];
-      let added = 0;
-      let lastId = "";
-      try {
-        for (let index = 0; index < files.length; index += 1) {
-          const file = files[index];
-          const place = (index + 1) + " of " + files.length;
-          setStatus("Converting " + place + ": " + file.name, true);
-          let data = null;
-          try {
-            data = await uploadSeed(file);
-            added += 1;
-            lastId = data.id;
-          } catch (error) {
-            failed.push(file.name + " (" + error.message + ")");
-          }
-          if (!data) continue;
-          setStatus("Scoring " + place + ": " + data.id + ". This takes a few minutes.", true);
-          try {
-            scores.push(await post("/api/admin/score-seed", { id: data.id }));
-          } catch (error) {
-            failed.push(data.id + " score (" + error.message + ")");
-          }
-        }
-        const ready = scores.filter((item) => Number(item.qualityScore) >= 70).length;
-        const summary = "Added " + added + " of " + files.length + " seeds. "
-          + scores.length + " scored. "
-          + ready + " reached 70 and can be auto-selected."
-          + (lastId ? " " + lastId + " is selected as the base layout." : "")
-          + (failed.length ? " Failed: " + failed.join("; ") + "." : "");
-        await loadLayouts(summary);
-        if (lastId && [...layoutSelect.options].some((option) => option.value === lastId)) layoutSelect.value = lastId;
-        document.getElementById("folder").value = "";
-      } catch (error) {
-        setStatus(error.message, false);
-      } finally {
-        setUploading(false);
-      }
-    });
+    if (folderButton) {
+      folderButton.addEventListener("click", () => {
+        setStatus("Seed upload removed in run 2 — use kit Generate.", false);
+      });
+    }
 
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
       const promptValue = document.getElementById("prompt").value.trim();
       if (!promptValue) {
-        setStatus("Type what the template is about, then press Generate.", false);
+        setStatus("Type your idea, then press Generate.", false);
         return;
       }
-      const mode = selectedMode();
-      const composing = mode === "composer";
-      if (!composing && !nativeBox.checked && !creativeBox.checked && !nicheSelect.value && !assembleBox.checked && !autoBox.checked && mode !== "auto" && mode !== "assemble" && mode !== "native" && !layoutSelect.value) {
-        setStatus("Choose a base layout, or turn on Native Engine.", false);
-        return;
-      }
+      const deckTypeEl = document.getElementById("deckType");
+      const deckType = (deckTypeEl && deckTypeEl.value) || "Pitch";
       currentId = "";
       preview.replaceChildren();
       deckName.hidden = true;
@@ -759,32 +449,13 @@
       downloadLink.hidden = true;
       vibeLine.hidden = true;
       vibeLine.textContent = "";
-      const nicheName = nicheSelect.value;
-      setStatus(composing
-        ? "Composing the kit deck. This takes about a minute."
-        : creativeBox.checked
-          ? "Drawing a creative magazine deck. No seed is opened."
-          : (nativeBox.checked || nicheName || mode === "native")
-            ? "Drawing a " + (nicheName || "native") + " deck. No seed is opened."
-            : "Generating the deck. This takes about a minute.", true);
+      setStatus("Building kit deck (" + deckType + "). This takes about a minute.", true);
       setBusy(true);
       try {
-        const native = !composing && (nativeBox.checked || creativeBox.checked || Boolean(nicheSelect.value) || mode === "native");
-        const assemble = !composing && !native && (assembleBox.checked || mode === "assemble");
-        const remix = !composing && !native && !assemble && (remixBox.checked || mode === "remix");
-        const autoLayout = !composing && !native && !assemble && !remix && (autoBox.checked || mode === "auto");
         const data = await post("/api/admin/generate-template", {
-          prompt: document.getElementById("prompt").value,
-          mode: composing ? "composer" : (autoLayout ? "auto" : assemble ? "assemble" : remix ? "remix" : native ? "native" : "pinned"),
-          nonce: composing ? nonceInput.value.trim() : "",
-          layoutId: composing || native || assemble || autoLayout ? "" : layoutSelect.value,
-          layoutIdB: remix ? layoutBSelect.value : "",
-          remix,
-          autoLayout,
-          assemble,
-          native,
-          creative: creativeBox.checked,
-          niche: nicheSelect.value,
+          prompt: promptValue,
+          mode: "kit-v1",
+          deckType,
         });
         currentId = data.id;
         abId = "";
@@ -795,10 +466,6 @@
           deckName.textContent = title;
           deckName.hidden = false;
         }
-        placeReviewForm("generate");
-        document.getElementById("thumb-toggle").hidden = false;
-        document.getElementById("review-form").hidden = false;
-        document.getElementById("review-thumb-toggle").hidden = false;
         try {
           const payload = await fetch("/api/admin/review/" + encodeURIComponent(data.id)).then(async (response) => {
             const body = await response.json();
@@ -819,57 +486,23 @@
           });
         }
         const failures = (data.analysis && Array.isArray(data.analysis.failures)) ? data.analysis.failures : [];
-        const allMissingImage = failures.length > 0 && failures.every((reason) => /missing image/i.test(String(reason)));
         const score = data.analysis
           ? " Score " + data.analysis.score + " (" + data.analysis.passed + "/" + data.analysis.total + " slides passed)."
           : "";
         const failNote = failures.length
           ? " Failures: " + failures.slice(0, 6).join("; ") + (failures.length > 6 ? "…" : "") + "."
           : "";
-        const seedAssetsNote = allMissingImage
-          ? " seed assets missing; restore generated-templates/photos/<id>/ or use Composer."
-          : "";
-        const promptText = document.getElementById("prompt").value.trim();
-        const vibeName = data.vibe || (data.assembly && data.assembly.designLanguage) || "";
-        if (vibeName) {
-          vibeLine.textContent = "Prompt: " + promptText + " | Vibe: " + vibeName;
-          vibeLine.hidden = false;
-        }
+        const sourceLabel = "kit-v1 · " + deckType;
+        vibeLine.textContent = "Idea: " + promptValue + " · " + sourceLabel + (data.vibe ? " · Vibe: " + data.vibe : "");
+        vibeLine.hidden = false;
         downloadLink.href = "/api/admin/download/" + data.id;
         downloadLink.hidden = false;
-        if (composing || data.layoutId === "composer" || data.plan) {
-          try {
-            const planFromData = Array.isArray(data.plan) ? data.plan : null;
-            if (planFromData) {
-              const plan = planFromData.map((slide, index) =>
-                (index + 1) + ". " + slide.role + " · " + slide.component + " / " + slide.variant
-              ).join(" · ");
-              const fitCount = Array.isArray(data.fits) ? data.fits.length : 0;
-              composerMeta.textContent = "Plan: " + (plan || "(none)") + " | fits " + fitCount;
-              composerMeta.hidden = false;
-            } else {
-              const rep = await fetch("/api/admin/replacements/" + encodeURIComponent(data.id)).then(async (response) => {
-                const payload = await response.json();
-                if (!response.ok) throw new Error(payload.error || "Could not load replacements");
-                return payload;
-              });
-              const plan = ((rep.brief && rep.brief.plan) || []).map((slide, index) =>
-                (index + 1) + ". " + slide.role + " · " + slide.component + " / " + slide.variant
-              ).join(" · ");
-              const fitCount = Array.isArray(rep.fits) ? rep.fits.length : 0;
-              const collapseCount = Array.isArray(rep.collapses) ? rep.collapses.length : 0;
-              composerMeta.textContent = "Plan: " + (plan || "(none)") + " | fits " + fitCount + " | collapses " + collapseCount;
-              composerMeta.hidden = false;
-            }
-          } catch (metaError) {
-            if (composing || data.layoutId === "composer") {
-              composerMeta.textContent = "Plan unavailable: " + metaError.message;
-              composerMeta.hidden = false;
-            }
-          }
-        }
-        const layoutName = composing ? "composer" : (native ? "Native Engine, no seed" : (data.layoutId || ""));
-        setStatus((data.slides || []).length + " slides ready. Layout " + layoutName + ". Saved as " + (data.deck && data.deck.id ? data.deck.id : data.id) + ".json." + score + failNote + seedAssetsNote, false);
+        setStatus(
+          (data.slides || []).length + " slides ready · " + sourceLabel
+          + ". Saved as " + (data.deck && data.deck.id ? data.deck.id : data.id) + ".json."
+          + score + failNote,
+          false
+        );
         actions.hidden = false;
       } catch (error) {
         setStatus(error.message, false);
@@ -947,48 +580,6 @@
         setStatus(error.message, false);
       } finally {
         setButtonBusy(rvSubmit, false);
-      }
-    });
-
-    document.getElementById("ab-btn").addEventListener("click", async () => {
-      const abBtn = document.getElementById("ab-btn");
-      const promptValue = document.getElementById("prompt").value.trim();
-      if (!promptValue || selectedMode() !== "composer") {
-        setStatus("A/B needs Composer mode and a prompt.", false);
-        return;
-      }
-      setBusy(true);
-      setButtonBusy(abBtn, true, "A/B running…");
-      setStatus("A/B: generating second nonce…", true);
-      try {
-        const nonceB = (nonceInput.value.trim() || "ab") + "-b-" + Date.now().toString(36);
-        const data = await post("/api/admin/generate-template", {
-          prompt: promptValue,
-          mode: "composer",
-          nonce: nonceB,
-        });
-        abId = data.id;
-        setStatus("A/B: loading both decks…", true);
-        const left = await fetch("/api/admin/review/" + encodeURIComponent(currentId)).then((r) => r.json());
-        const right = await fetch("/api/admin/review/" + encodeURIComponent(abId)).then((r) => r.json());
-        const box = document.getElementById("ab-preview");
-        box.hidden = false;
-        box.replaceChildren();
-        const colA = document.createElement("div");
-        const colB = document.createElement("div");
-        colA.innerHTML = "<h3>A · " + currentId + "</h3>";
-        colB.innerHTML = "<h3>B · " + abId + "</h3>";
-        renderPreviewFromPayload(colA, left, true);
-        renderPreviewFromPayload(colB, right, true);
-        box.append(colA, colB);
-        placeReviewForm("generate");
-        document.getElementById("review-form").hidden = false;
-        setStatus("A/B ready. Check “reads as different decks” if they diverge.", false);
-      } catch (error) {
-        setStatus(error.message, false);
-      } finally {
-        setButtonBusy(abBtn, false);
-        setBusy(false);
       }
     });
 
@@ -1114,10 +705,83 @@
       }
     });
 
+    async function renderCompareHost() {
+      const host = document.getElementById("compare-host");
+      if (!host) return;
+      if (location.hash !== "#compare") {
+        host.hidden = true;
+        host.replaceChildren();
+        return;
+      }
+      host.hidden = false;
+      host.textContent = "Loading compare…";
+      const LEFT = "proof-5b0-pinned-first-aid";
+      const RIGHT = "proof-4f1-a-replay";
+      const KIT_ROLES = ["Cover", "Contents", "About", "Problem", "Solution", "About", "Proof", "Model", "Close"];
+      function loUrl(id, index, zeroPad) {
+        const n = zeroPad ? String(index).padStart(2, "0") : String(index);
+        return "/api/admin/preview/" + encodeURIComponent(id) + "/lo-slide-" + n + ".png";
+      }
+      try {
+        const [left, right] = await Promise.all([
+          fetch("/api/admin/review/" + encodeURIComponent(LEFT)).then((r) => r.json()),
+          fetch("/api/admin/review/" + encodeURIComponent(RIGHT)).then((r) => r.json()),
+        ]);
+        host.replaceChildren();
+        const title = document.createElement("h3");
+        title.textContent = "Pinned seed vs kit";
+        host.appendChild(title);
+        const qaRow = document.createElement("div");
+        qaRow.className = "row";
+        const ql = document.createElement("div");
+        ql.className = "qa";
+        ql.textContent = "Seed qa: score " + (left.qa && left.qa.score) + " (" + (left.qa && left.qa.passed) + "/" + (left.qa && left.qa.total) + ") mode " + (left.qa && left.qa.mode);
+        const qr = document.createElement("div");
+        qr.className = "qa";
+        qr.textContent = "Kit qa: score " + (right.qa && right.qa.score) + " (" + (right.qa && right.qa.passed) + "/" + (right.qa && right.qa.total) + ") mode " + (right.qa && right.qa.mode);
+        qaRow.append(ql, qr);
+        host.appendChild(qaRow);
+        const n = Math.max(18, KIT_ROLES.length);
+        for (let i = 1; i <= n; i += 1) {
+          const row = document.createElement("div");
+          row.className = "row";
+          const a = document.createElement("div");
+          a.innerHTML = "<div class=\"note\">seed slide " + i + "</div>";
+          const ai = document.createElement("img");
+          ai.src = loUrl(LEFT, i, true);
+          ai.onerror = function () { if (!ai.dataset.t) { ai.dataset.t = "1"; ai.src = loUrl(LEFT, i, false); } };
+          a.appendChild(ai);
+          const b = document.createElement("div");
+          b.innerHTML = "<div class=\"note\">kit slide " + i + (KIT_ROLES[i - 1] ? " · " + KIT_ROLES[i - 1] : "") + "</div>";
+          const bi = document.createElement("img");
+          bi.src = loUrl(RIGHT, i, false);
+          bi.onerror = function () { if (!bi.dataset.t) { bi.dataset.t = "1"; bi.src = loUrl(RIGHT, i, true); } };
+          b.appendChild(bi);
+          row.append(a, b);
+          host.appendChild(row);
+        }
+      } catch (error) {
+        host.textContent = "Compare failed: " + (error && error.message ? error.message : error);
+      }
+    }
+
+    window.addEventListener("hashchange", () => {
+      if (location.hash === "#compare") {
+        document.querySelectorAll(".tabs button").forEach((b) => b.classList.remove("active"));
+        document.querySelectorAll(".tab-panel").forEach((p) => p.classList.remove("active"));
+        const gBtn = document.querySelector('.tabs button[data-tab="gallery-tab"]');
+        const gPanel = document.getElementById("gallery-tab");
+        if (gBtn) gBtn.classList.add("active");
+        if (gPanel) gPanel.classList.add("active");
+        renderCompareHost();
+      }
+    });
+
     async function loadGalleryTab() {
       setPanelBusy("gallery-busy", true, "Loading gallery…");
       const grid = document.getElementById("gallery-grid");
       try {
+        await renderCompareHost();
         const data = await fetch("/api/admin/gallery").then((r) => r.json());
         grid.replaceChildren();
         (data.entries || []).filter((e) => e.bucket === "light-neutral").forEach((entry) => {
@@ -1218,7 +882,6 @@
       }
     });
 
-    applyModeToChecks();
   </script>
 </body>
 </html>

@@ -10,66 +10,58 @@
       "role": "cover",
       "title": "Q3 Ops",
       "caption": "Internal report",
-      "photoQuery": "warehouse aisle",
+      "photoQuery": "warehouse aisle workers",
       "photoOrientation": "landscape"
     },
     {
       "role": "agenda",
       "title": "Sections",
-      "body": [
-        "Issues",
-        "Metrics",
-        "Plan"
-      ]
+      "body": ["Issues", "Metrics", "Plan"]
     },
     {
       "role": "problem",
       "title": "Bottlenecks",
-      "body": [
-        "Dock delays",
-        "Night gaps"
-      ],
-      "photoQuery": "loading dock trucks",
+      "body": ["Dock delays", "Night gaps"],
+      "photoQuery": "loading dock trucks workers",
       "photoOrientation": "landscape"
     },
     {
       "role": "stats",
       "title": "Throughput",
-      "stat": "12%",
-      "body": [
-        "3.1",
-        "48h"
-      ],
-      "caption": "cycle improvement"
+      "stats": [
+        { "value": "12%", "label": "cycle improvement" },
+        { "value": "3.1", "label": "turns per bay" },
+        { "value": "48h", "label": "mean dwell" }
+      ]
     },
     {
       "role": "solution",
       "title": "Playbook",
-      "body": [
-        "Shift overlap",
-        "Live boards"
-      ],
-      "photoQuery": "operations control room",
+      "body": ["Shift overlap", "Live boards"],
+      "photoQuery": "warehouse supervisors meeting",
       "photoOrientation": "landscape"
     },
     {
       "role": "feature",
       "title": "Tools",
-      "body": [
-        "Scan lanes",
-        "Alerts",
-        "Huddles"
+      "body": ["Scan lanes", "Alerts", "Huddles"],
+      "photoQuery": "worker with handheld scanner",
+      "photoOrientation": "landscape"
+    },
+    {
+      "role": "team",
+      "title": "Owners",
+      "members": [
+        { "name": "R. Diaz", "role": "Ops lead" },
+        { "name": "T. Ng", "role": "Night shift" }
       ],
-      "photoQuery": "barcode scanner warehouse",
+      "photoQuery": "warehouse team portrait",
       "photoOrientation": "landscape"
     },
     {
       "role": "closing",
       "title": "Next steps",
-      "body": [
-        "Pilot lane 4",
-        "Review Friday"
-      ]
+      "body": ["Pilot lane 4", "Review Friday"]
     }
   ]
 }

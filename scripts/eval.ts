@@ -38,7 +38,7 @@ async function main() {
         continue;
       }
       const selections = selectAll(spec, item.prompt);
-      const gates = runGates(spec, selections, tokens);
+      const gates = runGates(spec, selections, tokens, item.deckType);
       row.firstTryPass = gates.pass;
       row.gateFails = gates.slides.filter((s: any) => !s.pass).map((s: any) => ({
         slideIndex: s.slideIndex,

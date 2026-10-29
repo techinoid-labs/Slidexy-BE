@@ -600,12 +600,12 @@ function variants() {
     const m = baseMeta("stats", "a", "Three oversized numbers evenly spaced.", { requiresPhoto: false });
     registerSlots(m, [
       { id: "title", kind: "text", from: "title", pptx: "text", fit: textFit(36, 22, 1) },
-      { id: "stat", kind: "text", from: "stat", pptx: "text", fit: textFit(96, 48, 1) },
-      { id: "s2", kind: "text", from: "body0", pptx: "text", fit: textFit(72, 40, 1), optional: true },
-      { id: "s3", kind: "text", from: "body1", pptx: "text", fit: textFit(72, 40, 1), optional: true },
-      { id: "c1", kind: "text", from: "caption", pptx: "text", fit: textFit(20, 14, 2), optional: true },
-      { id: "c2", kind: "text", from: "body2", pptx: "text", fit: textFit(20, 14, 2), optional: true },
-      { id: "c3", kind: "text", from: "body3", pptx: "text", fit: textFit(20, 14, 2), optional: true },
+      { id: "v1", kind: "text", from: "stats0.value", pptx: "text", fit: textFit(96, 48, 1) },
+      { id: "v2", kind: "text", from: "stats1.value", pptx: "text", fit: textFit(72, 40, 1), optional: true },
+      { id: "v3", kind: "text", from: "stats2.value", pptx: "text", fit: textFit(72, 40, 1), optional: true },
+      { id: "l1", kind: "text", from: "stats0.label", pptx: "text", fit: textFit(20, 14, 2) },
+      { id: "l2", kind: "text", from: "stats1.label", pptx: "text", fit: textFit(20, 14, 2), optional: true },
+      { id: "l3", kind: "text", from: "stats2.label", pptx: "text", fit: textFit(20, 14, 2), optional: true },
       { id: "accent", kind: "shape", from: null, pptx: "shape" },
     ]);
     m.layout.elements = [
@@ -623,51 +623,12 @@ function variants() {
         height: 80,
         z: 2,
       }),
-      el({
-        id: "stat",
-        type: "text",
-        slot: "stat",
-        tokenColor: "ink",
-        fontRole: "display",
-        fontSize: 88,
-        align: "center",
-        x: 80,
-        y: 320,
-        width: 460,
-        height: 160,
-        z: 2,
-      }),
-      el({
-        id: "s2",
-        type: "text",
-        slot: "s2",
-        tokenColor: "ink",
-        fontRole: "display",
-        fontSize: 88,
-        align: "center",
-        x: 570,
-        y: 320,
-        width: 460,
-        height: 160,
-        z: 2,
-      }),
-      el({
-        id: "s3",
-        type: "text",
-        slot: "s3",
-        tokenColor: "ink",
-        fontRole: "display",
-        fontSize: 88,
-        align: "center",
-        x: 1060,
-        y: 320,
-        width: 460,
-        height: 160,
-        z: 2,
-      }),
-      el({ id: "c1", type: "text", slot: "c1", tokenColor: "muted", fontRole: "body", fontSize: 18, align: "center", x: 80, y: 520, width: 460, height: 80, z: 2 }),
-      el({ id: "c2", type: "text", slot: "c2", tokenColor: "muted", fontRole: "body", fontSize: 18, align: "center", x: 570, y: 520, width: 460, height: 80, z: 2 }),
-      el({ id: "c3", type: "text", slot: "c3", tokenColor: "muted", fontRole: "body", fontSize: 18, align: "center", x: 1060, y: 520, width: 460, height: 80, z: 2 }),
+      el({ id: "v1", type: "text", slot: "v1", tokenColor: "ink", fontRole: "display", fontSize: 88, align: "center", x: 80, y: 320, width: 460, height: 160, z: 2 }),
+      el({ id: "v2", type: "text", slot: "v2", tokenColor: "ink", fontRole: "display", fontSize: 88, align: "center", x: 570, y: 320, width: 460, height: 160, z: 2 }),
+      el({ id: "v3", type: "text", slot: "v3", tokenColor: "ink", fontRole: "display", fontSize: 88, align: "center", x: 1060, y: 320, width: 460, height: 160, z: 2 }),
+      el({ id: "l1", type: "text", slot: "l1", tokenColor: "muted", fontRole: "body", fontSize: 18, align: "center", x: 80, y: 520, width: 460, height: 80, z: 2 }),
+      el({ id: "l2", type: "text", slot: "l2", tokenColor: "muted", fontRole: "body", fontSize: 18, align: "center", x: 570, y: 520, width: 460, height: 80, z: 2 }),
+      el({ id: "l3", type: "text", slot: "l3", tokenColor: "muted", fontRole: "body", fontSize: 18, align: "center", x: 1060, y: 520, width: 460, height: 80, z: 2 }),
       el({ id: "accent", type: "shape", shape: "ellipse", motif: true, tokenFill: "accent", x: 790, y: 200, width: 16, height: 16, z: 3 }),
     ];
     out.push(m);
@@ -680,8 +641,8 @@ function variants() {
       photoSlots: ["strip1", "strip2", "strip3"],
     });
     registerSlots(m, [
-      { id: "stat", kind: "text", from: "stat", pptx: "text", fit: textFit(160, 72, 1) },
-      { id: "caption", kind: "text", from: "caption", pptx: "text", fit: textFit(28, 18, 2), optional: true },
+      { id: "v1", kind: "text", from: "stats0.value", pptx: "text", fit: textFit(160, 72, 1) },
+      { id: "l1", kind: "text", from: "stats0.label", pptx: "text", fit: textFit(28, 18, 2), optional: true },
       { id: "title", kind: "text", from: "title", pptx: "text", fit: textFit(28, 18, 1), optional: true },
       { id: "strip1", kind: "image", from: "photo", pptx: "picture" },
       { id: "strip2", kind: "image", from: "photo", pptx: "picture" },
@@ -689,34 +650,8 @@ function variants() {
       { id: "accent", kind: "shape", from: null, pptx: "shape" },
     ]);
     m.layout.elements = [
-      el({
-        id: "stat",
-        type: "text",
-        slot: "stat",
-        tokenColor: "ink",
-        fontRole: "display",
-        fontSize: 140,
-        align: "center",
-        x: 120,
-        y: 160,
-        width: 1360,
-        height: 220,
-        z: 2,
-      }),
-      el({
-        id: "caption",
-        type: "text",
-        slot: "caption",
-        tokenColor: "muted",
-        fontRole: "body",
-        fontSize: 24,
-        align: "center",
-        x: 300,
-        y: 420,
-        width: 1000,
-        height: 60,
-        z: 2,
-      }),
+      el({ id: "v1", type: "text", slot: "v1", tokenColor: "ink", fontRole: "display", fontSize: 140, align: "center", x: 120, y: 160, width: 1360, height: 220, z: 2 }),
+      el({ id: "l1", type: "text", slot: "l1", tokenColor: "muted", fontRole: "body", fontSize: 24, align: "center", x: 300, y: 420, width: 1000, height: 60, z: 2 }),
       el({ id: "strip1", type: "image", slot: "strip1", x: 0, y: 560, width: 534, height: 340, z: 1 }),
       el({ id: "strip2", type: "image", slot: "strip2", x: 533, y: 560, width: 534, height: 340, z: 1 }),
       el({ id: "strip3", type: "image", slot: "strip3", x: 1066, y: 560, width: 534, height: 340, z: 1 }),
@@ -837,15 +772,15 @@ function variants() {
     out.push(m);
   }
 
-  // team/a — portrait + bio
+  // team/a — portrait + member list
   {
-    const m = baseMeta("team", "a", "Bottom-left portrait with bio copy on the right.", {
+    const m = baseMeta("team", "a", "Bottom-left portrait with member list on the right.", {
       requiresPhoto: true,
       photoSlots: ["photo"],
     });
     registerSlots(m, [
       { id: "title", kind: "text", from: "title", pptx: "text", fit: textFit(40, 24, 2) },
-      { id: "body", kind: "text", from: "body", pptx: "text", fit: textFit(22, 16, 8) },
+      { id: "body", kind: "text", from: "memberLine", pptx: "text", fit: textFit(22, 16, 8) },
       { id: "photo", kind: "image", from: "photo", pptx: "picture" },
       { id: "accent", kind: "shape", from: null, pptx: "shape" },
     ]);
@@ -892,10 +827,14 @@ function variants() {
     });
     registerSlots(m, [
       { id: "title", kind: "text", from: "title", pptx: "text", fit: textFit(36, 22, 1) },
-      { id: "n1", kind: "text", from: "body0", pptx: "text", fit: textFit(18, 14, 2), optional: true },
-      { id: "n2", kind: "text", from: "body1", pptx: "text", fit: textFit(18, 14, 2), optional: true },
-      { id: "n3", kind: "text", from: "body2", pptx: "text", fit: textFit(18, 14, 2), optional: true },
-      { id: "n4", kind: "text", from: "body3", pptx: "text", fit: textFit(18, 14, 2), optional: true },
+      { id: "n1", kind: "text", from: "members0.name", pptx: "text", fit: textFit(18, 14, 1), optional: true },
+      { id: "r1", kind: "text", from: "members0.role", pptx: "text", fit: textFit(16, 12, 1), optional: true },
+      { id: "n2", kind: "text", from: "members1.name", pptx: "text", fit: textFit(18, 14, 1), optional: true },
+      { id: "r2", kind: "text", from: "members1.role", pptx: "text", fit: textFit(16, 12, 1), optional: true },
+      { id: "n3", kind: "text", from: "members2.name", pptx: "text", fit: textFit(18, 14, 1), optional: true },
+      { id: "r3", kind: "text", from: "members2.role", pptx: "text", fit: textFit(16, 12, 1), optional: true },
+      { id: "n4", kind: "text", from: "members3.name", pptx: "text", fit: textFit(18, 14, 1), optional: true },
+      { id: "r4", kind: "text", from: "members3.role", pptx: "text", fit: textFit(16, 12, 1), optional: true },
       { id: "p1", kind: "image", from: "photo", pptx: "picture" },
       { id: "p2", kind: "image", from: "photo", pptx: "picture" },
       { id: "p3", kind: "image", from: "photo", pptx: "picture" },
@@ -923,7 +862,7 @@ function variants() {
       const x = 80 + i * 380;
       const n = i + 1;
       m.layout.elements.push(
-        el({ id: "p" + n, type: "image", slot: "p" + n, x, y: 240, width: 320, height: 320, z: 1 }),
+        el({ id: "p" + n, type: "image", slot: "p" + n, x, y: 220, width: 320, height: 300, z: 1 }),
         el({
           id: "n" + n,
           type: "text",
@@ -933,9 +872,23 @@ function variants() {
           fontSize: 18,
           align: "center",
           x,
-          y: 590,
+          y: 540,
           width: 320,
-          height: 100,
+          height: 40,
+          z: 2,
+        }),
+        el({
+          id: "r" + n,
+          type: "text",
+          slot: "r" + n,
+          tokenColor: "muted",
+          fontRole: "body",
+          fontSize: 16,
+          align: "center",
+          x,
+          y: 580,
+          width: 320,
+          height: 40,
           z: 2,
         })
       );

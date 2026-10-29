@@ -178,42 +178,27 @@ async function generateTemplate(body) {
   const prompt = String(body && body.prompt || "").trim();
   if (!prompt) throw fail(400, "Prompt is required");
   if (prompt.length > 500) throw fail(400, "Prompt is too long");
-  const modeIn = String(body && body.mode || "").trim().toLowerCase();
-  const niche = String(body && body.niche || "").trim().toLowerCase();
-  const namedNiche = ["corporate", "elegant", "gradient", "infographic", "cartoon"].indexOf(niche) >= 0;
-  let mode = "pinned";
-  // ENGINE_V1=true routes all generation through generateKitV1 (no new mode UI).
-  if (process.env.ENGINE_V1 === "true" || modeIn === "kit-v1") {
-    mode = "kit-v1";
-  } else if (modeIn === "composer") mode = "composer";
-  else if (modeIn === "native" || namedNiche || body && (body.native === true || body.native === "true")) mode = "native";
-  else if (modeIn === "assemble" || body && (body.assemble === true || body.assemble === "true")) mode = "assemble";
-  else if (modeIn === "remix" || modeIn === "frankenstein" || body && (body.remix === true || body.remix === "true")) mode = "remix";
-  else if (modeIn === "auto" || modeIn === "auto-select" || body && (body.autoLayout === true || body.autoLayout === "true")) mode = "auto";
-  else if (modeIn === "pinned") mode = "pinned";
-  else if (modeIn) mode = modeIn;
+  // Run 2: only Engine v1 kit path (seed / native / composer / agent removed from user path).
+  const mode = "kit-v1";
+  const deckTypeRaw = String((body && (body.deckType || body.deck_type)) || "Pitch").trim();
+  const deckType = ["Pitch", "Overview", "Report", "Proposal"].indexOf(deckTypeRaw) >= 0 ? deckTypeRaw : "Pitch";
+  const layoutId = "";
+  const layoutIdB = "";
 
-  const layoutId = (mode === "composer" || mode === "native" || mode === "assemble" || mode === "auto")
-    ? ""
-    : layoutFile(body && (body.layoutId || body.layout || body.seedA));
-  const layoutIdB = mode === "remix" ? layoutFile(body && (body.layoutIdB || body.seedB)) : "";
-  if (mode === "remix" && layoutId === layoutIdB) throw fail(400, "Pick two different seeds");
-
-  const id = slug((mode === "composer" ? "composer" : mode === "native" ? "native" : mode === "assemble" ? "assemble" : mode === "remix" ? "remix-" + layoutId + "-" + layoutIdB : (layoutId || "auto")) + "-" + prompt) + "-" + Date.now().toString(36);
+  const id = slug("kit-v1-" + prompt) + "-" + Date.now().toString(36);
   const dir = jobDir(id);
-  const photoDir = path.join(ROOT, "generated-templates", "photos", mode === "native" ? "native" : (mode === "composer" ? "composer" : "thematic"), id);
+  const photoDir = path.join(ROOT, "generated-templates", "photos", "engine-v1", id);
   fs.mkdirSync(dir, { recursive: true });
   let themed = null;
   try {
     themed = await pipeline.runPipeline({
       mode,
       prompt,
+      deckType,
       nonce: body && body.nonce != null ? String(body.nonce) : "",
       layout: layoutId,
       layoutIdB,
       out: relative(dir),
-      creative: body && (body.creative === true || body.creative === "true"),
-      niche: namedNiche ? niche : "",
       deps: pipeline.getTestDeps && pipeline.getTestDeps(),
     });
   } catch (error) {

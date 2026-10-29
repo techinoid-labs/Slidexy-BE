@@ -10,10 +10,10 @@ export function fallbackSpec(prompt: string, deckType: DeckType): DeckSpec {
   const palette = dark ? "ink-night" : warm ? "ivory-warm" : "paper-blue";
   const typePair = dark ? "classic-georgia" : warm ? "editorial-cambria" : "tech-verdana";
   const sequences: Record<string, string[]> = {
-    Pitch: ["cover", "problem", "solution", "how-it-works", "feature", "stats", "testimonial", "closing"],
-    Overview: ["cover", "agenda", "feature", "how-it-works", "team", "stats", "closing"],
-    Report: ["cover", "agenda", "problem", "stats", "solution", "feature", "closing"],
-    Proposal: ["cover", "problem", "solution", "feature", "stats", "team", "closing"],
+    Pitch: ["cover", "problem", "solution", "how-it-works", "feature", "stats", "testimonial", "team", "closing"],
+    Overview: ["cover", "agenda", "feature", "how-it-works", "team", "stats", "testimonial", "closing"],
+    Report: ["cover", "agenda", "problem", "stats", "solution", "feature", "team", "closing"],
+    Proposal: ["cover", "problem", "solution", "feature", "stats", "team", "testimonial", "closing"],
   };
   const roles = sequences[deckType] || sequences.Pitch;
   const topic = String(prompt || "Brand").slice(0, 40);
@@ -31,9 +31,20 @@ export function fallbackSpec(prompt: string, deckType: DeckType): DeckSpec {
         body: ["Clear value", "Trusted delivery", "Measurable outcomes"].slice(0, role === "feature" ? 3 : 2),
       };
       if (role === "stats") {
-        slide.stat = "98%";
-        slide.caption = "client retention";
-        slide.body = ["4.9", "120+"];
+        slide.stats = [
+          { value: "98%", label: "client retention" },
+          { value: "4.9", label: "nps" },
+          { value: "120+", label: "accounts" },
+        ];
+        delete slide.body;
+      }
+      if (role === "team") {
+        slide.members = [
+          { name: "Ada Lee", role: "CEO" },
+          { name: "Ken Wu", role: "CTO" },
+          { name: "Pri Shah", role: "CS" },
+        ];
+        delete slide.body;
       }
       slide.photoQuery = topic + " " + role;
       slide.photoOrientation = role === "team" || role === "testimonial" ? "portrait" : "landscape";

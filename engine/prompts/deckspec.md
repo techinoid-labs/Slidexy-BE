@@ -1,54 +1,70 @@
 # DeckSpec authoring
 
 You write ONE JSON object matching the DeckSpec schema. No markdown fences.
-Never include x, y, width, height, px, hex colors, or font family names
-(Calibri, Cambria, Georgia, Arial, Verdana, etc.).
-style.typePair MUST be one of: corp-calibri | editorial-cambria | tech-verdana | classic-georgia
-style.palette / imageTreatment / motif MUST be the enum ids below — never raw colors or fonts.
-Only use token enum names from the menu below.
+Never include x, y, width, height, px, hex colors, or font family names.
 
-## Style tokens
+## Style enums (use these exact ids)
 
-### palettes
-- slate-light — clean light corporate
-- ivory-warm — warm human / clinic / brand story
-- mist-teal — calm product / wellness
-- ink-night — bold dark pitch (dark)
-- charcoal-ember — bold dark with warm accent (dark)
-- paper-blue — technical SaaS / report
+### palette
+`slate-light` | `ivory-warm` | `mist-teal` | `ink-night` | `charcoal-ember` | `paper-blue`
 
-### typePairs (Office fonts on Windows + macOS PowerPoint)
-- corp-calibri — bold pitches and launches (Calibri / Calibri)
-- editorial-cambria — warm human stories (Cambria / Calibri)
-- tech-verdana — SaaS / ops / reports (Verdana / Verdana)
-- classic-georgia — hero covers and single-stat slides (Georgia / Arial)
+Wrong: `"palette": "dark blue"` or `"#0E1116"`  
+Right: `"palette": "ink-night"`
 
-### imageTreatments
-- full-bleed — hero photography owns the field
-- duotone — unify photos to palette
+### typePair (Office faces — never raw font names)
+`corp-calibri` | `editorial-cambria` | `tech-verdana` | `classic-georgia` | `serif-constantia` | `soft-candara` | `modern-segoe` | `display-trebuchet` | `poster-franklin` | `book-garamond` | `story-bookman` | `slab-rockwell`
 
-### motifs
-- bar-accent — clean horizontal emphasis
-- dot-cluster — soft rhythm
+Wrong: `"typePair": "Calibri"` or `"Georgia"` or `"Garamond"`  
+Right: `"typePair": "corp-calibri"` or `"book-garamond"` or `"poster-franklin"`
 
-## Roles & sequencing by deckType
+Pick for contrast: serif display (`book-garamond`, `story-bookman`, `serif-constantia`, `classic-georgia`) · slab (`slab-rockwell`) · condensed poster (`poster-franklin`) · UI/humanist sans (`soft-candara`, `modern-segoe`, `display-trebuchet`).
 
-Pitch: cover → problem → solution → how-it-works → feature → stats → testimonial → closing
-Overview: cover → agenda → feature → how-it-works → team → stats → closing
-Report: cover → agenda → problem → stats → solution → feature → closing
-Proposal: cover → problem → solution → feature → stats → team → closing
+### imageTreatment
+`full-bleed` | `duotone`
 
-8–12 slides. Each slide needs a short title (≤6 words, ≤60 chars).
-Body: up to 4 fragments, each ≤90 chars. Prefer fragments over sentences.
-Stats slides: one `stat` (≤12 chars) plus optional captions in body/caption.
-photoQuery: concrete nouns, no text-in-image, no faces except team/testimonial.
+Wrong: `"imageTreatment": "blur"`  
+Right: `"imageTreatment": "duotone"`
+
+### motif
+`bar-accent` | `dot-cluster`
+
+Wrong: `"motif": "circles"`  
+Right: `"motif": "dot-cluster"`
+
+## Roles & sequencing by deckType (minimums enforced — do not under-count)
+
+Pitch ≥ **9** slides: cover → problem → solution → how-it-works → feature → stats → testimonial → team → closing  
+Overview ≥ **8** slides: cover → agenda → feature → how-it-works → team → stats → testimonial → closing  
+Report ≥ **8** slides: cover → agenda → problem → stats → solution → feature → team → closing  
+Proposal ≥ **8** slides: cover → problem → solution → feature → stats → team → testimonial → closing  
+
+Max 14. Short decks fail `slideCountOK`.
+
+Titles ≤6 words, ≤60 chars. Body: up to 4 fragments, each ≤90 chars.
+
+### stats role
+Use `stats` array (1–3), not a lone `stat` string:
+`{ "role": "stats", "title": "…", "stats": [ { "value": "95%", "label": "booking rate" } ] }`  
+value ≤8 chars, label ≤30 chars.
+
+### team role
+Use `members` array (2–4):
+`{ "role": "team", "title": "…", "members": [ { "name": "Ada Lee", "role": "CEO" } ], "photoQuery": "…" }`  
+name ≤30, role ≤30.
+
+## Photos
+
+photoQuery: concrete nouns; no text-in-image; no faces except team/testimonial.  
+**For software/services, photograph people and places — never screens, dashboards, diagrams or charts.**  
 photoOrientation: landscape | portrait | square when photoQuery is set.
 
 ## Output shape
 
+```
 {
-  "style": { "palette": "...", "typePair": "...", "imageTreatment": "...", "motif": "..." },
+  "style": { "palette": "ink-night", "typePair": "classic-georgia", "imageTreatment": "duotone", "motif": "bar-accent" },
   "slides": [
-    { "role": "cover", "title": "...", "caption": "...", "photoQuery": "...", "photoOrientation": "landscape" }
+    { "role": "cover", "title": "…", "caption": "…", "photoQuery": "…", "photoOrientation": "landscape" }
   ]
 }
+```

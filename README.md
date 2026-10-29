@@ -1,10 +1,41 @@
-# Neuro Engine
+# Slidexy / Neuro Engine
 
-AI-powered presentation generation, plus the template pipeline that converts a PowerPoint file into a themed, editable deck.
+AI-powered presentation generation. **Engine v1** (kit + DeckSpec + tokens) is the product generate path.
 
-## Template pipeline
+## Engine v1 (current)
 
-A seed deck is a JSON layout on a 1600×900 canvas. A prompt rewrites the copy and photographs. The admin publishes the result, and the catalog downloads it as native PowerPoint objects.
+LLM writes a **DeckSpec** (content + style token ids only — no coordinates, hex, or font family names). Deterministic code selects kit variants (`kit/<role>/{a,b}.json`), fits text, fetches photos, and exports PPTX.
+
+```bash
+# Unit tests
+node -r ts-node/register/transpile-only engine/engine.test.ts
+
+# Eval 15 golden prompts (needs OPENROUTER_API_KEY or API_KEY1 / GEMINI_API_KEY + PEXELS_API_KEY)
+node -r ts-node/register/transpile-only scripts/eval.ts
+
+# Three proof decks
+node -r ts-node/register/transpile-only scripts/proof-llm.ts
+
+# Gallery + pptx-diff
+node -r ts-node/register/transpile-only scripts/regenerate-gallery.ts
+node -r ts-node/register/transpile-only scripts/pptx-diff.ts
+```
+
+Curator (loopback):
+
+```powershell
+$env:PIPELINE_PORT = "5055"
+$env:ENGINE_V1 = "true"
+node services/templatePipeline/devServer.js
+```
+
+Open http://127.0.0.1:5055/ — prompt + deck type → Generate → review → Publish / Download PPTX.
+
+Report: [`docs/template-pipeline/ENGINE-V1-REPORT.md`](docs/template-pipeline/ENGINE-V1-REPORT.md)
+
+## Legacy template pipeline (seeds)
+
+Seed rewrite / native assemble paths are **removed from the user path** in run 2. Seed JSON on a 1600×900 canvas and converter tooling remain for archive / ingest; do not wire them back into Generate.
 
 ### Converter
 

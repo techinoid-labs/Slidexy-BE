@@ -1,77 +1,49 @@
 # Engine v1 report
 
-Run 1 + follow-up. Kit + DeckSpec + tokens path is live behind `ENGINE_V1=true`.
+Run 1 + follow-up 1 + **follow-up 2**. Kit + DeckSpec + tokens path is live behind `ENGINE_V1=true`.
 
-## Follow-up changes (this update)
+## Follow-up 2 changes
 
-1. **Real LLM eval + proofs** — `ENGINE_V1_SKIP_LLM` unset; OpenRouter 402 → Gemini (`API_KEY1`) still counts as LLM (no deterministic DeckSpec).
-2. **Fallback removed** from `generateKitV1` / `inventDeckSpec`. Fixture only: `engine/golden/fixtures/fallbackSpec.ts` (tests). No LLM keys → **throw**.
-3. **Kit source of truth** — `kit/<role>/{a,b}.json`. Generator moved to `scripts/dev/build-kit-variants.js` (see `scripts/dev/README.md`). Not called at build/runtime.
-4. **Type pairs** — Office fonts on Windows + macOS PowerPoint: `corp-calibri` (Calibri/Calibri), `editorial-cambria` (Cambria/Calibri), `tech-verdana` (Verdana/Verdana), `classic-georgia` (Georgia/Arial). Contact sheet + gallery regenerated.
-5. **`scripts/pptx-diff.ts`** — LibreOffice PDF → PNG vs canvas PNG; MAD recorded below.
-
----
-
-## What shipped
-
-### 1 — DeckSpec schema
-- `engine/deckspec.schema.json`, `engine/validate.ts`, `engine/types.ts`
-- Golden specs: `engine/golden/specs/` (5)
-
-### 2 — Style tokens
-- `engine/tokens.json` — 6 palettes (2 dark), 4 Office type pairs, `full-bleed` + `duotone`, 2 motifs
-- Contact sheet: `out/contact-sheet/palette-type-sheet.png`
-
-### 3–4 — Kit variants
-- **20** files under `kit/<role>/{a,b}.json` (hand-edited source of truth)
-- Shared `photo-footer` family on problem / solution / closing variant A
-- Gallery: `out/gallery/<role>-<variant>/{slide.png,slide.pptx}`
-
-### 5–7 — Engine
-- `engine/fit.ts`, `gates.ts`, `selectVariant.ts`, `photos.ts`, `generateKitV1.ts`
-- LLM: OpenRouter → Gemini (`API_KEY1`); one schema re-ask; one gate repair max
-- Wired: `ENGINE_V1=true` → `generateKitV1`
+1. **`engine/prompts/deckspec.md`** — inline enum lists for palette / typePair / imageTreatment / motif with wrong/right examples; software/services photo rule (people & places, never screens/dashboards/diagrams/charts); sequencing mins by deckType.
+2. **Schema** — `stats: [{value≤8,label≤30}]` (1–3); `members: [{name≤30,role≤30}]` (2–4). Kit variants, validator, goldens, render/gates/`selectVariant` updated.
+3. **Schema re-ask** — validation errors quote the bad value and print the allowed list (e.g. `unknown typePair "Calibri"; allowed: corp-calibri | …`).
+4. **`slideCountOK`** — Pitch ≥9, Overview/Report/Proposal ≥8 (max 14); `runGates(..., deckType)`.
+5. **Render fonts** — Carlito + Caladea bundled under `services/templatePipeline/fonts/`; registered as Calibri / Cambria when system faces missing (Cambria.ttc skipped). Gallery regenerated; pptx-diff re-run.
 
 ---
 
-## Self-verification (follow-up)
+## Self-verification (follow-up 2)
 
 | Check | Result |
 | --- | --- |
-| LLM first-try gate pass (15 golden prompts) | **12/15 (0.80)** |
+| LLM first-try gate pass (15 golden prompts) | **14/15 (0.93)** |
 | Proof decks (LLM) gates pass / repaired | 3/3 pass, **0 repaired** |
 | Failed after one gate repair | **none** |
 | inventDeckSpec without LLM keys | throws |
 | 20 variants schema | pass |
-| pptx-diff gallery (MAD) | mean **2.44**, max **6.17**, min **0.96**, **20/20** under tolerance 40 |
+| pptx-diff gallery (MAD) | mean **2.66**, max **6.53**, min **0.96**, **20/20** under tolerance 40 |
 | Unit tests | pass |
 
 Eval machine log: `out/eval/summary.json`  
 Proof machine log: `out/proof-llm/llm-summary.json`  
 Diff machine log: `out/pptx-diff/summary.json`
 
-### Eval failures (3/15) — invent invalid after schema re-ask (not gate repair)
+### Eval miss (1/15) — gate, not invent
 
-These never produced a valid DeckSpec (LLM kept emitting font-family literals). Counted as first-try misses:
-
-- `p07` Architecture studio portfolio overview — `invalid DeckSpec: font name literals`
-- `p08` Cybersecurity platform for mid-market — `invalid DeckSpec: font name literals`
-- `p09` Municipal green roof proposal — `invalid DeckSpec: font name literals`
-
-No gate-repair failures to attach (proofs all passed first invent).
+- `p07` Architecture studio portfolio overview — `photoPresent` on feature/b + testimonial/b (missing `photoQuery` after variant B selected). Valid DeckSpec; first-try gate fail only.
 
 ---
 
 ## LLM-written DeckSpecs (3 proofs)
 
-Paths also on disk: `out/proof-llm/<id>/deckspec.json` and `deck.pptx`.
+Paths: `out/proof-llm/<id>/deckspec.json` and `deck.pptx`.
 
 ### supercars-garage (Pitch) — gates pass, repaired false
 
 ```json
 {
   "style": {
-    "palette": "ink-night",
+    "palette": "charcoal-ember",
     "typePair": "classic-georgia",
     "imageTreatment": "duotone",
     "motif": "bar-accent"
@@ -80,58 +52,71 @@ Paths also on disk: `out/proof-llm/<id>/deckspec.json` and `deck.pptx`.
     {
       "role": "cover",
       "title": "Apex Motors",
-      "caption": "Unrivaled supercar culture",
-      "photoQuery": "supercar parked in showroom",
+      "caption": "The ultimate supercar destination",
+      "photoQuery": "luxury supercar showroom at night",
       "photoOrientation": "landscape"
     },
     {
       "role": "problem",
-      "title": "Lost passion",
-      "body": ["Generic dealers", "Disconnected experiences"],
-      "photoQuery": "plain car dealership",
+      "title": "Underwhelmed drivers",
+      "body": ["Generic showrooms", "Lack of exclusivity"],
+      "photoQuery": "empty, sterile car dealership interior",
       "photoOrientation": "landscape"
     },
     {
       "role": "solution",
-      "title": "The Apex Hub",
-      "body": ["Exclusive garage", "Community events"],
-      "photoQuery": "luxury garage interior",
+      "title": "A curated experience",
+      "body": ["Bespoke events", "Member lounges"],
+      "photoQuery": "stylish car club lounge with leather seating",
       "photoOrientation": "landscape"
     },
     {
       "role": "how-it-works",
-      "title": "Three pillars",
-      "body": ["Collection", "Club", "Concierge"],
-      "photoQuery": "mechanic working on engine",
+      "title": "The Apex difference",
+      "body": ["Discovery", "Acquisition", "Enjoyment"],
+      "photoQuery": "mechanic meticulously polishing a supercar",
       "photoOrientation": "landscape"
     },
     {
       "role": "feature",
-      "title": "Member privileges",
-      "body": ["Secure storage", "Track days", "Valet service"],
-      "photoQuery": "car polishing detailer",
+      "title": "Exclusive access",
+      "body": ["Track days", "New model previews"],
+      "photoQuery": "supercars on a race track",
       "photoOrientation": "landscape"
     },
     {
       "role": "stats",
-      "title": "Demand",
-      "stat": "95%",
-      "body": ["200+", "18mo"],
-      "caption": "booking rate"
+      "title": "Performance metrics",
+      "stats": [
+        { "value": "95%", "label": "member satisfaction" },
+        { "value": "2x", "label": "event attendance growth" },
+        { "value": "150+", "label": "unique vehicles showcased" }
+      ]
     },
     {
       "role": "testimonial",
-      "title": "Vision",
-      "body": ["Apex redefined automotive passion for us."],
-      "caption": "M. Chen, collector",
-      "photoQuery": "owner admiring supercar",
+      "title": "Our clients",
+      "body": ["This is more than a garage, it's a community."],
+      "caption": "E. Vance, collector",
+      "photoQuery": "confident individual portrait in a garage setting",
       "photoOrientation": "portrait"
+    },
+    {
+      "role": "team",
+      "title": "The pit crew",
+      "members": [
+        { "name": "Alex Chen", "role": "Founder" },
+        { "name": "Maria Rossi", "role": "Experience Director" },
+        { "name": "Sam Wu", "role": "Head of Acquisitions" }
+      ],
+      "photoQuery": "team portrait in a modern garage environment",
+      "photoOrientation": "landscape"
     },
     {
       "role": "closing",
       "title": "Join Apex",
-      "body": ["apex.club"],
-      "photoQuery": "collection of supercars",
+      "body": ["Contact us for a private viewing."],
+      "photoQuery": "elegant garage door opening to reveal a supercar",
       "photoOrientation": "landscape"
     }
   ]
@@ -140,175 +125,59 @@ Paths also on disk: `out/proof-llm/<id>/deckspec.json` and `deck.pptx`.
 
 ### pediatric-dental (Overview) — gates pass, repaired false
 
-```json
-{
-  "style": {
-    "palette": "ivory-warm",
-    "typePair": "editorial-cambria",
-    "imageTreatment": "full-bleed",
-    "motif": "dot-cluster"
-  },
-  "slides": [
-    {
-      "role": "cover",
-      "title": "Little Smiles",
-      "caption": "Pediatric dental clinic",
-      "photoQuery": "bright dental clinic children",
-      "photoOrientation": "landscape"
-    },
-    {
-      "role": "agenda",
-      "title": "Our Approach",
-      "body": ["Gentle Care Model", "Our Team", "Patient Outcomes"],
-      "photoQuery": "soft clinic hallway",
-      "photoOrientation": "landscape"
-    },
-    {
-      "role": "feature",
-      "title": "Gentle Care",
-      "body": ["Playful check-in", "Comfortable rooms", "Parental involvement"],
-      "photoQuery": "pediatric dental chair",
-      "photoOrientation": "landscape"
-    },
-    {
-      "role": "how-it-works",
-      "title": "Your Visit",
-      "body": ["Warm Welcome", "Thorough Exam", "Personalized Plan"],
-      "photoQuery": "dentist talking to child",
-      "photoOrientation": "landscape"
-    },
-    {
-      "role": "team",
-      "title": "Meet Our Team",
-      "body": ["Dr. Anya Sharma", "Nurse Ben Carter", "Dental Assistant Chloe Lee"],
-      "photoQuery": "friendly pediatric dentists portrait",
-      "photoOrientation": "portrait"
-    },
-    {
-      "role": "stats",
-      "title": "Patient Trust",
-      "stat": "4.9",
-      "body": ["Over 2,500", "98% satisfaction"],
-      "caption": "Family ratings"
-    },
-    {
-      "role": "closing",
-      "title": "Book an Appointment",
-      "body": ["Monday - Saturday", "info@littlesmiles.example"],
-      "photoQuery": "clinic reception warm light",
-      "photoOrientation": "landscape"
-    }
-  ]
-}
-```
+Style: `ivory-warm` / `editorial-cambria` / `full-bleed` / `dot-cluster`. 8 slides with `members` + `stats` arrays. See `out/proof-llm/pediatric-dental/deckspec.json`.
 
 ### b2b-payroll (Pitch) — gates pass, repaired false
 
-```json
-{
-  "style": {
-    "palette": "paper-blue",
-    "typePair": "tech-verdana",
-    "imageTreatment": "full-bleed",
-    "motif": "bar-accent"
-  },
-  "slides": [
-    {
-      "role": "cover",
-      "title": "EuroPay",
-      "caption": "EU Payroll Compliance",
-      "photoQuery": "modern office building exterior",
-      "photoOrientation": "landscape"
-    },
-    {
-      "role": "problem",
-      "title": "Compliance Risk",
-      "body": ["Fragmented rules", "Audit penalties", "Manual errors"],
-      "photoQuery": "tax documents scattered",
-      "photoOrientation": "landscape"
-    },
-    {
-      "role": "solution",
-      "title": "Unified Payroll",
-      "body": ["Single platform", "Automated updates", "Cross-border accuracy"],
-      "photoQuery": "dashboard with global map",
-      "photoOrientation": "landscape"
-    },
-    {
-      "role": "how-it-works",
-      "title": "Simple Flow",
-      "body": ["Onboarding", "Processing", "Reporting"],
-      "photoQuery": "workflow diagram flowchart",
-      "photoOrientation": "landscape"
-    },
-    {
-      "role": "feature",
-      "title": "Key Modules",
-      "body": ["Country Packs", "Tax Engine", "Reporting Suite"],
-      "photoQuery": "software interface features",
-      "photoOrientation": "landscape"
-    },
-    {
-      "role": "stats",
-      "title": "Efficiency",
-      "stat": "99.9%",
-      "body": ["Compliance rate", "Reduced errors", "Time saved"],
-      "caption": "98% accuracy"
-    },
-    {
-      "role": "testimonial",
-      "title": "Client Success",
-      "body": ["EuroPay streamlined our EU payroll.", "No more headaches."],
-      "caption": "Anna K., Finance Director",
-      "photoQuery": "smiling business professional portrait",
-      "photoOrientation": "portrait"
-    },
-    {
-      "role": "closing",
-      "title": "Get Started",
-      "body": ["Request a Demo", "sales@europay.example"],
-      "photoQuery": "modern conference room",
-      "photoOrientation": "landscape"
-    }
-  ]
-}
-```
+Style: `paper-blue` / `corp-calibri` / `duotone` / `bar-accent`. 9 slides; photoQueries are people/places (no dashboards). See `out/proof-llm/b2b-payroll/deckspec.json`.
 
 ---
 
-## Gallery PPTX (20)
+## Paths
 
-- `out/gallery/agenda-a/slide.pptx` … through … `out/gallery/testimonial-b/slide.pptx` (all 20 roles×variants)
+### Kit variants (source of truth)
 
-## Proof PPTX (LLM)
+- `kit/<role>/{a,b}.json` — 20 files  
+- Generator (dev only): `scripts/dev/build-kit-variants.js`
+
+### Gallery
+
+- `out/gallery/<role>-<variant>/{slide.png,slide.pptx}` — 20
+
+### Proof PPTX (LLM)
 
 - `out/proof-llm/supercars-garage/deck.pptx`
 - `out/proof-llm/pediatric-dental/deck.pptx`
 - `out/proof-llm/b2b-payroll/deck.pptx`
 
-(Prior `out/proof/*` may be locked by PowerPoint; LLM run wrote to `out/proof-llm/`.)
-
-## pptx-diff numbers
+### pptx-diff
 
 | Metric | Value |
 | --- | --- |
 | Compared | 20 |
-| Mean MAD | 2.441 |
+| Mean MAD | 2.657 |
 | Min MAD | 0.959 |
-| Max MAD | 6.173 |
+| Max MAD | 6.526 |
 | Within MAD &lt; 40 | 20/20 |
 
-Per-variant rows: `out/pptx-diff/summary.json`
+---
 
-## DESIGN REVIEW tags
+## What shipped (cumulative)
 
-- `scripts/dev/build-kit-variants.js` — circular photo cutouts for cover-01 placement
-- `scripts/dev/build-kit-variants.js` — motif bar on photo-footer edge
-- Canvas preview may fall back Calibri/Cambria/Verdana → Arial/Georgia if Office fonts are not installed on the render host; PPTX still names the Office faces for PowerPoint
+- DeckSpec schema + validate + types; golden specs (5)
+- Tokens: 6 palettes (2 dark), 4 Office type pairs, full-bleed + duotone, 2 motifs
+- Fit / gates / selectVariant / photos / generateKitV1 (no deterministic fallback)
+- `ENGINE_V1=true` → kit path in pipeline
 
-## Deferred to run 2 (unchanged)
+---
 
-- Curator UI reduction
-- Deletion of seed-rewrite / native / agent paths
-- README rewrite
-- CI wiring
+## Run 2 (in progress)
+
+| Item | Status |
+| --- | --- |
+| Curator UI → kit generate / review / publish / download | **done** (seed radios, seed library, panel tab removed from Generate) |
+| User-path deletion of seed / native / composer / assemble / remix | **done** (`pipeline.runPipeline` + `adminCatalog.generateTemplate` kit-v1 only) |
+| README rewrite | **done** (Engine v1 first) |
+| CI for engine tests | **done** (`.github/workflows/engine-v1.yml`) |
+
+Still optional cleanup: delete or quarantine unused `thematic.js` / `thematic-native.js` call sites and mode-shape tests that assert legacy modes.

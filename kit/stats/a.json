@@ -11,35 +11,35 @@
       "optional": false,
       "from": "title"
     },
-    "stat": {
+    "v1": {
       "kind": "text",
       "optional": false,
-      "from": "stat"
+      "from": "stats0.value"
     },
-    "s2": {
+    "v2": {
       "kind": "text",
       "optional": true,
-      "from": "body0"
+      "from": "stats1.value"
     },
-    "s3": {
+    "v3": {
       "kind": "text",
       "optional": true,
-      "from": "body1"
+      "from": "stats2.value"
     },
-    "c1": {
+    "l1": {
+      "kind": "text",
+      "optional": false,
+      "from": "stats0.label"
+    },
+    "l2": {
       "kind": "text",
       "optional": true,
-      "from": "caption"
+      "from": "stats1.label"
     },
-    "c2": {
+    "l3": {
       "kind": "text",
       "optional": true,
-      "from": "body2"
-    },
-    "c3": {
-      "kind": "text",
-      "optional": true,
-      "from": "body3"
+      "from": "stats2.label"
     },
     "accent": {
       "kind": "shape",
@@ -53,37 +53,37 @@
       "lineClamp": 1,
       "shrinkMin": 0.75
     },
-    "stat": {
+    "v1": {
       "maxFont": 96,
       "minFont": 48,
       "lineClamp": 1,
       "shrinkMin": 0.75
     },
-    "s2": {
+    "v2": {
       "maxFont": 72,
       "minFont": 40,
       "lineClamp": 1,
       "shrinkMin": 0.75
     },
-    "s3": {
+    "v3": {
       "maxFont": 72,
       "minFont": 40,
       "lineClamp": 1,
       "shrinkMin": 0.75
     },
-    "c1": {
+    "l1": {
       "maxFont": 20,
       "minFont": 14,
       "lineClamp": 2,
       "shrinkMin": 0.75
     },
-    "c2": {
+    "l2": {
       "maxFont": 20,
       "minFont": 14,
       "lineClamp": 2,
       "shrinkMin": 0.75
     },
-    "c3": {
+    "l3": {
       "maxFont": 20,
       "minFont": 14,
       "lineClamp": 2,
@@ -91,30 +91,14 @@
     }
   },
   "pptxMapping": {
-    "title": {
-      "kind": "text"
-    },
-    "stat": {
-      "kind": "text"
-    },
-    "s2": {
-      "kind": "text"
-    },
-    "s3": {
-      "kind": "text"
-    },
-    "c1": {
-      "kind": "text"
-    },
-    "c2": {
-      "kind": "text"
-    },
-    "c3": {
-      "kind": "text"
-    },
-    "accent": {
-      "kind": "shape"
-    }
+    "title": { "kind": "text" },
+    "v1": { "kind": "text" },
+    "v2": { "kind": "text" },
+    "v3": { "kind": "text" },
+    "l1": { "kind": "text" },
+    "l2": { "kind": "text" },
+    "l3": { "kind": "text" },
+    "accent": { "kind": "shape" }
   },
   "layout": {
     "elements": [
@@ -134,9 +118,9 @@
       },
       {
         "z": 2,
-        "id": "stat",
+        "id": "v1",
         "type": "text",
-        "slot": "stat",
+        "slot": "v1",
         "tokenColor": "ink",
         "fontRole": "display",
         "fontSize": 88,
@@ -148,9 +132,9 @@
       },
       {
         "z": 2,
-        "id": "s2",
+        "id": "v2",
         "type": "text",
-        "slot": "s2",
+        "slot": "v2",
         "tokenColor": "ink",
         "fontRole": "display",
         "fontSize": 88,
@@ -162,9 +146,9 @@
       },
       {
         "z": 2,
-        "id": "s3",
+        "id": "v3",
         "type": "text",
-        "slot": "s3",
+        "slot": "v3",
         "tokenColor": "ink",
         "fontRole": "display",
         "fontSize": 88,
@@ -176,9 +160,9 @@
       },
       {
         "z": 2,
-        "id": "c1",
+        "id": "l1",
         "type": "text",
-        "slot": "c1",
+        "slot": "l1",
         "tokenColor": "muted",
         "fontRole": "body",
         "fontSize": 18,
@@ -190,9 +174,9 @@
       },
       {
         "z": 2,
-        "id": "c2",
+        "id": "l2",
         "type": "text",
-        "slot": "c2",
+        "slot": "l2",
         "tokenColor": "muted",
         "fontRole": "body",
         "fontSize": 18,
@@ -204,9 +188,9 @@
       },
       {
         "z": 2,
-        "id": "c3",
+        "id": "l3",
         "type": "text",
-        "slot": "c3",
+        "slot": "l3",
         "tokenColor": "muted",
         "fontRole": "body",
         "fontSize": 18,

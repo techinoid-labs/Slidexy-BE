@@ -25,14 +25,33 @@ function baseSpec(): any {
   console.log("ok reject geometry");
 }
 
-// unknown palette
+// unknown palette quotes bad value + allowed list
 {
   const bad = baseSpec();
   bad.style.palette = "neon-unicorn";
   const r = validateDeckSpec(bad);
   assert.strictEqual(r.ok, false);
-  assert.ok(r.errors.some((e: string) => /unknown palette/i.test(e)));
+  assert.ok(r.errors.some((e: string) => /unknown palette "neon-unicorn".*allowed:.*ink-night/i.test(e)));
   console.log("ok reject unknown palette");
+}
+
+// unknown typePair quotes bad value
+{
+  const bad = baseSpec();
+  bad.style.typePair = "Calibri";
+  const r = validateDeckSpec(bad);
+  assert.strictEqual(r.ok, false);
+  assert.ok(r.errors.some((e: string) => /Calibri/i.test(e) && /corp-calibri/i.test(e)));
+  console.log("ok reject typePair font literal");
+}
+
+// title may equal a font family name
+{
+  const ok = baseSpec();
+  ok.slides[0].title = "Impact";
+  const r = validateDeckSpec(ok);
+  assert.strictEqual(r.ok, true, r.errors.join("; "));
+  console.log("ok title Impact allowed");
 }
 
 // 61-char title
@@ -90,13 +109,24 @@ function baseSpec(): any {
   console.log("ok select other", sig(b));
 }
 
-// gates on golden
+// gates on golden (Pitch ≥9)
 {
   const spec = baseSpec();
   const selections = selectAll(spec, "garage");
-  const gates = runGates(spec, selections, tokens);
+  const gates = runGates(spec, selections, tokens, "Pitch");
   assert.ok(gates.slides.length >= spec.slides.length);
+  assert.strictEqual(gates.pass, true, gates.slides.filter((s: any) => !s.pass).map((s: any) => s.reasons).join("; "));
   console.log("ok gates pass?", gates.pass, "fails", gates.slides.filter((s: any) => !s.pass).length);
+}
+
+// slideCountOK rejects short Pitch
+{
+  const short = baseSpec();
+  short.slides = short.slides.slice(0, 5);
+  const gates = runGates(short, selectAll(short, "x"), tokens, "Pitch");
+  assert.strictEqual(gates.pass, false);
+  assert.ok(gates.slides.some((s: any) => s.reasons.some((r: string) => /slideCountOK/i.test(r))));
+  console.log("ok slideCountOK Pitch min");
 }
 
 // fixture fallback exists for tests only; generateKitV1 must throw without LLM

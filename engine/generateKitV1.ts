@@ -115,18 +115,22 @@ function buildPrompt(userPrompt: string, deckType: DeckType, repairNotes?: strin
     .slice(0, 5)
     .map((n: string) => fs.readFileSync(path.join(__dirname, "golden", "specs", n), "utf8"))
     .join("\n\n");
+  const mins: Record<string, number> = { Pitch: 9, Overview: 8, Report: 8, Proposal: 8 };
+  const minSlides = mins[deckType] || 8;
   let msg =
     guide +
     "\n\n## Golden examples\n" +
     goldens +
     "\n\n## Request\ndeckType: " +
     deckType +
-    "\nprompt: " +
+    "\nminimumSlides: " +
+    minSlides +
+    " (hard — slideCountOK fails below this)\nprompt: " +
     userPrompt +
-    "\n";
+    "\n\nEmit style.typePair as a token id only (corp-calibri | editorial-cambria | tech-verdana | classic-georgia | serif-constantia | soft-candara | modern-segoe | display-trebuchet | poster-franklin | book-garamond | story-bookman | slab-rockwell), never a font family name.\n";
   if (repairNotes && repairNotes.length) {
     msg +=
-      "\n## Repair (fix ONLY these gate failures; keep style unless invalid)\n" +
+      "\n## Repair (fix ONLY these failures; quote/allowed lists below — replace bad values)\n" +
       repairNotes.map((r) => "- " + r).join("\n") +
       "\n";
   }
@@ -139,9 +143,13 @@ export async function inventDeckSpec(prompt: string, deckType: DeckType, repairN
   let parsed = extractJson(text);
   let check = validateDeckSpec(parsed);
   if (!check.ok && !(repairNotes && repairNotes.length)) {
-    // One schema/token repair (still LLM) — distinct from gate repair in generateKitV1
+    // One schema/token repair (still LLM) — errors already quote bad value + allowed list
     text = await askModel(
-      buildPrompt(prompt, deckType, check.errors.map((e: string) => "validation: " + e))
+      buildPrompt(
+        prompt,
+        deckType,
+        check.errors.map((e: string) => "validation (fix value; use allowed list): " + e)
+      )
     );
     parsed = extractJson(text);
     check = validateDeckSpec(parsed);
@@ -166,7 +174,7 @@ export async function generateKitV1(
   loadEnv();
   let spec = await inventDeckSpec(prompt, deckType);
   let selections = selectAll(spec, prompt);
-  let gates = runGates(spec, selections, tokens);
+  let gates = runGates(spec, selections, tokens, deckType);
   let repaired = false;
   let failedAfterRepair: any = null;
 
@@ -175,7 +183,7 @@ export async function generateKitV1(
     repaired = true;
     spec = await inventDeckSpec(prompt, deckType, notes);
     selections = selectAll(spec, prompt + ":repair");
-    gates = runGates(spec, selections, tokens);
+    gates = runGates(spec, selections, tokens, deckType);
     if (!gates.pass) failedAfterRepair = { spec, gates };
   }
 

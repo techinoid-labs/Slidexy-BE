@@ -80,7 +80,7 @@ async function gallerySmokePriority() {
       const spec = {
         style: {
           palette: "slate-light",
-          typePair: "technical-sans",
+          typePair: "corp-calibri",
           imageTreatment: "full-bleed",
           motif: "bar-accent",
         },
@@ -89,9 +89,18 @@ async function gallerySmokePriority() {
             role,
             title: role + " " + variant,
             body: ["One", "Two", "Three", "Four"],
-            stat: "98%",
+            stats: [
+              { value: "98%", label: "retention" },
+              { value: "4.9", label: "nps" },
+              { value: "12", label: "markets" },
+            ],
+            members: [
+              { name: "Ada Lee", role: "CEO" },
+              { name: "Ken Wu", role: "CTO" },
+              { name: "Pri Shah", role: "CS" },
+            ],
             caption: "caption line",
-            photoQuery: "architecture concrete texture",
+            photoQuery: "people in modern workspace",
             photoOrientation: "landscape",
           },
         ],
@@ -136,7 +145,7 @@ async function fullGallery() {
       const spec = {
         style: {
           palette: "mist-teal",
-          typePair: "display-grotesk",
+          typePair: "classic-georgia",
           imageTreatment: "duotone",
           motif: "dot-cluster",
         },
@@ -145,9 +154,18 @@ async function fullGallery() {
             role,
             title: role.replace(/-/g, " "),
             body: ["Fragment one", "Fragment two", "Fragment three"],
-            stat: "42%",
+            stats: [
+              { value: "42%", label: "growth" },
+              { value: "9", label: "markets" },
+              { value: "3.1x", label: "pipeline" },
+            ],
+            members: [
+              { name: "Ada Lee", role: "CEO" },
+              { name: "Ken Wu", role: "CTO" },
+              { name: "Pri Shah", role: "CS" },
+            ],
             caption: "Gallery placeholder",
-            photoQuery: "soft daylight interior",
+            photoQuery: "people in soft daylight interior",
             photoOrientation: "landscape",
           },
         ],

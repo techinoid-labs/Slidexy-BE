@@ -10,68 +10,70 @@
       "role": "cover",
       "title": "PayLedger",
       "caption": "EU payroll compliance",
-      "photoQuery": "modern office desks",
+      "photoQuery": "modern office desks people working",
       "photoOrientation": "landscape"
     },
     {
       "role": "problem",
       "title": "Manual risk",
-      "body": [
-        "Spreadsheets break",
-        "Audits stall"
-      ],
-      "photoQuery": "messy desk papers",
+      "body": ["Spreadsheets break", "Audits stall"],
+      "photoQuery": "messy desk papers office",
       "photoOrientation": "landscape"
     },
     {
       "role": "solution",
       "title": "One ledger",
-      "body": [
-        "Rules engine",
-        "Audit trail"
-      ],
-      "photoQuery": "clean dashboard laptop",
+      "body": ["Rules engine", "Audit trail"],
+      "photoQuery": "team collaborating at whiteboard",
+      "photoOrientation": "landscape"
+    },
+    {
+      "role": "how-it-works",
+      "title": "Flow",
+      "body": ["Ingest", "Validate", "Pay"],
+      "photoQuery": "office hallway with coworkers",
       "photoOrientation": "landscape"
     },
     {
       "role": "feature",
       "title": "Controls",
-      "body": [
-        "Country packs",
-        "Approvals",
-        "Exports"
-      ],
-      "photoQuery": "saas analytics screen",
+      "body": ["Country packs", "Approvals", "Exports"],
+      "photoQuery": "conference room discussion",
       "photoOrientation": "landscape"
     },
     {
       "role": "stats",
       "title": "Scale",
-      "stat": "18",
-      "body": [
-        "99.9%",
-        "4h"
-      ],
-      "caption": "countries live"
+      "stats": [
+        { "value": "18", "label": "countries live" },
+        { "value": "99.9%", "label": "uptime" },
+        { "value": "4h", "label": "support SLA" }
+      ]
+    },
+    {
+      "role": "testimonial",
+      "title": "Customers",
+      "body": ["Payroll finally feels boring — in a good way"],
+      "caption": "CFO, mid-market SaaS",
+      "photoQuery": "smiling business professional portrait",
+      "photoOrientation": "portrait"
     },
     {
       "role": "team",
       "title": "Builders",
-      "body": [
-        "Ada — CEO",
-        "Ken — CTO",
-        "Pri — CS"
+      "members": [
+        { "name": "Ada Lee", "role": "CEO" },
+        { "name": "Ken Wu", "role": "CTO" },
+        { "name": "Pri Shah", "role": "CS" }
       ],
-      "photoQuery": "product team meeting",
+      "photoQuery": "product team meeting office",
       "photoOrientation": "landscape"
     },
     {
       "role": "closing",
       "title": "Start pilot",
-      "body": [
-        "sales@payledger.example"
-      ],
-      "photoQuery": "handshake office",
+      "body": ["sales@payledger.example"],
+      "photoQuery": "handshake in bright office",
       "photoOrientation": "landscape"
     }
   ]
