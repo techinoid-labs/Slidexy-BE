@@ -1,6 +1,7 @@
 /**
- * Writes all 20 kit/<role>/{a,b}.json variants from NOTES.md composition rules.
- * Geometry lives only here (designer-authored). Run: node scripts/build-kit-variants.js
+ * ONE-TIME / DEV ONLY. Wrote initial kit/<role>/{a,b}.json from NOTES.md.
+ * Runtime source of truth is the JSON under kit/ — do not call from build or generateKitV1.
+ * See scripts/dev/README.md. Re-run: node scripts/dev/build-kit-variants.js
  */
 const fs = require("fs");
 const path = require("path");

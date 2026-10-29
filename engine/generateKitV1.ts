@@ -30,10 +30,7 @@ function extractJson(text: string): any {
   return JSON.parse(raw.slice(start, end + 1));
 }
 
-async function askOpenRouter(prompt: string): Promise<string> {
-  loadEnv();
-  const key = process.env.OPENROUTER_API_KEY;
-  if (!key) throw new Error("OPENROUTER_API_KEY is not set");
+async function askOpenRouter(key: string, prompt: string): Promise<string> {
   const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
     method: "POST",
     headers: {
@@ -43,7 +40,7 @@ async function askOpenRouter(prompt: string): Promise<string> {
       "X-Title": "Slidexy Engine v1",
     },
     body: JSON.stringify({
-      model: process.env.ENGINE_V1_MODEL || "openai/gpt-4o-mini",
+      model: process.env.ENGINE_V1_MODEL || "google/gemini-2.5-flash-lite",
       temperature: 0.4,
       messages: [
         { role: "system", content: "You write DeckSpec JSON only. No prose." },
@@ -53,7 +50,61 @@ async function askOpenRouter(prompt: string): Promise<string> {
   });
   if (!res.ok) throw new Error("OpenRouter HTTP " + res.status + " " + (await res.text()).slice(0, 200));
   const data: any = await res.json();
-  return data.choices[0].message.content;
+  const text = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
+  if (!text) throw new Error("OpenRouter returned empty content");
+  return text;
+}
+
+async function askGoogle(key: string, prompt: string): Promise<string> {
+  const url =
+    "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=" + key;
+  const res = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      contents: [{ parts: [{ text: "You write DeckSpec JSON only. No prose.\n\n" + prompt }] }],
+    }),
+  });
+  const body: any = await res.json();
+  if (!res.ok) throw new Error((body.error && body.error.message) || "Gemini HTTP " + res.status);
+  const text =
+    body.candidates &&
+    body.candidates[0] &&
+    body.candidates[0].content &&
+    body.candidates[0].content.parts &&
+    body.candidates[0].content.parts[0] &&
+    body.candidates[0].content.parts[0].text;
+  if (!text) throw new Error("Gemini returned empty content");
+  return text;
+}
+
+/** Resolve text from OpenRouter or Gemini. Throws if no LLM endpoint works. */
+async function askModel(prompt: string): Promise<string> {
+  loadEnv();
+  const openRouter = process.env.OPENROUTER_API_KEY;
+  const google = process.env.API_KEY1 || process.env.GEMINI_API_KEY;
+  if (!openRouter && !google) {
+    throw new Error("No LLM available — set OPENROUTER_API_KEY or API_KEY1 / GEMINI_API_KEY");
+  }
+  const errors: string[] = [];
+  if (openRouter) {
+    try {
+      return await askOpenRouter(openRouter, prompt);
+    } catch (err) {
+      errors.push("openrouter: " + (err as Error).message);
+      if (!google) throw err;
+      console.warn("OpenRouter failed; trying Gemini:", (err as Error).message.slice(0, 120));
+    }
+  }
+  if (google) {
+    try {
+      return await askGoogle(google, prompt);
+    } catch (err) {
+      errors.push("gemini: " + (err as Error).message);
+      throw new Error("No LLM available — " + errors.join(" | "));
+    }
+  }
+  throw new Error("No LLM available — " + errors.join(" | "));
 }
 
 function buildPrompt(userPrompt: string, deckType: DeckType, repairNotes?: string[]): string {
@@ -82,66 +133,21 @@ function buildPrompt(userPrompt: string, deckType: DeckType, repairNotes?: strin
   return msg;
 }
 
-/** Fallback deterministic DeckSpec when LLM unavailable — still validates. */
-export function fallbackSpec(prompt: string, deckType: DeckType): DeckSpec {
-  const dark = /bold|dark|night|garage|racing/i.test(prompt);
-  const warm = /clinic|dental|warm|care|human/i.test(prompt);
-  const palette = dark ? "ink-night" : warm ? "ivory-warm" : "paper-blue";
-  const typePair = dark ? "condensed-impact" : warm ? "editorial-serif" : "technical-sans";
-  const sequences: Record<string, string[]> = {
-    Pitch: ["cover", "problem", "solution", "how-it-works", "feature", "stats", "testimonial", "closing"],
-    Overview: ["cover", "agenda", "feature", "how-it-works", "team", "stats", "closing"],
-    Report: ["cover", "agenda", "problem", "stats", "solution", "feature", "closing"],
-    Proposal: ["cover", "problem", "solution", "feature", "stats", "team", "closing"],
-  };
-  const roles = sequences[deckType] || sequences.Pitch;
-  const topic = String(prompt || "Brand").slice(0, 40);
-  return {
-    style: {
-      palette,
-      typePair,
-      imageTreatment: dark ? "duotone" : "full-bleed",
-      motif: "bar-accent",
-    },
-    slides: roles.map((role) => {
-      const slide: any = {
-        role,
-        title: role === "cover" ? topic.split(/\s+/).slice(0, 4).join(" ") : role.replace(/-/g, " "),
-        body: ["Clear value", "Trusted delivery", "Measurable outcomes"].slice(0, role === "feature" ? 3 : 2),
-      };
-      if (role === "stats") {
-        slide.stat = "98%";
-        slide.caption = "client retention";
-        slide.body = ["4.9", "120+"];
-      }
-      if (role !== "problem" || true) {
-        if (["cover", "problem", "solution", "feature", "how-it-works", "testimonial", "team", "closing", "agenda", "stats"].indexOf(role) >= 0) {
-          slide.photoQuery = topic + " " + role;
-          slide.photoOrientation = role === "team" || role === "testimonial" ? "portrait" : "landscape";
-        }
-      }
-      if (role === "problem") {
-        // keep photo for variant a preference
-      }
-      return slide;
-    }),
-  };
-}
-
+/** LLM must produce a valid DeckSpec. No deterministic fallback. One validation re-ask max. */
 export async function inventDeckSpec(prompt: string, deckType: DeckType, repairNotes?: string[]): Promise<DeckSpec> {
-  if (process.env.ENGINE_V1_SKIP_LLM === "1") {
-    return fallbackSpec(prompt, deckType);
+  let text = await askModel(buildPrompt(prompt, deckType, repairNotes));
+  let parsed = extractJson(text);
+  let check = validateDeckSpec(parsed);
+  if (!check.ok && !(repairNotes && repairNotes.length)) {
+    // One schema/token repair (still LLM) — distinct from gate repair in generateKitV1
+    text = await askModel(
+      buildPrompt(prompt, deckType, check.errors.map((e: string) => "validation: " + e))
+    );
+    parsed = extractJson(text);
+    check = validateDeckSpec(parsed);
   }
-  try {
-    const text = await askOpenRouter(buildPrompt(prompt, deckType, repairNotes));
-    const parsed = extractJson(text);
-    const check = validateDeckSpec(parsed);
-    if (!check.ok) throw new Error("invalid DeckSpec: " + check.errors.join("; "));
-    return parsed;
-  } catch (err) {
-    console.warn("DeckSpec LLM fallback:", (err as Error).message);
-    return fallbackSpec(prompt, deckType);
-  }
+  if (!check.ok) throw new Error("invalid DeckSpec: " + check.errors.join("; "));
+  return parsed;
 }
 
 export async function generateKitV1(
@@ -168,9 +174,6 @@ export async function generateKitV1(
     const notes = gates.slides.flatMap((s: any) => s.reasons.map((r: string) => "slide " + s.slideIndex + " " + r));
     repaired = true;
     spec = await inventDeckSpec(prompt, deckType, notes);
-    // if LLM failed validation, use fallback patched for gate notes
-    const v = validateDeckSpec(spec);
-    if (!v.ok) spec = fallbackSpec(prompt, deckType);
     selections = selectAll(spec, prompt + ":repair");
     gates = runGates(spec, selections, tokens);
     if (!gates.pass) failedAfterRepair = { spec, gates };
@@ -205,4 +208,4 @@ export async function generateKitV1(
   return { deck, spec, selections, gates, repaired, failedAfterRepair, outDir };
 }
 
-module.exports = { generateKitV1, inventDeckSpec, fallbackSpec };
+module.exports = { generateKitV1, inventDeckSpec };

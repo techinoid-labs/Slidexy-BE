@@ -1,7 +1,7 @@
 {
   "style": {
     "palette": "mist-teal",
-    "typePair": "technical-sans",
+    "typePair": "tech-verdana",
     "imageTreatment": "duotone",
     "motif": "bar-accent"
   },

@@ -1,7 +1,10 @@
 # DeckSpec authoring
 
 You write ONE JSON object matching the DeckSpec schema. No markdown fences.
-Never include x, y, width, height, px, hex colors, or font names.
+Never include x, y, width, height, px, hex colors, or font family names
+(Calibri, Cambria, Georgia, Arial, Verdana, etc.).
+style.typePair MUST be one of: corp-calibri | editorial-cambria | tech-verdana | classic-georgia
+style.palette / imageTreatment / motif MUST be the enum ids below — never raw colors or fonts.
 Only use token enum names from the menu below.
 
 ## Style tokens
@@ -14,11 +17,11 @@ Only use token enum names from the menu below.
 - charcoal-ember — bold dark with warm accent (dark)
 - paper-blue — technical SaaS / report
 
-### typePairs
-- display-grotesk — bold pitches and launches
-- editorial-serif — warm human stories
-- technical-sans — SaaS / ops / reports
-- condensed-impact — hero covers and single-stat slides
+### typePairs (Office fonts on Windows + macOS PowerPoint)
+- corp-calibri — bold pitches and launches (Calibri / Calibri)
+- editorial-cambria — warm human stories (Cambria / Calibri)
+- tech-verdana — SaaS / ops / reports (Verdana / Verdana)
+- classic-georgia — hero covers and single-stat slides (Georgia / Arial)
 
 ### imageTreatments
 - full-bleed — hero photography owns the field

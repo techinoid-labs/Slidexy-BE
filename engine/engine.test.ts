@@ -99,4 +99,29 @@ function baseSpec(): any {
   console.log("ok gates pass?", gates.pass, "fails", gates.slides.filter((s: any) => !s.pass).length);
 }
 
-console.log("engine.test.ts passed");
+// fixture fallback exists for tests only; generateKitV1 must throw without LLM
+{
+  const { fallbackSpec } = require("./golden/fixtures/fallbackSpec");
+  const fix = fallbackSpec("Test brand", "Pitch");
+  assert.strictEqual(validateDeckSpec(fix).ok, true);
+  const prevOr = process.env.OPENROUTER_API_KEY;
+  const prevA1 = process.env.API_KEY1;
+  const prevG = process.env.GEMINI_API_KEY;
+  delete process.env.OPENROUTER_API_KEY;
+  delete process.env.API_KEY1;
+  delete process.env.GEMINI_API_KEY;
+  delete require.cache[require.resolve("./generateKitV1")];
+  const { inventDeckSpec } = require("./generateKitV1");
+  inventDeckSpec("x", "Pitch")
+    .then(() => {
+      assert.fail("should throw without LLM");
+    })
+    .catch((err: Error) => {
+      assert.ok(/LLM|OPENROUTER|API_KEY/i.test(err.message));
+      console.log("ok inventDeckSpec throws without LLM");
+      if (prevOr) process.env.OPENROUTER_API_KEY = prevOr;
+      if (prevA1) process.env.API_KEY1 = prevA1;
+      if (prevG) process.env.GEMINI_API_KEY = prevG;
+      console.log("engine.test.ts passed");
+    });
+}

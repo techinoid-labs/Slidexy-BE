@@ -11,7 +11,8 @@ const { validateDeckSpec } = require("../engine/validate");
 const { selectAll } = require("../engine/selectVariant");
 const { runGates } = require("../engine/gates");
 const { renderDeckFromSpec, tokens } = require("../engine/render");
-const { generateKitV1, fallbackSpec } = require("../engine/generateKitV1");
+const { generateKitV1 } = require("../engine/generateKitV1");
+const { fallbackSpec } = require("../engine/golden/fixtures/fallbackSpec");
 const { renderSlidePng } = require("./slideSvg");
 const { exportDeckPptx } = require("../services/templatePipeline/catalog");
 
@@ -32,9 +33,10 @@ const report: any = {
 function collectDesignReviews() {
   const kit = path.join(ROOT, "kit");
   const reviews: string[] = [];
-  const script = fs.readFileSync(path.join(ROOT, "scripts", "build-kit-variants.js"), "utf8");
+  const scriptPath = path.join(ROOT, "scripts", "dev", "build-kit-variants.js");
+  const script = fs.existsSync(scriptPath) ? fs.readFileSync(scriptPath, "utf8") : "";
   script.split(/\n/).forEach((line: string, i: number) => {
-    if (/DESIGN REVIEW/i.test(line)) reviews.push("build-kit-variants.js:" + (i + 1) + " " + line.trim());
+    if (/DESIGN REVIEW/i.test(line)) reviews.push("scripts/dev/build-kit-variants.js:" + (i + 1) + " " + line.trim());
   });
   fs.readdirSync(kit).forEach((role: string) => {
     const dir = path.join(kit, role);
@@ -244,8 +246,18 @@ async function proofDecks() {
     const outDir = path.join(ROOT, "out", "proof", p.id);
     fs.mkdirSync(outDir, { recursive: true });
     // Prefer fast fallback+render path to guarantee PPTX in this run; still call generateKitV1 which may LLM
-    process.env.ENGINE_V1_SKIP_LLM = "1";
-    const result = await generateKitV1(p.prompt, p.deckType as any, { outDir, id: p.id });
+    // Proofs with real LLM belong in scripts/proof-llm.ts — this harness uses fixtures only.
+    const spec = fallbackSpec(p.prompt, p.deckType as any);
+    const selections = selectAll(spec, p.prompt);
+    const gates = runGates(spec, selections, tokens);
+    const deck = await renderDeckFromSpec(spec, selections, { id: p.id });
+    fs.writeFileSync(path.join(outDir, "deckspec.json"), JSON.stringify(spec, null, 2));
+    fs.writeFileSync(path.join(outDir, "deck.json"), JSON.stringify(deck, null, 2));
+    deck.layoutSequence.forEach((layoutId: string, index: number) => {
+      renderSlidePng(deck, layoutId, path.join(outDir, "slide-" + String(index + 1).padStart(2, "0") + ".png"));
+    });
+    await exportDeckPptx(deck, path.join(outDir, "deck.pptx"));
+    const result = { gates, repaired: false, failedAfterRepair: null };
     if (result.failedAfterRepair) report.failedAfterRepair.push({ id: p.id, gates: result.failedAfterRepair.gates });
     paths.push("out/proof/" + p.id + "/deck.pptx");
     console.log("proof", p.id, "gates", result.gates.pass, "pptx", fs.existsSync(path.join(outDir, "deck.pptx")));

@@ -1,7 +1,7 @@
 {
   "style": {
     "palette": "paper-blue",
-    "typePair": "technical-sans",
+    "typePair": "tech-verdana",
     "imageTreatment": "full-bleed",
     "motif": "bar-accent"
   },
