@@ -1,0 +1,113 @@
+{
+  "id": "solution/b",
+  "role": "solution",
+  "variant": "b",
+  "steal": "Photo half-split right; title + three fragments left.",
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    },
+    "body": {
+      "kind": "text",
+      "optional": false,
+      "from": "body"
+    },
+    "photo": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo"
+    },
+    "accent": {
+      "kind": "shape",
+      "optional": false
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 48,
+      "minFont": 28,
+      "lineClamp": 2,
+      "shrinkMin": 0.75
+    },
+    "body": {
+      "maxFont": 26,
+      "minFont": 18,
+      "lineClamp": 4,
+      "shrinkMin": 0.75
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "body": {
+      "kind": "text"
+    },
+    "photo": {
+      "kind": "picture"
+    },
+    "accent": {
+      "kind": "shape"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 1,
+        "id": "photo",
+        "type": "image",
+        "slot": "photo",
+        "x": 800,
+        "y": 0,
+        "width": 800,
+        "height": 900
+      },
+      {
+        "z": 2,
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 44,
+        "align": "left",
+        "x": 80,
+        "y": 160,
+        "width": 640,
+        "height": 160
+      },
+      {
+        "z": 2,
+        "id": "body",
+        "type": "text",
+        "slot": "body",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontSize": 24,
+        "align": "left",
+        "x": 80,
+        "y": 360,
+        "width": 640,
+        "height": 400
+      },
+      {
+        "z": 3,
+        "id": "accent",
+        "type": "shape",
+        "shape": "rect",
+        "motif": true,
+        "tokenFill": "accent",
+        "x": 80,
+        "y": 330,
+        "width": 64,
+        "height": 8
+      }
+    ]
+  }
+}

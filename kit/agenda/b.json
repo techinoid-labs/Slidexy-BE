@@ -1,0 +1,131 @@
+{
+  "id": "agenda/b",
+  "role": "agenda",
+  "variant": "b",
+  "steal": "Numbered list on solid block; right half photo or empty.",
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    },
+    "body": {
+      "kind": "text",
+      "optional": false,
+      "from": "body"
+    },
+    "block": {
+      "kind": "shape",
+      "optional": false
+    },
+    "photo": {
+      "kind": "image",
+      "optional": true,
+      "from": "photo"
+    },
+    "accent": {
+      "kind": "shape",
+      "optional": false
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 40,
+      "minFont": 24,
+      "lineClamp": 2,
+      "shrinkMin": 0.75
+    },
+    "body": {
+      "maxFont": 26,
+      "minFont": 18,
+      "lineClamp": 6,
+      "shrinkMin": 0.75
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "body": {
+      "kind": "text"
+    },
+    "block": {
+      "kind": "shape"
+    },
+    "photo": {
+      "kind": "picture"
+    },
+    "accent": {
+      "kind": "shape"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 1,
+        "id": "block",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "accent",
+        "x": 0,
+        "y": 0,
+        "width": 780,
+        "height": 900
+      },
+      {
+        "z": 2,
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "tokenColor": "bg",
+        "fontRole": "display",
+        "fontSize": 40,
+        "align": "left",
+        "x": 72,
+        "y": 100,
+        "width": 640,
+        "height": 100
+      },
+      {
+        "z": 2,
+        "id": "body",
+        "type": "text",
+        "slot": "body",
+        "tokenColor": "bg",
+        "fontRole": "body",
+        "fontSize": 24,
+        "align": "left",
+        "x": 72,
+        "y": 240,
+        "width": 640,
+        "height": 540
+      },
+      {
+        "z": 1,
+        "id": "photo",
+        "type": "image",
+        "slot": "photo",
+        "x": 780,
+        "y": 0,
+        "width": 820,
+        "height": 900
+      },
+      {
+        "z": 3,
+        "id": "accent",
+        "type": "shape",
+        "shape": "rect",
+        "motif": true,
+        "tokenFill": "ink",
+        "x": 72,
+        "y": 210,
+        "width": 80,
+        "height": 6
+      }
+    ]
+  }
+}

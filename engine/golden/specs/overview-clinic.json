@@ -1,0 +1,81 @@
+{
+  "style": {
+    "palette": "ivory-warm",
+    "typePair": "editorial-serif",
+    "imageTreatment": "full-bleed",
+    "motif": "dot-cluster"
+  },
+  "slides": [
+    {
+      "role": "cover",
+      "title": "Little Smiles",
+      "caption": "Pediatric dental",
+      "photoQuery": "bright dental clinic children",
+      "photoOrientation": "landscape"
+    },
+    {
+      "role": "agenda",
+      "title": "Today",
+      "body": [
+        "Care model",
+        "Team",
+        "Outcomes"
+      ],
+      "photoQuery": "soft clinic hallway",
+      "photoOrientation": "landscape"
+    },
+    {
+      "role": "feature",
+      "title": "Gentle care",
+      "body": [
+        "Play check-in",
+        "Quiet rooms",
+        "Parent notes"
+      ],
+      "photoQuery": "pediatric dental chair",
+      "photoOrientation": "landscape"
+    },
+    {
+      "role": "how-it-works",
+      "title": "Visit flow",
+      "body": [
+        "Welcome",
+        "Exam",
+        "Plan"
+      ],
+      "photoQuery": "dentist talking to child",
+      "photoOrientation": "landscape"
+    },
+    {
+      "role": "team",
+      "title": "Clinicians",
+      "body": [
+        "Dr. Lee — Lead",
+        "Sam — Hygienist",
+        "Mia — Care"
+      ],
+      "photoQuery": "friendly dentist portrait",
+      "photoOrientation": "portrait"
+    },
+    {
+      "role": "stats",
+      "title": "Trust",
+      "stat": "4.9",
+      "body": [
+        "2k+",
+        "98%"
+      ],
+      "caption": "family rating"
+    },
+    {
+      "role": "closing",
+      "title": "Visit us",
+      "body": [
+        "Mon–Sat",
+        "hello@clinic.example"
+      ],
+      "photoQuery": "clinic reception warm light",
+      "photoOrientation": "landscape"
+    }
+  ]
+}

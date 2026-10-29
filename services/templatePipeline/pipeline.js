@@ -118,6 +118,30 @@ async function runPipeline(options) {
   const settings = options || {};
   const mode = settings.mode;
   const deps = settings.deps || testDeps || null;
+
+  // Engine v1 kit path — default when ENGINE_V1=true (no new public mode name).
+  if (process.env.ENGINE_V1 === "true" || mode === "kit-v1") {
+    require("ts-node/register/transpile-only");
+    const { generateKitV1 } = require("../../engine/generateKitV1");
+    const deckType = settings.deckType || settings.deck_type || "Pitch";
+    const outDir = settings.out
+      ? (path.isAbsolute(settings.out) ? settings.out : path.join(ROOT, settings.out))
+      : path.join(ROOT, "docs", "template-pipeline", "admin-dashboard", "tmp", "kit-v1-" + Date.now().toString(36));
+    const result = await generateKitV1(settings.prompt || "", deckType, {
+      outDir,
+      id: path.basename(outDir),
+    });
+    return normalizeResult("kit-v1", {
+      outDir,
+      deck: result.deck,
+      slides: fs.readdirSync(outDir).filter((n) => /^slide-\d+\.png$/.test(n)).map((n) => path.join(outDir, n)),
+      analysis: { score: result.gates && result.gates.pass ? 90 : 50, gates: result.gates },
+      name: result.deck.name,
+      deckId: result.deck.id,
+      report: { engine: "v1", repaired: result.repaired, failedAfterRepair: result.failedAfterRepair || null },
+    });
+  }
+
   const allowed = {
     auto: true,
     pinned: true,

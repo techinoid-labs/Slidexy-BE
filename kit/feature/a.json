@@ -1,0 +1,132 @@
+{
+  "id": "feature/a",
+  "role": "feature",
+  "variant": "a",
+  "steal": "Twin-photo row over split footer title/copy.",
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photoL",
+    "photoR"
+  ],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    },
+    "body": {
+      "kind": "text",
+      "optional": true,
+      "from": "body0"
+    },
+    "photoL": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo"
+    },
+    "photoR": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo"
+    },
+    "accent": {
+      "kind": "shape",
+      "optional": false
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 40,
+      "minFont": 24,
+      "lineClamp": 2,
+      "shrinkMin": 0.75
+    },
+    "body": {
+      "maxFont": 22,
+      "minFont": 16,
+      "lineClamp": 3,
+      "shrinkMin": 0.75
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "body": {
+      "kind": "text"
+    },
+    "photoL": {
+      "kind": "picture"
+    },
+    "photoR": {
+      "kind": "picture"
+    },
+    "accent": {
+      "kind": "shape"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 1,
+        "id": "photoL",
+        "type": "image",
+        "slot": "photoL",
+        "x": 80,
+        "y": 100,
+        "width": 700,
+        "height": 480
+      },
+      {
+        "z": 1,
+        "id": "photoR",
+        "type": "image",
+        "slot": "photoR",
+        "x": 820,
+        "y": 100,
+        "width": 700,
+        "height": 480
+      },
+      {
+        "z": 2,
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 36,
+        "align": "left",
+        "x": 80,
+        "y": 640,
+        "width": 700,
+        "height": 160
+      },
+      {
+        "z": 2,
+        "id": "body",
+        "type": "text",
+        "slot": "body",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontSize": 20,
+        "align": "left",
+        "x": 820,
+        "y": 640,
+        "width": 700,
+        "height": 160
+      },
+      {
+        "z": 3,
+        "id": "accent",
+        "type": "shape",
+        "shape": "ellipse",
+        "motif": true,
+        "tokenFill": "accent",
+        "x": 80,
+        "y": 610,
+        "width": 14,
+        "height": 14
+      }
+    ]
+  }
+}

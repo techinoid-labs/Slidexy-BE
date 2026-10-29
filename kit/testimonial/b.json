@@ -1,0 +1,127 @@
+{
+  "id": "testimonial/b",
+  "role": "testimonial",
+  "variant": "b",
+  "steal": "Quote left, one square portrait right.",
+  "requiresPhoto": true,
+  "photoSlots": [
+    "portrait"
+  ],
+  "slots": {
+    "body": {
+      "kind": "text",
+      "optional": false,
+      "from": "body"
+    },
+    "caption": {
+      "kind": "text",
+      "optional": true,
+      "from": "caption"
+    },
+    "title": {
+      "kind": "text",
+      "optional": true,
+      "from": "title"
+    },
+    "portrait": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo"
+    },
+    "accent": {
+      "kind": "shape",
+      "optional": false
+    }
+  },
+  "fit": {
+    "body": {
+      "maxFont": 28,
+      "minFont": 18,
+      "lineClamp": 8,
+      "shrinkMin": 0.75
+    },
+    "caption": {
+      "maxFont": 20,
+      "minFont": 14,
+      "lineClamp": 2,
+      "shrinkMin": 0.75
+    },
+    "title": {
+      "maxFont": 28,
+      "minFont": 18,
+      "lineClamp": 1,
+      "shrinkMin": 0.75
+    }
+  },
+  "pptxMapping": {
+    "body": {
+      "kind": "text"
+    },
+    "caption": {
+      "kind": "text"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "portrait": {
+      "kind": "picture"
+    },
+    "accent": {
+      "kind": "shape"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 2,
+        "id": "body",
+        "type": "text",
+        "slot": "body",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 28,
+        "align": "left",
+        "x": 80,
+        "y": 180,
+        "width": 780,
+        "height": 420
+      },
+      {
+        "z": 2,
+        "id": "caption",
+        "type": "text",
+        "slot": "caption",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontSize": 20,
+        "align": "left",
+        "x": 80,
+        "y": 640,
+        "width": 780,
+        "height": 80
+      },
+      {
+        "z": 1,
+        "id": "portrait",
+        "type": "image",
+        "slot": "portrait",
+        "x": 960,
+        "y": 180,
+        "width": 520,
+        "height": 520
+      },
+      {
+        "z": 3,
+        "id": "accent",
+        "type": "shape",
+        "shape": "rect",
+        "motif": true,
+        "tokenFill": "accent",
+        "x": 80,
+        "y": 160,
+        "width": 64,
+        "height": 8
+      }
+    ]
+  }
+}

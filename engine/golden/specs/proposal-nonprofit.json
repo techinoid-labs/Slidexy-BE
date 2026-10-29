@@ -1,0 +1,77 @@
+{
+  "style": {
+    "palette": "slate-light",
+    "typePair": "display-grotesk",
+    "imageTreatment": "full-bleed",
+    "motif": "dot-cluster"
+  },
+  "slides": [
+    {
+      "role": "cover",
+      "title": "Harbor Fund",
+      "caption": "Grant proposal",
+      "photoQuery": "coastal community harbor",
+      "photoOrientation": "landscape"
+    },
+    {
+      "role": "problem",
+      "title": "Access gap",
+      "body": [
+        "Transport deserts",
+        "After-school voids"
+      ],
+      "photoQuery": "empty bus stop rain",
+      "photoOrientation": "landscape"
+    },
+    {
+      "role": "solution",
+      "title": "Routes + hubs",
+      "body": [
+        "Shared vans",
+        "Tutor nights"
+      ],
+      "photoQuery": "community center activity",
+      "photoOrientation": "landscape"
+    },
+    {
+      "role": "feature",
+      "title": "Program kit",
+      "body": [
+        "Drivers",
+        "Tutors",
+        "Meals"
+      ],
+      "photoQuery": "volunteers packing boxes",
+      "photoOrientation": "landscape"
+    },
+    {
+      "role": "stats",
+      "title": "Reach",
+      "stat": "860",
+      "body": [
+        "42",
+        "6"
+      ],
+      "caption": "students served"
+    },
+    {
+      "role": "team",
+      "title": "Stewards",
+      "body": [
+        "Nora — ED",
+        "Jay — Ops"
+      ],
+      "photoQuery": "nonprofit director portrait",
+      "photoOrientation": "portrait"
+    },
+    {
+      "role": "closing",
+      "title": "Partner",
+      "body": [
+        "grants@harbor.example"
+      ],
+      "photoQuery": "sunrise over harbor",
+      "photoOrientation": "landscape"
+    }
+  ]
+}

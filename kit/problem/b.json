@@ -1,0 +1,84 @@
+{
+  "id": "problem/b",
+  "role": "problem",
+  "variant": "b",
+  "steal": "Single short statement centered on a dark block, no image.",
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    },
+    "block": {
+      "kind": "shape",
+      "optional": false
+    },
+    "accent": {
+      "kind": "shape",
+      "optional": false
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 56,
+      "minFont": 28,
+      "lineClamp": 3,
+      "shrinkMin": 0.75
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "block": {
+      "kind": "shape"
+    },
+    "accent": {
+      "kind": "shape"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 1,
+        "id": "block",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "ink",
+        "x": 240,
+        "y": 260,
+        "width": 1120,
+        "height": 380
+      },
+      {
+        "z": 2,
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "tokenColor": "bg",
+        "fontRole": "display",
+        "fontSize": 48,
+        "align": "center",
+        "verticalAlign": "middle",
+        "x": 300,
+        "y": 300,
+        "width": 1000,
+        "height": 300
+      },
+      {
+        "z": 3,
+        "id": "accent",
+        "type": "shape",
+        "shape": "rect",
+        "motif": true,
+        "tokenFill": "accent",
+        "x": 240,
+        "y": 260,
+        "width": 1120,
+        "height": 10
+      }
+    ]
+  }
+}

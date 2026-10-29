@@ -178,3 +178,6 @@ services/testFetchWeb.js
 
 # Frontend folder (separate repo)
 slidesX-FE/
+# Engine v1 photo cache
+engine/cache/
+

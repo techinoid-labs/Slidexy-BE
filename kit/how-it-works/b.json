@@ -1,0 +1,112 @@
+{
+  "id": "how-it-works/b",
+  "role": "how-it-works",
+  "variant": "b",
+  "steal": "Dotted timeline with opposite oversized color form.",
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    },
+    "body": {
+      "kind": "text",
+      "optional": false,
+      "from": "body"
+    },
+    "blob": {
+      "kind": "shape",
+      "optional": false
+    },
+    "accent": {
+      "kind": "shape",
+      "optional": false
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 56,
+      "minFont": 32,
+      "lineClamp": 1,
+      "shrinkMin": 0.75
+    },
+    "body": {
+      "maxFont": 24,
+      "minFont": 16,
+      "lineClamp": 6,
+      "shrinkMin": 0.75
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "body": {
+      "kind": "text"
+    },
+    "blob": {
+      "kind": "shape"
+    },
+    "accent": {
+      "kind": "shape"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 1,
+        "id": "blob",
+        "type": "shape",
+        "shape": "ellipse",
+        "tokenFill": "accent",
+        "opacity": 0.4,
+        "x": -120,
+        "y": 480,
+        "width": 560,
+        "height": 560
+      },
+      {
+        "z": 2,
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 52,
+        "align": "left",
+        "x": 80,
+        "y": 140,
+        "width": 600,
+        "height": 120
+      },
+      {
+        "z": 2,
+        "id": "body",
+        "type": "text",
+        "slot": "body",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontSize": 22,
+        "align": "left",
+        "x": 820,
+        "y": 160,
+        "width": 680,
+        "height": 620
+      },
+      {
+        "z": 3,
+        "id": "accent",
+        "type": "shape",
+        "shape": "rect",
+        "motif": true,
+        "tokenFill": "accent",
+        "x": 800,
+        "y": 180,
+        "width": 4,
+        "height": 560
+      }
+    ]
+  }
+}

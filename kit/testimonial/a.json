@@ -1,0 +1,160 @@
+{
+  "id": "testimonial/a",
+  "role": "testimonial",
+  "variant": "a",
+  "steal": "Dense quote with two large portraits.",
+  "requiresPhoto": true,
+  "photoSlots": [
+    "p1",
+    "p2"
+  ],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    },
+    "body": {
+      "kind": "text",
+      "optional": false,
+      "from": "body"
+    },
+    "caption": {
+      "kind": "text",
+      "optional": true,
+      "from": "caption"
+    },
+    "p1": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo"
+    },
+    "p2": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo"
+    },
+    "accent": {
+      "kind": "shape",
+      "optional": false
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 36,
+      "minFont": 22,
+      "lineClamp": 1,
+      "shrinkMin": 0.75
+    },
+    "body": {
+      "maxFont": 24,
+      "minFont": 16,
+      "lineClamp": 8,
+      "shrinkMin": 0.75
+    },
+    "caption": {
+      "maxFont": 18,
+      "minFont": 14,
+      "lineClamp": 2,
+      "shrinkMin": 0.75
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "body": {
+      "kind": "text"
+    },
+    "caption": {
+      "kind": "text"
+    },
+    "p1": {
+      "kind": "picture"
+    },
+    "p2": {
+      "kind": "picture"
+    },
+    "accent": {
+      "kind": "shape"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 2,
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 32,
+        "align": "left",
+        "x": 80,
+        "y": 100,
+        "width": 560,
+        "height": 80
+      },
+      {
+        "z": 2,
+        "id": "body",
+        "type": "text",
+        "slot": "body",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontSize": 22,
+        "align": "left",
+        "x": 80,
+        "y": 220,
+        "width": 560,
+        "height": 420
+      },
+      {
+        "z": 2,
+        "id": "caption",
+        "type": "text",
+        "slot": "caption",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontSize": 18,
+        "align": "left",
+        "x": 80,
+        "y": 680,
+        "width": 560,
+        "height": 80
+      },
+      {
+        "z": 1,
+        "id": "p1",
+        "type": "image",
+        "slot": "p1",
+        "x": 720,
+        "y": 120,
+        "width": 400,
+        "height": 660
+      },
+      {
+        "z": 1,
+        "id": "p2",
+        "type": "image",
+        "slot": "p2",
+        "x": 1160,
+        "y": 120,
+        "width": 360,
+        "height": 660
+      },
+      {
+        "z": 3,
+        "id": "accent",
+        "type": "shape",
+        "shape": "rect",
+        "motif": true,
+        "tokenFill": "accent",
+        "x": 80,
+        "y": 190,
+        "width": 48,
+        "height": 6
+      }
+    ]
+  }
+}

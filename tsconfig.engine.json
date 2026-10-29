@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "strict": false,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "outDir": "engine/dist",
+    "rootDir": ".",
+    "declaration": false,
+    "allowJs": true
+  },
+  "include": ["engine/**/*.ts", "scripts/**/*.ts"]
+}

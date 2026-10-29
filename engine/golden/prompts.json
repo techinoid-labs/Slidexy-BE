@@ -1,0 +1,17 @@
+[
+  { "id": "p01", "deckType": "Pitch", "prompt": "A supercars garage brand pitch" },
+  { "id": "p02", "deckType": "Overview", "prompt": "Pediatric dental clinic overview" },
+  { "id": "p03", "deckType": "Pitch", "prompt": "B2B payroll SaaS for EU compliance" },
+  { "id": "p04", "deckType": "Report", "prompt": "Q3 warehouse operations report" },
+  { "id": "p05", "deckType": "Proposal", "prompt": "Nonprofit grant for after-school routes" },
+  { "id": "p06", "deckType": "Pitch", "prompt": "Boutique coffee roastery launch" },
+  { "id": "p07", "deckType": "Overview", "prompt": "Architecture studio portfolio overview" },
+  { "id": "p08", "deckType": "Pitch", "prompt": "Cybersecurity platform for mid-market" },
+  { "id": "p09", "deckType": "Proposal", "prompt": "Municipal green roof proposal" },
+  { "id": "p10", "deckType": "Report", "prompt": "Annual university research impact report" },
+  { "id": "p11", "deckType": "Pitch", "prompt": "Electric scooter sharing city pitch" },
+  { "id": "p12", "deckType": "Overview", "prompt": "Luxury skincare brand overview" },
+  { "id": "p13", "deckType": "Pitch", "prompt": "AI code review tool for enterprises" },
+  { "id": "p14", "deckType": "Proposal", "prompt": "Hotel renovation investor proposal" },
+  { "id": "p15", "deckType": "Report", "prompt": "Hospital staffing quarterly report" }
+]

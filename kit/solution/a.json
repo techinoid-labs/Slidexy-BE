@@ -1,0 +1,134 @@
+{
+  "id": "solution/a",
+  "role": "solution",
+  "variant": "a",
+  "steal": "Same photo-footer; quieter shorter footer.",
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo"
+    },
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    },
+    "body": {
+      "kind": "text",
+      "optional": true,
+      "from": "body0"
+    },
+    "footer": {
+      "kind": "shape",
+      "optional": false
+    },
+    "accent": {
+      "kind": "shape",
+      "optional": false
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 64,
+      "minFont": 32,
+      "lineClamp": 1,
+      "shrinkMin": 0.75
+    },
+    "body": {
+      "maxFont": 28,
+      "minFont": 18,
+      "lineClamp": 2,
+      "shrinkMin": 0.75
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "body": {
+      "kind": "text"
+    },
+    "footer": {
+      "kind": "shape"
+    },
+    "accent": {
+      "kind": "shape"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 1,
+        "id": "photo",
+        "type": "image",
+        "slot": "photo",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 675
+      },
+      {
+        "z": 2,
+        "id": "footer",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "surface",
+        "x": 0,
+        "y": 675,
+        "width": 1600,
+        "height": 225
+      },
+      {
+        "z": 3,
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 56,
+        "align": "left",
+        "verticalAlign": "middle",
+        "x": 72,
+        "y": 699,
+        "width": 640,
+        "height": 177
+      },
+      {
+        "z": 3,
+        "id": "body",
+        "type": "text",
+        "slot": "body",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontSize": 24,
+        "align": "right",
+        "verticalAlign": "middle",
+        "x": 760,
+        "y": 711,
+        "width": 760,
+        "height": 153
+      },
+      {
+        "z": 4,
+        "id": "accent",
+        "type": "shape",
+        "shape": "rect",
+        "motif": true,
+        "tokenFill": "accent",
+        "x": 0,
+        "y": 675,
+        "width": 12,
+        "height": 225
+      }
+    ]
+  },
+  "family": "photo-footer"
+}

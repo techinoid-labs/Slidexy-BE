@@ -1,0 +1,233 @@
+{
+  "id": "stats/a",
+  "role": "stats",
+  "variant": "a",
+  "steal": "Three oversized numbers evenly spaced.",
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    },
+    "stat": {
+      "kind": "text",
+      "optional": false,
+      "from": "stat"
+    },
+    "s2": {
+      "kind": "text",
+      "optional": true,
+      "from": "body0"
+    },
+    "s3": {
+      "kind": "text",
+      "optional": true,
+      "from": "body1"
+    },
+    "c1": {
+      "kind": "text",
+      "optional": true,
+      "from": "caption"
+    },
+    "c2": {
+      "kind": "text",
+      "optional": true,
+      "from": "body2"
+    },
+    "c3": {
+      "kind": "text",
+      "optional": true,
+      "from": "body3"
+    },
+    "accent": {
+      "kind": "shape",
+      "optional": false
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 36,
+      "minFont": 22,
+      "lineClamp": 1,
+      "shrinkMin": 0.75
+    },
+    "stat": {
+      "maxFont": 96,
+      "minFont": 48,
+      "lineClamp": 1,
+      "shrinkMin": 0.75
+    },
+    "s2": {
+      "maxFont": 72,
+      "minFont": 40,
+      "lineClamp": 1,
+      "shrinkMin": 0.75
+    },
+    "s3": {
+      "maxFont": 72,
+      "minFont": 40,
+      "lineClamp": 1,
+      "shrinkMin": 0.75
+    },
+    "c1": {
+      "maxFont": 20,
+      "minFont": 14,
+      "lineClamp": 2,
+      "shrinkMin": 0.75
+    },
+    "c2": {
+      "maxFont": 20,
+      "minFont": 14,
+      "lineClamp": 2,
+      "shrinkMin": 0.75
+    },
+    "c3": {
+      "maxFont": 20,
+      "minFont": 14,
+      "lineClamp": 2,
+      "shrinkMin": 0.75
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "stat": {
+      "kind": "text"
+    },
+    "s2": {
+      "kind": "text"
+    },
+    "s3": {
+      "kind": "text"
+    },
+    "c1": {
+      "kind": "text"
+    },
+    "c2": {
+      "kind": "text"
+    },
+    "c3": {
+      "kind": "text"
+    },
+    "accent": {
+      "kind": "shape"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 2,
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 32,
+        "align": "center",
+        "x": 200,
+        "y": 100,
+        "width": 1200,
+        "height": 80
+      },
+      {
+        "z": 2,
+        "id": "stat",
+        "type": "text",
+        "slot": "stat",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 88,
+        "align": "center",
+        "x": 80,
+        "y": 320,
+        "width": 460,
+        "height": 160
+      },
+      {
+        "z": 2,
+        "id": "s2",
+        "type": "text",
+        "slot": "s2",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 88,
+        "align": "center",
+        "x": 570,
+        "y": 320,
+        "width": 460,
+        "height": 160
+      },
+      {
+        "z": 2,
+        "id": "s3",
+        "type": "text",
+        "slot": "s3",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 88,
+        "align": "center",
+        "x": 1060,
+        "y": 320,
+        "width": 460,
+        "height": 160
+      },
+      {
+        "z": 2,
+        "id": "c1",
+        "type": "text",
+        "slot": "c1",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontSize": 18,
+        "align": "center",
+        "x": 80,
+        "y": 520,
+        "width": 460,
+        "height": 80
+      },
+      {
+        "z": 2,
+        "id": "c2",
+        "type": "text",
+        "slot": "c2",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontSize": 18,
+        "align": "center",
+        "x": 570,
+        "y": 520,
+        "width": 460,
+        "height": 80
+      },
+      {
+        "z": 2,
+        "id": "c3",
+        "type": "text",
+        "slot": "c3",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontSize": 18,
+        "align": "center",
+        "x": 1060,
+        "y": 520,
+        "width": 460,
+        "height": 80
+      },
+      {
+        "z": 3,
+        "id": "accent",
+        "type": "shape",
+        "shape": "ellipse",
+        "motif": true,
+        "tokenFill": "accent",
+        "x": 790,
+        "y": 200,
+        "width": 16,
+        "height": 16
+      }
+    ]
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "style": {
+    "palette": "mist-teal",
+    "typePair": "technical-sans",
+    "imageTreatment": "duotone",
+    "motif": "bar-accent"
+  },
+  "slides": [
+    {
+      "role": "cover",
+      "title": "Q3 Ops",
+      "caption": "Internal report",
+      "photoQuery": "warehouse aisle",
+      "photoOrientation": "landscape"
+    },
+    {
+      "role": "agenda",
+      "title": "Sections",
+      "body": [
+        "Issues",
+        "Metrics",
+        "Plan"
+      ]
+    },
+    {
+      "role": "problem",
+      "title": "Bottlenecks",
+      "body": [
+        "Dock delays",
+        "Night gaps"
+      ],
+      "photoQuery": "loading dock trucks",
+      "photoOrientation": "landscape"
+    },
+    {
+      "role": "stats",
+      "title": "Throughput",
+      "stat": "12%",
+      "body": [
+        "3.1",
+        "48h"
+      ],
+      "caption": "cycle improvement"
+    },
+    {
+      "role": "solution",
+      "title": "Playbook",
+      "body": [
+        "Shift overlap",
+        "Live boards"
+      ],
+      "photoQuery": "operations control room",
+      "photoOrientation": "landscape"
+    },
+    {
+      "role": "feature",
+      "title": "Tools",
+      "body": [
+        "Scan lanes",
+        "Alerts",
+        "Huddles"
+      ],
+      "photoQuery": "barcode scanner warehouse",
+      "photoOrientation": "landscape"
+    },
+    {
+      "role": "closing",
+      "title": "Next steps",
+      "body": [
+        "Pilot lane 4",
+        "Review Friday"
+      ]
+    }
+  ]
+}

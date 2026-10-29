@@ -1,0 +1,78 @@
+{
+  "style": {
+    "palette": "paper-blue",
+    "typePair": "technical-sans",
+    "imageTreatment": "full-bleed",
+    "motif": "bar-accent"
+  },
+  "slides": [
+    {
+      "role": "cover",
+      "title": "PayLedger",
+      "caption": "EU payroll compliance",
+      "photoQuery": "modern office desks",
+      "photoOrientation": "landscape"
+    },
+    {
+      "role": "problem",
+      "title": "Manual risk",
+      "body": [
+        "Spreadsheets break",
+        "Audits stall"
+      ],
+      "photoQuery": "messy desk papers",
+      "photoOrientation": "landscape"
+    },
+    {
+      "role": "solution",
+      "title": "One ledger",
+      "body": [
+        "Rules engine",
+        "Audit trail"
+      ],
+      "photoQuery": "clean dashboard laptop",
+      "photoOrientation": "landscape"
+    },
+    {
+      "role": "feature",
+      "title": "Controls",
+      "body": [
+        "Country packs",
+        "Approvals",
+        "Exports"
+      ],
+      "photoQuery": "saas analytics screen",
+      "photoOrientation": "landscape"
+    },
+    {
+      "role": "stats",
+      "title": "Scale",
+      "stat": "18",
+      "body": [
+        "99.9%",
+        "4h"
+      ],
+      "caption": "countries live"
+    },
+    {
+      "role": "team",
+      "title": "Builders",
+      "body": [
+        "Ada — CEO",
+        "Ken — CTO",
+        "Pri — CS"
+      ],
+      "photoQuery": "product team meeting",
+      "photoOrientation": "landscape"
+    },
+    {
+      "role": "closing",
+      "title": "Start pilot",
+      "body": [
+        "sales@payledger.example"
+      ],
+      "photoQuery": "handshake office",
+      "photoOrientation": "landscape"
+    }
+  ]
+}

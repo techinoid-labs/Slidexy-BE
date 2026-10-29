@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://slidexy.local/engine/variant.schema.json",
+  "title": "KitVariant",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "role", "variant", "slots", "fit", "pptxMapping", "layout"],
+  "properties": {
+    "id": { "type": "string" },
+    "role": { "type": "string" },
+    "variant": { "type": "string", "enum": ["a", "b"] },
+    "family": { "type": "string" },
+    "steal": { "type": "string" },
+    "requiresPhoto": { "type": "boolean" },
+    "photoSlots": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "slots": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["kind"],
+        "properties": {
+          "kind": { "type": "string", "enum": ["text", "image", "shape"] },
+          "from": { "type": ["string", "null"] },
+          "optional": { "type": "boolean" }
+        }
+      }
+    },
+    "fit": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "minFont": { "type": "number" },
+          "maxFont": { "type": "number" },
+          "lineClamp": { "type": "number" },
+          "shrinkMin": { "type": "number" }
+        }
+      }
+    },
+    "pptxMapping": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["kind"],
+        "properties": {
+          "kind": { "type": "string", "enum": ["text", "picture", "shape"] }
+        }
+      }
+    },
+    "layout": {
+      "type": "object",
+      "required": ["elements"],
+      "properties": {
+        "elements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "type", "x", "y", "width", "height"],
+            "properties": {
+              "id": { "type": "string" },
+              "type": { "type": "string" },
+              "x": { "type": "number" },
+              "y": { "type": "number" },
+              "width": { "type": "number" },
+              "height": { "type": "number" },
+              "slot": { "type": "string" },
+              "tokenFill": { "type": "string" },
+              "tokenStroke": { "type": "string" },
+              "tokenColor": { "type": "string" },
+              "fontRole": { "type": "string" },
+              "fontSize": { "type": "number" },
+              "align": { "type": "string" },
+              "verticalAlign": { "type": "string" },
+              "shape": { "type": "string" },
+              "motif": { "type": "boolean" },
+              "opacity": { "type": "number" },
+              "radius": { "type": "number" },
+              "z": { "type": "number" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

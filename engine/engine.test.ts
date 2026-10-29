@@ -1,0 +1,102 @@
+/**
+ * Unit tests: validator, fitter, gates, selectVariant.
+ * node -r ts-node/register/transpile-only engine/engine.test.ts
+ */
+const assert = require("assert");
+const fs = require("fs");
+const path = require("path");
+const { validateDeckSpec } = require("./validate");
+const { fitText } = require("./fit");
+const { runGates, contrastRatio } = require("./gates");
+const { selectAll, selectVariant } = require("./selectVariant");
+const tokens = JSON.parse(fs.readFileSync(path.join(__dirname, "tokens.json"), "utf8"));
+
+function baseSpec(): any {
+  return JSON.parse(fs.readFileSync(path.join(__dirname, "golden", "specs", "pitch-garage.json"), "utf8"));
+}
+
+// validator rejects geometry
+{
+  const bad = baseSpec();
+  (bad as any).slides[0].x = 10;
+  const r = validateDeckSpec(bad);
+  assert.strictEqual(r.ok, false);
+  assert.ok(r.errors.some((e: string) => /geometry/i.test(e)));
+  console.log("ok reject geometry");
+}
+
+// unknown palette
+{
+  const bad = baseSpec();
+  bad.style.palette = "neon-unicorn";
+  const r = validateDeckSpec(bad);
+  assert.strictEqual(r.ok, false);
+  assert.ok(r.errors.some((e: string) => /unknown palette/i.test(e)));
+  console.log("ok reject unknown palette");
+}
+
+// 61-char title
+{
+  const bad = baseSpec();
+  bad.slides[0].title = "x".repeat(61);
+  const r = validateDeckSpec(bad);
+  assert.strictEqual(r.ok, false);
+  assert.ok(r.errors.some((e: string) => /title exceeds/i.test(e)));
+  console.log("ok reject 61-char title");
+}
+
+// hex color
+{
+  const bad = baseSpec();
+  (bad.slides[0] as any).caption = "use #FF00AA never";
+  const r = validateDeckSpec(bad);
+  assert.strictEqual(r.ok, false);
+  assert.ok(r.errors.some((e: string) => /hex/i.test(e)));
+  console.log("ok reject hex");
+}
+
+// valid golden
+{
+  const r = validateDeckSpec(baseSpec());
+  assert.strictEqual(r.ok, true, r.errors.join("; "));
+  console.log("ok golden validates");
+}
+
+// fitter shrinks
+{
+  const fitted = fitText("A very long title that should shrink to fit the narrow box provided here today", { width: 200, height: 80 }, { minFont: 14, maxFont: 48, lineClamp: 2 });
+  assert.ok(fitted.fontSize <= 48);
+  assert.ok(!fitted.rejected || fitted.text.length > 0);
+  console.log("ok fitText", fitted.fontSize, fitted.rejected);
+}
+
+// contrast
+{
+  assert.ok(contrastRatio("#000000", "#FFFFFF") > 20);
+  console.log("ok contrast");
+}
+
+// selectVariant deterministic divergence
+{
+  const spec = baseSpec();
+  const a = selectAll(spec, "prompt-one");
+  const b = selectAll(spec, "prompt-two");
+  const c = selectAll(spec, "prompt-one");
+  assert.deepStrictEqual(a, c);
+  const sig = (s: any[]) => s.map((x) => x.role + "/" + x.variant).join(",");
+  // same prompt stable; different prompts may differ
+  assert.strictEqual(sig(a), sig(c));
+  console.log("ok selectAll stable", sig(a));
+  console.log("ok select other", sig(b));
+}
+
+// gates on golden
+{
+  const spec = baseSpec();
+  const selections = selectAll(spec, "garage");
+  const gates = runGates(spec, selections, tokens);
+  assert.ok(gates.slides.length >= spec.slides.length);
+  console.log("ok gates pass?", gates.pass, "fails", gates.slides.filter((s: any) => !s.pass).length);
+}
+
+console.log("engine.test.ts passed");

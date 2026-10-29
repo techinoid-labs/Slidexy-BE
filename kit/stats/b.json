@@ -1,0 +1,165 @@
+{
+  "id": "stats/b",
+  "role": "stats",
+  "variant": "b",
+  "steal": "One hero number ~6× caption; photo strip across bottom.",
+  "requiresPhoto": true,
+  "photoSlots": [
+    "strip1",
+    "strip2",
+    "strip3"
+  ],
+  "slots": {
+    "stat": {
+      "kind": "text",
+      "optional": false,
+      "from": "stat"
+    },
+    "caption": {
+      "kind": "text",
+      "optional": true,
+      "from": "caption"
+    },
+    "title": {
+      "kind": "text",
+      "optional": true,
+      "from": "title"
+    },
+    "strip1": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo"
+    },
+    "strip2": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo"
+    },
+    "strip3": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo"
+    },
+    "accent": {
+      "kind": "shape",
+      "optional": false
+    }
+  },
+  "fit": {
+    "stat": {
+      "maxFont": 160,
+      "minFont": 72,
+      "lineClamp": 1,
+      "shrinkMin": 0.75
+    },
+    "caption": {
+      "maxFont": 28,
+      "minFont": 18,
+      "lineClamp": 2,
+      "shrinkMin": 0.75
+    },
+    "title": {
+      "maxFont": 28,
+      "minFont": 18,
+      "lineClamp": 1,
+      "shrinkMin": 0.75
+    }
+  },
+  "pptxMapping": {
+    "stat": {
+      "kind": "text"
+    },
+    "caption": {
+      "kind": "text"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "strip1": {
+      "kind": "picture"
+    },
+    "strip2": {
+      "kind": "picture"
+    },
+    "strip3": {
+      "kind": "picture"
+    },
+    "accent": {
+      "kind": "shape"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 2,
+        "id": "stat",
+        "type": "text",
+        "slot": "stat",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 140,
+        "align": "center",
+        "x": 120,
+        "y": 160,
+        "width": 1360,
+        "height": 220
+      },
+      {
+        "z": 2,
+        "id": "caption",
+        "type": "text",
+        "slot": "caption",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontSize": 24,
+        "align": "center",
+        "x": 300,
+        "y": 420,
+        "width": 1000,
+        "height": 60
+      },
+      {
+        "z": 1,
+        "id": "strip1",
+        "type": "image",
+        "slot": "strip1",
+        "x": 0,
+        "y": 560,
+        "width": 534,
+        "height": 340
+      },
+      {
+        "z": 1,
+        "id": "strip2",
+        "type": "image",
+        "slot": "strip2",
+        "x": 533,
+        "y": 560,
+        "width": 534,
+        "height": 340
+      },
+      {
+        "z": 1,
+        "id": "strip3",
+        "type": "image",
+        "slot": "strip3",
+        "x": 1066,
+        "y": 560,
+        "width": 534,
+        "height": 340
+      },
+      {
+        "z": 3,
+        "id": "accent",
+        "type": "shape",
+        "shape": "rect",
+        "motif": true,
+        "tokenFill": "accent",
+        "x": 720,
+        "y": 500,
+        "width": 160,
+        "height": 8
+      }
+    ]
+  }
+}

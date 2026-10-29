@@ -182,7 +182,10 @@ async function generateTemplate(body) {
   const niche = String(body && body.niche || "").trim().toLowerCase();
   const namedNiche = ["corporate", "elegant", "gradient", "infographic", "cartoon"].indexOf(niche) >= 0;
   let mode = "pinned";
-  if (modeIn === "composer") mode = "composer";
+  // ENGINE_V1=true routes all generation through generateKitV1 (no new mode UI).
+  if (process.env.ENGINE_V1 === "true" || modeIn === "kit-v1") {
+    mode = "kit-v1";
+  } else if (modeIn === "composer") mode = "composer";
   else if (modeIn === "native" || namedNiche || body && (body.native === true || body.native === "true")) mode = "native";
   else if (modeIn === "assemble" || body && (body.assemble === true || body.assemble === "true")) mode = "assemble";
   else if (modeIn === "remix" || modeIn === "frankenstein" || body && (body.remix === true || body.remix === "true")) mode = "remix";

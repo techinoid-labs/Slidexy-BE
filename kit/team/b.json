@@ -1,0 +1,254 @@
+{
+  "id": "team/b",
+  "role": "team",
+  "variant": "b",
+  "steal": "Three or four square portraits in a row with name + role.",
+  "requiresPhoto": true,
+  "photoSlots": [
+    "p1",
+    "p2",
+    "p3",
+    "p4"
+  ],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    },
+    "n1": {
+      "kind": "text",
+      "optional": true,
+      "from": "body0"
+    },
+    "n2": {
+      "kind": "text",
+      "optional": true,
+      "from": "body1"
+    },
+    "n3": {
+      "kind": "text",
+      "optional": true,
+      "from": "body2"
+    },
+    "n4": {
+      "kind": "text",
+      "optional": true,
+      "from": "body3"
+    },
+    "p1": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo"
+    },
+    "p2": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo"
+    },
+    "p3": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo"
+    },
+    "p4": {
+      "kind": "image",
+      "optional": true,
+      "from": "photo"
+    },
+    "accent": {
+      "kind": "shape",
+      "optional": false
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 36,
+      "minFont": 22,
+      "lineClamp": 1,
+      "shrinkMin": 0.75
+    },
+    "n1": {
+      "maxFont": 18,
+      "minFont": 14,
+      "lineClamp": 2,
+      "shrinkMin": 0.75
+    },
+    "n2": {
+      "maxFont": 18,
+      "minFont": 14,
+      "lineClamp": 2,
+      "shrinkMin": 0.75
+    },
+    "n3": {
+      "maxFont": 18,
+      "minFont": 14,
+      "lineClamp": 2,
+      "shrinkMin": 0.75
+    },
+    "n4": {
+      "maxFont": 18,
+      "minFont": 14,
+      "lineClamp": 2,
+      "shrinkMin": 0.75
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "n1": {
+      "kind": "text"
+    },
+    "n2": {
+      "kind": "text"
+    },
+    "n3": {
+      "kind": "text"
+    },
+    "n4": {
+      "kind": "text"
+    },
+    "p1": {
+      "kind": "picture"
+    },
+    "p2": {
+      "kind": "picture"
+    },
+    "p3": {
+      "kind": "picture"
+    },
+    "p4": {
+      "kind": "picture"
+    },
+    "accent": {
+      "kind": "shape"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 2,
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 36,
+        "align": "left",
+        "x": 80,
+        "y": 80,
+        "width": 1400,
+        "height": 80
+      },
+      {
+        "z": 3,
+        "id": "accent",
+        "type": "shape",
+        "shape": "rect",
+        "motif": true,
+        "tokenFill": "accent",
+        "x": 80,
+        "y": 170,
+        "width": 72,
+        "height": 8
+      },
+      {
+        "z": 1,
+        "id": "p1",
+        "type": "image",
+        "slot": "p1",
+        "x": 80,
+        "y": 240,
+        "width": 320,
+        "height": 320
+      },
+      {
+        "z": 2,
+        "id": "n1",
+        "type": "text",
+        "slot": "n1",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontSize": 18,
+        "align": "center",
+        "x": 80,
+        "y": 590,
+        "width": 320,
+        "height": 100
+      },
+      {
+        "z": 1,
+        "id": "p2",
+        "type": "image",
+        "slot": "p2",
+        "x": 460,
+        "y": 240,
+        "width": 320,
+        "height": 320
+      },
+      {
+        "z": 2,
+        "id": "n2",
+        "type": "text",
+        "slot": "n2",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontSize": 18,
+        "align": "center",
+        "x": 460,
+        "y": 590,
+        "width": 320,
+        "height": 100
+      },
+      {
+        "z": 1,
+        "id": "p3",
+        "type": "image",
+        "slot": "p3",
+        "x": 840,
+        "y": 240,
+        "width": 320,
+        "height": 320
+      },
+      {
+        "z": 2,
+        "id": "n3",
+        "type": "text",
+        "slot": "n3",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontSize": 18,
+        "align": "center",
+        "x": 840,
+        "y": 590,
+        "width": 320,
+        "height": 100
+      },
+      {
+        "z": 1,
+        "id": "p4",
+        "type": "image",
+        "slot": "p4",
+        "x": 1220,
+        "y": 240,
+        "width": 320,
+        "height": 320
+      },
+      {
+        "z": 2,
+        "id": "n4",
+        "type": "text",
+        "slot": "n4",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontSize": 18,
+        "align": "center",
+        "x": 1220,
+        "y": 590,
+        "width": 320,
+        "height": 100
+      }
+    ]
+  }
+}

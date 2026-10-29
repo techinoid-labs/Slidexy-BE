@@ -1,0 +1,113 @@
+{
+  "id": "how-it-works/a",
+  "role": "how-it-works",
+  "variant": "a",
+  "steal": "Photo+title column with vertical step rail.",
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    },
+    "body": {
+      "kind": "text",
+      "optional": false,
+      "from": "body"
+    },
+    "photo": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo"
+    },
+    "accent": {
+      "kind": "shape",
+      "optional": false
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 44,
+      "minFont": 26,
+      "lineClamp": 2,
+      "shrinkMin": 0.75
+    },
+    "body": {
+      "maxFont": 24,
+      "minFont": 16,
+      "lineClamp": 8,
+      "shrinkMin": 0.75
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "body": {
+      "kind": "text"
+    },
+    "photo": {
+      "kind": "picture"
+    },
+    "accent": {
+      "kind": "shape"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 1,
+        "id": "photo",
+        "type": "image",
+        "slot": "photo",
+        "x": 80,
+        "y": 100,
+        "width": 720,
+        "height": 480
+      },
+      {
+        "z": 2,
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 40,
+        "align": "left",
+        "x": 80,
+        "y": 620,
+        "width": 720,
+        "height": 160
+      },
+      {
+        "z": 2,
+        "id": "body",
+        "type": "text",
+        "slot": "body",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontSize": 22,
+        "align": "left",
+        "x": 880,
+        "y": 140,
+        "width": 640,
+        "height": 640
+      },
+      {
+        "z": 3,
+        "id": "accent",
+        "type": "shape",
+        "shape": "rect",
+        "motif": true,
+        "tokenFill": "accent",
+        "x": 860,
+        "y": 140,
+        "width": 6,
+        "height": 640
+      }
+    ]
+  }
+}
