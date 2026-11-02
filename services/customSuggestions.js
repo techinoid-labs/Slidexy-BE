@@ -1,4 +1,4 @@
-const { textGenModel } = require("../utils/geminiModels");
+const { textGenModel } = require("../utils/textModel");
 const { generateImage } = require("./generateImage");
 
 /**

@@ -1,4 +1,4 @@
-const { textGenModel, qualityGenModel } = require("../utils/geminiModels");
+const { textGenModel, qualityGenModel } = require("../utils/textModel");
 
 // Quality tier: this service produces in-editor AI text rewriting, i.e. copy the user reads.
 // The cheap model agrees with a detailed prompt and then ignores it.

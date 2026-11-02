@@ -2,7 +2,7 @@ const {
   generateTemplateImageService,
 } = require("../generateTemplateImageService");
 const crypto = require("crypto");
-const { textGenModel } = require("../../utils/geminiModels");
+const { textGenModel } = require("../../utils/textModel");
 const JSON5 = require("json5");
 const { uploadToSpaces, deleteFromSpaces } = require("../../utils/s3Uploader");
 

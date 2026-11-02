@@ -4,7 +4,7 @@
  * Modified to generate content-only (not HTML)
  */
 
-const { textGenModel } = require('../../../../utils/geminiModels');
+const { textGenModel } = require('../../../../utils/textModel');
 const JSON5 = require('json5');
 const infographicCards = require('../../../../constants/card');
 const infographicPatterns = require('../../../../constants/background');

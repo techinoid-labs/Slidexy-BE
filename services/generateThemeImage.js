@@ -86,7 +86,7 @@ async function generateSingleTheme(promptText) {
   // you'll need to generate theme metadata separately using your textGenModel
   // Here's an approach:
 
-  const { textGenModel } = require("../utils/geminiModels");
+  const { textGenModel } = require("../utils/textModel");
 
   let themeData = {
     image_base64: imageUrl, // Store the URL or convert to base64 if needed

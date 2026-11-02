@@ -148,7 +148,7 @@ async function run() {
 
     // Fresh require each time: the model constant is read at module load.
     for (const k of Object.keys(require.cache)) {
-      if (k.includes("geminiModels") || k.includes("generateSlideText")) delete require.cache[k];
+      if (k.includes("textModel") || k.includes("generateSlideText")) delete require.cache[k];
     }
     const { generateSlideText } = require("../services/generateSlideText");
 

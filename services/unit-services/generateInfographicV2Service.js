@@ -18,7 +18,7 @@ const mammoth = require('mammoth');
 
 // Assuming you have access to your Gemini or text generation model here
 // Replace with your actual model import
-const { textGenModel } = require('../../utils/geminiModels'); // Adjust path as needed
+const { textGenModel } = require('../../utils/textModel'); // Adjust path as needed
 
 class GenerateInfographicV2Service {
   constructor() {

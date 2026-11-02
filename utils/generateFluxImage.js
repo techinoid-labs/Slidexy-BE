@@ -35,7 +35,31 @@ function getFluxImageSize(layoutType) {
   return "landscape_16_9";
 }
 
+/*
+ * fal answers 403 "User is locked. Reason: TOP_UP." once the balance
+ * runs out, and it answers it for every slide in the deck. There is no
+ * point paying a round trip per slide to be told the same thing, so the
+ * first account-level refusal closes this path for the life of the
+ * process and the caller drops straight to the fallback chain. A restart
+ * after a top-up reopens it.
+ */
+let accountClosed = null;
+
+function isAccountLevelFailure(err) {
+  const status = err?.status || err?.response?.status;
+  if (status === 401 || status === 403 || status === 402) return true;
+  const body = JSON.stringify(err?.body || err?.response?.data || err?.message || "");
+  return /locked|TOP_UP|insufficient|exhausted|quota/i.test(body);
+}
+
 async function generateFluxImage({ prompt, artStyle, artPalette, layoutType }) {
+  if (!FAL_CREDENTIALS) return null;
+
+  if (accountClosed) {
+    console.warn(`Skipping fal: ${accountClosed}`);
+    return null;
+  }
+
   try {
     // Keep the prompt as-is — it is already a concise natural-language description
     // built by generateDetailedImagePrompt. Only append style/palette if not already
@@ -73,7 +97,18 @@ async function generateFluxImage({ prompt, artStyle, artPalette, layoutType }) {
       raw: result.data,
     };
   } catch (err) {
-    console.error("Flux generation failed:", err.message || err);
+    const message = err.message || String(err);
+
+    if (isAccountLevelFailure(err)) {
+      accountClosed =
+        "the fal.ai account is not usable (" +
+        message.slice(0, 120) +
+        "). Top up at fal.ai and restart the server to use it again.";
+      console.error("fal.ai is out of action for this process: " + accountClosed);
+    } else {
+      console.error("Flux generation failed:", message);
+    }
+
     return null;
   }
 }

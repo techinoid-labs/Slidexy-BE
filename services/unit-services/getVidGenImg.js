@@ -1,4 +1,4 @@
-const { textGenModel } = require("../../utils/geminiModels");
+const { textGenModel } = require("../../utils/textModel");
 const JSON5 = require("json5");
 const fs = require("fs");
 const path = require("path");

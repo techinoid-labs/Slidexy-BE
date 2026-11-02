@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { textGenModel } = require('../utils/geminiModels');
+const { textGenModel } = require('../utils/textModel');
 const { uploadBufferToSpaces } = require('../utils/s3Uploader');
 
 /**

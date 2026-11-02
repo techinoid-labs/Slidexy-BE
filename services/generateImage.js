@@ -1,10 +1,10 @@
-const { textGenModel } = require("../utils/geminiModels");
+const { textGenModel } = require("../utils/textModel");
 const crypto = require("crypto");
 const sharp = require("sharp");
 const axios = require("axios");
 const { uploadToSpaces } = require("../utils/s3Uploader");
 const { generateFluxImage } = require("../utils/generateFluxImage");
-const { generateFallbackImage, generateWithGLM } = require("../services/fallbackImageGeneration");
+const { generateFallbackImageDetailed } = require("../services/fallbackImageGeneration");
 
 const PEXELS_API_KEY = process.env.PEXELS_API_KEY;
 if (!PEXELS_API_KEY) {
@@ -642,19 +642,27 @@ async function generateDetailedImagePrompt(slide, artKnowledge, rawText = "") {
   } = artKnowledge;
 
   const title = slide.slide_title?.text || slide.slide_title || "Untitled";
-  const subtitle = slide.subtitle?.text || "";
 
   // Flux / SD models are prompt-weight-front: the most important concept must come first.
   // Keep the prompt short (~80-150 words) and entirely in natural language — no headers,
   // no bullet lists, no emoji, no instruction verbs like "generate" or "create".
 
-  const subjectClause = subtitle
-    ? `"${title}" — ${subtitle}`
-    : `"${title}"`;
-
+  // The slide title deliberately does NOT go into the image prompt.
+  //
+  // This used to read: `visually representing "${title}"`. Putting a
+  // phrase in quotation marks is exactly how you ask a diffusion model
+  // to render that phrase as lettering, so a slide called "How The Team
+  // Works" came back with HOW THE WORKS painted across the bottom. The
+  // "no text" instruction at the end cannot outvote an explicitly
+  // quoted string, and the model garbles the words anyway, so the
+  // result reads as a typo on the finished slide.
+  //
+  // sceneDescription was already written from the title by
+  // generateArtKnowledge, so the meaning survives. Only the literal
+  // string, which was the thing causing the damage, is dropped.
   const sceneClause = sceneDescription
-    ? sceneDescription.replace(/["""]/g, "")
-    : `professional ${slideType} scene`;
+    ? sceneDescription.replace(/["“”]/g, "")
+    : `professional ${slideType} scene about ${String(title).replace(/["“”]/g, "")}`;
 
   const elementsClause = sceneElements.slice(0, 3).join(", ");
 
@@ -669,12 +677,13 @@ async function generateDetailedImagePrompt(slide, artKnowledge, rawText = "") {
     : style || "modern professional illustration";
 
   const prompt =
-    `${sceneClause} visually representing ${subjectClause}. ` +
+    `${sceneClause}. ` +
     `${styleClause}. ` +
     `Includes ${elementsClause}. ` +
     `${mood} mood, color palette ${colorClause}. ` +
     `${characterClause}. ` +
-    `No text, no letters, no numbers, no typography, no signs, no labels. ` +
+    `Completely free of text: no letters, no words, no numbers, no captions, ` +
+    `no titles, no signage, no labels, no watermarks, no typography of any kind. ` +
     `16:9 widescreen, high quality, professional presentation visual.`;
 
   return prompt;
@@ -792,7 +801,10 @@ async function generateImage(
     console.error("❌ Flux generation failed:", fluxError.message);
     console.log("🔄 Activating fallback image generation chain...");
 
-    // === FALLBACK CHAIN: GLM → Pollinations → Unsplash → Hugging Face → Replicate ===
+    // === FALLBACK CHAIN: Cloudflare → Runware → GLM → HF → Replicate → Pollinations ===
+    // The chain owns its own ordering now. This used to try GLM here and
+    // then call the chain, which tried GLM again first, so a dead paid
+    // provider was attempted twice before anything else got a turn.
     try {
       const prompt = promptToUse; // reuse the detailed description generated earlier
 
@@ -801,24 +813,15 @@ async function generateImage(
       if (progressCallback)
         progressCallback(currentSlideNum, totalSlides, "generating-fallback-image");
 
-      // Try GLM Image first (highest quality paid alternative)
       let fallbackImageData = null;
+      let fallbackProvider = null;
       try {
-        console.log("🎨 Attempting GLM Image generation...");
-        fallbackImageData = await generateWithGLM(prompt);
-        console.log("✅ GLM Image succeeded");
-      } catch (glmError) {
-        console.warn("⚠️  GLM Image failed, trying other services...");
-
-        // Fall through to other services if GLM fails
-        try {
-          console.log("🔄 Using multi-service fallback cascade...");
-          fallbackImageData = await generateFallbackImage(prompt);
-          console.log("✅ Fallback cascade succeeded");
-        } catch (cascadeError) {
-          console.warn("⚠️  All AI image services failed:", cascadeError.message);
-          fallbackImageData = null;
-        }
+        const generated = await generateFallbackImageDetailed(prompt);
+        fallbackImageData = generated.image;
+        fallbackProvider = generated.provider;
+      } catch (cascadeError) {
+        console.warn("⚠️  " + cascadeError.message);
+        fallbackImageData = null;
       }
 
       if (fallbackImageData) {
@@ -847,7 +850,7 @@ async function generateImage(
           image_url: finalUrl,
           image_mobile_url: mobileUrl || finalUrl,
           image_caption: slide.slide_title?.text || "AI-generated image (fallback)",
-          fallback_used: "glm-or-cascade",
+          fallback_used: fallbackProvider || "fallback-chain",
           art_style: slide.art_style,
           art_palette: slide.art_palette,
         };

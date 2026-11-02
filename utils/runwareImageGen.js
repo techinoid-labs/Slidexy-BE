@@ -51,6 +51,18 @@ async function generateImage(prompt, options = {}) {
                 const response = JSON.parse(data.toString());
                 console.log('📥 Runware response:', JSON.stringify(response).substring(0, 300));
 
+                // Runware reports failures under `errors`, not `data`.
+                // This used to fall into the "unexpected format" branch
+                // and return, so an insufficient-credits reply sat there
+                // until the 90 second timeout fired. Fail immediately.
+                if (Array.isArray(response.errors) && response.errors.length) {
+                    clearTimeout(timeout);
+                    ws.close();
+                    const first = response.errors[0];
+                    reject(new Error(`Runware ${first.code || 'error'}: ${first.message || JSON.stringify(first)}`));
+                    return;
+                }
+
                 if (!response.data || !Array.isArray(response.data)) {
                     console.warn('Unexpected response format:', response);
                     return;

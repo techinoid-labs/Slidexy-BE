@@ -1,4 +1,4 @@
-const { textGenModel } = require("../../utils/geminiModels");
+const { textGenModel } = require("../../utils/textModel");
 const JSON5 = require("json5");
 
 async function getTitlesService(topic, slideCount = 5, meta = {}) {
