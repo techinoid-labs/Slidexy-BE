@@ -1,4 +1,4 @@
-const { textGenModel, qualityGenModel } = require("../utils/geminiModels");
+const { textGenModel, qualityGenModel } = require("../utils/textModel");
 const { v4: uuidv4 } = require("uuid");
 
 // ─── Shared domain taxonomy, palettes, visual templates, and fallback data ───

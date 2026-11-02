@@ -1,4 +1,4 @@
-const { textGenModel } = require("../../utils/geminiModels");
+const { textGenModel } = require("../../utils/textModel");
 const infographicCards = require("../../constants/card");
 const infographicPatterns = require("../../constants/background");
 const JSON5 = require("json5");

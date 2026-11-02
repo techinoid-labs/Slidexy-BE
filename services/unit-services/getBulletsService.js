@@ -1,4 +1,4 @@
-const { textGenModel } = require("../../utils/geminiModels");
+const { textGenModel } = require("../../utils/textModel");
 const JSON5 = require("json5");
 
 async function getBulletsService(topic, titles, meta = {}) {

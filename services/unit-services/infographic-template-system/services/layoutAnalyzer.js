@@ -3,7 +3,7 @@
  * Analyzes content/prompt and determines best template layout type
  */
 
-const { textGenModel } = require('../../../../utils/geminiModels');
+const { textGenModel } = require('../../../../utils/textModel');
 const JSON5 = require('json5');
 
 const LAYOUT_TYPES = {
