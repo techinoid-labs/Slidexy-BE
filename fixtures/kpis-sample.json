@@ -1,0 +1,5 @@
+[
+  { "value": 50000, "label": "Users" },
+  { "value": 98, "suffix": "%", "label": "Retention" },
+  { "value": 12, "suffix": "x", "label": "Growth" }
+]

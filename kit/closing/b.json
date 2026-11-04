@@ -67,7 +67,7 @@
         "id": "body",
         "type": "text",
         "slot": "body",
-        "tokenColor": "muted",
+        "tokenColor": "ink",
         "fontRole": "body",
         "fontSize": 22,
         "align": "center",
@@ -80,26 +80,26 @@
         "z": 0,
         "id": "accent",
         "type": "shape",
-        "shape": "ellipse",
+        "shape": "rect",
         "motif": true,
         "tokenFill": "accent",
-        "opacity": 0.35,
-        "x": -80,
-        "y": 640,
-        "width": 320,
-        "height": 320
+        "x": 720,
+        "y": 360,
+        "width": 160,
+        "height": 8
       },
       {
         "z": 0,
         "id": "accentR",
         "type": "shape",
-        "shape": "ellipse",
+        "shape": "rect",
         "tokenFill": "line",
-        "x": 1360,
-        "y": -40,
-        "width": 280,
-        "height": 280
+        "x": 1480,
+        "y": 0,
+        "width": 8,
+        "height": 160
       }
     ]
-  }
+  },
+  "status": "draft"
 }

@@ -1,0 +1,121 @@
+{
+  "id": "feature/isometric",
+  "role": "feature",
+  "variant": "isometric",
+  "family": "isometric",
+  "steal": "Isometric image-card stack — depth cards for Y-axis hover float (no teeter).",
+  "requiresPhoto": true,
+  "photoSlots": [
+    "p1"
+  ],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    },
+    "b1": {
+      "kind": "text",
+      "optional": true,
+      "from": "body0"
+    },
+    "p1": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo"
+    },
+    "accent": {
+      "kind": "shape",
+      "optional": false
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 40,
+      "minFont": 22,
+      "lineClamp": 2,
+      "shrinkMin": 0.8
+    },
+    "b1": {
+      "maxFont": 18,
+      "minFont": 14,
+      "lineClamp": 3,
+      "shrinkMin": 0.85
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "b1": {
+      "kind": "text"
+    },
+    "p1": {
+      "kind": "picture"
+    },
+    "accent": {
+      "kind": "shape"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 0,
+        "id": "accent",
+        "type": "shape",
+        "shape": "rect",
+        "motif": true,
+        "tokenFill": "accent",
+        "morphId": "accent",
+        "x": 120,
+        "y": 160,
+        "width": 720,
+        "height": 560
+      },
+      {
+        "z": 2,
+        "id": "p1",
+        "type": "image",
+        "slot": "p1",
+        "mask": "roundedRect",
+        "radius": 18,
+        "morphId": "photo-1",
+        "shapeTreatment": "depth",
+        "ambientTarget": "image-card",
+        "x": 180,
+        "y": 200,
+        "width": 640,
+        "height": 480
+      },
+      {
+        "z": 3,
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 40,
+        "morphId": "title",
+        "x": 880,
+        "y": 240,
+        "width": 640,
+        "height": 120
+      },
+      {
+        "z": 3,
+        "id": "b1",
+        "type": "text",
+        "slot": "b1",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontSize": 18,
+        "morphId": "body",
+        "x": 880,
+        "y": 380,
+        "width": 640,
+        "height": 160
+      }
+    ]
+  },
+  "status": "draft"
+}

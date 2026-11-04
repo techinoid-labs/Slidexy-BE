@@ -48,6 +48,7 @@ const ENUM_FIELDS: Record<string, string[]> = {
   typePair: Object.keys(tokens.typePairs),
   imageTreatment: Object.keys(tokens.imageTreatments),
   motif: Object.keys(tokens.motifs),
+  typeTreatment: Object.keys(tokens.typeTreatments || { solid: 1, outline: 1 }),
 };
 
 function listJoin(ids: string[]): string {

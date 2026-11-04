@@ -1,0 +1,144 @@
+{
+  "id": "comparison/split",
+  "role": "comparison",
+  "variant": "split",
+  "family": "matrix",
+  "steal": "Before/After side-by-side matrix — two colored cards, bullet lists, no images.",
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": { "kind": "text", "optional": false, "from": "title" },
+    "hLeft": { "kind": "text", "optional": true, "from": "headers0" },
+    "hRight": { "kind": "text", "optional": true, "from": "headers1" },
+    "colLeft": { "kind": "text", "optional": false, "from": "before" },
+    "colRight": { "kind": "text", "optional": false, "from": "after" }
+  },
+  "fit": {
+    "title": { "maxFont": 48, "minFont": 40, "lineClamp": 2, "shrinkMin": 0.9 },
+    "hLeft": { "maxFont": 32, "minFont": 24, "lineClamp": 1, "shrinkMin": 1 },
+    "hRight": { "maxFont": 32, "minFont": 24, "lineClamp": 1, "shrinkMin": 1 },
+    "colLeft": { "maxFont": 24, "minFont": 18, "lineClamp": 10, "shrinkMin": 0.9 },
+    "colRight": { "maxFont": 24, "minFont": 18, "lineClamp": 10, "shrinkMin": 0.9 }
+  },
+  "pptxMapping": {
+    "title": { "kind": "text" },
+    "hLeft": { "kind": "text" },
+    "hRight": { "kind": "text" },
+    "colLeft": { "kind": "text" },
+    "colRight": { "kind": "text" }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 2,
+        "id": "title",
+        "type": "primitive",
+        "primitive": "header",
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 44,
+        "align": "left",
+        "x": 72,
+        "y": 40,
+        "width": 1456,
+        "height": 100,
+        "morphId": "title"
+      },
+      {
+        "z": 1,
+        "id": "cardLeft",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "card_bg",
+        "card": true,
+        "x": 72,
+        "y": 180,
+        "width": 700,
+        "height": 640,
+        "morphId": "card-before"
+      },
+      {
+        "z": 1,
+        "id": "cardRight",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "accent",
+        "card": true,
+        "x": 828,
+        "y": 180,
+        "width": 700,
+        "height": 640,
+        "morphId": "card-after"
+      },
+      {
+        "z": 3,
+        "id": "hLeft",
+        "type": "text",
+        "slot": "hLeft",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 30,
+        "align": "left",
+        "x": 112,
+        "y": 220,
+        "width": 620,
+        "height": 48,
+        "morphId": "header-0"
+      },
+      {
+        "z": 3,
+        "id": "hRight",
+        "type": "text",
+        "slot": "hRight",
+        "tokenColor": "on_accent",
+        "fontRole": "display",
+        "fontSize": 30,
+        "align": "left",
+        "x": 868,
+        "y": 220,
+        "width": 620,
+        "height": 48,
+        "morphId": "header-1"
+      },
+      {
+        "z": 3,
+        "id": "colLeft",
+        "type": "text",
+        "slot": "colLeft",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontSize": 22,
+        "lineHeight": 1.45,
+        "align": "left",
+        "x": 112,
+        "y": 290,
+        "width": 620,
+        "height": 480,
+        "morphId": "before"
+      },
+      {
+        "z": 3,
+        "id": "colRight",
+        "type": "text",
+        "slot": "colRight",
+        "tokenColor": "on_accent",
+        "fontRole": "body",
+        "fontSize": 22,
+        "lineHeight": 1.45,
+        "align": "left",
+        "x": 868,
+        "y": 290,
+        "width": 620,
+        "height": 480,
+        "morphId": "after"
+      }
+    ]
+  },
+  "status": "draft",
+  "motion": {
+    "transition": "fade",
+    "fallbackTransition": "fade",
+    "durationMs": 500
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "id": "report/consulting-breakdown",
+  "role": "report",
+  "variant": "consulting-breakdown",
+  "family": "data-dense",
+  "steal": "Hero stat left (40pt true) extracted from dense prose; 16pt supporting copy right.",
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": { "kind": "text", "optional": false, "from": "title" },
+    "hero": { "kind": "text", "optional": false, "from": "heroStat" },
+    "support": { "kind": "text", "optional": false, "from": "body0" },
+    "caption": { "kind": "text", "optional": true, "from": "caption" }
+  },
+  "fit": {
+    "title": { "maxFont": 48, "minFont": 40, "lineClamp": 2, "shrinkMin": 0.9 },
+    "hero": { "maxFont": 67, "minFont": 67, "lineClamp": 2, "shrinkMin": 1 },
+    "support": { "maxFont": 27, "minFont": 24, "lineClamp": 14, "shrinkMin": 0.95 },
+    "caption": { "maxFont": 20, "minFont": 18, "lineClamp": 2, "shrinkMin": 1 }
+  },
+  "pptxMapping": {
+    "title": { "kind": "text" },
+    "hero": { "kind": "text" },
+    "support": { "kind": "text" },
+    "caption": { "kind": "text" }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 2,
+        "id": "title",
+        "type": "primitive",
+        "primitive": "header",
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 44,
+        "align": "left",
+        "x": 72,
+        "y": 40,
+        "width": 1456,
+        "height": 100,
+        "morphId": "title"
+      },
+      {
+        "z": 1,
+        "id": "heroPlate",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "card_bg",
+        "card": true,
+        "x": 72,
+        "y": 180,
+        "width": 520,
+        "height": 620,
+        "morphId": "heroPlate"
+      },
+      {
+        "z": 3,
+        "id": "hero",
+        "type": "text",
+        "slot": "hero",
+        "tokenColor": "accent",
+        "fontRole": "display",
+        "fontSize": 67,
+        "align": "left",
+        "verticalAlign": "middle",
+        "x": 104,
+        "y": 280,
+        "width": 456,
+        "height": 280,
+        "morphId": "hero"
+      },
+      {
+        "z": 3,
+        "id": "caption",
+        "type": "text",
+        "slot": "caption",
+        "tokenColor": "muted",
+        "fontRole": "label",
+        "fontSize": 18,
+        "align": "left",
+        "x": 104,
+        "y": 580,
+        "width": 456,
+        "height": 80,
+        "morphId": "caption"
+      },
+      {
+        "z": 2,
+        "id": "support",
+        "type": "text",
+        "slot": "support",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontSize": 27,
+        "lineHeight": 1.5,
+        "align": "left",
+        "x": 640,
+        "y": 200,
+        "width": 880,
+        "height": 580,
+        "morphId": "body-0"
+      }
+    ]
+  },
+  "status": "draft",
+  "motion": {
+    "transition": "fade",
+    "fallbackTransition": "fade",
+    "durationMs": 500
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "id": "problem/editorial",
+  "role": "problem",
+  "variant": "editorial",
+  "family": "extreme-editorial",
+  "steal": "Extreme editorial problem — oversized title over bleed photo, micro body, vertical rail label.",
+  "requiresPhoto": true,
+  "photoSlots": [
+    "hero"
+  ],
+  "pptxGroup": "problem-editorial-overlap",
+  "slots": {
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    },
+    "body": {
+      "kind": "text",
+      "optional": true,
+      "from": "body"
+    },
+    "sectionLabel": {
+      "kind": "text",
+      "optional": true,
+      "from": "caption"
+    },
+    "hero": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo"
+    },
+    "accent": {
+      "kind": "shape",
+      "optional": false
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 140,
+      "minFont": 64,
+      "lineClamp": 2,
+      "shrinkMin": 0.85
+    },
+    "body": {
+      "maxFont": 16,
+      "minFont": 14,
+      "lineClamp": 4,
+      "shrinkMin": 0.9
+    },
+    "sectionLabel": {
+      "maxFont": 18,
+      "minFont": 14,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "body": {
+      "kind": "text"
+    },
+    "sectionLabel": {
+      "kind": "text"
+    },
+    "hero": {
+      "kind": "picture"
+    },
+    "accent": {
+      "kind": "shape"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 1,
+        "id": "hero",
+        "type": "image",
+        "slot": "hero",
+        "mask": "rect",
+        "tension": 0.15,
+        "x": 0,
+        "y": 80,
+        "width": 1600,
+        "height": 820,
+        "pptxGroup": "problem-editorial-overlap"
+      },
+      {
+        "z": 2,
+        "id": "wash",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "bg",
+        "opacity": 0.55,
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900
+      },
+      {
+        "z": 4,
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 120,
+        "align": "left",
+        "typeTreatment": "outline",
+        "x": 96,
+        "y": 200,
+        "width": 1320,
+        "height": 340,
+        "pptxGroup": "problem-editorial-overlap"
+      },
+      {
+        "z": 5,
+        "id": "body",
+        "type": "text",
+        "slot": "body",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontSize": 14,
+        "align": "left",
+        "x": 1120,
+        "y": 720,
+        "width": 400,
+        "height": 120
+      },
+      {
+        "z": 6,
+        "id": "sectionLabel",
+        "type": "text",
+        "slot": "sectionLabel",
+        "tokenColor": "accent",
+        "fontRole": "label",
+        "fontSize": 16,
+        "align": "left",
+        "rotate": -90,
+        "x": -100,
+        "y": 360,
+        "width": 280,
+        "height": 36
+      },
+      {
+        "z": 3,
+        "id": "accent",
+        "type": "shape",
+        "shape": "rect",
+        "motif": true,
+        "tokenFill": "accent",
+        "x": 96,
+        "y": 560,
+        "width": 120,
+        "height": 6
+      }
+    ]
+  },
+  "status": "draft"
+}

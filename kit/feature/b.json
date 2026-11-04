@@ -2,13 +2,16 @@
   "id": "feature/b",
   "role": "feature",
   "variant": "b",
-  "steal": "2×2 visual bullets matrix.",
+  "steal": "Dynamic visual bullets (2–6) — photo + label; 2×2 or 2×3 grid, centered.",
+  "designReview": "// DESIGN REVIEW",
   "requiresPhoto": true,
   "photoSlots": [
     "p1",
     "p2",
     "p3",
-    "p4"
+    "p4",
+    "p5",
+    "p6"
   ],
   "slots": {
     "title": {
@@ -36,61 +39,101 @@
       "optional": true,
       "from": "body3"
     },
+    "b5": {
+      "kind": "text",
+      "optional": true,
+      "from": "body4"
+    },
+    "b6": {
+      "kind": "text",
+      "optional": true,
+      "from": "body5"
+    },
     "p1": {
       "kind": "image",
       "optional": false,
-      "from": "photo"
+      "from": "photo0"
     },
     "p2": {
       "kind": "image",
       "optional": false,
-      "from": "photo"
+      "from": "photo1"
     },
     "p3": {
       "kind": "image",
-      "optional": false,
-      "from": "photo"
+      "optional": true,
+      "from": "photo2"
     },
     "p4": {
       "kind": "image",
-      "optional": false,
-      "from": "photo"
+      "optional": true,
+      "from": "photo3"
+    },
+    "p5": {
+      "kind": "image",
+      "optional": true,
+      "from": "photo4"
+    },
+    "p6": {
+      "kind": "image",
+      "optional": true,
+      "from": "photo5"
     },
     "accent": {
       "kind": "shape",
       "optional": false
+    },
+    "decorTop": {
+      "kind": "shape",
+      "optional": true
+    },
+    "decorStack": {
+      "kind": "shape",
+      "optional": true
     }
   },
   "fit": {
     "title": {
       "maxFont": 40,
-      "minFont": 24,
-      "lineClamp": 2,
-      "shrinkMin": 0.75
+      "minFont": 16,
+      "lineClamp": 3,
+      "shrinkMin": 0.55
     },
     "b1": {
-      "maxFont": 18,
-      "minFont": 14,
-      "lineClamp": 2,
-      "shrinkMin": 0.75
+      "maxFont": 20,
+      "minFont": 11,
+      "lineClamp": 4,
+      "shrinkMin": 0.55
     },
     "b2": {
-      "maxFont": 18,
-      "minFont": 14,
-      "lineClamp": 2,
-      "shrinkMin": 0.75
+      "maxFont": 20,
+      "minFont": 11,
+      "lineClamp": 4,
+      "shrinkMin": 0.55
     },
     "b3": {
-      "maxFont": 18,
-      "minFont": 14,
-      "lineClamp": 2,
-      "shrinkMin": 0.75
+      "maxFont": 20,
+      "minFont": 11,
+      "lineClamp": 4,
+      "shrinkMin": 0.55
     },
     "b4": {
-      "maxFont": 18,
-      "minFont": 14,
-      "lineClamp": 2,
-      "shrinkMin": 0.75
+      "maxFont": 20,
+      "minFont": 11,
+      "lineClamp": 4,
+      "shrinkMin": 0.55
+    },
+    "b5": {
+      "maxFont": 20,
+      "minFont": 11,
+      "lineClamp": 4,
+      "shrinkMin": 0.55
+    },
+    "b6": {
+      "maxFont": 20,
+      "minFont": 11,
+      "lineClamp": 4,
+      "shrinkMin": 0.55
     }
   },
   "pptxMapping": {
@@ -109,6 +152,12 @@
     "b4": {
       "kind": "text"
     },
+    "b5": {
+      "kind": "text"
+    },
+    "b6": {
+      "kind": "text"
+    },
     "p1": {
       "kind": "picture"
     },
@@ -121,7 +170,19 @@
     "p4": {
       "kind": "picture"
     },
+    "p5": {
+      "kind": "picture"
+    },
+    "p6": {
+      "kind": "picture"
+    },
     "accent": {
+      "kind": "shape"
+    },
+    "decorTop": {
+      "kind": "shape"
+    },
+    "decorStack": {
       "kind": "shape"
     }
   },
@@ -137,9 +198,9 @@
         "fontSize": 36,
         "align": "left",
         "x": 80,
-        "y": 60,
-        "width": 1200,
-        "height": 100
+        "y": 48,
+        "width": 1280,
+        "height": 96
       },
       {
         "z": 3,
@@ -149,7 +210,31 @@
         "motif": true,
         "tokenFill": "accent",
         "x": 80,
-        "y": 170,
+        "y": 152,
+        "width": 12,
+        "height": 12
+      },
+      {
+        "z": 3,
+        "id": "accent2",
+        "type": "shape",
+        "shape": "ellipse",
+        "motif": true,
+        "tokenFill": "accent",
+        "x": 100,
+        "y": 152,
+        "width": 12,
+        "height": 12
+      },
+      {
+        "z": 3,
+        "id": "accent3",
+        "type": "shape",
+        "shape": "ellipse",
+        "motif": true,
+        "tokenFill": "accent",
+        "x": 120,
+        "y": 152,
         "width": 12,
         "height": 12
       },
@@ -159,9 +244,9 @@
         "type": "image",
         "slot": "p1",
         "x": 80,
-        "y": 220,
-        "width": 280,
-        "height": 180
+        "y": 280,
+        "width": 240,
+        "height": 200
       },
       {
         "z": 2,
@@ -169,12 +254,13 @@
         "type": "text",
         "slot": "b1",
         "tokenColor": "ink",
-        "fontRole": "body",
+        "fontRole": "label",
         "fontSize": 18,
         "align": "left",
-        "x": 380,
-        "y": 240,
-        "width": 360,
+        "verticalAlign": "middle",
+        "x": 340,
+        "y": 310,
+        "width": 300,
         "height": 140
       },
       {
@@ -182,10 +268,10 @@
         "id": "p2",
         "type": "image",
         "slot": "p2",
-        "x": 820,
-        "y": 220,
-        "width": 280,
-        "height": 180
+        "x": 680,
+        "y": 280,
+        "width": 240,
+        "height": 200
       },
       {
         "z": 2,
@@ -193,12 +279,13 @@
         "type": "text",
         "slot": "b2",
         "tokenColor": "ink",
-        "fontRole": "body",
+        "fontRole": "label",
         "fontSize": 18,
         "align": "left",
-        "x": 1120,
-        "y": 240,
-        "width": 360,
+        "verticalAlign": "middle",
+        "x": 940,
+        "y": 310,
+        "width": 300,
         "height": 140
       },
       {
@@ -207,9 +294,9 @@
         "type": "image",
         "slot": "p3",
         "x": 80,
-        "y": 560,
-        "width": 280,
-        "height": 180
+        "y": 540,
+        "width": 240,
+        "height": 200
       },
       {
         "z": 2,
@@ -217,12 +304,13 @@
         "type": "text",
         "slot": "b3",
         "tokenColor": "ink",
-        "fontRole": "body",
+        "fontRole": "label",
         "fontSize": 18,
         "align": "left",
-        "x": 380,
-        "y": 580,
-        "width": 360,
+        "verticalAlign": "middle",
+        "x": 340,
+        "y": 570,
+        "width": 300,
         "height": 140
       },
       {
@@ -230,10 +318,10 @@
         "id": "p4",
         "type": "image",
         "slot": "p4",
-        "x": 820,
-        "y": 560,
-        "width": 280,
-        "height": 180
+        "x": 680,
+        "y": 540,
+        "width": 240,
+        "height": 200
       },
       {
         "z": 2,
@@ -241,14 +329,121 @@
         "type": "text",
         "slot": "b4",
         "tokenColor": "ink",
-        "fontRole": "body",
+        "fontRole": "label",
         "fontSize": 18,
         "align": "left",
-        "x": 1120,
-        "y": 580,
-        "width": 360,
+        "verticalAlign": "middle",
+        "x": 940,
+        "y": 570,
+        "width": 300,
         "height": 140
+      },
+      {
+        "z": 1,
+        "id": "p5",
+        "type": "image",
+        "slot": "p5",
+        "x": 80,
+        "y": 700,
+        "width": 200,
+        "height": 140
+      },
+      {
+        "z": 2,
+        "id": "b5",
+        "type": "text",
+        "slot": "b5",
+        "tokenColor": "ink",
+        "fontRole": "label",
+        "fontSize": 16,
+        "align": "left",
+        "verticalAlign": "middle",
+        "x": 300,
+        "y": 700,
+        "width": 240,
+        "height": 140
+      },
+      {
+        "z": 1,
+        "id": "p6",
+        "type": "image",
+        "slot": "p6",
+        "x": 680,
+        "y": 700,
+        "width": 200,
+        "height": 140
+      },
+      {
+        "z": 2,
+        "id": "b6",
+        "type": "text",
+        "slot": "b6",
+        "tokenColor": "ink",
+        "fontRole": "label",
+        "fontSize": 16,
+        "align": "left",
+        "verticalAlign": "middle",
+        "x": 900,
+        "y": 700,
+        "width": 240,
+        "height": 140
+      },
+      {
+        "z": 3,
+        "id": "decorTop",
+        "type": "shape",
+        "shape": "ellipse",
+        "tokenFill": "ink",
+        "x": 1400,
+        "y": 320,
+        "width": 48,
+        "height": 48
+      },
+      {
+        "z": 3,
+        "id": "decorStack",
+        "type": "shape",
+        "shape": "ellipse",
+        "tokenFill": "accent",
+        "x": 1408,
+        "y": 400,
+        "width": 32,
+        "height": 32
+      },
+      {
+        "z": 3,
+        "id": "decorStack2",
+        "type": "shape",
+        "shape": "ellipse",
+        "tokenFill": "accent",
+        "x": 1408,
+        "y": 440,
+        "width": 32,
+        "height": 32
+      },
+      {
+        "z": 3,
+        "id": "decorStack3",
+        "type": "shape",
+        "shape": "ellipse",
+        "tokenFill": "accent",
+        "x": 1408,
+        "y": 480,
+        "width": 32,
+        "height": 32
+      },
+      {
+        "z": 3,
+        "id": "decorStack4",
+        "type": "shape",
+        "shape": "ellipse",
+        "tokenFill": "accent",
+        "x": 1408,
+        "y": 520,
+        "width": 32,
+        "height": 32
       }
     ]
-  }
+  },
+  "status": "draft"
 }

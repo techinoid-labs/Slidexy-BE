@@ -2,7 +2,7 @@
   "id": "testimonial/b",
   "role": "testimonial",
   "variant": "b",
-  "steal": "Quote left, one square portrait right.",
+  "steal": "Quote left with vertical accent + attribution immediately under quote; square portrait right.",
   "requiresPhoto": true,
   "photoSlots": [
     "portrait"
@@ -31,13 +31,17 @@
     "accent": {
       "kind": "shape",
       "optional": false
+    },
+    "accentBar": {
+      "kind": "shape",
+      "optional": false
     }
   },
   "fit": {
     "body": {
       "maxFont": 28,
       "minFont": 18,
-      "lineClamp": 8,
+      "lineClamp": 5,
       "shrinkMin": 0.75
     },
     "caption": {
@@ -68,10 +72,39 @@
     },
     "accent": {
       "kind": "shape"
+    },
+    "accentBar": {
+      "kind": "shape"
     }
   },
   "layout": {
     "elements": [
+      {
+        "z": 3,
+        "id": "accentBar",
+        "type": "shape",
+        "shape": "rect",
+        "motif": true,
+        "tokenFill": "accent",
+        "x": 56,
+        "y": 360,
+        "width": 4,
+        "height": 140,
+        "morphId": "accent"
+      },
+      {
+        "z": 3,
+        "id": "accent",
+        "type": "shape",
+        "shape": "rect",
+        "motif": true,
+        "tokenFill": "accent",
+        "x": 80,
+        "y": 336,
+        "width": 64,
+        "height": 8,
+        "morphId": "accent"
+      },
       {
         "z": 2,
         "id": "body",
@@ -81,10 +114,12 @@
         "fontRole": "display",
         "fontSize": 28,
         "align": "left",
+        "verticalAlign": "bottom",
         "x": 80,
-        "y": 180,
+        "y": 360,
         "width": 780,
-        "height": 420
+        "height": 72,
+        "morphId": "body"
       },
       {
         "z": 2,
@@ -96,9 +131,10 @@
         "fontSize": 20,
         "align": "left",
         "x": 80,
-        "y": 640,
+        "y": 448,
         "width": 780,
-        "height": 80
+        "height": 44,
+        "morphId": "caption"
       },
       {
         "z": 1,
@@ -108,20 +144,15 @@
         "x": 960,
         "y": 180,
         "width": 520,
-        "height": 520
-      },
-      {
-        "z": 3,
-        "id": "accent",
-        "type": "shape",
-        "shape": "rect",
-        "motif": true,
-        "tokenFill": "accent",
-        "x": 80,
-        "y": 160,
-        "width": 64,
-        "height": 8
+        "height": 520,
+        "morphId": "photo-1"
       }
     ]
+  },
+  "status": "locked",
+  "motion": {
+    "transition": "fade",
+    "fallbackTransition": "fade",
+    "durationMs": 800
   }
 }

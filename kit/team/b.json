@@ -2,9 +2,14 @@
   "id": "team/b",
   "role": "team",
   "variant": "b",
-  "steal": "Three or four square portraits in a row with name + role.",
+  "steal": "Dynamic centered row of 1:1 portraits (width ÷ member count) with name + role.",
   "requiresPhoto": true,
-  "photoSlots": ["p1", "p2", "p3", "p4"],
+  "photoSlots": [
+    "p1",
+    "p2",
+    "p3",
+    "p4"
+  ],
   "slots": {
     "title": {
       "kind": "text",
@@ -83,30 +88,98 @@
       "lineClamp": 1,
       "shrinkMin": 0.75
     },
-    "n1": { "maxFont": 18, "minFont": 14, "lineClamp": 1, "shrinkMin": 0.75 },
-    "r1": { "maxFont": 16, "minFont": 12, "lineClamp": 1, "shrinkMin": 0.75 },
-    "n2": { "maxFont": 18, "minFont": 14, "lineClamp": 1, "shrinkMin": 0.75 },
-    "r2": { "maxFont": 16, "minFont": 12, "lineClamp": 1, "shrinkMin": 0.75 },
-    "n3": { "maxFont": 18, "minFont": 14, "lineClamp": 1, "shrinkMin": 0.75 },
-    "r3": { "maxFont": 16, "minFont": 12, "lineClamp": 1, "shrinkMin": 0.75 },
-    "n4": { "maxFont": 18, "minFont": 14, "lineClamp": 1, "shrinkMin": 0.75 },
-    "r4": { "maxFont": 16, "minFont": 12, "lineClamp": 1, "shrinkMin": 0.75 }
+    "n1": {
+      "maxFont": 18,
+      "minFont": 14,
+      "lineClamp": 1,
+      "shrinkMin": 0.75
+    },
+    "r1": {
+      "maxFont": 16,
+      "minFont": 12,
+      "lineClamp": 1,
+      "shrinkMin": 0.75
+    },
+    "n2": {
+      "maxFont": 18,
+      "minFont": 14,
+      "lineClamp": 1,
+      "shrinkMin": 0.75
+    },
+    "r2": {
+      "maxFont": 16,
+      "minFont": 12,
+      "lineClamp": 1,
+      "shrinkMin": 0.75
+    },
+    "n3": {
+      "maxFont": 18,
+      "minFont": 14,
+      "lineClamp": 1,
+      "shrinkMin": 0.75
+    },
+    "r3": {
+      "maxFont": 16,
+      "minFont": 12,
+      "lineClamp": 1,
+      "shrinkMin": 0.75
+    },
+    "n4": {
+      "maxFont": 18,
+      "minFont": 14,
+      "lineClamp": 1,
+      "shrinkMin": 0.75
+    },
+    "r4": {
+      "maxFont": 16,
+      "minFont": 12,
+      "lineClamp": 1,
+      "shrinkMin": 0.75
+    }
   },
   "pptxMapping": {
-    "title": { "kind": "text" },
-    "n1": { "kind": "text" },
-    "r1": { "kind": "text" },
-    "n2": { "kind": "text" },
-    "r2": { "kind": "text" },
-    "n3": { "kind": "text" },
-    "r3": { "kind": "text" },
-    "n4": { "kind": "text" },
-    "r4": { "kind": "text" },
-    "p1": { "kind": "picture" },
-    "p2": { "kind": "picture" },
-    "p3": { "kind": "picture" },
-    "p4": { "kind": "picture" },
-    "accent": { "kind": "shape" }
+    "title": {
+      "kind": "text"
+    },
+    "n1": {
+      "kind": "text"
+    },
+    "r1": {
+      "kind": "text"
+    },
+    "n2": {
+      "kind": "text"
+    },
+    "r2": {
+      "kind": "text"
+    },
+    "n3": {
+      "kind": "text"
+    },
+    "r3": {
+      "kind": "text"
+    },
+    "n4": {
+      "kind": "text"
+    },
+    "r4": {
+      "kind": "text"
+    },
+    "p1": {
+      "kind": "picture"
+    },
+    "p2": {
+      "kind": "picture"
+    },
+    "p3": {
+      "kind": "picture"
+    },
+    "p4": {
+      "kind": "picture"
+    },
+    "accent": {
+      "kind": "shape"
+    }
   },
   "layout": {
     "elements": [
@@ -120,9 +193,9 @@
         "fontSize": 36,
         "align": "left",
         "x": 80,
-        "y": 80,
+        "y": 72,
         "width": 1400,
-        "height": 80
+        "height": 72
       },
       {
         "z": 3,
@@ -132,7 +205,7 @@
         "motif": true,
         "tokenFill": "accent",
         "x": 80,
-        "y": 170,
+        "y": 156,
         "width": 72,
         "height": 8
       },
@@ -141,10 +214,13 @@
         "id": "p1",
         "type": "image",
         "slot": "p1",
+        "crop": "top-center",
+        "mask": "roundedRect",
+        "radius": 12,
         "x": 80,
-        "y": 220,
+        "y": 280,
         "width": 320,
-        "height": 300
+        "height": 320
       },
       {
         "z": 2,
@@ -156,7 +232,7 @@
         "fontSize": 18,
         "align": "center",
         "x": 80,
-        "y": 540,
+        "y": 640,
         "width": 320,
         "height": 40
       },
@@ -170,7 +246,7 @@
         "fontSize": 16,
         "align": "center",
         "x": 80,
-        "y": 580,
+        "y": 680,
         "width": 320,
         "height": 40
       },
@@ -179,10 +255,13 @@
         "id": "p2",
         "type": "image",
         "slot": "p2",
+        "crop": "top-center",
+        "mask": "roundedRect",
+        "radius": 12,
         "x": 460,
-        "y": 220,
+        "y": 280,
         "width": 320,
-        "height": 300
+        "height": 320
       },
       {
         "z": 2,
@@ -194,7 +273,7 @@
         "fontSize": 18,
         "align": "center",
         "x": 460,
-        "y": 540,
+        "y": 640,
         "width": 320,
         "height": 40
       },
@@ -208,7 +287,7 @@
         "fontSize": 16,
         "align": "center",
         "x": 460,
-        "y": 580,
+        "y": 680,
         "width": 320,
         "height": 40
       },
@@ -217,10 +296,13 @@
         "id": "p3",
         "type": "image",
         "slot": "p3",
+        "crop": "top-center",
+        "mask": "roundedRect",
+        "radius": 12,
         "x": 840,
-        "y": 220,
+        "y": 280,
         "width": 320,
-        "height": 300
+        "height": 320
       },
       {
         "z": 2,
@@ -232,7 +314,7 @@
         "fontSize": 18,
         "align": "center",
         "x": 840,
-        "y": 540,
+        "y": 640,
         "width": 320,
         "height": 40
       },
@@ -246,7 +328,7 @@
         "fontSize": 16,
         "align": "center",
         "x": 840,
-        "y": 580,
+        "y": 680,
         "width": 320,
         "height": 40
       },
@@ -255,10 +337,13 @@
         "id": "p4",
         "type": "image",
         "slot": "p4",
+        "crop": "top-center",
+        "mask": "roundedRect",
+        "radius": 12,
         "x": 1220,
-        "y": 220,
+        "y": 280,
         "width": 320,
-        "height": 300
+        "height": 320
       },
       {
         "z": 2,
@@ -270,7 +355,7 @@
         "fontSize": 18,
         "align": "center",
         "x": 1220,
-        "y": 540,
+        "y": 640,
         "width": 320,
         "height": 40
       },
@@ -284,10 +369,11 @@
         "fontSize": 16,
         "align": "center",
         "x": 1220,
-        "y": 580,
+        "y": 680,
         "width": 320,
         "height": 40
       }
     ]
-  }
+  },
+  "status": "draft"
 }

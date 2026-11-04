@@ -1,0 +1,124 @@
+{
+  "id": "report/executive-summary",
+  "role": "report",
+  "variant": "executive-summary",
+  "family": "data-dense",
+  "steal": "Pull-quote Key Takeaway at 24pt true in a short hugging plate; three support columns below.",
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": { "kind": "text", "optional": false, "from": "title" },
+    "takeawayLabel": { "kind": "text", "optional": true, "from": "caption" },
+    "takeaway": { "kind": "text", "optional": false, "from": "takeaway" },
+    "s1": { "kind": "text", "optional": false, "from": "body0" },
+    "s2": { "kind": "text", "optional": true, "from": "body1" },
+    "s3": { "kind": "text", "optional": true, "from": "body2" },
+    "takeawayPlate": { "kind": "shape", "optional": false },
+    "accent": { "kind": "shape", "optional": false }
+  },
+  "fit": {
+    "title": { "maxFont": 52, "minFont": 40, "lineClamp": 2, "shrinkMin": 0.9 },
+    "takeawayLabel": { "maxFont": 20, "minFont": 18, "lineClamp": 1, "shrinkMin": 1 },
+    "takeaway": { "maxFont": 40, "minFont": 40, "lineClamp": 2, "shrinkMin": 1 },
+    "s1": { "maxFont": 27, "minFont": 24, "lineClamp": 8, "shrinkMin": 0.95 },
+    "s2": { "maxFont": 27, "minFont": 24, "lineClamp": 8, "shrinkMin": 0.95 },
+    "s3": { "maxFont": 27, "minFont": 24, "lineClamp": 8, "shrinkMin": 0.95 }
+  },
+  "pptxMapping": {
+    "title": { "kind": "text" },
+    "takeawayLabel": { "kind": "text" },
+    "takeaway": { "kind": "text" },
+    "s1": { "kind": "text" },
+    "s2": { "kind": "text" },
+    "s3": { "kind": "text" },
+    "takeawayPlate": { "kind": "shape" },
+    "accent": { "kind": "shape" }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 2,
+        "id": "title",
+        "type": "primitive",
+        "primitive": "header",
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 48,
+        "align": "left",
+        "x": 72,
+        "y": 40,
+        "width": 1456,
+        "height": 100,
+        "morphId": "title"
+      },
+      {
+        "z": 1,
+        "id": "takeawayPlate",
+        "type": "primitive",
+        "primitive": "callout",
+        "slot": "takeaway",
+        "tokenFill": "card_bg",
+        "x": 72,
+        "y": 168,
+        "width": 1456,
+        "height": 120,
+        "morphId": "takeawayPlate"
+      },
+      {
+        "z": 2,
+        "id": "s1",
+        "type": "text",
+        "slot": "s1",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontSize": 27,
+        "lineHeight": 1.5,
+        "align": "left",
+        "x": 72,
+        "y": 320,
+        "width": 456,
+        "height": 500,
+        "morphId": "body-0"
+      },
+      {
+        "z": 2,
+        "id": "s2",
+        "type": "text",
+        "slot": "s2",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontSize": 27,
+        "lineHeight": 1.5,
+        "align": "left",
+        "x": 568,
+        "y": 320,
+        "width": 456,
+        "height": 500,
+        "morphId": "body-1"
+      },
+      {
+        "z": 2,
+        "id": "s3",
+        "type": "text",
+        "slot": "s3",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontSize": 27,
+        "lineHeight": 1.5,
+        "align": "left",
+        "x": 1064,
+        "y": 320,
+        "width": 456,
+        "height": 500,
+        "morphId": "body-2"
+      }
+    ]
+  },
+  "status": "draft",
+  "motion": {
+    "transition": "fade",
+    "fallbackTransition": "fade",
+    "durationMs": 500
+  }
+}

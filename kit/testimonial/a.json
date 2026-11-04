@@ -2,7 +2,7 @@
   "id": "testimonial/a",
   "role": "testimonial",
   "variant": "a",
-  "steal": "Dense quote with two large portraits.",
+  "steal": "Dense quote with vertical accent + attribution immediately under quote; two portraits right.",
   "requiresPhoto": true,
   "photoSlots": [
     "p1",
@@ -37,6 +37,10 @@
     "accent": {
       "kind": "shape",
       "optional": false
+    },
+    "accentBar": {
+      "kind": "shape",
+      "optional": false
     }
   },
   "fit": {
@@ -49,7 +53,7 @@
     "body": {
       "maxFont": 24,
       "minFont": 16,
-      "lineClamp": 8,
+      "lineClamp": 5,
       "shrinkMin": 0.75
     },
     "caption": {
@@ -77,10 +81,25 @@
     },
     "accent": {
       "kind": "shape"
+    },
+    "accentBar": {
+      "kind": "shape"
     }
   },
   "layout": {
     "elements": [
+      {
+        "z": 3,
+        "id": "accentBar",
+        "type": "shape",
+        "shape": "rect",
+        "motif": true,
+        "tokenFill": "accent",
+        "x": 56,
+        "y": 260,
+        "width": 4,
+        "height": 180
+      },
       {
         "z": 2,
         "id": "title",
@@ -93,7 +112,19 @@
         "x": 80,
         "y": 100,
         "width": 560,
-        "height": 80
+        "height": 72
+      },
+      {
+        "z": 3,
+        "id": "accent",
+        "type": "shape",
+        "shape": "rect",
+        "motif": true,
+        "tokenFill": "accent",
+        "x": 80,
+        "y": 184,
+        "width": 48,
+        "height": 6
       },
       {
         "z": 2,
@@ -104,10 +135,11 @@
         "fontRole": "body",
         "fontSize": 22,
         "align": "left",
+        "verticalAlign": "bottom",
         "x": 80,
-        "y": 220,
+        "y": 260,
         "width": 560,
-        "height": 420
+        "height": 88
       },
       {
         "z": 2,
@@ -119,9 +151,9 @@
         "fontSize": 18,
         "align": "left",
         "x": 80,
-        "y": 680,
+        "y": 364,
         "width": 560,
-        "height": 80
+        "height": 44
       },
       {
         "z": 1,
@@ -142,19 +174,8 @@
         "y": 120,
         "width": 360,
         "height": 660
-      },
-      {
-        "z": 3,
-        "id": "accent",
-        "type": "shape",
-        "shape": "rect",
-        "motif": true,
-        "tokenFill": "accent",
-        "x": 80,
-        "y": 190,
-        "width": 48,
-        "height": 6
       }
     ]
-  }
+  },
+  "status": "draft"
 }

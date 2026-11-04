@@ -1,0 +1,245 @@
+{
+  "id": "how-it-works/dashboard",
+  "role": "how-it-works",
+  "variant": "dashboard",
+  "family": "data-dense",
+  "steal": "Structured process dashboard — equal columns, hairline rules, numbered steps.",
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    },
+    "b1": {
+      "kind": "text",
+      "optional": true,
+      "from": "body0"
+    },
+    "b2": {
+      "kind": "text",
+      "optional": true,
+      "from": "body1"
+    },
+    "b3": {
+      "kind": "text",
+      "optional": true,
+      "from": "body2"
+    },
+    "n1": {
+      "kind": "text",
+      "optional": true,
+      "from": "body0"
+    },
+    "rule1": {
+      "kind": "shape",
+      "optional": false
+    },
+    "rule2": {
+      "kind": "shape",
+      "optional": false
+    },
+    "accent": {
+      "kind": "shape",
+      "optional": false
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 36,
+      "minFont": 22,
+      "lineClamp": 1,
+      "shrinkMin": 0.85
+    },
+    "b1": {
+      "maxFont": 28,
+      "minFont": 18,
+      "lineClamp": 3,
+      "shrinkMin": 0.85
+    },
+    "b2": {
+      "maxFont": 28,
+      "minFont": 18,
+      "lineClamp": 3,
+      "shrinkMin": 0.85
+    },
+    "b3": {
+      "maxFont": 28,
+      "minFont": 18,
+      "lineClamp": 3,
+      "shrinkMin": 0.85
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "b1": {
+      "kind": "text"
+    },
+    "b2": {
+      "kind": "text"
+    },
+    "b3": {
+      "kind": "text"
+    },
+    "rule1": {
+      "kind": "shape"
+    },
+    "rule2": {
+      "kind": "shape"
+    },
+    "accent": {
+      "kind": "shape"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 1,
+        "id": "panel",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "surface",
+        "x": 64,
+        "y": 100,
+        "width": 1472,
+        "height": 700
+      },
+      {
+        "z": 2,
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 32,
+        "align": "left",
+        "x": 96,
+        "y": 132,
+        "width": 900,
+        "height": 56
+      },
+      {
+        "z": 3,
+        "id": "accent",
+        "type": "shape",
+        "shape": "rect",
+        "motif": true,
+        "tokenFill": "accent",
+        "x": 96,
+        "y": 196,
+        "width": 56,
+        "height": 4
+      },
+      {
+        "z": 4,
+        "id": "rule1",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "line",
+        "x": 560,
+        "y": 240,
+        "width": 1,
+        "height": 500
+      },
+      {
+        "z": 4,
+        "id": "rule2",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "line",
+        "x": 1040,
+        "y": 240,
+        "width": 1,
+        "height": 500
+      },
+      {
+        "z": 5,
+        "id": "step1",
+        "type": "text",
+        "tokenColor": "accent",
+        "fontRole": "label",
+        "fontSize": 14,
+        "align": "left",
+        "literal": "01",
+        "x": 112,
+        "y": 280,
+        "width": 120,
+        "height": 32
+      },
+      {
+        "z": 5,
+        "id": "b1",
+        "type": "text",
+        "slot": "b1",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 28,
+        "align": "left",
+        "x": 112,
+        "y": 340,
+        "width": 400,
+        "height": 200
+      },
+      {
+        "z": 5,
+        "id": "step2",
+        "type": "text",
+        "tokenColor": "accent",
+        "fontRole": "label",
+        "fontSize": 14,
+        "align": "left",
+        "literal": "02",
+        "x": 600,
+        "y": 280,
+        "width": 120,
+        "height": 32
+      },
+      {
+        "z": 5,
+        "id": "b2",
+        "type": "text",
+        "slot": "b2",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 28,
+        "align": "left",
+        "x": 600,
+        "y": 340,
+        "width": 400,
+        "height": 200
+      },
+      {
+        "z": 5,
+        "id": "step3",
+        "type": "text",
+        "tokenColor": "accent",
+        "fontRole": "label",
+        "fontSize": 14,
+        "align": "left",
+        "literal": "03",
+        "x": 1080,
+        "y": 280,
+        "width": 120,
+        "height": 32
+      },
+      {
+        "z": 5,
+        "id": "b3",
+        "type": "text",
+        "slot": "b3",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 28,
+        "align": "left",
+        "x": 1080,
+        "y": 340,
+        "width": 400,
+        "height": 200
+      }
+    ]
+  },
+  "status": "draft"
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Acme Health",
+  "colors": {
+    "bg": "#F7F3EC",
+    "surface": "#FFFFFF",
+    "ink": "#1C1917",
+    "muted": "#57534E",
+    "accent": "#0F766E",
+    "line": "#E7E5E4"
+  },
+  "fonts": {
+    "display": "Helvetica Neue",
+    "body": "Georgia"
+  },
+  "logoUrl": "https://example.com/acme-logo.png"
+}

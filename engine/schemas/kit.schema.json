@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://slidexy.local/engine/schemas/kit.schema.json",
+  "title": "SlidexyKitVariant",
+  "type": "object",
+  "required": ["id", "role", "variant", "slots", "fit", "pptxMapping", "layout", "status"],
+  "additionalProperties": true,
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "role": { "type": "string", "minLength": 1 },
+    "variant": { "type": "string", "minLength": 1 },
+    "status": { "type": "string", "enum": ["draft", "locked", "approved"] },
+    "family": { "type": "string" },
+    "steal": { "type": "string" },
+    "designReview": { "type": "string" },
+    "pptxGroup": { "type": "string" },
+    "requiresPhoto": { "type": "boolean" },
+    "photoSlots": { "type": "array", "items": { "type": "string" } },
+    "motion": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "transition": {
+          "type": "string",
+          "enum": ["fade", "push", "wipe", "morph", "none"]
+        },
+        "durationMs": { "type": "number" },
+        "ambient": { "type": ["object", "boolean", "null"] },
+        "fallbackTransition": {
+          "type": "string",
+          "enum": ["fade", "push", "wipe", "none"]
+        }
+      }
+    },
+    "slots": { "type": "object" },
+    "fit": { "type": "object" },
+    "pptxMapping": { "type": "object" },
+    "layout": {
+      "type": "object",
+      "required": ["elements"],
+      "properties": {
+        "elements": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["id", "type", "x", "y", "width", "height", "z"],
+            "properties": {
+              "id": { "type": "string" },
+              "type": {
+                "type": "string",
+                "enum": ["text", "image", "shape", "sparkBars", "sparkLine", "group", "table", "primitive", "chart"]
+              },
+              "primitive": {
+                "type": "string",
+                "enum": ["header", "callout", "list", "listItem"]
+              },
+              "x": { "type": "number" },
+              "y": { "type": "number" },
+              "width": { "type": "number" },
+              "height": { "type": "number" },
+              "z": { "type": "number" },
+              "zIndex": { "type": "number" },
+              "morphId": { "type": "string" },
+              "slot": { "type": "string" },
+              "shapeTreatment": { "type": "string" },
+              "ambientTarget": { "type": "string" },
+              "transition": {
+                "type": "string",
+                "enum": ["fade", "push", "wipe", "morph", "none"]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

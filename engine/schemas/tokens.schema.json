@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://slidexy.local/engine/schemas/tokens.schema.json",
+  "title": "SlidexyThemeTokens",
+  "type": "object",
+  "required": ["palettes", "typePairs"],
+  "additionalProperties": true,
+  "properties": {
+    "palettes": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["bg", "surface", "ink", "accent"],
+        "properties": {
+          "label": { "type": "string" },
+          "vibe": { "type": "string" },
+          "dark": { "type": "boolean" },
+          "bg": { "type": "string" },
+          "surface": { "type": "string" },
+          "surface_color": { "type": "string" },
+          "card_bg": { "type": "string" },
+          "card_shadow": { "type": ["object", "string"] },
+          "ink": { "type": "string" },
+          "muted": { "type": "string" },
+          "accent": { "type": "string" },
+          "line": { "type": "string" }
+        }
+      }
+    },
+    "typePairs": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["display", "body"],
+        "properties": {
+          "label": { "type": "string" },
+          "display": { "type": "string" },
+          "body": { "type": "string" },
+          "when": { "type": "string" }
+        }
+      }
+    },
+    "themeLocks": { "type": "object" },
+    "motifs": { "type": "object" },
+    "photoMasks": { "type": "object" },
+    "typeTreatments": { "type": "object" },
+    "imageTreatments": { "type": "object" },
+    "card_shadow": { "type": "object" },
+    "typography": {
+      "type": "object",
+      "properties": {
+        "bodyMinPt": { "type": "number", "minimum": 14 },
+        "titleMinPt": { "type": "number", "minimum": 24 }
+      }
+    }
+  }
+}

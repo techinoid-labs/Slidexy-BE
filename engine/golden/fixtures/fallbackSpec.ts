@@ -21,7 +21,7 @@ export function fallbackSpec(prompt: string, deckType: DeckType): DeckSpec {
     style: {
       palette,
       typePair,
-      imageTreatment: dark ? "duotone" : "full-bleed",
+      imageTreatment: dark ? "tint" : "full-bleed",
       motif: "bar-accent",
     },
     slides: roles.map((role) => {

@@ -1,0 +1,153 @@
+{
+  "id": "cover/brutalist",
+  "role": "cover",
+  "variant": "brutalist",
+  "family": "brutalist",
+  "steal": "No safe margins — title clipped by the slide edge, neon slab under type, harsh B&W photo cutout.",
+  "requiresPhoto": true,
+  "photoSlots": [
+    "cutout"
+  ],
+  "pptxGroup": "cover-brutalist-overlap",
+  "slots": {
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    },
+    "caption": {
+      "kind": "text",
+      "optional": true,
+      "from": "caption"
+    },
+    "cutout": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo"
+    },
+    "neon": {
+      "kind": "shape",
+      "optional": false
+    },
+    "accent": {
+      "kind": "shape",
+      "optional": false
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 120,
+      "minFont": 56,
+      "lineClamp": 2,
+      "shrinkMin": 0.8
+    },
+    "caption": {
+      "maxFont": 22,
+      "minFont": 14,
+      "lineClamp": 2,
+      "shrinkMin": 0.85
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "caption": {
+      "kind": "text"
+    },
+    "cutout": {
+      "kind": "picture"
+    },
+    "neon": {
+      "kind": "shape"
+    },
+    "accent": {
+      "kind": "shape"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 1,
+        "id": "cutout",
+        "type": "image",
+        "slot": "cutout",
+        "mask": "rect",
+        "tone": "bw-harsh",
+        "tension": 0.15,
+        "x": 820,
+        "y": -40,
+        "width": 860,
+        "height": 980,
+        "pptxGroup": "cover-brutalist-overlap",
+        "morphId": "hero"
+      },
+      {
+        "z": 2,
+        "id": "neon",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "accent",
+        "x": 0,
+        "y": 380,
+        "width": 980,
+        "height": 520,
+        "pptxGroup": "cover-brutalist-overlap",
+        "morphId": "neon"
+      },
+      {
+        "z": 4,
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 108,
+        "align": "left",
+        "verticalAlign": "middle",
+        "typeTreatment": "outline",
+        "x": -64,
+        "y": 420,
+        "width": 1040,
+        "height": 280,
+        "pptxGroup": "cover-brutalist-overlap",
+        "morphId": "title"
+      },
+      {
+        "z": 5,
+        "id": "caption",
+        "type": "text",
+        "slot": "caption",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontSize": 20,
+        "align": "left",
+        "x": 48,
+        "y": 720,
+        "width": 720,
+        "height": 80,
+        "pptxGroup": "cover-brutalist-overlap",
+        "morphId": "caption"
+      },
+      {
+        "z": 3,
+        "id": "accent",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "bg",
+        "x": 0,
+        "y": 0,
+        "width": 48,
+        "height": 900,
+        "morphId": "accent"
+      }
+    ]
+  },
+  "status": "locked",
+  "motion": {
+    "transition": "none",
+    "fallbackTransition": "fade",
+    "durationMs": 800,
+    "ambientEligible": true
+  }
+}

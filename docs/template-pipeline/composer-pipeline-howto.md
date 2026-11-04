@@ -1,11 +1,10 @@
 # Template pipeline — step-by-step
 
-How to run both generate paths from the curator UI:
+**Curator UI (current):** modified seeds only — pick a seed + idea → pinned thematic rewrite.
 
-1. **Composer (kit)** — plan → copy → compose from components  
-2. **Seeds (thematic)** — rewrite / remix / assemble from `app-library` PowerPoint seeds  
+Other paths (Composer kit, Auto-Select, Remix, Assemble, Native, Panel) still exist in code/APIs but are hidden from the Generate form for now.
 
-Also: review, replay, Gallery, Panel. Phase engineering notes live in `docs/template-pipeline/merge/`.
+Also offline: review, replay, Gallery. Phase engineering notes live in `docs/template-pipeline/merge/`.
 
 ---
 

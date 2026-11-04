@@ -1,0 +1,137 @@
+{
+  "id": "portfolio/masonry",
+  "role": "portfolio",
+  "variant": "masonry",
+  "family": "image-heavy",
+  "steal": "Image-heavy masonry — 1 large left, 2 stacked right, tiny captions.",
+  "requiresPhoto": true,
+  "photoSlots": ["p1", "p2", "p3"],
+  "slots": {
+    "title": { "kind": "text", "optional": false, "from": "title" },
+    "p1": { "kind": "image", "optional": false, "from": "photo0" },
+    "p2": { "kind": "image", "optional": false, "from": "photo1" },
+    "p3": { "kind": "image", "optional": false, "from": "photo2" },
+    "c1": { "kind": "text", "optional": true, "from": "body0" },
+    "c2": { "kind": "text", "optional": true, "from": "body1" },
+    "c3": { "kind": "text", "optional": true, "from": "body2" }
+  },
+  "fit": {
+    "title": { "maxFont": 48, "minFont": 40, "lineClamp": 2, "shrinkMin": 0.9 },
+    "c1": { "maxFont": 18, "minFont": 14, "lineClamp": 1, "shrinkMin": 1 },
+    "c2": { "maxFont": 18, "minFont": 14, "lineClamp": 1, "shrinkMin": 1 },
+    "c3": { "maxFont": 18, "minFont": 14, "lineClamp": 1, "shrinkMin": 1 }
+  },
+  "pptxMapping": {
+    "title": { "kind": "text" },
+    "p1": { "kind": "picture" },
+    "p2": { "kind": "picture" },
+    "p3": { "kind": "picture" },
+    "c1": { "kind": "text" },
+    "c2": { "kind": "text" },
+    "c3": { "kind": "text" }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 2,
+        "id": "title",
+        "type": "primitive",
+        "primitive": "header",
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 44,
+        "align": "left",
+        "x": 72,
+        "y": 32,
+        "width": 1456,
+        "height": 90,
+        "morphId": "title"
+      },
+      {
+        "z": 1,
+        "id": "p1",
+        "type": "image",
+        "slot": "p1",
+        "x": 72,
+        "y": 160,
+        "width": 880,
+        "height": 640,
+        "morphId": "photo-1"
+      },
+      {
+        "z": 1,
+        "id": "p2",
+        "type": "image",
+        "slot": "p2",
+        "x": 980,
+        "y": 160,
+        "width": 548,
+        "height": 280,
+        "morphId": "photo-2"
+      },
+      {
+        "z": 1,
+        "id": "p3",
+        "type": "image",
+        "slot": "p3",
+        "x": 980,
+        "y": 516,
+        "width": 548,
+        "height": 284,
+        "morphId": "photo-3"
+      },
+      {
+        "z": 3,
+        "id": "c1",
+        "type": "text",
+        "slot": "c1",
+        "tokenColor": "muted",
+        "fontRole": "label",
+        "fontSize": 16,
+        "align": "left",
+        "x": 72,
+        "y": 812,
+        "width": 880,
+        "height": 40,
+        "morphId": "caption-1"
+      },
+      {
+        "z": 3,
+        "id": "c2",
+        "type": "text",
+        "slot": "c2",
+        "tokenColor": "muted",
+        "fontRole": "label",
+        "fontSize": 16,
+        "align": "left",
+        "x": 980,
+        "y": 452,
+        "width": 548,
+        "height": 40,
+        "morphId": "caption-2"
+      },
+      {
+        "z": 3,
+        "id": "c3",
+        "type": "text",
+        "slot": "c3",
+        "tokenColor": "muted",
+        "fontRole": "label",
+        "fontSize": 16,
+        "align": "left",
+        "x": 980,
+        "y": 812,
+        "width": 548,
+        "height": 40,
+        "morphId": "caption-3"
+      }
+    ]
+  },
+  "status": "draft",
+  "motion": {
+    "transition": "fade",
+    "fallbackTransition": "fade",
+    "durationMs": 500
+  }
+}

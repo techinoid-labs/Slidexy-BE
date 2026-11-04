@@ -1,0 +1,5 @@
+[
+  { "value": 4800, "label": "Annual visits" },
+  { "value": 97, "suffix": "%", "label": "Parent satisfaction" },
+  { "value": 4.9, "label": "Family rating" }
+]

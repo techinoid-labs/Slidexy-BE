@@ -15,6 +15,7 @@ const { renderSlidePng } = require("../../scripts/slideSvg");
 const { nudgePalette } = require("./catalogCaps");
 const { analyzeDeck } = require("./scoring/analyzeDeck");
 const { applyParametric } = require("./parametric");
+const { fitDeckText } = require("./fitText");
 
 const ROOT = path.join(__dirname, "..", "..");
 const LIBRARY = path.join(ROOT, "app-library");
@@ -486,6 +487,21 @@ function seedFitsPrompt(seed, vibe, subject) {
   return true;
 }
 
+/** Higher = better topical fit. Used to rank Auto-Select after the vibe/score gate. */
+function seedRelevanceScore(seed, subject) {
+  let score = 0;
+  if (industryMatch(subject, seed && seed.industry)) score += 100;
+  const text = String(subject || "").toLowerCase();
+  String(seed && seed.id || "")
+    .toLowerCase()
+    .split(/[^a-z0-9]+/)
+    .filter((word) => word.length > 2 && !STOP.has(word))
+    .forEach((word) => {
+      if (new RegExp("\\b" + word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b", "i").test(text)) score += 8;
+    });
+  return score;
+}
+
 async function classifyVibe(subject) {
   const result = await askModel(vibePrompt(subject));
   return { vibe: parseVibe(result.text), model: result.model };
@@ -617,7 +633,11 @@ async function chooseLayout(subject, exclude, knownVibe) {
   }
   const ranked = pool
     .filter((seed) => seedFitsPrompt(seed, vibe, subject))
-    .sort((a, b) => b.qualityScore - a.qualityScore || (a.id < b.id ? -1 : 1));
+    .sort((a, b) => {
+      const byRelevance = seedRelevanceScore(b, subject) - seedRelevanceScore(a, subject);
+      if (byRelevance) return byRelevance;
+      return b.qualityScore - a.qualityScore || (a.id < b.id ? -1 : 1);
+    });
   const matches = ranked.filter((seed) => skipped.indexOf(seed.id) < 0);
   if (!matches.length) {
     if (!ranked.length) throw new Error("No enabled " + vibe + " layout scored 70 or above");
@@ -625,11 +645,13 @@ async function chooseLayout(subject, exclude, knownVibe) {
     return { id: same.id, vibe, qualityScore: same.qualityScore, model: result.model, repeated: true };
   }
   let pick = matches[0];
+  const pickRelevance = seedRelevanceScore(pick, subject);
   if (vibe === "Photo-heavy") {
     let slots = 0;
     try { slots = countLargePhotoSlides(loadLayout(pick.id)); } catch (error) { slots = 0; }
     if (slots < 2) {
       const richer = matches.find((seed) => {
+        if (seedRelevanceScore(seed, subject) < pickRelevance) return false;
         try { return countLargePhotoSlides(loadLayout(seed.id)) >= 2; } catch (error) { return false; }
       });
       if (richer && richer.id !== pick.id) {
@@ -638,8 +660,9 @@ async function chooseLayout(subject, exclude, knownVibe) {
       }
     }
   }
-  console.log("semantic type " + (pick.semanticType || "untagged"));
-  return { id: pick.id, vibe, qualityScore: pick.qualityScore, model: result.model, semanticType: pick.semanticType || "" };
+  const relevance = seedRelevanceScore(pick, subject);
+  console.log("semantic type " + (pick.semanticType || "untagged") + (relevance ? " relevance " + relevance : ""));
+  return { id: pick.id, vibe, qualityScore: pick.qualityScore, model: result.model, semanticType: pick.semanticType || "", relevance };
 }
 
 function stringMap(value) {
@@ -1673,12 +1696,73 @@ function removeDecoration(deck, target) {
   });
 }
 
+function seedFigurativeUrl(url) {
+  const rel = String(url || "").replace(/\\/g, "/").replace(/^\/+/, "");
+  if (!rel || rel.indexOf("assets/decorations/") === 0) return false;
+  if (rel.indexOf("photos/thematic/") === 0) return false;
+  return rel.indexOf("photos/") === 0;
+}
+
+function keepSeedFigurativeArt(options) {
+  const settings = options || {};
+  if (settings.keepSeedArt === true) return true;
+  if (settings.keepSeedArt === false) return false;
+  return industryMatch(settings.subject, settings.seedIndustry);
+}
+
+function promoteSeedPhoto(element, content) {
+  if (!element || !content) return;
+  element.isDecoration = false;
+  element.forcePhoto = true;
+  if (element.originalRole === "decoration") element.originalRole = "photo";
+  if (content.isDecoration) content.isDecoration = false;
+  content.fit = "cover";
+  if (content.alignX == null) content.alignX = 0.5;
+  if (content.alignY == null) content.alignY = 0.5;
+}
+
+function photoOnDisk(url) {
+  return Boolean(originalImageFile(url));
+}
+
+function fillMissingPhotos(deck, files, counts) {
+  let filled = 0;
+  if (!(files && files.landscape && files.landscape.length) && !(files && files.portrait && files.portrait.length)) {
+    return filled;
+  }
+  eachElement(deck, (element) => {
+    if (element.type === "collage") {
+      const cells = element.collageContent && element.collageContent.cells;
+      if (!Array.isArray(cells)) return;
+      cells.forEach((cell) => {
+        if (!cell || !cell.url || String(cell.url).indexOf("assets/decorations/") === 0) return;
+        if (photoOnDisk(cell.url)) return;
+        promoteSeedPhoto(cell, cell);
+        const wide = (Number(cell.width) || 0) >= (Number(cell.height) || 0);
+        cell.url = nextPhoto(files, counts, wide);
+        filled += 1;
+      });
+      return;
+    }
+    if (element.type !== "image" && element.type !== "maskedImage") return;
+    const content = element.imageContent || element.maskedImageContent;
+    if (!content || !content.url || String(content.url).indexOf("assets/decorations/") === 0) return;
+    if (photoOnDisk(content.url)) return;
+    promoteSeedPhoto(element, content);
+    const wide = (Number(element.width) || 0) >= (Number(element.height) || 0);
+    content.url = nextPhoto(files, counts, wide);
+    filled += 1;
+  });
+  if (filled) console.log("filled " + filled + " missing photo slots");
+  return filled;
+}
+
 function assignImages(deck, files, vibe, options) {
   const counts = { landscape: 0, portrait: 0, decorations: 0, removed: 0 };
   forcePhotoSlides(deck, 2);
   void vibe;
-  void options;
-  console.log("decorations kept from the seed");
+  const keepArt = keepSeedFigurativeArt(options);
+  console.log(keepArt ? "decorations kept from the seed" : "seed figurative art swapped for thematic photos");
   eachElement(deck, (element) => {
     if (element.type === "collage") {
       const cells = element.collageContent && element.collageContent.cells;
@@ -1686,6 +1770,12 @@ function assignImages(deck, files, vibe, options) {
       cells.forEach((cell) => {
         if (!cell || !cell.url || String(cell.url).indexOf("assets/decorations/") === 0) return;
         const standIn = { width: cell.width, height: cell.height, isDecoration: cell.isDecoration, originalRole: cell.originalRole, forcePhoto: cell.forcePhoto };
+        const missing = !photoOnDisk(cell.url);
+        if (decorationImage(standIn, cell)) {
+          if (!missing && (keepArt || !seedFigurativeUrl(cell.url))) return;
+          promoteSeedPhoto(cell, cell);
+          standIn.forcePhoto = true;
+        }
         if (decorationImage(standIn, cell)) return;
         const wide = (Number(cell.width) || 0) >= (Number(cell.height) || 0);
         cell.url = nextPhoto(files, counts, wide);
@@ -1694,10 +1784,18 @@ function assignImages(deck, files, vibe, options) {
     }
     if (element.type !== "image" && element.type !== "maskedImage") return;
     const content = element.imageContent || element.maskedImageContent;
-    if (!content || decorationImage(element, content)) return;
+    if (!content) return;
+    const missing = content.url ? !photoOnDisk(content.url) : true;
+    if (decorationImage(element, content)) {
+      // Missing seed files always get thematic fill (otherwise the renderer shows a blank fallback).
+      if (!missing && (keepArt || !seedFigurativeUrl(content.url))) return;
+      promoteSeedPhoto(element, content);
+    }
+    if (decorationImage(element, content)) return;
     const wide = (Number(element.width) || 0) >= (Number(element.height) || 0);
     content.url = nextPhoto(files, counts, wide);
   });
+  counts.filledMissing = fillMissingPhotos(deck, files, counts);
   return counts;
 }
 
@@ -1883,9 +1981,12 @@ async function themeOnce(options) {
   }
   const landscape = await saveSet(landscapeHits, "landscape");
   const portrait = await saveSet(portraitHits, "portrait");
+  const seedMeta = seedScores().find((seed) => seed.id === String(layout || "").replace(/\.json$/i, "")) || {};
   const counts = assignImages(deck, { landscape, portrait }, "", {
     layoutVibe: selection ? selection.vibe : "",
     subject,
+    seedIndustry: seedMeta.industry,
+    keepSeedArt: industryMatch(subject, seedMeta.industry),
   });
   scrimBrightPhotos(deck);
   const photoUrl = (landscape[0] && landscape[0].url) || (portrait[0] && portrait[0].url) || "";
@@ -1899,6 +2000,14 @@ async function themeOnce(options) {
   console.log("parametric cover " + parametric.coverName + " / density " + parametric.density + " x" + parametric.marginFactor + " / signature " + parametric.signature);
   if (parametric.densityReverted.length) console.log("density reverted slides " + parametric.densityReverted.join(", ") + " after geometry check");
   if (parametric.textOverlaps.length) console.log("text overlap remains on slides " + parametric.textOverlaps.join(", "));
+  const textFits = fitDeckText(deck);
+  if (textFits.length) {
+    const comfort = textFits.filter((item) => item.action === "titleComfort").length;
+    const shrunk = textFits.filter((item) => item.action === "fontShrink").length;
+    const clamped = textFits.filter((item) => item.action === "clamp").length;
+    console.log("fit text " + textFits.length + " boxes (" + comfort + " title, " + shrunk + " shrink, " + clamped + " clamp)");
+  }
+  parametric.textFits = textFits;
   const brand = direction.profile.brand;
   deck.name = brand + ": " + subject;
   deck.id = slug(brand);
@@ -2030,7 +2139,7 @@ async function injectTheme(options, deps = {}) {
   throw new Error("No deck scored " + QA_SCORE + " or above (last score " + lastScore + ")");
 }
 
-module.exports = { injectTheme, themeOnce, inventDirection, askModel, searchPexels, downloadPhoto, classifyVibe, seedFitsPrompt, photoQuery, collectStrings, chooseLayout, splitsContiguousWord, splitProportional, liftDarkTextBackdrops, liftDarkShapes, fitDecorationBox, getAvailableVibes, settleAssetVibe, parseAssetVibe, steerAssetVibe, countLargePhotoSlides, forcePhotoSlides, photographicSubject, decorationKind, assetFits, assignImages, minimalistRequest, removeDecoration, subjectAssetVibe, pruneSlideText, visionQaEnabled, writeQa, clampCopy, COPY_RULES, QA_SCORE, QA_TRIES };
+module.exports = { injectTheme, themeOnce, inventDirection, askModel, searchPexels, downloadPhoto, classifyVibe, seedFitsPrompt, seedRelevanceScore, photoQuery, collectStrings, chooseLayout, splitsContiguousWord, splitProportional, liftDarkTextBackdrops, liftDarkShapes, fitDecorationBox, getAvailableVibes, settleAssetVibe, parseAssetVibe, steerAssetVibe, countLargePhotoSlides, forcePhotoSlides, photographicSubject, decorationKind, assetFits, assignImages, minimalistRequest, removeDecoration, subjectAssetVibe, pruneSlideText, visionQaEnabled, writeQa, clampCopy, COPY_RULES, QA_SCORE, QA_TRIES, seedFigurativeUrl, keepSeedFigurativeArt };
 
 if (require.main === module) {
   const { runPipeline } = require("./pipeline");

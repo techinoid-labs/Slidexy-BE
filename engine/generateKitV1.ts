@@ -1,10 +1,30 @@
 const fs = require("fs");
 const path = require("path");
-import { DeckSpec, DeckType } from "./types";
+import { DeckSpec, DeckType, StyleLock } from "./types";
 const { validateDeckSpec } = require("./validate");
 const { selectAll } = require("./selectVariant");
 const { runGates } = require("./gates");
 const { renderDeckFromSpec, tokens } = require("./render");
+
+const DEFAULT_BRAND_LOCK: StyleLock = {
+  palette: "charcoal-ember",
+  typePair: "slab-rockwell",
+  imageTreatment: "tint",
+  motif: "bar-accent",
+};
+
+function applyStyleLock(spec: DeckSpec, lock?: StyleLock | true): DeckSpec {
+  if (!lock) return spec;
+  const L = lock === true ? DEFAULT_BRAND_LOCK : { ...DEFAULT_BRAND_LOCK, ...lock };
+  spec.style = {
+    palette: L.palette || spec.style.palette,
+    typePair: L.typePair || spec.style.typePair,
+    imageTreatment: L.imageTreatment || spec.style.imageTreatment,
+    motif: L.motif || spec.style.motif,
+  };
+  if (spec.style.imageTreatment === "duotone") spec.style.imageTreatment = "tint";
+  return spec;
+}
 
 const ROOT = path.join(__dirname, "..");
 
@@ -128,6 +148,17 @@ function buildPrompt(userPrompt: string, deckType: DeckType, repairNotes?: strin
     " (hard — slideCountOK fails below this)\nprompt: " +
     userPrompt +
     "\n\nEmit style.typePair as a token id only (corp-calibri | editorial-cambria | tech-verdana | classic-georgia | serif-constantia | soft-candara | modern-segoe | display-trebuchet | poster-franklin | book-garamond | story-bookman | slab-rockwell), never a font family name.\n";
+  if (deckType === "Report") {
+    msg +=
+      "\n## Report content density (required)\n" +
+      "Set style.contentDensity to \"report\". Do NOT write short punchy keynote copy.\n" +
+      "Write consulting-grade detailed copy with 3 bullet points per content slide, each with a supporting sentence.\n" +
+      "Include several role:\"report\" slides with variantHint one of: two-column-text | bulleted-list | executive-summary | data-table | consulting-breakdown | agenda | chart-panel.\n" +
+      "For executive-summary include a takeaway string. For data-table include a table string[][] (4x4 or 5x5).\n" +
+      "For chart-panel include chart:{type:donut|line|stackedBar,labels,series}. Use **double asterisks** for accent highlights with spaces around markers (e.g. 'cut **30%** in four quarters', never 'cut**30%**in').\n" +
+      "For consulting-breakdown body, include a clear metric number the engine can extract; never leave bare ** as a hero.\n" +
+      "Typography floors: body ≥14pt, titles ≥24pt — the engine will split >80-word blocks across slides.\n";
+  }
   if (repairNotes && repairNotes.length) {
     msg +=
       "\n## Repair (fix ONLY these failures; quote/allowed lists below — replace bad values)\n" +
@@ -161,7 +192,7 @@ export async function inventDeckSpec(prompt: string, deckType: DeckType, repairN
 export async function generateKitV1(
   prompt: string,
   deckType: DeckType = "Pitch",
-  options?: { outDir?: string; id?: string }
+  options?: { outDir?: string; id?: string; styleLock?: StyleLock | true }
 ): Promise<{
   deck: any;
   spec: DeckSpec;
@@ -172,7 +203,14 @@ export async function generateKitV1(
   outDir?: string;
 }> {
   loadEnv();
-  let spec = await inventDeckSpec(prompt, deckType);
+  const brandNote =
+    options && options.styleLock
+      ? [
+          "styleLock: set style.palette=charcoal-ember, style.typePair=slab-rockwell, style.imageTreatment=tint, style.motif=bar-accent",
+          "roleSequenceOK: include each required role exactly once; always end with closing (CTA, not a location hero)",
+        ]
+      : undefined;
+  let spec = applyStyleLock(await inventDeckSpec(prompt, deckType, brandNote), options && options.styleLock);
   let selections = selectAll(spec, prompt);
   let gates = runGates(spec, selections, tokens, deckType);
   let repaired = false;
@@ -180,8 +218,13 @@ export async function generateKitV1(
 
   if (!gates.pass) {
     const notes = gates.slides.flatMap((s: any) => s.reasons.map((r: string) => "slide " + s.slideIndex + " " + r));
+    if (options && options.styleLock) {
+      notes.push(
+        "styleLock: palette charcoal-ember, typePair slab-rockwell, imageTreatment tint, motif bar-accent"
+      );
+    }
     repaired = true;
-    spec = await inventDeckSpec(prompt, deckType, notes);
+    spec = applyStyleLock(await inventDeckSpec(prompt, deckType, notes), options && options.styleLock);
     selections = selectAll(spec, prompt + ":repair");
     gates = runGates(spec, selections, tokens, deckType);
     if (!gates.pass) failedAfterRepair = { spec, gates };
@@ -213,7 +256,20 @@ export async function generateKitV1(
     await exportDeckPptx(deck, path.join(outDir, "deck.pptx"));
   }
 
+  // Always keep deckspec beside published id folder when id looks published
+  if (options && options.id) {
+    const pubDir = path.join(ROOT, "app-library", "published", options.id);
+    if (fs.existsSync(path.dirname(pubDir))) {
+      try {
+        fs.mkdirSync(pubDir, { recursive: true });
+        fs.writeFileSync(path.join(pubDir, "deckspec.json"), JSON.stringify(spec, null, 2));
+      } catch (_) {
+        /* ignore */
+      }
+    }
+  }
+
   return { deck, spec, selections, gates, repaired, failedAfterRepair, outDir };
 }
 
-module.exports = { generateKitV1, inventDeckSpec };
+module.exports = { generateKitV1, inventDeckSpec, applyStyleLock, DEFAULT_BRAND_LOCK };

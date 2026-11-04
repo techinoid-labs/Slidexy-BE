@@ -70,7 +70,7 @@
         "id": "block",
         "type": "shape",
         "shape": "rect",
-        "tokenFill": "accent",
+        "tokenFill": "surface",
         "x": 0,
         "y": 0,
         "width": 780,
@@ -81,7 +81,7 @@
         "id": "title",
         "type": "text",
         "slot": "title",
-        "tokenColor": "bg",
+        "tokenColor": "ink",
         "fontRole": "display",
         "fontSize": 40,
         "align": "left",
@@ -95,7 +95,7 @@
         "id": "body",
         "type": "text",
         "slot": "body",
-        "tokenColor": "bg",
+        "tokenColor": "ink",
         "fontRole": "body",
         "fontSize": 24,
         "align": "left",
@@ -120,12 +120,13 @@
         "type": "shape",
         "shape": "rect",
         "motif": true,
-        "tokenFill": "ink",
+        "tokenFill": "accent",
         "x": 72,
         "y": 210,
         "width": 80,
         "height": 6
       }
     ]
-  }
+  },
+  "status": "draft"
 }

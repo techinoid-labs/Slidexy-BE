@@ -46,6 +46,7 @@
       "shrinkMin": 0.75
     }
   },
+  "pptxGroup": "cover-b-overlap",
   "pptxMapping": {
     "title": {
       "kind": "text"
@@ -74,18 +75,21 @@
         "x": 280,
         "y": 140,
         "width": 1040,
-        "height": 620
+        "height": 620,
+        "pptxGroup": "cover-b-overlap"
       },
       {
         "z": 2,
         "id": "cutout",
         "type": "image",
         "slot": "cutout",
+        "mask": "circle",
         "x": 160,
         "y": 200,
         "width": 380,
         "height": 500,
-        "radius": 190
+        "radius": 190,
+        "pptxGroup": "cover-b-overlap"
       },
       {
         "z": 3,
@@ -99,7 +103,8 @@
         "x": 600,
         "y": 320,
         "width": 640,
-        "height": 160
+        "height": 160,
+        "pptxGroup": "cover-b-overlap"
       },
       {
         "z": 3,
@@ -113,7 +118,8 @@
         "x": 600,
         "y": 500,
         "width": 640,
-        "height": 80
+        "height": 80,
+        "pptxGroup": "cover-b-overlap"
       },
       {
         "z": 4,
@@ -150,5 +156,6 @@
         "height": 12
       }
     ]
-  }
+  },
+  "status": "draft"
 }

@@ -152,4 +152,182 @@ function textOverflow(deck) {
   return problems;
 }
 
-module.exports = { textOverflow, measureWidth: widthOf, fontFile, knownFamilies };
+function measurableFamily(name, fonts) {
+  const raw = String(name || "").trim();
+  if (raw && fontFile(raw)) return raw;
+  if (fonts && fontFile(fonts.text)) return fonts.text;
+  if (fonts && fontFile(fonts.display)) return fonts.display;
+  if (fontFile("Roboto")) return "Roboto";
+  if (fontFile("Inter")) return "Inter";
+  return knownFamilies()[0] || "Inter";
+}
+
+function resolveFamily(element, deck) {
+  const fonts = (deck && deck.tokens && deck.tokens.font) || {};
+  const style = element.textStyle || {};
+  const spans = element.textContent && element.textContent.spans;
+  const span = Array.isArray(spans) ? spans.find((item) => item && item.fontFamily) : null;
+  let family = (span && span.fontFamily) || style.fontFamily || fonts.display || fonts.text || "";
+  if (typeof family === "string" && family.startsWith("{font.") && family.endsWith("}")) {
+    const key = family.slice(6, -1);
+    family = fonts[key] || family;
+  }
+  return measurableFamily(family, fonts);
+}
+
+function currentText(element) {
+  const spans = element && element.textContent && element.textContent.spans;
+  if (!Array.isArray(spans) || !spans.length) return "";
+  return spans.map((span) => String(span && span.text != null ? span.text : "")).join("");
+}
+
+function setCurrentText(element, text) {
+  const spans = element && element.textContent && element.textContent.spans;
+  if (!Array.isArray(spans) || !spans.length) return;
+  spans[0].text = text;
+  for (let index = 1; index < spans.length; index += 1) spans[index].text = "";
+}
+
+function currentSize(element, deck) {
+  const spans = element.textContent && element.textContent.spans;
+  const span = Array.isArray(spans) ? spans.find((item) => item && Number(item.fontSize)) : null;
+  const raw = (span && span.fontSize) || (element.textStyle && element.textStyle.fontSize);
+  return fontSize(deck.tokens || {}, raw);
+}
+
+function setCurrentSize(element, size) {
+  if (!element.textStyle) element.textStyle = {};
+  element.textStyle.fontSize = size;
+  const spans = (element.textContent && element.textContent.spans) || [];
+  spans.forEach((span) => {
+    if (span) span.fontSize = size;
+  });
+}
+
+function shortenWords(text, boxWidth, boxHeight, size, lineHeight, family) {
+  const words = String(text || "").trim().split(/\s+/).filter(Boolean);
+  if (!words.length) return "";
+  let next = words.slice();
+  while (next.length > 1 && overflows(next.join(" "), boxWidth, boxHeight, size, lineHeight, family)) {
+    next.pop();
+  }
+  return next.join(" ");
+}
+
+function wordCount(text) {
+  return String(text || "").trim().split(/\s+/).filter(Boolean).length;
+}
+
+function isDisplayTitle(element, text, size) {
+  const id = String(element && element.id || "").toLowerCase();
+  if (/title|heading|cover|thank|welcome/.test(id)) return true;
+  if (size >= 48) return true;
+  if (size >= 32 && wordCount(text) <= 6) return true;
+  return false;
+}
+
+/** Target size so titles leave padding and do not dominate the box. */
+function comfortCap(text, width, height, lineHeight, family, fromSize, display) {
+  if (!display) return fromSize;
+  const words = wordCount(text);
+  const lh = lineHeight || 1.2;
+  // Prefer one line for short titles, two for longer labels.
+  const targetLines = words <= 3 ? 1 : 2;
+  const heightCap = (height * 0.55) / (lh * targetLines);
+  // Absolute caps: body-slide titles stay under 64; huge closing titles under 96.
+  const absoluteCap = fromSize >= 160 || height >= 300 ? 96 : 64;
+  let cap = Math.min(fromSize, heightCap, absoluteCap);
+  // Width comfort: short all-caps titles should not force ultra-tight tracking visually.
+  const floor = Math.max(18, Math.min(fromSize, height * 0.28));
+  while (cap > floor && widthOf(family, text, cap) > width * 0.92) {
+    cap = Math.max(floor, Math.round(cap * 0.92 * 10) / 10);
+  }
+  return Math.round(Math.max(floor, cap) * 10) / 10;
+}
+
+/**
+ * Shrink or shorten text so seed/thematic boxes do not overflow,
+ * and pull oversized display titles down to a comfortable size even when they "fit".
+ * Boxes never grow. Returns a list of fit actions for logging.
+ */
+function fitDeckText(deck) {
+  const fits = [];
+
+  function visit(element, slideIndex) {
+    if (!element) return;
+    if (element.type === "rotated" && element.element) {
+      visit(element.element, slideIndex);
+      return;
+    }
+    if (element.type !== "text") {
+      if (Array.isArray(element.children)) element.children.forEach((child) => visit(child, slideIndex));
+      return;
+    }
+    const text = currentText(element).trim();
+    if (!text) return;
+    const width = Number(element.width) || 0;
+    const height = Number(element.height) || 0;
+    if (width < 8 || height < 8) return;
+    const lineHeight = Number(element.textStyle && element.textStyle.lineHeight) || 1.2;
+    const family = resolveFamily(element, deck);
+    let size = currentSize(element, deck);
+    const fromSize = size;
+    const display = isDisplayTitle(element, text, size);
+    const usableHeight = height * (display ? 0.85 : 1);
+    const comfort = comfortCap(text, width, height, lineHeight, family, size, display);
+    if (comfort < size - 0.05) size = comfort;
+
+    const floor = display
+      ? Math.max(18, Math.round(fromSize * 0.35 * 10) / 10)
+      : Math.max(10, Math.round(fromSize * 0.55 * 10) / 10);
+    while (size > floor && overflows(text, width, usableHeight, size, lineHeight, family)) {
+      size = Math.max(floor, Math.round(size * 0.9 * 10) / 10);
+    }
+
+    if (size < fromSize - 0.05) {
+      setCurrentSize(element, size);
+      fits.push({
+        slide: slideIndex + 1,
+        elementId: element.id || "",
+        action: display ? "titleComfort" : "fontShrink",
+        from: fromSize,
+        to: size,
+      });
+    } else if (!overflows(text, width, height, size, lineHeight, family)) {
+      return;
+    }
+
+    if (!overflows(text, width, usableHeight, size, lineHeight, family)
+      && !overflows(text, width, height, size, lineHeight, family)) {
+      return;
+    }
+
+    const shortened = shortenWords(text, width, usableHeight, size, lineHeight, family);
+    if (shortened && shortened !== text) {
+      setCurrentText(element, shortened);
+      fits.push({
+        slide: slideIndex + 1,
+        elementId: element.id || "",
+        action: "clamp",
+        from: text.length,
+        to: shortened.length,
+      });
+    }
+  }
+
+  (deck.layoutSequence || Object.keys(deck.layouts || {})).forEach((layoutId, slideIndex) => {
+    const layout = deck.layouts && deck.layouts[layoutId];
+    (layout && layout.elements || []).forEach((element) => visit(element, slideIndex));
+  });
+  return fits;
+}
+
+module.exports = {
+  textOverflow,
+  measureWidth: widthOf,
+  fontFile,
+  knownFamilies,
+  overflows,
+  fitDeckText,
+  resolveFamily,
+};

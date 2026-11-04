@@ -2,9 +2,11 @@
   "id": "team/a",
   "role": "team",
   "variant": "a",
-  "steal": "Bottom-left portrait with member list on the right.",
+  "steal": "Centered split — portrait left, member list right (vertically balanced).",
   "requiresPhoto": true,
-  "photoSlots": ["photo"],
+  "photoSlots": [
+    "photo"
+  ],
   "slots": {
     "title": {
       "kind": "text",
@@ -41,10 +43,18 @@
     }
   },
   "pptxMapping": {
-    "title": { "kind": "text" },
-    "body": { "kind": "text" },
-    "photo": { "kind": "picture" },
-    "accent": { "kind": "shape" }
+    "title": {
+      "kind": "text"
+    },
+    "body": {
+      "kind": "text"
+    },
+    "photo": {
+      "kind": "picture"
+    },
+    "accent": {
+      "kind": "shape"
+    }
   },
   "layout": {
     "elements": [
@@ -53,10 +63,13 @@
         "id": "photo",
         "type": "image",
         "slot": "photo",
-        "x": 80,
-        "y": 320,
-        "width": 560,
-        "height": 480
+        "crop": "top-center",
+        "mask": "roundedRect",
+        "radius": 16,
+        "x": 100,
+        "y": 160,
+        "width": 448,
+        "height": 560
       },
       {
         "z": 2,
@@ -68,9 +81,9 @@
         "fontSize": 40,
         "align": "left",
         "x": 720,
-        "y": 200,
+        "y": 240,
         "width": 780,
-        "height": 120
+        "height": 100
       },
       {
         "z": 2,
@@ -82,9 +95,9 @@
         "fontSize": 22,
         "align": "left",
         "x": 720,
-        "y": 360,
+        "y": 380,
         "width": 780,
-        "height": 400
+        "height": 360
       },
       {
         "z": 0,
@@ -95,10 +108,11 @@
         "tokenFill": "accent",
         "opacity": 0.45,
         "x": 40,
-        "y": 40,
-        "width": 180,
-        "height": 180
+        "y": 120,
+        "width": 160,
+        "height": 160
       }
     ]
-  }
+  },
+  "status": "draft"
 }

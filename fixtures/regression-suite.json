@@ -1,0 +1,148 @@
+{
+  "id": "engine-regression-suite",
+  "description": "Edge-case fixtures for visual + schema regression. Massive titles, empty team, 6-item grids.",
+  "cases": [
+    {
+      "id": "massive-title-cover",
+      "label": "Massive title cover",
+      "deckType": "Pitch",
+      "style": {
+        "palette": "charcoal-ember",
+        "typePair": "slab-rockwell",
+        "imageTreatment": "tint",
+        "motif": "bar-accent",
+        "typeTreatment": "outline"
+      },
+      "slides": [
+        {
+          "role": "cover",
+          "variantHint": "brutalist",
+          "title": "SUPERCALIFRAGILISTIC NEXUS ARENA",
+          "caption": "Edge case — oversized display title must shrink without overflow",
+          "photoQuery": "neon gaming lounge interior night",
+          "photoOrientation": "landscape",
+          "transition": "fade"
+        },
+        {
+          "role": "problem",
+          "title": "When headlines explode past the safe box",
+          "body": [
+            "Fifty-word body copy is intentionally extreme so the engine caps and clamps without cooking the slide into soup for designers who paste marketing blurbs straight from Notion.",
+            "Second bullet still needs to fit.",
+            "Third bullet stays readable at 14pt floor."
+          ],
+          "photoQuery": "lonely gamer at home desk night",
+          "photoOrientation": "landscape",
+          "transition": "push"
+        }
+      ]
+    },
+    {
+      "id": "empty-team-members",
+      "label": "Empty / sparse team",
+      "deckType": "Pitch",
+      "style": {
+        "palette": "paper-blue",
+        "typePair": "corp-calibri",
+        "imageTreatment": "full-bleed",
+        "motif": "bar-accent"
+      },
+      "slides": [
+        {
+          "role": "team",
+          "variantHint": "b",
+          "title": "Builders",
+          "members": [],
+          "photoQuery": "empty conference room chairs",
+          "photoOrientation": "landscape",
+          "transition": "fade"
+        },
+        {
+          "role": "team",
+          "variantHint": "a",
+          "title": "Solo founder",
+          "members": [{ "name": "Ada Okonkwo", "role": "CEO" }],
+          "photoQueries": ["ceo woman professional headshot portrait"],
+          "photoQuery": "ceo woman professional headshot portrait",
+          "photoOrientation": "portrait",
+          "transition": "fade"
+        }
+      ]
+    },
+    {
+      "id": "six-item-feature-grid",
+      "label": "6-item feature grid",
+      "deckType": "Pitch",
+      "style": {
+        "palette": "mist-teal",
+        "typePair": "display-trebuchet",
+        "imageTreatment": "tint",
+        "motif": "brush-stroke",
+        "typeTreatment": "outline"
+      },
+      "slides": [
+        {
+          "role": "feature",
+          "variantHint": "b",
+          "title": "Capability matrix",
+          "body": ["Identity", "Campaign", "Motion", "Web", "Packaging", "Social"],
+          "photoQueries": [
+            "logo design mockups desk",
+            "outdoor advertising campaign billboard",
+            "motion design studio screens",
+            "web design laptop mockup dark",
+            "product packaging design studio",
+            "social media content phone mockup"
+          ],
+          "photoQuery": "logo design mockups desk",
+          "photoOrientation": "landscape",
+          "transition": "fade"
+        },
+        {
+          "role": "stats",
+          "variantHint": "dashboard",
+          "title": "Ops board",
+          "stats": [
+            { "value": "128", "label": "active jobs" },
+            { "value": "99.2%", "label": "uptime" },
+            { "value": "14m", "label": "p95 latency" },
+            { "value": "6", "label": "regions" }
+          ],
+          "transition": "wipe"
+        }
+      ]
+    },
+    {
+      "id": "morph-fallback-cover",
+      "label": "Morph disabled → fade fallback",
+      "deckType": "Pitch",
+      "motion": { "morph": true, "morphSupported": false, "ambient": true, "cameraPan": true },
+      "style": {
+        "palette": "charcoal-ember",
+        "typePair": "slab-rockwell",
+        "imageTreatment": "tint",
+        "motif": "bar-accent",
+        "typeTreatment": "outline"
+      },
+      "slides": [
+        {
+          "role": "cover",
+          "variantHint": "brutalist",
+          "title": "Nexus",
+          "caption": "Fallback path when Morph unsupported",
+          "photoQuery": "neon gaming lounge interior night",
+          "photoOrientation": "landscape",
+          "transition": "morph"
+        },
+        {
+          "role": "closing",
+          "title": "Still ships",
+          "body": ["fade fallback", "static ambient rest"],
+          "photoQuery": "gaming lounge neon entrance night",
+          "photoOrientation": "landscape",
+          "transition": "fade"
+        }
+      ]
+    }
+  ]
+}

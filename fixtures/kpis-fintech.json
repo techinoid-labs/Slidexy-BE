@@ -1,0 +1,5 @@
+[
+  { "value": 2400000, "prefix": "$", "label": "AUM" },
+  { "value": 99.98, "suffix": "%", "label": "Uptime" },
+  { "value": 14, "suffix": "d", "label": "Avg onboard" }
+]

@@ -1,0 +1,17 @@
+{
+  "id": "ambient/pulse",
+  "kind": "ambient",
+  "effect": "pulse",
+  "steal": "Soft 3.5% pulse on the accent shape behind stats — never photo/text scale.",
+  "target": {
+    "prefer": ["pulse-bg", "accent", "neon", "stat-bg", "plate"]
+  },
+  "params": {
+    "scale": 1.035,
+    "durationMs": 3200,
+    "autoReverse": true,
+    "repeatCount": "indefinite"
+  },
+  "roles": ["stats", "closing"],
+  "priority": 20
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Atelier North",
+  "colors": {
+    "bg": "#F4EEE6",
+    "surface": "#FFFDF9",
+    "ink": "#1F1A17",
+    "muted": "#6B5E54",
+    "accent": "#C45C26",
+    "line": "#E5D7C8"
+  },
+  "fonts": {
+    "display": "Georgia",
+    "body": "Calibri"
+  },
+  "logoUrl": "https://example.com/atelier-wordmark.png"
+}

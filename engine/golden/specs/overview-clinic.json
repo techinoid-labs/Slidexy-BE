@@ -14,10 +14,10 @@
       "photoOrientation": "landscape"
     },
     {
-      "role": "agenda",
-      "title": "Today",
-      "body": ["Care model", "Team", "Outcomes"],
-      "photoQuery": "soft clinic hallway",
+      "role": "problem",
+      "title": "Clinic anxiety",
+      "body": ["Harsh lights", "Rushed visits"],
+      "photoQuery": "anxious child waiting room clinic",
       "photoOrientation": "landscape"
     },
     {

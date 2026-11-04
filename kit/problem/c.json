@@ -1,0 +1,151 @@
+{
+  "id": "problem/c",
+  "role": "problem",
+  "variant": "c",
+  "family": "text-heavy",
+  "steal": "Text-heavy problem — title + three bullets, no photo.",
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    },
+    "b1": {
+      "kind": "text",
+      "optional": true,
+      "from": "body0"
+    },
+    "b2": {
+      "kind": "text",
+      "optional": true,
+      "from": "body1"
+    },
+    "b3": {
+      "kind": "text",
+      "optional": true,
+      "from": "body2"
+    },
+    "accent": {
+      "kind": "shape",
+      "optional": false
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 40,
+      "minFont": 14,
+      "lineClamp": 2,
+      "shrinkMin": 0.7
+    },
+    "b1": {
+      "maxFont": 24,
+      "minFont": 14,
+      "lineClamp": 3,
+      "shrinkMin": 0.7
+    },
+    "b2": {
+      "maxFont": 24,
+      "minFont": 14,
+      "lineClamp": 3,
+      "shrinkMin": 0.7
+    },
+    "b3": {
+      "maxFont": 24,
+      "minFont": 14,
+      "lineClamp": 3,
+      "shrinkMin": 0.7
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "b1": {
+      "kind": "text"
+    },
+    "b2": {
+      "kind": "text"
+    },
+    "b3": {
+      "kind": "text"
+    },
+    "accent": {
+      "kind": "shape"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 2,
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 36,
+        "align": "left",
+        "x": 120,
+        "y": 140,
+        "width": 1360,
+        "height": 100
+      },
+      {
+        "z": 3,
+        "id": "accent",
+        "type": "shape",
+        "shape": "rect",
+        "motif": true,
+        "tokenFill": "accent",
+        "x": 120,
+        "y": 260,
+        "width": 64,
+        "height": 8
+      },
+      {
+        "z": 2,
+        "id": "b1",
+        "type": "text",
+        "slot": "b1",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontSize": 22,
+        "align": "left",
+        "x": 120,
+        "y": 320,
+        "width": 1360,
+        "height": 120
+      },
+      {
+        "z": 2,
+        "id": "b2",
+        "type": "text",
+        "slot": "b2",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontSize": 22,
+        "align": "left",
+        "x": 120,
+        "y": 460,
+        "width": 1360,
+        "height": 120
+      },
+      {
+        "z": 2,
+        "id": "b3",
+        "type": "text",
+        "slot": "b3",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontSize": 22,
+        "align": "left",
+        "x": 120,
+        "y": 600,
+        "width": 1360,
+        "height": 120
+      }
+    ]
+  },
+  "status": "draft"
+}

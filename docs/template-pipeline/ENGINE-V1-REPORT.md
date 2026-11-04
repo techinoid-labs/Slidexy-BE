@@ -1,6 +1,34 @@
 # Engine v1 report
 
-Run 1 + follow-up 1 + **follow-up 2**. Kit + DeckSpec + tokens path is live behind `ENGINE_V1=true`.
+Run 1 + follow-up 1–3 + **Engine v1.1 brand lock**. Kit + DeckSpec + tokens path is live behind `ENGINE_V1=true`.
+
+## Engine v1.1-creative (editorial + PPTX-safe)
+
+1. **Overlaps** — `cover/a` + `feature/a`: title overlaps photo edge; solid surface plate @ ~72% opacity (no frosted glass).
+2. **stats/c** — hero number ~40% of slide; satellites tiny in the corner; selectVariant can pick `c`.
+3. **Masks** — `circle` | `roundedRect` | `rect` (`arch` → roundedRect). No blob SVG masks in PPTX.
+4. **Ghost steps** — agenda / how-it-works get a massive 10% opacity step number as an **editable text box**.
+5. **brush-stroke motif** — organic underline via ellipse chain shapes (not a raster brush).
+6. **PPTX groups** — elements with `pptxGroup` are wrapped in OOXML `<p:grpSp>` so overlaps/collages move together.
+7. Solid hex slide backgrounds only; all type stays as text boxes.
+
+## Engine v1.1 (brand lock)
+
+1. **Brand lock** — `generateKitV1({ styleLock: true })` forces `charcoal-ember` + `slab-rockwell` + `tint` + `bar-accent`. Agenda/b large panel uses `surface` (not full-bleed accent).
+2. **Contrast** — brighter `muted` on dark palettes; gate checks muted vs bg/surface ≥ 4.5.
+3. **roleSequenceOK** — required roles exactly once per deckType (Pitch includes problem…closing); Overview sequence now includes problem.
+4. **Closing** — prefer CTA variant `b` over photo-footer location hero.
+5. **Tint** — dark palettes use deeper wash (opacity 0.58) so color photos sit in charcoal.
+6. Regenerate: `scripts/compare.ts <id> --prompt "…" --brand-lock --deckType Pitch`
+
+## Follow-up 3 changes
+
+1. **Photos** — Pexels ID dedupe across the deck; repeater slots get one query each (`photoQueries` / body-derived); `photoUnique` gate; prompt requires a concrete noun from the user idea; services/software → people & places only.
+2. **selectVariant** — no two adjacent slides share a composition `family` (e.g. `photo-footer`).
+3. **Treatment** — `duotone` → `tint`: color photo + separate translucent palette-dark rectangle (PNG + PPTX).
+4. **`scripts/compare.ts <deckId>`** — same seed/selections + photo cache; writes `out/compare/<id>/compare-grid.png`.
+5. **`kit/feature/b.json`** — feature-02 2×2 unique photo+label cells; `designReview: "// DESIGN REVIEW"`.
+6. Regenerated `kit-v1-gaming-lounge-overview-mvt8jmat` — compare grid at `out/compare/kit-v1-gaming-lounge-overview-mvt8jmat/compare-grid.png`.
 
 ## Follow-up 2 changes
 

@@ -1,0 +1,75 @@
+{
+  "id": "report/chart-panel",
+  "role": "report",
+  "variant": "chart-panel",
+  "family": "data-dense",
+  "steal": "Title + native editable PPTX chart (donut / line / stackedBar) with caption.",
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": { "kind": "text", "optional": false, "from": "title" },
+    "caption": { "kind": "text", "optional": true, "from": "caption" },
+    "chart": { "kind": "chart", "optional": false, "from": "chart" }
+  },
+  "fit": {
+    "title": { "maxFont": 48, "minFont": 40, "lineClamp": 2, "shrinkMin": 0.9 },
+    "caption": { "maxFont": 22, "minFont": 18, "lineClamp": 2, "shrinkMin": 1 }
+  },
+  "pptxMapping": {
+    "title": { "kind": "text" },
+    "caption": { "kind": "text" },
+    "chart": { "kind": "chart" }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 2,
+        "id": "title",
+        "type": "primitive",
+        "primitive": "header",
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 44,
+        "align": "left",
+        "x": 72,
+        "y": 40,
+        "width": 1456,
+        "height": 100,
+        "morphId": "title"
+      },
+      {
+        "z": 2,
+        "id": "caption",
+        "type": "text",
+        "slot": "caption",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontSize": 20,
+        "align": "left",
+        "x": 72,
+        "y": 160,
+        "width": 1456,
+        "height": 36,
+        "morphId": "caption"
+      },
+      {
+        "z": 3,
+        "id": "chart",
+        "type": "chart",
+        "slot": "chart",
+        "x": 120,
+        "y": 240,
+        "width": 1360,
+        "height": 520,
+        "morphId": "chart"
+      }
+    ]
+  },
+  "status": "draft",
+  "motion": {
+    "transition": "fade",
+    "fallbackTransition": "fade",
+    "durationMs": 500
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "id": "report/data-table",
+  "role": "report",
+  "variant": "data-table",
+  "family": "data-dense",
+  "steal": "Title + compact native PPTX table — tight row height, 14pt true cell text.",
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": { "kind": "text", "optional": false, "from": "title" },
+    "caption": { "kind": "text", "optional": true, "from": "caption" },
+    "table": { "kind": "table", "optional": false, "from": "table" },
+    "accent": { "kind": "shape", "optional": false }
+  },
+  "fit": {
+    "title": { "maxFont": 48, "minFont": 40, "lineClamp": 2, "shrinkMin": 0.9 },
+    "caption": { "maxFont": 24, "minFont": 20, "lineClamp": 2, "shrinkMin": 1 }
+  },
+  "pptxMapping": {
+    "title": { "kind": "text" },
+    "caption": { "kind": "text" },
+    "table": { "kind": "table" },
+    "accent": { "kind": "shape" }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 2,
+        "id": "title",
+        "type": "primitive",
+        "primitive": "header",
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 44,
+        "align": "left",
+        "x": 72,
+        "y": 40,
+        "width": 1456,
+        "height": 100,
+        "morphId": "title"
+      },
+      {
+        "z": 2,
+        "id": "caption",
+        "type": "text",
+        "slot": "caption",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontSize": 22,
+        "align": "left",
+        "x": 72,
+        "y": 144,
+        "width": 1456,
+        "height": 36,
+        "morphId": "caption"
+      },
+      {
+        "z": 3,
+        "id": "table",
+        "type": "table",
+        "slot": "table",
+        "x": 72,
+        "y": 210,
+        "width": 1456,
+        "height": 420,
+        "morphId": "table"
+      }
+    ]
+  },
+  "status": "draft",
+  "motion": {
+    "transition": "fade",
+    "fallbackTransition": "fade",
+    "durationMs": 500
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "id": "report/bulleted-list",
+  "role": "report",
+  "variant": "bulleted-list",
+  "family": "data-dense",
+  "steal": "Title rail left; one packed bullet block (fixed 1.5 rhythm) in the top-third — never space-between slots.",
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": { "kind": "text", "optional": false, "from": "title" },
+    "body": { "kind": "text", "optional": false, "from": "body" },
+    "accent": { "kind": "shape", "optional": false },
+    "rail": { "kind": "shape", "optional": true }
+  },
+  "fit": {
+    "title": { "maxFont": 48, "minFont": 40, "lineClamp": 4, "shrinkMin": 0.9 },
+    "body": { "maxFont": 27, "minFont": 24, "lineClamp": 16, "shrinkMin": 0.95 }
+  },
+  "pptxMapping": {
+    "title": { "kind": "text" },
+    "body": { "kind": "text" },
+    "accent": { "kind": "shape" },
+    "rail": { "kind": "shape" }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 1,
+        "id": "rail",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "surface",
+        "x": 0,
+        "y": 0,
+        "width": 480,
+        "height": 900,
+        "morphId": "rail"
+      },
+      {
+        "z": 3,
+        "id": "title",
+        "type": "primitive",
+        "primitive": "header",
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 44,
+        "align": "left",
+        "x": 56,
+        "y": 88,
+        "width": 380,
+        "height": 200,
+        "morphId": "title"
+      },
+      {
+        "z": 2,
+        "id": "body",
+        "type": "primitive",
+        "primitive": "list",
+        "slot": "body",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontSize": 27,
+        "lineHeight": 1.5,
+        "align": "left",
+        "verticalAlign": "top",
+        "x": 560,
+        "y": 96,
+        "width": 960,
+        "height": 620,
+        "morphId": "body"
+      }
+    ]
+  },
+  "status": "draft",
+  "motion": {
+    "transition": "fade",
+    "fallbackTransition": "fade",
+    "durationMs": 500
+  }
+}

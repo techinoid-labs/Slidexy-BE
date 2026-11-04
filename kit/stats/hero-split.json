@@ -1,0 +1,125 @@
+{
+  "id": "stats/hero-split",
+  "role": "stats",
+  "variant": "hero-split",
+  "family": "traction",
+  "steal": "Massive hero number left + native PPTX line chart right.",
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": { "kind": "text", "optional": false, "from": "title" },
+    "hero": { "kind": "text", "optional": false, "from": "stats0.value" },
+    "label": { "kind": "text", "optional": false, "from": "stats0.label" },
+    "caption": { "kind": "text", "optional": true, "from": "caption" },
+    "chart": { "kind": "chart", "optional": false, "from": "chart" }
+  },
+  "fit": {
+    "title": { "maxFont": 40, "minFont": 28, "lineClamp": 2, "shrinkMin": 0.9 },
+    "hero": { "maxFont": 120, "minFont": 100, "lineClamp": 1, "shrinkMin": 1 },
+    "label": { "maxFont": 28, "minFont": 22, "lineClamp": 2, "shrinkMin": 0.9 },
+    "caption": { "maxFont": 20, "minFont": 16, "lineClamp": 2, "shrinkMin": 1 }
+  },
+  "pptxMapping": {
+    "title": { "kind": "text" },
+    "hero": { "kind": "text" },
+    "label": { "kind": "text" },
+    "caption": { "kind": "text" },
+    "chart": { "kind": "chart" }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 2,
+        "id": "title",
+        "type": "primitive",
+        "primitive": "header",
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 36,
+        "align": "left",
+        "x": 72,
+        "y": 40,
+        "width": 1456,
+        "height": 90,
+        "morphId": "title"
+      },
+      {
+        "z": 1,
+        "id": "heroPlate",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "card_bg",
+        "card": true,
+        "x": 72,
+        "y": 180,
+        "width": 560,
+        "height": 620,
+        "morphId": "heroPlate"
+      },
+      {
+        "z": 3,
+        "id": "hero",
+        "type": "text",
+        "slot": "hero",
+        "tokenColor": "accent",
+        "fontRole": "display",
+        "fontSize": 110,
+        "align": "left",
+        "verticalAlign": "middle",
+        "x": 112,
+        "y": 260,
+        "width": 480,
+        "height": 220,
+        "morphId": "stat-0"
+      },
+      {
+        "z": 3,
+        "id": "label",
+        "type": "text",
+        "slot": "label",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontSize": 26,
+        "align": "left",
+        "x": 112,
+        "y": 520,
+        "width": 480,
+        "height": 100,
+        "morphId": "stat-label-0"
+      },
+      {
+        "z": 3,
+        "id": "caption",
+        "type": "text",
+        "slot": "caption",
+        "tokenColor": "muted",
+        "fontRole": "label",
+        "fontSize": 18,
+        "align": "left",
+        "x": 112,
+        "y": 640,
+        "width": 480,
+        "height": 80,
+        "morphId": "caption"
+      },
+      {
+        "z": 3,
+        "id": "chart",
+        "type": "chart",
+        "slot": "chart",
+        "x": 680,
+        "y": 200,
+        "width": 848,
+        "height": 560,
+        "morphId": "chart"
+      }
+    ]
+  },
+  "status": "draft",
+  "motion": {
+    "transition": "fade",
+    "fallbackTransition": "fade",
+    "durationMs": 500
+  }
+}

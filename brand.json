@@ -1,0 +1,16 @@
+{
+  "name": "Default Brand Lock",
+  "colors": {
+    "bg": "#0B1220",
+    "surface": "#152238",
+    "ink": "#F4F7FB",
+    "muted": "#B7C3D6",
+    "accent": "#FF5A1F",
+    "line": "#2A3A55"
+  },
+  "fonts": {
+    "display": "Helvetica Neue",
+    "body": "Georgia"
+  },
+  "logoUrl": "assets/decorations/brand-mark.svg"
+}

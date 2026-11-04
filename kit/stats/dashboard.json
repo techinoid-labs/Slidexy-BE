@@ -1,0 +1,319 @@
+{
+  "id": "stats/dashboard",
+  "role": "stats",
+  "variant": "dashboard",
+  "family": "data-dense",
+  "steal": "Corporate dashboard — three KPI columns, hairline dividers, micro bar charts under each value.",
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    },
+    "v1": {
+      "kind": "text",
+      "optional": false,
+      "from": "stats0.value"
+    },
+    "v2": {
+      "kind": "text",
+      "optional": true,
+      "from": "stats1.value"
+    },
+    "v3": {
+      "kind": "text",
+      "optional": true,
+      "from": "stats2.value"
+    },
+    "l1": {
+      "kind": "text",
+      "optional": false,
+      "from": "stats0.label"
+    },
+    "l2": {
+      "kind": "text",
+      "optional": true,
+      "from": "stats1.label"
+    },
+    "l3": {
+      "kind": "text",
+      "optional": true,
+      "from": "stats2.label"
+    },
+    "rule1": {
+      "kind": "shape",
+      "optional": false
+    },
+    "rule2": {
+      "kind": "shape",
+      "optional": false
+    },
+    "accent": {
+      "kind": "shape",
+      "optional": false
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 32,
+      "minFont": 20,
+      "lineClamp": 1,
+      "shrinkMin": 0.85
+    },
+    "v1": {
+      "maxFont": 64,
+      "minFont": 36,
+      "lineClamp": 1,
+      "shrinkMin": 0.85
+    },
+    "v2": {
+      "maxFont": 64,
+      "minFont": 36,
+      "lineClamp": 1,
+      "shrinkMin": 0.85
+    },
+    "v3": {
+      "maxFont": 64,
+      "minFont": 36,
+      "lineClamp": 1,
+      "shrinkMin": 0.85
+    },
+    "l1": {
+      "maxFont": 24,
+      "minFont": 20,
+      "lineClamp": 2,
+      "shrinkMin": 0.9
+    },
+    "l2": {
+      "maxFont": 24,
+      "minFont": 20,
+      "lineClamp": 2,
+      "shrinkMin": 0.9
+    },
+    "l3": {
+      "maxFont": 24,
+      "minFont": 20,
+      "lineClamp": 2,
+      "shrinkMin": 0.9
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "v1": {
+      "kind": "text"
+    },
+    "v2": {
+      "kind": "text"
+    },
+    "v3": {
+      "kind": "text"
+    },
+    "l1": {
+      "kind": "text"
+    },
+    "l2": {
+      "kind": "text"
+    },
+    "l3": {
+      "kind": "text"
+    },
+    "rule1": {
+      "kind": "shape"
+    },
+    "rule2": {
+      "kind": "shape"
+    },
+    "accent": {
+      "kind": "shape"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 1,
+        "id": "panel",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "surface",
+        "radius": 4,
+        "x": 64,
+        "y": 120,
+        "width": 1472,
+        "height": 680
+      },
+      {
+        "z": 2,
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 28,
+        "align": "left",
+        "x": 96,
+        "y": 148,
+        "width": 900,
+        "height": 48
+      },
+      {
+        "z": 3,
+        "id": "accent",
+        "type": "shape",
+        "shape": "rect",
+        "motif": true,
+        "tokenFill": "accent",
+        "x": 96,
+        "y": 204,
+        "width": 48,
+        "height": 4
+      },
+      {
+        "z": 4,
+        "id": "rule1",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "line",
+        "x": 560,
+        "y": 260,
+        "width": 1,
+        "height": 480
+      },
+      {
+        "z": 4,
+        "id": "rule2",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "line",
+        "x": 1040,
+        "y": 260,
+        "width": 1,
+        "height": 480
+      },
+      {
+        "z": 5,
+        "id": "v1",
+        "type": "text",
+        "slot": "v1",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 56,
+        "align": "left",
+        "x": 112,
+        "y": 300,
+        "width": 400,
+        "height": 100
+      },
+      {
+        "z": 5,
+        "id": "l1",
+        "type": "text",
+        "slot": "l1",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontSize": 22,
+        "align": "left",
+        "x": 112,
+        "y": 410,
+        "width": 400,
+        "height": 48
+      },
+      {
+        "z": 5,
+        "id": "v2",
+        "type": "text",
+        "slot": "v2",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 56,
+        "align": "left",
+        "x": 600,
+        "y": 300,
+        "width": 400,
+        "height": 100
+      },
+      {
+        "z": 5,
+        "id": "l2",
+        "type": "text",
+        "slot": "l2",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontSize": 22,
+        "align": "left",
+        "x": 600,
+        "y": 410,
+        "width": 400,
+        "height": 48
+      },
+      {
+        "z": 5,
+        "id": "v3",
+        "type": "text",
+        "slot": "v3",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 56,
+        "align": "left",
+        "x": 1080,
+        "y": 300,
+        "width": 400,
+        "height": 100
+      },
+      {
+        "z": 5,
+        "id": "l3",
+        "type": "text",
+        "slot": "l3",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontSize": 22,
+        "align": "left",
+        "x": 1080,
+        "y": 410,
+        "width": 400,
+        "height": 48
+      },
+      {
+        "z": 6,
+        "id": "chart1",
+        "type": "sparkBars",
+        "slot": "v1",
+        "tokenFill": "accent",
+        "x": 112,
+        "y": 500,
+        "width": 360,
+        "height": 160,
+        "bars": [0.35, 0.55, 0.42, 0.78, 0.66, 0.92]
+      },
+      {
+        "z": 6,
+        "id": "chart2",
+        "type": "sparkBars",
+        "slot": "v2",
+        "tokenFill": "accent",
+        "x": 600,
+        "y": 500,
+        "width": 360,
+        "height": 160,
+        "bars": [0.5, 0.48, 0.62, 0.58, 0.7, 0.74]
+      },
+      {
+        "z": 6,
+        "id": "chart3",
+        "type": "sparkBars",
+        "slot": "v3",
+        "tokenFill": "accent",
+        "x": 1080,
+        "y": 500,
+        "width": 360,
+        "height": 160,
+        "bars": [0.22, 0.4, 0.38, 0.55, 0.6, 0.85]
+      }
+    ]
+  },
+  "status": "draft"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "ambient/ken-burns",
+  "kind": "ambient",
+  "effect": "kenBurns",
+  "steal": "Cinematic Ken Burns — oversized crop + slow diagonal pan (no scale shrink cycle).",
+  "target": {
+    "prefer": ["hero", "photo", "cutout"]
+  },
+  "params": {
+    "containerScale": 1.18,
+    "transformOrigin": "center",
+    "durationMs": 18000,
+    "panXPx": 28,
+    "panYPx": 16,
+    "autoReverse": true,
+    "repeatCount": "indefinite"
+  },
+  "roles": ["cover", "testimonial"],
+  "priority": 10
+}

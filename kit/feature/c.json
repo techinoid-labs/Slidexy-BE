@@ -1,0 +1,249 @@
+{
+  "id": "feature/c",
+  "role": "feature",
+  "variant": "c",
+  "family": "text-heavy",
+  "steal": "Text-heavy feature — title + three bullet columns, no photo grid.",
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    },
+    "b1": {
+      "kind": "text",
+      "optional": true,
+      "from": "body0"
+    },
+    "b2": {
+      "kind": "text",
+      "optional": true,
+      "from": "body1"
+    },
+    "b3": {
+      "kind": "text",
+      "optional": true,
+      "from": "body2"
+    },
+    "b4": {
+      "kind": "text",
+      "optional": true,
+      "from": "body3"
+    },
+    "b5": {
+      "kind": "text",
+      "optional": true,
+      "from": "body4"
+    },
+    "b6": {
+      "kind": "text",
+      "optional": true,
+      "from": "body5"
+    },
+    "accent": {
+      "kind": "shape",
+      "optional": false
+    },
+    "colRule1": {
+      "kind": "shape",
+      "optional": true
+    },
+    "colRule2": {
+      "kind": "shape",
+      "optional": true
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 40,
+      "minFont": 14,
+      "lineClamp": 2,
+      "shrinkMin": 0.7
+    },
+    "b1": {
+      "maxFont": 22,
+      "minFont": 14,
+      "lineClamp": 4,
+      "shrinkMin": 0.7
+    },
+    "b2": {
+      "maxFont": 22,
+      "minFont": 14,
+      "lineClamp": 4,
+      "shrinkMin": 0.7
+    },
+    "b3": {
+      "maxFont": 22,
+      "minFont": 14,
+      "lineClamp": 4,
+      "shrinkMin": 0.7
+    },
+    "b4": {
+      "maxFont": 22,
+      "minFont": 14,
+      "lineClamp": 4,
+      "shrinkMin": 0.7
+    },
+    "b5": {
+      "maxFont": 22,
+      "minFont": 14,
+      "lineClamp": 4,
+      "shrinkMin": 0.7
+    },
+    "b6": {
+      "maxFont": 22,
+      "minFont": 14,
+      "lineClamp": 4,
+      "shrinkMin": 0.7
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "b1": {
+      "kind": "text"
+    },
+    "b2": {
+      "kind": "text"
+    },
+    "b3": {
+      "kind": "text"
+    },
+    "b4": {
+      "kind": "text"
+    },
+    "b5": {
+      "kind": "text"
+    },
+    "b6": {
+      "kind": "text"
+    },
+    "accent": {
+      "kind": "shape"
+    },
+    "colRule1": {
+      "kind": "shape"
+    },
+    "colRule2": {
+      "kind": "shape"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 2,
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 36,
+        "align": "left",
+        "x": 80,
+        "y": 72,
+        "width": 1440,
+        "height": 80
+      },
+      {
+        "z": 3,
+        "id": "accent",
+        "type": "shape",
+        "shape": "rect",
+        "motif": true,
+        "tokenFill": "accent",
+        "x": 80,
+        "y": 168,
+        "width": 72,
+        "height": 8
+      },
+      {
+        "z": 2,
+        "id": "b1",
+        "type": "text",
+        "slot": "b1",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontSize": 22,
+        "align": "left",
+        "x": 120,
+        "y": 240,
+        "width": 1360,
+        "height": 100
+      },
+      {
+        "z": 2,
+        "id": "b2",
+        "type": "text",
+        "slot": "b2",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontSize": 22,
+        "align": "left",
+        "x": 120,
+        "y": 360,
+        "width": 1360,
+        "height": 100
+      },
+      {
+        "z": 2,
+        "id": "b3",
+        "type": "text",
+        "slot": "b3",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontSize": 22,
+        "align": "left",
+        "x": 120,
+        "y": 480,
+        "width": 1360,
+        "height": 100
+      },
+      {
+        "z": 2,
+        "id": "b4",
+        "type": "text",
+        "slot": "b4",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontSize": 20,
+        "align": "left",
+        "x": 120,
+        "y": 600,
+        "width": 1360,
+        "height": 80
+      },
+      {
+        "z": 2,
+        "id": "b5",
+        "type": "text",
+        "slot": "b5",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontSize": 20,
+        "align": "left",
+        "x": 120,
+        "y": 690,
+        "width": 1360,
+        "height": 70
+      },
+      {
+        "z": 2,
+        "id": "b6",
+        "type": "text",
+        "slot": "b6",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontSize": 20,
+        "align": "left",
+        "x": 120,
+        "y": 770,
+        "width": 1360,
+        "height": 60
+      }
+    ]
+  },
+  "status": "draft"
+}

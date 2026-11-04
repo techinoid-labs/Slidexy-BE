@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://slidexy.local/engine/schemas/brand.schema.json",
+  "title": "SlidexyBrand",
+  "type": "object",
+  "required": ["name"],
+  "additionalProperties": true,
+  "properties": {
+    "name": { "type": "string", "minLength": 1 },
+    "colors": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "fonts": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "logo": { "type": ["string", "object", "null"] },
+    "accent": { "type": "string" },
+    "ink": { "type": "string" },
+    "bg": { "type": "string" },
+    "displayFont": { "type": "string" },
+    "bodyFont": { "type": "string" }
+  }
+}

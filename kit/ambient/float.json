@@ -1,0 +1,18 @@
+{
+  "id": "ambient/float",
+  "kind": "ambient",
+  "effect": "float",
+  "steal": "Visible Y-bob on a large plate/card (~28px, 9s) — never hairline brush accents.",
+  "target": {
+    "prefer": ["titlePlate", "neon", "plate", "bg-accent", "accent", "hero"]
+  },
+  "params": {
+    "durationMs": 9000,
+    "path": "y-axis",
+    "radiusPx": 28,
+    "autoReverse": true,
+    "repeatCount": "indefinite"
+  },
+  "roles": ["feature", "problem", "solution", "how-it-works", "agenda", "team"],
+  "priority": 30
+}

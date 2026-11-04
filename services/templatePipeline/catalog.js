@@ -8,6 +8,7 @@ const path = require("path");
 const { createCanvas, Image } = require("canvas");
 const JSZip = require("jszip");
 const PptxGenJS = require("pptxgenjs");
+const { applyMotionOoxml, ENTRANCE_TEMPLATES } = require("./motionOoxml");
 
 const ROOT = path.join(__dirname, "..", "..");
 const PUBLISHED = path.join(ROOT, "app-library", "published");
@@ -94,6 +95,7 @@ async function pptxBuffer(deck, deckId) {
   pptx.title = deck.name || deckId || "deck";
   pptx.defineLayout({ name: "WIDE", width: SLIDE_W, height: SLIDE_H });
   pptx.layout = "WIDE";
+  // Solid hex backgrounds only — never textured bg images (PPTX-friendly).
   const background = hexColor((deck.tokens && deck.tokens.color && deck.tokens.color.bg) || (deck.theme && deck.theme.backgroundColor)) || "F4F0E8";
   sequence.forEach((layoutId) => {
     const layout = deck.layouts && deck.layouts[layoutId];
@@ -102,7 +104,11 @@ async function pptxBuffer(deck, deckId) {
     const items = flattenElements(layout && layout.elements);
     items.forEach((item) => placeElement(slide, pptx, item.element, deck, deckId, item.rotate));
   });
-  return Buffer.from(await pptx.write({ outputType: "nodebuffer" }));
+  let buffer = Buffer.from(await pptx.write({ outputType: "nodebuffer" }));
+  buffer = await applyNativePictureMasks(buffer);
+  buffer = await groupNamedElements(buffer);
+  buffer = await applyMotionOoxml(buffer, deck);
+  return buffer;
 }
 
 async function buildPptx(id) {
@@ -115,6 +121,15 @@ async function buildPptx(id) {
 }
 
 async function exportDeckPptx(deck, file) {
+  // Fail-fast schema gate before writing PPTX
+  try {
+    const { assertEngineSchemas } = require("../../engine/validateSchema");
+    assertEngineSchemas();
+  } catch (err) {
+    if (err && err.name === "SchemaValidationError") throw err;
+    // validateSchema may be TS-transpiled via require in scripts; rethrow always
+    throw err;
+  }
   const raw = await pptxBuffer(deck, (deck && deck.id) || "native");
   const data = await paintGradientFills(raw);
   fs.mkdirSync(path.dirname(file), { recursive: true });
@@ -268,34 +283,256 @@ function imageFile(deckId, url) {
 function placeElement(slide, pptx, element, deck, deckId, rotate) {
   if (element.type === "text" || element.type === "textMaskedImage") addText(slide, element, deck.tokens, rotate);
   else if (element.type === "shape") addShape(slide, pptx, element, deck.tokens);
+  else if (element.type === "table") addTable(slide, element, deck.tokens);
+  else if (element.type === "chart") addChart(slide, pptx, element, deck.tokens);
   else if (element.type === "image") addPicture(slide, element, element.imageContent || {}, deckId, rotate);
   else if (element.type === "maskedImage") addPicture(slide, element, element.maskedImageContent || {}, deckId, rotate);
   else if (element.type === "collage") addCollage(slide, element, deckId);
   else if (element.type === "illustration") addIllustration(slide, element, deck.tokens);
 }
 
+/**
+ * Max value the chart axis must cover so stacked / multi-series data
+ * never paints outside the element bounding box.
+ */
+function chartAxisCeiling(kind, series, labelCount) {
+  const rows = Array.isArray(series) ? series : [];
+  const n = Math.max(1, Number(labelCount) || 1);
+  const stacked = kind.indexOf("stack") >= 0 || kind === "stackedbar" || kind === "stacked";
+  if (stacked) {
+    let maxStack = 0;
+    for (let i = 0; i < n; i++) {
+      let sum = 0;
+      for (let s = 0; s < rows.length; s++) {
+        const vals = (rows[s] && rows[s].values) || [];
+        sum += Number(vals[i]) || 0;
+      }
+      if (sum > maxStack) maxStack = sum;
+    }
+    return maxStack > 0 ? maxStack * 1.08 : 1;
+  }
+  let maxV = 0;
+  rows.forEach((row) => {
+    (Array.isArray(row && row.values) ? row.values : []).forEach((v) => {
+      const n = Number(v) || 0;
+      if (n > maxV) maxV = n;
+    });
+  });
+  return maxV > 0 ? maxV * 1.08 : 1;
+}
+
+/**
+ * Native editable PPTX charts (donut / line / stackedBar).
+ * PowerPoint: right-click → Edit Data.
+ * Charts must stay inside the element box — axis max scales to data.
+ */
+function addChart(slide, pptx, element, tokens) {
+  const content = element.chartContent || {};
+  const kind = String(content.chartType || content.type || "line").toLowerCase();
+  const labels = Array.isArray(content.labels) ? content.labels.map(String) : [];
+  const series = Array.isArray(content.series) ? content.series : [];
+  if (!labels.length || !series.length) return;
+
+  let chartType = pptx.ChartType.line;
+  if (kind === "donut" || kind === "doughnut") chartType = pptx.ChartType.doughnut;
+  else if (kind === "stackedbar" || kind === "stacked" || kind === "bar") chartType = pptx.ChartType.bar;
+  else chartType = pptx.ChartType.line;
+
+  const accent = colorOf(content.color || (tokens && tokens.color && tokens.color.accent), tokens) || "1D4ED8";
+  const ink = colorOf(content.ink || (tokens && tokens.color && tokens.color.ink), tokens) || "152238";
+  const muted = colorOf(content.muted || (tokens && tokens.color && tokens.color.muted), tokens) || "4C5B70";
+  const palette = Array.isArray(content.colors)
+    ? content.colors.map((c) => colorOf(c, tokens) || accent)
+    : [accent, muted, ink, "0F8A7A", "C45C26"];
+
+  const data = series.map((s, i) => ({
+    name: String((s && s.name) || "Series " + (i + 1)),
+    labels,
+    values: Array.isArray(s && s.values) ? s.values.map((v) => Number(v) || 0) : [],
+  }));
+
+  // Inset slightly so axis/legend never spill into neighboring title chrome
+  const box = boxOf(element);
+  const inset = 0.02;
+  const options = {
+    x: box.x + box.w * inset * 0.25,
+    y: box.y + box.h * inset * 0.5,
+    w: box.w * (1 - inset * 0.5),
+    h: box.h * (1 - inset),
+    showTitle: false,
+    showLegend: content.showLegend !== false,
+    legendPos: content.legendPos || "b",
+    chartColors: palette,
+    chartData: true,
+    color: ink,
+    showValue: false,
+  };
+
+  if (chartType === pptx.ChartType.doughnut) {
+    options.holeSize = content.holeSize != null ? Number(content.holeSize) : 50;
+    options.showPercent = content.showPercent !== false;
+    options.showValue = false;
+  } else if (chartType === pptx.ChartType.bar) {
+    options.barGrouping = kind.indexOf("stack") >= 0 || kind === "stackedbar" ? "stacked" : "clustered";
+    options.barGapWidthPct = 40;
+    // Strict fit: axis ceiling = stacked column max (never break container)
+    const ceiling = chartAxisCeiling(kind, data, labels.length);
+    options.valAxisMinValue = 0;
+    options.valAxisMaxValue = ceiling;
+    options.valAxisHidden = false;
+    options.catAxisHidden = false;
+  } else {
+    options.lineDataSymbol = "circle";
+    options.lineDataSymbolSize = 8;
+    const ceiling = chartAxisCeiling(kind, data, labels.length);
+    options.valAxisMinValue = 0;
+    options.valAxisMaxValue = ceiling;
+  }
+
+  const objectName = groupObjectName(element);
+  if (objectName) options.objectName = objectName;
+  slide.addChart(chartType, data, options);
+}
+
+/** Native PPTX table for data-dense report kits (4×4 / 5×5). */
+function addTable(slide, element, tokens) {
+  const content = element.tableContent || {};
+  const rows = Array.isArray(content.rows) ? content.rows : [];
+  if (!rows.length) return;
+  const fontFace = fontOf(content.fontFamily, tokens) || "Calibri";
+  const fontSize = points(content.fontSize || 14);
+  const color = colorOf(content.color, tokens) || "1A1612";
+  const headerFill = colorOf(content.headerFill, tokens) || "F4F7FB";
+  const headerColor = colorOf(content.headerColor, tokens) || color;
+  const borderColor = colorOf(content.borderColor, tokens) || "D0D7E2";
+  const pad = Number(content.cellPadding) >= 0 ? Number(content.cellPadding) : 4;
+  const verticalBorders = content.verticalBorders === true;
+  const horizontalBorders = content.horizontalBorders !== false;
+  const altRow = content.altRowFill ? String(content.altRowFill).replace(/^#/, "").toUpperCase() : "";
+  const edge = (side) => {
+    if (side === "left" || side === "right") {
+      return verticalBorders ? { pt: 0.5, color: borderColor } : { pt: 0, color: borderColor };
+    }
+    return horizontalBorders ? { pt: 0.5, color: borderColor } : { pt: 0, color: borderColor };
+  };
+  const tableRows = rows.map((row, rowIndex) => {
+    const cells = (Array.isArray(row) ? row : [row]).map((cell) => {
+      const text = cell && typeof cell === "object" ? String(cell.text != null ? cell.text : "") : String(cell != null ? cell : "");
+      const isHeader = rowIndex === 0;
+      const rowFill = isHeader
+        ? headerFill
+        : altRow && rowIndex % 2 === 0
+          ? altRow
+          : "FFFFFF";
+      return {
+        text: text || " ",
+        options: {
+          fontFace,
+          fontSize,
+          color: isHeader ? headerColor : color,
+          bold: isHeader || !!(cell && cell.bold),
+          align: content.align || "left",
+          valign: "middle",
+          fill: { color: rowFill },
+          margin: [pad * 0.4, pad, pad * 0.4, pad],
+          border: [edge("top"), edge("right"), edge("bottom"), edge("left")],
+        },
+      };
+    });
+    return cells;
+  });
+  const options = Object.assign(boxOf(element), {
+    colW: undefined,
+    border: [{ pt: 0.5, color: borderColor }],
+    fontFace,
+    fontSize,
+    color,
+  });
+  const cols = Math.max.apply(
+    null,
+    tableRows.map((r) => r.length).concat([1])
+  );
+  const totalW = options.w;
+  options.colW = Array.from({ length: cols }, () => totalW / cols);
+  const objectName = groupObjectName(element);
+  if (objectName) options.objectName = objectName;
+  slide.addTable(tableRows, options);
+}
+
+function groupObjectName(element, maskTag) {
+  const parts = [];
+  // !!morph:id forces PowerPoint Morph object matching across keyframes
+  if (element && element.morphId) {
+    parts.push("!!morph:" + String(element.morphId));
+  } else if (element && element.pptxGroup) {
+    parts.push("grp:" + String(element.pptxGroup) + ":" + String(element.id || "el"));
+  }
+  if (element && (element.shapeTreatment === "depth" || (element.shapeContent && element.shapeContent.depth))) {
+    parts.push("depth:1");
+  }
+  if (maskTag) parts.push(maskTag);
+  return parts.length ? parts.join("|") : undefined;
+}
+
+/** Encode native Crop-to-Shape hint for OOXML post-process. */
+function pictureMaskTag(clip, element) {
+  if (!clip || !clip.kind) return "";
+  if (clip.kind === "ellipse" || clip.kind === "circle") return "mask:ellipse";
+  // Pill = stadium (fully rounded ends). Arch = soft editorial roundRect.
+  if (clip.kind === "pill") return "mask:roundRect:50000";
+  if (clip.kind === "arch") {
+    const adj = Number(clip.cornerRadius) > 0
+      ? Math.max(12000, Math.min(40000, Math.round(Number(clip.cornerRadius))))
+      : 28000;
+    return "mask:arch:" + adj;
+  }
+  if (clip.kind === "rect" && Number(clip.cornerRadius) > 0) {
+    const w = Math.max(1, Number(element && element.width) || 1);
+    const h = Math.max(1, Number(element && element.height) || 1);
+    const r = Number(clip.cornerRadius) || 24;
+    // OOXML roundRect adj: 0–50000 (half-side = 50000). Map px radius → adj.
+    const adj = Math.max(500, Math.min(50000, Math.round((r / Math.min(w, h)) * 100000)));
+    return "mask:roundRect:" + adj;
+  }
+  return "";
+}
+
 function addText(slide, element, tokens, rotate) {
   const style = element.textStyle || {};
   const spans = (element.textContent && element.textContent.spans) || [];
+  const accentHex = colorOf(tokens && tokens.color && tokens.color.accent, tokens) || "1D4ED8";
   const runs = [];
   spans.forEach((span) => {
-    const text = String(span && span.text != null ? span.text : "");
-    if (!text) return;
+    const raw = String(span && span.text != null ? span.text : "");
+    if (!raw) return;
     const weight = span.fontWeight == null ? style.fontWeight : span.fontWeight;
     const spacing = Number(span.letterSpacing != null ? span.letterSpacing : style.letterSpacing) || 0;
-    const runOptions = {
-      fontFace: fontOf(span.fontFamily || style.fontFamily, tokens),
-      fontSize: points(span.fontSize || style.fontSize || 18),
-      color: colorOf(span.color || style.color, tokens) || "1A1612",
-      bold: Number(weight) >= 600,
-    };
-    if (spacing) runOptions.charSpacing = points(spacing);
-    runs.push({ text, options: runOptions });
+    const parts = raw.split("\n");
+    parts.forEach((part, partIndex) => {
+      const text = part.length ? part : " ";
+      const highlighted = !!(span && (span.highlight || span.typeTreatment === "highlight"));
+      const runOptions = {
+        fontFace: fontOf(span.fontFamily || style.fontFamily, tokens),
+        fontSize: points(span.fontSize || style.fontSize || 18),
+        color: highlighted
+          ? accentHex
+          : colorOf(span.color || style.color, tokens) || "1A1612",
+        bold: highlighted || Number(weight) >= 600,
+      };
+      if (spacing) runOptions.charSpacing = points(spacing);
+      // Ghost step numbers: keep as editable text at low opacity via transparency
+      const opacity = Number(element.opacity);
+      if (Number.isFinite(opacity) && opacity > 0 && opacity < 1) {
+        runOptions.transparency = Math.round((1 - opacity) * 100);
+      }
+      if (partIndex < parts.length - 1) runOptions.breakLine = true;
+      runs.push({ text, options: runOptions });
+    });
   });
   if (!runs.length) return;
   const options = Object.assign(boxOf(element), {
     align: style.textAlign || "left",
-    valign: "top",
+    valign: style.verticalAlign === "middle" ? "middle" : "top",
     margin: 0,
     wrap: true,
     rotate: rotate || 0,
@@ -303,11 +540,14 @@ function addText(slide, element, tokens, rotate) {
     fontSize: points(style.fontSize || 18),
     color: colorOf(style.color, tokens) || "1A1612",
   });
+  const objectName = groupObjectName(element);
+  if (objectName) options.objectName = objectName;
   // Guard: only multiples >= 1 (A0.a: no LO regression on seed with 0.95; still skip sub-1).
   const lineHeight = Number(style.lineHeight);
   if (Number.isFinite(lineHeight) && lineHeight >= 1) {
     options.lineSpacingMultiple = lineHeight;
   }
+  // Always native editable text runs — never outlines or text-as-image.
   slide.addText(runs, options);
 }
 
@@ -324,19 +564,42 @@ function addShape(slide, pptx, element, tokens) {
     const minSide = Math.min(Number(element.width) || 1, Number(element.height) || 1);
     options.rectRadius = Math.max(0, Math.min(1, (radius * 2) / minSide));
   }
+  const objectName = groupObjectName(element);
   const gradient = shape.gradient && Array.isArray(shape.gradient.stops) ? shape.gradient : null;
   if (gradient && gradient.stops.length > 1) {
+    // Prefer solid fills for non-designer PPTX; keep gradient name only if already present.
     const first = colorOf(gradient.stops[0].hex || gradient.stops[0].color, tokens) || fill;
     options.fill = { color: first || "000000" };
     options.objectName = gradientName(gradient);
   } else if (fill) {
     options.fill = { color: fill };
+    // Solid overlays at 60–80% for overlap plates — never frosted glass / blur.
     const opacity = Number(element.opacity);
     if (Number.isFinite(opacity) && opacity >= 0 && opacity < 1) {
       options.fill.transparency = Math.round((1 - opacity) * 100);
     }
   } else options.fill = { type: "none" };
+  if (objectName && !options.objectName) options.objectName = objectName;
   if (stroke && Number(shape.strokeWidth) > 0) options.line = { color: stroke, width: points(shape.strokeWidth) };
+  // Floating 3D cards / global card_shadow token
+  const shadow = shape.shadow || (element.card ? shape.shadow : null);
+  if (element.shapeTreatment === "depth" || shape.depth) {
+    options.shadow = {
+      type: "outer",
+      color: "000000",
+      blur: 14,
+      offset: 7,
+      opacity: 0.35,
+    };
+  } else if (shadow && typeof shadow === "object") {
+    options.shadow = {
+      type: "outer",
+      color: String(shadow.color || "#0F172A").replace(/^#/, ""),
+      blur: Number(shadow.blur) || 24,
+      offset: Number(shadow.offset) || 8,
+      opacity: shadow.opacity != null ? Number(shadow.opacity) : 0.12,
+    };
+  }
   slide.addShape(kind, options);
 }
 
@@ -345,21 +608,38 @@ function addPicture(slide, element, content, deckId, rotate) {
   if (!file) return;
   const clip = (content && content.clip) || {};
   const box = boxOf(element);
+  const maskTag = pictureMaskTag(clip, element);
+  const objectName = groupObjectName(element, maskTag);
+  const base = { path: file, rotate: rotate || 0 };
+  if (objectName) base.objectName = objectName;
+  if (element.shapeTreatment === "depth") {
+    base.shadow = {
+      type: "outer",
+      color: "000000",
+      blur: 14,
+      offset: 7,
+      opacity: 0.35,
+    };
+  }
   if (content && content.fit === "contain" && !clip.kind) {
-    slide.addImage(Object.assign({ path: file, rotate: rotate || 0 }, box));
+    slide.addImage(Object.assign(base, box));
     return;
   }
-  if (clip.kind === "ellipse") {
-    slide.addImage(Object.assign({ path: file, rounding: true, rotate: rotate || 0 }, box, coverSizing(box, content, file)));
+  // Native PPTX Crop to Shape only — never bake masked PNGs (designer must swap photos).
+  // circle → pptxgenjs rounding (ellipse prstGeom); roundRect/arch → OOXML post-process.
+  if (clip.kind === "ellipse" || clip.kind === "circle") {
+    slide.addImage(Object.assign(base, { rounding: true }, box, coverSizing(box, content, file)));
     return;
   }
-  if (clip.kind === "arch" || (clip.kind === "rect" && Number(clip.cornerRadius) > 0)) {
-    const png = maskedImage(file, element, clip, content);
-    if (!png) return;
-    slide.addImage(Object.assign({ data: "image/png;base64," + png.toString("base64"), rotate: rotate || 0 }, box));
+  if (
+    clip.kind === "arch" ||
+    clip.kind === "pill" ||
+    (clip.kind === "rect" && Number(clip.cornerRadius) > 0)
+  ) {
+    slide.addImage(Object.assign(base, box, coverSizing(box, content, file)));
     return;
   }
-  slide.addImage(Object.assign({ path: file, rotate: rotate || 0 }, box, coverSizing(box, content, file)));
+  slide.addImage(Object.assign(base, box, coverSizing(box, content, file)));
 }
 
 function coverSizing(box, content, file) {
@@ -440,14 +720,7 @@ function coverDraw(ctx, image, width, height, content) {
 
 function clipShape(ctx, width, height, clip) {
   ctx.beginPath();
-  if (clip.kind === "arch") {
-    ctx.moveTo(0, height);
-    ctx.lineTo(0, height * 0.38);
-    ctx.quadraticCurveTo(width / 2, 0, width, height * 0.38);
-    ctx.lineTo(width, height);
-    ctx.closePath();
-    return;
-  }
+  // Arch intentionally NOT drawn as a blob — PPTX safety maps it to rounded rect.
   const radius = Math.max(0, Math.min(Number(clip.cornerRadius) || 0, width / 2, height / 2));
   if (!radius) {
     ctx.rect(0, 0, width, height);
@@ -459,6 +732,128 @@ function clipShape(ctx, width, height, clip) {
   ctx.arcTo(0, height, 0, 0, radius);
   ctx.arcTo(0, 0, width, 0, radius);
   ctx.closePath();
+}
+
+/**
+ * Apply native PowerPoint Crop-to-Shape (prstGeom ellipse / roundRect) on pictures
+ * tagged with mask:* in objectName — keeps source photos swappable by designers.
+ */
+async function applyNativePictureMasks(buffer) {
+  const zip = await JSZip.loadAsync(buffer);
+  const names = Object.keys(zip.files).filter((name) => /ppt\/slides\/slide\d+\.xml$/.test(name));
+  let changed = false;
+  for (let i = 0; i < names.length; i++) {
+    const name = names[i];
+    let xml = await zip.file(name).async("string");
+    const next = xml.replace(/<p:pic\b[\s\S]*?<\/p:pic>/g, applyMaskToPicXml);
+    if (next !== xml) {
+      zip.file(name, next);
+      changed = true;
+    }
+  }
+  if (!changed) return buffer;
+  return Buffer.from(await zip.generateAsync({ type: "nodebuffer", compression: "DEFLATE" }));
+}
+
+function applyMaskToPicXml(pic) {
+  const nameMatch = pic.match(/name="([^"]+)"/);
+  if (!nameMatch) return pic;
+  const maskPart = String(nameMatch[1])
+    .split("|")
+    .find((p) => p.indexOf("mask:") === 0);
+  if (!maskPart) return pic;
+  let geom = "";
+  if (maskPart === "mask:ellipse") {
+    geom = '<a:prstGeom prst="ellipse"><a:avLst/></a:prstGeom>';
+  } else {
+    const m =
+      maskPart.match(/^mask:roundRect:(\d+)$/) ||
+      maskPart.match(/^mask:arch:(\d+)$/) ||
+      maskPart.match(/^mask:pill:(\d+)$/);
+    if (!m) return pic;
+    geom = `<a:prstGeom prst="roundRect"><a:avLst><a:gd name="adj" fmla="val ${m[1]}"/></a:avLst></a:prstGeom>`;
+  }
+  if (/<a:prstGeom[\s\S]*?<\/a:prstGeom>/.test(pic)) {
+    return pic.replace(/<a:prstGeom[\s\S]*?<\/a:prstGeom>/, geom);
+  }
+  if (/<\/a:xfrm>/.test(pic)) {
+    return pic.replace(/<\/a:xfrm>/, "</a:xfrm>" + geom);
+  }
+  return pic;
+}
+
+/**
+ * Wrap pptxgenjs objects that share `grp:<groupId>:` objectName into OOXML groups
+ * so title+plate+photo overlaps (and collages) move together in PowerPoint.
+ */
+async function groupNamedElements(buffer) {
+  const zip = await JSZip.loadAsync(buffer);
+  const names = Object.keys(zip.files).filter((name) => /ppt\/slides\/slide\d+\.xml$/.test(name));
+  let changed = false;
+  for (let i = 0; i < names.length; i++) {
+    const name = names[i];
+    let xml = await zip.file(name).async("string");
+    const next = wrapGroupsInSlideXml(xml);
+    if (next !== xml) {
+      zip.file(name, next);
+      changed = true;
+    }
+  }
+  if (!changed) return buffer;
+  return Buffer.from(await zip.generateAsync({ type: "nodebuffer", compression: "DEFLATE" }));
+}
+
+function wrapGroupsInSlideXml(xml) {
+  // Collect top-level graphic frames (sp / pic / graphicFrame) with grp: names
+  const spTreeMatch = xml.match(/<p:spTree>([\s\S]*?)<\/p:spTree>/);
+  if (!spTreeMatch) return xml;
+  const tree = spTreeMatch[1];
+  const pieceRe = /<(p:sp|p:pic|p:graphicFrame)\b[\s\S]*?<\/\1>/g;
+  const pieces = [];
+  let m;
+  while ((m = pieceRe.exec(tree))) pieces.push(m[0]);
+  if (pieces.length < 2) return xml;
+
+  const byGroup = new Map();
+  pieces.forEach((piece, index) => {
+    const nm = piece.match(/name="([^"]+)"/);
+    if (!nm) return;
+    const grpToken = String(nm[1])
+      .split("|")
+      .find((p) => p.indexOf("grp:") === 0);
+    if (!grpToken) return;
+    const groupId = grpToken.split(":")[1];
+    if (!groupId) return;
+    if (!byGroup.has(groupId)) byGroup.set(groupId, []);
+    byGroup.get(groupId).push({ index, piece, name: grpToken });
+  });
+
+  let rebuilt = tree;
+  byGroup.forEach((items, groupId) => {
+    if (items.length < 2) return;
+    // Replace first occurrence with group; remove the rest
+    const kids = items.map((it) => it.piece).join("");
+    const grp =
+      `<p:grpSp>` +
+      `<p:nvGrpSpPr><p:cNvPr id="900${Math.abs(hashStr(groupId) % 900)}" name="grp:${groupId}"/>` +
+      `<p:cNvGrpSpPr/><p:nvPr/></p:nvGrpSpPr>` +
+      `<p:grpSpPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="12192000" cy="6858000"/>` +
+      `<a:chOff x="0" y="0"/><a:chExt cx="12192000" cy="6858000"/></a:xfrm></p:grpSpPr>` +
+      kids +
+      `</p:grpSp>`;
+    rebuilt = rebuilt.replace(items[0].piece, grp);
+    for (let k = 1; k < items.length; k++) {
+      rebuilt = rebuilt.replace(items[k].piece, "");
+    }
+  });
+  if (rebuilt === tree) return xml;
+  return xml.replace(spTreeMatch[0], "<p:spTree>" + rebuilt + "</p:spTree>");
+}
+
+function hashStr(s) {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0;
+  return h;
 }
 
 function maskedImage(file, element, clip, content) {
@@ -582,4 +977,12 @@ function tracePath(ctx, d) {
   return true;
 }
 
-module.exports = { listCatalog, readCatalog, slideFile, buildPptx, exportDeckPptx };
+module.exports = {
+  listCatalog,
+  readCatalog,
+  slideFile,
+  buildPptx,
+  exportDeckPptx,
+  ENTRANCE_TEMPLATES,
+  applyMotionOoxml,
+};

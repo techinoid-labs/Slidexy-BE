@@ -106,7 +106,7 @@
         "id": "body",
         "type": "text",
         "slot": "body",
-        "tokenColor": "muted",
+        "tokenColor": "ink",
         "fontRole": "body",
         "fontSize": 24,
         "align": "right",
@@ -130,5 +130,6 @@
       }
     ]
   },
-  "family": "photo-footer"
+  "family": "photo-footer",
+  "status": "draft"
 }

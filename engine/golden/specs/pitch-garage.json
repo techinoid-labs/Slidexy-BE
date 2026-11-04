@@ -2,7 +2,7 @@
   "style": {
     "palette": "ink-night",
     "typePair": "classic-georgia",
-    "imageTreatment": "duotone",
+    "imageTreatment": "tint",
     "motif": "bar-accent"
   },
   "slides": [
@@ -37,8 +37,14 @@
     {
       "role": "feature",
       "title": "Member pit",
-      "body": ["Private bays", "Tool wall", "Late hours"],
-      "photoQuery": "car tools wall",
+      "body": ["Private bays", "Tool wall", "Late hours", "Detail desk"],
+      "photoQuery": "garage member pit",
+      "photoQueries": [
+        "private bay supercar garage",
+        "tool wall luxury garage",
+        "late night garage bay lights",
+        "detail desk microfiber garage"
+      ],
       "photoOrientation": "landscape"
     },
     {

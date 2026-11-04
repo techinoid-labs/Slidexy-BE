@@ -1,0 +1,174 @@
+{
+  "id": "feature/editorial",
+  "role": "feature",
+  "variant": "editorial",
+  "family": "extreme-editorial",
+  "steal": "Extreme scale — massive title (~40% of field) over full-bleed photo; tiny body tucked bottom-right; 90° section label on the left rail.",
+  "requiresPhoto": true,
+  "photoSlots": [
+    "hero"
+  ],
+  "pptxGroup": "feature-editorial-overlap",
+  "slots": {
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    },
+    "body": {
+      "kind": "text",
+      "optional": true,
+      "from": "body"
+    },
+    "sectionLabel": {
+      "kind": "text",
+      "optional": true,
+      "from": "caption"
+    },
+    "hero": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo"
+    },
+    "accent": {
+      "kind": "shape",
+      "optional": false
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 148,
+      "minFont": 72,
+      "lineClamp": 2,
+      "shrinkMin": 0.85
+    },
+    "body": {
+      "maxFont": 16,
+      "minFont": 14,
+      "lineClamp": 4,
+      "shrinkMin": 0.9
+    },
+    "sectionLabel": {
+      "maxFont": 18,
+      "minFont": 14,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "body": {
+      "kind": "text"
+    },
+    "sectionLabel": {
+      "kind": "text"
+    },
+    "hero": {
+      "kind": "picture"
+    },
+    "accent": {
+      "kind": "shape"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 1,
+        "id": "hero",
+        "type": "image",
+        "slot": "hero",
+        "mask": "rect",
+        "tension": 0.15,
+        "x": 420,
+        "y": 0,
+        "width": 1180,
+        "height": 900,
+        "pptxGroup": "feature-editorial-overlap",
+        "morphId": "hero"
+      },
+      {
+        "z": 2,
+        "id": "wash",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "bg",
+        "opacity": 0.42,
+        "x": 0,
+        "y": 0,
+        "width": 780,
+        "height": 900
+      },
+      {
+        "z": 4,
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 132,
+        "align": "left",
+        "verticalAlign": "middle",
+        "typeTreatment": "outline",
+        "x": 72,
+        "y": 160,
+        "width": 1180,
+        "height": 360,
+        "pptxGroup": "feature-editorial-overlap",
+        "morphId": "title"
+      },
+      {
+        "z": 5,
+        "id": "body",
+        "type": "text",
+        "slot": "body",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontSize": 14,
+        "align": "left",
+        "x": 1080,
+        "y": 740,
+        "width": 440,
+        "height": 120,
+        "morphId": "body"
+      },
+      {
+        "z": 6,
+        "id": "sectionLabel",
+        "type": "text",
+        "slot": "sectionLabel",
+        "tokenColor": "accent",
+        "fontRole": "label",
+        "fontSize": 16,
+        "align": "left",
+        "rotate": -90,
+        "x": -120,
+        "y": 380,
+        "width": 320,
+        "height": 36,
+        "pptxGroup": "feature-editorial-overlap",
+        "morphId": "sectionLabel"
+      },
+      {
+        "z": 3,
+        "id": "accent",
+        "type": "shape",
+        "shape": "rect",
+        "motif": true,
+        "tokenFill": "accent",
+        "x": 72,
+        "y": 540,
+        "width": 96,
+        "height": 8,
+        "morphId": "accent"
+      }
+    ]
+  },
+  "status": "locked",
+  "motion": {
+    "transition": "fade",
+    "fallbackTransition": "fade",
+    "durationMs": 800
+  }
+}

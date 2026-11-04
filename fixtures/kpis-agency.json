@@ -1,0 +1,5 @@
+[
+  { "value": 62, "label": "Brands shipped" },
+  { "value": 3, "suffix": "wk", "label": "Avg sprint" },
+  { "value": 18, "suffix": "x", "label": "Referral lift" }
+]

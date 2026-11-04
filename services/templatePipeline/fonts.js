@@ -25,13 +25,26 @@ const SYSTEM_FONT_FILES = {
   Georgia: ["georgia.ttf", "georgiab.ttf"],
   "Segoe UI": ["segoeui.ttf", "segoeuib.ttf"],
   Constantia: ["constan.ttf", "constanb.ttf"],
-  Candara: ["candara.ttf", "candarab.ttf"],
+  Candara: ["Candara.ttf", "Candarab.ttf"],
   "Trebuchet MS": ["trebuc.ttf", "trebucbd.ttf"],
   "Franklin Gothic Medium": ["framd.ttf", "FRABK.TTF"],
   "Franklin Gothic Heavy": ["FRAHV.TTF", "FRAHV.TTF"],
   Garamond: ["GARA.TTF", "GARABD.TTF"],
   "Bookman Old Style": ["BOOKOS.TTF", "BOOKOSB.TTF"],
   Rockwell: ["ROCK.TTF", "ROCKB.TTF"],
+  Consolas: ["consola.ttf", "consolab.ttf"],
+  Bahnschrift: ["bahnschrift.ttf", "bahnschrift.ttf"],
+  Impact: ["impact.ttf", "impact.ttf"],
+  "Times New Roman": ["times.ttf", "timesbd.ttf"],
+  // Theme-catalog faces — map to closest installed Windows fonts for canvas preview
+  Inter: ["segoeui.ttf", "segoeuib.ttf"],
+  "Playfair Display": ["georgia.ttf", "georgiab.ttf"],
+  Lora: ["georgia.ttf", "georgiai.ttf"],
+  "Space Grotesk": ["bahnschrift.ttf", "bahnschrift.ttf"],
+  Nunito: ["Candara.ttf", "Candarab.ttf"],
+  Poppins: ["Candara.ttf", "Candarab.ttf"],
+  "Open Sans": ["calibri.ttf", "calibrib.ttf"],
+  Orbitron: ["impact.ttf", "impact.ttf"],
 };
 
 /** Bundled metric-compatible substitutes registered under Office family names */
@@ -54,11 +67,16 @@ function tryRegister(family, regularPath, boldPath) {
   try {
     // Register normal + bold. Some faces (Franklin Gothic Heavy) only paint when
     // canvas requests bold — register the same file under both weights.
+    // Also register "Family Bold" as its own family — node-canvas often asks for that name.
     registerFont(regularPath, { family });
     registerFont(regularPath, { family, weight: "normal" });
     const bold = boldPath && fs.existsSync(boldPath) ? boldPath : regularPath;
     registerFont(bold, { family, weight: "bold" });
+    registerFont(bold, { family: family + " Bold" });
+    registerFont(bold, { family: family + " Bold", weight: "bold" });
+    registerFont(bold, { family: family + " Bold", weight: "normal" });
     registered.add(family);
+    registered.add(family + " Bold");
     return true;
   } catch (error) {
     warnOnce(family + "-err", "fonts.js: registerFont failed for " + family + ": " + (error && error.message ? error.message : error));

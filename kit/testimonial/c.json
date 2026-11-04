@@ -1,0 +1,151 @@
+{
+  "id": "testimonial/c",
+  "role": "testimonial",
+  "variant": "c",
+  "steal": "Centered pull-quote with circular portrait below — minimal, editorial C option.",
+  "requiresPhoto": true,
+  "photoSlots": [
+    "portrait"
+  ],
+  "pptxGroup": "testimonial-c-overlap",
+  "slots": {
+    "title": {
+      "kind": "text",
+      "optional": true,
+      "from": "title"
+    },
+    "body": {
+      "kind": "text",
+      "optional": false,
+      "from": "body"
+    },
+    "caption": {
+      "kind": "text",
+      "optional": true,
+      "from": "caption"
+    },
+    "portrait": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo"
+    },
+    "accent": {
+      "kind": "shape",
+      "optional": false
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 28,
+      "minFont": 18,
+      "lineClamp": 1,
+      "shrinkMin": 0.75
+    },
+    "body": {
+      "maxFont": 36,
+      "minFont": 20,
+      "lineClamp": 4,
+      "shrinkMin": 0.75
+    },
+    "caption": {
+      "maxFont": 18,
+      "minFont": 14,
+      "lineClamp": 2,
+      "shrinkMin": 0.75
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "body": {
+      "kind": "text"
+    },
+    "caption": {
+      "kind": "text"
+    },
+    "portrait": {
+      "kind": "picture"
+    },
+    "accent": {
+      "kind": "shape"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 1,
+        "id": "accent",
+        "type": "shape",
+        "shape": "rect",
+        "motif": true,
+        "tokenFill": "accent",
+        "x": 720,
+        "y": 120,
+        "width": 160,
+        "height": 8,
+        "pptxGroup": "testimonial-c-overlap"
+      },
+      {
+        "z": 2,
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "tokenColor": "muted",
+        "fontRole": "label",
+        "fontSize": 22,
+        "align": "center",
+        "x": 200,
+        "y": 160,
+        "width": 1200,
+        "height": 40,
+        "pptxGroup": "testimonial-c-overlap"
+      },
+      {
+        "z": 2,
+        "id": "body",
+        "type": "text",
+        "slot": "body",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 34,
+        "align": "center",
+        "verticalAlign": "middle",
+        "x": 200,
+        "y": 220,
+        "width": 1200,
+        "height": 220,
+        "pptxGroup": "testimonial-c-overlap"
+      },
+      {
+        "z": 3,
+        "id": "portrait",
+        "type": "image",
+        "slot": "portrait",
+        "mask": "circle",
+        "radius": 80,
+        "x": 720,
+        "y": 480,
+        "width": 160,
+        "height": 160,
+        "pptxGroup": "testimonial-c-overlap"
+      },
+      {
+        "z": 4,
+        "id": "caption",
+        "type": "text",
+        "slot": "caption",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontSize": 18,
+        "align": "center",
+        "x": 400,
+        "y": 660,
+        "width": 800,
+        "height": 48,
+        "pptxGroup": "testimonial-c-overlap"
+      }
+    ]
+  },
+  "status": "draft"
+}

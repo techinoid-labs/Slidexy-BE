@@ -91,14 +91,30 @@
     }
   },
   "pptxMapping": {
-    "title": { "kind": "text" },
-    "v1": { "kind": "text" },
-    "v2": { "kind": "text" },
-    "v3": { "kind": "text" },
-    "l1": { "kind": "text" },
-    "l2": { "kind": "text" },
-    "l3": { "kind": "text" },
-    "accent": { "kind": "shape" }
+    "title": {
+      "kind": "text"
+    },
+    "v1": {
+      "kind": "text"
+    },
+    "v2": {
+      "kind": "text"
+    },
+    "v3": {
+      "kind": "text"
+    },
+    "l1": {
+      "kind": "text"
+    },
+    "l2": {
+      "kind": "text"
+    },
+    "l3": {
+      "kind": "text"
+    },
+    "accent": {
+      "kind": "shape"
+    }
   },
   "layout": {
     "elements": [
@@ -110,11 +126,11 @@
         "tokenColor": "ink",
         "fontRole": "display",
         "fontSize": 32,
-        "align": "center",
-        "x": 200,
-        "y": 100,
-        "width": 1200,
-        "height": 80
+        "align": "left",
+        "x": 80,
+        "y": 64,
+        "width": 900,
+        "height": 64
       },
       {
         "z": 2,
@@ -163,7 +179,7 @@
         "id": "l1",
         "type": "text",
         "slot": "l1",
-        "tokenColor": "muted",
+        "tokenColor": "ink",
         "fontRole": "body",
         "fontSize": 18,
         "align": "center",
@@ -177,7 +193,7 @@
         "id": "l2",
         "type": "text",
         "slot": "l2",
-        "tokenColor": "muted",
+        "tokenColor": "ink",
         "fontRole": "body",
         "fontSize": 18,
         "align": "center",
@@ -191,7 +207,7 @@
         "id": "l3",
         "type": "text",
         "slot": "l3",
-        "tokenColor": "muted",
+        "tokenColor": "ink",
         "fontRole": "body",
         "fontSize": 18,
         "align": "center",
@@ -213,5 +229,6 @@
         "height": 16
       }
     ]
-  }
+  },
+  "status": "draft"
 }

@@ -1,0 +1,16 @@
+{
+  "name": "Volt Capital",
+  "colors": {
+    "bg": "#070B14",
+    "surface": "#121A2B",
+    "ink": "#F3F6FC",
+    "muted": "#9AA8C2",
+    "accent": "#3DDC97",
+    "line": "#24314A"
+  },
+  "fonts": {
+    "display": "Arial",
+    "body": "Calibri"
+  },
+  "logoUrl": "https://example.com/volt-mark.png"
+}

@@ -8,9 +8,11 @@
   "properties": {
     "id": { "type": "string" },
     "role": { "type": "string" },
-    "variant": { "type": "string", "enum": ["a", "b"] },
+    "variant": { "type": "string", "enum": ["a", "b", "c"] },
     "family": { "type": "string" },
     "steal": { "type": "string" },
+    "designReview": { "type": "string" },
+    "pptxGroup": { "type": "string" },
     "requiresPhoto": { "type": "boolean" },
     "photoSlots": {
       "type": "array",
@@ -78,6 +80,13 @@
               "motif": { "type": "boolean" },
               "opacity": { "type": "number" },
               "radius": { "type": "number" },
+              "mask": { "type": "string", "enum": ["circle", "roundedRect", "rect", "arch", "pill"] },
+              "crop": {
+                "type": "string",
+                "enum": ["cover", "top-center", "top-center-square", "top-center-45"]
+              },
+              "pptxGroup": { "type": "string" },
+              "overlapPlate": { "type": "boolean" },
               "z": { "type": "number" }
             }
           }

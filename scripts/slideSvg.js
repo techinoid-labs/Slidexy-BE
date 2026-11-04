@@ -68,12 +68,31 @@ function prepareFonts() {
   knownFamilies().forEach((family) => ensureFont(family));
 }
 
+/** Preview-only aliases — PPTX still emits the design-system family name. */
+const CANVAS_FONT_ALIASES = {
+  Inter: "Segoe UI",
+  "Playfair Display": "Georgia",
+  Lora: "Georgia",
+  "Space Grotesk": "Bahnschrift",
+  Nunito: "Candara",
+  Poppins: "Candara",
+  "Open Sans": "Calibri",
+  Orbitron: "Impact",
+};
+
+function canvasPaintFamily(family) {
+  const alias = CANVAS_FONT_ALIASES[String(family || "")];
+  return alias || family;
+}
+
 function fontCss(style, family) {
   const size = Number(style.fontSize);
   const weight = Number(style.fontWeight);
-  if (hasRegisteredFont(family)) {
+  const paintFamily = canvasPaintFamily(family);
+  if (hasRegisteredFont(paintFamily) || hasRegisteredFont(family)) {
+    const face = hasRegisteredFont(paintFamily) ? paintFamily : family;
     const bold = weight >= 600 ? "bold " : "";
-    return bold + size + 'px "' + family + '"';
+    return bold + size + 'px "' + face + '"';
   }
   if (family === "Georgia" && weight >= 600) return "bold " + size + "px Georgia";
   if (fontFile(family)) return size + "px " + canvasFamily(family);
@@ -103,12 +122,13 @@ function trackingExtra(text, style) {
   return Math.max(0, Array.from(String(text)).length - 1) * gap;
 }
 
-function paintGlyphs(ctx, family, text, x, yTop, size, color, spacing) {
+function paintGlyphs(ctx, family, text, x, yTop, size, color, spacing, treatment) {
   const font = drawFont(family);
   if (!font) return false;
   const scale = size / (font.unitsPerEm || 1000);
   const baseline = yTop + (font.ascender || font.unitsPerEm || 1000) * scale;
   const gap = Number(spacing) || 0;
+  const hollow = treatment === "outline";
   const chars = Array.from(String(text));
   let cursor = x;
   chars.forEach((char, index) => {
@@ -121,8 +141,15 @@ function paintGlyphs(ctx, family, text, x, yTop, size, color, spacing) {
       return;
     }
     const outline = glyph.getPath(cursor, baseline, size);
-    outline.fill = color;
-    outline.stroke = null;
+    if (hollow) {
+      outline.fill = null;
+      outline.stroke = color;
+      // Typography-as-art: ~2px hollow stroke on display type
+      outline.strokeWidth = 2;
+    } else {
+      outline.fill = color;
+      outline.stroke = null;
+    }
     outline.draw(ctx);
     cursor += (glyph.advanceWidth || 0) * scale;
     if (index < chars.length - 1) cursor += gap;
@@ -341,6 +368,17 @@ function tracePreset(ctx, element, clip) {
     ctx.closePath();
     return true;
   }
+  if (clip.kind === "pill") {
+    const r = Math.min(Math.abs(w), Math.abs(h)) / 2;
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+    return true;
+  }
   if (clip.kind === "rect") {
     const radius = Math.max(0, Math.min(clip.cornerRadius || 0, Math.abs(w) / 2, Math.abs(h) / 2));
     ctx.beginPath();
@@ -520,6 +558,18 @@ function measured(text, style, family) {
   return ctx.measureText(text).width;
 }
 
+function spanBoundaryNeedsSpace(prevText, curText) {
+  const a = String(prevText || "");
+  const b = String(curText || "");
+  if (!a || !b) return false;
+  if (/\s$/.test(a) || /^\s/.test(b)) return true;
+  const left = a[a.length - 1];
+  const right = b.replace(/^\s+/, "")[0] || "";
+  if (!right || /\s/.test(left)) return false;
+  if (/[([{“"'`]/.test(right) || /[,.;:!?…)\]}”"']/.test(left)) return false;
+  return /[\w$%€£¥]/.test(left) && /[\w$%€£¥]/.test(right);
+}
+
 function elementRuns(element, slide, tokens) {
   const base = element.textStyle || {};
   const spans = element.textContent && element.textContent.spans;
@@ -527,7 +577,7 @@ function elementRuns(element, slide, tokens) {
     ? spans
     : [{ text: textOf(element, slide) }];
   const runs = [];
-  source.forEach((span) => {
+  source.forEach((span, spanIndex) => {
     const style = {
       fontFamily: token(span.fontFamily || base.fontFamily, tokens),
       fontSize: token(span.fontSize || base.fontSize, tokens),
@@ -538,13 +588,27 @@ function elementRuns(element, slide, tokens) {
       letterSpacing: span.letterSpacing == null ? (base.letterSpacing || 0) : span.letterSpacing,
       highlight: !!span.highlight,
       shadowColor: span.shadowColor || base.shadowColor || "",
+      typeTreatment: span.typeTreatment || base.typeTreatment || "solid",
+      strokeWidth: span.strokeWidth != null ? span.strokeWidth : base.strokeWidth,
     };
-    const parts = String(span.text == null ? "" : span.text).split("\n");
+    const raw = String(span.text == null ? "" : span.text);
+    const parts = raw.split("\n");
+    let firstWordInSpan = true;
     parts.forEach((part, index) => {
       if (index > 0) runs.push({ break: true, style });
-      part.split(" ").forEach((word, wordIndex) => {
-        if (!word) return;
-        runs.push({ word, spaceBefore: wordIndex > 0, style });
+      const leadingSpace = /^\s/.test(part);
+      const words = part.trim().split(/\s+/).filter(Boolean);
+      words.forEach((word, wordIndex) => {
+        const crossSpan =
+          firstWordInSpan &&
+          spanIndex > 0 &&
+          spanBoundaryNeedsSpace(source[spanIndex - 1].text, raw);
+        runs.push({
+          word,
+          spaceBefore: wordIndex > 0 || leadingSpace || crossSpan,
+          style,
+        });
+        firstWordInSpan = false;
       });
     });
   });
@@ -700,9 +764,18 @@ function layoutText(element, slide, warn, where, wrap, tokens) {
     lines = prepare(scale);
     guard += 1;
   }
+  // Hard typographic floor: never preview below ~14pt body / ~24pt display (engine canvas units)
+  const baseSizes = runs.filter((run) => run.word).map((run) => Number(run.style.fontSize) || 0);
+  const baseSize = baseSizes[0] || 16;
+  const isDisplay = Number(baseSize) >= 36 || (element.textStyle && Number(element.textStyle.fontWeight) >= 700 && Number(baseSize) >= 32);
+  const hardFloor = isDisplay ? 40 : 24; // 24pt / 14pt true → engine
+  const minScale = Math.min(1, hardFloor / Math.max(1, baseSize));
+  if (scale < minScale) {
+    scale = minScale;
+    lines = prepare(scale);
+  }
   if (scale < 0.999) {
-    const from = runs.filter((run) => run.word).map((run) => Number(run.style.fontSize));
-    warn(where + ": auto-fit font size from " + from[0] + " to " + (from[0] * scale).toFixed(1));
+    warn(where + ": auto-fit font size from " + baseSize + " to " + (baseSize * scale).toFixed(1));
   }
   if (linesFit(lines, element.width, element.height, missingLineHeight, where, warn)) return lines;
   let y = 0;
@@ -747,7 +820,12 @@ function clipMask(ctx, element, clip, warn, where) {
     ctx.clip();
     return;
   }
-  if (clip.kind === "ellipse" || clip.kind === "arch" || clip.kind === "rect") {
+  if (
+    clip.kind === "ellipse" ||
+    clip.kind === "arch" ||
+    clip.kind === "pill" ||
+    clip.kind === "rect"
+  ) {
     tracePreset(ctx, element, clip);
     ctx.clip();
     return;
@@ -942,12 +1020,29 @@ function paintText(ctx, element, slide, warn, where, wrap, tokens) {
         ctx.shadowOffsetY = 0;
       }
       const size = Number(piece.style.fontSize);
+      const treatment = piece.style.typeTreatment || (style && style.typeTreatment);
       const painted = fontFile(piece.family)
-        && paintGlyphs(ctx, piece.family, piece.text, x, y, size, piece.style.color, letterGap(piece.style));
+        && paintGlyphs(
+          ctx,
+          piece.family,
+          piece.text,
+          x,
+          y,
+          size,
+          piece.style.color,
+          letterGap(piece.style),
+          treatment
+        );
       if (!painted) {
         ctx.font = fontCss(piece.style, piece.family);
-        ctx.fillStyle = piece.style.color;
-        paintFallbackText(ctx, piece.text, x, y, piece.style, piece.family);
+        if (treatment === "outline") {
+          ctx.strokeStyle = piece.style.color;
+          ctx.lineWidth = 2;
+          ctx.strokeText(piece.text, x, y + size * 0.8);
+        } else {
+          ctx.fillStyle = piece.style.color;
+          paintFallbackText(ctx, piece.text, x, y, piece.style, piece.family);
+        }
       }
       x += piece.width;
     });
@@ -1066,6 +1161,202 @@ function paintNoise(ctx, element) {
   ctx.drawImage(scratch, element.x, element.y, element.width, element.height);
 }
 
+/** Preview-only chart paint (PPTX uses native editable addChart). Strict bbox clip. */
+function paintChart(ctx, element, tokens) {
+  const content = element.chartContent || {};
+  const kind = String(content.chartType || content.type || "line").toLowerCase();
+  const labels = Array.isArray(content.labels) ? content.labels : [];
+  const series = Array.isArray(content.series) ? content.series : [];
+  const x = Number(element.x) || 0;
+  const y = Number(element.y) || 0;
+  const w = Number(element.width) || 100;
+  const h = Number(element.height) || 100;
+  const colors = Array.isArray(content.colors) && content.colors.length
+    ? content.colors.map((c) => token(c, tokens) || String(c))
+    : [
+        token(content.color, tokens) || "#1D4ED8",
+        token(content.muted, tokens) || "#64748B",
+        "#0F8A7A",
+        "#C45C26",
+        "#7C3AED",
+      ];
+  const ink = token(content.ink, tokens) || "#152238";
+  ctx.save();
+  // Hard clip — chart geometry must never paint outside the element box
+  ctx.beginPath();
+  ctx.rect(x, y, w, h);
+  ctx.clip();
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillRect(x, y, w, h);
+  ctx.strokeStyle = "#E2E8F0";
+  ctx.strokeRect(x + 0.5, y + 0.5, w - 1, h - 1);
+
+  if (!labels.length || !series.length) {
+    ctx.fillStyle = ink;
+    ctx.font = "400 22px Calibri";
+    ctx.fillText("Chart", x + 24, y + h / 2);
+    ctx.restore();
+    return;
+  }
+
+  const values = series.map((s) =>
+    (Array.isArray(s && s.values) ? s.values : []).map((v) => Number(v) || 0)
+  );
+  const stacked = kind === "stackedbar" || kind === "stacked" || kind.indexOf("stack") >= 0;
+  // Scale to stacked column totals (or series max) so high values shrink the whole chart
+  let maxV = 1;
+  if (stacked) {
+    for (let i = 0; i < labels.length; i++) {
+      let sum = 0;
+      for (let s = 0; s < values.length; s++) sum += values[s][i] || 0;
+      if (sum > maxV) maxV = sum;
+    }
+  } else {
+    values.forEach((vals) => vals.forEach((v) => { if (v > maxV) maxV = v; }));
+  }
+
+  const padTop = Math.max(16, h * 0.06);
+  const padBottom = Math.max(28, h * 0.12);
+  const padX = Math.max(24, w * 0.06);
+  const plotH = Math.max(40, h - padTop - padBottom);
+  const plotTop = y + padTop;
+  const plotBottom = plotTop + plotH;
+
+  if (kind === "donut" || kind === "doughnut") {
+    const vals = values[0] || [];
+    const total = vals.reduce((a, b) => a + b, 0) || 1;
+    const cx = x + w / 2;
+    const cy = y + h / 2;
+    const r = Math.min(w, h) * 0.32;
+    let angle = -Math.PI / 2;
+    vals.forEach((v, i) => {
+      const sweep = (v / total) * Math.PI * 2;
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.arc(cx, cy, r, angle, angle + sweep);
+      ctx.closePath();
+      ctx.fillStyle = colors[i % colors.length];
+      ctx.fill();
+      angle += sweep;
+    });
+    ctx.beginPath();
+    ctx.ellipse(cx, cy, r * 0.55, r * 0.55, 0, 0, Math.PI * 2);
+    ctx.fillStyle = "#FFFFFF";
+    ctx.fill();
+  } else if (kind === "stackedbar" || kind === "stacked" || kind === "bar") {
+    const n = labels.length;
+    const gap = padX;
+    const slot = (w - gap * 2) / Math.max(1, n);
+    const barW = slot * 0.62;
+    for (let i = 0; i < n; i++) {
+      let stack = 0;
+      const bx = x + gap + i * slot + (slot - barW) / 2;
+      for (let s = 0; s < values.length; s++) {
+        const v = values[s][i] || 0;
+        // 0.92 headroom keeps the tallest stack inside the clipped box
+        const bh = (v / maxV) * plotH * 0.92;
+        ctx.fillStyle = colors[s % colors.length];
+        ctx.fillRect(bx, plotBottom - stack - bh, barW, bh);
+        stack += bh;
+      }
+      ctx.fillStyle = ink;
+      ctx.font = "400 14px Calibri";
+      ctx.textAlign = "center";
+      ctx.fillText(String(labels[i]).slice(0, 10), bx + barW / 2, Math.min(y + h - 8, plotBottom + 18));
+    }
+  } else {
+    const plotW = w - padX * 2;
+    ctx.strokeStyle = "#CBD5E1";
+    ctx.beginPath();
+    ctx.moveTo(x + padX, plotTop);
+    ctx.lineTo(x + padX, plotBottom);
+    ctx.lineTo(x + w - padX, plotBottom);
+    ctx.stroke();
+    values.forEach((vals, s) => {
+      ctx.strokeStyle = colors[s % colors.length];
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      vals.forEach((v, i) => {
+        const px = x + padX + (i / Math.max(1, labels.length - 1)) * plotW;
+        const py = plotBottom - (v / maxV) * plotH;
+        if (i === 0) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      });
+      ctx.stroke();
+      vals.forEach((v, i) => {
+        const px = x + padX + (i / Math.max(1, labels.length - 1)) * plotW;
+        const py = plotBottom - (v / maxV) * plotH;
+        ctx.beginPath();
+        ctx.arc(px, py, 4, 0, Math.PI * 2);
+        ctx.fillStyle = colors[s % colors.length];
+        ctx.fill();
+      });
+    });
+  }
+  ctx.restore();
+}
+
+function paintTable(ctx, element, tokens) {
+  const content = element.tableContent || {};
+  const rows = Array.isArray(content.rows) ? content.rows : [];
+  if (!rows.length) return;
+  const cols = Math.max.apply(
+    null,
+    rows.map((r) => (Array.isArray(r) ? r.length : 1)).concat([1])
+  );
+  const x = Number(element.x) || 0;
+  const y = Number(element.y) || 0;
+  const w = Number(element.width) || 100;
+  const h = Number(element.height) || 100;
+  const rowH = h / rows.length;
+  const colW = w / cols;
+  const ink = token(content.color, tokens) || "#1A1612";
+  const headerFill = token(content.headerFill, tokens) || "#F4F7FB";
+  const headerColor = token(content.headerColor, tokens) || ink;
+  const border = token(content.borderColor, tokens) || "#D0D7E2";
+  const fontSize = Number(content.fontSize) || 24;
+  const fontFamily = String(content.fontFamily || "Calibri");
+  const pad = Number(content.cellPadding) >= 0 ? Number(content.cellPadding) : 6;
+  const altFill = content.altRowFill || null;
+  const verticalBorders = content.verticalBorders === true;
+  const horizontalBorders = content.horizontalBorders !== false;
+  ctx.save();
+  rows.forEach((row, ri) => {
+    const cells = Array.isArray(row) ? row : [row];
+    for (let ci = 0; ci < cols; ci++) {
+      const cell = cells[ci];
+      const text =
+        cell && typeof cell === "object"
+          ? String(cell.text != null ? cell.text : "")
+          : String(cell != null ? cell : "");
+      const cx = x + ci * colW;
+      const cy = y + ri * rowH;
+      const fill =
+        ri === 0 ? headerFill : altFill && ri % 2 === 0 ? altFill : "#FFFFFF";
+      ctx.fillStyle = fill;
+      ctx.fillRect(cx, cy, colW, rowH);
+      ctx.strokeStyle = border;
+      ctx.lineWidth = 1;
+      if (horizontalBorders) {
+        ctx.beginPath();
+        ctx.moveTo(cx, cy + rowH);
+        ctx.lineTo(cx + colW, cy + rowH);
+        ctx.stroke();
+      }
+      if (verticalBorders) {
+        ctx.strokeRect(cx + 0.5, cy + 0.5, colW - 1, rowH - 1);
+      }
+      ctx.fillStyle = ri === 0 ? headerColor : ink;
+      ctx.font = (ri === 0 ? "600 " : "400 ") + fontSize + "px " + fontFamily;
+      ctx.textAlign = "left";
+      ctx.textBaseline = "middle";
+      const label = String(text || " ").slice(0, 48);
+      ctx.fillText(label, cx + pad + 4, cy + rowH / 2, colW - pad * 2 - 8);
+    }
+  });
+  ctx.restore();
+}
+
 function paintShape(ctx, element, tokens) {
   const shape = element.shapeContent || {};
   const fill = token(shape.fill, tokens) || "none";
@@ -1101,6 +1392,18 @@ function paintShape(ctx, element, tokens) {
     return;
   }
   const radius = shape.kind === "circle" ? Math.min(element.width, element.height) / 2 : (shape.cornerRadius || 0);
+  if (shape.shadow && typeof shape.shadow === "object") {
+    const sh = shape.shadow;
+    ctx.save();
+    ctx.shadowColor = String(sh.color || "#0F172A");
+    ctx.shadowBlur = Number(sh.blur) || 24;
+    ctx.shadowOffsetY = Number(sh.offset) || 8;
+    ctx.globalAlpha *= sh.opacity != null ? Number(sh.opacity) : 0.12;
+    ctx.fillStyle = fill !== "none" ? fill : "#FFFFFF";
+    tracePreset(ctx, element, { kind: shape.kind === "circle" || shape.kind === "ellipse" ? "ellipse" : "rect", cornerRadius: radius });
+    ctx.fill();
+    ctx.restore();
+  }
   tracePreset(ctx, element, { kind: "rect", cornerRadius: radius });
   if (fill && fill !== "none" && fill !== "transparent") {
     ctx.fillStyle = shape.gradient && shape.gradient.stops ? linearFill(ctx, element, shape.gradient) : fill;
@@ -1251,6 +1554,14 @@ function paintSlide(ctx, deck, layoutId, warn, options) {
       paintTextMaskedImage(ctx, element, slide, warn, where, deck.tokens, flags.images);
       return;
     }
+    if (element.type === "table") {
+      paintTable(ctx, element, deck.tokens);
+      return;
+    }
+    if (element.type === "chart") {
+      paintChart(ctx, element, deck.tokens);
+      return;
+    }
     if (element.type === "text") {
       const probe = layoutText(element, slide, () => {}, where, flags.wrap, deck.tokens);
       let word = null;
@@ -1288,7 +1599,15 @@ function assertNativeElement(layoutId, element) {
   if (!element) return;
   // Corporate and creative layouts share this path: solid shapes, text, and photos.
   // Full-bleed boxes, stacked overlap, and a translucent shape are painted as themselves.
-  if (element.type !== "shape" && element.type !== "text" && element.type !== "image" && element.type !== "maskedImage") {
+  if (
+    element.type !== "shape" &&
+    element.type !== "text" &&
+    element.type !== "image" &&
+    element.type !== "maskedImage" &&
+    element.type !== "table" &&
+    element.type !== "chart" &&
+    element.type !== "primitive"
+  ) {
     throw new Error("Native layout " + layoutId + " cannot render " + element.type + " (" + (element.id || "element") + ")");
   }
   const clip = element.maskedImageContent && element.maskedImageContent.clip;

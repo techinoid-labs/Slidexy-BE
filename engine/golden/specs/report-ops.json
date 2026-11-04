@@ -2,7 +2,7 @@
   "style": {
     "palette": "mist-teal",
     "typePair": "tech-verdana",
-    "imageTreatment": "duotone",
+    "imageTreatment": "tint",
     "motif": "bar-accent"
   },
   "slides": [

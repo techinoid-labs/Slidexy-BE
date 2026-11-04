@@ -1,10 +1,22 @@
 const fs = require("fs");
 const path = require("path");
-import { DeckSpec, DeckType, DECK_TYPE_MIN_SLIDES, GateResult, GateSlideResult } from "./types";
+import {
+  DeckSpec,
+  DeckType,
+  DECK_TYPE_MIN_SLIDES,
+  DECK_TYPE_REQUIRED_ROLES,
+  GateResult,
+  GateSlideResult,
+} from "./types";
 const { fitText } = require("./fit");
+const { queriesForSlots, isTeamPortraitQuery } = require("./photos");
 
 const KIT = path.join(__dirname, "..", "kit");
-const MAX_SLIDES = 14;
+const MAX_SLIDES = 18;
+/** Roles that may repeat (data-dense report kits / overflow continuations). */
+const MULTI_ROLE_OK = new Set(["report", "timeline", "comparison", "pricing", "portfolio"]);
+/** Secondary text (muted) vs slide bg — WCAG AA + visual floor for dark UIs. */
+const MIN_MUTED_CONTRAST = 4.5;
 
 function loadVariant(role: string, variant: string) {
   const file = path.join(KIT, role, variant + ".json");
@@ -80,6 +92,64 @@ export function runGates(
     });
   }
 
+  // roleSequenceOK: each required role appears exactly once (continued overflow slides ignored)
+  if (deckType && DECK_TYPE_REQUIRED_ROLES[deckType]) {
+    const required = DECK_TYPE_REQUIRED_ROLES[deckType];
+    const counts: Record<string, number> = {};
+    (spec.slides || []).forEach((s: any) => {
+      if (s && s.continued) return;
+      counts[s.role] = (counts[s.role] || 0) + 1;
+    });
+    const roleFails: string[] = [];
+    required.forEach((role) => {
+      const n = counts[role] || 0;
+      if (n !== 1) roleFails.push(role + "×" + n);
+    });
+    Object.keys(counts).forEach((role) => {
+      if (required.indexOf(role as any) < 0 && counts[role] > 1 && !MULTI_ROLE_OK.has(role)) {
+        roleFails.push("extra-dup " + role + "×" + counts[role]);
+      }
+    });
+    if (roleFails.length) {
+      slides.push({
+        slideIndex: -1,
+        role: "deck",
+        pass: false,
+        reasons: [
+          "roleSequenceOK failed: need each of [" +
+            required.join(", ") +
+            "] exactly once; got " +
+            roleFails.join("; "),
+        ],
+      });
+    }
+  }
+
+  // photoUnique: every resolved query across the deck must be distinct
+  const allQueries: string[] = [];
+  const queryOwners: Array<{ slideIndex: number; role: string; query: string }> = [];
+  spec.slides.forEach((slide, i) => {
+    const sel = selections[i] || { role: slide.role, variant: slide.variantHint || "a" };
+    const variant = loadVariant(sel.role, sel.variant);
+    const slotCount = (variant.photoSlots || []).length;
+    if (!slotCount) return;
+    queriesForSlots(slide, slotCount).forEach((q: string) => {
+      allQueries.push(q);
+      queryOwners.push({ slideIndex: i, role: slide.role, query: q });
+    });
+  });
+  const seenQ = new Map<string, number>();
+  const dupSlideIndexes = new Set<number>();
+  queryOwners.forEach((row) => {
+    const key = row.query.trim().toLowerCase();
+    if (seenQ.has(key)) {
+      dupSlideIndexes.add(row.slideIndex);
+      dupSlideIndexes.add(seenQ.get(key) as number);
+    } else {
+      seenQ.set(key, row.slideIndex);
+    }
+  });
+
   spec.slides.forEach((slide, i) => {
     const reasons: string[] = [];
     const sel = selections[i] || { role: slide.role, variant: slide.variantHint || "a" };
@@ -92,26 +162,90 @@ export function runGates(
       titles.add(key);
     }
 
-    if (variant.requiresPhoto) {
-      if (!slide.photoQuery || !String(slide.photoQuery).trim()) {
+    const slotCount = (variant.photoSlots || []).length;
+    if (variant.requiresPhoto || slotCount > 0) {
+      const qs = queriesForSlots(slide, Math.max(slotCount, variant.requiresPhoto ? 1 : 0));
+      if (!qs.length || qs.some((q: string) => !String(q).trim())) {
         reasons.push("photoPresent: missing photoQuery for " + variant.id);
+      } else if (slotCount > 1 && qs.length < slotCount) {
+        // team/b + feature/b: optional trailing slots when data < photoSlots
+        const membersLen = Array.isArray(slide.members) ? slide.members.length : 0;
+        const featureLen = Math.max(
+          Array.isArray(slide.body) ? slide.body.length : 0,
+          Array.isArray(slide.photoQueries) ? slide.photoQueries.length : 0
+        );
+        const teamOk =
+          slide.role === "team" && membersLen > 0 && qs.length >= Math.min(slotCount, membersLen);
+        const featureOk =
+          variant.id === "feature/b" &&
+          featureLen > 0 &&
+          qs.length >= Math.min(slotCount, featureLen);
+        if (!teamOk && !featureOk) {
+          reasons.push("photoPresent: need " + slotCount + " queries for " + variant.id + ", got " + qs.length);
+        }
       }
     }
 
+    if (dupSlideIndexes.has(i)) {
+      reasons.push("photoUnique: duplicate photoQuery on this deck");
+    }
+
+    // team role: portraits only — reject car / abstract / scene queries
+    if (slide.role === "team") {
+      const qs = queriesForSlots(slide, Math.max(slotCount, 1));
+      qs.forEach((q: string) => {
+        if (!isTeamPortraitQuery(q)) {
+          reasons.push(
+            "teamPortraitOK: query must be a people/headshot portrait (got \"" +
+              String(q).slice(0, 60) +
+              "\")"
+          );
+        }
+      });
+    }
+
     if (palette) {
-      const ratio = contrastRatio(palette.ink, palette.bg);
-      if (ratio < 4.5) reasons.push("contrastOK: ink/bg ratio " + ratio.toFixed(2));
+      const inkRatio = contrastRatio(palette.ink, palette.bg);
+      if (inkRatio < 4.5) reasons.push("contrastOK: ink/bg ratio " + inkRatio.toFixed(2));
+      const mutedRatio = contrastRatio(palette.muted, palette.bg);
+      if (mutedRatio < MIN_MUTED_CONTRAST) {
+        reasons.push(
+          "contrastOK: muted/bg ratio " +
+            mutedRatio.toFixed(2) +
+            " (need ≥" +
+            MIN_MUTED_CONTRAST +
+            " for labels/roles)"
+        );
+      }
+      const mutedOnSurface = contrastRatio(palette.muted, palette.surface || palette.bg);
+      if (mutedOnSurface < MIN_MUTED_CONTRAST) {
+        reasons.push(
+          "contrastOK: muted/surface ratio " +
+            mutedOnSurface.toFixed(2) +
+            " (need ≥" +
+            MIN_MUTED_CONTRAST +
+            ")"
+        );
+      }
     }
 
     (variant.layout.elements || []).forEach((el: any) => {
       if (el.type !== "text" || !el.slot) return;
       const slotMeta = (variant.slots && variant.slots[el.slot]) || {};
       const from = slotMeta.from || el.slot;
-      const rules = (variant.fit && variant.fit[el.slot]) || { minFont: 16, maxFont: el.fontSize || 32, lineClamp: 4 };
+      const rules: any = {
+        minFont: 24,
+        maxFont: el.fontSize || 32,
+        lineClamp: 8,
+        ...((variant.fit && variant.fit[el.slot]) || {}),
+      };
       const text = slotText(slide, from);
       if (!text) return;
+      rules.splitOnOverflow = !/\n|•/.test(String(text));
       const fitted = fitText(text, { width: el.width, height: el.height }, rules);
-      if (fitted.rejected) reasons.push("textFits: " + el.slot + " " + (fitted.reason || "overflow"));
+      if (fitted.rejected && fitted.reason !== "overflow-split") {
+        reasons.push("textFits: " + el.slot + " " + (fitted.reason || "overflow"));
+      }
     });
 
     slides.push({

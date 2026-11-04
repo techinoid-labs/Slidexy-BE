@@ -1,0 +1,273 @@
+{
+  "version": 1,
+  "label": "Slidexy Global Design System",
+  "typography": {
+    "bodyMinPt": 14,
+    "titleMinPt": 24,
+    "kickerPt": 10,
+    "calloutPt": 20,
+    "listItemPt": 16,
+    "axisLabelMinPt": 12,
+    "enforcement": "error-or-split",
+    "bodyLineHeight": 1.5,
+    "titleLineHeight": 1.2
+  },
+  "surfaces": {
+    "light": {
+      "surface_color": "#F8FAFC",
+      "card_bg": "#FFFFFF"
+    },
+    "dark": {
+      "surface_color": "#0F172A",
+      "card_bg": "#1E293B"
+    }
+  },
+  "card_shadow": {
+    "color": "#0F172A",
+    "blur": 24,
+    "offset": 8,
+    "opacity": 0.12
+  },
+  "shapes": {
+    "cardRadius": 4,
+    "useCards": true
+  },
+  "motif": {
+    "id": "refined",
+    "label": "Refined hairline + square",
+    "hairlineHeight": 1,
+    "hairlineWidth": 72,
+    "squareSize": 4,
+    "gap": 8,
+    "forbidBrush": true,
+    "forbidThickBar": true,
+    "forbidEllipses": true
+  },
+  "primitives": {
+    "header": {
+      "kickerTracking": 0.12,
+      "kickerTransform": "uppercase",
+      "titleWeight": 700,
+      "motif": "refined"
+    },
+    "callout": {
+      "fillToken": "card_bg",
+      "shadow": true,
+      "textPt": 20,
+      "labelPt": 10,
+      "paddingX": 32,
+      "paddingY": 20,
+      "radius": 4
+    },
+    "listItem": {
+      "icon": "square",
+      "iconSize": 6,
+      "iconGap": 14,
+      "itemGap": 12,
+      "textPt": 16,
+      "lineHeight": 1.35
+    }
+  },
+  "dataViz": {
+    "table": {
+      "verticalBorders": false,
+      "horizontalBorders": true,
+      "alternatingRows": true,
+      "altRowToken": "surface_color",
+      "headerTintToken": "surface_color",
+      "headerBold": true,
+      "cellPadding": 6,
+      "fontMinPt": 14
+    },
+    "chart": {
+      "baseline": true,
+      "noDiagonalSegments": true,
+      "barCornerRadius": 2,
+      "flushBaseline": true
+    }
+  },
+  "catalog": {
+    "tech-minimalist": {
+      "label": "Tech Minimalist (Light)",
+      "typePair": "tech-inter",
+      "imageTreatment": "full-bleed",
+      "imageTone": "color",
+      "motif": "refined",
+      "shapes": { "cardRadius": 0, "useCards": true, "borderWidth": 0 },
+      "card_shadow": { "color": "#18181B", "blur": 8, "offset": 2, "opacity": 0.06 },
+      "primitives": {
+        "callout": { "radius": 0, "shadow": true },
+        "header": { "kickerTracking": 0.16 }
+      },
+      "typography": { "letterSpacing": -0.4, "titleLetterSpacing": -0.6 },
+      "tokens": {
+        "label": "Tech Minimalist",
+        "vibe": "technical",
+        "dark": false,
+        "bg": "#FFFFFF",
+        "surface": "#F4F4F5",
+        "surface_color": "#F4F4F5",
+        "card_bg": "#FAFAFA",
+        "ink": "#18181B",
+        "muted": "#52525B",
+        "accent": "#2563EB",
+        "accent2": "#3B82F6",
+        "line": "#E4E4E7",
+        "useCards": true,
+        "card_radius": 0
+      }
+    },
+    "luxury-editorial": {
+      "label": "Luxury Editorial (Warm)",
+      "typePair": "luxury-playfair",
+      "imageTreatment": "sepia-duotone",
+      "imageTone": "sepia",
+      "motif": "refined",
+      "shapes": { "cardRadius": 0, "useCards": false, "borderWidth": 0 },
+      "card_shadow": { "color": "#2A2118", "blur": 0, "offset": 0, "opacity": 0 },
+      "primitives": {
+        "callout": { "radius": 0, "shadow": false },
+        "header": { "kickerTracking": 0.18 }
+      },
+      "typography": { "letterSpacing": 0.2, "titleLetterSpacing": 0.4 },
+      "tokens": {
+        "label": "Luxury Editorial",
+        "vibe": "warm",
+        "dark": false,
+        "bg": "#F5EFE6",
+        "surface": "#F5EFE6",
+        "surface_color": "#EFE7DB",
+        "card_bg": "#F5EFE6",
+        "ink": "#2C1810",
+        "muted": "#6B4F3F",
+        "accent": "#C45C26",
+        "accent2": "#A34A1C",
+        "line": "#D4C4B0",
+        "useCards": false,
+        "card_radius": 0
+      }
+    },
+    "brutalist-agency": {
+      "label": "Brutalist Agency (High Contrast)",
+      "typePair": "brutalist-grotesk",
+      "imageTreatment": "contrast-bw",
+      "imageTone": "bw-harsh",
+      "motif": "refined",
+      "shapes": { "cardRadius": 0, "useCards": true, "borderWidth": 3 },
+      "card_shadow": { "color": "#000000", "blur": 0, "offset": 0, "opacity": 0 },
+      "primitives": {
+        "callout": { "radius": 0, "shadow": false },
+        "header": { "kickerTracking": 0.2, "titleWeight": 800 }
+      },
+      "typography": { "letterSpacing": 0, "titleLetterSpacing": -0.8 },
+      "tokens": {
+        "label": "Brutalist Agency",
+        "vibe": "bold",
+        "dark": true,
+        "bg": "#000000",
+        "surface": "#111111",
+        "surface_color": "#0A0A0A",
+        "card_bg": "#141414",
+        "ink": "#FFFFFF",
+        "muted": "#A3A3A3",
+        "accent": "#B8FF3C",
+        "accent2": "#D4FF6A",
+        "line": "#FFFFFF",
+        "useCards": true,
+        "card_radius": 0,
+        "card_border": { "width": 3, "color": "#FFFFFF" }
+      }
+    },
+    "healthcare-clinical": {
+      "label": "Healthcare / Clinical (Soft)",
+      "typePair": "clinical-nunito",
+      "imageTreatment": "full-bleed",
+      "imageTone": "color-soft",
+      "motif": "refined",
+      "shapes": { "cardRadius": 16, "useCards": true, "borderWidth": 0 },
+      "card_shadow": { "color": "#0F3D4C", "blur": 32, "offset": 12, "opacity": 0.18 },
+      "primitives": {
+        "callout": { "radius": 16, "shadow": true },
+        "header": { "kickerTracking": 0.14 }
+      },
+      "typography": { "letterSpacing": 0.1, "titleLetterSpacing": 0 },
+      "tokens": {
+        "label": "Healthcare Clinical",
+        "vibe": "clean",
+        "dark": false,
+        "bg": "#E8F6F2",
+        "surface": "#FFFFFF",
+        "surface_color": "#F0FAF7",
+        "card_bg": "#FFFFFF",
+        "ink": "#0B1F3A",
+        "muted": "#3D5A6C",
+        "accent": "#0D9488",
+        "accent2": "#14B8A6",
+        "line": "#B7E2D8",
+        "useCards": true,
+        "card_radius": 16
+      }
+    },
+    "corporate-finance": {
+      "label": "Corporate Finance (Classic)",
+      "typePair": "finance-georgia",
+      "imageTreatment": "navy-duotone",
+      "imageTone": "navy-duotone",
+      "motif": "refined",
+      "shapes": { "cardRadius": 0, "useCards": true, "borderWidth": 0 },
+      "card_shadow": { "color": "#0F172A", "blur": 12, "offset": 4, "opacity": 0.08 },
+      "primitives": {
+        "callout": { "radius": 0, "shadow": true },
+        "header": { "kickerTracking": 0.12 }
+      },
+      "typography": { "letterSpacing": 0, "titleLetterSpacing": 0 },
+      "tokens": {
+        "label": "Corporate Finance",
+        "vibe": "classic",
+        "dark": false,
+        "bg": "#E8ECF1",
+        "surface": "#FFFFFF",
+        "surface_color": "#F1F4F8",
+        "card_bg": "#FFFFFF",
+        "ink": "#0B1F3A",
+        "muted": "#475569",
+        "accent": "#166534",
+        "accent2": "#15803D",
+        "line": "#CBD5E1",
+        "useCards": true,
+        "card_radius": 0
+      }
+    },
+    "cyberpunk-gaming": {
+      "label": "Cyberpunk / Gaming (Dark)",
+      "typePair": "cyber-orbitron",
+      "imageTreatment": "neon-tint",
+      "imageTone": "neon",
+      "motif": "refined",
+      "shapes": { "cardRadius": 0, "useCards": true, "borderWidth": 2 },
+      "card_shadow": { "color": "#22D3EE", "blur": 28, "offset": 0, "opacity": 0.35 },
+      "primitives": {
+        "callout": { "radius": 0, "shadow": true },
+        "header": { "kickerTracking": 0.22, "titleWeight": 800 }
+      },
+      "typography": { "letterSpacing": 0.6, "titleLetterSpacing": 1.2 },
+      "tokens": {
+        "label": "Cyberpunk Gaming",
+        "vibe": "bold",
+        "dark": true,
+        "bg": "#0B0418",
+        "surface": "#160A2E",
+        "surface_color": "#12082A",
+        "card_bg": "#1A0B33",
+        "ink": "#F8FAFC",
+        "muted": "#C4B5FD",
+        "accent": "#22D3EE",
+        "accent2": "#F472B6",
+        "line": "#7C3AED",
+        "useCards": true,
+        "card_radius": 0,
+        "card_border": { "width": 2, "color": "#22D3EE" }
+      }
+    }
+  }
+}

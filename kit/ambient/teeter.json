@@ -1,0 +1,20 @@
+{
+  "id": "ambient/teeter",
+  "kind": "ambient",
+  "effect": "float",
+  "steal": "Isometric card hover — clear Y float on the image-card (~32px, 8s).",
+  "target": {
+    "prefer": ["photo-1", "hero", "card", "cutout"]
+  },
+  "params": {
+    "durationMs": 8000,
+    "path": "y-axis",
+    "radiusPx": 32,
+    "autoReverse": true,
+    "repeatCount": "indefinite"
+  },
+  "roles": ["feature"],
+  "families": ["isometric"],
+  "variants": ["isometric"],
+  "priority": 5
+}

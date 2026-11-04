@@ -50,6 +50,27 @@ const fixtures = {
     semanticType: "Illustration-heavy",
     industry: "health",
   },
+  "seed-health.dna.json": {
+    qualityScore: 80,
+    recommendedUse: "Corporate",
+    disabled: false,
+    semanticType: "Photo-driven",
+    industry: "health",
+  },
+  "seo-competitor-analysis-slides.dna.json": {
+    qualityScore: 88,
+    recommendedUse: "Photo-heavy",
+    disabled: false,
+    semanticType: "Photo-driven",
+    industry: "",
+  },
+  "first-aid-medicine-life-skills-presentation.dna.json": {
+    qualityScore: 94,
+    recommendedUse: "Photo-heavy",
+    disabled: false,
+    semanticType: "Photo-driven",
+    industry: "health",
+  },
 };
 
 const original = {
@@ -130,6 +151,21 @@ async function main() {
   const again = await chooseLayout("A corporate payroll company", [], known);
   assert.strictEqual(again.id, "seed-high");
   assert.notStrictEqual(again.id, "seed-low");
+
+  // Industry match beats a higher naked qualityScore.
+  installFs(["seed-high.dna.json", "seed-health.dna.json"]);
+  const health = await chooseLayout("A medical clinic overview", [], known);
+  assert.strictEqual(health.id, "seed-health");
+  assert.strictEqual(health.relevance, 100);
+
+  // Id keyword overlap (seo) beats a higher-scoring unrelated Photo-heavy seed.
+  installFs([
+    "seo-competitor-analysis-slides.dna.json",
+    "first-aid-medicine-life-skills-presentation.dna.json",
+  ]);
+  const seo = await chooseLayout("An SEO agency pitch", [], { vibe: "Photo-heavy", model: "test" });
+  assert.strictEqual(seo.id, "seo-competitor-analysis-slides");
+  assert.ok(seo.relevance >= 8);
 
   restore();
   console.log("chooseLayout test passed");
