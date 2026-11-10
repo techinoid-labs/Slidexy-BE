@@ -1,0 +1,108 @@
+{
+  "id": "feature/open-volume-detail",
+  "role": "feature",
+  "variant": "open-volume-detail",
+  "family": "open-volume",
+  "status": "draft",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 87,
+      "maxFont": 87,
+      "lineClamp": 3,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 37,
+      "maxFont": 37,
+      "lineClamp": 5,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "type": "image",
+        "x": 780,
+        "y": 0,
+        "width": 820,
+        "height": 900,
+        "z": 1,
+        "id": "image0",
+        "morphId": "image0",
+        "slot": "photo"
+      },
+      {
+        "x": 65,
+        "y": 100,
+        "width": 660,
+        "height": 310,
+        "fontSize": 87,
+        "tokenColor": "ink",
+        "type": "text",
+        "z": 4,
+        "id": "text1",
+        "morphId": "text1",
+        "slot": "title",
+        "fontRole": "display",
+        "fontWeight": 700
+      },
+      {
+        "x": 72,
+        "y": 505,
+        "width": 595,
+        "height": 235,
+        "fontSize": 37,
+        "tokenColor": "ink",
+        "type": "text",
+        "z": 4,
+        "id": "text2",
+        "morphId": "text2",
+        "slot": "copy0",
+        "fontRole": "body",
+        "fontWeight": 400
+      },
+      {
+        "type": "shape",
+        "x": 70,
+        "y": 790,
+        "width": 585,
+        "height": 3,
+        "tokenFill": "accent",
+        "shape": "rect",
+        "z": 1,
+        "id": "shape3",
+        "morphId": "shape3"
+      }
+    ]
+  }
+}

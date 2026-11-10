@@ -1,0 +1,125 @@
+{
+  "id": "feature/library-executive-agenda",
+  "role": "feature",
+  "variant": "library-executive-agenda",
+  "family": "executive",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "body": {
+      "kind": "text",
+      "from": "items2"
+    },
+    "purpose": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "folio": {
+      "kind": "text",
+      "from": "items1"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 94,
+      "maxFont": 94,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "body": {
+      "minFont": 38,
+      "maxFont": 38,
+      "lineClamp": 4,
+      "shrinkMin": 1
+    },
+    "purpose": {
+      "minFont": 25,
+      "maxFont": 25,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {},
+  "layout": {
+    "elements": [
+      {
+        "id": "baseline",
+        "type": "shape",
+        "shape": "rect",
+        "x": 80,
+        "y": 420,
+        "width": 1440,
+        "height": 15,
+        "tokenFill": "ink",
+        "z": 1
+      },
+      {
+        "id": "marker",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1120,
+        "y": 550,
+        "width": 380,
+        "height": 220,
+        "tokenFill": "accent",
+        "z": 1
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 80,
+        "y": 80,
+        "width": 1400,
+        "height": 250,
+        "fontSize": 94,
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "tokenColor": "ink",
+        "slot": "title",
+        "textStyleRole": "headline",
+        "z": 4,
+        "morphId": "title"
+      },
+      {
+        "id": "body",
+        "type": "text",
+        "x": 80,
+        "y": 590,
+        "width": 850,
+        "height": 180,
+        "fontSize": 38,
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "tokenColor": "ink",
+        "slot": "body",
+        "textStyleRole": "body",
+        "z": 4,
+        "morphId": "body"
+      },
+      {
+        "id": "purpose",
+        "type": "text",
+        "x": 80,
+        "y": 820,
+        "width": 700,
+        "height": 40,
+        "fontSize": 25,
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "tokenColor": "muted",
+        "slot": "purpose",
+        "textStyleRole": "kicker",
+        "z": 4
+      }
+    ]
+  }
+}

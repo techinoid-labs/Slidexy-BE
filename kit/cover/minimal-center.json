@@ -1,0 +1,71 @@
+{
+  "id": "cover/minimal-center",
+  "role": "cover",
+  "variant": "minimal-center",
+  "family": "anti-grid",
+  "steal": "Centered typography and a single accent rule surrounded by negative space — tighter vertical grouping.",
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": { "kind": "text", "optional": false, "from": "title" },
+    "caption": { "kind": "text", "optional": true, "from": "caption" }
+  },
+  "fit": {
+    "title": { "maxFont": 110, "minFont": 56, "lineClamp": 3, "shrinkMin": 0.85 },
+    "caption": { "maxFont": 28, "minFont": 22, "lineClamp": 3, "shrinkMin": 0.9 }
+  },
+  "pptxMapping": {
+    "title": { "kind": "text" },
+    "caption": { "kind": "text" }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "x": 200,
+        "y": 260,
+        "width": 1200,
+        "height": 160,
+        "z": 4,
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 110,
+        "align": "center",
+        "verticalAlign": "bottom",
+        "morphId": "title"
+      },
+      {
+        "id": "accent",
+        "type": "shape",
+        "shape": "rect",
+        "x": 752,
+        "y": 448,
+        "width": 96,
+        "height": 6,
+        "tokenFill": "accent",
+        "z": 1,
+        "morphId": "accent"
+      },
+      {
+        "id": "caption",
+        "type": "text",
+        "slot": "caption",
+        "x": 360,
+        "y": 478,
+        "width": 880,
+        "height": 100,
+        "z": 4,
+        "tokenColor": "muted",
+        "color": "#405567",
+        "fontRole": "body",
+        "fontSize": 26,
+        "align": "center",
+        "morphId": "caption"
+      }
+    ]
+  },
+  "status": "draft",
+  "motion": { "transition": "fade", "fallbackTransition": "fade", "durationMs": 500 }
+}

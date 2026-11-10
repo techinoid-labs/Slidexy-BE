@@ -1,0 +1,172 @@
+{
+  "style": {
+    "palette": "ink-night",
+    "typePair": "modern-segoe",
+    "imageTreatment": "full-bleed",
+    "motif": "bar-accent",
+    "sequence": "guide-executive-insight"
+  },
+  "slides": [
+    {
+      "role": "cover",
+      "variantHint": "ref-group-project",
+      "title": "Studio\nOverview",
+      "caption": "STUDIO",
+      "body": [
+        "DESIGN COLLECTION",
+        "studio.example"
+      ]
+    },
+    {
+      "role": "report",
+      "variantHint": "ref-insight-donut",
+      "title": "A clearer picture",
+      "body": [
+        "Most demand comes from repeat customers.",
+        "Example data illustrates how a short insight can sit beside editable evidence."
+      ],
+      "chart": {
+        "type": "donut",
+        "labels": [
+          "New",
+          "Referral",
+          "Repeat"
+        ],
+        "series": [
+          {
+            "name": "Share",
+            "values": [
+              12.5,
+              25,
+              62.5
+            ]
+          }
+        ],
+        "holeSize": 50,
+        "showPercent": true,
+        "showLegend": true
+      }
+    },
+    {
+      "role": "report",
+      "variantHint": "ref-line-chart-commentary",
+      "title": "Two paths to growth",
+      "body": [
+        "Core customers",
+        "An established base provides a steady contribution.",
+        "New markets",
+        "A second route adds opportunities over time."
+      ],
+      "chart": {
+        "type": "line",
+        "labels": [
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec"
+        ],
+        "series": [
+          {
+            "name": "Core",
+            "values": [
+              18,
+              30,
+              25,
+              40,
+              42
+            ]
+          },
+          {
+            "name": "New",
+            "values": [
+              12,
+              4,
+              20,
+              15,
+              50
+            ]
+          }
+        ],
+        "showLegend": false
+      }
+    },
+    {
+      "role": "report",
+      "variantHint": "ref-photo-progress",
+      "title": "From plan to delivery",
+      "body": [
+        "Three editable indicators show the status of a sample project."
+      ],
+      "stats": [
+        {
+          "value": "100%",
+          "label": "PLANNING"
+        },
+        {
+          "value": "80%",
+          "label": "DESIGN"
+        },
+        {
+          "value": "67%",
+          "label": "DELIVERY"
+        }
+      ],
+      "photoQueries": [
+        "studio workplace interior ref-photo-progress photo 0"
+      ],
+      "photoOrientations": [
+        "landscape"
+      ]
+    },
+    {
+      "role": "timeline",
+      "variantHint": "ref-timeline-opening",
+      "title": "Set the direction",
+      "caption": "Project timeline",
+      "body": [
+        "Define the decisions, owners and outputs before moving into detailed delivery."
+      ],
+      "steps": [
+        {
+          "title": "RESEARCH",
+          "body": "Understand the people, constraints and opportunity."
+        },
+        {
+          "title": "PLANNING",
+          "body": "Agree the scope, schedule and responsibilities."
+        }
+      ]
+    },
+    {
+      "role": "timeline",
+      "variantHint": "ref-timeline-continuation",
+      "title": "Make it happen",
+      "caption": "Project timeline",
+      "body": [
+        "Review work in stages and keep the team aligned around a shared delivery plan."
+      ],
+      "steps": [
+        {
+          "title": "DEVELOPMENT",
+          "body": "Build, test and review the proposed solution."
+        },
+        {
+          "title": "LAUNCH",
+          "body": "Prepare the handover and measure the result."
+        }
+      ]
+    },
+    {
+      "role": "closing",
+      "variantHint": "ref-contact-footer-columns",
+      "title": "Start a conversation",
+      "caption": "STUDIO",
+      "body": [
+        "+00 000 000 000",
+        "hello@studio.example",
+        "studio.example"
+      ]
+    }
+  ]
+}

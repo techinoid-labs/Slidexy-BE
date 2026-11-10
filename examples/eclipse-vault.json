@@ -1,0 +1,120 @@
+{
+  "name": "Eclipse • Vault",
+  "description": "Planetarium night — photo cover with eclipse accent, star routes, orbit cards, phase grid and look-up close.",
+  "brand": {
+    "colors": {
+      "bg": "#07060A",
+      "surface": "#14121A",
+      "surface_color": "#221E2A",
+      "ink": "#F3EFE6",
+      "muted": "#9A9288",
+      "accent": "#E8C36A",
+      "line": "#3A342C"
+    },
+    "fonts": {
+      "display": "Playfair Display",
+      "body": "Space Grotesk"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "eclipse"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "ECLIPSE",
+        "items": [
+          "Vault 09 · totality",
+          "night program",
+          "09"
+        ],
+        "photoQuery": "01f388406977"
+      },
+      {
+        "role": "feature",
+        "title": "Routes",
+        "items": [
+          "Lyra",
+          "Vega holds the wire",
+          "Cygnus",
+          "Deneb marks the wing",
+          "Orion",
+          "Rigel opens the belt",
+          "Draw the night in ink."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Dome seats",
+        "items": [
+          "Inner ring",
+          "Closest to the lamp — short stories.",
+          "Mid ring",
+          "Best totality view, two hours.",
+          "Outer ring",
+          "Quiet seats for late arrivals."
+        ],
+        "photoQuery": "0aaf07e051b3"
+      },
+      {
+        "role": "feature",
+        "title": "Phases",
+        "items": [
+          "Wax",
+          "opening",
+          "Full",
+          "hold",
+          "Wane",
+          "release",
+          "New",
+          "reset"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Totality is brief.",
+        "items": [
+          "— Observatory note"
+        ],
+        "photoQuery": "01f388406977"
+      },
+      {
+        "role": "closing",
+        "title": "Look up.",
+        "items": [
+          "Eclipse Vault · dome open"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "eclipse-night"
+    },
+    {
+      "role": "feature",
+      "variant": "eclipse-routes"
+    },
+    {
+      "role": "feature",
+      "variant": "eclipse-dome"
+    },
+    {
+      "role": "feature",
+      "variant": "eclipse-phases"
+    },
+    {
+      "role": "feature",
+      "variant": "eclipse-quote"
+    },
+    {
+      "role": "closing",
+      "variant": "eclipse-close"
+    }
+  ]
+}

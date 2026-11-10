@@ -1,0 +1,218 @@
+{
+  "name": "Offset Studio",
+  "description": "A graphic design portfolio with editable identity studies and campaign artwork.",
+  "brand": {
+    "colors": {
+      "bg": "#F0EFDF",
+      "ink": "#252522",
+      "accent": "#4A38D5",
+      "surface": "#DFEF75",
+      "line": "#A0A096"
+    },
+    "fonts": {
+      "display": "Arial",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "OFFSET\nSTUDIO",
+        "items": [
+          "Independent graphic design",
+          "Selected work / Concept portfolio"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Design with a point of view",
+        "items": [
+          "Independent practice",
+          "I develop identities for organisations with something specific to say. The work starts with the audience and the setting, then moves through language, typography and the details that make a system useful.",
+          "Across formats",
+          "My portfolio brings together a music identity, a food brand and a cultural programme. Each fictional case study shows how one clear idea can adapt to print, packaging and everyday communication.",
+          "Fictional case study • Original specimen artwork"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Selected work",
+        "items": [
+          "AFTER\nIMAGE",
+          "LIVE ELECTRONIC SESSIONS",
+          "AFTERIMAGE / MUSIC",
+          "A proposed identity for a small electronic music programme. A circular signal becomes the recurring mark, while a strict type hierarchy keeps artists, dates and locations easy to find across changing lineups.",
+          "COMMON / FOOD",
+          "A concept for an independent pantry brand. A distinctive wordmark and a limited palette connect packaging with the shelf label. The design leaves enough space for ingredients and product information to remain readable.",
+          "Fictional case study • Original specimen artwork"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "AFTERIMAGE",
+        "items": [
+          "AFTER\nIMAGE",
+          "LIVE ELECTRONIC SESSIONS",
+          "The brief",
+          "The fictional programme needed an identity that could hold together different artists without making every event look identical. The audience encounters the work first as a small image, then as a printed poster.",
+          "The response",
+          "I built the composition around an oversized circular signal and a compact information block. Changes in scale create variation across the series while the placement of practical information stays consistent.",
+          "Fictional case study • Original specimen artwork"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "One identity, several scales",
+        "items": [
+          "AFTER\nIMAGE",
+          "LIVE ELECTRONIC SESSIONS",
+          "AFTER\nIMAGE",
+          "LIVE ELECTRONIC SESSIONS",
+          "Poster scale",
+          "The largest version uses generous empty space and an oversized mark to establish recognition across a room. The event details sit together so the eye can find them in one movement.",
+          "Screen scale",
+          "The smaller version brings the title forward and reduces secondary information. The shape remains recognisable after cropping, allowing the same identity to work in square previews and narrow programme strips.",
+          "Fictional case study • Original specimen artwork"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "COMMON",
+        "items": [
+          "COMMON",
+          "PANTRY / SMALL BATCH",
+          "The brief",
+          "This fictional pantry range needed a clear relationship between products with different ingredients and pack sizes. The challenge was to create a recognisable family while preserving the practical details shoppers compare.",
+          "The response",
+          "A large wordmark anchors each pack. A narrow product band carries the variety and weight, while a second information area holds ingredients. The system can expand through new names without changing its basic structure.",
+          "Fictional case study • Original specimen artwork"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Typography does the organising",
+        "items": [
+          "Primary voice",
+          "The display typography gives each project its character. I judge it in the actual format, checking how the name behaves at a distance and whether its shape remains clear at smaller sizes.",
+          "Supporting voice",
+          "The supporting type handles dates, ingredients and explanatory copy. Its spacing and line length are tested separately so the useful information stays comfortable to read alongside the more expressive headline.",
+          "Fictional case study • Original specimen artwork"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "OPEN HOUSE",
+        "items": [
+          "OPEN\nHOUSE",
+          "ART • TALKS • WORKSHOPS",
+          "The brief",
+          "A fictional arts weekend needed to welcome people who had never visited the venue. The programme included exhibitions, talks and workshops, each with a different duration and access arrangement.",
+          "The response",
+          "I treated the identity as an invitation. An open rectangular frame creates space for each event title, while a clear programme strip groups time, location and access information into a predictable place.",
+          "Fictional case study • Original specimen artwork"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "From first sketch to final file",
+        "items": [
+          "01",
+          "Explore",
+          "I begin with a small set of visual hypotheses and test them against the actual name and longest piece of copy. Weak ideas become visible quickly when the content is realistic.",
+          "02",
+          "Refine",
+          "The selected direction is developed through representative applications. I review hierarchy, cropping and consistency before preparing the final files, then document the decisions another designer would need to extend the system.",
+          "Fictional case study • Original specimen artwork"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "What I hand over",
+        "items": [
+          "01",
+          "Identity toolkit",
+          "A typical handover includes the core marks, colour references and type specifications. I also provide representative layouts that show how the parts behave together in the formats the client uses most.",
+          "02",
+          "Production notes",
+          "Files are organised by application and accompanied by concise usage notes. Naming, export sizes and print requirements are checked before delivery so the next person can find and use the right version.",
+          "Fictional case study • Original specimen artwork"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "A collaboration that stays clear",
+        "items": [
+          "Working together",
+          "We agree the audience, applications and decision makers before design begins. Feedback is collected around those agreed requirements, making each review a useful step toward a system the team can maintain.",
+          "Starting a project",
+          "The first conversation covers the brief, the existing material and the formats that matter most. A written scope then sets the review stages and deliverables before production starts.",
+          "Fictional case study • Original specimen artwork"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Have a brief?\nLet's talk.",
+        "items": [
+          "Independent graphic design",
+          "hello@example.com • example.com"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "offset-studio-0"
+    },
+    {
+      "role": "feature",
+      "variant": "offset-studio-1"
+    },
+    {
+      "role": "feature",
+      "variant": "offset-studio-2"
+    },
+    {
+      "role": "feature",
+      "variant": "offset-studio-3"
+    },
+    {
+      "role": "feature",
+      "variant": "offset-studio-4"
+    },
+    {
+      "role": "feature",
+      "variant": "offset-studio-5"
+    },
+    {
+      "role": "feature",
+      "variant": "offset-studio-6"
+    },
+    {
+      "role": "feature",
+      "variant": "offset-studio-7"
+    },
+    {
+      "role": "feature",
+      "variant": "offset-studio-8"
+    },
+    {
+      "role": "feature",
+      "variant": "offset-studio-9"
+    },
+    {
+      "role": "feature",
+      "variant": "offset-studio-10"
+    },
+    {
+      "role": "feature",
+      "variant": "offset-studio-11"
+    }
+  ]
+}

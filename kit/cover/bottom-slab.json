@@ -1,0 +1,95 @@
+{
+  "id": "cover/bottom-slab",
+  "role": "cover",
+  "variant": "bottom-slab",
+  "family": "anti-grid",
+  "steal": "Full-bleed photo; heavy ink slab eating the bottom 40%; oversized title living inside the slab; tiny caption parked top-left over the image.",
+  "requiresPhoto": true,
+  "photoSlots": ["photo"],
+  "slots": {
+    "title": { "kind": "text", "optional": false, "from": "title" },
+    "caption": { "kind": "text", "optional": true, "from": "caption" },
+    "photo": { "kind": "image", "optional": false, "from": "photo" }
+  },
+  "fit": {
+    "title": { "maxFont": 72, "minFont": 48, "lineClamp": 2, "shrinkMin": 0.85 },
+    "caption": { "maxFont": 20, "minFont": 14, "lineClamp": 2, "shrinkMin": 0.9 }
+  },
+  "pptxMapping": {
+    "title": { "kind": "text" },
+    "caption": { "kind": "text" },
+    "photo": { "kind": "picture" }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 1,
+        "id": "photo",
+        "type": "image",
+        "slot": "photo",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "morphId": "hero"
+      },
+      {
+        "z": 2,
+        "id": "slab",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "ink",
+        "x": 0,
+        "y": 540,
+        "width": 1600,
+        "height": 360,
+        "morphId": "slab"
+      },
+      {
+        "z": 3,
+        "id": "accent-rule",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "accent",
+        "x": 0,
+        "y": 540,
+        "width": 1600,
+        "height": 8,
+        "morphId": "rule"
+      },
+      {
+        "z": 4,
+        "id": "caption",
+        "type": "text",
+        "slot": "caption",
+        "tokenColor": "bg",
+        "fontRole": "body",
+        "fontSize": 18,
+        "align": "left",
+        "x": 64,
+        "y": 56,
+        "width": 720,
+        "height": 72,
+        "morphId": "caption"
+      },
+      {
+        "z": 4,
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "tokenColor": "bg",
+        "fontRole": "display",
+        "fontSize": 68,
+        "align": "left",
+        "verticalAlign": "middle",
+        "x": 64,
+        "y": 580,
+        "width": 1472,
+        "height": 260,
+        "morphId": "title"
+      }
+    ]
+  },
+  "status": "draft",
+  "motion": { "transition": "fade", "fallbackTransition": "fade", "durationMs": 500 }
+}

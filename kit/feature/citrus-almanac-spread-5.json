@@ -1,0 +1,252 @@
+{
+  "id": "feature/citrus-almanac-spread-5",
+  "role": "feature",
+  "variant": "citrus-almanac-spread-5",
+  "family": "citrus-almanac",
+  "status": "draft",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "h1": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "p1": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "h2": {
+      "kind": "text",
+      "from": "items2"
+    },
+    "p2": {
+      "kind": "text",
+      "from": "items3"
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 72,
+      "minFont": 67,
+      "lineClamp": 2,
+      "shrinkMin": 0.87
+    },
+    "h1": {
+      "maxFont": 44,
+      "minFont": 39,
+      "lineClamp": 2,
+      "shrinkMin": 0.87
+    },
+    "p1": {
+      "maxFont": 34,
+      "minFont": 30,
+      "lineClamp": 5,
+      "shrinkMin": 0.87
+    },
+    "h2": {
+      "maxFont": 42,
+      "minFont": 37,
+      "lineClamp": 2,
+      "shrinkMin": 0.87
+    },
+    "p2": {
+      "maxFont": 34,
+      "minFont": 30,
+      "lineClamp": 5,
+      "shrinkMin": 0.87
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "h1": {
+      "kind": "text"
+    },
+    "p1": {
+      "kind": "text"
+    },
+    "h2": {
+      "kind": "text"
+    },
+    "p2": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 610,
+        "height": 900,
+        "tokenFill": "surface",
+        "z": 1,
+        "id": "shape0",
+        "morphId": "shape0"
+      },
+      {
+        "type": "shape",
+        "x": 37.5,
+        "y": 154.60122699386505,
+        "width": 535,
+        "height": 590.7975460122699,
+        "tokenFill": "surface",
+        "shape": "rect",
+        "z": 1,
+        "id": "shape1",
+        "morphId": "shape1"
+      },
+      {
+        "type": "shape",
+        "x": 142.53067484662577,
+        "y": 264.88343558282213,
+        "width": 328.22085889570553,
+        "height": 328.22085889570553,
+        "tokenFill": "accent",
+        "shape": "ellipse",
+        "z": 1,
+        "id": "shape2",
+        "morphId": "shape2"
+      },
+      {
+        "type": "shape",
+        "x": 185.19938650306747,
+        "y": 307.55214723926383,
+        "width": 242.88343558282207,
+        "height": 242.88343558282207,
+        "tokenFill": "bg",
+        "shape": "ellipse",
+        "z": 1,
+        "id": "shape3",
+        "morphId": "shape3"
+      },
+      {
+        "type": "shape",
+        "x": 198.3282208588957,
+        "y": 320.680981595092,
+        "width": 216.62576687116564,
+        "height": 216.62576687116564,
+        "tokenFill": "accent",
+        "shape": "ellipse",
+        "z": 1,
+        "id": "shape4",
+        "morphId": "shape4"
+      },
+      {
+        "type": "shape",
+        "x": 303.3588957055215,
+        "y": 317.398773006135,
+        "width": 6.564417177914111,
+        "height": 223.19018404907976,
+        "tokenFill": "bg",
+        "shape": "rect",
+        "z": 1,
+        "id": "shape5",
+        "morphId": "shape5"
+      },
+      {
+        "type": "shape",
+        "x": 195.04601226993864,
+        "y": 425.7116564417178,
+        "width": 223.19018404907976,
+        "height": 6.564417177914111,
+        "tokenFill": "bg",
+        "shape": "rect",
+        "z": 1,
+        "id": "shape6",
+        "morphId": "shape6"
+      },
+      {
+        "type": "text",
+        "slot": "title",
+        "x": 645,
+        "y": 65,
+        "width": 880,
+        "height": 155,
+        "fontSize": 72,
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "textStyleRole": "display",
+        "z": 4,
+        "id": "text7",
+        "morphId": "text7"
+      },
+      {
+        "type": "text",
+        "slot": "h1",
+        "x": 645,
+        "y": 245,
+        "width": 865,
+        "height": 79,
+        "fontSize": 44,
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "z": 4,
+        "id": "text8",
+        "morphId": "text8"
+      },
+      {
+        "type": "text",
+        "slot": "p1",
+        "x": 645,
+        "y": 334,
+        "width": 855,
+        "height": 190,
+        "fontSize": 34,
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "z": 4,
+        "id": "text9",
+        "morphId": "text9"
+      },
+      {
+        "type": "shape",
+        "shape": "rect",
+        "x": 645,
+        "y": 555,
+        "width": 845,
+        "height": 2,
+        "tokenFill": "line",
+        "z": 1,
+        "id": "shape10",
+        "morphId": "shape10"
+      },
+      {
+        "type": "text",
+        "slot": "h2",
+        "x": 645,
+        "y": 583,
+        "width": 855,
+        "height": 72,
+        "fontSize": 42,
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "z": 4,
+        "id": "text11",
+        "morphId": "text11"
+      },
+      {
+        "type": "text",
+        "slot": "p2",
+        "x": 645,
+        "y": 677,
+        "width": 855,
+        "height": 188,
+        "fontSize": 34,
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "z": 4,
+        "id": "text12",
+        "morphId": "text12"
+      }
+    ]
+  }
+}

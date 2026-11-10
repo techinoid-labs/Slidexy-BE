@@ -24,37 +24,95 @@ function deepClone<T>(v: T): T {
   return JSON.parse(JSON.stringify(v));
 }
 
+/** Full-bleed (or near) cover photo — the only image Morph camera-pan may scale. */
+function isFullBleedHero(el: any): boolean {
+  if (!el || el.type !== "image") return false;
+  const x = Number(el.x) || 0;
+  const y = Number(el.y) || 0;
+  const w = Number(el.width) || 0;
+  const h = Number(el.height) || 0;
+  if (w >= 1500 && h >= 850 && x <= 40 && y <= 40) return true;
+  if (w >= 1580 && h >= 880) return true;
+  return false;
+}
+
+function coverHasCameraPanHero(layout: any): boolean {
+  return ((layout && layout.elements) || []).some(isFullBleedHero);
+}
+
 function tagMorphIds(elements: any[], role: string) {
+  const seen = new Set<string>();
   (elements || []).forEach((el) => {
-    if (!el || el.morphId) return;
-    const slot = String(el.slot || el.id || "");
-    if (el.type === "text" && (el.id === "title" || el.slot === "title" || slot === "title")) el.morphId = "title";
-    else if (el.type === "text" && (el.id === "caption" || el.slot === "caption" || slot === "caption")) el.morphId = "caption";
-    else if (el.type === "text" && (el.id === "body" || el.slot === "body" || /^b\d$/.test(slot))) {
-      el.morphId = el.morphId || (/^b\d$/.test(slot) ? "body-" + slot.slice(1) : "body");
-    } else if (el.type === "image") {
-      if (/^p\d$/.test(slot)) el.morphId = "photo-" + slot.slice(1);
-      else el.morphId = "hero";
-    } else if (el.type === "text" && /^v\d$/.test(slot)) {
-      el.morphId = "stat-" + (Number(slot.slice(1)) - 1);
-    } else if (
-      el.type === "shape" &&
-      (el.id === "neon" ||
-        el.id === "accent" ||
-        el.id === "pulse-bg" ||
-        el.id === "titlePlate" ||
-        String(el.id || "").startsWith("accent") ||
-        el.motif ||
-        el.overlapPlate ||
-        el.shapeTreatment === "depth")
-    ) {
-      if (el.id === "pulse-bg") el.morphId = el.morphId || "pulse-bg";
-      else if (String(el.id || "").startsWith("accent") || el.id === "accent" || el.motif) el.morphId = el.morphId || "accent";
-      else if (el.id === "titlePlate") el.morphId = el.morphId || "titlePlate";
-      else el.morphId = el.morphId || el.id || "plate";
-      if (el.overlapPlate || el.shapeTreatment === "depth") el.shapeTreatment = el.shapeTreatment || "depth";
+    if (!el) return;
+    if (!el.morphId) {
+      const slot = String(el.slot || el.id || "");
+      if (el.type === "text" && (el.id === "title" || el.slot === "title" || slot === "title")) el.morphId = "title";
+      else if (el.type === "text" && (el.id === "caption" || el.slot === "caption" || slot === "caption")) el.morphId = "caption";
+      else if (el.type === "text" && (el.id === "body" || el.slot === "body" || /^b\d$/.test(slot))) {
+        el.morphId = /^b\d$/.test(slot) ? "body-" + slot.slice(1) : "body";
+      } else if (el.type === "image") {
+        // Only full-bleed / explicit multi-photo slots get Morph ids.
+        // Framed insets must not inherit "hero" or camera-pan / float will steal them.
+        if (/^p\d$/.test(slot)) el.morphId = "photo-" + slot.slice(1);
+        else if (isFullBleedHero(el)) el.morphId = "hero";
+      } else if (el.type === "text" && /^v\d$/.test(slot)) {
+        el.morphId = "stat-" + (Number(slot.slice(1)) - 1);
+      } else if (
+        el.type === "shape" &&
+        (el.id === "neon" ||
+          el.id === "accent" ||
+          el.id === "pulse-bg" ||
+          el.id === "titlePlate" ||
+          String(el.id || "").startsWith("accent") ||
+          el.motif ||
+          el.overlapPlate ||
+          el.shapeTreatment === "depth")
+      ) {
+        if (el.id === "pulse-bg") el.morphId = "pulse-bg";
+        else if (String(el.id || "").startsWith("accent") || el.id === "accent" || el.motif) el.morphId = "accent";
+        else if (el.id === "titlePlate") el.morphId = "titlePlate";
+        else el.morphId = el.id || "plate";
+        if (el.overlapPlate || el.shapeTreatment === "depth") el.shapeTreatment = el.shapeTreatment || "depth";
+      }
+    }
+    // Deduplicate — Morph byObject breaks when two shapes share one id
+    if (el.morphId) {
+      if (seen.has(el.morphId)) {
+        if (el.morphId === "accent") el.morphId = "accent-" + (seen.size + 1);
+        else if (el.morphId !== "hero" && el.morphId !== "title") el.morphId = el.morphId + "-" + (seen.size + 1);
+        else delete el.morphId;
+      }
+      if (el.morphId) seen.add(el.morphId);
     }
     void role;
+  });
+}
+
+/**
+ * Camera-pan Morph must only drive hero + title.
+ * Badges, plates, bars with morphIds (for ambient elsewhere) must not join the Morph pair —
+ * duplicate morphIds (two "accent") also break byObject matching.
+ */
+function limitCameraPanMorphIds(elements: any[]) {
+  const seen = new Set<string>();
+  (elements || []).forEach((el) => {
+    if (!el) return;
+    if (el.type === "image" && isFullBleedHero(el)) {
+      el.morphId = "hero";
+    } else if (el.type === "image") {
+      // Inset / framed photos must stay still — never Morph-scale them
+      delete el.morphId;
+    } else if (el.type === "text" && (el.morphId === "title" || el.id === "title" || el.slot === "title")) {
+      el.morphId = "title";
+    } else if (el.morphId === "hero" || el.morphId === "title") {
+      // keep
+    } else {
+      delete el.morphId;
+    }
+    if (el.morphId) {
+      if (seen.has(el.morphId)) delete el.morphId;
+      else seen.add(el.morphId);
+    }
   });
 }
 
@@ -74,9 +132,11 @@ function expandCoverParallax(layout: any, motion: MotionConfig): { start: any; e
 
   tagMorphIds(start.elements, "cover");
   tagMorphIds(end.elements, "cover");
+  limitCameraPanMorphIds(start.elements);
+  limitCameraPanMorphIds(end.elements);
 
   (end.elements || []).forEach((el: any) => {
-    if (el.type === "image" && (el.morphId === "hero" || el.slot === "cutout" || el.slot === "photoL" || el.id === "cutout" || el.id === "photoL" || el.id === "hero")) {
+    if (el.type === "image" && el.morphId === "hero" && isFullBleedHero(el)) {
       // Background scales 20–30%; keep center gravity for camera pan
       const cx = el.x + el.width / 2;
       const cy = el.y + el.height / 2;
@@ -88,17 +148,6 @@ function expandCoverParallax(layout: any, motion: MotionConfig): { start: any; e
     }
     if (el.type === "text" && el.morphId === "title") {
       el.x = Math.round(el.x - slideW * textShift);
-    }
-  });
-
-  // Start frame: slightly tighter / opposite pan so Morph has delta
-  (start.elements || []).forEach((el: any) => {
-    if (el.type === "image" && (el.morphId === "hero" || el.slot === "cutout" || el.slot === "photoL" || el.id === "cutout" || el.id === "photoL")) {
-      el.morphId = "hero";
-    }
-    if (el.type === "shape" && (el.id === "neon" || el.overlapPlate)) {
-      el.shapeTreatment = "depth";
-      el.morphId = el.morphId || "plate";
     }
   });
 
@@ -195,7 +244,7 @@ export function expandMotionScenes(deck: any, motion?: MotionConfig | null): any
       cfg.scatter !== false &&
       (variant === "morph-scatter" || variant === "feature/morph-scatter" || layout.role === "feature" && variant.indexOf("scatter") >= 0);
 
-    if (cfg.cameraPan !== false && layout.role === "cover") {
+    if (cfg.cameraPan !== false && layout.role === "cover" && coverHasCameraPanHero(layout)) {
       const { start, end } = expandCoverParallax(layout, cfg);
       const a = lid + "-pan-a";
       const b = lid + "-pan-b";
@@ -253,4 +302,12 @@ function pickRoleTransition(role: string, cfg: MotionConfig): string {
   return cfg.defaultTransition || "fade";
 }
 
-module.exports = { expandMotionScenes, expandCoverParallax, expandScatter, tagMorphIds };
+module.exports = {
+  expandMotionScenes,
+  expandCoverParallax,
+  expandScatter,
+  tagMorphIds,
+  isFullBleedHero,
+  coverHasCameraPanHero,
+  limitCameraPanMorphIds,
+};

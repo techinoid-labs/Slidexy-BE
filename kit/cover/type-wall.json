@@ -1,0 +1,82 @@
+{
+  "id": "cover/type-wall",
+  "role": "cover",
+  "variant": "type-wall",
+  "family": "anti-grid",
+  "steal": "No photo. Massive title wall filling most of the slide; thin accent rule; caption pinned bottom-right. Pure typographic cover.",
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": { "kind": "text", "optional": false, "from": "title" },
+    "caption": { "kind": "text", "optional": true, "from": "caption" }
+  },
+  "fit": {
+    "title": { "maxFont": 120, "minFont": 64, "lineClamp": 3, "shrinkMin": 0.8 },
+    "caption": { "maxFont": 20, "minFont": 14, "lineClamp": 3, "shrinkMin": 0.9 }
+  },
+  "pptxMapping": {
+    "title": { "kind": "text" },
+    "caption": { "kind": "text" }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 0,
+        "id": "field",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "bg",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "morphId": "field"
+      },
+      {
+        "z": 1,
+        "id": "accent-bar",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "accent",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 18,
+        "morphId": "accent"
+      },
+      {
+        "z": 2,
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 110,
+        "align": "left",
+        "verticalAlign": "middle",
+        "x": 64,
+        "y": 120,
+        "width": 1472,
+        "height": 560,
+        "morphId": "title"
+      },
+      {
+        "z": 2,
+        "id": "caption",
+        "type": "text",
+        "slot": "caption",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontSize": 18,
+        "align": "right",
+        "x": 800,
+        "y": 760,
+        "width": 736,
+        "height": 80,
+        "morphId": "caption"
+      }
+    ]
+  },
+  "status": "draft",
+  "motion": { "transition": "fade", "fallbackTransition": "fade", "durationMs": 500 }
+}

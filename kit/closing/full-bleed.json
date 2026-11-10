@@ -1,0 +1,114 @@
+{
+  "id": "closing/full-bleed",
+  "role": "closing",
+  "variant": "full-bleed",
+  "family": "anti-grid",
+  "steal": "Full-bleed photo with heavy dark wash; contact title + body centered over the image.",
+  "requiresPhoto": true,
+  "photoSlots": ["photo"],
+  "slots": {
+    "title": { "kind": "text", "optional": false, "from": "title" },
+    "body": { "kind": "text", "optional": false, "from": "body" },
+    "caption": { "kind": "text", "optional": true, "from": "caption" },
+    "photo": { "kind": "image", "optional": false, "from": "photo" }
+  },
+  "fit": {
+    "title": { "maxFont": 56, "minFont": 36, "lineClamp": 2, "shrinkMin": 0.85 },
+    "body": { "maxFont": 24, "minFont": 16, "lineClamp": 5, "shrinkMin": 0.9 },
+    "caption": { "maxFont": 18, "minFont": 14, "lineClamp": 1, "shrinkMin": 1 }
+  },
+  "pptxMapping": {
+    "title": { "kind": "text" },
+    "body": { "kind": "text" },
+    "caption": { "kind": "text" },
+    "photo": { "kind": "picture" }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 1,
+        "id": "photo",
+        "type": "image",
+        "slot": "photo",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "morphId": "hero"
+      },
+      {
+        "z": 2,
+        "id": "wash",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "scrim",
+        "opacity": 0.72,
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "morphId": "wash"
+      },
+      {
+        "z": 3,
+        "id": "accent",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "accent",
+        "x": 720,
+        "y": 340,
+        "width": 160,
+        "height": 6,
+        "morphId": "accent"
+      },
+      {
+        "z": 4,
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "tokenColor": "on_accent",
+        "fontRole": "display",
+        "fontSize": 52,
+        "align": "center",
+        "x": 200,
+        "y": 370,
+        "width": 1200,
+        "height": 120,
+        "morphId": "title"
+      },
+      {
+        "z": 4,
+        "id": "body",
+        "type": "text",
+        "slot": "body",
+        "tokenColor": "on_accent",
+        "fontRole": "body",
+        "fontSize": 22,
+        "align": "center",
+        "x": 320,
+        "y": 520,
+        "width": 960,
+        "height": 160,
+        "morphId": "body"
+      },
+      {
+        "z": 4,
+        "id": "caption",
+        "type": "text",
+        "slot": "caption",
+        "tokenColor": "on_accent",
+        "fontRole": "label",
+        "fontSize": 16,
+        "align": "center",
+        "opacity": 0.85,
+        "x": 320,
+        "y": 720,
+        "width": 960,
+        "height": 40,
+        "morphId": "caption"
+      }
+    ]
+  },
+  "status": "draft",
+  "motion": { "transition": "fade", "fallbackTransition": "fade", "durationMs": 500 }
+}

@@ -1,0 +1,300 @@
+{
+  "id": "cover/concept-scientific-plate-cover",
+  "role": "cover",
+  "variant": "concept-scientific-plate-cover",
+  "family": "scientific-plate",
+  "status": "draft",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "a": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "b": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "note": {
+      "kind": "text",
+      "from": "items2"
+    },
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 80,
+      "maxFont": 80,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "a": {
+      "minFont": 37,
+      "maxFont": 37,
+      "lineClamp": 3,
+      "shrinkMin": 1
+    },
+    "b": {
+      "minFont": 37,
+      "maxFont": 37,
+      "lineClamp": 3,
+      "shrinkMin": 1
+    },
+    "note": {
+      "minFont": 27,
+      "maxFont": 27,
+      "lineClamp": 3,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "a": {
+      "kind": "text"
+    },
+    "b": {
+      "kind": "text"
+    },
+    "note": {
+      "kind": "text"
+    },
+    "photo": {
+      "kind": "picture"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "photo",
+        "type": "image",
+        "slot": "photo",
+        "x": 65,
+        "y": 170,
+        "width": 670,
+        "height": 570,
+        "z": 1,
+        "morphId": "photo"
+      },
+      {
+        "id": "mark1",
+        "type": "shape",
+        "shape": "rect",
+        "x": 65,
+        "y": 748,
+        "width": 2,
+        "height": 38,
+        "tokenFill": "ink",
+        "z": 1,
+        "morphId": "mark1"
+      },
+      {
+        "id": "mark2",
+        "type": "shape",
+        "shape": "rect",
+        "x": 131,
+        "y": 748,
+        "width": 2,
+        "height": 16,
+        "tokenFill": "ink",
+        "z": 1,
+        "morphId": "mark2"
+      },
+      {
+        "id": "mark3",
+        "type": "shape",
+        "shape": "rect",
+        "x": 197,
+        "y": 748,
+        "width": 2,
+        "height": 16,
+        "tokenFill": "ink",
+        "z": 1,
+        "morphId": "mark3"
+      },
+      {
+        "id": "mark4",
+        "type": "shape",
+        "shape": "rect",
+        "x": 263,
+        "y": 748,
+        "width": 2,
+        "height": 16,
+        "tokenFill": "ink",
+        "z": 1,
+        "morphId": "mark4"
+      },
+      {
+        "id": "mark5",
+        "type": "shape",
+        "shape": "rect",
+        "x": 329,
+        "y": 748,
+        "width": 2,
+        "height": 16,
+        "tokenFill": "ink",
+        "z": 1,
+        "morphId": "mark5"
+      },
+      {
+        "id": "mark6",
+        "type": "shape",
+        "shape": "rect",
+        "x": 395,
+        "y": 748,
+        "width": 2,
+        "height": 38,
+        "tokenFill": "ink",
+        "z": 1,
+        "morphId": "mark6"
+      },
+      {
+        "id": "mark7",
+        "type": "shape",
+        "shape": "rect",
+        "x": 461,
+        "y": 748,
+        "width": 2,
+        "height": 16,
+        "tokenFill": "ink",
+        "z": 1,
+        "morphId": "mark7"
+      },
+      {
+        "id": "mark8",
+        "type": "shape",
+        "shape": "rect",
+        "x": 527,
+        "y": 748,
+        "width": 2,
+        "height": 16,
+        "tokenFill": "ink",
+        "z": 1,
+        "morphId": "mark8"
+      },
+      {
+        "id": "mark9",
+        "type": "shape",
+        "shape": "rect",
+        "x": 593,
+        "y": 748,
+        "width": 2,
+        "height": 16,
+        "tokenFill": "ink",
+        "z": 1,
+        "morphId": "mark9"
+      },
+      {
+        "id": "mark10",
+        "type": "shape",
+        "shape": "rect",
+        "x": 659,
+        "y": 748,
+        "width": 2,
+        "height": 16,
+        "tokenFill": "ink",
+        "z": 1,
+        "morphId": "mark10"
+      },
+      {
+        "id": "mark11",
+        "type": "shape",
+        "shape": "rect",
+        "x": 725,
+        "y": 748,
+        "width": 2,
+        "height": 38,
+        "tokenFill": "ink",
+        "z": 1,
+        "morphId": "mark11"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "x": 790,
+        "y": 120,
+        "width": 745,
+        "height": 225,
+        "fontSize": 80,
+        "fontRole": "display",
+        "fontWeight": 700,
+        "tokenColor": "ink",
+        "lineHeight": 1.1,
+        "z": 4,
+        "morphId": "title"
+      },
+      {
+        "id": "mark13",
+        "type": "shape",
+        "shape": "rect",
+        "x": 790,
+        "y": 398,
+        "width": 700,
+        "height": 2,
+        "tokenFill": "line",
+        "z": 1,
+        "morphId": "mark13"
+      },
+      {
+        "id": "a",
+        "type": "text",
+        "slot": "a",
+        "x": 790,
+        "y": 442,
+        "width": 710,
+        "height": 125,
+        "fontSize": 37,
+        "fontRole": "body",
+        "fontWeight": 400,
+        "tokenColor": "ink",
+        "lineHeight": 1.1,
+        "z": 4,
+        "morphId": "a"
+      },
+      {
+        "id": "b",
+        "type": "text",
+        "slot": "b",
+        "x": 790,
+        "y": 592,
+        "width": 710,
+        "height": 135,
+        "fontSize": 37,
+        "fontRole": "body",
+        "fontWeight": 400,
+        "tokenColor": "ink",
+        "lineHeight": 1.1,
+        "z": 4,
+        "morphId": "b"
+      },
+      {
+        "id": "note",
+        "type": "text",
+        "slot": "note",
+        "x": 80,
+        "y": 820,
+        "width": 1450,
+        "height": 94,
+        "fontSize": 27,
+        "fontRole": "body",
+        "fontWeight": 400,
+        "tokenColor": "ink",
+        "lineHeight": 1.1,
+        "z": 4,
+        "morphId": "note"
+      }
+    ]
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "id": "feature/brief-table",
+  "role": "feature",
+  "variant": "brief-table",
+  "status": "draft",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "note": {
+      "kind": "text",
+      "from": "caption"
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 83,
+      "minFont": 66.4,
+      "lineClamp": 3,
+      "shrinkMin": 0.8
+    },
+    "note": {
+      "maxFont": 31,
+      "minFont": 24.8,
+      "lineClamp": 3,
+      "shrinkMin": 0.8
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "note": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "x": 70,
+        "y": 60,
+        "width": 1450,
+        "height": 180,
+        "fontSize": 83,
+        "fontRole": "display",
+        "tokenColor": "ink",
+        "z": 4
+      },
+      {
+        "id": "details",
+        "type": "table",
+        "x": 80,
+        "y": 275,
+        "width": 1440,
+        "height": 430,
+        "z": 2
+      },
+      {
+        "id": "note",
+        "type": "text",
+        "slot": "note",
+        "x": 70,
+        "y": 790,
+        "width": 1440,
+        "height": 90,
+        "fontSize": 31,
+        "fontRole": "body",
+        "tokenColor": "ink",
+        "z": 4
+      }
+    ]
+  }
+}

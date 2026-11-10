@@ -1,0 +1,117 @@
+{
+  "name": "Lantern • Counter",
+  "description": "Night cafe deck — glowing window cover, mosaic tile strip, taped menu notes and an OPEN neon.",
+  "brand": {
+    "colors": {
+      "bg": "#1A1410",
+      "surface": "#2A211A",
+      "surface_color": "#F3D5B5",
+      "ink": "#FFF6EC",
+      "muted": "#B9A28C",
+      "accent": "#FF8A4C",
+      "line": "#3D3228"
+    },
+    "fonts": {
+      "display": "Fraunces",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "lantern"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Lantern",
+        "items": [
+          "Corner cafe · after dark",
+          "Open till 1",
+          "ON"
+        ],
+        "photoQuery": "77e1fce26a"
+      },
+      {
+        "role": "feature",
+        "title": "On the board",
+        "items": [
+          "Oat flat white",
+          "warm milk, short pull",
+          "Yuzu soda",
+          "sparkling, no ice",
+          "Sesame bun",
+          "toasted, salted butter",
+          "House lemonade",
+          "mint leaf"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Tile night",
+        "items": [
+          "Peach",
+          "Clay",
+          "Sand",
+          "Rose",
+          "The mosaic wraps the takeout ledge."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Notes on glass",
+        "items": [
+          "Free Wi-Fi",
+          "Soy milk ok",
+          "Last pour 00:45",
+          "Ask for the playlist"
+        ],
+        "photoQuery": "77e1fce26a"
+      },
+      {
+        "role": "feature",
+        "title": "Stay a while.",
+        "items": [
+          "— Counter note"
+        ],
+        "photoQuery": "77e1fce26a"
+      },
+      {
+        "role": "closing",
+        "title": "Still open.",
+        "items": [
+          "Lantern Counter · night shift",
+          "ON"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "lantern-window"
+    },
+    {
+      "role": "feature",
+      "variant": "lantern-board"
+    },
+    {
+      "role": "feature",
+      "variant": "lantern-tiles"
+    },
+    {
+      "role": "feature",
+      "variant": "lantern-notes"
+    },
+    {
+      "role": "feature",
+      "variant": "lantern-quote"
+    },
+    {
+      "role": "closing",
+      "variant": "lantern-open"
+    }
+  ]
+}

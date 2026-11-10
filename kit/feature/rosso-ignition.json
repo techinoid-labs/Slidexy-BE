@@ -1,0 +1,115 @@
+{
+  "id": "feature/rosso-ignition",
+  "role": "feature",
+  "variant": "rosso-ignition",
+  "family": "rosso",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 110,
+      "maxFont": 110,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 28,
+      "maxFont": 28,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "bg",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "accent",
+        "z": 0
+      },
+      {
+        "id": "key",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 720,
+        "y": 160,
+        "width": 160,
+        "height": 160,
+        "tokenFill": "bg",
+        "z": 1
+      },
+      {
+        "id": "blade",
+        "type": "shape",
+        "shape": "rect",
+        "x": 780,
+        "y": 220,
+        "width": 40,
+        "height": 200,
+        "tokenFill": "bg",
+        "z": 1
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 80,
+        "y": 480,
+        "width": 1440,
+        "height": 157,
+        "fontSize": 110,
+        "slot": "title",
+        "tokenColor": "bg",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "textStyleRole": "display",
+        "align": "center",
+        "morphId": "title"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 80,
+        "y": 660,
+        "width": 1440,
+        "height": 50,
+        "fontSize": 28,
+        "slot": "copy0",
+        "tokenColor": "bg",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "align": "center"
+      }
+    ]
+  }
+}

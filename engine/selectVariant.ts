@@ -184,14 +184,20 @@ export function selectVariant(
   }
 
   // Named new-kit hints
-  if (hint === "horizontal" && kitExists("timeline", "horizontal")) {
-    return { role: "timeline", variant: "horizontal" };
+  if (
+    (hint === "horizontal" || hint === "zigzag") &&
+    kitExists("timeline", String(hint))
+  ) {
+    return { role: "timeline", variant: String(hint) };
   }
   if (hint === "split" && kitExists("comparison", "split")) {
     return { role: "comparison", variant: "split" };
   }
-  if (hint === "three-tier" && kitExists("pricing", "three-tier")) {
-    return { role: "pricing", variant: "three-tier" };
+  if (
+    (hint === "three-tier" || hint === "spotlight") &&
+    kitExists("pricing", String(hint))
+  ) {
+    return { role: "pricing", variant: String(hint) };
   }
   if (hint === "masonry" && kitExists("portfolio", "masonry")) {
     return { role: "portfolio", variant: "masonry" };
@@ -225,13 +231,17 @@ export function selectVariant(
         else variant = pickAB(rand, false);
         break;
       case "feature":
-        if (
+        if (hint && kitExists("feature", String(hint))) variant = hint as VariantId;
+        else if (
           hint === "a" ||
           hint === "b" ||
           hint === "c" ||
           hint === "editorial" ||
           hint === "morph-scatter" ||
-          hint === "isometric"
+          hint === "isometric" ||
+          hint === "asymmetric" ||
+          hint === "floating-card" ||
+          hint === "typography-hero"
         )
           variant = hint as VariantId;
         else if (textHeavy && hasTextHeavyKit) variant = "c";
@@ -247,36 +257,59 @@ export function selectVariant(
         else variant = pickAB(rand, false, "a");
         break;
       case "closing":
-        variant = pickAB(rand, true, hint || "b");
+        if (hint === "full-bleed" || hint === "a" || hint === "b")
+          variant = hint as VariantId;
+        else variant = kitExists("closing", "full-bleed")
+          ? rand() < 0.55
+            ? "full-bleed"
+            : pickAB(rand, true, "b")
+          : pickAB(rand, true, hint || "b");
         break;
       case "agenda":
         variant = hasPhoto ? pickAB(rand, true, hint) : pickAB(rand, false, hint || "a");
         break;
       case "testimonial":
-        if (hint === "a" || hint === "b" || hint === "c" || hint === "brutalist") variant = hint as VariantId;
+        if (hint === "a" || hint === "b" || hint === "c" || hint === "brutalist" || hint === "cutout")
+          variant = hint as VariantId;
         else variant = pickAB(rand, bodyLen <= 2);
         break;
+      case "comparison":
+        if (hint === "split" || hint === "quadrant") variant = hint as VariantId;
+        else if (
+          Array.isArray((slide as any).before) &&
+          Array.isArray((slide as any).after)
+        )
+          variant = "split";
+        else if (bodyLen >= 4) variant = "quadrant";
+        else variant = kitExists("comparison", "quadrant") ? "quadrant" : "split";
+        break;
       case "team":
-        if (hint === "a" || hint === "b" || hint === "c") variant = hint as VariantId;
+        if (hint === "a" || hint === "b" || hint === "c" || hint === "cutout") variant = hint as VariantId;
         else variant = membersLen >= 3 ? pickAB(rand, true, "b") : pickAB(rand, false, "a");
         break;
-      case "cover":
-        if (hint === "a" || hint === "b" || hint === "brutalist") variant = hint as VariantId;
+      case "cover": {
+        // Prefer any on-disk cover kit (play-lab / library / direction / anti-grid)
+        if (hint && kitExists("cover", String(hint))) variant = hint as VariantId;
         else variant = pickAB(rand, false, hint);
         break;
+      }
       case "how-it-works":
         if (hint === "a" || hint === "b" || hint === "c" || hint === "dashboard") variant = hint as VariantId;
         else if (textHeavy && hasTextHeavyKit) variant = "c";
         else variant = hasPhoto ? pickAB(rand, false, "a") : pickAB(rand, true, "b");
         break;
       case "timeline":
-        variant = kitExists("timeline", "horizontal") ? "horizontal" : "a";
+        if (hint === "zigzag" || hint === "horizontal") variant = hint as VariantId;
+        else if (kitExists("timeline", "zigzag") && rand() < 0.5) variant = "zigzag";
+        else variant = kitExists("timeline", "horizontal") ? "horizontal" : "a";
         break;
       case "comparison":
         variant = kitExists("comparison", "split") ? "split" : "a";
         break;
       case "pricing":
-        variant = kitExists("pricing", "three-tier") ? "three-tier" : "a";
+        if (hint === "spotlight" || hint === "three-tier") variant = hint as VariantId;
+        else if (kitExists("pricing", "spotlight") && rand() < 0.5) variant = "spotlight";
+        else variant = kitExists("pricing", "three-tier") ? "three-tier" : "a";
         break;
       case "portfolio":
         variant = kitExists("portfolio", "masonry") ? "masonry" : "a";
@@ -284,6 +317,7 @@ export function selectVariant(
       case "report": {
         const reportVariants = [
           "two-column-text",
+          "pull-quote",
           "bulleted-list",
           "executive-summary",
           "data-table",
@@ -297,6 +331,8 @@ export function selectVariant(
           variant = "chart-panel";
         } else if (Array.isArray((slide as any).table) && (slide as any).table.length) {
           variant = "data-table";
+        } else if ((slide as any).takeaway && hint === "pull-quote" && kitExists("report", "pull-quote")) {
+          variant = "pull-quote";
         } else if ((slide as any).takeaway) {
           variant = "executive-summary";
         } else if (hint === "agenda" || String(slide.title || "").toLowerCase().indexOf("agenda") >= 0) {
@@ -305,7 +341,7 @@ export function selectVariant(
           bodyLen === 1 &&
           String((Array.isArray(slide.body) && slide.body[0]) || "").length > 160
         ) {
-          variant = "consulting-breakdown";
+          variant = kitExists("report", "pull-quote") ? "pull-quote" : "consulting-breakdown";
         } else if (bodyLen >= 4) {
           variant = "bulleted-list";
         } else if (bodyLen >= 2) {
@@ -344,7 +380,7 @@ export function selectAll(spec: DeckSpec, prompt: string): Array<{ role: string;
 
   const sequenceId = resolveSequenceId(spec);
   if (sequenceId) {
-    const forced = selectionsFromSequence(sequenceId, (spec.slides || []).length);
+    const forced = selectionsFromSequence(sequenceId, (spec.slides || []).length, seed);
     // Align slide roles to sequence beats so render loads the correct kits
     forced.forEach((sel: any, i: number) => {
       if (spec.slides[i]) {
@@ -365,7 +401,9 @@ export function selectAll(spec: DeckSpec, prompt: string): Array<{ role: string;
       (slide as any).role = sel.role;
     }
     let family = loadFamily(sel.role, sel.variant);
-    if (family && family === prevFamily && family !== "text-heavy") {
+    const explicitGuided = String(slide.variantHint || "").startsWith("ref-") &&
+      kitExists(sel.role, String(slide.variantHint));
+    if (!explicitGuided && family && family === prevFamily && family !== "text-heavy") {
       const allowed = lock && lock.allowed && lock.allowed[sel.role];
       const other = otherVariant(sel.role, sel.variant, allowed);
       if (other) {

@@ -1,0 +1,138 @@
+{
+  "name": "Mono • Issue 04",
+  "description": "Magazine deck — masthead cover with barcode, contents with page numerals, drop-cap opener, hotspot edit.",
+  "brand": {
+    "colors": {
+      "bg": "#F4F0E8",
+      "surface": "#FFFFFF",
+      "surface_color": "#151515",
+      "ink": "#151515",
+      "muted": "#6A645B",
+      "accent": "#C4202F",
+      "line": "#D8D1C4"
+    },
+    "fonts": {
+      "display": "Playfair Display",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "mono-quarterly"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "MONO",
+        "items": [
+          "Issue 04 · Winter 2027 · £12",
+          "The quiet issue",
+          "12 rooms that changed how we live",
+          "Linen, light and the art of staying in",
+          "04"
+        ],
+        "photoQuery": "40d44af8da"
+      },
+      {
+        "role": "feature",
+        "title": "Contents",
+        "items": [
+          "Issue 04 · Winter",
+          "08",
+          "The reading room",
+          "A library built for one chair and a long winter.",
+          "24",
+          "Rooms that breathe",
+          "Four homes where the windows stay open.",
+          "41",
+          "Slow furniture",
+          "Pieces that take a year to make.",
+          "56",
+          "The edit",
+          "Damask, brass and the return of pattern.",
+          "Cover: the reading room at Halloran House"
+        ],
+        "photoQuery": "2f2c9b2667"
+      },
+      {
+        "role": "feature",
+        "title": "Rooms that **breathe**",
+        "items": [
+          "Interiors",
+          "Four homes where the windows stay open and the furniture stays put.",
+          "Words Ines Halloran · Photographs Teo Marsh",
+          "T",
+          "he house sits back from the road behind a hedge of hawthorn. Inside, nothing is new and nothing is precious: a linen sofa, a table built from an old barn door, and light that moves through the rooms like a slow tide."
+        ],
+        "photoQuery": "9979c5dbc7"
+      },
+      {
+        "role": "feature",
+        "title": "We stopped buying things for the house and started **living** in it.",
+        "items": [
+          "— Ines Halloran, page 41",
+          "Mono · Issue 04",
+          "41",
+          "“"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "The edit",
+        "items": [
+          "1",
+          "2",
+          "3",
+          "1",
+          "Brass oval mirror",
+          "Hand-finished, 90 cm. £420",
+          "2",
+          "Damask wall linen",
+          "Printed in Lyon, by the metre. £68",
+          "3",
+          "Velvet drape",
+          "Floor-length in oxblood. £210"
+        ],
+        "photoQuery": "141ae86a78"
+      },
+      {
+        "role": "feature",
+        "title": "Next issue: Light.",
+        "items": [
+          "MONO",
+          "On newsstands 1 March",
+          "05"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "mono-masthead"
+    },
+    {
+      "role": "feature",
+      "variant": "mono-contents"
+    },
+    {
+      "role": "feature",
+      "variant": "mono-opener"
+    },
+    {
+      "role": "feature",
+      "variant": "mono-quote"
+    },
+    {
+      "role": "feature",
+      "variant": "mono-edit"
+    },
+    {
+      "role": "feature",
+      "variant": "mono-back"
+    }
+  ]
+}

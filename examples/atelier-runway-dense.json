@@ -1,0 +1,119 @@
+{
+  "name": "Atelier Runway • Season look",
+  "description": "Fashion lookbook — ivory paper, oxblood accents, serif statements and quiet notes.",
+  "brand": {
+    "colors": {
+      "bg": "#F6F1E8",
+      "surface": "#EFE7DA",
+      "surface_color": "#E8DECE",
+      "ink": "#1A1512",
+      "muted": "#5C5147",
+      "accent": "#7B2D26",
+      "line": "#D8CBB6"
+    },
+    "fonts": {
+      "display": "Georgia",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "atelier-runway"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Atelier Runway",
+        "items": [
+          "Season look · Private showing",
+          "01"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "The fitting room",
+        "items": [
+          "First pass",
+          "Cloth on the stand before coffee. Pins mark where the shoulder wants to sit and where the hem should fall.",
+          "Quiet notes",
+          "We keep the lighting soft and the talk shorter than the fabric. The garment decides the pace."
+        ],
+        "photoQuery": "0d31bc91f0"
+      },
+      {
+        "role": "feature",
+        "title": "The line",
+        "items": [
+          "Ivory coat   look 01",
+          "Double-faced wool. Clean collar. A belt that almost disappears.",
+          "Oxblood dress   look 02",
+          "Bias cut. No decoration. Movement does the work.",
+          "Ink trousers   look 03",
+          "High rise, soft crease, worn with a white shirt left open.",
+          "Stone cape   look 04",
+          "One piece of boiled wool. Held at the shoulder with a single clasp."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Cloth & light",
+        "items": [
+          "Daylight test",
+          "Every look walks the courtyard once. If the colour dies in sun, it leaves the line.",
+          "From the atelier",
+          "We photograph on paper, never on a screen. The print is the proof."
+        ],
+        "photoQuery": "01bd4afba9"
+      },
+      {
+        "role": "feature",
+        "title": "Material notes",
+        "items": [
+          "Wool",
+          "Heavy enough to hold a line, soft enough to move with the body.",
+          "Silk",
+          "Used sparingly. A lining, a bias panel, never the whole story.",
+          "Hardware",
+          "Brass that ages. No shine that competes with the cloth."
+        ],
+        "photoQuery": "00dc682cdd"
+      },
+      {
+        "role": "feature",
+        "title": "Until next season.",
+        "items": [
+          "Atelier Runway"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "atelier-runway-masthead"
+    },
+    {
+      "role": "feature",
+      "variant": "atelier-runway-interior"
+    },
+    {
+      "role": "feature",
+      "variant": "atelier-runway-menu"
+    },
+    {
+      "role": "feature",
+      "variant": "atelier-runway-portrait"
+    },
+    {
+      "role": "feature",
+      "variant": "atelier-runway-notes"
+    },
+    {
+      "role": "feature",
+      "variant": "atelier-runway-closing"
+    }
+  ]
+}

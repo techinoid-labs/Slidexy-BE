@@ -1,0 +1,136 @@
+{
+  "id": "cover/library-editorial-opening",
+  "role": "cover",
+  "variant": "library-editorial-opening",
+  "family": "editorial",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "body": {
+      "kind": "text",
+      "from": "items2"
+    },
+    "purpose": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "folio": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "art0": {
+      "kind": "text",
+      "from": "items3"
+    },
+    "art1": {
+      "kind": "text",
+      "from": "items4"
+    },
+    "photo": {
+      "kind": "image",
+      "from": "photo",
+      "optional": false
+    }
+  },
+  "fit": {
+    "art0": {
+      "minFont": 25,
+      "maxFont": 25,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "title": {
+      "minFont": 112,
+      "maxFont": 112,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "art1": {
+      "minFont": 31,
+      "maxFont": 31,
+      "lineClamp": 3,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {},
+  "layout": {
+    "elements": [
+      {
+        "id": "photo",
+        "type": "image",
+        "slot": "photo",
+        "x": 820,
+        "y": 0,
+        "width": 780,
+        "height": 900,
+        "z": 1,
+        "morphId": "hero"
+      },
+      {
+        "id": "paper",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 210,
+        "width": 970,
+        "height": 450,
+        "tokenFill": "bg",
+        "z": 1
+      },
+      {
+        "id": "art0",
+        "type": "text",
+        "slot": "art0",
+        "x": 80,
+        "y": 65,
+        "width": 720,
+        "height": 50,
+        "fontSize": 25,
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "tokenColor": "ink",
+        "z": 4
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "x": 75,
+        "y": 265,
+        "width": 840,
+        "height": 310,
+        "fontSize": 112,
+        "fontRole": "display",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "tokenColor": "ink",
+        "z": 4,
+        "morphId": "title"
+      },
+      {
+        "id": "art1",
+        "type": "text",
+        "slot": "art1",
+        "x": 85,
+        "y": 730,
+        "width": 650,
+        "height": 120,
+        "fontSize": 31,
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "tokenColor": "ink",
+        "z": 4
+      }
+    ]
+  }
+}

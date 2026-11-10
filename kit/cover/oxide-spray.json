@@ -1,0 +1,188 @@
+{
+  "id": "cover/oxide-spray",
+  "role": "cover",
+  "variant": "oxide-spray",
+  "family": "oxide",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "copy2": {
+      "kind": "text",
+      "from": "items2"
+    }
+  },
+  "fit": {
+    "copy0": {
+      "minFont": 24,
+      "maxFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "title": {
+      "minFont": 180,
+      "maxFont": 180,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 64,
+      "maxFont": 64,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy2": {
+      "minFont": 84,
+      "maxFont": 84,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "photo",
+        "type": "image",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "z": 1,
+        "slot": "photo",
+        "morphId": "hero"
+      },
+      {
+        "id": "scrim",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 900,
+        "height": 900,
+        "tokenFill": "bg",
+        "z": 2,
+        "opacity": 0.55,
+        "morphId": "titlePlate"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 70,
+        "y": 90,
+        "width": 700,
+        "height": 40,
+        "fontSize": 22,
+        "slot": "copy0",
+        "tokenColor": "muted",
+        "fontRole": "label",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 3,
+        "textStyleRole": "kicker"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 60,
+        "y": 220,
+        "width": 820,
+        "height": 256,
+        "fontSize": 180,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 0.92,
+        "letterSpacing": -2,
+        "z": 3,
+        "textStyleRole": "display",
+        "typeTreatment": "outline",
+        "morphId": "title"
+      },
+      {
+        "id": "copy1",
+        "type": "text",
+        "x": 70,
+        "y": 480,
+        "width": 700,
+        "height": 91,
+        "fontSize": 64,
+        "slot": "copy1",
+        "tokenColor": "accent",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 3,
+        "textStyleRole": "display"
+      },
+      {
+        "id": "badge",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 1280,
+        "y": 640,
+        "width": 200,
+        "height": 200,
+        "tokenFill": "accent",
+        "z": 3,
+        "morphId": "accent"
+      },
+      {
+        "id": "copy2",
+        "type": "text",
+        "x": 1300,
+        "y": 690,
+        "width": 160,
+        "height": 120,
+        "fontSize": 84,
+        "slot": "copy2",
+        "tokenColor": "bg",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "textStyleRole": "stat",
+        "align": "center"
+      }
+    ]
+  }
+}

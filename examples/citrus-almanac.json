@@ -1,0 +1,191 @@
+{
+  "name": "Citrus Almanac",
+  "brand": {
+    "colors": {
+      "bg": "#F9F1D7",
+      "ink": "#223F29",
+      "accent": "#E57827",
+      "surface": "#DCE5B8",
+      "line": "#809773"
+    },
+    "fonts": {
+      "display": "Georgia",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Citrus Almanac",
+        "items": [
+          "WINTER FRUIT / FIELD EDITION",
+          "Three fruits from the winter market."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Inside the navel",
+        "items": [
+          "At the cut",
+          "The navel orange opens into a wheel of tightly packed segments. A pale seam of pith runs through the centre, while the thick outer peel comes away in pieces large enough to hold between two fingers.",
+          "At the table",
+          "The flesh keeps its shape in a lunchbox. At home we slice the fruit across its middle, letting the bright rounds sit in a shallow dish with their juice."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Market notes",
+        "items": [
+          "Three baskets",
+          "Blood oranges bring a dark berry finish to the morning plate. Meyer lemons have softer acidity and a fragrant yellow peel. Mandarins split neatly into small segments that disappear quickly from a bowl on the table.",
+          "The mixed bag",
+          "For a weekend basket we take a little of each. The oranges become breakfast, the lemon goes into dressing and the mandarins travel in coat pockets."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Peel and pith",
+        "items": [
+          "A fragrant surface",
+          "Drag a thumbnail across the peel and a mist of oil catches the light. The scent is strongest before the fruit is cut, when the oil still sits in tiny pockets near the surface.",
+          "A different texture",
+          "Underneath is a white layer with a dry, spongy feel. A broad strip carries both textures into marmalade, while a fine shaving brings mostly perfume to a cake."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Blood orange season",
+        "items": [
+          "At the stall",
+          "Two oranges from the same basket can open to very different colours. One has a pink blush near the centre. Another carries streaks of deep red from its core to the rind.",
+          "On the plate",
+          "We alternate the slices on a white platter. Their juice collects at the rim, where a few torn mint leaves and a spoonful of yoghurt finish the dish."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "The lemon shelf",
+        "items": [
+          "In the kitchen",
+          "A bowl of lemons sits beside the stove. The first goes into a dressing with olive oil. The second lends a strip of rind to a pot of white beans as they warm.",
+          "At the bakery",
+          "Across the counter, the same fruit appears in a tart. Its filling has a soft shine, a sharp first bite and just enough sweetness to carry the flavour through."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Mandarin hour",
+        "items": [
+          "The afternoon bowl",
+          "Mandarins are the smallest fruit in our winter display. Their loose skins curl back in one piece and the segments separate easily, making them a favourite with visitors who stop for a quick taste.",
+          "The last handful",
+          "Late in the afternoon the bowl holds more leaves than fruit. The remaining segments go into a salad with bitter greens, toasted seeds and a little vinegar."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Breakfast at the orchard",
+        "items": [
+          "First serving",
+          "Warm toast arrives with a small dish of whipped butter and a jar of orange preserve. The peel is cut into fine threads so that a little lands on almost every bite.",
+          "Second cup",
+          "Coffee follows in a heavy ceramic pot. On colder mornings there is also a plate of citrus rounds, chilled overnight and brought out just before the table fills."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Winter marmalade",
+        "items": [
+          "In the pan",
+          "Seville oranges give the preserve a bitter edge. Thin ribbons of peel turn translucent in the syrup, while the juice keeps the sweetness from becoming heavy on the tongue.",
+          "The finished jar",
+          "The colour settles somewhere between copper and amber. At the orchard breakfast table, one jar usually lasts through two pots of coffee and a second round of toast."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "A market morning",
+        "items": [
+          "Opening hour",
+          "The first crates arrive with leaves still tucked between the fruit. Sellers stack the heaviest oranges at the back and bring split pieces forward so visitors can see the colour inside.",
+          "Before noon",
+          "By lunchtime the display has changed shape. Paper bags hang beside the scale, the sampling board is sticky with juice and the smallest mandarins have almost sold out."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "The winter pantry",
+        "items": [
+          "On the shelf",
+          "An open jar of marmalade stands beside candied peel and a bottle of lemon syrup. Each holds a different piece of the winter crop, from the sharp juice to the fragrant outer skin.",
+          "After the season",
+          "The fresh fruit disappears first. Weeks later a spoonful of preserve can still bring back the smell of the market and the colour of the orchard breakfast table."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Until next winter.",
+        "items": [
+          "The orchard collection"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "citrus-almanac-jacket"
+    },
+    {
+      "role": "feature",
+      "variant": "citrus-almanac-spread-1"
+    },
+    {
+      "role": "feature",
+      "variant": "citrus-almanac-spread-2"
+    },
+    {
+      "role": "feature",
+      "variant": "citrus-almanac-spread-3"
+    },
+    {
+      "role": "feature",
+      "variant": "citrus-almanac-spread-4"
+    },
+    {
+      "role": "feature",
+      "variant": "citrus-almanac-spread-5"
+    },
+    {
+      "role": "feature",
+      "variant": "citrus-almanac-spread-6"
+    },
+    {
+      "role": "feature",
+      "variant": "citrus-almanac-spread-7"
+    },
+    {
+      "role": "feature",
+      "variant": "citrus-almanac-spread-8"
+    },
+    {
+      "role": "feature",
+      "variant": "citrus-almanac-spread-9"
+    },
+    {
+      "role": "feature",
+      "variant": "citrus-almanac-spread-10"
+    },
+    {
+      "role": "feature",
+      "variant": "citrus-almanac-endpaper"
+    }
+  ],
+  "description": "The navel orange opens into a wheel of tightly packed segments. A pale seam of pith runs through the centre, while the thick outer peel comes away in pieces large enough to hold between two fingers."
+}

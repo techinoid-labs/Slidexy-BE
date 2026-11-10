@@ -1,0 +1,422 @@
+{
+  "id": "feature/idea-wall-clusters",
+  "role": "feature",
+  "variant": "idea-wall-clusters",
+  "family": "idea-wall",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "copy2": {
+      "kind": "text",
+      "from": "items2"
+    },
+    "copy3": {
+      "kind": "text",
+      "from": "items3"
+    },
+    "copy4": {
+      "kind": "text",
+      "from": "items4"
+    },
+    "copy5": {
+      "kind": "text",
+      "from": "items5"
+    },
+    "copy6": {
+      "kind": "text",
+      "from": "items6"
+    },
+    "copy7": {
+      "kind": "text",
+      "from": "items7"
+    },
+    "copy8": {
+      "kind": "text",
+      "from": "items8"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 80,
+      "maxFont": 80,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 30,
+      "maxFont": 30,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 30,
+      "maxFont": 30,
+      "lineClamp": 4,
+      "shrinkMin": 1
+    },
+    "copy2": {
+      "minFont": 30,
+      "maxFont": 30,
+      "lineClamp": 4,
+      "shrinkMin": 1
+    },
+    "copy3": {
+      "minFont": 30,
+      "maxFont": 30,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy4": {
+      "minFont": 30,
+      "maxFont": 30,
+      "lineClamp": 4,
+      "shrinkMin": 1
+    },
+    "copy5": {
+      "minFont": 30,
+      "maxFont": 30,
+      "lineClamp": 4,
+      "shrinkMin": 1
+    },
+    "copy6": {
+      "minFont": 30,
+      "maxFont": 30,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy7": {
+      "minFont": 30,
+      "maxFont": 30,
+      "lineClamp": 4,
+      "shrinkMin": 1
+    },
+    "copy8": {
+      "minFont": 30,
+      "maxFont": 30,
+      "lineClamp": 4,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    },
+    "copy3": {
+      "kind": "text"
+    },
+    "copy4": {
+      "kind": "text"
+    },
+    "copy5": {
+      "kind": "text"
+    },
+    "copy6": {
+      "kind": "text"
+    },
+    "copy7": {
+      "kind": "text"
+    },
+    "copy8": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "bg",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "bg",
+        "z": 0
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 80,
+        "y": 50,
+        "width": 1440,
+        "height": 114,
+        "fontSize": 80,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "textStyleRole": "display",
+        "morphId": "title"
+      },
+      {
+        "id": "head0",
+        "type": "shape",
+        "shape": "rect",
+        "x": 80,
+        "y": 190,
+        "width": 440,
+        "height": 80,
+        "tokenFill": "ink",
+        "z": 1
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 110,
+        "y": 208,
+        "width": 380,
+        "height": 46,
+        "fontSize": 30,
+        "slot": "copy0",
+        "tokenColor": "bg",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 2
+      },
+      {
+        "id": "n00",
+        "type": "shape",
+        "shape": "rect",
+        "x": 90,
+        "y": 300,
+        "width": 400,
+        "height": 230,
+        "tokenFill": "surface",
+        "z": 1
+      },
+      {
+        "id": "copy1",
+        "type": "text",
+        "x": 120,
+        "y": 330,
+        "width": 340,
+        "height": 150,
+        "fontSize": 30,
+        "slot": "copy1",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.25,
+        "letterSpacing": 0,
+        "z": 2
+      },
+      {
+        "id": "n01",
+        "type": "shape",
+        "shape": "rect",
+        "x": 110,
+        "y": 570,
+        "width": 400,
+        "height": 230,
+        "tokenFill": "surface_color",
+        "z": 1
+      },
+      {
+        "id": "copy2",
+        "type": "text",
+        "x": 140,
+        "y": 600,
+        "width": 340,
+        "height": 150,
+        "fontSize": 30,
+        "slot": "copy2",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.25,
+        "letterSpacing": 0,
+        "z": 2
+      },
+      {
+        "id": "head1",
+        "type": "shape",
+        "shape": "rect",
+        "x": 580,
+        "y": 190,
+        "width": 440,
+        "height": 80,
+        "tokenFill": "ink",
+        "z": 1
+      },
+      {
+        "id": "copy3",
+        "type": "text",
+        "x": 610,
+        "y": 208,
+        "width": 380,
+        "height": 46,
+        "fontSize": 30,
+        "slot": "copy3",
+        "tokenColor": "bg",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 2
+      },
+      {
+        "id": "n10",
+        "type": "shape",
+        "shape": "rect",
+        "x": 590,
+        "y": 300,
+        "width": 400,
+        "height": 230,
+        "tokenFill": "surface",
+        "z": 1
+      },
+      {
+        "id": "copy4",
+        "type": "text",
+        "x": 620,
+        "y": 330,
+        "width": 340,
+        "height": 150,
+        "fontSize": 30,
+        "slot": "copy4",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.25,
+        "letterSpacing": 0,
+        "z": 2
+      },
+      {
+        "id": "n11",
+        "type": "shape",
+        "shape": "rect",
+        "x": 610,
+        "y": 570,
+        "width": 400,
+        "height": 230,
+        "tokenFill": "surface_color",
+        "z": 1
+      },
+      {
+        "id": "copy5",
+        "type": "text",
+        "x": 640,
+        "y": 600,
+        "width": 340,
+        "height": 150,
+        "fontSize": 30,
+        "slot": "copy5",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.25,
+        "letterSpacing": 0,
+        "z": 2
+      },
+      {
+        "id": "head2",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1080,
+        "y": 190,
+        "width": 440,
+        "height": 80,
+        "tokenFill": "ink",
+        "z": 1
+      },
+      {
+        "id": "copy6",
+        "type": "text",
+        "x": 1110,
+        "y": 208,
+        "width": 380,
+        "height": 46,
+        "fontSize": 30,
+        "slot": "copy6",
+        "tokenColor": "bg",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 2
+      },
+      {
+        "id": "n20",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1090,
+        "y": 300,
+        "width": 400,
+        "height": 230,
+        "tokenFill": "surface",
+        "z": 1
+      },
+      {
+        "id": "copy7",
+        "type": "text",
+        "x": 1120,
+        "y": 330,
+        "width": 340,
+        "height": 150,
+        "fontSize": 30,
+        "slot": "copy7",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.25,
+        "letterSpacing": 0,
+        "z": 2
+      },
+      {
+        "id": "n21",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1110,
+        "y": 570,
+        "width": 400,
+        "height": 230,
+        "tokenFill": "surface_color",
+        "z": 1
+      },
+      {
+        "id": "copy8",
+        "type": "text",
+        "x": 1140,
+        "y": 600,
+        "width": 340,
+        "height": 150,
+        "fontSize": 30,
+        "slot": "copy8",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.25,
+        "letterSpacing": 0,
+        "z": 2
+      }
+    ]
+  }
+}

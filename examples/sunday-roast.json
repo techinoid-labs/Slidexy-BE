@@ -1,0 +1,106 @@
+{
+  "name": "Sunday Roast",
+  "brand": {
+    "colors": {
+      "bg": "#FFF3DC",
+      "ink": "#422626",
+      "accent": "#A92737",
+      "surface": "#F0C1AA",
+      "line": "#BF9D8C"
+    },
+    "fonts": {
+      "display": "Georgia",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Sunday Roast",
+        "items": [
+          "Coffee & company",
+          "The house collection"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "The corner shop",
+        "items": [
+          "Morning light, a window seat and the first cup of the day."
+        ],
+        "photoQuery": "092c8c1420"
+      },
+      {
+        "role": "feature",
+        "title": "At the bar",
+        "items": [
+          "Espresso",
+          "Short & bright",
+          "Flat white",
+          "Silky & mellow",
+          "Cold brew",
+          "Slow & chilled"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Milk & honey",
+        "items": [
+          "The Sunday latte",
+          "Honey / espresso / steamed milk"
+        ],
+        "photoQuery": "081717d284"
+      },
+      {
+        "role": "feature",
+        "title": "House blend",
+        "items": [
+          "Tasting notes",
+          "Cocoa",
+          "Toasted hazelnut",
+          "Orange peel"
+        ],
+        "photoQuery": "0d7b07d1c3"
+      },
+      {
+        "role": "feature",
+        "title": "See you Sunday.",
+        "items": [
+          "Sunday Roast Coffee Club"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "sunday-roast-masthead"
+    },
+    {
+      "role": "feature",
+      "variant": "sunday-roast-interior"
+    },
+    {
+      "role": "feature",
+      "variant": "sunday-roast-menu"
+    },
+    {
+      "role": "feature",
+      "variant": "sunday-roast-portrait"
+    },
+    {
+      "role": "feature",
+      "variant": "sunday-roast-tasting"
+    },
+    {
+      "role": "feature",
+      "variant": "sunday-roast-postcard"
+    }
+  ]
+}

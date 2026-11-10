@@ -1,0 +1,85 @@
+{
+  "style": {
+    "palette": "ink-night",
+    "typePair": "modern-segoe",
+    "imageTreatment": "full-bleed",
+    "motif": "bar-accent",
+    "sequence": "guide-architecture-portfolio"
+  },
+  "slides": [
+    {
+      "role": "cover",
+      "variantHint": "ref-group-project",
+      "title": "Studio\nOverview",
+      "caption": "STUDIO",
+      "body": [
+        "DESIGN COLLECTION",
+        "studio.example"
+      ]
+    },
+    {
+      "role": "feature",
+      "variantHint": "ref-left-photo-introduction",
+      "title": "Built around people",
+      "body": [
+        "We design spaces that make everyday work easier.",
+        "Our process connects research, practical planning and careful delivery."
+      ],
+      "photoQueries": [
+        "studio workplace interior ref-left-photo-introduction photo 0"
+      ],
+      "photoOrientations": [
+        "landscape"
+      ]
+    },
+    {
+      "role": "portfolio",
+      "variantHint": "ref-right-bleed-showcase",
+      "title": "Showcase 01",
+      "caption": "01",
+      "body": [
+        "A place to focus",
+        "Quiet areas and shared spaces support different ways of working."
+      ],
+      "photoQueries": [
+        "studio workplace interior ref-right-bleed-showcase photo 0"
+      ],
+      "photoOrientations": [
+        "landscape"
+      ]
+    },
+    {
+      "role": "portfolio",
+      "variantHint": "ref-masonry-showcase",
+      "title": "Showcase 02",
+      "caption": "02",
+      "body": [
+        "Details in context",
+        "A collection of spaces, surfaces and working environments."
+      ],
+      "photoQueries": [
+        "studio workplace interior ref-masonry-showcase photo-top-left 0",
+        "studio workplace interior ref-masonry-showcase photo-top-right 1",
+        "studio workplace interior ref-masonry-showcase photo-bottom-left 2",
+        "studio workplace interior ref-masonry-showcase photo-bottom-right 3"
+      ],
+      "photoOrientations": [
+        "landscape",
+        "landscape",
+        "landscape",
+        "landscape"
+      ]
+    },
+    {
+      "role": "closing",
+      "variantHint": "ref-contact-footer-columns",
+      "title": "Start a conversation",
+      "caption": "STUDIO",
+      "body": [
+        "+00 000 000 000",
+        "hello@studio.example",
+        "studio.example"
+      ]
+    }
+  ]
+}

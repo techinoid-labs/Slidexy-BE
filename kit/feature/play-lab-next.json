@@ -1,0 +1,73 @@
+{
+  "id": "feature/play-lab-next",
+  "role": "feature",
+  "variant": "play-lab-next",
+  "family": "play-lab",
+  "preserveLayout": true,
+  "status": "approved",
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title",
+      "optional": false
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 100,
+      "maxFont": 100,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "title",
+        "type": "text",
+        "x": 70,
+        "y": 65,
+        "width": 1400,
+        "height": 140,
+        "fontSize": 100,
+        "tokenColor": "ink",
+        "textStyleRole": "display",
+        "fontRole": "display",
+        "lineHeight": 1.12,
+        "fontWeight": 700,
+        "z": 4,
+        "morphId": "title",
+        "slot": "title"
+      },
+      {
+        "id": "actions",
+        "type": "table",
+        "x": 70,
+        "y": 280,
+        "width": 1460,
+        "height": 440,
+        "z": 3,
+        "morphId": "actions"
+      },
+      {
+        "id": "line",
+        "type": "shape",
+        "shape": "rect",
+        "x": 70,
+        "y": 790,
+        "width": 1460,
+        "height": 4,
+        "tokenFill": "accent",
+        "z": 1,
+        "morphId": "line"
+      }
+    ]
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "id": "feature/floating-card",
+  "role": "feature",
+  "variant": "floating-card",
+  "family": "anti-grid",
+  "steal": "Full-bleed photo + heavy dark tint; white floating card with soft shadow, title + 3 bullets centered.",
+  "requiresPhoto": true,
+  "photoSlots": ["photo"],
+  "slots": {
+    "title": { "kind": "text", "optional": false, "from": "title" },
+    "body": { "kind": "text", "optional": false, "from": "body" },
+    "photo": { "kind": "image", "optional": false, "from": "photo" }
+  },
+  "fit": {
+    "title": { "maxFont": 44, "minFont": 32, "lineClamp": 2, "shrinkMin": 0.9 },
+    "body": { "maxFont": 22, "minFont": 16, "lineClamp": 8, "shrinkMin": 0.9 }
+  },
+  "pptxMapping": {
+    "title": { "kind": "text" },
+    "body": { "kind": "text" },
+    "photo": { "kind": "picture" }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 1,
+        "id": "photo",
+        "type": "image",
+        "slot": "photo",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "morphId": "hero"
+      },
+      {
+        "z": 2,
+        "id": "tint",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "ink",
+        "opacity": 0.62,
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "morphId": "tint"
+      },
+      {
+        "z": 3,
+        "id": "card",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "card_bg",
+        "card": true,
+        "x": 360,
+        "y": 180,
+        "width": 880,
+        "height": 540,
+        "morphId": "float-card"
+      },
+      {
+        "z": 4,
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 40,
+        "align": "left",
+        "x": 420,
+        "y": 230,
+        "width": 760,
+        "height": 100,
+        "morphId": "title"
+      },
+      {
+        "z": 4,
+        "id": "body",
+        "type": "text",
+        "slot": "body",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontSize": 22,
+        "lineHeight": 1.5,
+        "align": "left",
+        "x": 420,
+        "y": 360,
+        "width": 760,
+        "height": 300,
+        "morphId": "body"
+      }
+    ]
+  },
+  "status": "draft",
+  "motion": { "transition": "fade", "fallbackTransition": "fade", "durationMs": 500 }
+}

@@ -1,0 +1,136 @@
+{
+  "id": "feature/press-quote",
+  "role": "feature",
+  "variant": "press-quote",
+  "family": "platepress",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 48,
+      "maxFont": 48,
+      "lineClamp": 3,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 24,
+      "maxFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "bg",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "bg",
+        "z": 0
+      },
+      {
+        "id": "pqmat",
+        "type": "shape",
+        "shape": "rect",
+        "x": 360,
+        "y": 160,
+        "width": 880,
+        "height": 520,
+        "tokenFill": "surface",
+        "z": 2,
+        "morphId": "plate"
+      },
+      {
+        "id": "pqphoto",
+        "type": "image",
+        "x": 400,
+        "y": 200,
+        "width": 800,
+        "height": 400,
+        "z": 3,
+        "slot": "photo",
+        "zoom": 1.15
+      },
+      {
+        "id": "pqedge",
+        "type": "shape",
+        "shape": "rect",
+        "x": 400,
+        "y": 620,
+        "width": 800,
+        "height": 20,
+        "tokenFill": "accent",
+        "z": 4
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 420,
+        "y": 280,
+        "width": 760,
+        "height": 200,
+        "fontSize": 48,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "textStyleRole": "quote",
+        "align": "center",
+        "morphId": "title"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 420,
+        "y": 520,
+        "width": 760,
+        "height": 40,
+        "fontSize": 24,
+        "slot": "copy0",
+        "tokenColor": "accent",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "align": "center"
+      }
+    ]
+  }
+}

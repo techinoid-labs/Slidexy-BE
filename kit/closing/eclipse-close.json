@@ -1,0 +1,128 @@
+{
+  "id": "closing/eclipse-close",
+  "role": "closing",
+  "variant": "eclipse-close",
+  "family": "eclipse",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 110,
+      "maxFont": 110,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 28,
+      "maxFont": 28,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "bg",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "bg",
+        "z": 0
+      },
+      {
+        "id": "csun",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 720,
+        "y": -40,
+        "width": 980,
+        "height": 980,
+        "tokenFill": "accent",
+        "z": 1,
+        "morphId": "accent",
+        "opacity": 0.95
+      },
+      {
+        "id": "cmoon",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 980,
+        "y": -79,
+        "width": 980,
+        "height": 980,
+        "tokenFill": "bg",
+        "z": 2,
+        "morphId": "plate"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 80,
+        "y": 320,
+        "width": 700,
+        "height": 220,
+        "fontSize": 110,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 400,
+        "lineHeight": 1.05,
+        "letterSpacing": 0,
+        "z": 3,
+        "textStyleRole": "display",
+        "morphId": "title"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 80,
+        "y": 580,
+        "width": 640,
+        "height": 50,
+        "fontSize": 28,
+        "slot": "copy0",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 3
+      },
+      {
+        "id": "pulse-bg",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 80,
+        "y": 700,
+        "width": 80,
+        "height": 80,
+        "tokenFill": "accent",
+        "z": 3,
+        "morphId": "pulse-bg"
+      }
+    ]
+  }
+}

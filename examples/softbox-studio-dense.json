@@ -1,0 +1,119 @@
+{
+  "name": "Softbox Studio • Set notes",
+  "description": "Production studio lookbook — charcoal, warm gel light, call sheet and kit notes.",
+  "brand": {
+    "colors": {
+      "bg": "#141210",
+      "surface": "#221E1B",
+      "surface_color": "#2C2723",
+      "ink": "#F3EDE6",
+      "muted": "#A89A8E",
+      "accent": "#E8A05C",
+      "line": "#3A322C"
+    },
+    "fonts": {
+      "display": "Arial",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "softbox-studio"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Softbox Studio",
+        "items": [
+          "Set notes · Day 02",
+          "02"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "On set",
+        "items": [
+          "Key light",
+          "Nanlite softbox camera-left. Keep the curtain deep red and out of specular highlights.",
+          "Fill pass",
+          "Panel on low power camera-right. We want cheek light, not a second sun."
+        ],
+        "photoQuery": "07c71ad452"
+      },
+      {
+        "role": "feature",
+        "title": "Call sheet",
+        "items": [
+          "08:00   Grip load-in",
+          "Softboxes, stands, and the wood riser for the desk insert.",
+          "09:30   Talent ready",
+          "Wardrobe black. Headphones as prop only for the first three frames.",
+          "11:00   Desk insert",
+          "Monitor shows a real timeline. No fake UI. Plant stays in frame left.",
+          "14:00   Portrait wall",
+          "Neutral gray. Soft smile. Keep the vignette honest."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Edit bay",
+        "items": [
+          "Color pass",
+          "Warm wood and orange keys stay. Push shadows toward charcoal, not blue.",
+          "Delivery",
+          "Export stills at slide size. Motion tests wait until the stills are approved."
+        ],
+        "photoQuery": "0aaf07e051"
+      },
+      {
+        "role": "feature",
+        "title": "Talent notes",
+        "items": [
+          "Wardrobe",
+          "Matte black layers. No logos. Texture over shine.",
+          "Expression",
+          "Quiet confidence. Eyes to lens. Soft smile only.",
+          "Hands",
+          "Rest natural. If holding a prop, keep knuckles relaxed."
+        ],
+        "photoQuery": "01bdf201e1"
+      },
+      {
+        "role": "feature",
+        "title": "Wrap when it is right.",
+        "items": [
+          "Softbox Studio"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "softbox-studio-masthead"
+    },
+    {
+      "role": "feature",
+      "variant": "softbox-studio-onset"
+    },
+    {
+      "role": "feature",
+      "variant": "softbox-studio-callsheet"
+    },
+    {
+      "role": "feature",
+      "variant": "softbox-studio-editbay"
+    },
+    {
+      "role": "feature",
+      "variant": "softbox-studio-talent"
+    },
+    {
+      "role": "feature",
+      "variant": "softbox-studio-closing"
+    }
+  ]
+}

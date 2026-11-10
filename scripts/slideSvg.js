@@ -55,7 +55,13 @@ function ensureFont(family) {
   const file = fontFile(family);
   if (file) {
     if (!registeredFonts.has(family)) {
-      registerFont(file, { family: canvasFamily(family) });
+      try {
+        registerFont(file, { family: canvasFamily(family) });
+      } catch (error) {
+        // Some Windows font collections cannot be registered by node-canvas.
+        // Let the existing installed-font/fallback path handle that family.
+        return hasRegisteredFont(family) ? systemFontPath(family) || true : null;
+      }
       registeredFonts.add(family);
     }
     return file;
@@ -78,6 +84,7 @@ const CANVAS_FONT_ALIASES = {
   Poppins: "Candara",
   "Open Sans": "Calibri",
   Orbitron: "Impact",
+  "Arial Black": "Archivo Black",
 };
 
 function canvasPaintFamily(family) {
@@ -89,26 +96,42 @@ function fontCss(style, family) {
   const size = Number(style.fontSize);
   const weight = Number(style.fontWeight);
   const paintFamily = canvasPaintFamily(family);
+  // Faces that are already black/heavy break when canvas asks for "Family Bold".
+  const alreadyHeavy = /black|heavy|impact|archivo black/i.test(String(family || "") + " " + String(paintFamily || ""));
   if (hasRegisteredFont(paintFamily) || hasRegisteredFont(family)) {
     const face = hasRegisteredFont(paintFamily) ? paintFamily : family;
-    const bold = weight >= 600 ? "bold " : "";
+    const bold = weight >= 600 && !alreadyHeavy ? "bold " : "";
     return bold + size + 'px "' + face + '"';
   }
   if (family === "Georgia" && weight >= 600) return "bold " + size + "px Georgia";
   if (fontFile(family)) return size + "px " + canvasFamily(family);
-  if (weight) return weight + " " + size + 'px "' + family + '"';
+  if (weight && !alreadyHeavy) return weight + " " + size + 'px "' + family + '"';
   return size + 'px "' + family + '"';
 }
 
 const drawnFonts = new Map();
 
-function drawFont(family) {
-  if (drawnFonts.has(family)) return drawnFonts.get(family);
-  const file = fontFile(family);
-  if (!file) return null;
-  const font = opentype.parse(fs.readFileSync(file));
-  drawnFonts.set(family, font);
-  return font;
+function drawFont(family, weight) {
+  const w = Number(weight) || 400;
+  const bucket = w >= 800 ? "black" : w >= 600 ? "bold" : "reg";
+  const key = String(family || "") + ":" + bucket;
+  if (drawnFonts.has(key)) return drawnFonts.get(key);
+  let file = null;
+  if (w >= 600) file = systemFontPath(family, w >= 800 ? 900 : 700);
+  if (!file) file = fontFile(family);
+  if (!file) file = systemFontPath(family, 400);
+  if (!file || file === true || !fs.existsSync(file)) {
+    drawnFonts.set(key, null);
+    return null;
+  }
+  try {
+    const font = opentype.parse(fs.readFileSync(file));
+    drawnFonts.set(key, font);
+    return font;
+  } catch (error) {
+    drawnFonts.set(key, null);
+    return null;
+  }
 }
 
 function letterGap(style) {
@@ -122,13 +145,40 @@ function trackingExtra(text, style) {
   return Math.max(0, Array.from(String(text)).length - 1) * gap;
 }
 
-function paintGlyphs(ctx, family, text, x, yTop, size, color, spacing, treatment) {
-  const font = drawFont(family);
-  if (!font) return false;
+/** Advance width using the same OpenType face paintGlyphRun draws with. */
+function glyphRunWidth(font, text, size, gap) {
+  if (!font) return null;
+  const scale = size / (font.unitsPerEm || 1000);
+  const chars = Array.from(String(text));
+  let width = 0;
+  chars.forEach((char, index) => {
+    let glyph;
+    try {
+      glyph = font.charToGlyph(char);
+    } catch (error) {
+      width += size * 0.55;
+      if (index < chars.length - 1) width += gap;
+      return;
+    }
+    width += (glyph.advanceWidth || 0) * scale;
+    if (index < chars.length - 1) width += gap;
+  });
+  return width;
+}
+
+function shadeHex(hex, amount) {
+  const raw = String(hex || "#000000").replace("#", "");
+  if (!/^[0-9a-fA-F]{6}$/.test(raw)) return hex || "#000000";
+  const n = parseInt(raw, 16);
+  const r = Math.max(0, Math.min(255, ((n >> 16) & 255) + amount));
+  const g = Math.max(0, Math.min(255, ((n >> 8) & 255) + amount));
+  const b = Math.max(0, Math.min(255, (n & 255) + amount));
+  return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+}
+
+function paintGlyphRun(ctx, font, text, x, yTop, size, color, gap, hollow) {
   const scale = size / (font.unitsPerEm || 1000);
   const baseline = yTop + (font.ascender || font.unitsPerEm || 1000) * scale;
-  const gap = Number(spacing) || 0;
-  const hollow = treatment === "outline";
   const chars = Array.from(String(text));
   let cursor = x;
   chars.forEach((char, index) => {
@@ -144,7 +194,6 @@ function paintGlyphs(ctx, family, text, x, yTop, size, color, spacing, treatment
     if (hollow) {
       outline.fill = null;
       outline.stroke = color;
-      // Typography-as-art: ~2px hollow stroke on display type
       outline.strokeWidth = 2;
     } else {
       outline.fill = color;
@@ -154,6 +203,48 @@ function paintGlyphs(ctx, family, text, x, yTop, size, color, spacing, treatment
     cursor += (glyph.advanceWidth || 0) * scale;
     if (index < chars.length - 1) cursor += gap;
   });
+}
+
+function depthShade(color, stepIndex) {
+  // Keep extrusion readable on near-black ink: step toward pure black, not muddy midtones.
+  const raw = String(color || "#000000").replace("#", "");
+  if (!/^[0-9a-fA-F]{6}$/.test(raw)) return "#000000";
+  const n = parseInt(raw, 16);
+  const r = (n >> 16) & 255;
+  const g = (n >> 8) & 255;
+  const b = n & 255;
+  const lum = (r + g + b) / 3;
+  if (lum < 60) return "#000000";
+  return shadeHex(color, -24 - stepIndex * 12);
+}
+
+function paintGlyphs(ctx, family, text, x, yTop, size, color, spacing, treatment, style) {
+  const font = drawFont(family, style && style.fontWeight);
+  if (!font) return false;
+  const gap = Number(spacing) || 0;
+  const hollow = treatment === "outline";
+  if (treatment === "offset-3d") {
+    const steps = Math.max(3, Math.min(8, Number(style && style.offsetSteps) || 6));
+    const dx = Number(style && style.offsetX) || 6;
+    const dy = Number(style && style.offsetY) || 6;
+    // Back → front: every layer shares the same origin as the face (no per-layer recenter).
+    for (let i = steps; i >= 1; i--) {
+      paintGlyphRun(ctx, font, text, x + dx * i, yTop + dy * i, size, depthShade(color, i), gap, false);
+    }
+    paintGlyphRun(ctx, font, text, x, yTop, size, color, gap, false);
+    return true;
+  }
+  if (treatment === "long-shadow") {
+    const length = Math.max(12, Number(style && style.shadowLength) || 48);
+    const step = Math.max(2, Number(style && style.shadowStep) || 3);
+    const shade = depthShade(color, 3);
+    for (let d = length; d >= step; d -= step) {
+      paintGlyphRun(ctx, font, text, x + d * 0.7, yTop + d * 0.7, size, shade, gap, false);
+    }
+    paintGlyphRun(ctx, font, text, x, yTop, size, color, gap, false);
+    return true;
+  }
+  paintGlyphRun(ctx, font, text, x, yTop, size, color, gap, hollow);
   return true;
 }
 
@@ -411,10 +502,14 @@ function loadPhoto(url, warn, where) {
     return null;
   }
   const rel = String(url).replace(/\\/g, "/");
-  const asset = rel.startsWith("assets/decorations/");
-  const root = asset
+  const assetDecor = rel.startsWith("assets/decorations/");
+  const assetCache = rel.startsWith("assets/cache/");
+  const asset = assetDecor || assetCache;
+  const root = assetDecor
     ? path.resolve(__dirname, "..", "assets", "decorations")
-    : path.resolve(PHOTO_ROOT);
+    : assetCache
+      ? path.resolve(__dirname, "..", "assets", "cache")
+      : path.resolve(PHOTO_ROOT);
   const file = asset
     ? path.resolve(__dirname, "..", rel)
     : path.resolve(PHOTO_ROOT, rel);
@@ -459,7 +554,9 @@ function placement(img, box, content, warn, where) {
     return { x: box.x, y: box.y, w: iw, h: ih };
   }
   if (content.fit === "cover") {
-    const scale = Math.max(box.width / iw, box.height / ih);
+    const zoomRaw = content.zoom != null ? Number(content.zoom) : 1;
+    const zoom = Number.isFinite(zoomRaw) && zoomRaw > 1 ? Math.min(2.5, zoomRaw) : 1;
+    const scale = Math.max(box.width / iw, box.height / ih) * zoom;
     const sw = box.width / scale;
     const sh = box.height / scale;
     return {
@@ -546,8 +643,16 @@ function resolvedFamily(style, warn, where) {
 }
 
 function widthOfText(text, style, family) {
+  const size = Number(style.fontSize);
+  const gap = letterGap(style);
+  // Prefer OpenType advances whenever glyph paint will use the same face —
+  // node-canvas measureText often resolves a different system metric on Windows,
+  // which under-reports width and collapses word spacing (e.g. "Tonight's board").
+  const face = drawFont(family, style && style.fontWeight);
+  const glyphWidth = glyphRunWidth(face, text, size, gap);
+  if (glyphWidth != null) return glyphWidth;
   const base = fontFile(family)
-    ? measureWidth(family, text, Number(style.fontSize))
+    ? measureWidth(family, text, size)
     : measured(text, style, family);
   return base + trackingExtra(text, style);
 }
@@ -590,6 +695,11 @@ function elementRuns(element, slide, tokens) {
       shadowColor: span.shadowColor || base.shadowColor || "",
       typeTreatment: span.typeTreatment || base.typeTreatment || "solid",
       strokeWidth: span.strokeWidth != null ? span.strokeWidth : base.strokeWidth,
+      offsetSteps: base.offsetSteps,
+      offsetX: base.offsetX,
+      offsetY: base.offsetY,
+      shadowLength: base.shadowLength,
+      shadowStep: base.shadowStep,
     };
     const raw = String(span.text == null ? "" : span.text);
     const parts = raw.split("\n");
@@ -991,8 +1101,23 @@ function paintText(ctx, element, slide, warn, where, wrap, tokens) {
   if (!lines.length) return;
   ctx.save();
   if (element.opacity != null) ctx.globalAlpha *= Number(element.opacity);
+  let baseTreatment = (element.textStyle && element.textStyle.typeTreatment) || "solid";
+  // Multi-line depth stacks collide — force a flat fallback at paint time.
+  const plain = lines.map((line) => line.map((p) => p.text).join("")).join("\n");
+  if ((baseTreatment === "offset-3d" || baseTreatment === "long-shadow") && (lines.length > 1 || Array.from(plain.replace(/\s+/g, " ").trim()).length > 14)) {
+    baseTreatment = "solid";
+    lines.forEach((line) => line.forEach((piece) => {
+      piece.style = Object.assign({}, piece.style, { typeTreatment: "solid" });
+    }));
+  }
+  const pad =
+    baseTreatment === "offset-3d"
+      ? Math.max(18, (Number(element.textStyle.offsetSteps) || 6) * Math.max(Number(element.textStyle.offsetX) || 6, Number(element.textStyle.offsetY) || 6))
+      : baseTreatment === "long-shadow"
+        ? Math.max(24, Number(element.textStyle.shadowLength) || 48)
+        : 0;
   ctx.beginPath();
-  ctx.rect(element.x, element.y, element.width, element.height);
+  ctx.rect(element.x - 2, element.y - 2, element.width + pad + 4, element.height + pad + 4);
   ctx.clip();
   ctx.textBaseline = "top";
   const missing = { logged: false };
@@ -1000,28 +1125,24 @@ function paintText(ctx, element, slide, warn, where, wrap, tokens) {
   lines.forEach((line) => {
     const align = line[0].style.textAlign;
     const lineWidth = line.reduce((sum, piece) => sum + piece.width, 0);
+    // Shared line origin — every depth layer uses this same aligned start.
     let x = element.x;
     if (align === "center") x = element.x + (element.width - lineWidth) / 2;
     else if (align === "right") x = element.x + element.width - lineWidth;
+    const lineOriginX = x;
     line.forEach((piece) => {
       if (!piece.style.color) {
         warn(where + ": missing text color");
         return;
       }
-      if (piece.style.shadowColor) {
-        ctx.shadowColor = piece.style.shadowColor;
-        ctx.shadowBlur = 8;
-        ctx.shadowOffsetX = 0;
-        ctx.shadowOffsetY = 0;
-      } else {
-        ctx.shadowColor = "transparent";
-        ctx.shadowBlur = 0;
-        ctx.shadowOffsetX = 0;
-        ctx.shadowOffsetY = 0;
-      }
+      ctx.shadowColor = "transparent";
+      ctx.shadowBlur = 0;
+      ctx.shadowOffsetX = 0;
+      ctx.shadowOffsetY = 0;
       const size = Number(piece.style.fontSize);
-      const treatment = piece.style.typeTreatment || (style && style.typeTreatment);
-      const painted = fontFile(piece.family)
+      const treatment = piece.style.typeTreatment || baseTreatment;
+      const canGlyph = !!(fontFile(piece.family) || systemFontPath(piece.family, piece.style.fontWeight));
+      const painted = canGlyph
         && paintGlyphs(
           ctx,
           piece.family,
@@ -1031,7 +1152,8 @@ function paintText(ctx, element, slide, warn, where, wrap, tokens) {
           size,
           piece.style.color,
           letterGap(piece.style),
-          treatment
+          treatment,
+          piece.style
         );
       if (!painted) {
         ctx.font = fontCss(piece.style, piece.family);
@@ -1039,6 +1161,19 @@ function paintText(ctx, element, slide, warn, where, wrap, tokens) {
           ctx.strokeStyle = piece.style.color;
           ctx.lineWidth = 2;
           ctx.strokeText(piece.text, x, y + size * 0.8);
+        } else if (treatment === "offset-3d" || treatment === "long-shadow") {
+          const steps = treatment === "long-shadow"
+            ? Math.ceil((Number(piece.style.shadowLength) || 48) / (Number(piece.style.shadowStep) || 3))
+            : Math.max(3, Number(piece.style.offsetSteps) || 6);
+          const dx = treatment === "long-shadow" ? 0.7 * (Number(piece.style.shadowStep) || 3) : (Number(piece.style.offsetX) || 6);
+          const dy = treatment === "long-shadow" ? 0.7 * (Number(piece.style.shadowStep) || 3) : (Number(piece.style.offsetY) || 6);
+          // Layers share the same piece origin (aligned with face); do not re-center per layer.
+          for (let i = steps; i >= 1; i--) {
+            ctx.fillStyle = depthShade(piece.style.color, i);
+            paintFallbackText(ctx, piece.text, x + dx * i, y + dy * i, piece.style, piece.family);
+          }
+          ctx.fillStyle = piece.style.color;
+          paintFallbackText(ctx, piece.text, x, y, piece.style, piece.family);
         } else {
           ctx.fillStyle = piece.style.color;
           paintFallbackText(ctx, piece.text, x, y, piece.style, piece.family);
@@ -1046,6 +1181,8 @@ function paintText(ctx, element, slide, warn, where, wrap, tokens) {
       }
       x += piece.width;
     });
+    // Silence unused warning for lineOriginX kept for alignment clarity in reviews.
+    void lineOriginX;
     y += lineLead(line, missing, where, warn);
   });
   ctx.restore();

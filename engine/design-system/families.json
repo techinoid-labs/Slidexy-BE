@@ -1,0 +1,318 @@
+{
+  "version": 1,
+  "rules": {
+    "canvas": [1600, 900],
+    "safeMargin": 70,
+    "titleMaxCharacters": 55,
+    "bodyMaxCharacters": 240,
+    "minimumBodyFont": 28,
+    "rejectTruncation": true,
+    "rejectMockAssets": true,
+    "adjacentSilhouetteRepeat": false,
+    "requireIllustrativeDataLabel": true
+  },
+  "families": [
+    {
+      "id": "play-lab",
+      "name": "PLAY / LAB",
+      "character": "Oversized symbols, asymmetric fields and rising steps",
+      "brand": {"colors":{"bg":"#F4F0E8","surface":"#F4F0E8","surface_color":"#E8E2D8","ink":"#191919","muted":"#605B55","accent":"#FF5A24","line":"#D4CEC4"},"fonts":{"display":"Archivo Black","body":"Arial"}},
+      "defaultTitleTreatment": "offset-3d",
+      "textStyles": {
+        "display": {"fontWeight": 900, "letterSpacing": -1.0, "lineHeight": 0.95, "typeTreatment": "solid", "offsetSteps": 6, "offsetX": 6, "offsetY": 6},
+        "headline": {"fontWeight": 800, "letterSpacing": -0.3, "lineHeight": 1.08},
+        "kicker": {"fontWeight": 700, "letterSpacing": 1.2, "uppercase": true},
+        "body": {"fontWeight": 400, "letterSpacing": 0, "lineHeight": 1.3},
+        "stat": {"fontWeight": 900, "letterSpacing": -1.0, "lineHeight": 0.95, "typeTreatment": "solid", "offsetSteps": 5, "offsetX": 5, "offsetY": 5},
+        "quote": {"fontWeight": 700, "letterSpacing": -0.2, "lineHeight": 1.1}
+      },
+      "assets": {"provider":"iconify","approvedIds":["material-symbols:rocket","material-symbols:fingerprint","mdi:flask"],"treatment":"monochrome accent","maximumIconsPerSlide":1},
+      "generator":"scripts/generate-play-lab.ts"
+    },
+    {
+      "id": "editorial",
+      "name": "Fieldnotes / Editorial",
+      "character": "Serif statements, generous margins, side annotations and fine rules",
+      "brand":{"colors":{"bg":"#EEE8DC","surface":"#EEE8DC","surface_color":"#E4DCCD","ink":"#302C25","muted":"#62594D","accent":"#A8482D","line":"#C3B8A6"},"fonts":{"display":"Georgia","body":"Calibri"}},
+      "defaultTitleTreatment": "solid",
+      "textStyles": {
+        "display": {"fontWeight": 700, "letterSpacing": -0.4, "lineHeight": 1.08, "typeTreatment": "solid"},
+        "headline": {"fontWeight": 700, "letterSpacing": -0.2, "lineHeight": 1.14},
+        "kicker": {"fontWeight": 600, "letterSpacing": 2.0, "uppercase": true},
+        "body": {"fontWeight": 400, "letterSpacing": 0.1, "lineHeight": 1.4},
+        "stat": {"fontWeight": 700, "letterSpacing": -0.8, "lineHeight": 1.0},
+        "quote": {"fontWeight": 400, "letterSpacing": 0, "lineHeight": 1.28, "typeTreatment": "outline"}
+      },
+      "assets":{"treatment":"tactile crops or typography","maximumIconsPerSlide":0},
+      "generator":"scripts/generate-library-families.ts"
+    },
+    {
+      "id": "executive",
+      "name": "North / Executive",
+      "character": "Bold evidence, concise conclusions, dark panels and lime markers",
+      "brand":{"colors":{"bg":"#F3F5F5","surface":"#F3F5F5","surface_color":"#E4ECEA","ink":"#123B3B","muted":"#466464","accent":"#D4F265","line":"#C5D5D2"},"fonts":{"display":"Arial","body":"Arial"}},
+      "defaultTitleTreatment": "solid",
+      "textStyles": {
+        "display": {"fontWeight": 800, "letterSpacing": -0.5, "lineHeight": 1.05, "typeTreatment": "solid"},
+        "headline": {"fontWeight": 700, "letterSpacing": -0.2, "lineHeight": 1.1},
+        "kicker": {"fontWeight": 700, "letterSpacing": 1.8, "uppercase": true},
+        "body": {"fontWeight": 400, "letterSpacing": 0, "lineHeight": 1.32},
+        "stat": {"fontWeight": 800, "letterSpacing": -1.0, "lineHeight": 0.95},
+        "quote": {"fontWeight": 600, "letterSpacing": 0, "lineHeight": 1.2}
+      },
+      "assets":{"treatment":"native evidence and tables","maximumIconsPerSlide":0},
+      "generator":"scripts/generate-library-families.ts"
+    },
+    {
+      "id": "sunday-roast",
+      "name": "Sunday Roast",
+      "character": "Warm cafe lookbook — checkered masthead, photo splits, menu board and tasting notes",
+      "brand": {"colors":{"bg":"#FFF3DC","surface":"#F0C1AA","surface_color":"#F7E2C8","ink":"#422626","muted":"#7A5650","accent":"#A92737","line":"#BF9D8C"},"fonts":{"display":"Georgia","body":"Calibri"}},
+      "defaultTitleTreatment": "solid",
+      "textStyles": {
+        "display": {"fontWeight": 700, "letterSpacing": -0.4, "lineHeight": 1.05, "typeTreatment": "solid"},
+        "headline": {"fontWeight": 700, "letterSpacing": -0.2, "lineHeight": 1.1},
+        "kicker": {"fontWeight": 700, "letterSpacing": 1.6, "uppercase": true},
+        "body": {"fontWeight": 400, "letterSpacing": 0, "lineHeight": 1.28},
+        "stat": {"fontWeight": 700, "letterSpacing": -0.6, "lineHeight": 1.0},
+        "quote": {"fontWeight": 400, "letterSpacing": 0, "lineHeight": 1.25}
+      },
+      "assets": {"treatment": "lookbook photography", "maximumIconsPerSlide": 0},
+      "generator": "scripts/render-sunday-roast.ts --dense"
+    },
+    {
+      "id": "night-market",
+      "name": "Night Market",
+      "character": "Street-food lookbook — charcoal, amber, lantern energy",
+      "brand": {"colors":{"bg":"#161210","surface":"#241E1A","surface_color":"#2E2620","ink":"#F6EFE6","muted":"#B7A89A","accent":"#FF6B2C","line":"#3D332C"},"fonts":{"display":"Archivo Black","body":"Arial"}},
+      "defaultTitleTreatment": "solid",
+      "generator": "scripts/generate-lookbook-batch.ts --only=night-market-dense"
+    },
+    {
+      "id": "harbor-ops",
+      "name": "Harbor Ops",
+      "character": "Logistics briefing — slate, teal markers, ownership clarity",
+      "brand": {"colors":{"bg":"#F1F5F7","surface":"#DCE8EC","surface_color":"#E8F0F3","ink":"#0F2A3D","muted":"#4A6675","accent":"#0D9488","line":"#B7CBD2"},"fonts":{"display":"Arial","body":"Calibri"}},
+      "defaultTitleTreatment": "solid",
+      "generator": "scripts/generate-lookbook-batch.ts --only=harbor-ops-dense"
+    },
+    {
+      "id": "atelier-runway",
+      "name": "Atelier Runway",
+      "character": "Fashion lookbook — ivory paper, oxblood, couture serif",
+      "brand": {"colors":{"bg":"#F6F1E8","surface":"#EFE7DA","surface_color":"#E8DECE","ink":"#1A1512","muted":"#5C5147","accent":"#7B2D26","line":"#D8CBB6"},"fonts":{"display":"Georgia","body":"Calibri"}},
+      "defaultTitleTreatment": "solid",
+      "generator": "scripts/generate-lookbook-batch.ts --only=atelier-runway-dense"
+    },
+    {
+      "id": "arcade-signal",
+      "name": "Arcade Signal",
+      "character": "Esports lounge — ink field, magenta neon, letterbox photo and playlist rail",
+      "brand": {"colors":{"bg":"#0B0B12","surface":"#161622","surface_color":"#1E1E2C","ink":"#F4F0FF","muted":"#9B95B0","accent":"#FF3D81","line":"#2C2C3C"},"fonts":{"display":"Archivo Black","body":"Arial"}},
+      "defaultTitleTreatment": "solid",
+      "generator": "scripts/generate-lookbook-batch-2.ts --only=arcade-signal-dense"
+    },
+    {
+      "id": "pantry-counter",
+      "name": "Pantry Counter",
+      "character": "Cafe pantry — green tile, warm wood, shelf split and three-column board",
+      "brand": {"colors":{"bg":"#F3EDE3","surface":"#E4D9C8","surface_color":"#EBE2D4","ink":"#1F2A24","muted":"#5C6B62","accent":"#2F6B4F","line":"#C9BBA6"},"fonts":{"display":"Georgia","body":"Calibri"}},
+      "defaultTitleTreatment": "solid",
+      "generator": "scripts/generate-lookbook-batch-2.ts --only=pantry-counter-dense"
+    },
+    {
+      "id": "softbox-studio",
+      "name": "Softbox Studio",
+      "character": "Production studio — charcoal, warm gel, call sheet and talent notes",
+      "brand": {"colors":{"bg":"#141210","surface":"#221E1B","surface_color":"#2C2723","ink":"#F3EDE6","muted":"#A89A8E","accent":"#E8A05C","line":"#3A322C"},"fonts":{"display":"Arial","body":"Calibri"}},
+      "defaultTitleTreatment": "solid",
+      "generator": "scripts/generate-lookbook-batch-2.ts --only=softbox-studio-dense"
+    },
+    {
+      "id": "volt-brief",
+      "name": "Volt Brief",
+      "character": "Industrial briefing — KPI tiles, ribbon timeline, L-cut photo field",
+      "brand": {"colors":{"bg":"#111418","surface":"#1C2228","surface_color":"#252C34","ink":"#E8EEF2","muted":"#8A97A3","accent":"#F5A623","line":"#343C46"},"fonts":{"display":"Archivo Black","body":"Arial"}},
+      "defaultTitleTreatment": "solid",
+      "generator": "scripts/generate-design-first-batch.ts --only=volt-brief-dense"
+    },
+    {
+      "id": "folio-ink",
+      "name": "Folio Ink",
+      "character": "Typography journal — giant type, margin notes, pull quote, index rows",
+      "brand": {"colors":{"bg":"#F7F2E8","surface":"#EFE8DA","surface_color":"#E6DDCC","ink":"#1A1714","muted":"#6A6158","accent":"#9C2F2F","line":"#D2C6B4"},"fonts":{"display":"Georgia","body":"Georgia"}},
+      "defaultTitleTreatment": "solid",
+      "generator": "scripts/generate-design-first-batch.ts --only=folio-ink-dense"
+    },
+    {
+      "id": "admit-one",
+      "name": "Admit One",
+      "character": "Event ticket — stub split, perforation, seat grid, barcode, punch hole",
+      "brand": {"colors":{"bg":"#0E0A14","surface":"#1A1424","surface_color":"#241C32","ink":"#F6F0FF","muted":"#A89BB8","accent":"#C8F542","line":"#3A2F4A"},"fonts":{"display":"Archivo Black","body":"Arial"}},
+      "defaultTitleTreatment": "solid",
+      "generator": "scripts/generate-design-first-batch.ts --only=admit-one-dense"
+    },
+    {
+      "id": "side-a",
+      "name": "Side A",
+      "character": "Album launch — record half out of its sleeve, side A/B tracklist, waveform, tour pills",
+      "brand": {"colors":{"bg":"#EDE6D8","surface":"#141414","surface_color":"#262626","card_bg":"#4A4A4A","ink":"#141414","muted":"#6E675C","accent":"#FF5A1F","accent2":"#2F45FF","line":"#D3CABA"},"fonts":{"display":"Syne","body":"Space Grotesk"}},
+      "defaultTitleTreatment": "solid",
+      "textStyles": {"display": {"fontWeight": 700, "letterSpacing": -1.0, "lineHeight": 1.0}, "kicker": {"fontWeight": 600, "letterSpacing": 2.0, "uppercase": true}},
+      "generator": "scripts/generate-signature-batch.ts --only=side-a-lp"
+    },
+    {
+      "id": "channel-nine",
+      "name": "Channel Nine",
+      "character": "Broadcast media kit — test-card colour bars, programme guide grid, lower third, VU meters",
+      "brand": {"colors":{"bg":"#0D0D0F","surface":"#EDEDE6","surface_color":"#F2C83A","card_bg":"#4CB963","ink":"#EDEDE6","muted":"#9A9AA3","accent":"#E5403A","accent2":"#35BEDD","line":"#3046D8"},"fonts":{"display":"Antonio","body":"Space Grotesk"}},
+      "defaultTitleTreatment": "solid",
+      "textStyles": {"display": {"fontWeight": 700, "letterSpacing": 0, "lineHeight": 1.0}, "kicker": {"fontWeight": 700, "letterSpacing": 2.4, "uppercase": true}},
+      "generator": "scripts/generate-signature-batch.ts --only=channel-nine"
+    },
+    {
+      "id": "mono-quarterly",
+      "name": "Mono Quarterly",
+      "character": "Magazine — masthead cover with barcode, contents numerals, drop-cap opener, hotspot edit",
+      "brand": {"colors":{"bg":"#F4F0E8","surface":"#FFFFFF","surface_color":"#151515","ink":"#151515","muted":"#6A645B","accent":"#C4202F","line":"#D8D1C4"},"fonts":{"display":"Playfair Display","body":"Calibri"}},
+      "defaultTitleTreatment": "solid",
+      "textStyles": {"display": {"fontWeight": 700, "letterSpacing": -0.5, "lineHeight": 1.0}, "kicker": {"fontWeight": 600, "letterSpacing": 2.4, "uppercase": true}},
+      "generator": "scripts/generate-signature-batch.ts --only=mono-quarterly"
+    },
+    {
+      "id": "north-cabin",
+      "name": "North Cabin",
+      "character": "Winter retreat — polaroid stack in falling snow, day polaroids, thermometers, checklist",
+      "brand": {"colors":{"bg":"#1F3A33","surface":"#FBF8F2","surface_color":"#2B4A42","card_bg":"#E6DFD0","ink":"#FBF8F2","muted":"#A9BDB5","accent":"#EF8354","accent2":"#F6C453","line":"#36574E"},"fonts":{"display":"Fraunces","body":"Calibri"}},
+      "defaultTitleTreatment": "solid",
+      "textStyles": {"display": {"fontWeight": 600, "letterSpacing": -0.5, "lineHeight": 1.0}, "kicker": {"fontWeight": 600, "letterSpacing": 2.0, "uppercase": true}},
+      "generator": "scripts/generate-signature-batch.ts --only=north-cabin"
+    },
+    {
+      "id": "gridlock",
+      "name": "Gridlock",
+      "character": "Pit-lane radio — call plate cover, compound pills, sector deltas, pit wall cards, lights-out close",
+      "brand": {"colors":{"bg":"#070B14","surface":"#121826","surface_color":"#1B2436","ink":"#F4F6FA","muted":"#8B93A7","accent":"#FFCC00","line":"#2A3348"},"fonts":{"display":"Antonio","body":"Space Grotesk"}},
+      "defaultTitleTreatment": "solid",
+      "textStyles": {"display": {"fontWeight": 700, "letterSpacing": 2.0, "lineHeight": 0.95}, "kicker": {"fontWeight": 600, "letterSpacing": 2.0, "uppercase": true}},
+      "generator": "scripts/generate-element-batch.ts --only=gridlock-radio"
+    },
+    {
+      "id": "lantern",
+      "name": "Lantern",
+      "character": "Night cafe — glowing window cover, taped menu slips, mosaic tiles, glass notes, OPEN neon",
+      "brand": {"colors":{"bg":"#1A1410","surface":"#2A211A","surface_color":"#F3D5B5","ink":"#FFF6EC","muted":"#B9A28C","accent":"#FF8A4C","line":"#3D3228"},"fonts":{"display":"Fraunces","body":"Calibri"}},
+      "defaultTitleTreatment": "solid",
+      "textStyles": {"display": {"fontWeight": 400, "letterSpacing": -0.5, "lineHeight": 0.95}, "kicker": {"fontWeight": 600, "letterSpacing": 2.0, "uppercase": true}},
+      "generator": "scripts/generate-element-batch.ts --only=lantern-counter"
+    },
+    {
+      "id": "grade",
+      "name": "Grade",
+      "character": "Color suite — waveform cover, RGB columns, lift/gamma/gain wheels, node chain, timeline",
+      "brand": {"colors":{"bg":"#0D0F12","surface":"#171A20","surface_color":"#22262F","ink":"#F2F4F7","muted":"#8B919C","accent":"#6C8CFF","line":"#2C313C"},"fonts":{"display":"Syne","body":"IBM Plex Mono"}},
+      "defaultTitleTreatment": "solid",
+      "textStyles": {"display": {"fontWeight": 800, "letterSpacing": -1.0, "lineHeight": 0.95}, "kicker": {"fontWeight": 600, "letterSpacing": 2.0, "uppercase": true}},
+      "generator": "scripts/generate-element-batch.ts --only=grade-suite"
+    },
+    {
+      "id": "hearth",
+      "name": "Hearth",
+      "character": "Interior folio — fireplace surround cover, tile stack, roman room list, material swatches, ember close",
+      "brand": {"colors":{"bg":"#F4EEE6","surface":"#E7DFD4","surface_color":"#2B2B2B","ink":"#1C1A17","muted":"#7A736A","accent":"#C45C26","line":"#D4CBBF"},"fonts":{"display":"Playfair Display","body":"Calibri"}},
+      "defaultTitleTreatment": "solid",
+      "textStyles": {"display": {"fontWeight": 400, "letterSpacing": -0.5, "lineHeight": 0.95}, "kicker": {"fontWeight": 600, "letterSpacing": 2.0, "uppercase": true}},
+      "generator": "scripts/generate-element-batch.ts --only=hearth-folio"
+    },
+    {
+      "id": "oxide",
+      "name": "Oxide",
+      "character": "Street mural — outline type over paint texture, drip swatches, stencil steps, tag close",
+      "brand": {"colors":{"bg":"#0E0E0E","surface":"#1A1A1A","surface_color":"#2A2A2A","ink":"#F5F0E8","muted":"#9A958C","accent":"#FF3D8B","line":"#333333"},"fonts":{"display":"Archivo Black","body":"Space Grotesk"}},
+      "defaultTitleTreatment": "outline",
+      "textStyles": {"display": {"fontWeight": 900, "letterSpacing": -1.0, "lineHeight": 0.95}, "kicker": {"fontWeight": 600, "letterSpacing": 2.0, "uppercase": true}},
+      "generator": "scripts/generate-object-batch.ts --only=oxide-atelier"
+    },
+    {
+      "id": "gulhane",
+      "name": "Gülhane",
+      "character": "Transit line — destination board cover, stop dots, timetable rows, fare cards, alight signal",
+      "brand": {"colors":{"bg":"#F4F1EC","surface":"#FFFFFF","surface_color":"#0B3D91","ink":"#121212","muted":"#6B6B6B","accent":"#E31C23","line":"#D8D4CC"},"fonts":{"display":"Antonio","body":"IBM Plex Mono"}},
+      "defaultTitleTreatment": "solid",
+      "textStyles": {"display": {"fontWeight": 700, "letterSpacing": 2.0, "lineHeight": 0.95}, "kicker": {"fontWeight": 600, "letterSpacing": 2.0, "uppercase": true}},
+      "generator": "scripts/generate-object-batch.ts --only=gulhane-line"
+    },
+    {
+      "id": "darkroom",
+      "name": "Darkroom",
+      "character": "Photo lab — film-strip cover, contact sheet, exposure dials, chemical baths, fibre print",
+      "brand": {"colors":{"bg":"#111111","surface":"#1C1C1C","surface_color":"#F2EDE4","ink":"#F2EDE4","muted":"#8A8A8A","accent":"#C4A574","line":"#2A2A2A"},"fonts":{"display":"Playfair Display","body":"IBM Plex Mono"}},
+      "defaultTitleTreatment": "solid",
+      "textStyles": {"display": {"fontWeight": 400, "letterSpacing": -0.5, "lineHeight": 0.95}, "kicker": {"fontWeight": 600, "letterSpacing": 2.0, "uppercase": true}},
+      "generator": "scripts/generate-object-batch.ts --only=darkroom-proof"
+    },
+    {
+      "id": "rosso",
+      "name": "Rosso",
+      "character": "Private garage — red underglow platform, spec row, bay lineup, telemetry bars, ignition close",
+      "brand": {"colors":{"bg":"#0A0A0A","surface":"#141414","surface_color":"#1E1E1E","ink":"#F5F5F5","muted":"#8A8A8A","accent":"#E10600","line":"#2A2A2A"},"fonts":{"display":"Syne","body":"Space Grotesk"}},
+      "defaultTitleTreatment": "solid",
+      "textStyles": {"display": {"fontWeight": 800, "letterSpacing": -1.0, "lineHeight": 0.95, "shadowLength": 28, "shadowStep": 3}, "kicker": {"fontWeight": 700, "letterSpacing": 2.0, "uppercase": true}},
+      "generator": "scripts/generate-object-batch.ts --only=rosso-bay"
+    },
+    {
+      "id": "tidewater",
+      "name": "Tidewater",
+      "character": "Coastal festival — cream disc over aerial photo, buoy circles, pill crop, sunset close",
+      "brand": {"colors":{"bg":"#0B2E3A","surface":"#F4EBDD","surface_color":"#FFC857","ink":"#F4EBDD","muted":"#9FC3C9","accent":"#EE4F3A","line":"#16485A"},"fonts":{"display":"DM Serif Display","body":"Calibri"}},
+      "defaultTitleTreatment": "solid",
+      "textStyles": {"display": {"fontWeight": 400, "letterSpacing": -0.5, "lineHeight": 1.0}, "kicker": {"fontWeight": 600, "letterSpacing": 2.0, "uppercase": true}},
+      "generator": "scripts/generate-cover-first-batch.ts --only=tidewater-regatta"
+    },
+    {
+      "id": "golden-hour",
+      "name": "Golden Hour",
+      "character": "Luxury listing — arch-cropped photo, serif spec row, roman-numeral rooms, deed quote",
+      "brand": {"colors":{"bg":"#F3ECE2","surface":"#E9DFD2","surface_color":"#2A1E18","ink":"#2A1E18","muted":"#7A6658","accent":"#B5562A","line":"#D6C8B8"},"fonts":{"display":"Instrument Serif","body":"Calibri"}},
+      "defaultTitleTreatment": "solid",
+      "textStyles": {"display": {"fontWeight": 400, "letterSpacing": -0.5, "lineHeight": 0.95}, "kicker": {"fontWeight": 600, "letterSpacing": 2.4, "uppercase": true}},
+      "generator": "scripts/generate-cover-first-batch.ts --only=golden-hour-estate"
+    },
+    {
+      "id": "roast-theory",
+      "name": "Roast Theory",
+      "character": "Coffee poster — long-shadow + outline title over beans, roast-curve bars, origin cards",
+      "brand": {"colors":{"bg":"#140D09","surface":"#24170F","surface_color":"#2E1F15","ink":"#F5E9DA","muted":"#B89C82","accent":"#E07A2F","line":"#3A2A1E"},"fonts":{"display":"Archivo Black","body":"Arial"}},
+      "defaultTitleTreatment": "solid",
+      "textStyles": {"display": {"fontWeight": 900, "letterSpacing": -1.0, "lineHeight": 0.95, "shadowLength": 36, "shadowStep": 3}, "kicker": {"fontWeight": 700, "letterSpacing": 2.0, "uppercase": true}},
+      "generator": "scripts/generate-cover-first-batch.ts --only=roast-theory"
+    },
+    {
+      "id": "idea-wall",
+      "name": "Idea Wall",
+      "character": "Workshop kit — pinned sticky note over a real wall, staggered notes, affinity map, dot vote",
+      "brand": {"colors":{"bg":"#FFFDF7","surface":"#FFE45C","surface_color":"#7BD3F7","ink":"#161616","muted":"#55524A","accent":"#D92638","line":"#E6E1D3"},"fonts":{"display":"Poppins Bold","body":"Poppins"}},
+      "defaultTitleTreatment": "solid",
+      "textStyles": {"kicker": {"fontWeight": 600, "letterSpacing": 1.6, "uppercase": true}},
+      "generator": "scripts/generate-cover-first-batch.ts --only=idea-wall"
+    },
+    {
+      "id": "citrus-almanac",
+      "name": "Citrus Almanac",
+      "character": "12-slide citrus lookbook edition",
+      "generator": "scripts/render-sunday-roast.ts citrus-almanac"
+    },
+    {
+      "id": "after-hours",
+      "name": "After Hours",
+      "character": "12-slide after-hours lookbook edition",
+      "generator": "scripts/render-sunday-roast.ts after-hours"
+    },
+    {
+      "id": "open-volume",
+      "name": "Open Volume",
+      "character": "12-slide architecture lookbook edition",
+      "generator": "scripts/render-sunday-roast.ts open-volume"
+    }
+  ]
+}

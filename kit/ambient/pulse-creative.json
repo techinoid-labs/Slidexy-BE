@@ -1,0 +1,18 @@
+{
+  "id": "ambient/pulse-creative",
+  "kind": "ambient",
+  "effect": "pulse",
+  "steal": "Pulse the signature badge/plate on creative flagship closes.",
+  "target": {
+    "prefer": ["accent", "pulse-bg", "plate", "neon", "badge"]
+  },
+  "params": {
+    "scale": 1.04,
+    "durationMs": 3000,
+    "autoReverse": true,
+    "repeatCount": "indefinite"
+  },
+  "families": ["darkroom", "grade", "gridlock", "gulhane", "oxide", "rosso", "hearth", "lantern"],
+  "roles": ["closing", "feature"],
+  "priority": 15
+}

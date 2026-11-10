@@ -1,0 +1,359 @@
+{
+  "id": "timeline/ref-timeline-continuation",
+  "role": "timeline",
+  "variant": "ref-timeline-continuation",
+  "family": "executive-insight-ref-timeline-continuation",
+  "sourceRef": "ref-timeline-continuation",
+  "designGuide": "executive-insight",
+  "steal": "Narrow two-stage vertical timeline on the left; large section heading and explanatory text on the right. Connector occupies a dedicated rail rather than running behind copy.",
+  "preserveLayout": true,
+  "status": "draft",
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    },
+    "copy1": {
+      "kind": "text",
+      "optional": true
+    },
+    "copy2": {
+      "kind": "text",
+      "optional": true,
+      "from": "steps0.title"
+    },
+    "copy3": {
+      "kind": "text",
+      "optional": true,
+      "from": "steps0.body"
+    },
+    "copy4": {
+      "kind": "text",
+      "optional": true
+    },
+    "copy5": {
+      "kind": "text",
+      "optional": true,
+      "from": "steps1.title"
+    },
+    "copy6": {
+      "kind": "text",
+      "optional": true,
+      "from": "steps1.body"
+    },
+    "copy7": {
+      "kind": "text",
+      "optional": true,
+      "from": "caption"
+    },
+    "copy8": {
+      "kind": "text",
+      "optional": true,
+      "from": "body0"
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 60,
+      "minFont": 48,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy1": {
+      "maxFont": 40,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy2": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy3": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 3,
+      "shrinkMin": 0.9
+    },
+    "copy4": {
+      "maxFont": 40,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy5": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy6": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 3,
+      "shrinkMin": 0.9
+    },
+    "copy7": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy8": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 5,
+      "shrinkMin": 0.9
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    },
+    "copy3": {
+      "kind": "text"
+    },
+    "copy4": {
+      "kind": "text"
+    },
+    "copy5": {
+      "kind": "text"
+    },
+    "copy6": {
+      "kind": "text"
+    },
+    "copy7": {
+      "kind": "text"
+    },
+    "copy8": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "x": 858.33,
+        "y": 166.67,
+        "width": 616.67,
+        "height": 78.33,
+        "z": 4,
+        "morphId": "title",
+        "fontRole": "display",
+        "fontSize": 60,
+        "fontWeight": 300,
+        "tokenColor": "ink",
+        "align": "left",
+        "lineHeight": 1.05,
+        "usePrimitive": false
+      },
+      {
+        "id": "title-rule",
+        "type": "shape",
+        "shape": "rect",
+        "x": 858.33,
+        "y": 249.17,
+        "width": 50,
+        "height": 3.33,
+        "z": 2,
+        "morphId": "title-rule",
+        "tokenFill": "accent"
+      },
+      {
+        "id": "rail-top",
+        "type": "shape",
+        "shape": "rect",
+        "x": 247.5,
+        "y": 0,
+        "width": 0.83,
+        "height": 108.33,
+        "z": 2,
+        "morphId": "rail-top",
+        "tokenFill": "line"
+      },
+      {
+        "id": "stage-icon-1",
+        "type": "text",
+        "slot": "copy1",
+        "x": 225,
+        "y": 166.67,
+        "width": 70,
+        "height": 65,
+        "z": 4,
+        "morphId": "stage-icon-1",
+        "fontRole": "body",
+        "fontSize": 40,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.25,
+        "usePrimitive": false,
+        "literal": "03"
+      },
+      {
+        "id": "stage-title-1",
+        "type": "text",
+        "slot": "copy2",
+        "x": 375,
+        "y": 166.67,
+        "width": 275,
+        "height": 43.2,
+        "z": 4,
+        "morphId": "stage-title-1",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "ink",
+        "align": "left",
+        "lineHeight": 1.3,
+        "usePrimitive": false
+      },
+      {
+        "id": "stage-body-1",
+        "type": "text",
+        "slot": "copy3",
+        "x": 375,
+        "y": 218.33,
+        "width": 275,
+        "height": 108.33,
+        "z": 4,
+        "morphId": "stage-body-1",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.3,
+        "usePrimitive": false
+      },
+      {
+        "id": "rail-mid",
+        "type": "shape",
+        "shape": "rect",
+        "x": 247.5,
+        "y": 271.67,
+        "width": 0.83,
+        "height": 157.5,
+        "z": 2,
+        "morphId": "rail-mid",
+        "tokenFill": "line"
+      },
+      {
+        "id": "stage-icon-2",
+        "type": "text",
+        "slot": "copy4",
+        "x": 225,
+        "y": 488.33,
+        "width": 70,
+        "height": 65,
+        "z": 4,
+        "morphId": "stage-icon-2",
+        "fontRole": "body",
+        "fontSize": 40,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.25,
+        "usePrimitive": false,
+        "literal": "04"
+      },
+      {
+        "id": "stage-title-2",
+        "type": "text",
+        "slot": "copy5",
+        "x": 375,
+        "y": 495.83,
+        "width": 275,
+        "height": 43.2,
+        "z": 4,
+        "morphId": "stage-title-2",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "ink",
+        "align": "left",
+        "lineHeight": 1.3,
+        "usePrimitive": false
+      },
+      {
+        "id": "stage-body-2",
+        "type": "text",
+        "slot": "copy6",
+        "x": 375,
+        "y": 546.67,
+        "width": 275,
+        "height": 116.67,
+        "z": 4,
+        "morphId": "stage-body-2",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.3,
+        "usePrimitive": false
+      },
+      {
+        "id": "subtitle",
+        "type": "text",
+        "slot": "copy7",
+        "x": 858.33,
+        "y": 319.17,
+        "width": 516.67,
+        "height": 43.2,
+        "z": 4,
+        "morphId": "subtitle",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "ink",
+        "align": "left",
+        "lineHeight": 1.3,
+        "usePrimitive": false
+      },
+      {
+        "id": "overview",
+        "type": "text",
+        "slot": "copy8",
+        "x": 858.33,
+        "y": 379.17,
+        "width": 516.67,
+        "height": 169.17,
+        "z": 4,
+        "morphId": "overview",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.32,
+        "usePrimitive": false
+      }
+    ]
+  },
+  "motion": {
+    "transition": "fade",
+    "fallbackTransition": "fade",
+    "durationMs": 500
+  },
+  "implementationNotes": [
+    "Geometry estimated from the supplied raster and scaled to 1600x900.",
+    "Body text raised to readable export floors; copy must fit the original whitespace.",
+    "Soft grain and photographic edge fades replaced by clean crops and flat palette surfaces.",
+    "stage-icon-1: editable step number replaces the reference outline icon.",
+    "stage-icon-2: editable step number replaces the reference outline icon."
+  ]
+}

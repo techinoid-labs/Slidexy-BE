@@ -1,0 +1,104 @@
+{
+  "id": "feature/idea-wall-stick",
+  "role": "feature",
+  "variant": "idea-wall-stick",
+  "family": "idea-wall",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 120,
+      "maxFont": 120,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 30,
+      "maxFont": 30,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "bg",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "surface",
+        "z": 0
+      },
+      {
+        "id": "pin",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 770,
+        "y": 200,
+        "width": 60,
+        "height": 60,
+        "tokenFill": "accent",
+        "z": 1
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 80,
+        "y": 320,
+        "width": 1440,
+        "height": 171,
+        "fontSize": 120,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "textStyleRole": "display",
+        "align": "center",
+        "morphId": "title"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 80,
+        "y": 500,
+        "width": 1440,
+        "height": 50,
+        "fontSize": 30,
+        "slot": "copy0",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "align": "center"
+      }
+    ]
+  }
+}

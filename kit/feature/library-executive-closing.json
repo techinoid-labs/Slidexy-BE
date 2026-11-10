@@ -1,0 +1,104 @@
+{
+  "id": "feature/library-executive-closing",
+  "role": "feature",
+  "variant": "library-executive-closing",
+  "family": "executive",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "body": {
+      "kind": "text",
+      "from": "items2"
+    },
+    "purpose": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "folio": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "art0": {
+      "kind": "text",
+      "from": "items3"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 120,
+      "maxFont": 120,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "art0": {
+      "minFont": 52,
+      "maxFont": 52,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {},
+  "layout": {
+    "elements": [
+      {
+        "id": "dark",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "ink",
+        "z": 1
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "x": 80,
+        "y": 150,
+        "width": 1430,
+        "height": 330,
+        "fontSize": 120,
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "tokenColor": "bg",
+        "z": 4,
+        "morphId": "title"
+      },
+      {
+        "id": "action",
+        "type": "shape",
+        "shape": "rect",
+        "x": 80,
+        "y": 610,
+        "width": 1440,
+        "height": 180,
+        "tokenFill": "accent",
+        "z": 1
+      },
+      {
+        "id": "art0",
+        "type": "text",
+        "slot": "art0",
+        "x": 120,
+        "y": 665,
+        "width": 1350,
+        "height": 90,
+        "fontSize": 52,
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "tokenColor": "ink",
+        "z": 4
+      }
+    ]
+  }
+}

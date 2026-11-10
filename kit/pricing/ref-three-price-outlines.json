@@ -1,0 +1,467 @@
+{
+  "id": "pricing/ref-three-price-outlines",
+  "role": "pricing",
+  "variant": "ref-three-price-outlines",
+  "family": "minimal-commercial-ref-three-price-outlines",
+  "sourceRef": "ref-three-price-outlines",
+  "designGuide": "minimal-commercial",
+  "steal": "Three widely separated centered plan stacks; only prices are boxed. Small horizontal dividers occupy the gaps between plan labels.",
+  "preserveLayout": true,
+  "status": "draft",
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    },
+    "copy1": {
+      "kind": "text",
+      "optional": true,
+      "from": "tiers0.price"
+    },
+    "copy2": {
+      "kind": "text",
+      "optional": true,
+      "from": "tiers0.name"
+    },
+    "copy3": {
+      "kind": "text",
+      "optional": true,
+      "from": "tiers0.features"
+    },
+    "copy4": {
+      "kind": "text",
+      "optional": true,
+      "from": "tiers1.price"
+    },
+    "copy5": {
+      "kind": "text",
+      "optional": true,
+      "from": "tiers1.name"
+    },
+    "copy6": {
+      "kind": "text",
+      "optional": true,
+      "from": "tiers1.features"
+    },
+    "copy7": {
+      "kind": "text",
+      "optional": true,
+      "from": "tiers2.price"
+    },
+    "copy8": {
+      "kind": "text",
+      "optional": true,
+      "from": "tiers2.name"
+    },
+    "copy9": {
+      "kind": "text",
+      "optional": true,
+      "from": "tiers2.features"
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 60,
+      "minFont": 48,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy1": {
+      "maxFont": 73.33,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy2": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy3": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 3,
+      "shrinkMin": 0.9
+    },
+    "copy4": {
+      "maxFont": 73.33,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy5": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy6": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 3,
+      "shrinkMin": 0.9
+    },
+    "copy7": {
+      "maxFont": 73.33,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy8": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy9": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 3,
+      "shrinkMin": 0.9
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    },
+    "copy3": {
+      "kind": "text"
+    },
+    "copy4": {
+      "kind": "text"
+    },
+    "copy5": {
+      "kind": "text"
+    },
+    "copy6": {
+      "kind": "text"
+    },
+    "copy7": {
+      "kind": "text"
+    },
+    "copy8": {
+      "kind": "text"
+    },
+    "copy9": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "x": 466.67,
+        "y": 166.67,
+        "width": 666.67,
+        "height": 78.33,
+        "z": 4,
+        "morphId": "title",
+        "fontRole": "display",
+        "fontSize": 60,
+        "fontWeight": 300,
+        "tokenColor": "ink",
+        "align": "center",
+        "lineHeight": 1.05,
+        "usePrimitive": false
+      },
+      {
+        "id": "title-rule",
+        "type": "shape",
+        "shape": "rect",
+        "x": 775,
+        "y": 249.17,
+        "width": 50,
+        "height": 3.33,
+        "z": 2,
+        "morphId": "title-rule",
+        "tokenFill": "accent"
+      },
+      {
+        "id": "price-outline-0",
+        "type": "shape",
+        "shape": "rect",
+        "x": 225,
+        "y": 353.33,
+        "width": 220.83,
+        "height": 130.83,
+        "z": 2,
+        "morphId": "price-outline-0",
+        "tokenFill": "ink",
+        "radius": 19.17
+      },
+      {
+        "id": "price-outline-0-inside",
+        "type": "shape",
+        "shape": "rect",
+        "x": 226,
+        "y": 354.33,
+        "width": 218.83,
+        "height": 128.83,
+        "z": 3,
+        "morphId": "price-outline-0-inside",
+        "tokenFill": "bg",
+        "radius": 18.17
+      },
+      {
+        "id": "price-0",
+        "type": "text",
+        "slot": "copy1",
+        "x": 233.33,
+        "y": 373.33,
+        "width": 204.17,
+        "height": 86.67,
+        "z": 4,
+        "morphId": "price-0",
+        "fontRole": "body",
+        "fontSize": 73.33,
+        "fontWeight": 300,
+        "tokenColor": "ink",
+        "align": "center",
+        "lineHeight": 1,
+        "usePrimitive": false
+      },
+      {
+        "id": "plan-0",
+        "type": "text",
+        "slot": "copy2",
+        "x": 204.17,
+        "y": 540.83,
+        "width": 262.5,
+        "height": 43.2,
+        "z": 4,
+        "morphId": "plan-0",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "ink",
+        "align": "center",
+        "lineHeight": 1.3,
+        "usePrimitive": false
+      },
+      {
+        "id": "description-0",
+        "type": "text",
+        "slot": "copy3",
+        "x": 230,
+        "y": 625.83,
+        "width": 210.83,
+        "height": 108.33,
+        "z": 4,
+        "morphId": "description-0",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "center",
+        "lineHeight": 1.3,
+        "usePrimitive": false
+      },
+      {
+        "id": "price-outline-1",
+        "type": "shape",
+        "shape": "rect",
+        "x": 690,
+        "y": 353.33,
+        "width": 220.83,
+        "height": 130.83,
+        "z": 2,
+        "morphId": "price-outline-1",
+        "tokenFill": "ink",
+        "radius": 19.17
+      },
+      {
+        "id": "price-outline-1-inside",
+        "type": "shape",
+        "shape": "rect",
+        "x": 691,
+        "y": 354.33,
+        "width": 218.83,
+        "height": 128.83,
+        "z": 3,
+        "morphId": "price-outline-1-inside",
+        "tokenFill": "bg",
+        "radius": 18.17
+      },
+      {
+        "id": "price-1",
+        "type": "text",
+        "slot": "copy4",
+        "x": 698.33,
+        "y": 373.33,
+        "width": 204.17,
+        "height": 86.67,
+        "z": 4,
+        "morphId": "price-1",
+        "fontRole": "body",
+        "fontSize": 73.33,
+        "fontWeight": 300,
+        "tokenColor": "ink",
+        "align": "center",
+        "lineHeight": 1,
+        "usePrimitive": false
+      },
+      {
+        "id": "plan-1",
+        "type": "text",
+        "slot": "copy5",
+        "x": 669.17,
+        "y": 540.83,
+        "width": 262.5,
+        "height": 43.2,
+        "z": 4,
+        "morphId": "plan-1",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "ink",
+        "align": "center",
+        "lineHeight": 1.3,
+        "usePrimitive": false
+      },
+      {
+        "id": "description-1",
+        "type": "text",
+        "slot": "copy6",
+        "x": 695,
+        "y": 625.83,
+        "width": 210.83,
+        "height": 108.33,
+        "z": 4,
+        "morphId": "description-1",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "center",
+        "lineHeight": 1.3,
+        "usePrimitive": false
+      },
+      {
+        "id": "price-outline-2",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1154.17,
+        "y": 353.33,
+        "width": 220.83,
+        "height": 130.83,
+        "z": 2,
+        "morphId": "price-outline-2",
+        "tokenFill": "ink",
+        "radius": 19.17
+      },
+      {
+        "id": "price-outline-2-inside",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1155.17,
+        "y": 354.33,
+        "width": 218.83,
+        "height": 128.83,
+        "z": 3,
+        "morphId": "price-outline-2-inside",
+        "tokenFill": "bg",
+        "radius": 18.17
+      },
+      {
+        "id": "price-2",
+        "type": "text",
+        "slot": "copy7",
+        "x": 1162.5,
+        "y": 373.33,
+        "width": 204.17,
+        "height": 86.67,
+        "z": 4,
+        "morphId": "price-2",
+        "fontRole": "body",
+        "fontSize": 73.33,
+        "fontWeight": 300,
+        "tokenColor": "ink",
+        "align": "center",
+        "lineHeight": 1,
+        "usePrimitive": false
+      },
+      {
+        "id": "plan-2",
+        "type": "text",
+        "slot": "copy8",
+        "x": 1133.33,
+        "y": 540.83,
+        "width": 262.5,
+        "height": 43.2,
+        "z": 4,
+        "morphId": "plan-2",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "ink",
+        "align": "center",
+        "lineHeight": 1.3,
+        "usePrimitive": false
+      },
+      {
+        "id": "description-2",
+        "type": "text",
+        "slot": "copy9",
+        "x": 1159.17,
+        "y": 625.83,
+        "width": 210.83,
+        "height": 108.33,
+        "z": 4,
+        "morphId": "description-2",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "center",
+        "lineHeight": 1.3,
+        "usePrimitive": false
+      },
+      {
+        "id": "tier-separator-1",
+        "type": "shape",
+        "shape": "rect",
+        "x": 517.5,
+        "y": 555.83,
+        "width": 100,
+        "height": 1,
+        "z": 2,
+        "morphId": "tier-separator-1",
+        "tokenFill": "line"
+      },
+      {
+        "id": "tier-separator-2",
+        "type": "shape",
+        "shape": "rect",
+        "x": 981.67,
+        "y": 555.83,
+        "width": 100,
+        "height": 1,
+        "z": 2,
+        "morphId": "tier-separator-2",
+        "tokenFill": "line"
+      }
+    ]
+  },
+  "motion": {
+    "transition": "fade",
+    "fallbackTransition": "fade",
+    "durationMs": 500
+  },
+  "implementationNotes": [
+    "Geometry estimated from the supplied raster and scaled to 1600x900.",
+    "Body text raised to readable export floors; copy must fit the original whitespace.",
+    "Soft grain and photographic edge fades replaced by clean crops and flat palette surfaces."
+  ]
+}

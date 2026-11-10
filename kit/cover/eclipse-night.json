@@ -1,0 +1,213 @@
+{
+  "id": "cover/eclipse-night",
+  "role": "cover",
+  "variant": "eclipse-night",
+  "family": "eclipse",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "copy2": {
+      "kind": "text",
+      "from": "items2"
+    }
+  },
+  "fit": {
+    "copy0": {
+      "minFont": 24,
+      "maxFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "title": {
+      "minFont": 110,
+      "maxFont": 110,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 32,
+      "maxFont": 32,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy2": {
+      "minFont": 48,
+      "maxFont": 48,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "photo",
+        "type": "image",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "z": 1,
+        "slot": "photo",
+        "morphId": "hero",
+        "zoom": 1.2,
+        "alignY": 0.35
+      },
+      {
+        "id": "scrim",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 480,
+        "width": 1600,
+        "height": 420,
+        "tokenFill": "bg",
+        "z": 2,
+        "opacity": 0.78,
+        "morphId": "titlePlate"
+      },
+      {
+        "id": "ecsun",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 1180,
+        "y": 40,
+        "width": 360,
+        "height": 360,
+        "tokenFill": "accent",
+        "z": 3,
+        "morphId": "accent",
+        "opacity": 0.95
+      },
+      {
+        "id": "ecmoon",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 1280,
+        "y": 25,
+        "width": 360,
+        "height": 360,
+        "tokenFill": "bg",
+        "z": 4,
+        "morphId": "plate"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 80,
+        "y": 540,
+        "width": 900,
+        "height": 40,
+        "fontSize": 22,
+        "slot": "copy0",
+        "tokenColor": "muted",
+        "fontRole": "label",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "textStyleRole": "kicker"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 70,
+        "y": 600,
+        "width": 1100,
+        "height": 157,
+        "fontSize": 110,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "textStyleRole": "display",
+        "morphId": "title"
+      },
+      {
+        "id": "copy1",
+        "type": "text",
+        "x": 80,
+        "y": 760,
+        "width": 700,
+        "height": 50,
+        "fontSize": 32,
+        "slot": "copy1",
+        "tokenColor": "accent",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "badge",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 1360,
+        "y": 700,
+        "width": 160,
+        "height": 160,
+        "tokenFill": "accent",
+        "z": 4,
+        "morphId": "accent"
+      },
+      {
+        "id": "copy2",
+        "type": "text",
+        "x": 1380,
+        "y": 745,
+        "width": 120,
+        "height": 80,
+        "fontSize": 48,
+        "slot": "copy2",
+        "tokenColor": "bg",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5,
+        "textStyleRole": "stat",
+        "align": "center"
+      }
+    ]
+  }
+}

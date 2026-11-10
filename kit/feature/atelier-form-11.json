@@ -1,0 +1,136 @@
+{
+  "id": "feature/atelier-form-11",
+  "role": "feature",
+  "variant": "atelier-form-11",
+  "family": "atelier-form",
+  "status": "draft",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "c0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "c1": {
+      "kind": "text",
+      "from": "items1"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 78,
+      "maxFont": 78,
+      "lineClamp": 12,
+      "shrinkMin": 1
+    },
+    "c0": {
+      "minFont": 28,
+      "maxFont": 28,
+      "lineClamp": 12,
+      "shrinkMin": 1
+    },
+    "c1": {
+      "minFont": 30,
+      "maxFont": 30,
+      "lineClamp": 12,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "c0": {
+      "kind": "text"
+    },
+    "c1": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "photo",
+        "morphId": "photo",
+        "type": "image",
+        "slot": "photo",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "z": 0
+      },
+      {
+        "id": "s1",
+        "morphId": "s1",
+        "type": "shape",
+        "shape": "rect",
+        "x": 75,
+        "y": 90,
+        "width": 730,
+        "height": 720,
+        "tokenFill": "bg",
+        "z": 1
+      },
+      {
+        "id": "title",
+        "morphId": "title",
+        "type": "text",
+        "slot": "title",
+        "x": 125,
+        "y": 240,
+        "width": 640,
+        "height": 310,
+        "fontSize": 78,
+        "fontRole": "display",
+        "textStyleRole": "display",
+        "fontWeight": 700,
+        "tokenColor": "ink",
+        "z": 4
+      },
+      {
+        "id": "c0",
+        "morphId": "c0",
+        "type": "text",
+        "slot": "c0",
+        "x": 125,
+        "y": 135,
+        "width": 630,
+        "height": 65,
+        "fontSize": 28,
+        "fontRole": "body",
+        "textStyleRole": "body",
+        "fontWeight": 400,
+        "tokenColor": "ink",
+        "z": 4
+      },
+      {
+        "id": "c1",
+        "morphId": "c1",
+        "type": "text",
+        "slot": "c1",
+        "x": 125,
+        "y": 640,
+        "width": 610,
+        "height": 125,
+        "fontSize": 30,
+        "fontRole": "body",
+        "textStyleRole": "body",
+        "fontWeight": 400,
+        "tokenColor": "ink",
+        "z": 4
+      }
+    ]
+  }
+}

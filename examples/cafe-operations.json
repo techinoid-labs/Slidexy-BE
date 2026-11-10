@@ -1,0 +1,15 @@
+{
+  "artDirection":"coffeehouse",
+  "subject":"Cafe pickup queues",
+  "audience":"Cafe operations managers",
+  "goal":"Decide whether to pilot two pickup routes during morning service",
+  "slides":[
+    {"title":"At the counter","note":"A morning service pilot for the cafe operations team."},
+    {"title":"One handoff point","note":"Schematic of the proposed test site. Confirm the layout on a walkthrough.","counter":{"entrance":"Queue entry","pickup":"Pickup counter","observation":"Hot and cold orders share one handoff point."}},
+    {"title":"Split at pickup","note":"Keep ordering in one line. Direct customers to the marked counter for their drink.","routes":["Hot drinks","Cold drinks"]},
+    {"title":"The wait falls","note":"Illustrative mean wait per order.","measurements":{"unit":"min","values":[{"label":"Single pickup","value":18},{"label":"Split pickup","value":12}]}},
+    {"title":"Run a morning pilot","note":"The shift lead reviews results after the last test morning.","rows":[["When","Action","Owner"],["Before opening","Mark the two pickup points","Shift lead"],["During service","Log order and handoff times","Counter team"],["After the pilot","Compare waits and errors","Operations manager"]]}
+  ]
+}
+
+

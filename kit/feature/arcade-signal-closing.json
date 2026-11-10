@@ -1,0 +1,103 @@
+{
+  "id": "feature/arcade-signal-closing",
+  "role": "feature",
+  "variant": "arcade-signal-closing",
+  "family": "arcade-signal",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 96,
+      "maxFont": 96,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 34,
+      "maxFont": 34,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "bg",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "surface",
+        "z": 0
+      },
+      {
+        "id": "mark",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 24,
+        "tokenFill": "accent",
+        "z": 1
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 100,
+        "y": 320,
+        "width": 1400,
+        "height": 180,
+        "fontSize": 96,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "align": "center",
+        "morphId": "title"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 300,
+        "y": 560,
+        "width": 1000,
+        "height": 60,
+        "fontSize": 34,
+        "slot": "copy0",
+        "tokenColor": "accent",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "align": "center"
+      }
+    ]
+  }
+}

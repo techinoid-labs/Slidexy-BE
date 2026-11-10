@@ -1,0 +1,50 @@
+[
+  {
+    "id": "form-space-0",
+    "query": "concrete architecture facade",
+    "status": {
+      "ok": true,
+      "detail": "fetched pexels:17729218"
+    }
+  },
+  {
+    "id": "form-space-1",
+    "query": "minimal house courtyard",
+    "status": {
+      "ok": true,
+      "detail": "fetched pexels:33145905"
+    }
+  },
+  {
+    "id": "form-space-2",
+    "query": "modern library interior",
+    "status": {
+      "ok": true,
+      "detail": "fetched pexels:31390421"
+    }
+  },
+  {
+    "id": "form-space-3",
+    "query": "architecture staircase concrete",
+    "status": {
+      "ok": true,
+      "detail": "fetched pexels:16130244"
+    }
+  },
+  {
+    "id": "form-space-4",
+    "query": "wood interior architecture",
+    "status": {
+      "ok": true,
+      "detail": "fetched pexels:18289606"
+    }
+  },
+  {
+    "id": "form-space-5",
+    "query": "architectural model",
+    "status": {
+      "ok": true,
+      "detail": "fetched pexels:5583618"
+    }
+  }
+]

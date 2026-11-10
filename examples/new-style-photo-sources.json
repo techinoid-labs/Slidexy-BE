@@ -1,0 +1,66 @@
+[
+  {
+    "name": "atelier-form-0",
+    "query": "minimal living room beige",
+    "status": {
+      "ok": true,
+      "detail": "fetched pexels:12277014"
+    }
+  },
+  {
+    "name": "atelier-form-1",
+    "query": "textile fabric samples",
+    "status": {
+      "ok": true,
+      "detail": "fetched pexels:276267"
+    }
+  },
+  {
+    "name": "atelier-form-2",
+    "query": "linen curtains sunlight",
+    "status": {
+      "ok": true,
+      "detail": "fetched pexels:7114134"
+    }
+  },
+  {
+    "name": "atelier-form-3",
+    "query": "modern armchair interior",
+    "status": {
+      "ok": true,
+      "detail": "fetched pexels:17437292"
+    }
+  },
+  {
+    "name": "signal-orange-0",
+    "query": "modern tram city",
+    "status": {
+      "ok": true,
+      "detail": "fetched pexels:16469994"
+    }
+  },
+  {
+    "name": "signal-orange-1",
+    "query": "railway station architecture",
+    "status": {
+      "ok": true,
+      "detail": "fetched pexels:35621809"
+    }
+  },
+  {
+    "name": "signal-orange-2",
+    "query": "commuter train interior",
+    "status": {
+      "ok": true,
+      "detail": "fetched pexels:29975065"
+    }
+  },
+  {
+    "name": "signal-orange-3",
+    "query": "urban railway bridge",
+    "status": {
+      "ok": true,
+      "detail": "fetched pexels:12807016"
+    }
+  }
+]

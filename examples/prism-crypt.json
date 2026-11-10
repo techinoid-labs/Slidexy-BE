@@ -1,0 +1,122 @@
+{
+  "name": "Prism • Crypt",
+  "description": "Glass hall brief — photo cover with rose accent, shard story, spectrum materials, window seats and refract close.",
+  "brand": {
+    "colors": {
+      "bg": "#10140F",
+      "surface": "#1B2418",
+      "surface_color": "#2A3624",
+      "ink": "#F2F5EC",
+      "muted": "#8FA08A",
+      "accent": "#D4FF3F",
+      "line": "#3A4A34"
+    },
+    "fonts": {
+      "display": "Rockwell",
+      "body": "Candara"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "prism"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "PRISM",
+        "items": [
+          "Crypt · glass hall",
+          "morning light",
+          "VII"
+        ],
+        "photoQuery": "0288432f0b82"
+      },
+      {
+        "role": "feature",
+        "title": "Cuts",
+        "items": [
+          "Facet",
+          "Catch the east pane first.",
+          "Edge",
+          "Keep the lead thin.",
+          "Glow",
+          "Lime only on the hinge.",
+          "Break light on purpose."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Palette",
+        "items": [
+          "Lime",
+          "signal",
+          "Bone",
+          "ground",
+          "Moss",
+          "shadow",
+          "Flare",
+          "hit"
+        ],
+        "photoQuery": "092c8c1420fb"
+      },
+      {
+        "role": "feature",
+        "title": "Seats",
+        "items": [
+          "North",
+          "cool morning",
+          "East",
+          "first flare",
+          "South",
+          "long wash",
+          "West",
+          "last gold"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Color is structure.",
+        "items": [
+          "— Glasswright"
+        ],
+        "photoQuery": "0288432f0b82"
+      },
+      {
+        "role": "closing",
+        "title": "Refract.",
+        "items": [
+          "Prism Crypt · morning light"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "prism-hall"
+    },
+    {
+      "role": "feature",
+      "variant": "prism-cuts"
+    },
+    {
+      "role": "feature",
+      "variant": "prism-palette"
+    },
+    {
+      "role": "feature",
+      "variant": "prism-seats"
+    },
+    {
+      "role": "feature",
+      "variant": "prism-quote"
+    },
+    {
+      "role": "closing",
+      "variant": "prism-close"
+    }
+  ]
+}

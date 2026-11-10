@@ -1,0 +1,225 @@
+{
+  "id": "feature/concept-financial-ledger-comparison",
+  "role": "feature",
+  "variant": "concept-financial-ledger-comparison",
+  "family": "financial-ledger",
+  "status": "draft",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "edition": {
+      "kind": "text",
+      "from": "items3"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "a": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "b": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "note": {
+      "kind": "text",
+      "from": "items2"
+    }
+  },
+  "fit": {
+    "edition": {
+      "minFont": 27,
+      "maxFont": 27,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "title": {
+      "minFont": 92,
+      "maxFont": 92,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "a": {
+      "minFont": 40,
+      "maxFont": 40,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "b": {
+      "minFont": 40,
+      "maxFont": 40,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "note": {
+      "minFont": 27,
+      "maxFont": 27,
+      "lineClamp": 3,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "edition": {
+      "kind": "text"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "a": {
+      "kind": "text"
+    },
+    "b": {
+      "kind": "text"
+    },
+    "note": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "edition",
+        "type": "text",
+        "slot": "edition",
+        "x": 70,
+        "y": 62,
+        "width": 1400,
+        "height": 55,
+        "fontSize": 27,
+        "fontRole": "body",
+        "fontWeight": 400,
+        "tokenColor": "ink",
+        "lineHeight": 1.1,
+        "z": 4,
+        "morphId": "edition"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "x": 70,
+        "y": 155,
+        "width": 1450,
+        "height": 190,
+        "fontSize": 92,
+        "fontRole": "display",
+        "fontWeight": 700,
+        "tokenColor": "ink",
+        "lineHeight": 1.1,
+        "z": 4,
+        "morphId": "title"
+      },
+      {
+        "id": "mark2",
+        "type": "shape",
+        "shape": "rect",
+        "x": 70,
+        "y": 125,
+        "width": 1460,
+        "height": 2,
+        "tokenFill": "ink",
+        "z": 1,
+        "morphId": "mark2"
+      },
+      {
+        "id": "mark3",
+        "type": "shape",
+        "shape": "rect",
+        "x": 70,
+        "y": 390,
+        "width": 1460,
+        "height": 2,
+        "tokenFill": "ink",
+        "z": 1,
+        "morphId": "mark3"
+      },
+      {
+        "id": "mark4",
+        "type": "shape",
+        "shape": "rect",
+        "x": 70,
+        "y": 544,
+        "width": 1460,
+        "height": 2,
+        "tokenFill": "ink",
+        "z": 1,
+        "morphId": "mark4"
+      },
+      {
+        "id": "mark5",
+        "type": "shape",
+        "shape": "rect",
+        "x": 70,
+        "y": 700,
+        "width": 1460,
+        "height": 2,
+        "tokenFill": "ink",
+        "z": 1,
+        "morphId": "mark5"
+      },
+      {
+        "id": "mark6",
+        "type": "shape",
+        "shape": "rect",
+        "x": 770,
+        "y": 390,
+        "width": 2,
+        "height": 310,
+        "tokenFill": "ink",
+        "z": 1,
+        "morphId": "mark6"
+      },
+      {
+        "id": "a",
+        "type": "text",
+        "slot": "a",
+        "x": 95,
+        "y": 425,
+        "width": 645,
+        "height": 110,
+        "fontSize": 40,
+        "fontRole": "body",
+        "fontWeight": 400,
+        "tokenColor": "ink",
+        "lineHeight": 1.1,
+        "z": 4,
+        "morphId": "a"
+      },
+      {
+        "id": "b",
+        "type": "text",
+        "slot": "b",
+        "x": 825,
+        "y": 570,
+        "width": 640,
+        "height": 115,
+        "fontSize": 40,
+        "fontRole": "body",
+        "fontWeight": 400,
+        "tokenColor": "ink",
+        "lineHeight": 1.1,
+        "z": 4,
+        "morphId": "b"
+      },
+      {
+        "id": "note",
+        "type": "text",
+        "slot": "note",
+        "x": 70,
+        "y": 800,
+        "width": 1450,
+        "height": 94,
+        "fontSize": 27,
+        "fontRole": "body",
+        "fontWeight": 400,
+        "tokenColor": "ink",
+        "lineHeight": 1.1,
+        "z": 4,
+        "morphId": "note"
+      }
+    ]
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "name": "Newsstand • Rack",
+  "description": "Soft corner newsstand — magazine spines, masthead, issue badge and a read-on close.",
+  "brand": {
+    "colors": {
+      "bg": "#F3F0EA",
+      "surface": "#E5E0D6",
+      "surface_color": "#D5CFC3",
+      "ink": "#1F2428",
+      "muted": "#6E767C",
+      "accent": "#1F5C57",
+      "line": "#B8B2A6"
+    },
+    "fonts": {
+      "display": "Rockwell",
+      "body": "Georgia"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "newsstand"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "NEWSSTAND",
+        "items": [
+          "Rack · Sunday morning",
+          "issue",
+          "24"
+        ],
+        "photoQuery": "1396e926cdc5"
+      },
+      {
+        "role": "feature",
+        "title": "Spines",
+        "items": [
+          "Travel",
+          "Food",
+          "Design",
+          "Sport",
+          "City",
+          "Film",
+          "Art",
+          "Stack by curiosity."
+        ],
+        "photoQuery": "104868264fb5"
+      },
+      {
+        "role": "feature",
+        "title": "Masthead",
+        "items": [
+          "Lead",
+          "Keep the headline short.",
+          "Deck",
+          "One soft line under."
+        ],
+        "photoQuery": "16df8343dc3d"
+      },
+      {
+        "role": "feature",
+        "title": "Sections",
+        "items": [
+          "01",
+          "Front",
+          "02",
+          "Features",
+          "03",
+          "Reviews",
+          "04",
+          "Back"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Print still holds the morning.",
+        "items": [
+          "— Vendor"
+        ],
+        "photoQuery": "1396e926cdc5"
+      },
+      {
+        "role": "closing",
+        "title": "Read on.",
+        "items": [
+          "Newsstand Rack · Sunday"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "newsstand-cover"
+    },
+    {
+      "role": "feature",
+      "variant": "newsstand-spines"
+    },
+    {
+      "role": "feature",
+      "variant": "newsstand-mast"
+    },
+    {
+      "role": "feature",
+      "variant": "newsstand-sections"
+    },
+    {
+      "role": "feature",
+      "variant": "newsstand-quote"
+    },
+    {
+      "role": "closing",
+      "variant": "newsstand-read"
+    }
+  ]
+}

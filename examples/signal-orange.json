@@ -1,0 +1,232 @@
+{
+  "name": "Signal Orange",
+  "description": "A bold transport proposal with orange fields and geometric journey diagrams.",
+  "brand": {
+    "colors": {
+      "bg": "#F3EFDF",
+      "ink": "#172320",
+      "accent": "#F44D23",
+      "surface": "#D7DFD2",
+      "line": "#62746D"
+    },
+    "fonts": {
+      "display": "Arial",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "MOVE\nBETTER.",
+        "items": [
+          "A clearer passenger journey",
+          "A six-week pilot for three city stations."
+        ],
+        "photoQuery": "signal-orange-0"
+      },
+      {
+        "role": "feature",
+        "title": "Make the harbour journey easier",
+        "items": [
+          "The passenger problem",
+          "Passengers lose time at entrances, transfers and platform exits. The proposed improvement programme focuses on the moments where uncertainty interrupts an otherwise straightforward journey.",
+          "The service response",
+          "Clarify destinations before boarding and place directions where decisions happen. Use consistent station names across platform signs, printed maps and passenger announcements.",
+          "The intended result",
+          "A clearer journey should reduce hesitation and missed connections. Establish a baseline first, then compare passenger observations after the pilot changes are installed.",
+          "Illustrative proposal"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Three priorities for the pilot",
+        "items": [
+          "ENTRY",
+          "Distribute arriving passengers along the platform by making the second entrance easier to find. Place the first directional sign before the approach divides.",
+          "TRANSFER",
+          "Show the connecting platform at the point where passengers leave the train. Repeat the direction at each turn through the station passage.",
+          "EXIT",
+          "Identify the useful carriage end before arrival at the quay. Give passengers enough time to move safely toward the ferry connection.",
+          "Illustrative proposal"
+        ],
+        "photoQuery": "signal-orange-1"
+      },
+      {
+        "role": "feature",
+        "title": "The journey has three decision points",
+        "items": [
+          "1",
+          "Before boarding",
+          "Passengers need the correct destination and stopping pattern. Display short-turn services clearly so colour alone does not imply that every train reaches the docks.",
+          "2",
+          "During the transfer",
+          "Passengers need the next direction immediately after leaving the train. Put the connecting service name above the sightline of people waiting on the platform.",
+          "3",
+          "At the destination",
+          "Passengers need a useful street landmark and the correct exit. Add a local inset where walls or closed gates make the walking route indirect.",
+          "Illustrative proposal"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Compare the improvement options",
+        "items": [
+          "Signage refresh",
+          "A targeted signage update can address the most immediate points of confusion. It requires clear placement decisions and coordination with existing station information.",
+          "Entrance changes",
+          "A second entrance could distribute crowds more effectively. Evaluate walking routes, accessibility and operational constraints before committing to a permanent physical alteration.",
+          "Recommended sequence",
+          "Begin with a reversible signage pilot at the interchange. Use the observed passenger response to decide whether a larger entrance project is justified.",
+          "Illustrative proposal"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Measure the experience on the platform",
+        "items": [
+          "Transfer time",
+          "Record the elapsed time from leaving the train to reaching the connecting platform. Compare similar arrivals so the observation reflects the route.",
+          "Wrong turns",
+          "Count passengers who reverse direction at the main passage junction. Note whether each event happens before or after they encounter the directional sign.",
+          "Passenger confidence",
+          "Ask a short question after the transfer about the clarity of the route. Keep the wording consistent across baseline and pilot observation periods.",
+          "Illustrative proposal"
+        ],
+        "photoQuery": "signal-orange-2"
+      },
+      {
+        "role": "feature",
+        "title": "A compact pilot with clear ownership",
+        "items": [
+          "03",
+          "Include three stations representing entry, transfer and exit problems. This keeps the pilot manageable while covering distinct stages of the passenger journey.",
+          "02",
+          "Observe two operating periods at each location. Include a weekday commute and a weekend market service to capture different movement patterns and luggage needs.",
+          "01",
+          "Assign one accountable station lead to each site. The lead records installation issues, coordinates observations and confirms that temporary signs remain in place.",
+          "Illustrative proposal"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Coordinate the teams that deliver it",
+        "items": [
+          "Station operations",
+          "Review the proposed sign locations against passenger flows and routine maintenance access. Confirm that installation can happen without obstructing safe movement through the station.",
+          "Passenger information",
+          "Approve consistent naming and destinations across every pilot sign. Check the printed message against announcements and digital departure information before the first installation.",
+          "Accessibility review",
+          "Walk the proposed route with accessibility reviewers. Confirm readable placement and an appropriate step-free alternative wherever the shortest route depends on stairs.",
+          "Illustrative proposal"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Keep the pilot safe and reversible",
+        "items": [
+          "Conflicting information",
+          "New directions could disagree with existing signs. Audit each decision point before installation and remove temporary messages that create an ambiguous choice.",
+          "Service disruption",
+          "Engineering work could change the route during observation. Record operating conditions and repeat the session when disruption prevents a meaningful comparison with baseline.",
+          "Maintenance ownership",
+          "A damaged temporary sign can undermine the whole route. Assign an inspection owner and keep replacement artwork available throughout the pilot period.",
+          "Illustrative proposal"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Six weeks from baseline to decision",
+        "items": [
+          "1",
+          "WEEKS 1–2",
+          "Observe the current passenger journey and agree the priority decision points. Complete the sign audit, accessibility walk and baseline measurement before installation begins.",
+          "2",
+          "WEEKS 3–4",
+          "Install temporary signs and observe the same journeys again. Record passenger questions, operational issues and any adjustments made during the first days.",
+          "3",
+          "WEEKS 5–6",
+          "Compare the findings with the baseline and review them with station teams. Recommend which changes to retain, revise or investigate through a larger project.",
+          "Illustrative proposal"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Authorize the pilot and review the evidence",
+        "items": [
+          "Decision requested",
+          "Approve a three-station pilot with temporary signage and structured observation. Confirm the accountable leads before the installation schedule is released to station teams.",
+          "Evidence required",
+          "Bring baseline and pilot observations to the review together. Include transfer times, wrong turns, passenger feedback and any material changes in operating conditions.",
+          "Next decision",
+          "Use the findings to choose permanent improvements and scope any further investigation. Document the reasons for each recommendation so the rollout remains accountable.",
+          "Illustrative proposal"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "THE NEXT\nSTOP.",
+        "items": [
+          "A clearer passenger journey",
+          "A six-week pilot for three city stations."
+        ],
+        "photoQuery": "signal-orange-3"
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "signal-orange-0"
+    },
+    {
+      "role": "feature",
+      "variant": "signal-orange-1"
+    },
+    {
+      "role": "feature",
+      "variant": "signal-orange-2"
+    },
+    {
+      "role": "feature",
+      "variant": "signal-orange-3"
+    },
+    {
+      "role": "feature",
+      "variant": "signal-orange-4"
+    },
+    {
+      "role": "feature",
+      "variant": "signal-orange-5"
+    },
+    {
+      "role": "feature",
+      "variant": "signal-orange-6"
+    },
+    {
+      "role": "feature",
+      "variant": "signal-orange-7"
+    },
+    {
+      "role": "feature",
+      "variant": "signal-orange-8"
+    },
+    {
+      "role": "feature",
+      "variant": "signal-orange-9"
+    },
+    {
+      "role": "feature",
+      "variant": "signal-orange-10"
+    },
+    {
+      "role": "feature",
+      "variant": "signal-orange-11"
+    }
+  ]
+}

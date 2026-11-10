@@ -1,0 +1,119 @@
+{
+  "name": "Pantry Counter • Morning service",
+  "description": "Cafe pantry lookbook — green tile, warm wood, shelf grid and service board.",
+  "brand": {
+    "colors": {
+      "bg": "#F3EDE3",
+      "surface": "#E4D9C8",
+      "surface_color": "#EBE2D4",
+      "ink": "#1F2A24",
+      "muted": "#5C6B62",
+      "accent": "#2F6B4F",
+      "line": "#C9BBA6"
+    },
+    "fonts": {
+      "display": "Georgia",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "pantry-counter"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Pantry Counter",
+        "items": [
+          "Morning service · Open 7–2",
+          "07"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Behind the glass",
+        "items": [
+          "Shelf order",
+          "Jars high, glassware mid, bowls low. Everything faces the window so the street can read the shelf.",
+          "First pull",
+          "Grind for the first six drinks before the door unlocks. The machine likes a warm start."
+        ],
+        "photoQuery": "092c8c1420"
+      },
+      {
+        "role": "feature",
+        "title": "Counter board",
+        "items": [
+          "Filter pour   3.50",
+          "Single origin. Served in ceramic, never in paper before noon.",
+          "Oat latte   4.20",
+          "Two pulls, soft foam, a little cinnamon if asked.",
+          "Seed loaf   3.00",
+          "Toasted thick. Butter on the side. Jam only on request.",
+          "Citrus bun   3.80",
+          "Orange peel glaze. Best while still warm from the tray."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Hands on the cup",
+        "items": [
+          "Takeaway line",
+          "Name on the cup, lid stack ready, stir sticks in the black pot. Keep the glass case clear of elbows.",
+          "Stay a while",
+          "The window seats are for people who read. The counter is for people who talk to the barista."
+        ],
+        "photoQuery": "0affe30f6e"
+      },
+      {
+        "role": "feature",
+        "title": "House notes",
+        "items": [
+          "Beans",
+          "Roasted mid-week. We finish a bag before we open the next.",
+          "Milk",
+          "Whole by default. Oat and almond without a surcharge.",
+          "Quiet hour",
+          "From opening until nine the playlist stays instrumental."
+        ],
+        "photoQuery": "0506d14bb9"
+      },
+      {
+        "role": "feature",
+        "title": "Come back thirsty.",
+        "items": [
+          "Pantry Counter"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "pantry-counter-masthead"
+    },
+    {
+      "role": "feature",
+      "variant": "pantry-counter-shelf"
+    },
+    {
+      "role": "feature",
+      "variant": "pantry-counter-board"
+    },
+    {
+      "role": "feature",
+      "variant": "pantry-counter-hands"
+    },
+    {
+      "role": "feature",
+      "variant": "pantry-counter-notes"
+    },
+    {
+      "role": "feature",
+      "variant": "pantry-counter-closing"
+    }
+  ]
+}

@@ -1,0 +1,184 @@
+{
+  "id": "closing/carnival-ride",
+  "role": "closing",
+  "variant": "carnival-ride",
+  "family": "carnival",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 120,
+      "maxFont": 120,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 28,
+      "maxFont": 28,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "bg",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "accent",
+        "z": 0
+      },
+      {
+        "id": "ccab0",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 160,
+        "y": 180,
+        "width": 140,
+        "height": 140,
+        "tokenFill": "surface_color",
+        "z": 1,
+        "morphId": "plate"
+      },
+      {
+        "id": "ccab1",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 340,
+        "y": 140,
+        "width": 140,
+        "height": 140,
+        "tokenFill": "surface_color",
+        "z": 1
+      },
+      {
+        "id": "ccab2",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 520,
+        "y": 111,
+        "width": 140,
+        "height": 140,
+        "tokenFill": "accent",
+        "z": 1,
+        "morphId": "accent"
+      },
+      {
+        "id": "ccab3",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 700,
+        "y": 100,
+        "width": 140,
+        "height": 140,
+        "tokenFill": "surface_color",
+        "z": 1
+      },
+      {
+        "id": "ccab4",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 880,
+        "y": 111,
+        "width": 140,
+        "height": 140,
+        "tokenFill": "surface_color",
+        "z": 1
+      },
+      {
+        "id": "ccab5",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 1060,
+        "y": 140,
+        "width": 140,
+        "height": 140,
+        "tokenFill": "surface_color",
+        "z": 1
+      },
+      {
+        "id": "ccab6",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 1240,
+        "y": 180,
+        "width": 140,
+        "height": 140,
+        "tokenFill": "surface_color",
+        "z": 1
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 80,
+        "y": 560,
+        "width": 1440,
+        "height": 171,
+        "fontSize": 120,
+        "slot": "title",
+        "tokenColor": "bg",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 3,
+        "textStyleRole": "display",
+        "align": "center",
+        "morphId": "title"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 80,
+        "y": 720,
+        "width": 1440,
+        "height": 50,
+        "fontSize": 28,
+        "slot": "copy0",
+        "tokenColor": "bg",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 3,
+        "align": "center"
+      },
+      {
+        "id": "pulse-bg",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 760,
+        "y": 80,
+        "width": 80,
+        "height": 80,
+        "tokenFill": "bg",
+        "z": 2,
+        "morphId": "pulse-bg"
+      }
+    ]
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "name": "Gülhane • Line T1",
+  "description": "Transit deck — destination board cover, stop dots, timetable strip, fare cards and alight signal.",
+  "brand": {
+    "colors": {
+      "bg": "#F4F1EC",
+      "surface": "#FFFFFF",
+      "surface_color": "#0B3D91",
+      "ink": "#121212",
+      "muted": "#6B6B6B",
+      "accent": "#E31C23",
+      "line": "#D8D4CC"
+    },
+    "fonts": {
+      "display": "Antonio",
+      "body": "IBM Plex Mono"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "gulhane"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "GÜLHANE",
+        "items": [
+          "T1 · Kabataş–Bağcılar",
+          "Next stop Topkapı",
+          "T1"
+        ],
+        "photoQuery": "8e3702f1cc"
+      },
+      {
+        "role": "feature",
+        "title": "Stops",
+        "items": [
+          "Kabataş",
+          "terminus",
+          "Gülhane",
+          "you are here",
+          "Sultanahmet",
+          "3 min",
+          "Beyazıt",
+          "7 min",
+          "Aksaray",
+          "11 min"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Today",
+        "items": [
+          "06:12",
+          "First eastbound",
+          "09:40",
+          "Peak every 4 min",
+          "14:00",
+          "Midday every 7",
+          "23:48",
+          "Last westbound"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Fares",
+        "items": [
+          "15",
+          "Single · TRY",
+          "50",
+          "Day pass · TRY",
+          "180",
+          "Weekly · TRY"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "From the platform",
+        "items": [
+          "Stone walls, yellow facades, the line cuts the city in half."
+        ],
+        "photoQuery": "8e3702f1cc"
+      },
+      {
+        "role": "closing",
+        "title": "Alight here.",
+        "items": [
+          "Gülhane · Line T1",
+          "GO"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "gulhane-board"
+    },
+    {
+      "role": "feature",
+      "variant": "gulhane-stops"
+    },
+    {
+      "role": "feature",
+      "variant": "gulhane-today"
+    },
+    {
+      "role": "feature",
+      "variant": "gulhane-fares"
+    },
+    {
+      "role": "feature",
+      "variant": "gulhane-platform"
+    },
+    {
+      "role": "closing",
+      "variant": "gulhane-alight"
+    }
+  ]
+}

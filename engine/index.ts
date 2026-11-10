@@ -22,10 +22,13 @@ const {
   dataVizRules,
   getTheme,
 } = require("./primitives");
+const { AssetService, getAssetService } = require("./asset-service");
 
 module.exports = {
   generateKitV1,
   inventDeckSpec,
+  AssetService,
+  getAssetService,
   validateDeckSpec,
   selectAll,
   selectVariant,

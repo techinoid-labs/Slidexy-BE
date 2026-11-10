@@ -316,6 +316,10 @@ async function publishTemplate(id) {
   deck.status = "published";
   deck.publishedAt = new Date().toISOString();
   fs.mkdirSync(dest, { recursive: true });
+  // Remove stale slide previews when a republish shortens the deck (e.g. cover Morph skipped)
+  fs.readdirSync(dest).filter((name) => /^slide-\d{2}\.png$/.test(name)).forEach((name) => {
+    fs.unlinkSync(path.join(dest, name));
+  });
   fs.readdirSync(dir).filter((name) => /^slide-\d{2}\.png$/.test(name) || name.endsWith(".pptx")).forEach((name) => {
     fs.copyFileSync(path.join(dir, name), path.join(dest, name));
   });

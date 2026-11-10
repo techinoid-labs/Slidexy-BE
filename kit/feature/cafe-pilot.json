@@ -1,0 +1,96 @@
+{
+  "id": "feature/cafe-pilot",
+  "role": "feature",
+  "variant": "cafe-pilot",
+  "family": "transit-diagram",
+  "status": "draft",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "note": {
+      "kind": "text",
+      "from": "caption"
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 100,
+      "minFont": 83,
+      "lineClamp": 4,
+      "shrinkMin": 0.83
+    },
+    "note": {
+      "maxFont": 32,
+      "minFont": 27,
+      "lineClamp": 4,
+      "shrinkMin": 0.83
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "note": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "top",
+        "type": "shape",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 310,
+        "z": 1,
+        "tokenFill": "ink",
+        "shape": "rect",
+        "morphId": "top"
+      },
+      {
+        "id": "title",
+        "slot": "title",
+        "type": "text",
+        "x": 65,
+        "y": 95,
+        "width": 1460,
+        "height": 180,
+        "fontSize": 100,
+        "fontRole": "display",
+        "tokenColor": "bg",
+        "z": 5,
+        "morphId": "title"
+      },
+      {
+        "id": "table",
+        "type": "table",
+        "x": 70,
+        "y": 360,
+        "width": 1460,
+        "height": 345,
+        "z": 2,
+        "morphId": "table"
+      },
+      {
+        "id": "note",
+        "slot": "note",
+        "type": "text",
+        "x": 70,
+        "y": 775,
+        "width": 1460,
+        "height": 100,
+        "fontSize": 32,
+        "fontRole": "body",
+        "tokenColor": "ink",
+        "z": 5,
+        "morphId": "note"
+      }
+    ]
+  }
+}

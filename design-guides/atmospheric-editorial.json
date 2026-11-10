@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "id": "atmospheric-editorial",
+  "name": "Atmospheric Editorial",
+  "purpose": "Brand stories, agency introductions and premium company overviews.",
+  "canvas": {
+    "width": 1600,
+    "height": 900
+  },
+  "referenceLayoutIds": [
+    "ref-group-project",
+    "ref-two-column-contents",
+    "ref-centered-interlude",
+    "ref-contact-footer-columns"
+  ],
+  "existingKitStartingPoints": [
+    "cover/poster",
+    "cover/minimal-center",
+    "agenda/a",
+    "closing/a"
+  ],
+  "existingKitCaveat": "These are working starting points, not exact implementations of the reference geometry.",
+  "identityRules": [
+    "Use one dominant headline with small peripheral metadata.",
+    "Keep a broad open field on the opposite side of the headline.",
+    "Use one short title rule and no decorative card grid."
+  ],
+  "typography": {
+    "unit": "engine-canvas",
+    "preferredSizes": {
+      "display": 136,
+      "heading": 60,
+      "body": 26,
+      "metadata": 24
+    },
+    "bodyFloor": 24,
+    "titleFloor": 40,
+    "chartLabelFloor": 20,
+    "sourceAdjustment": "Reference body sizes scaled from 1920px often fall below the engine's 14pt export floor. Raise body text to at least 24 engine units and shorten or split copy; do not preserve an unreadable exact ratio."
+  },
+  "whitespace": {
+    "contentFrame": {
+      "x": 225,
+      "y": 167,
+      "width": 1150,
+      "height": 566
+    },
+    "minimumColumnGutter": 58,
+    "policy": "Reference negative-space zones are reserved. Do not introduce text, photos or charts into those zones; full-bleed backgrounds may cross them.",
+    "referenceFrameCaveat": "The common content frame applies to inset copy. Bleeding photographs and intentionally off-canvas elements follow their own pattern bounds."
+  },
+  "variationRecipes": [
+    "Move the cover title between upper-left and lower-left while keeping the peripheral metadata axes.",
+    "Use centered interludes between information-heavy sections.",
+    "Switch the sweep direction without moving or enlarging text boxes."
+  ],
+  "antiPatterns": [
+    "Adding a paragraph to an interlude.",
+    "Using the same centered composition for every slide.",
+    "Turning a soft atmospheric sweep into a large opaque accent slab."
+  ],
+  "deckRhythm": [
+    "statement",
+    "structured-content",
+    "photo-led-content",
+    "interlude",
+    "structured-content",
+    "contact"
+  ],
+  "contentRules": {
+    "titleMaxWords": 8,
+    "titleMaxChars": 60,
+    "keynoteBodyMaxWordsPerBlock": 20,
+    "keynoteBodyMaxCharsPerItem": 90,
+    "photoQueries": "Use distinct domain-specific queries; keep imagery dynamic.",
+    "overflow": "Shorten text or split slides before reducing font size or occupying whitespace."
+  },
+  "readiness": {
+    "guide": "ready",
+    "blueprints": "implemented as draft engine kits",
+    "runtimeAutoSelection": false,
+    "newKitStatus": "Registered; opt in through sequenceId or explicit variantHint. Existing default pools are unchanged."
+  },
+  "generatedKits": [
+    "cover/ref-group-project",
+    "agenda/ref-two-column-contents",
+    "feature/ref-centered-interlude",
+    "closing/ref-contact-footer-columns"
+  ],
+  "sequenceId": "guide-atmospheric-editorial",
+  "exampleDeck": "examples/design-guides/atmospheric-editorial.json"
+}

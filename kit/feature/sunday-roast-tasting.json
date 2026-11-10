@@ -1,0 +1,204 @@
+{
+  "id": "feature/sunday-roast-tasting",
+  "role": "feature",
+  "variant": "sunday-roast-tasting",
+  "family": "sunday-roast",
+  "status": "draft",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "copy2": {
+      "kind": "text",
+      "from": "items2"
+    },
+    "copy3": {
+      "kind": "text",
+      "from": "items3"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 98,
+      "maxFont": 98,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 64,
+      "maxFont": 64,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 50,
+      "maxFont": 50,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy2": {
+      "minFont": 50,
+      "maxFont": 50,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy3": {
+      "minFont": 50,
+      "maxFont": 50,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "photo": {
+      "kind": "picture"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    },
+    "copy3": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "type": "text",
+        "x": 65,
+        "y": 60,
+        "width": 1390,
+        "height": 160,
+        "fontSize": 98,
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "z": 5,
+        "lineHeight": 1.12,
+        "id": "text0",
+        "morphId": "text0",
+        "slot": "title"
+      },
+      {
+        "type": "image",
+        "x": 80,
+        "y": 260,
+        "width": 610,
+        "height": 535,
+        "z": 1,
+        "id": "image1",
+        "morphId": "image1",
+        "slot": "photo"
+      },
+      {
+        "type": "text",
+        "x": 780,
+        "y": 270,
+        "width": 690,
+        "height": 110,
+        "fontSize": 64,
+        "tokenColor": "accent",
+        "fontRole": "display",
+        "z": 5,
+        "lineHeight": 1.12,
+        "id": "text2",
+        "morphId": "text2",
+        "slot": "copy0"
+      },
+      {
+        "type": "text",
+        "x": 790,
+        "y": 440,
+        "width": 655,
+        "height": 95,
+        "fontSize": 50,
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "z": 5,
+        "lineHeight": 1.12,
+        "id": "text3",
+        "morphId": "text3",
+        "slot": "copy1"
+      },
+      {
+        "type": "shape",
+        "shape": "rect",
+        "x": 790,
+        "y": 540,
+        "width": 670,
+        "height": 2,
+        "tokenFill": "line",
+        "z": 1,
+        "id": "shape4",
+        "morphId": "shape4"
+      },
+      {
+        "type": "text",
+        "x": 790,
+        "y": 566,
+        "width": 700,
+        "height": 95,
+        "fontSize": 50,
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "z": 5,
+        "lineHeight": 1.12,
+        "id": "text5",
+        "morphId": "text5",
+        "slot": "copy2"
+      },
+      {
+        "type": "shape",
+        "shape": "rect",
+        "x": 790,
+        "y": 665,
+        "width": 670,
+        "height": 2,
+        "tokenFill": "line",
+        "z": 1,
+        "id": "shape6",
+        "morphId": "shape6"
+      },
+      {
+        "type": "text",
+        "x": 790,
+        "y": 690,
+        "width": 680,
+        "height": 95,
+        "fontSize": 50,
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "z": 5,
+        "lineHeight": 1.12,
+        "id": "text7",
+        "morphId": "text7",
+        "slot": "copy3"
+      }
+    ]
+  }
+}

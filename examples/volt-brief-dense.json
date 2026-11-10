@@ -1,0 +1,122 @@
+{
+  "name": "Volt Brief • Shift report",
+  "description": "Industrial briefing — KPI tile grid, ribbon timeline, L-cut photo field. Not a cafe lookbook.",
+  "brand": {
+    "colors": {
+      "bg": "#111418",
+      "surface": "#1C2228",
+      "surface_color": "#252C34",
+      "ink": "#E8EEF2",
+      "muted": "#8A97A3",
+      "accent": "#F5A623",
+      "line": "#343C46"
+    },
+    "fonts": {
+      "display": "Archivo Black",
+      "body": "Arial"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "volt-brief"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Volt Brief",
+        "items": [
+          "Shift report · Bay 4",
+          "06:40"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Live meters",
+        "items": [
+          "94%",
+          "Uptime",
+          "12",
+          "Open tickets",
+          "3.1m",
+          "Mean reply",
+          "0",
+          "Sev-1"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Ribbon",
+        "items": [
+          "06:40",
+          "Handover",
+          "08:00",
+          "Load test",
+          "10:30",
+          "Patch window",
+          "13:00",
+          "Customer call",
+          "16:00",
+          "Close bay"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Bay four",
+        "items": [
+          "What moved",
+          "Patch landed clean. Latency dropped under eighty milliseconds for the morning cohort.",
+          "What waits",
+          "Two tickets still need a human walkthrough before we close the bay."
+        ],
+        "photoQuery": "02956ca2a9"
+      },
+      {
+        "role": "feature",
+        "title": "Owners",
+        "items": [
+          "Priya",
+          "Owns uptime and the patch window. Escalates anything that slips past 10:30.",
+          "Jonah",
+          "Owns customer call notes and the two open walkthroughs."
+        ],
+        "photoQuery": "0746be1cf3"
+      },
+      {
+        "role": "feature",
+        "title": "Hold the line.",
+        "items": [
+          "Volt Ops · Bay 4"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "volt-brief-bracket"
+    },
+    {
+      "role": "feature",
+      "variant": "volt-brief-meters"
+    },
+    {
+      "role": "feature",
+      "variant": "volt-brief-ribbon"
+    },
+    {
+      "role": "feature",
+      "variant": "volt-brief-lcut"
+    },
+    {
+      "role": "feature",
+      "variant": "volt-brief-owners"
+    },
+    {
+      "role": "feature",
+      "variant": "volt-brief-stamp"
+    }
+  ]
+}

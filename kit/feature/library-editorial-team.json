@@ -1,0 +1,101 @@
+{
+  "id": "feature/library-editorial-team",
+  "role": "feature",
+  "variant": "library-editorial-team",
+  "family": "editorial",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "body": {
+      "kind": "text",
+      "from": "items2"
+    },
+    "purpose": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "folio": {
+      "kind": "text",
+      "from": "items1"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 90,
+      "maxFont": 90,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "purpose": {
+      "minFont": 25,
+      "maxFont": 25,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {},
+  "layout": {
+    "elements": [
+      {
+        "id": "title",
+        "type": "text",
+        "x": 80,
+        "y": 80,
+        "width": 1400,
+        "height": 240,
+        "fontSize": 90,
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "tokenColor": "ink",
+        "slot": "title",
+        "textStyleRole": "headline",
+        "z": 4,
+        "morphId": "title"
+      },
+      {
+        "id": "rule",
+        "type": "shape",
+        "shape": "rect",
+        "x": 80,
+        "y": 320,
+        "width": 1440,
+        "height": 2,
+        "tokenFill": "accent",
+        "z": 1
+      },
+      {
+        "id": "evidence-table",
+        "type": "table",
+        "x": 80,
+        "y": 390,
+        "width": 1440,
+        "height": 370,
+        "z": 3,
+        "morphId": "table"
+      },
+      {
+        "id": "purpose",
+        "type": "text",
+        "x": 80,
+        "y": 820,
+        "width": 1400,
+        "height": 40,
+        "fontSize": 25,
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "tokenColor": "muted",
+        "slot": "purpose",
+        "textStyleRole": "kicker",
+        "z": 4
+      }
+    ]
+  }
+}

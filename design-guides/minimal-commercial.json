@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "id": "minimal-commercial",
+  "name": "Minimal Commercial",
+  "purpose": "Proposals, service packages, objectives and pricing narratives.",
+  "canvas": {
+    "width": 1600,
+    "height": 900
+  },
+  "referenceLayoutIds": [
+    "ref-three-objectives",
+    "ref-three-price-outlines"
+  ],
+  "existingKitStartingPoints": [
+    "feature/c",
+    "pricing/three-tier",
+    "pricing/spotlight",
+    "cover/minimal-center"
+  ],
+  "existingKitCaveat": "These are working starting points, not exact implementations of the reference geometry.",
+  "identityRules": [
+    "Use three unboxed columns for objectives.",
+    "For pricing, box only the price and keep the plan name and description outside.",
+    "Use large gaps between the header and commercial content."
+  ],
+  "typography": {
+    "unit": "engine-canvas",
+    "preferredSizes": {
+      "display": 88,
+      "heading": 60,
+      "price": 74,
+      "itemHeading": 28,
+      "body": 24,
+      "metadata": 24
+    },
+    "bodyFloor": 24,
+    "titleFloor": 40,
+    "chartLabelFloor": 20,
+    "sourceAdjustment": "Reference body sizes scaled from 1920px often fall below the engine's 14pt export floor. Raise body text to at least 24 engine units and shorten or split copy; do not preserve an unreadable exact ratio."
+  },
+  "whitespace": {
+    "contentFrame": {
+      "x": 225,
+      "y": 167,
+      "width": 1150,
+      "height": 566
+    },
+    "minimumColumnGutter": 58,
+    "policy": "Reference negative-space zones are reserved. Do not introduce text, photos or charts into those zones; full-bleed backgrounds may cross them.",
+    "referenceFrameCaveat": "The common content frame applies to inset copy. Bleeding photographs and intentionally off-canvas elements follow their own pattern bounds."
+  },
+  "variationRecipes": [
+    "Switch between a left-aligned objectives header and centered pricing header.",
+    "Use an existing spotlight pricing kit when one plan needs emphasis.",
+    "Change icon semantics and price content without adding large containers."
+  ],
+  "antiPatterns": [
+    "Making the entire pricing column a tall card.",
+    "Using a fake price or unsupported business claim.",
+    "Filling the wide plan gutters with extra bullets or badges."
+  ],
+  "deckRhythm": [
+    "outcome-cover",
+    "objectives",
+    "evidence",
+    "pricing",
+    "next-step"
+  ],
+  "contentRules": {
+    "titleMaxWords": 8,
+    "titleMaxChars": 60,
+    "keynoteBodyMaxWordsPerBlock": 20,
+    "keynoteBodyMaxCharsPerItem": 90,
+    "photoQueries": "Use distinct domain-specific queries; keep imagery dynamic.",
+    "overflow": "Shorten text or split slides before reducing font size or occupying whitespace."
+  },
+  "readiness": {
+    "guide": "ready",
+    "blueprints": "implemented as draft engine kits",
+    "runtimeAutoSelection": false,
+    "newKitStatus": "Registered; opt in through sequenceId or explicit variantHint. Existing default pools are unchanged."
+  },
+  "generatedKits": [
+    "feature/ref-three-objectives",
+    "pricing/ref-three-price-outlines"
+  ],
+  "sequenceId": "guide-minimal-commercial",
+  "exampleDeck": "examples/design-guides/minimal-commercial.json"
+}

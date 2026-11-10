@@ -1,0 +1,351 @@
+{
+    "id":  "feature/sunday-roast-menu-dense",
+    "role":  "feature",
+    "variant":  "sunday-roast-menu-dense",
+    "family":  "sunday-roast",
+    "status":  "approved",
+    "preserveLayout":  true,
+    "requiresPhoto":  false,
+    "photoSlots":  [
+
+                   ],
+    "slots":  {
+                  "title":  {
+                                "kind":  "text",
+                                "from":  "title"
+                            },
+                  "copy0":  {
+                                "kind":  "text",
+                                "from":  "items0"
+                            },
+                  "copy1":  {
+                                "kind":  "text",
+                                "from":  "items1"
+                            },
+                  "copy2":  {
+                                "kind":  "text",
+                                "from":  "items2"
+                            },
+                  "copy3":  {
+                                "kind":  "text",
+                                "from":  "items3"
+                            },
+                  "copy4":  {
+                                "kind":  "text",
+                                "from":  "items4"
+                            },
+                  "copy5":  {
+                                "kind":  "text",
+                                "from":  "items5"
+                            },
+                  "copy6":  {
+                                "kind":  "text",
+                                "from":  "items6"
+                            },
+                  "copy7":  {
+                                "kind":  "text",
+                                "from":  "items7"
+                            }
+              },
+    "fit":  {
+                "title":  {
+                              "maxFont":  100,
+                              "minFont":  100,
+                              "lineClamp":  1,
+                              "shrinkMin":  1
+                          },
+                "copy0":  {
+                              "maxFont":  48,
+                              "minFont":  48,
+                              "lineClamp":  1,
+                              "shrinkMin":  1
+                          },
+                "copy1":  {
+                              "maxFont":  28,
+                              "minFont":  28,
+                              "lineClamp":  3,
+                              "shrinkMin":  1
+                          },
+                "copy2":  {
+                              "maxFont":  48,
+                              "minFont":  48,
+                              "lineClamp":  1,
+                              "shrinkMin":  1
+                          },
+                "copy3":  {
+                              "maxFont":  28,
+                              "minFont":  28,
+                              "lineClamp":  3,
+                              "shrinkMin":  1
+                          },
+                "copy4":  {
+                              "maxFont":  48,
+                              "minFont":  48,
+                              "lineClamp":  1,
+                              "shrinkMin":  1
+                          },
+                "copy5":  {
+                              "maxFont":  28,
+                              "minFont":  28,
+                              "lineClamp":  3,
+                              "shrinkMin":  1
+                          },
+                "copy6":  {
+                              "maxFont":  48,
+                              "minFont":  48,
+                              "lineClamp":  1,
+                              "shrinkMin":  1
+                          },
+                "copy7":  {
+                              "maxFont":  28,
+                              "minFont":  28,
+                              "lineClamp":  3,
+                              "shrinkMin":  1
+                          }
+            },
+    "pptxMapping":  {
+                        "title":  {
+                                      "kind":  "text"
+                                  },
+                        "copy0":  {
+                                      "kind":  "text"
+                                  },
+                        "copy1":  {
+                                      "kind":  "text"
+                                  },
+                        "copy2":  {
+                                      "kind":  "text"
+                                  },
+                        "copy3":  {
+                                      "kind":  "text"
+                                  },
+                        "copy4":  {
+                                      "kind":  "text"
+                                  },
+                        "copy5":  {
+                                      "kind":  "text"
+                                  },
+                        "copy6":  {
+                                      "kind":  "text"
+                                  },
+                        "copy7":  {
+                                      "kind":  "text"
+                                  }
+                    },
+    "layout":  {
+                   "elements":  [
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  0,
+                                        "y":  0,
+                                        "width":  1600,
+                                        "height":  900,
+                                        "tokenFill":  "accent",
+                                        "z":  1,
+                                        "id":  "shape0",
+                                        "morphId":  "shape0"
+                                    },
+                                    {
+                                        "type":  "text",
+                                        "x":  80,
+                                        "y":  55,
+                                        "width":  1440,
+                                        "height":  130,
+                                        "fontSize":  100,
+                                        "tokenColor":  "bg",
+                                        "fontRole":  "display",
+                                        "fontWeight":  700,
+                                        "lineHeight":  1.05,
+                                        "z":  4,
+                                        "id":  "text1",
+                                        "morphId":  "text1",
+                                        "slot":  "title"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  80,
+                                        "y":  200,
+                                        "width":  200,
+                                        "height":  5,
+                                        "tokenFill":  "bg",
+                                        "z":  2,
+                                        "id":  "titleRule",
+                                        "morphId":  "titleRule"
+                                    },
+                                    {
+                                        "type":  "text",
+                                        "x":  80,
+                                        "y":  250,
+                                        "width":  680,
+                                        "height":  70,
+                                        "fontSize":  48,
+                                        "tokenColor":  "bg",
+                                        "fontRole":  "body",
+                                        "fontWeight":  700,
+                                        "lineHeight":  1.1,
+                                        "z":  4,
+                                        "id":  "text3",
+                                        "morphId":  "text3",
+                                        "slot":  "copy0"
+                                    },
+                                    {
+                                        "type":  "text",
+                                        "x":  80,
+                                        "y":  330,
+                                        "width":  680,
+                                        "height":  110,
+                                        "fontSize":  28,
+                                        "tokenColor":  "bg",
+                                        "fontRole":  "body",
+                                        "lineHeight":  1.25,
+                                        "z":  4,
+                                        "id":  "text4",
+                                        "morphId":  "text4",
+                                        "slot":  "copy1"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  80,
+                                        "y":  460,
+                                        "width":  680,
+                                        "height":  2,
+                                        "tokenFill":  "bg",
+                                        "z":  1,
+                                        "id":  "shape2",
+                                        "morphId":  "shape2"
+                                    },
+                                    {
+                                        "type":  "text",
+                                        "x":  840,
+                                        "y":  250,
+                                        "width":  680,
+                                        "height":  70,
+                                        "fontSize":  48,
+                                        "tokenColor":  "bg",
+                                        "fontRole":  "body",
+                                        "fontWeight":  700,
+                                        "lineHeight":  1.1,
+                                        "z":  4,
+                                        "id":  "text6",
+                                        "morphId":  "text6",
+                                        "slot":  "copy2"
+                                    },
+                                    {
+                                        "type":  "text",
+                                        "x":  840,
+                                        "y":  330,
+                                        "width":  680,
+                                        "height":  110,
+                                        "fontSize":  28,
+                                        "tokenColor":  "bg",
+                                        "fontRole":  "body",
+                                        "lineHeight":  1.25,
+                                        "z":  4,
+                                        "id":  "text7",
+                                        "morphId":  "text7",
+                                        "slot":  "copy3"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  840,
+                                        "y":  460,
+                                        "width":  680,
+                                        "height":  2,
+                                        "tokenFill":  "bg",
+                                        "z":  1,
+                                        "id":  "shape5",
+                                        "morphId":  "shape5"
+                                    },
+                                    {
+                                        "type":  "text",
+                                        "x":  80,
+                                        "y":  510,
+                                        "width":  680,
+                                        "height":  70,
+                                        "fontSize":  48,
+                                        "tokenColor":  "bg",
+                                        "fontRole":  "body",
+                                        "fontWeight":  700,
+                                        "lineHeight":  1.1,
+                                        "z":  4,
+                                        "id":  "text9",
+                                        "morphId":  "text9",
+                                        "slot":  "copy4"
+                                    },
+                                    {
+                                        "type":  "text",
+                                        "x":  80,
+                                        "y":  590,
+                                        "width":  680,
+                                        "height":  110,
+                                        "fontSize":  28,
+                                        "tokenColor":  "bg",
+                                        "fontRole":  "body",
+                                        "lineHeight":  1.25,
+                                        "z":  4,
+                                        "id":  "text10",
+                                        "morphId":  "text10",
+                                        "slot":  "copy5"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  80,
+                                        "y":  720,
+                                        "width":  680,
+                                        "height":  2,
+                                        "tokenFill":  "bg",
+                                        "z":  1,
+                                        "id":  "shape8",
+                                        "morphId":  "shape8"
+                                    },
+                                    {
+                                        "type":  "text",
+                                        "x":  840,
+                                        "y":  510,
+                                        "width":  680,
+                                        "height":  70,
+                                        "fontSize":  48,
+                                        "tokenColor":  "bg",
+                                        "fontRole":  "body",
+                                        "fontWeight":  700,
+                                        "lineHeight":  1.1,
+                                        "z":  4,
+                                        "id":  "text12",
+                                        "morphId":  "text12",
+                                        "slot":  "copy6"
+                                    },
+                                    {
+                                        "type":  "text",
+                                        "x":  840,
+                                        "y":  590,
+                                        "width":  680,
+                                        "height":  110,
+                                        "fontSize":  28,
+                                        "tokenColor":  "bg",
+                                        "fontRole":  "body",
+                                        "lineHeight":  1.25,
+                                        "z":  4,
+                                        "id":  "text13",
+                                        "morphId":  "text13",
+                                        "slot":  "copy7"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  840,
+                                        "y":  720,
+                                        "width":  680,
+                                        "height":  2,
+                                        "tokenFill":  "bg",
+                                        "z":  1,
+                                        "id":  "shape11",
+                                        "morphId":  "shape11"
+                                    }
+                                ]
+               }
+}

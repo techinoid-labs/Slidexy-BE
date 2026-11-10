@@ -1,0 +1,131 @@
+{
+  "id": "team/cutout",
+  "role": "team",
+  "variant": "cutout",
+  "family": "anti-grid",
+  "steal": "Circular portrait overlapping an accent block (head breaks the top edge); name/role stack right.",
+  "requiresPhoto": true,
+  "photoSlots": ["portrait"],
+  "slots": {
+    "title": { "kind": "text", "optional": false, "from": "title" },
+    "name": { "kind": "text", "optional": false, "from": "members0.name" },
+    "roleLabel": { "kind": "text", "optional": true, "from": "members0.role" },
+    "body": { "kind": "text", "optional": true, "from": "memberLine" },
+    "portrait": { "kind": "image", "optional": false, "from": "photo" }
+  },
+  "fit": {
+    "title": { "maxFont": 40, "minFont": 28, "lineClamp": 1, "shrinkMin": 0.9 },
+    "name": { "maxFont": 48, "minFont": 32, "lineClamp": 2, "shrinkMin": 0.9 },
+    "roleLabel": { "maxFont": 24, "minFont": 18, "lineClamp": 1, "shrinkMin": 1 },
+    "body": { "maxFont": 20, "minFont": 16, "lineClamp": 6, "shrinkMin": 0.9 }
+  },
+  "pptxMapping": {
+    "title": { "kind": "text" },
+    "name": { "kind": "text" },
+    "roleLabel": { "kind": "text" },
+    "body": { "kind": "text" },
+    "portrait": { "kind": "picture" }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 1,
+        "id": "accentBlock",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "accent",
+        "x": 80,
+        "y": 280,
+        "width": 560,
+        "height": 480,
+        "morphId": "accent-block"
+      },
+      {
+        "z": 2,
+        "id": "disk",
+        "type": "shape",
+        "shape": "ellipse",
+        "tokenFill": "card_bg",
+        "x": 140,
+        "y": 220,
+        "width": 440,
+        "height": 440,
+        "morphId": "disk"
+      },
+      {
+        "z": 3,
+        "id": "portrait",
+        "type": "image",
+        "slot": "portrait",
+        "mask": "circle",
+        "x": 160,
+        "y": 160,
+        "width": 400,
+        "height": 400,
+        "morphId": "photo-1"
+      },
+      {
+        "z": 4,
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 36,
+        "align": "left",
+        "x": 760,
+        "y": 160,
+        "width": 720,
+        "height": 64,
+        "morphId": "title"
+      },
+      {
+        "z": 4,
+        "id": "name",
+        "type": "text",
+        "slot": "name",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 44,
+        "align": "left",
+        "x": 760,
+        "y": 320,
+        "width": 720,
+        "height": 100,
+        "morphId": "n1"
+      },
+      {
+        "z": 4,
+        "id": "roleLabel",
+        "type": "text",
+        "slot": "roleLabel",
+        "tokenColor": "accent",
+        "fontRole": "label",
+        "fontSize": 22,
+        "align": "left",
+        "x": 760,
+        "y": 430,
+        "width": 720,
+        "height": 48,
+        "morphId": "r1"
+      },
+      {
+        "z": 4,
+        "id": "body",
+        "type": "text",
+        "slot": "body",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontSize": 18,
+        "align": "left",
+        "x": 760,
+        "y": 520,
+        "width": 720,
+        "height": 220,
+        "morphId": "body"
+      }
+    ]
+  },
+  "status": "draft",
+  "motion": { "transition": "fade", "fallbackTransition": "fade", "durationMs": 500 }
+}

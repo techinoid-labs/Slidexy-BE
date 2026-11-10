@@ -1,0 +1,236 @@
+{
+  "id": "feature/cafe-junction",
+  "role": "feature",
+  "variant": "cafe-junction",
+  "family": "transit-diagram",
+  "status": "draft",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "a": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "b": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "note": {
+      "kind": "text",
+      "from": "caption"
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 110,
+      "minFont": 91,
+      "lineClamp": 4,
+      "shrinkMin": 0.83
+    },
+    "a": {
+      "maxFont": 60,
+      "minFont": 50,
+      "lineClamp": 4,
+      "shrinkMin": 0.83
+    },
+    "b": {
+      "maxFont": 60,
+      "minFont": 50,
+      "lineClamp": 4,
+      "shrinkMin": 0.83
+    },
+    "note": {
+      "maxFont": 32,
+      "minFont": 27,
+      "lineClamp": 4,
+      "shrinkMin": 0.83
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "a": {
+      "kind": "text"
+    },
+    "b": {
+      "kind": "text"
+    },
+    "note": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "field",
+        "type": "shape",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "z": 1,
+        "tokenFill": "ink",
+        "shape": "rect",
+        "morphId": "field"
+      },
+      {
+        "id": "title",
+        "slot": "title",
+        "type": "text",
+        "x": 65,
+        "y": 65,
+        "width": 1480,
+        "height": 175,
+        "fontSize": 110,
+        "fontRole": "display",
+        "tokenColor": "bg",
+        "z": 5,
+        "morphId": "title"
+      },
+      {
+        "id": "entry",
+        "type": "shape",
+        "x": 0,
+        "y": 515,
+        "width": 550,
+        "height": 24,
+        "z": 1,
+        "tokenFill": "bg",
+        "shape": "rect",
+        "morphId": "entry"
+      },
+      {
+        "id": "upper",
+        "type": "shape",
+        "x": 530,
+        "y": 345,
+        "width": 24,
+        "height": 190,
+        "z": 1,
+        "tokenFill": "accent",
+        "shape": "rect",
+        "morphId": "upper"
+      },
+      {
+        "id": "hot",
+        "type": "shape",
+        "x": 530,
+        "y": 345,
+        "width": 940,
+        "height": 24,
+        "z": 1,
+        "tokenFill": "accent",
+        "shape": "rect",
+        "morphId": "hot"
+      },
+      {
+        "id": "lower",
+        "type": "shape",
+        "x": 530,
+        "y": 530,
+        "width": 24,
+        "height": 153,
+        "z": 1,
+        "tokenFill": "surface",
+        "shape": "rect",
+        "morphId": "lower"
+      },
+      {
+        "id": "cold",
+        "type": "shape",
+        "x": 530,
+        "y": 660,
+        "width": 720,
+        "height": 24,
+        "z": 1,
+        "tokenFill": "surface",
+        "shape": "rect",
+        "morphId": "cold"
+      },
+      {
+        "id": "station0",
+        "type": "shape",
+        "x": 510,
+        "y": 493,
+        "width": 72,
+        "height": 72,
+        "z": 1,
+        "tokenFill": "bg",
+        "shape": "ellipse",
+        "morphId": "station0"
+      },
+      {
+        "id": "station1",
+        "type": "shape",
+        "x": 1430,
+        "y": 321,
+        "width": 72,
+        "height": 72,
+        "z": 1,
+        "tokenFill": "bg",
+        "shape": "ellipse",
+        "morphId": "station1"
+      },
+      {
+        "id": "station2",
+        "type": "shape",
+        "x": 1210,
+        "y": 637,
+        "width": 72,
+        "height": 72,
+        "z": 1,
+        "tokenFill": "bg",
+        "shape": "ellipse",
+        "morphId": "station2"
+      },
+      {
+        "id": "a",
+        "slot": "a",
+        "type": "text",
+        "x": 660,
+        "y": 250,
+        "width": 720,
+        "height": 90,
+        "fontSize": 60,
+        "fontRole": "body",
+        "tokenColor": "bg",
+        "z": 5,
+        "morphId": "a"
+      },
+      {
+        "id": "b",
+        "slot": "b",
+        "type": "text",
+        "x": 660,
+        "y": 555,
+        "width": 675,
+        "height": 95,
+        "fontSize": 60,
+        "fontRole": "body",
+        "tokenColor": "bg",
+        "z": 5,
+        "morphId": "b"
+      },
+      {
+        "id": "note",
+        "slot": "note",
+        "type": "text",
+        "x": 75,
+        "y": 778,
+        "width": 1440,
+        "height": 85,
+        "fontSize": 32,
+        "fontRole": "body",
+        "tokenColor": "bg",
+        "z": 5,
+        "morphId": "note"
+      }
+    ]
+  }
+}

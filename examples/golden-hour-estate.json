@@ -1,0 +1,123 @@
+{
+  "name": "Golden Hour • Shoreline listing",
+  "description": "Luxury listing deck — arch-cropped house at dusk, serif spec row, roman-numeral rooms and a deed quote.",
+  "brand": {
+    "colors": {
+      "bg": "#F3ECE2",
+      "surface": "#E9DFD2",
+      "surface_color": "#2A1E18",
+      "ink": "#2A1E18",
+      "muted": "#7A6658",
+      "accent": "#B5562A",
+      "line": "#D6C8B8"
+    },
+    "fonts": {
+      "display": "Instrument Serif",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "golden-hour"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Golden **Hour**",
+        "items": [
+          "14 Shoreline Drive",
+          "A shingle-style house on the water, listed at dusk.",
+          "For sale"
+        ],
+        "photoQuery": "af9632a845"
+      },
+      {
+        "role": "feature",
+        "title": "The facts",
+        "items": [
+          "5",
+          "Bedrooms",
+          "4",
+          "Bathrooms",
+          "0.8",
+          "Acres",
+          "1927",
+          "Built",
+          "Restored in 2019. Private beach, boat house and a south-facing lawn that catches the last light."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "The approach",
+        "items": [
+          "The drive",
+          "Oaks line the last quarter mile. The house appears only at the final bend.",
+          "The lawn",
+          "South-facing, sloping gently down to a private strip of sand.",
+          "The light",
+          "At dusk every west window turns gold. These photos were taken at 4:52pm."
+        ],
+        "photoQuery": "af9632a845"
+      },
+      {
+        "role": "feature",
+        "title": "Rooms",
+        "items": [
+          "I",
+          "Great room with open hearth",
+          "II",
+          "Kitchen facing the dunes",
+          "III",
+          "Primary suite over the water",
+          "IV",
+          "Boat house with guest loft"
+        ],
+        "photoQuery": "af9632a845"
+      },
+      {
+        "role": "feature",
+        "title": "Every window faces the **water**.",
+        "items": [
+          "— From the 1927 deed"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Arrange a viewing.",
+        "items": [
+          "Harlow & Finch Estates · by appointment"
+        ],
+        "photoQuery": "af9632a845"
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "golden-hour-arch"
+    },
+    {
+      "role": "feature",
+      "variant": "golden-hour-facts"
+    },
+    {
+      "role": "feature",
+      "variant": "golden-hour-band"
+    },
+    {
+      "role": "feature",
+      "variant": "golden-hour-rooms"
+    },
+    {
+      "role": "feature",
+      "variant": "golden-hour-deed"
+    },
+    {
+      "role": "feature",
+      "variant": "golden-hour-viewing"
+    }
+  ]
+}

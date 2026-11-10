@@ -1,0 +1,150 @@
+{
+  "id": "cover/night-market-masthead",
+  "role": "cover",
+  "variant": "night-market-masthead",
+  "family": "night-market",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 120,
+      "maxFont": 120,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 48,
+      "maxFont": 48,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 26,
+      "maxFont": 26,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "bg",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "bg",
+        "z": 0
+      },
+      {
+        "id": "bar",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 18,
+        "tokenFill": "accent",
+        "z": 1
+      },
+      {
+        "id": "side",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 22,
+        "height": 900,
+        "tokenFill": "accent",
+        "z": 1
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 80,
+        "y": 220,
+        "width": 1100,
+        "height": 200,
+        "fontSize": 120,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "z": 4,
+        "morphId": "title"
+      },
+      {
+        "id": "rule",
+        "type": "shape",
+        "shape": "rect",
+        "x": 80,
+        "y": 450,
+        "width": 180,
+        "height": 6,
+        "tokenFill": "accent",
+        "z": 2
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 80,
+        "y": 490,
+        "width": 900,
+        "height": 80,
+        "fontSize": 48,
+        "slot": "copy0",
+        "tokenColor": "accent",
+        "fontRole": "body",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "z": 4
+      },
+      {
+        "id": "copy1",
+        "type": "text",
+        "x": 80,
+        "y": 780,
+        "width": 700,
+        "height": 50,
+        "fontSize": 26,
+        "slot": "copy1",
+        "tokenColor": "muted",
+        "fontRole": "label",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "z": 4,
+        "textStyleRole": "kicker"
+      }
+    ]
+  }
+}

@@ -52,10 +52,16 @@ function deriveMorphId(el: any): string | null {
   }
   if (el.type === "image") {
     if (/^p\d$/.test(slot)) return "photo-" + slot.slice(1);
-    if (slot === "cutout" || el.id === "cutout") return "hero";
-    if (slot === "hero" || el.id === "hero") return "hero";
     if (slot === "portrait") return "photo-1";
-    return "hero";
+    // Only explicit hero/cutout or true full-bleed covers get Morph "hero".
+    // Framed insets / contact cells must stay untagged or ambient/Morph steals them.
+    if (slot === "cutout" || el.id === "cutout" || slot === "hero" || el.id === "hero") return "hero";
+    const x = Number(el.x) || 0;
+    const y = Number(el.y) || 0;
+    const w = Number(el.width) || 0;
+    const h = Number(el.height) || 0;
+    if ((w >= 1500 && h >= 850 && x <= 40 && y <= 40) || (w >= 1580 && h >= 880)) return "hero";
+    return null;
   }
   if (el.type === "shape") {
     if (el.id === "pulse-bg") return "pulse-bg";
@@ -198,7 +204,7 @@ export function validateTokensFile(filePath?: string): void {
 }
 
 /** Run full schema gate — throws SchemaValidationError on failure. */
-export function assertEngineSchemas(): { kits: number; locked: string[] } {
+export function assertEngineSchemas(): { checked: number; locked: string[] } {
   validateTokensFile();
   validateBrandFile();
   return validateAllKits();

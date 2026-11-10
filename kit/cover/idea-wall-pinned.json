@@ -1,0 +1,167 @@
+{
+  "id": "cover/idea-wall-pinned",
+  "role": "cover",
+  "variant": "idea-wall-pinned",
+  "family": "idea-wall",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    }
+  },
+  "fit": {
+    "copy0": {
+      "minFont": 24,
+      "maxFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "title": {
+      "minFont": 130,
+      "maxFont": 130,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 26,
+      "maxFont": 26,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "photo",
+        "type": "image",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "z": 1,
+        "slot": "photo",
+        "morphId": "hero"
+      },
+      {
+        "id": "shadow",
+        "type": "shape",
+        "shape": "rect",
+        "x": 478,
+        "y": 170,
+        "width": 680,
+        "height": 600,
+        "tokenFill": "ink",
+        "z": 2,
+        "opacity": 0.35
+      },
+      {
+        "id": "note",
+        "type": "shape",
+        "shape": "rect",
+        "x": 460,
+        "y": 150,
+        "width": 680,
+        "height": 600,
+        "tokenFill": "surface",
+        "z": 3
+      },
+      {
+        "id": "pin",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 770,
+        "y": 118,
+        "width": 60,
+        "height": 60,
+        "tokenFill": "accent",
+        "z": 4
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 510,
+        "y": 215,
+        "width": 580,
+        "height": 40,
+        "fontSize": 24,
+        "slot": "copy0",
+        "tokenColor": "ink",
+        "fontRole": "label",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "textStyleRole": "kicker",
+        "align": "center"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 500,
+        "y": 270,
+        "width": 600,
+        "height": 350,
+        "fontSize": 130,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1,
+        "letterSpacing": 0,
+        "z": 4,
+        "textStyleRole": "display",
+        "align": "center",
+        "morphId": "title"
+      },
+      {
+        "id": "copy1",
+        "type": "text",
+        "x": 510,
+        "y": 640,
+        "width": 580,
+        "height": 50,
+        "fontSize": 26,
+        "slot": "copy1",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "align": "center"
+      }
+    ]
+  }
+}

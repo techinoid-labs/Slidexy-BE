@@ -44,6 +44,8 @@ function contrastRatio(a: string, b: string): number {
 function slotText(slide: any, from: string): string {
   if (!from) return "";
   if (from === "title") return slide.title || "";
+  const itemMatch = from.match(/^items(\d+)$/);
+  if (itemMatch) return (slide.items && slide.items[Number(itemMatch[1])]) || "";
   if (from === "caption") return slide.caption || "";
   if (from === "body") return (slide.body || []).join("\n");
   const bodyM = String(from).match(/^body(\d)$/);

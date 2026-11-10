@@ -1,0 +1,163 @@
+{
+  "id": "feature/ref-left-photo-introduction",
+  "role": "feature",
+  "variant": "ref-left-photo-introduction",
+  "family": "architecture-portfolio-ref-left-photo-introduction",
+  "sourceRef": "ref-left-photo-introduction",
+  "designGuide": "architecture-portfolio",
+  "steal": "Full-height photo bleeds off left, top and bottom; soft transition near the center leads into a right text panel with title, lead and paragraph.",
+  "preserveLayout": true,
+  "status": "draft",
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo0"
+    },
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    },
+    "copy1": {
+      "kind": "text",
+      "optional": true,
+      "from": "body0"
+    },
+    "copy2": {
+      "kind": "text",
+      "optional": true,
+      "from": "body1"
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 60,
+      "minFont": 48,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy1": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 2,
+      "shrinkMin": 0.9
+    },
+    "copy2": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 6,
+      "shrinkMin": 0.9
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "photo",
+        "type": "image",
+        "slot": "photo",
+        "x": 0,
+        "y": 0,
+        "width": 775,
+        "height": 900,
+        "z": 1,
+        "morphId": "photo",
+        "mask": "rect"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "x": 858.33,
+        "y": 166.67,
+        "width": 616.67,
+        "height": 78.33,
+        "z": 4,
+        "morphId": "title",
+        "fontRole": "display",
+        "fontSize": 60,
+        "fontWeight": 300,
+        "tokenColor": "ink",
+        "align": "left",
+        "lineHeight": 1.05,
+        "usePrimitive": false
+      },
+      {
+        "id": "title-rule",
+        "type": "shape",
+        "shape": "rect",
+        "x": 858.33,
+        "y": 249.17,
+        "width": 50,
+        "height": 3.33,
+        "z": 2,
+        "morphId": "title-rule",
+        "tokenFill": "accent"
+      },
+      {
+        "id": "lead",
+        "type": "text",
+        "slot": "copy1",
+        "x": 858.33,
+        "y": 350.83,
+        "width": 516.67,
+        "height": 95,
+        "z": 4,
+        "morphId": "lead",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.38,
+        "usePrimitive": false
+      },
+      {
+        "id": "body",
+        "type": "text",
+        "slot": "copy2",
+        "x": 858.33,
+        "y": 475.83,
+        "width": 516.67,
+        "height": 193.33,
+        "z": 4,
+        "morphId": "body",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.32,
+        "usePrimitive": false
+      }
+    ]
+  },
+  "motion": {
+    "transition": "fade",
+    "fallbackTransition": "fade",
+    "durationMs": 500
+  },
+  "implementationNotes": [
+    "Geometry estimated from the supplied raster and scaled to 1600x900.",
+    "Body text raised to readable export floors; copy must fit the original whitespace.",
+    "Soft grain and photographic edge fades replaced by clean crops and flat palette surfaces."
+  ]
+}

@@ -1,0 +1,258 @@
+{
+  "id": "feature/channel-nine-lower",
+  "role": "feature",
+  "variant": "channel-nine-lower",
+  "family": "channel-nine",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "copy2": {
+      "kind": "text",
+      "from": "items2"
+    },
+    "copy3": {
+      "kind": "text",
+      "from": "items3"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    }
+  },
+  "fit": {
+    "copy2": {
+      "minFont": 26,
+      "maxFont": 26,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy3": {
+      "minFont": 72,
+      "maxFont": 72,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "title": {
+      "minFont": 72,
+      "maxFont": 72,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 28,
+      "maxFont": 28,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 24,
+      "maxFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "copy2": {
+      "kind": "text"
+    },
+    "copy3": {
+      "kind": "text"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "photo",
+        "type": "image",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "z": 1,
+        "slot": "photo",
+        "morphId": "hero"
+      },
+      {
+        "id": "live",
+        "type": "shape",
+        "shape": "rect",
+        "x": 80,
+        "y": 70,
+        "width": 150,
+        "height": 60,
+        "tokenFill": "accent",
+        "z": 2,
+        "radius": 6
+      },
+      {
+        "id": "copy2",
+        "type": "text",
+        "x": 80,
+        "y": 80,
+        "width": 150,
+        "height": 40,
+        "fontSize": 26,
+        "slot": "copy2",
+        "tokenColor": "surface",
+        "fontRole": "label",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 3,
+        "textStyleRole": "kicker",
+        "align": "center"
+      },
+      {
+        "id": "bug",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 1410,
+        "y": 60,
+        "width": 110,
+        "height": 110,
+        "tokenFill": "surface",
+        "z": 2
+      },
+      {
+        "id": "copy3",
+        "type": "text",
+        "x": 1410,
+        "y": 64,
+        "width": 110,
+        "height": 103,
+        "fontSize": 72,
+        "slot": "copy3",
+        "tokenColor": "bg",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 3,
+        "textStyleRole": "stat",
+        "align": "center"
+      },
+      {
+        "id": "tab",
+        "type": "shape",
+        "shape": "rect",
+        "x": 80,
+        "y": 650,
+        "width": 20,
+        "height": 180,
+        "tokenFill": "accent",
+        "z": 2
+      },
+      {
+        "id": "nameBar",
+        "type": "shape",
+        "shape": "rect",
+        "x": 100,
+        "y": 650,
+        "width": 1000,
+        "height": 110,
+        "tokenFill": "surface",
+        "z": 2
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 130,
+        "y": 655,
+        "width": 940,
+        "height": 103,
+        "fontSize": 72,
+        "slot": "title",
+        "tokenColor": "bg",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 3,
+        "textStyleRole": "display",
+        "morphId": "title"
+      },
+      {
+        "id": "roleBar",
+        "type": "shape",
+        "shape": "rect",
+        "x": 100,
+        "y": 760,
+        "width": 760,
+        "height": 70,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 130,
+        "y": 773,
+        "width": 720,
+        "height": 44,
+        "fontSize": 28,
+        "slot": "copy0",
+        "tokenColor": "surface",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 3
+      },
+      {
+        "id": "crawl",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 850,
+        "width": 1600,
+        "height": 50,
+        "tokenFill": "surface_color",
+        "z": 2
+      },
+      {
+        "id": "copy1",
+        "type": "text",
+        "x": 80,
+        "y": 858,
+        "width": 1440,
+        "height": 36,
+        "fontSize": 22,
+        "slot": "copy1",
+        "tokenColor": "bg",
+        "fontRole": "body",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 3
+      }
+    ]
+  }
+}

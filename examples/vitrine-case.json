@@ -1,0 +1,121 @@
+{
+  "name": "Vitrine • Case",
+  "description": "Museum portfolio — glass vitrine cover, plinth works, caption rails and a view close.",
+  "brand": {
+    "colors": {
+      "bg": "#E8E6E1",
+      "surface": "#F5F3EE",
+      "surface_color": "#D8D5CE",
+      "ink": "#1C1F24",
+      "muted": "#6F737A",
+      "accent": "#8B7355",
+      "line": "#C4C0B8"
+    },
+    "fonts": {
+      "display": "Playfair Display",
+      "body": "Georgia"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "vitrine"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Vitrine",
+        "items": [
+          "Case study · selected works",
+          "on view",
+          "08"
+        ],
+        "photoQuery": "092c8c1420fb"
+      },
+      {
+        "role": "feature",
+        "title": "Works",
+        "items": [
+          "Study I",
+          "charcoal on linen",
+          "Study II",
+          "ink wash",
+          "Study III",
+          "bronze maquette",
+          "Three objects. One case."
+        ],
+        "photoQuery": "141ae86a78f3"
+      },
+      {
+        "role": "feature",
+        "title": "Plinth",
+        "items": [
+          "Left",
+          "earliest cast",
+          "Center",
+          "hero piece",
+          "Right",
+          "late revision"
+        ],
+        "photoQuery": "16df8343dc3d"
+      },
+      {
+        "role": "feature",
+        "title": "Labels",
+        "items": [
+          "01",
+          "Title",
+          "02",
+          "Medium",
+          "03",
+          "Year",
+          "04",
+          "Note"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Distance makes the work quieter.",
+        "items": [
+          "— Gallery notes"
+        ],
+        "photoQuery": "092c8c1420fb"
+      },
+      {
+        "role": "closing",
+        "title": "View.",
+        "items": [
+          "Vitrine Case · by appointment"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "vitrine-cover"
+    },
+    {
+      "role": "feature",
+      "variant": "vitrine-works"
+    },
+    {
+      "role": "feature",
+      "variant": "vitrine-plinth"
+    },
+    {
+      "role": "feature",
+      "variant": "vitrine-labels"
+    },
+    {
+      "role": "feature",
+      "variant": "vitrine-quote"
+    },
+    {
+      "role": "closing",
+      "variant": "vitrine-view"
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "name": "Strike • Lane",
+  "description": "Funky bowling alley — lane cover, pin set, score frames and a spare close.",
+  "brand": {
+    "colors": {
+      "bg": "#101820",
+      "surface": "#1A2834",
+      "surface_color": "#243646",
+      "ink": "#F2F7FA",
+      "muted": "#8FA4B4",
+      "accent": "#FF4D6D",
+      "line": "#334858"
+    },
+    "fonts": {
+      "display": "Franklin Gothic Heavy",
+      "body": "Bahnschrift"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "strike"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "STRIKE",
+        "items": [
+          "Lane 7 · late league",
+          "open bowl",
+          "X"
+        ],
+        "photoQuery": "0aaf07e051b3"
+      },
+      {
+        "role": "feature",
+        "title": "Frames",
+        "items": [
+          "1",
+          "spare",
+          "2",
+          "open",
+          "3",
+          "strike",
+          "4",
+          "spare",
+          "5",
+          "X"
+        ],
+        "photoQuery": "0288432f0b82"
+      },
+      {
+        "role": "feature",
+        "title": "Pins",
+        "items": [
+          "Head",
+          "clear first",
+          "Pocket",
+          "1-3 line",
+          "Back",
+          "clean sweep"
+        ],
+        "photoQuery": "05b78bfac32c"
+      },
+      {
+        "role": "feature",
+        "title": "League",
+        "items": [
+          "01",
+          "Oil pattern",
+          "02",
+          "Warm-up",
+          "03",
+          "Roll",
+          "04",
+          "Reset"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Leave nothing standing.",
+        "items": [
+          "— Lane boss"
+        ],
+        "photoQuery": "0aaf07e051b3"
+      },
+      {
+        "role": "closing",
+        "title": "Spare.",
+        "items": [
+          "Strike Lane · last frame"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "strike-cover"
+    },
+    {
+      "role": "feature",
+      "variant": "strike-frames"
+    },
+    {
+      "role": "feature",
+      "variant": "strike-pins"
+    },
+    {
+      "role": "feature",
+      "variant": "strike-league"
+    },
+    {
+      "role": "feature",
+      "variant": "strike-quote"
+    },
+    {
+      "role": "closing",
+      "variant": "strike-spare"
+    }
+  ]
+}

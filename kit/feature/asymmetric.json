@@ -1,0 +1,87 @@
+{
+  "id": "feature/asymmetric",
+  "role": "feature",
+  "variant": "asymmetric",
+  "family": "anti-grid",
+  "steal": "70/30 split — narrow text column left; image bleeds off top and right (no 50/50).",
+  "requiresPhoto": true,
+  "photoSlots": ["photo"],
+  "slots": {
+    "title": { "kind": "text", "optional": false, "from": "title" },
+    "body": { "kind": "text", "optional": false, "from": "body" },
+    "photo": { "kind": "image", "optional": false, "from": "photo" },
+    "accent": { "kind": "shape", "optional": false }
+  },
+  "fit": {
+    "title": { "maxFont": 48, "minFont": 32, "lineClamp": 3, "shrinkMin": 0.85 },
+    "body": { "maxFont": 22, "minFont": 16, "lineClamp": 10, "shrinkMin": 0.9 }
+  },
+  "pptxMapping": {
+    "title": { "kind": "text" },
+    "body": { "kind": "text" },
+    "photo": { "kind": "picture" },
+    "accent": { "kind": "shape" }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 1,
+        "id": "photo",
+        "type": "image",
+        "slot": "photo",
+        "tension": 0.12,
+        "offset": "breakout",
+        "x": 480,
+        "y": -40,
+        "width": 1220,
+        "height": 980,
+        "morphId": "hero"
+      },
+      {
+        "z": 3,
+        "id": "accent",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "accent",
+        "x": 72,
+        "y": 200,
+        "width": 48,
+        "height": 6,
+        "morphId": "accent"
+      },
+      {
+        "z": 3,
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 42,
+        "align": "left",
+        "x": 72,
+        "y": 230,
+        "width": 360,
+        "height": 180,
+        "morphId": "title"
+      },
+      {
+        "z": 3,
+        "id": "body",
+        "type": "text",
+        "slot": "body",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontSize": 20,
+        "lineHeight": 1.45,
+        "align": "left",
+        "x": 72,
+        "y": 440,
+        "width": 360,
+        "height": 380,
+        "morphId": "body"
+      }
+    ]
+  },
+  "status": "draft",
+  "motion": { "transition": "fade", "fallbackTransition": "fade", "durationMs": 500 }
+}

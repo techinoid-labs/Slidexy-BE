@@ -4,7 +4,7 @@
   "effect": "float",
   "steal": "Visible Y-bob on a large plate/card (~28px, 9s) — never hairline brush accents.",
   "target": {
-    "prefer": ["titlePlate", "neon", "plate", "bg-accent", "accent", "hero"]
+    "prefer": ["titlePlate", "neon", "plate", "bg-accent", "accent", "pulse-bg"]
   },
   "params": {
     "durationMs": 9000,

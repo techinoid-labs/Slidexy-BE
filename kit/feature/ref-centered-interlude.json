@@ -1,0 +1,77 @@
+{
+  "id": "feature/ref-centered-interlude",
+  "role": "feature",
+  "variant": "ref-centered-interlude",
+  "family": "atmospheric-editorial-ref-centered-interlude",
+  "sourceRef": "ref-centered-interlude",
+  "designGuide": "atmospheric-editorial",
+  "steal": "One short title centered horizontally and near the vertical midpoint; short rule underneath. All other foreground regions remain empty.",
+  "preserveLayout": true,
+  "status": "draft",
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 60,
+      "minFont": 48,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "x": 550,
+        "y": 408.33,
+        "width": 500,
+        "height": 75,
+        "z": 4,
+        "morphId": "title",
+        "fontRole": "display",
+        "fontSize": 60,
+        "fontWeight": 300,
+        "tokenColor": "ink",
+        "align": "center",
+        "lineHeight": 1.05,
+        "usePrimitive": false
+      },
+      {
+        "id": "title-rule",
+        "type": "shape",
+        "shape": "rect",
+        "x": 775,
+        "y": 490,
+        "width": 50,
+        "height": 3.33,
+        "z": 2,
+        "morphId": "title-rule",
+        "tokenFill": "accent"
+      }
+    ]
+  },
+  "motion": {
+    "transition": "fade",
+    "fallbackTransition": "fade",
+    "durationMs": 500
+  },
+  "implementationNotes": [
+    "Geometry estimated from the supplied raster and scaled to 1600x900.",
+    "Body text raised to readable export floors; copy must fit the original whitespace.",
+    "Soft grain and photographic edge fades replaced by clean crops and flat palette surfaces."
+  ]
+}

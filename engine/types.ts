@@ -67,6 +67,8 @@ export interface DeckSpecSlide {
     | string;
   title: string;
   body?: string[];
+  /** Compact agenda / partner labels, independent of body paragraph normalization. */
+  items?: string[];
   stats?: StatItem[];
   members?: TeamMember[];
   caption?: string;

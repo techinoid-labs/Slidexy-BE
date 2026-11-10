@@ -22,6 +22,7 @@ const SYSTEM_FONT_FILES = {
   Cambria: ["cambria.ttf", "cambriab.ttf"],
   Verdana: ["verdana.ttf", "verdanab.ttf"],
   Arial: ["arial.ttf", "arialbd.ttf"],
+  "Arial Black": ["ariblk.ttf", "ariblk.ttf"],
   Georgia: ["georgia.ttf", "georgiab.ttf"],
   "Segoe UI": ["segoeui.ttf", "segoeuib.ttf"],
   Constantia: ["constan.ttf", "constanb.ttf"],

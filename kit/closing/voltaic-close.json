@@ -1,0 +1,200 @@
+{
+  "id": "closing/voltaic-close",
+  "role": "closing",
+  "variant": "voltaic-close",
+  "family": "voltaic",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 120,
+      "maxFont": 120,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 28,
+      "maxFont": 28,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "bg",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "bg",
+        "z": 0
+      },
+      {
+        "id": "cpour0",
+        "type": "shape",
+        "shape": "rect",
+        "x": 200,
+        "y": 40,
+        "width": 120,
+        "height": 137,
+        "tokenFill": "accent",
+        "z": 1,
+        "opacity": 0.55
+      },
+      {
+        "id": "cpour1",
+        "type": "shape",
+        "shape": "rect",
+        "x": 379,
+        "y": 154,
+        "width": 127,
+        "height": 137,
+        "tokenFill": "accent",
+        "z": 1,
+        "opacity": 0.6166666666666667
+      },
+      {
+        "id": "cpour2",
+        "type": "shape",
+        "shape": "rect",
+        "x": 556,
+        "y": 268,
+        "width": 133,
+        "height": 137,
+        "tokenFill": "accent",
+        "z": 1,
+        "opacity": 0.6833333333333333
+      },
+      {
+        "id": "cpour3",
+        "type": "shape",
+        "shape": "rect",
+        "x": 730,
+        "y": 382,
+        "width": 140,
+        "height": 137,
+        "tokenFill": "accent",
+        "z": 1,
+        "opacity": 0.75
+      },
+      {
+        "id": "cpour4",
+        "type": "shape",
+        "shape": "rect",
+        "x": 902,
+        "y": 495,
+        "width": 147,
+        "height": 137,
+        "tokenFill": "accent",
+        "z": 1,
+        "opacity": 0.8166666666666667
+      },
+      {
+        "id": "cpour5",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1073,
+        "y": 609,
+        "width": 153,
+        "height": 137,
+        "tokenFill": "accent",
+        "z": 1,
+        "opacity": 0.8833333333333334
+      },
+      {
+        "id": "cpour6",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1240,
+        "y": 723,
+        "width": 160,
+        "height": 137,
+        "tokenFill": "accent",
+        "z": 1,
+        "opacity": 0.9500000000000001,
+        "morphId": "accent"
+      },
+      {
+        "id": "band",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 560,
+        "width": 1600,
+        "height": 340,
+        "tokenFill": "bg",
+        "z": 2,
+        "opacity": 0.72
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 80,
+        "y": 600,
+        "width": 1200,
+        "height": 171,
+        "fontSize": 120,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 3,
+        "textStyleRole": "display",
+        "morphId": "title"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 80,
+        "y": 760,
+        "width": 1000,
+        "height": 50,
+        "fontSize": 28,
+        "slot": "copy0",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 3
+      },
+      {
+        "id": "pulse-bg",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 1360,
+        "y": 640,
+        "width": 160,
+        "height": 160,
+        "tokenFill": "accent",
+        "z": 3,
+        "morphId": "pulse-bg"
+      }
+    ]
+  }
+}

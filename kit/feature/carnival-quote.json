@@ -1,0 +1,297 @@
+{
+  "id": "feature/carnival-quote",
+  "role": "feature",
+  "variant": "carnival-quote",
+  "family": "carnival",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 56,
+      "maxFont": 56,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 24,
+      "maxFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "photo",
+        "type": "image",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "z": 1,
+        "slot": "photo",
+        "zoom": 1.1,
+        "morphId": "hero"
+      },
+      {
+        "id": "qstripe0",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 360,
+        "width": 101,
+        "height": 220,
+        "tokenFill": "ink",
+        "z": 2,
+        "opacity": 0.85,
+        "morphId": "plate"
+      },
+      {
+        "id": "qstripe1",
+        "type": "shape",
+        "shape": "rect",
+        "x": 100,
+        "y": 360,
+        "width": 101,
+        "height": 220,
+        "tokenFill": "accent",
+        "z": 2,
+        "opacity": 1,
+        "morphId": "accent"
+      },
+      {
+        "id": "qstripe2",
+        "type": "shape",
+        "shape": "rect",
+        "x": 200,
+        "y": 360,
+        "width": 101,
+        "height": 220,
+        "tokenFill": "ink",
+        "z": 2,
+        "opacity": 0.85
+      },
+      {
+        "id": "qstripe3",
+        "type": "shape",
+        "shape": "rect",
+        "x": 300,
+        "y": 360,
+        "width": 101,
+        "height": 220,
+        "tokenFill": "accent",
+        "z": 2,
+        "opacity": 1
+      },
+      {
+        "id": "qstripe4",
+        "type": "shape",
+        "shape": "rect",
+        "x": 400,
+        "y": 360,
+        "width": 101,
+        "height": 220,
+        "tokenFill": "ink",
+        "z": 2,
+        "opacity": 0.85
+      },
+      {
+        "id": "qstripe5",
+        "type": "shape",
+        "shape": "rect",
+        "x": 500,
+        "y": 360,
+        "width": 101,
+        "height": 220,
+        "tokenFill": "accent",
+        "z": 2,
+        "opacity": 1
+      },
+      {
+        "id": "qstripe6",
+        "type": "shape",
+        "shape": "rect",
+        "x": 600,
+        "y": 360,
+        "width": 101,
+        "height": 220,
+        "tokenFill": "ink",
+        "z": 2,
+        "opacity": 0.85
+      },
+      {
+        "id": "qstripe7",
+        "type": "shape",
+        "shape": "rect",
+        "x": 700,
+        "y": 360,
+        "width": 101,
+        "height": 220,
+        "tokenFill": "accent",
+        "z": 2,
+        "opacity": 1
+      },
+      {
+        "id": "qstripe8",
+        "type": "shape",
+        "shape": "rect",
+        "x": 800,
+        "y": 360,
+        "width": 101,
+        "height": 220,
+        "tokenFill": "ink",
+        "z": 2,
+        "opacity": 0.85
+      },
+      {
+        "id": "qstripe9",
+        "type": "shape",
+        "shape": "rect",
+        "x": 900,
+        "y": 360,
+        "width": 101,
+        "height": 220,
+        "tokenFill": "accent",
+        "z": 2,
+        "opacity": 1
+      },
+      {
+        "id": "qstripe10",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1000,
+        "y": 360,
+        "width": 101,
+        "height": 220,
+        "tokenFill": "ink",
+        "z": 2,
+        "opacity": 0.85
+      },
+      {
+        "id": "qstripe11",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1100,
+        "y": 360,
+        "width": 101,
+        "height": 220,
+        "tokenFill": "accent",
+        "z": 2,
+        "opacity": 1
+      },
+      {
+        "id": "qstripe12",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1200,
+        "y": 360,
+        "width": 101,
+        "height": 220,
+        "tokenFill": "ink",
+        "z": 2,
+        "opacity": 0.85
+      },
+      {
+        "id": "qstripe13",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1300,
+        "y": 360,
+        "width": 101,
+        "height": 220,
+        "tokenFill": "accent",
+        "z": 2,
+        "opacity": 1
+      },
+      {
+        "id": "qstripe14",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1400,
+        "y": 360,
+        "width": 101,
+        "height": 220,
+        "tokenFill": "ink",
+        "z": 2,
+        "opacity": 0.85
+      },
+      {
+        "id": "qstripe15",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1500,
+        "y": 360,
+        "width": 101,
+        "height": 220,
+        "tokenFill": "accent",
+        "z": 2,
+        "opacity": 1
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 100,
+        "y": 420,
+        "width": 1400,
+        "height": 100,
+        "fontSize": 56,
+        "slot": "title",
+        "tokenColor": "bg",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 3,
+        "textStyleRole": "quote",
+        "align": "center",
+        "morphId": "title"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 100,
+        "y": 530,
+        "width": 1400,
+        "height": 40,
+        "fontSize": 24,
+        "slot": "copy0",
+        "tokenColor": "bg",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 3,
+        "align": "center"
+      }
+    ]
+  }
+}

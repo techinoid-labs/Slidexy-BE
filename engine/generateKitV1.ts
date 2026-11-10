@@ -210,7 +210,7 @@ export async function generateKitV1(
           "roleSequenceOK: include each required role exactly once; always end with closing (CTA, not a location hero)",
         ]
       : undefined;
-  let spec = applyStyleLock(await inventDeckSpec(prompt, deckType, brandNote), options && options.styleLock);
+  let spec = applyStyleLock(await inventDeckSpec(prompt, deckType, brandNote), options?.styleLock);
   let selections = selectAll(spec, prompt);
   let gates = runGates(spec, selections, tokens, deckType);
   let repaired = false;
@@ -224,7 +224,7 @@ export async function generateKitV1(
       );
     }
     repaired = true;
-    spec = applyStyleLock(await inventDeckSpec(prompt, deckType, notes), options && options.styleLock);
+    spec = applyStyleLock(await inventDeckSpec(prompt, deckType, notes), options?.styleLock);
     selections = selectAll(spec, prompt + ":repair");
     gates = runGates(spec, selections, tokens, deckType);
     if (!gates.pass) failedAfterRepair = { spec, gates };

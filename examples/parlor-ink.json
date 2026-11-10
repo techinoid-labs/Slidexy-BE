@@ -1,0 +1,118 @@
+{
+  "name": "Parlor • Ink",
+  "description": "Soft old-school parlor stationery — calling cards, wax seals, letter rules and a gentle close.",
+  "brand": {
+    "colors": {
+      "bg": "#F4EEE4",
+      "surface": "#E8E0D2",
+      "surface_color": "#DDD4C4",
+      "ink": "#2A2E36",
+      "muted": "#7A808C",
+      "accent": "#5B7C99",
+      "line": "#C8C0B2"
+    },
+    "fonts": {
+      "display": "Playfair Display",
+      "body": "Georgia"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "parlor"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Parlor",
+        "items": [
+          "Ink room · afternoon",
+          "by invitation",
+          "IV"
+        ],
+        "photoQuery": "141ae86a78f3"
+      },
+      {
+        "role": "feature",
+        "title": "Calling cards",
+        "items": [
+          "Host",
+          "tea at four",
+          "Guest",
+          "bring quiet news",
+          "Note",
+          "leave before dusk",
+          "Keep the ink light."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Letters",
+        "items": [
+          "Open gently",
+          "The seal remembers the hand.",
+          "Read twice",
+          "Answer when the room is still."
+        ],
+        "photoQuery": "16df8343dc3d"
+      },
+      {
+        "role": "feature",
+        "title": "Hours",
+        "items": [
+          "I",
+          "Arrive",
+          "II",
+          "Sit",
+          "III",
+          "Speak",
+          "IV",
+          "Part"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Soft words travel farther.",
+        "items": [
+          "— Parlor note"
+        ],
+        "photoQuery": "141ae86a78f3"
+      },
+      {
+        "role": "closing",
+        "title": "Yours.",
+        "items": [
+          "Parlor Ink · afternoon"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "parlor-card"
+    },
+    {
+      "role": "feature",
+      "variant": "parlor-cards"
+    },
+    {
+      "role": "feature",
+      "variant": "parlor-letters"
+    },
+    {
+      "role": "feature",
+      "variant": "parlor-hours"
+    },
+    {
+      "role": "feature",
+      "variant": "parlor-quote"
+    },
+    {
+      "role": "closing",
+      "variant": "parlor-yours"
+    }
+  ]
+}

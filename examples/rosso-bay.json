@@ -1,0 +1,127 @@
+{
+  "name": "Rosso • Bay 01",
+  "description": "Private garage deck — red underglow platform cover, spec dials, bay lineup, telemetry bars and ignition.",
+  "brand": {
+    "colors": {
+      "bg": "#0A0A0A",
+      "surface": "#141414",
+      "surface_color": "#1E1E1E",
+      "ink": "#F5F5F5",
+      "muted": "#8A8A8A",
+      "accent": "#E10600",
+      "line": "#2A2A2A"
+    },
+    "fonts": {
+      "display": "Syne",
+      "body": "Space Grotesk"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "rosso"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "ROSSO",
+        "items": [
+          "Private collection · Bay 01",
+          "01",
+          "SF90 · 986 hp"
+        ],
+        "photoQuery": "d9c6389eb4"
+      },
+      {
+        "role": "feature",
+        "title": "The numbers",
+        "items": [
+          "986",
+          "hp",
+          "2.5",
+          "s 0–100",
+          "340",
+          "km/h",
+          "1570",
+          "kg"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "The bay",
+        "items": [
+          "01",
+          "SF90",
+          "02",
+          "Roma",
+          "03",
+          "296 GTB",
+          "04",
+          "Purosangue",
+          "05",
+          "812"
+        ],
+        "photoQuery": "d9c6389eb4"
+      },
+      {
+        "role": "feature",
+        "title": "Telemetry",
+        "items": [
+          "Idle",
+          "12%",
+          "Cruise",
+          "38%",
+          "Push",
+          "64%",
+          "Launch",
+          "91%",
+          "Redline",
+          "100%"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Detail",
+        "items": [
+          "Carbon weave. Red underglow. Mirror floor."
+        ],
+        "photoQuery": "d9c6389eb4"
+      },
+      {
+        "role": "closing",
+        "title": "Ignition.",
+        "items": [
+          "Rosso Bay · private collection"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "rosso-platform"
+    },
+    {
+      "role": "feature",
+      "variant": "rosso-numbers"
+    },
+    {
+      "role": "feature",
+      "variant": "rosso-bay-line"
+    },
+    {
+      "role": "feature",
+      "variant": "rosso-telemetry"
+    },
+    {
+      "role": "feature",
+      "variant": "rosso-detail"
+    },
+    {
+      "role": "closing",
+      "variant": "rosso-ignition"
+    }
+  ]
+}

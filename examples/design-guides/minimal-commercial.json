@@ -1,0 +1,73 @@
+{
+  "style": {
+    "palette": "ink-night",
+    "typePair": "modern-segoe",
+    "imageTreatment": "full-bleed",
+    "motif": "bar-accent",
+    "sequence": "guide-minimal-commercial"
+  },
+  "slides": [
+    {
+      "role": "cover",
+      "variantHint": "ref-group-project",
+      "title": "Studio\nOverview",
+      "caption": "STUDIO",
+      "body": [
+        "DESIGN COLLECTION",
+        "studio.example"
+      ]
+    },
+    {
+      "role": "feature",
+      "variantHint": "ref-three-objectives",
+      "title": "Three clear priorities",
+      "body": [
+        "Build demand",
+        "Reach the customers who need the service.",
+        "Improve the experience",
+        "Make each interaction easier to navigate.",
+        "Deliver consistently",
+        "Create a process the team can repeat."
+      ]
+    },
+    {
+      "role": "pricing",
+      "variantHint": "ref-three-price-outlines",
+      "title": "Choose your scope",
+      "tiers": [
+        {
+          "name": "ESSENTIAL",
+          "price": "$299",
+          "features": [
+            "For a focused small project."
+          ]
+        },
+        {
+          "name": "BUSINESS",
+          "price": "$599",
+          "features": [
+            "For a growing team."
+          ]
+        },
+        {
+          "name": "ENTERPRISE",
+          "price": "$899",
+          "features": [
+            "For more complex needs."
+          ]
+        }
+      ]
+    },
+    {
+      "role": "closing",
+      "variantHint": "ref-contact-footer-columns",
+      "title": "Start a conversation",
+      "caption": "STUDIO",
+      "body": [
+        "+00 000 000 000",
+        "hello@studio.example",
+        "studio.example"
+      ]
+    }
+  ]
+}

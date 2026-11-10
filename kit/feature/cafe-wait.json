@@ -1,0 +1,123 @@
+{
+  "id": "feature/cafe-wait",
+  "role": "feature",
+  "variant": "cafe-wait",
+  "family": "transit-diagram",
+  "status": "draft",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "metric": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "note": {
+      "kind": "text",
+      "from": "caption"
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 82,
+      "minFont": 68,
+      "lineClamp": 4,
+      "shrinkMin": 0.83
+    },
+    "metric": {
+      "maxFont": 95,
+      "minFont": 79,
+      "lineClamp": 4,
+      "shrinkMin": 0.83
+    },
+    "note": {
+      "maxFont": 31,
+      "minFont": 26,
+      "lineClamp": 4,
+      "shrinkMin": 0.83
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "metric": {
+      "kind": "text"
+    },
+    "note": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "block",
+        "type": "shape",
+        "x": 0,
+        "y": 0,
+        "width": 560,
+        "height": 900,
+        "z": 1,
+        "tokenFill": "accent",
+        "shape": "rect",
+        "morphId": "block"
+      },
+      {
+        "id": "title",
+        "slot": "title",
+        "type": "text",
+        "x": 55,
+        "y": 130,
+        "width": 450,
+        "height": 330,
+        "fontSize": 82,
+        "fontRole": "display",
+        "tokenColor": "ink",
+        "z": 5,
+        "morphId": "title"
+      },
+      {
+        "id": "metric",
+        "slot": "metric",
+        "type": "text",
+        "x": 55,
+        "y": 555,
+        "width": 460,
+        "height": 180,
+        "fontSize": 95,
+        "fontRole": "body",
+        "tokenColor": "ink",
+        "z": 5,
+        "morphId": "metric"
+      },
+      {
+        "id": "chart",
+        "type": "chart",
+        "x": 625,
+        "y": 135,
+        "width": 900,
+        "height": 520,
+        "z": 2,
+        "morphId": "chart"
+      },
+      {
+        "id": "note",
+        "slot": "note",
+        "type": "text",
+        "x": 640,
+        "y": 700,
+        "width": 865,
+        "height": 170,
+        "fontSize": 31,
+        "fontRole": "body",
+        "tokenColor": "ink",
+        "z": 5,
+        "morphId": "note"
+      }
+    ]
+  }
+}

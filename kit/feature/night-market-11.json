@@ -1,0 +1,388 @@
+{
+  "id": "feature/night-market-11",
+  "role": "feature",
+  "variant": "night-market-11",
+  "family": "night-market",
+  "status": "draft",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    }
+  },
+  "fit": {
+    "copy0": {
+      "minFont": 27,
+      "maxFont": 27,
+      "lineClamp": 14,
+      "shrinkMin": 1
+    },
+    "title": {
+      "minFont": 85,
+      "maxFont": 85,
+      "lineClamp": 14,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 33,
+      "maxFont": 33,
+      "lineClamp": 14,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "copy0": {
+      "kind": "text"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "photo",
+        "morphId": "photo",
+        "type": "image",
+        "slot": "photo",
+        "x": 850,
+        "y": 0,
+        "width": 750,
+        "height": 900,
+        "z": 0
+      },
+      {
+        "id": "shape-1",
+        "morphId": "shape-1",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 850,
+        "height": 900,
+        "tokenFill": "bg",
+        "z": 1
+      },
+      {
+        "id": "shape-2",
+        "morphId": "shape-2",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 815,
+        "y": 0,
+        "width": 70,
+        "height": 70,
+        "tokenFill": "bg",
+        "z": 1
+      },
+      {
+        "id": "shape-3",
+        "morphId": "shape-3",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 815,
+        "y": 80,
+        "width": 70,
+        "height": 70,
+        "tokenFill": "bg",
+        "z": 1
+      },
+      {
+        "id": "shape-4",
+        "morphId": "shape-4",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 815,
+        "y": 160,
+        "width": 70,
+        "height": 70,
+        "tokenFill": "bg",
+        "z": 1
+      },
+      {
+        "id": "shape-5",
+        "morphId": "shape-5",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 815,
+        "y": 240,
+        "width": 70,
+        "height": 70,
+        "tokenFill": "bg",
+        "z": 1
+      },
+      {
+        "id": "shape-6",
+        "morphId": "shape-6",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 815,
+        "y": 320,
+        "width": 70,
+        "height": 70,
+        "tokenFill": "bg",
+        "z": 1
+      },
+      {
+        "id": "shape-7",
+        "morphId": "shape-7",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 815,
+        "y": 400,
+        "width": 70,
+        "height": 70,
+        "tokenFill": "bg",
+        "z": 1
+      },
+      {
+        "id": "shape-8",
+        "morphId": "shape-8",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 815,
+        "y": 480,
+        "width": 70,
+        "height": 70,
+        "tokenFill": "bg",
+        "z": 1
+      },
+      {
+        "id": "shape-9",
+        "morphId": "shape-9",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 815,
+        "y": 560,
+        "width": 70,
+        "height": 70,
+        "tokenFill": "bg",
+        "z": 1
+      },
+      {
+        "id": "shape-10",
+        "morphId": "shape-10",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 815,
+        "y": 640,
+        "width": 70,
+        "height": 70,
+        "tokenFill": "bg",
+        "z": 1
+      },
+      {
+        "id": "shape-11",
+        "morphId": "shape-11",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 815,
+        "y": 720,
+        "width": 70,
+        "height": 70,
+        "tokenFill": "bg",
+        "z": 1
+      },
+      {
+        "id": "shape-12",
+        "morphId": "shape-12",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 815,
+        "y": 800,
+        "width": 70,
+        "height": 70,
+        "tokenFill": "bg",
+        "z": 1
+      },
+      {
+        "id": "shape-13",
+        "morphId": "shape-13",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 815,
+        "y": 880,
+        "width": 70,
+        "height": 70,
+        "tokenFill": "bg",
+        "z": 1
+      },
+      {
+        "id": "copy0",
+        "morphId": "copy0",
+        "type": "text",
+        "slot": "copy0",
+        "x": 65,
+        "y": 80,
+        "width": 730,
+        "height": 60,
+        "fontSize": 27,
+        "fontRole": "body",
+        "textStyleRole": "body",
+        "fontWeight": 700,
+        "tokenColor": "accent",
+        "z": 4
+      },
+      {
+        "id": "title",
+        "morphId": "title",
+        "type": "text",
+        "slot": "title",
+        "x": 65,
+        "y": 230,
+        "width": 720,
+        "height": 320,
+        "fontSize": 85,
+        "fontRole": "display",
+        "textStyleRole": "display",
+        "fontWeight": 700,
+        "tokenColor": "ink",
+        "z": 4
+      },
+      {
+        "id": "copy1",
+        "morphId": "copy1",
+        "type": "text",
+        "slot": "copy1",
+        "x": 65,
+        "y": 660,
+        "width": 700,
+        "height": 150,
+        "fontSize": 33,
+        "fontRole": "body",
+        "textStyleRole": "body",
+        "fontWeight": 400,
+        "tokenColor": "ink",
+        "z": 4
+      },
+      {
+        "id": "shape-17",
+        "morphId": "shape-17",
+        "type": "shape",
+        "shape": "rect",
+        "x": 65,
+        "y": 840,
+        "width": 38,
+        "height": 12,
+        "tokenFill": "line",
+        "z": 1
+      },
+      {
+        "id": "shape-18",
+        "morphId": "shape-18",
+        "type": "shape",
+        "shape": "rect",
+        "x": 146,
+        "y": 840,
+        "width": 38,
+        "height": 12,
+        "tokenFill": "line",
+        "z": 1
+      },
+      {
+        "id": "shape-19",
+        "morphId": "shape-19",
+        "type": "shape",
+        "shape": "rect",
+        "x": 227,
+        "y": 840,
+        "width": 38,
+        "height": 12,
+        "tokenFill": "line",
+        "z": 1
+      },
+      {
+        "id": "shape-20",
+        "morphId": "shape-20",
+        "type": "shape",
+        "shape": "rect",
+        "x": 308,
+        "y": 840,
+        "width": 38,
+        "height": 12,
+        "tokenFill": "line",
+        "z": 1
+      },
+      {
+        "id": "shape-21",
+        "morphId": "shape-21",
+        "type": "shape",
+        "shape": "rect",
+        "x": 389,
+        "y": 840,
+        "width": 38,
+        "height": 12,
+        "tokenFill": "line",
+        "z": 1
+      },
+      {
+        "id": "shape-22",
+        "morphId": "shape-22",
+        "type": "shape",
+        "shape": "rect",
+        "x": 470,
+        "y": 840,
+        "width": 38,
+        "height": 12,
+        "tokenFill": "line",
+        "z": 1
+      },
+      {
+        "id": "shape-23",
+        "morphId": "shape-23",
+        "type": "shape",
+        "shape": "rect",
+        "x": 551,
+        "y": 840,
+        "width": 38,
+        "height": 12,
+        "tokenFill": "line",
+        "z": 1
+      },
+      {
+        "id": "shape-24",
+        "morphId": "shape-24",
+        "type": "shape",
+        "shape": "rect",
+        "x": 632,
+        "y": 840,
+        "width": 38,
+        "height": 12,
+        "tokenFill": "line",
+        "z": 1
+      },
+      {
+        "id": "shape-25",
+        "morphId": "shape-25",
+        "type": "shape",
+        "shape": "rect",
+        "x": 713,
+        "y": 840,
+        "width": 38,
+        "height": 12,
+        "tokenFill": "line",
+        "z": 1
+      }
+    ]
+  }
+}

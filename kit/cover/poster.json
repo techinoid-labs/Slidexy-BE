@@ -1,0 +1,82 @@
+{
+  "id": "cover/poster",
+  "role": "cover",
+  "variant": "poster",
+  "steal": "Oversized poster headline above a deep panoramic photo band and a quiet footer.",
+  "family": "anti-grid",
+  "requiresPhoto": true,
+  "photoSlots": ["photo"],
+  "slots": {
+    "title": { "kind": "text", "optional": false, "from": "title" },
+    "caption": { "kind": "text", "optional": true, "from": "caption" },
+    "photo": { "kind": "image", "optional": false, "from": "photo" }
+  },
+  "fit": {
+    "title": { "maxFont": 130, "minFont": 64, "lineClamp": 2, "shrinkMin": 0.85 },
+    "caption": { "maxFont": 28, "minFont": 22, "lineClamp": 2, "shrinkMin": 0.9 }
+  },
+  "pptxMapping": {
+    "title": { "kind": "text" },
+    "caption": { "kind": "text" },
+    "photo": { "kind": "picture" }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "accent",
+        "type": "shape",
+        "shape": "rect",
+        "x": 72,
+        "y": 48,
+        "width": 96,
+        "height": 8,
+        "tokenFill": "accent",
+        "z": 1,
+        "morphId": "accent"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "x": 72,
+        "y": 80,
+        "width": 1456,
+        "height": 280,
+        "z": 4,
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 130,
+        "align": "left",
+        "morphId": "title"
+      },
+      {
+        "id": "photo",
+        "type": "image",
+        "slot": "photo",
+        "x": 0,
+        "y": 383,
+        "width": 1600,
+        "height": 405,
+        "z": 1,
+        "morphId": "photo"
+      },
+      {
+        "id": "caption",
+        "type": "text",
+        "slot": "caption",
+        "x": 72,
+        "y": 804,
+        "width": 1456,
+        "height": 76,
+        "z": 4,
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontSize": 26,
+        "align": "left",
+        "morphId": "caption"
+      }
+    ]
+  },
+  "status": "draft",
+  "motion": { "transition": "fade", "fallbackTransition": "fade", "durationMs": 500 }
+}

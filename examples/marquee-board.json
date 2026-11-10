@@ -1,0 +1,120 @@
+{
+  "name": "Marquee • Board",
+  "description": "Theater marquee night — bulb row cover, letterboard acts, stub tickets and a lights-up close.",
+  "brand": {
+    "colors": {
+      "bg": "#0C0A08",
+      "surface": "#1C1612",
+      "surface_color": "#2A221C",
+      "ink": "#FFF6E8",
+      "muted": "#B8A48C",
+      "accent": "#F5C518",
+      "line": "#3D3228"
+    },
+    "fonts": {
+      "display": "Impact",
+      "body": "Trebuchet MS"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "marquee"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "MARQUEE",
+        "items": [
+          "Board · Friday night",
+          "now playing",
+          "01"
+        ],
+        "photoQuery": "01c1358c7bf8"
+      },
+      {
+        "role": "feature",
+        "title": "Acts",
+        "items": [
+          "Opener",
+          "soft warm-up",
+          "Feature",
+          "main bill",
+          "Encore",
+          "last glow",
+          "Hold the lights."
+        ],
+        "photoQuery": "0506d14bb966"
+      },
+      {
+        "role": "feature",
+        "title": "Stubs",
+        "items": [
+          "Row A",
+          "center left",
+          "Row C",
+          "balcony right",
+          "Keep your stub."
+        ],
+        "photoQuery": "07c71ad45242"
+      },
+      {
+        "role": "feature",
+        "title": "Cue",
+        "items": [
+          "01",
+          "House down",
+          "02",
+          "Curtain",
+          "03",
+          "Spotlight",
+          "04",
+          "Bow"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "The house goes quiet first.",
+        "items": [
+          "— Stage note"
+        ],
+        "photoQuery": "01c1358c7bf8"
+      },
+      {
+        "role": "closing",
+        "title": "Lights.",
+        "items": [
+          "Marquee Board · last show"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "marquee-night"
+    },
+    {
+      "role": "feature",
+      "variant": "marquee-acts"
+    },
+    {
+      "role": "feature",
+      "variant": "marquee-stubs"
+    },
+    {
+      "role": "feature",
+      "variant": "marquee-cue"
+    },
+    {
+      "role": "feature",
+      "variant": "marquee-quote"
+    },
+    {
+      "role": "closing",
+      "variant": "marquee-lights"
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "id": "feature/folio-ink-pull",
+  "role": "feature",
+  "variant": "folio-ink-pull",
+  "family": "folio-ink",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 64,
+      "maxFont": 64,
+      "lineClamp": 5,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 28,
+      "maxFont": 28,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "bg",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "bg",
+        "z": 0
+      },
+      {
+        "id": "mark",
+        "type": "shape",
+        "shape": "rect",
+        "x": 120,
+        "y": 180,
+        "width": 40,
+        "height": 540,
+        "tokenFill": "accent",
+        "z": 2
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 220,
+        "y": 220,
+        "width": 1240,
+        "height": 400,
+        "fontSize": 64,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.15,
+        "letterSpacing": 0,
+        "z": 4,
+        "morphId": "title"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 220,
+        "y": 700,
+        "width": 800,
+        "height": 50,
+        "fontSize": 28,
+        "slot": "copy0",
+        "tokenColor": "accent",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      }
+    ]
+  }
+}

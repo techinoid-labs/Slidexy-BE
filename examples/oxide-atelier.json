@@ -1,0 +1,119 @@
+{
+  "name": "Oxide • Atelier 01",
+  "description": "Street mural deck — outline type over oxidized paint, drip swatches, stencil steps and a tag close.",
+  "brand": {
+    "colors": {
+      "bg": "#0E0E0E",
+      "surface": "#1A1A1A",
+      "surface_color": "#2A2A2A",
+      "ink": "#F5F0E8",
+      "muted": "#9A958C",
+      "accent": "#FF3D8B",
+      "line": "#333333"
+    },
+    "fonts": {
+      "display": "Archivo Black",
+      "body": "Space Grotesk"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "oxide"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "OXIDE",
+        "items": [
+          "Atelier 01 · street mural",
+          "atelier",
+          "01"
+        ],
+        "photoQuery": "1564ac7082"
+      },
+      {
+        "role": "feature",
+        "title": "Pigments",
+        "items": [
+          "Magenta",
+          "Teal",
+          "Oxide",
+          "Mustard",
+          "Ink",
+          "Five cans. One wall. No sketch first."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Three walls",
+        "items": [
+          "North",
+          "Hard light, raw concrete, overnight cure.",
+          "East",
+          "Morning sun bleeds the pinks softer.",
+          "Alley",
+          "Narrow throw, big letters, keep walking."
+        ],
+        "photoQuery": "1564ac7082"
+      },
+      {
+        "role": "feature",
+        "title": "Stencil",
+        "items": [
+          "01",
+          "Mask the wall",
+          "02",
+          "Lay the drip",
+          "03",
+          "Pull the tape",
+          "04",
+          "Walk away"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Leave the drip.",
+        "items": [
+          "— Studio note, May"
+        ],
+        "photoQuery": "1564ac7082"
+      },
+      {
+        "role": "closing",
+        "title": "Tag it.",
+        "items": [
+          "Oxide Atelier · night shift"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "oxide-spray"
+    },
+    {
+      "role": "feature",
+      "variant": "oxide-drips"
+    },
+    {
+      "role": "feature",
+      "variant": "oxide-walls"
+    },
+    {
+      "role": "feature",
+      "variant": "oxide-stencil"
+    },
+    {
+      "role": "feature",
+      "variant": "oxide-quote"
+    },
+    {
+      "role": "closing",
+      "variant": "oxide-tag"
+    }
+  ]
+}

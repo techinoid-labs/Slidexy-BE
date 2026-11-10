@@ -1,0 +1,86 @@
+{
+  "id": "cover/circle-hero",
+  "role": "cover",
+  "variant": "circle-hero",
+  "family": "anti-grid",
+  "steal": "Solid accent field; oversized circular photo offset left and bleeding past the top edge; title block on the right overlapping the circle edge for depth.",
+  "requiresPhoto": true,
+  "photoSlots": ["photo"],
+  "slots": {
+    "title": { "kind": "text", "optional": false, "from": "title" },
+    "caption": { "kind": "text", "optional": true, "from": "caption" },
+    "photo": { "kind": "image", "optional": false, "from": "photo" }
+  },
+  "fit": {
+    "title": { "maxFont": 68, "minFont": 42, "lineClamp": 3, "shrinkMin": 0.85 },
+    "caption": { "maxFont": 20, "minFont": 14, "lineClamp": 3, "shrinkMin": 0.9 }
+  },
+  "pptxMapping": {
+    "title": { "kind": "text" },
+    "caption": { "kind": "text" },
+    "photo": { "kind": "picture" }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 0,
+        "id": "field",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "accent",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "morphId": "field"
+      },
+      {
+        "z": 1,
+        "id": "photo",
+        "type": "image",
+        "slot": "photo",
+        "mask": "circle",
+        "x": -80,
+        "y": -120,
+        "width": 920,
+        "height": 920,
+        "radius": 460,
+        "morphId": "hero"
+      },
+      {
+        "z": 2,
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "tokenColor": "on_accent",
+        "fontRole": "display",
+        "fontSize": 64,
+        "align": "left",
+        "verticalAlign": "middle",
+        "x": 780,
+        "y": 260,
+        "width": 740,
+        "height": 280,
+        "morphId": "title"
+      },
+      {
+        "z": 2,
+        "id": "caption",
+        "type": "text",
+        "slot": "caption",
+        "tokenColor": "on_accent",
+        "fontRole": "body",
+        "fontSize": 18,
+        "align": "left",
+        "opacity": 0.9,
+        "x": 780,
+        "y": 560,
+        "width": 700,
+        "height": 120,
+        "morphId": "caption"
+      }
+    ]
+  },
+  "status": "draft",
+  "motion": { "transition": "fade", "fallbackTransition": "fade", "durationMs": 500 }
+}

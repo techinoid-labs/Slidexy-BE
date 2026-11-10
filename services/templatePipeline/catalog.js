@@ -208,8 +208,18 @@ function inches(px, axis) {
   return (Number(px) || 0) * size;
 }
 
+/** Engine canvas px → PowerPoint font points (for fontSize). */
 function points(px) {
-  return Math.max(1, Math.round((Number(px) || 16) * 72 * SLIDE_W / CANVAS_W));
+  const n = Number(px);
+  const value = Number.isFinite(n) ? n : 16;
+  return Math.max(1, Math.round(value * 72 * SLIDE_W / CANVAS_W));
+}
+
+/** Engine canvas px → PPT char spacing (points). Allows 0 and negative tracking. */
+function trackingPoints(px) {
+  const n = Number(px);
+  if (!Number.isFinite(n) || n === 0) return 0;
+  return Math.round(n * 72 * SLIDE_W / CANVAS_W * 100) / 100;
 }
 
 function hexColor(value) {
@@ -225,11 +235,36 @@ function colorOf(value, tokens) {
   return hexColor(text);
 }
 
+/** PPTX-safe face map — bundled preview fonts often aren't installed in Office. */
+const PPTX_FONT_FALLBACKS = {
+  "Archivo Black": "Arial Black",
+  Inter: "Segoe UI",
+  "Playfair Display": "Georgia",
+  Lora: "Georgia",
+  "Space Grotesk": "Bahnschrift",
+  Nunito: "Candara",
+  Poppins: "Candara",
+  "Open Sans": "Calibri",
+  Orbitron: "Impact",
+  Fraunces: "Georgia",
+  Manrope: "Arial",
+  Syne: "Arial Black",
+  "DM Serif Display": "Georgia",
+  "Instrument Serif": "Georgia",
+  "Poppins Bold": "Segoe UI Black",
+  Antonio: "Arial Narrow",
+  "IBM Plex Mono": "Consolas",
+  "IBM Plex Sans": "Arial",
+  Fraunces: "Georgia",
+};
+
 function fontOf(value, tokens) {
   const text = String(value || "").trim();
   const token = text.match(/^\{font\.([a-z0-9]+)\}$/i);
-  if (token) return String((tokens && tokens.font && tokens.font[token[1]]) || "Arial");
-  return text || "Arial";
+  const resolved = token
+    ? String((tokens && tokens.font && tokens.font[token[1]]) || "Arial")
+    : text || "Arial";
+  return PPTX_FONT_FALLBACKS[resolved] || resolved;
 }
 
 function boxOf(element) {
@@ -266,6 +301,13 @@ function imageFile(deckId, url) {
     if (!relative.startsWith("..") && !path.isAbsolute(relative) && fs.existsSync(file) && fs.statSync(file).isFile()) return file;
     return "";
   }
+  if (rel.startsWith("assets/cache/")) {
+    const file = path.resolve(ROOT, rel);
+    const root = path.resolve(ROOT, "assets", "cache");
+    const relative = path.relative(root, file);
+    if (!relative.startsWith("..") && !path.isAbsolute(relative) && fs.existsSync(file) && fs.statSync(file).isFile()) return file;
+    return "";
+  }
   const candidates = [
     path.resolve(PUBLISHED, deckId, rel),
     path.resolve(GENERATED, rel),
@@ -286,6 +328,18 @@ function placeElement(slide, pptx, element, deck, deckId, rotate) {
   else if (element.type === "table") addTable(slide, element, deck.tokens);
   else if (element.type === "chart") addChart(slide, pptx, element, deck.tokens);
   else if (element.type === "image") addPicture(slide, element, element.imageContent || {}, deckId, rotate);
+  else if (element.type === "smartAsset") {
+    // Prefer pre-resolved imageContent from render.ts; otherwise attempt inline data URI / path
+    const content = element.imageContent || {};
+    if (content.url || content.data) {
+      addPicture(slide, Object.assign({}, element, { type: "image" }), content, deckId, rotate);
+    } else if (content.dataUri && String(content.dataUri).indexOf("base64,") >= 0) {
+      const box = boxOf(element);
+      const raw = String(content.dataUri);
+      const payload = raw.indexOf("base64,") >= 0 ? raw.slice(raw.indexOf("base64,") + 7) : raw;
+      slide.addImage(Object.assign({ data: "image/png;base64," + payload }, box));
+    }
+  }
   else if (element.type === "maskedImage") addPicture(slide, element, element.maskedImageContent || {}, deckId, rotate);
   else if (element.type === "collage") addCollage(slide, element, deckId);
   else if (element.type === "illustration") addIllustration(slide, element, deck.tokens);
@@ -497,7 +551,17 @@ function pictureMaskTag(clip, element) {
   return "";
 }
 
-function addText(slide, element, tokens, rotate) {
+function shadeHexPptx(hex, amount) {
+  const raw = String(hex || "000000").replace("#", "");
+  if (!/^[0-9a-fA-F]{6}$/.test(raw)) return raw || "000000";
+  const n = parseInt(raw, 16);
+  const r = Math.max(0, Math.min(255, ((n >> 16) & 255) + amount));
+  const g = Math.max(0, Math.min(255, ((n >> 8) & 255) + amount));
+  const b = Math.max(0, Math.min(255, (n & 255) + amount));
+  return ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
+}
+
+function buildTextRuns(element, tokens, forceColor) {
   const style = element.textStyle || {};
   const spans = (element.textContent && element.textContent.spans) || [];
   const accentHex = colorOf(tokens && tokens.color && tokens.color.accent, tokens) || "1D4ED8";
@@ -514,13 +578,14 @@ function addText(slide, element, tokens, rotate) {
       const runOptions = {
         fontFace: fontOf(span.fontFamily || style.fontFamily, tokens),
         fontSize: points(span.fontSize || style.fontSize || 18),
-        color: highlighted
-          ? accentHex
-          : colorOf(span.color || style.color, tokens) || "1A1612",
+        color: forceColor
+          ? forceColor
+          : highlighted
+            ? accentHex
+            : colorOf(span.color || style.color, tokens) || "1A1612",
         bold: highlighted || Number(weight) >= 600,
       };
-      if (spacing) runOptions.charSpacing = points(spacing);
-      // Ghost step numbers: keep as editable text at low opacity via transparency
+      if (spacing) runOptions.charSpacing = trackingPoints(spacing);
       const opacity = Number(element.opacity);
       if (Number.isFinite(opacity) && opacity > 0 && opacity < 1) {
         runOptions.transparency = Math.round((1 - opacity) * 100);
@@ -529,26 +594,67 @@ function addText(slide, element, tokens, rotate) {
       runs.push({ text, options: runOptions });
     });
   });
+  return runs;
+}
+
+function addText(slide, element, tokens, rotate) {
+  const style = element.textStyle || {};
+  const treatment = String(style.typeTreatment || "solid");
+  const baseColor = colorOf(style.color, tokens) || "1A1612";
+  const runs = buildTextRuns(element, tokens);
   if (!runs.length) return;
-  const options = Object.assign(boxOf(element), {
-    align: style.textAlign || "left",
-    valign: style.verticalAlign === "middle" ? "middle" : "top",
-    margin: 0,
-    wrap: true,
-    rotate: rotate || 0,
-    fontFace: fontOf(style.fontFamily, tokens),
-    fontSize: points(style.fontSize || 18),
-    color: colorOf(style.color, tokens) || "1A1612",
-  });
-  const objectName = groupObjectName(element);
-  if (objectName) options.objectName = objectName;
-  // Guard: only multiples >= 1 (A0.a: no LO regression on seed with 0.95; still skip sub-1).
-  const lineHeight = Number(style.lineHeight);
-  if (Number.isFinite(lineHeight) && lineHeight >= 1) {
-    options.lineSpacingMultiple = lineHeight;
+
+  const makeOptions = (dxEngine, dyEngine, objectSuffix) => {
+    const box = boxOf(element);
+    // Position offsets must stay in inches — never reuse points() (font-size units).
+    const options = Object.assign({}, box, {
+      x: box.x + inches(dxEngine || 0, "x"),
+      y: box.y + inches(dyEngine || 0, "y"),
+      align: style.textAlign || "left",
+      valign: style.verticalAlign === "middle" ? "middle" : "top",
+      margin: 0,
+      wrap: true,
+      rotate: rotate || 0,
+      fontFace: fontOf(style.fontFamily, tokens),
+      fontSize: points(style.fontSize || 18),
+      color: baseColor,
+    });
+    const objectName = groupObjectName(element);
+    if (objectName) options.objectName = objectName + (objectSuffix || "");
+    const lineHeight = Number(style.lineHeight);
+    if (Number.isFinite(lineHeight) && lineHeight >= 1) {
+      options.lineSpacingMultiple = lineHeight;
+    }
+    return options;
+  };
+
+  // Fake depth with editable layered text (keeps PPTX native, not text-as-image).
+  // Only for short single-line titles — multi-line / long copy stays flat (engine already guards).
+  const plain = runs.map((r) => r.text).join("").replace(/\s+/g, " ").trim();
+  const allowDepth =
+    (treatment === "offset-3d" || treatment === "long-shadow") &&
+    plain.length <= 14 &&
+    !/\n/.test(runs.map((r) => r.text).join("\n"));
+  if (allowDepth) {
+    const steps =
+      treatment === "long-shadow"
+        ? Math.min(10, Math.ceil((Number(style.shadowLength) || 48) / (Number(style.shadowStep) || 6)))
+        : Math.max(3, Math.min(8, Number(style.offsetSteps) || 6));
+    const dx = treatment === "long-shadow" ? 0.7 * (Number(style.shadowStep) || 6) : Number(style.offsetX) || 6;
+    const dy = treatment === "long-shadow" ? 0.7 * (Number(style.shadowStep) || 6) : Number(style.offsetY) || 6;
+    for (let i = steps; i >= 1; i--) {
+      // Near-black faces use pure black extrusion so the stack reads chunky, not muddy.
+      const n = parseInt(String(baseColor).replace("#", ""), 16);
+      const lum = Number.isFinite(n) ? (((n >> 16) & 255) + ((n >> 8) & 255) + (n & 255)) / 3 : 0;
+      const shade = lum < 60 ? "000000" : shadeHexPptx(baseColor, -24 - i * 12);
+      const layerRuns = buildTextRuns(element, tokens, shade);
+      // Same box origin as the face — layers share alignment (left/center/right).
+      slide.addText(layerRuns, makeOptions(dx * i, dy * i, ":depth" + i));
+    }
   }
+
   // Always native editable text runs — never outlines or text-as-image.
-  slide.addText(runs, options);
+  slide.addText(runs, makeOptions(0, 0, ""));
 }
 
 function addShape(slide, pptx, element, tokens) {
@@ -662,7 +768,9 @@ function coverSizing(box, content, file) {
   if (!(iw > 0 && ih > 0 && box.w > 0 && box.h > 0)) {
     return { sizing: { type: "cover", x: 0, y: 0, w: box.w, h: box.h } };
   }
-  const scale = Math.max(box.w / iw, box.h / ih);
+  const zoomRaw = content.zoom != null ? Number(content.zoom) : 1;
+  const zoom = Number.isFinite(zoomRaw) && zoomRaw > 1 ? Math.min(2.5, zoomRaw) : 1;
+  const scale = Math.max(box.w / iw, box.h / ih) * zoom;
   const scaledW = iw * scale;
   const scaledH = ih * scale;
   const ox = Math.max(0, (scaledW - box.w) * (Number.isFinite(ax) ? ax : 0.5));

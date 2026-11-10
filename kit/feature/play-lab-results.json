@@ -1,0 +1,231 @@
+{
+  "id": "feature/play-lab-results",
+  "role": "feature",
+  "variant": "play-lab-results",
+  "family": "play-lab",
+  "preserveLayout": true,
+  "status": "approved",
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title",
+      "optional": false
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0",
+      "optional": false
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1",
+      "optional": false
+    },
+    "copy2": {
+      "kind": "text",
+      "from": "items2",
+      "optional": false
+    },
+    "copy3": {
+      "kind": "text",
+      "from": "items3",
+      "optional": false
+    },
+    "copy4": {
+      "kind": "text",
+      "from": "items4",
+      "optional": false
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 94,
+      "maxFont": 94,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 26,
+      "maxFont": 26,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 124,
+      "maxFont": 124,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy2": {
+      "minFont": 34,
+      "maxFont": 34,
+      "lineClamp": 3,
+      "shrinkMin": 1
+    },
+    "copy3": {
+      "minFont": 39,
+      "maxFont": 39,
+      "lineClamp": 3,
+      "shrinkMin": 1
+    },
+    "copy4": {
+      "minFont": 39,
+      "maxFont": 39,
+      "lineClamp": 3,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    },
+    "copy3": {
+      "kind": "text"
+    },
+    "copy4": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "title",
+        "type": "text",
+        "x": 70,
+        "y": 65,
+        "width": 1400,
+        "height": 125,
+        "fontSize": 94,
+        "tokenColor": "ink",
+        "textStyleRole": "headline",
+        "fontRole": "display",
+        "lineHeight": 1.12,
+        "fontWeight": 700,
+        "z": 4,
+        "morphId": "title",
+        "slot": "title"
+      },
+      {
+        "id": "label",
+        "type": "text",
+        "x": 80,
+        "y": 210,
+        "width": 1400,
+        "height": 50,
+        "fontSize": 26,
+        "tokenColor": "ink",
+        "textStyleRole": "kicker",
+        "fontRole": "body",
+        "lineHeight": 1.12,
+        "fontWeight": 400,
+        "z": 4,
+        "morphId": "label",
+        "slot": "copy0"
+      },
+      {
+        "id": "stat",
+        "type": "shape",
+        "shape": "rect",
+        "x": 70,
+        "y": 330,
+        "width": 520,
+        "height": 480,
+        "tokenFill": "accent",
+        "z": 1,
+        "morphId": "stat"
+      },
+      {
+        "id": "number",
+        "type": "text",
+        "x": 100,
+        "y": 390,
+        "width": 470,
+        "height": 180,
+        "fontSize": 124,
+        "tokenColor": "ink",
+        "textStyleRole": "stat",
+        "typeTreatment": "offset-3d",
+        "fontRole": "display",
+        "lineHeight": 1.12,
+        "fontWeight": 900,
+        "z": 4,
+        "morphId": "number",
+        "slot": "copy1"
+      },
+      {
+        "id": "meaning",
+        "type": "text",
+        "x": 115,
+        "y": 625,
+        "width": 420,
+        "height": 135,
+        "fontSize": 34,
+        "tokenColor": "ink",
+        "textStyleRole": "body",
+        "fontRole": "body",
+        "lineHeight": 1.12,
+        "fontWeight": 400,
+        "z": 4,
+        "morphId": "meaning",
+        "slot": "copy2"
+      },
+      {
+        "id": "observed",
+        "type": "text",
+        "x": 690,
+        "y": 350,
+        "width": 790,
+        "height": 160,
+        "fontSize": 39,
+        "tokenColor": "ink",
+        "textStyleRole": "body",
+        "fontRole": "body",
+        "lineHeight": 1.12,
+        "fontWeight": 400,
+        "z": 4,
+        "morphId": "observed",
+        "slot": "copy3"
+      },
+      {
+        "id": "line",
+        "type": "shape",
+        "shape": "rect",
+        "x": 690,
+        "y": 550,
+        "width": 800,
+        "height": 3,
+        "tokenFill": "ink",
+        "z": 1,
+        "morphId": "line"
+      },
+      {
+        "id": "change",
+        "type": "text",
+        "x": 690,
+        "y": 610,
+        "width": 790,
+        "height": 160,
+        "fontSize": 39,
+        "tokenColor": "ink",
+        "textStyleRole": "body",
+        "fontRole": "body",
+        "lineHeight": 1.12,
+        "fontWeight": 400,
+        "z": 4,
+        "morphId": "change",
+        "slot": "copy4"
+      }
+    ]
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "name": "Hearth • Folio",
+  "description": "Interior folio — fireplace surround cover, tile stack, room cards and an ember close.",
+  "brand": {
+    "colors": {
+      "bg": "#F4EEE6",
+      "surface": "#E7DFD4",
+      "surface_color": "#2B2B2B",
+      "ink": "#1C1A17",
+      "muted": "#7A736A",
+      "accent": "#C45C26",
+      "line": "#D4CBBF"
+    },
+    "fonts": {
+      "display": "Playfair Display",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "hearth"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Hearth",
+        "items": [
+          "Interior folio · Unit 4B",
+          "For viewing",
+          "4B"
+        ],
+        "photoQuery": "3505b29aab"
+      },
+      {
+        "role": "feature",
+        "title": "The surround",
+        "items": [
+          "Charcoal tile",
+          "48 modules",
+          "Blue flame",
+          "electric insert",
+          "White trim",
+          "120 mm"
+        ],
+        "photoQuery": "3505b29aab"
+      },
+      {
+        "role": "feature",
+        "title": "Rooms",
+        "items": [
+          "I",
+          "Living with hearth",
+          "II",
+          "Bay window nook",
+          "III",
+          "Gallery wall",
+          "IV",
+          "Entry gallery"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Materials",
+        "items": [
+          "Oak",
+          "floor",
+          "Wool",
+          "rug",
+          "Steel",
+          "table",
+          "Linen",
+          "chair"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Light settles here.",
+        "items": [
+          "— Showing notes"
+        ],
+        "photoQuery": "3505b29aab"
+      },
+      {
+        "role": "closing",
+        "title": "Come warm.",
+        "items": [
+          "Hearth Folio · by appointment"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "hearth-surround"
+    },
+    {
+      "role": "feature",
+      "variant": "hearth-tile"
+    },
+    {
+      "role": "feature",
+      "variant": "hearth-rooms"
+    },
+    {
+      "role": "feature",
+      "variant": "hearth-materials"
+    },
+    {
+      "role": "feature",
+      "variant": "hearth-quote"
+    },
+    {
+      "role": "closing",
+      "variant": "hearth-ember"
+    }
+  ]
+}

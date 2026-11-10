@@ -1,0 +1,19 @@
+{
+  "id": "ambient/float-creative",
+  "kind": "ambient",
+  "effect": "float",
+  "steal": "Soft Y-bob on title plates and large signature cards for creative families.",
+  "target": {
+    "prefer": ["titlePlate", "plate", "pulse-bg", "accent", "neon"]
+  },
+  "params": {
+    "durationMs": 8000,
+    "path": "y-axis",
+    "radiusPx": 22,
+    "autoReverse": true,
+    "repeatCount": "indefinite"
+  },
+  "families": ["darkroom", "grade", "gridlock", "gulhane", "oxide", "rosso", "hearth", "lantern"],
+  "roles": ["feature", "closing"],
+  "priority": 25
+}

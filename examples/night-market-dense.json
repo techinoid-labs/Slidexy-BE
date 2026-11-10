@@ -1,0 +1,119 @@
+{
+  "name": "Night Market • Lantern edition",
+  "description": "Street-food lookbook — charcoal fields, amber accents, menu board and tasting notes.",
+  "brand": {
+    "colors": {
+      "bg": "#161210",
+      "surface": "#241E1A",
+      "surface_color": "#2E2620",
+      "ink": "#F6EFE6",
+      "muted": "#B7A89A",
+      "accent": "#FF6B2C",
+      "line": "#3D332C"
+    },
+    "fonts": {
+      "display": "Archivo Black",
+      "body": "Arial"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "night-market"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Night Market",
+        "items": [
+          "Lantern street",
+          "Open till late"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Along the lane",
+        "items": [
+          "Steam and neon",
+          "Skewers hit the grill as the first lanterns light. Follow the smoke and you will find the queue that stays longest.",
+          "Shared tables",
+          "Pull up a stool. Order what the next table is having. The best dishes rarely need a menu."
+        ],
+        "photoQuery": "0288432f0b"
+      },
+      {
+        "role": "feature",
+        "title": "Tonight’s board",
+        "items": [
+          "Chili oil noodles   6.50",
+          "Hand-pulled, tossed hot, finished with peanuts and spring onion.",
+          "Charcoal skewer   4.00",
+          "Lamb or mushroom. Salt, cumin, a little heat.",
+          "Crispy pancake   3.50",
+          "Layered dough, sesame, eaten standing up.",
+          "Sugarcane tea   2.50",
+          "Pressed fresh, served over ice in a tall plastic cup."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Hot & loud",
+        "items": [
+          "The wok station",
+          "Flame climbs the steel. Garlic hits oil. In thirty seconds the whole lane smells like dinner.",
+          "Ask for",
+          "Extra chili crisp and one more skewer than you planned."
+        ],
+        "photoQuery": "02a4552b25"
+      },
+      {
+        "role": "feature",
+        "title": "House heat",
+        "items": [
+          "Chili crisp",
+          "Crunch first, then a slow burn that stays friendly.",
+          "Cumin salt",
+          "The skewer staple. Loud enough to taste through smoke.",
+          "Lime finish",
+          "A squeeze at the end wakes every fried thing up."
+        ],
+        "photoQuery": "03664cda80"
+      },
+      {
+        "role": "feature",
+        "title": "See you after dark.",
+        "items": [
+          "Night Market Collective"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "night-market-masthead"
+    },
+    {
+      "role": "feature",
+      "variant": "night-market-interior"
+    },
+    {
+      "role": "feature",
+      "variant": "night-market-menu"
+    },
+    {
+      "role": "feature",
+      "variant": "night-market-portrait"
+    },
+    {
+      "role": "feature",
+      "variant": "night-market-notes"
+    },
+    {
+      "role": "feature",
+      "variant": "night-market-closing"
+    }
+  ]
+}

@@ -1,0 +1,495 @@
+{
+    "id":  "cover/sunday-roast-masthead",
+    "role":  "cover",
+    "variant":  "sunday-roast-masthead",
+    "family":  "sunday-roast",
+    "status":  "approved",
+    "preserveLayout":  true,
+    "requiresPhoto":  false,
+    "photoSlots":  [
+
+                   ],
+    "slots":  {
+                  "title":  {
+                                "kind":  "text",
+                                "from":  "title"
+                            },
+                  "copy0":  {
+                                "kind":  "text",
+                                "from":  "items0"
+                            },
+                  "copy1":  {
+                                "kind":  "text",
+                                "from":  "items1"
+                            }
+              },
+    "fit":  {
+                "title":  {
+                              "minFont":  112,
+                              "maxFont":  112,
+                              "lineClamp":  1,
+                              "shrinkMin":  1
+                          },
+                "copy0":  {
+                              "minFont":  54,
+                              "maxFont":  54,
+                              "lineClamp":  1,
+                              "shrinkMin":  1
+                          },
+                "copy1":  {
+                              "minFont":  28,
+                              "maxFont":  28,
+                              "lineClamp":  2,
+                              "shrinkMin":  1
+                          }
+            },
+    "pptxMapping":  {
+                        "title":  {
+                                      "kind":  "text"
+                                  },
+                        "copy0":  {
+                                      "kind":  "text"
+                                  },
+                        "copy1":  {
+                                      "kind":  "text"
+                                  }
+                    },
+    "layout":  {
+                   "elements":  [
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  0,
+                                        "y":  0,
+                                        "width":  64,
+                                        "height":  64,
+                                        "tokenFill":  "accent",
+                                        "z":  1,
+                                        "id":  "shape0",
+                                        "morphId":  "shape0"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  64,
+                                        "y":  64,
+                                        "width":  64,
+                                        "height":  64,
+                                        "tokenFill":  "accent",
+                                        "z":  1,
+                                        "id":  "shape1",
+                                        "morphId":  "shape1"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  128,
+                                        "y":  0,
+                                        "width":  64,
+                                        "height":  64,
+                                        "tokenFill":  "accent",
+                                        "z":  1,
+                                        "id":  "shape2",
+                                        "morphId":  "shape2"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  192,
+                                        "y":  64,
+                                        "width":  64,
+                                        "height":  64,
+                                        "tokenFill":  "accent",
+                                        "z":  1,
+                                        "id":  "shape3",
+                                        "morphId":  "shape3"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  256,
+                                        "y":  0,
+                                        "width":  64,
+                                        "height":  64,
+                                        "tokenFill":  "accent",
+                                        "z":  1,
+                                        "id":  "shape4",
+                                        "morphId":  "shape4"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  320,
+                                        "y":  64,
+                                        "width":  64,
+                                        "height":  64,
+                                        "tokenFill":  "accent",
+                                        "z":  1,
+                                        "id":  "shape5",
+                                        "morphId":  "shape5"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  384,
+                                        "y":  0,
+                                        "width":  64,
+                                        "height":  64,
+                                        "tokenFill":  "accent",
+                                        "z":  1,
+                                        "id":  "shape6",
+                                        "morphId":  "shape6"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  448,
+                                        "y":  64,
+                                        "width":  64,
+                                        "height":  64,
+                                        "tokenFill":  "accent",
+                                        "z":  1,
+                                        "id":  "shape7",
+                                        "morphId":  "shape7"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  512,
+                                        "y":  0,
+                                        "width":  64,
+                                        "height":  64,
+                                        "tokenFill":  "accent",
+                                        "z":  1,
+                                        "id":  "shape8",
+                                        "morphId":  "shape8"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  576,
+                                        "y":  64,
+                                        "width":  64,
+                                        "height":  64,
+                                        "tokenFill":  "accent",
+                                        "z":  1,
+                                        "id":  "shape9",
+                                        "morphId":  "shape9"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  640,
+                                        "y":  0,
+                                        "width":  64,
+                                        "height":  64,
+                                        "tokenFill":  "accent",
+                                        "z":  1,
+                                        "id":  "shape10",
+                                        "morphId":  "shape10"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  704,
+                                        "y":  64,
+                                        "width":  64,
+                                        "height":  64,
+                                        "tokenFill":  "accent",
+                                        "z":  1,
+                                        "id":  "shape11",
+                                        "morphId":  "shape11"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  768,
+                                        "y":  0,
+                                        "width":  64,
+                                        "height":  64,
+                                        "tokenFill":  "accent",
+                                        "z":  1,
+                                        "id":  "shape12",
+                                        "morphId":  "shape12"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  832,
+                                        "y":  64,
+                                        "width":  64,
+                                        "height":  64,
+                                        "tokenFill":  "accent",
+                                        "z":  1,
+                                        "id":  "shape13",
+                                        "morphId":  "shape13"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  896,
+                                        "y":  0,
+                                        "width":  64,
+                                        "height":  64,
+                                        "tokenFill":  "accent",
+                                        "z":  1,
+                                        "id":  "shape14",
+                                        "morphId":  "shape14"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  960,
+                                        "y":  64,
+                                        "width":  64,
+                                        "height":  64,
+                                        "tokenFill":  "accent",
+                                        "z":  1,
+                                        "id":  "shape15",
+                                        "morphId":  "shape15"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  1024,
+                                        "y":  0,
+                                        "width":  64,
+                                        "height":  64,
+                                        "tokenFill":  "accent",
+                                        "z":  1,
+                                        "id":  "shape16",
+                                        "morphId":  "shape16"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  1088,
+                                        "y":  64,
+                                        "width":  64,
+                                        "height":  64,
+                                        "tokenFill":  "accent",
+                                        "z":  1,
+                                        "id":  "shape17",
+                                        "morphId":  "shape17"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  1152,
+                                        "y":  0,
+                                        "width":  64,
+                                        "height":  64,
+                                        "tokenFill":  "accent",
+                                        "z":  1,
+                                        "id":  "shape18",
+                                        "morphId":  "shape18"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  1216,
+                                        "y":  64,
+                                        "width":  64,
+                                        "height":  64,
+                                        "tokenFill":  "accent",
+                                        "z":  1,
+                                        "id":  "shape19",
+                                        "morphId":  "shape19"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  1280,
+                                        "y":  0,
+                                        "width":  64,
+                                        "height":  64,
+                                        "tokenFill":  "accent",
+                                        "z":  1,
+                                        "id":  "shape20",
+                                        "morphId":  "shape20"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  1344,
+                                        "y":  64,
+                                        "width":  64,
+                                        "height":  64,
+                                        "tokenFill":  "accent",
+                                        "z":  1,
+                                        "id":  "shape21",
+                                        "morphId":  "shape21"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  1408,
+                                        "y":  0,
+                                        "width":  64,
+                                        "height":  64,
+                                        "tokenFill":  "accent",
+                                        "z":  1,
+                                        "id":  "shape22",
+                                        "morphId":  "shape22"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  1472,
+                                        "y":  64,
+                                        "width":  64,
+                                        "height":  64,
+                                        "tokenFill":  "accent",
+                                        "z":  1,
+                                        "id":  "shape23",
+                                        "morphId":  "shape23"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  1536,
+                                        "y":  0,
+                                        "width":  64,
+                                        "height":  64,
+                                        "tokenFill":  "accent",
+                                        "z":  1,
+                                        "id":  "shape24",
+                                        "morphId":  "shape24"
+                                    },
+                                    {
+                                        "type":  "text",
+                                        "x":  80,
+                                        "y":  210,
+                                        "width":  820,
+                                        "height":  220,
+                                        "fontSize":  112,
+                                        "tokenColor":  "accent",
+                                        "fontRole":  "display",
+                                        "fontWeight":  700,
+                                        "z":  5,
+                                        "lineHeight":  1.02,
+                                        "id":  "text25",
+                                        "morphId":  "text25",
+                                        "slot":  "title"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  85,
+                                        "y":  430,
+                                        "width":  220,
+                                        "height":  6,
+                                        "tokenFill":  "accent",
+                                        "z":  2,
+                                        "id":  "ruleTitle",
+                                        "morphId":  "ruleTitle"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "ellipse",
+                                        "x":  1295,
+                                        "y":  360,
+                                        "width":  170,
+                                        "height":  180,
+                                        "tokenFill":  "accent",
+                                        "z":  1,
+                                        "id":  "shape26",
+                                        "morphId":  "shape26"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "ellipse",
+                                        "x":  1323,
+                                        "y":  390,
+                                        "width":  110,
+                                        "height":  115,
+                                        "tokenFill":  "bg",
+                                        "z":  1,
+                                        "id":  "shape27",
+                                        "morphId":  "shape27"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "ellipse",
+                                        "x":  980,
+                                        "y":  315,
+                                        "width":  380,
+                                        "height":  280,
+                                        "tokenFill":  "accent",
+                                        "z":  1,
+                                        "id":  "shape28",
+                                        "morphId":  "shape28"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "ellipse",
+                                        "x":  980,
+                                        "y":  306,
+                                        "width":  378,
+                                        "height":  110,
+                                        "tokenFill":  "accent",
+                                        "z":  1,
+                                        "id":  "shape29",
+                                        "morphId":  "shape29"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "ellipse",
+                                        "x":  1002,
+                                        "y":  322,
+                                        "width":  334,
+                                        "height":  70,
+                                        "tokenFill":  "ink",
+                                        "z":  1,
+                                        "id":  "shape30",
+                                        "morphId":  "shape30"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "ellipse",
+                                        "x":  945,
+                                        "y":  580,
+                                        "width":  460,
+                                        "height":  40,
+                                        "tokenFill":  "accent",
+                                        "z":  1,
+                                        "id":  "shape31",
+                                        "morphId":  "shape31"
+                                    },
+                                    {
+                                        "type":  "text",
+                                        "x":  85,
+                                        "y":  470,
+                                        "width":  780,
+                                        "height":  90,
+                                        "fontSize":  54,
+                                        "tokenColor":  "ink",
+                                        "fontRole":  "body",
+                                        "fontWeight":  700,
+                                        "z":  5,
+                                        "lineHeight":  1.12,
+                                        "id":  "text32",
+                                        "morphId":  "text32",
+                                        "slot":  "copy0"
+                                    },
+                                    {
+                                        "type":  "text",
+                                        "x":  85,
+                                        "y":  780,
+                                        "width":  700,
+                                        "height":  50,
+                                        "fontSize":  28,
+                                        "tokenColor":  "ink",
+                                        "fontRole":  "label",
+                                        "fontWeight":  700,
+                                        "letterSpacing":  1.4,
+                                        "textStyleRole":  "kicker",
+                                        "z":  5,
+                                        "lineHeight":  1.12,
+                                        "id":  "text33",
+                                        "morphId":  "text33",
+                                        "slot":  "copy1"
+      }
+    ]
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "id": "report/pull-quote",
+  "role": "report",
+  "variant": "pull-quote",
+  "family": "anti-grid",
+  "steal": "One massive centered sentence (~36pt) owning ~60% of the slide; supporting data tucked bottom-right.",
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": { "kind": "text", "optional": true, "from": "title" },
+    "quote": { "kind": "text", "optional": false, "from": "takeaway" },
+    "support": { "kind": "text", "optional": true, "from": "body0" },
+    "meta": { "kind": "text", "optional": true, "from": "caption" }
+  },
+  "fit": {
+    "title": { "maxFont": 22, "minFont": 16, "lineClamp": 1, "shrinkMin": 1 },
+    "quote": { "maxFont": 44, "minFont": 32, "lineClamp": 5, "shrinkMin": 0.9 },
+    "support": { "maxFont": 18, "minFont": 14, "lineClamp": 5, "shrinkMin": 0.9 },
+    "meta": { "maxFont": 16, "minFont": 14, "lineClamp": 2, "shrinkMin": 1 }
+  },
+  "pptxMapping": {
+    "title": { "kind": "text" },
+    "quote": { "kind": "text" },
+    "support": { "kind": "text" },
+    "meta": { "kind": "text" }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 1,
+        "id": "mark",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "accent",
+        "x": 72,
+        "y": 200,
+        "width": 12,
+        "height": 420,
+        "morphId": "mark"
+      },
+      {
+        "z": 2,
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "tokenColor": "muted",
+        "fontRole": "label",
+        "fontSize": 18,
+        "align": "left",
+        "x": 120,
+        "y": 56,
+        "width": 1200,
+        "height": 40,
+        "morphId": "title"
+      },
+      {
+        "z": 3,
+        "id": "quote",
+        "type": "text",
+        "slot": "quote",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 36,
+        "lineHeight": 1.25,
+        "align": "left",
+        "verticalAlign": "middle",
+        "x": 120,
+        "y": 160,
+        "width": 1200,
+        "height": 480,
+        "morphId": "quote"
+      },
+      {
+        "z": 2,
+        "id": "support",
+        "type": "text",
+        "slot": "support",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontSize": 16,
+        "align": "right",
+        "x": 880,
+        "y": 700,
+        "width": 640,
+        "height": 120,
+        "morphId": "support"
+      },
+      {
+        "z": 2,
+        "id": "meta",
+        "type": "text",
+        "slot": "meta",
+        "tokenColor": "accent",
+        "fontRole": "label",
+        "fontSize": 14,
+        "align": "right",
+        "x": 880,
+        "y": 820,
+        "width": 640,
+        "height": 40,
+        "morphId": "meta"
+      }
+    ]
+  },
+  "status": "draft",
+  "motion": { "transition": "fade", "fallbackTransition": "fade", "durationMs": 500 }
+}

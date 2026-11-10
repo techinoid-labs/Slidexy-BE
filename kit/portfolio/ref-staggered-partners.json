@@ -1,0 +1,307 @@
+{
+  "id": "portfolio/ref-staggered-partners",
+  "role": "portfolio",
+  "variant": "ref-staggered-partners",
+  "family": "people-and-partners-ref-staggered-partners",
+  "sourceRef": "ref-staggered-partners",
+  "designGuide": "people-and-partners",
+  "steal": "Centered title above six logo lockups in two staggered rows; a single centered statement sits below the logos.",
+  "preserveLayout": true,
+  "status": "draft",
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    },
+    "copy1": {
+      "kind": "text",
+      "optional": true,
+      "from": "items0"
+    },
+    "copy2": {
+      "kind": "text",
+      "optional": true,
+      "from": "items1"
+    },
+    "copy3": {
+      "kind": "text",
+      "optional": true,
+      "from": "items2"
+    },
+    "copy4": {
+      "kind": "text",
+      "optional": true,
+      "from": "items3"
+    },
+    "copy5": {
+      "kind": "text",
+      "optional": true,
+      "from": "items4"
+    },
+    "copy6": {
+      "kind": "text",
+      "optional": true,
+      "from": "items5"
+    },
+    "copy7": {
+      "kind": "text",
+      "optional": true,
+      "from": "caption"
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 60,
+      "minFont": 48,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy1": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy2": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy3": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy4": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy5": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy6": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy7": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    },
+    "copy3": {
+      "kind": "text"
+    },
+    "copy4": {
+      "kind": "text"
+    },
+    "copy5": {
+      "kind": "text"
+    },
+    "copy6": {
+      "kind": "text"
+    },
+    "copy7": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "x": 466.67,
+        "y": 166.67,
+        "width": 666.67,
+        "height": 78.33,
+        "z": 4,
+        "morphId": "title",
+        "fontRole": "display",
+        "fontSize": 60,
+        "fontWeight": 300,
+        "tokenColor": "ink",
+        "align": "center",
+        "lineHeight": 1.05,
+        "usePrimitive": false
+      },
+      {
+        "id": "title-rule",
+        "type": "shape",
+        "shape": "rect",
+        "x": 775,
+        "y": 249.17,
+        "width": 50,
+        "height": 3.33,
+        "z": 2,
+        "morphId": "title-rule",
+        "tokenFill": "accent"
+      },
+      {
+        "id": "partner-0",
+        "type": "text",
+        "slot": "copy1",
+        "x": 225,
+        "y": 383.33,
+        "width": 200,
+        "height": 43.33,
+        "z": 4,
+        "morphId": "partner-0",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.25,
+        "usePrimitive": false
+      },
+      {
+        "id": "partner-1",
+        "type": "text",
+        "slot": "copy2",
+        "x": 708.33,
+        "y": 383.33,
+        "width": 200,
+        "height": 43.33,
+        "z": 4,
+        "morphId": "partner-1",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.25,
+        "usePrimitive": false
+      },
+      {
+        "id": "partner-2",
+        "type": "text",
+        "slot": "copy3",
+        "x": 1216.67,
+        "y": 383.33,
+        "width": 200,
+        "height": 43.33,
+        "z": 4,
+        "morphId": "partner-2",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.25,
+        "usePrimitive": false
+      },
+      {
+        "id": "partner-3",
+        "type": "text",
+        "slot": "copy4",
+        "x": 370.83,
+        "y": 528.33,
+        "width": 200,
+        "height": 43.33,
+        "z": 4,
+        "morphId": "partner-3",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.25,
+        "usePrimitive": false
+      },
+      {
+        "id": "partner-4",
+        "type": "text",
+        "slot": "copy5",
+        "x": 704.17,
+        "y": 528.33,
+        "width": 200,
+        "height": 43.33,
+        "z": 4,
+        "morphId": "partner-4",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.25,
+        "usePrimitive": false
+      },
+      {
+        "id": "partner-5",
+        "type": "text",
+        "slot": "copy6",
+        "x": 1133.33,
+        "y": 528.33,
+        "width": 200,
+        "height": 43.33,
+        "z": 4,
+        "morphId": "partner-5",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.25,
+        "usePrimitive": false
+      },
+      {
+        "id": "caption",
+        "type": "text",
+        "slot": "copy7",
+        "x": 283.33,
+        "y": 703.33,
+        "width": 1033.33,
+        "height": 43.2,
+        "z": 4,
+        "morphId": "caption",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "center",
+        "lineHeight": 1.3,
+        "usePrimitive": false
+      }
+    ]
+  },
+  "motion": {
+    "transition": "fade",
+    "fallbackTransition": "fade",
+    "durationMs": 500
+  },
+  "implementationNotes": [
+    "Geometry estimated from the supplied raster and scaled to 1600x900.",
+    "Body text raised to readable export floors; copy must fit the original whitespace.",
+    "Soft grain and photographic edge fades replaced by clean crops and flat palette surfaces.",
+    "partner-0: dynamic partner wordmark; original logos are not bundled.",
+    "partner-1: dynamic partner wordmark; original logos are not bundled.",
+    "partner-2: dynamic partner wordmark; original logos are not bundled.",
+    "partner-3: dynamic partner wordmark; original logos are not bundled.",
+    "partner-4: dynamic partner wordmark; original logos are not bundled.",
+    "partner-5: dynamic partner wordmark; original logos are not bundled."
+  ]
+}

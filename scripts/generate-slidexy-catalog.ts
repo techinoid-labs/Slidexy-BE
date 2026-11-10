@@ -2,7 +2,7 @@
  * Slidexy website template arsenal — niche × theme × sequence batch generator.
  *
  *   node -r ts-node/register/transpile-only scripts/generate-slidexy-catalog.ts --proof
- *   node -r ts-node/register/transpile-only scripts/generate-slidexy-catalog.ts --limit=5
+ *   node -r ts-node/register/transpile-only scripts/generate-slidexy-catalog.ts --limit=10
  *   node -r ts-node/register/transpile-only scripts/generate-slidexy-catalog.ts
  *
  * Outputs per template:
@@ -91,6 +91,12 @@ const THEMES: Record<string, ThemePreset> = {
     palette: "brutalist-agency",
     typePair: "brutalist-grotesk",
     imageTreatment: "contrast-bw",
+  },
+  "nordic-frost": {
+    label: "Nordic Frost",
+    palette: "nordic-frost",
+    typePair: "nordic-segoe",
+    imageTreatment: "full-bleed",
   },
 };
 
@@ -308,6 +314,15 @@ function nicheSlug(label: string): string {
 
 /** Website folder / catalog id: <niche>-<sequence>[, -<theme> when remapped]. */
 function catalogId(n: NicheDef): string {
+  // Kit-test / explicit folder IDs (e.g. ref-layout-1) win over niche slugs
+  if (
+    /^ref-layout-\d+$/i.test(String(n.id || "")) ||
+    /^kit-test-/i.test(String(n.id || "")) ||
+    String(n.id || "") === "asset-showcase" ||
+    String(n.id || "") === "nordic-frost-fjord"
+  ) {
+    return String(n.id);
+  }
   const base = nicheSlug(n.nicheLabel) + "-" + n.sequence;
   const primary = PRIMARY_NICHES.find(
     (p) => nicheSlug(p.nicheLabel) === nicheSlug(n.nicheLabel) && p.sequence === n.sequence
@@ -330,14 +345,65 @@ function ensureDir(d: string) {
 function parseArgs() {
   const argv = process.argv.slice(2);
   let proof = false;
+  let kitTest = false;
   let limit = 0;
   argv.forEach((a) => {
     if (a === "--proof") proof = true;
+    if (a === "--kit-test") kitTest = true;
     const m = a.match(/^--limit=(\d+)$/);
     if (m) limit = Number(m[1]);
   });
   if (proof && !limit) limit = 5;
-  return { proof, limit };
+  if (kitTest && !limit) limit = 5;
+  return { proof, kitTest, limit };
+}
+
+/** Curated kit-test batch — new theme smoke templates. */
+function kitTestArsenal(): NicheDef[] {
+  return [
+    {
+      id: "nordic-frost-fjord",
+      title: "Fjord Studio · Nordic Frost",
+      brand: "Fjord Studio",
+      tagline: "Architecture for cold-climate living",
+      nicheLabel: "Nordic Architecture Studio",
+      sequence: "company-overview",
+      theme: THEMES["nordic-frost"],
+      photos: {
+        cover: "modern scandinavian house snow landscape architecture",
+        product: [
+          "minimalist timber cabin interior daylight",
+          "nordic kitchen white oak natural light",
+          "glass pavilion forest winter exterior",
+        ],
+        team: [
+          "professional headshot architect woman studio",
+          "professional headshot architect man studio",
+          "professional headshot designer woman nordic",
+        ],
+        feature: [
+          "architectural drawing desk blueprints",
+          "sustainable wood construction detail",
+          "snowy rooftop terrace city view",
+          "material samples stone timber glass",
+        ],
+        case: "architect presenting model to clients",
+      },
+    },
+  ];
+}
+
+/** Force role→variant so each kit-test deck showcases its target geometry. */
+function kitTestForces(index: number): Record<string, string> {
+  const map: Record<string, string>[] = [
+    { cover: "hard-split", feature: "asset-showcase", team: "cutout" },
+  ];
+  return map[index] || {};
+}
+
+/** Which slide PNG to promote as cover-preview for kit-test. */
+function kitTestPreviewRole(index: number): string {
+  return ["cover"][index] || "cover";
 }
 
 function buildSlides(n: NicheDef): any[] {
@@ -361,8 +427,8 @@ function slidesPitch(n: NicheDef): any[] {
     },
     {
       role: "comparison",
-      title: "The status quo tax",
-      headers: ["Before", "After"],
+      title: "Where to play",
+      headers: ["Quick wins", "Big bets", "Fill-ins", "Avoid"],
       before: [
         "Scattered tools and tribal knowledge",
         "Slow decisions from incomplete data",
@@ -375,6 +441,12 @@ function slidesPitch(n: NicheDef): any[] {
         "Context that travels with the team",
         "Boards that update themselves",
       ],
+      body: [
+        "Ship the workspace in 30 days with one champion team",
+        "Rebuild the operating system for the whole org",
+        "Nice-to-have integrations after core adoption",
+        "Custom one-offs that don't compound",
+      ],
     },
     {
       role: "feature",
@@ -383,8 +455,8 @@ function slidesPitch(n: NicheDef): any[] {
         "Core platform — the daily operating surface",
         "Intelligence layer — recommendations that stick",
         "Integrations — meet teams where they work",
-        "Governance — audit-ready by default",
       ],
+      photoQuery: n.photos.feature[0],
       photoQueries: n.photos.feature,
       photoOrientations: ["landscape", "landscape", "landscape", "landscape"],
     },
@@ -400,10 +472,11 @@ function slidesPitch(n: NicheDef): any[] {
       title: "90-day plan",
       caption: "Land, adopt, and prove value",
       steps: [
-        { date: "Days 1–30", title: "Connect", body: "Integrate systems and stand up the first workspace" },
-        { date: "Days 31–60", title: "Adopt", body: "Train champions and lock the weekly operating cadence" },
-        { date: "Days 61–90", title: "Prove", body: "Publish KPI deltas for leadership review" },
-        { date: "Day 90+", title: "Scale", body: "Expand seats and secondary workflows" },
+        { date: "Days 1–20", title: "Connect", body: "Integrate systems and stand up the first workspace" },
+        { date: "Days 21–40", title: "Adopt", body: "Train champions and lock the weekly operating cadence" },
+        { date: "Days 41–60", title: "Prove", body: "Publish KPI deltas for leadership review" },
+        { date: "Days 61–80", title: "Expand", body: "Roll out secondary workflows and new teams" },
+        { date: "Day 80+", title: "Scale", body: "Lock the operating rhythm and renew" },
       ],
     },
     {
@@ -458,6 +531,8 @@ function slidesPitch(n: NicheDef): any[] {
       title: "Let's build what comes next",
       body: ["Book a 30-minute walkthrough", n.brand.toLowerCase().replace(/\s+/g, "") + ".io/demo"],
       caption: n.brand + " — " + n.nicheLabel,
+      photoQuery: n.photos.cover,
+      photoOrientation: "landscape",
     },
   ];
 }
@@ -496,10 +571,10 @@ function slidesConsulting(n: NicheDef): any[] {
       role: "report",
       title: "The productivity gap",
       caption: "Critical-path replacement cycle",
+      takeaway:
+        "Replacement cycles still average **94 days** from intake to productive ramp — span of control expanded after reorganization, diluting coaching capacity.",
       body: [
-        "Replacement cycles still average **94 days** from intake to productive ramp. " +
-          "Span of control expanded after reorganization, diluting coaching capacity. " +
-          "Recommendation: fund a twelve-month rebuild spanning velocity, enablement, and mobility.",
+        "Fund a twelve-month rebuild spanning velocity, enablement, and mobility.",
       ],
     },
     {
@@ -529,11 +604,11 @@ function slidesConsulting(n: NicheDef): any[] {
     {
       role: "report",
       title: "Priority workstreams",
+      caption: "90-day actions",
+      takeaway:
+        "Four workstreams — hiring system, manager enablement, internal mobility, and people analytics — must move in parallel with named ELT owners.",
       body: [
-        "• Hiring system — weekly funnel reviews and stage SLAs",
-        "• Manager enablement — span guardrails and coaching curriculum",
-        "• Internal mobility — published pathways before external post",
-        "• People analytics — clean job codes and monthly ELT review",
+        "Weekly funnel reviews and stage SLAs · span guardrails and coaching curriculum · published pathways before external post · monthly ELT review",
       ],
     },
     {
@@ -541,6 +616,8 @@ function slidesConsulting(n: NicheDef): any[] {
       title: "Decision requested",
       body: ["Approve the operating rebuild", "Confirm ELT monthly owners"],
       caption: n.brand + " — " + n.nicheLabel,
+      photoQuery: n.photos.cover,
+      photoOrientation: "landscape",
     },
   ];
 }
@@ -556,8 +633,8 @@ function slidesSales(n: NicheDef): any[] {
     },
     {
       role: "comparison",
-      title: "Pain points we hear",
-      headers: ["Before", "After"],
+      title: "Effort vs impact",
+      headers: ["Quick wins", "Strategic bets", "Maintenance", "Distractions"],
       before: [
         "Fragmented buyer journey",
         "Proposals that stall for weeks",
@@ -570,6 +647,12 @@ function slidesSales(n: NicheDef): any[] {
         "Proof points tied to outcomes",
         "Warm, consistent ownership",
       ],
+      body: [
+        "Fix the proposal template and stage gates",
+        "Rebuild the full commercial motion",
+        "Keep CRM hygiene and weekly reviews",
+        "One-off custom decks that don't scale",
+      ],
     },
     {
       role: "feature",
@@ -578,8 +661,8 @@ function slidesSales(n: NicheDef): any[] {
         "Discovery that maps to outcomes",
         "Proof packs tailored to stakeholders",
         "Implementation with named owners",
-        "Success reviews on a fixed cadence",
       ],
+      photoQuery: n.photos.feature[0],
       photoQueries: n.photos.feature,
       photoOrientations: ["landscape", "landscape", "landscape", "landscape"],
     },
@@ -622,6 +705,8 @@ function slidesSales(n: NicheDef): any[] {
       title: "Next steps",
       body: ["Confirm scope this week", "Kickoff within ten business days"],
       caption: n.brand + " — proposal",
+      photoQuery: n.photos.cover,
+      photoOrientation: "landscape",
     },
   ];
 }
@@ -653,8 +738,8 @@ function slidesMarketing(n: NicheDef): any[] {
         "Primary buyer — values proof and peer validation",
         "Champion — needs easy internal storytelling",
         "Influencer — cares about craft and credibility",
-        "Skeptic — wants risk removed with guarantees",
       ],
+      photoQuery: n.photos.feature[0],
       photoQueries: n.photos.feature,
       photoOrientations: ["landscape", "landscape", "landscape", "landscape"],
     },
@@ -667,6 +752,7 @@ function slidesMarketing(n: NicheDef): any[] {
         { date: "Q2", title: "Demand", body: "Scale the two winning channels with creative tests" },
         { date: "Q3", title: "Community", body: "Launch owned events and advocate program" },
         { date: "Q4", title: "Expand", body: "Enter adjacent segment with localized creative" },
+        { date: "Q4+", title: "Compound", body: "Reinvest winners and cut lagging bets" },
       ],
     },
     {
@@ -703,9 +789,15 @@ function slidesOverview(n: NicheDef): any[] {
       photoOrientation: "landscape",
     },
     {
-      role: "problem",
+      role: "feature",
       title: "We exist to make the hard path feel inevitable.",
-      caption: "Mission",
+      body: [
+        "Mission — remove friction from critical work",
+        "Belief — systems beat heroics",
+        "Promise — clarity in every handoff",
+      ],
+      photoQuery: n.photos.cover,
+      photoQueries: n.photos.feature,
     },
     {
       role: "timeline",
@@ -715,6 +807,7 @@ function slidesOverview(n: NicheDef): any[] {
         { date: "2019", title: "Founded", body: "Started with a focused bet and a small team" },
         { date: "2021", title: "Product-market", body: "First enterprise logos and a repeatable motion" },
         { date: "2023", title: "Scale", body: "Expanded platforms and global coverage" },
+        { date: "2025", title: "Platform", body: "Unified data layer across products" },
         { date: "2026", title: "Category", body: "Recognised as a category leader" },
       ],
     },
@@ -749,6 +842,8 @@ function slidesOverview(n: NicheDef): any[] {
       title: "Come build with us",
       body: ["Careers and partnerships", n.brand.toLowerCase().replace(/\s+/g, "") + ".com"],
       caption: n.brand + " — company overview",
+      photoQuery: n.photos.cover,
+      photoOrientation: "landscape",
     },
   ];
 }
@@ -821,6 +916,137 @@ async function generateOne(n: NicheDef, index: number) {
   const seed = "slidexy-catalog|" + n.id + "|" + n.sequence + "|" + n.theme.palette;
   const selections = selectAll(prepared, seed);
 
+  // Rotate the five cover archetypes across every catalog mode.
+  const COVER_VARIANTS = [
+    "poster",
+    "hard-split",
+    "collage",
+    "minimal-center",
+    "overlay",
+  ];
+  const forces = (n as any)._kitForces as Record<string, string> | undefined;
+  if (forces) {
+    selections.forEach((sel: any, i: number) => {
+      const forced = forces[sel.role];
+      if (!forced) return;
+      sel.variant = forced;
+      if (prepared.slides[i]) (prepared.slides[i] as any).variantHint = forced;
+    });
+    // Enrich agenda / feature / team content for Canva ref layouts
+    if (forces.agenda === "ref-layout-2") {
+      // Consulting sequences use role=report for agenda — remap first matching slide
+      let remapped = false;
+      prepared.slides.forEach((s: any, i: number) => {
+        if (remapped) return;
+        if (s.role !== "agenda" && !(s.role === "report" && /agenda|contents/i.test(String(s.title || "")))) {
+          return;
+        }
+        s.role = "agenda";
+        s.title = "Contents";
+        s.body = [
+          "Project overview",
+          "Goals & objectives",
+          "Timeline",
+          "Budget",
+          "Team roles",
+          "Risks",
+          "Deliverables",
+          "Next steps",
+        ];
+        s.variantHint = "ref-layout-2";
+        if (selections[i]) {
+          selections[i].role = "agenda";
+          selections[i].variant = "ref-layout-2";
+        }
+        remapped = true;
+      });
+    }
+    if (forces.feature === "ref-layout-4") {
+      let pinned = false;
+      prepared.slides.forEach((s: any) => {
+        if (s.role !== "feature" || pinned) return;
+        pinned = true;
+        s.title = "Objectives";
+        s.steps = [
+          { title: "Discover", body: "Map the current system and the friction that slows delivery." },
+          { title: "Design", body: "Shape a clear operating model the team can run every week." },
+          { title: "Deliver", body: "Ship the first wins and lock the feedback loop in place." },
+        ];
+        s.body = s.steps.map((st: any) => st.title + " — " + st.body);
+      });
+    }
+    if (forces.feature === "ref-layout-5") {
+      let pinned = false;
+      prepared.slides.forEach((s: any) => {
+        if (s.role !== "feature" || pinned) return;
+        pinned = true;
+        s.title = "Thank you";
+        s.body = [];
+      });
+    }
+    if (forces.feature === "asset-showcase") {
+      let pinned = false;
+      prepared.slides.forEach((s: any) => {
+        if (s.role !== "feature" || pinned) return;
+        pinned = true;
+        const nordic = /nordic|fjord/i.test(String(n.id || "") + String(n.brand || ""));
+        s.title = nordic ? "Material language" : "Asset pipeline";
+        s.caption = nordic
+          ? "Recraft · Pexels · Iconify — Nordic Frost"
+          : "Recraft · Pexels · Iconify — Eco Fashion";
+        s.body = nordic
+          ? ["Cold-climate materials, clear structure, quiet detail."]
+          : ["Free asset generation wired into the layout kit."];
+        s.variantHint = "asset-showcase";
+        // Niche-aware smartAsset queries (kit defaults remain as fallback)
+        if (nordic) {
+          s.smartAssetQueries = {
+            illustration: "nordic architecture illustration timber glass snow",
+            photo: "scandinavian interior timber daylight",
+            icons: ["snowflake", "home", "leaf"],
+          };
+        }
+      });
+    }
+    if (forces.team === "ref-layout-3") {
+      prepared.slides.forEach((s: any) => {
+        if (s.role !== "team") return;
+        s.title = "Our team";
+        s.members = [
+          { name: "Claudia Alves", role: "Founder" },
+          { name: "John Smith", role: "Designer" },
+          { name: "Maria Santos", role: "Engineer" },
+          { name: "James Lee", role: "Strategist" },
+        ];
+        s.photoQueries = [].concat(n.photos.team || [], n.photos.team || []).slice(0, 4);
+        s.photoOrientations = ["portrait", "portrait", "portrait", "portrait"];
+      });
+    }
+  }
+  const coverVariant =
+    forces && forces.cover
+      ? forces.cover
+      : COVER_VARIANTS[index % COVER_VARIANTS.length];
+  if (selections[0] && selections[0].role === "cover") {
+    selections[0].variant = coverVariant;
+    if (prepared.slides[0]) {
+      (prepared.slides[0] as any).variantHint = coverVariant;
+      // Collage needs three distinct photo queries
+      if (coverVariant === "collage") {
+        const coverSlide: any = prepared.slides[0];
+        const extras = []
+          .concat(n.photos.feature || [])
+          .concat(n.photos.product || [])
+          .concat([n.photos.cover, n.photos.case]);
+        coverSlide.photoQueries = [
+          extras[0] || n.photos.cover,
+          extras[1] || n.photos.cover,
+          extras[2] || n.photos.cover,
+        ];
+      }
+    }
+  }
+
   const gates = runGates(prepared, selections, tokens);
   if (!gates.pass) {
     console.warn("  gates FAIL", JSON.stringify(gates.slides.filter((s: any) => !s.pass).slice(0, 2)));
@@ -853,7 +1079,16 @@ async function generateOne(n: NicheDef, index: number) {
   }
 
   const coverPath = path.join(outDir, "cover-preview.png");
-  fs.copyFileSync(pngFiles[0], coverPath);
+  let previewIdx = 0;
+  if ((n as any)._kitForces) {
+    const wantRole = kitTestPreviewRole(index);
+    const found = deck.layoutSequence.findIndex((lid: string) => {
+      const layout = deck.layouts[lid];
+      return layout && String(layout.role || "") === wantRole;
+    });
+    if (found >= 0) previewIdx = found;
+  }
+  fs.copyFileSync(pngFiles[previewIdx] || pngFiles[0], coverPath);
 
   const gridPath = await writeGrid(
     outDir,
@@ -874,6 +1109,9 @@ async function generateOne(n: NicheDef, index: number) {
   });
 
   const rel = (p: string) => path.relative(ROOT, p).replace(/\\/g, "/");
+  const kitsUsed = Array.from(
+    new Set(deck.layoutSequence.map((lid: string) => deck.layouts[lid].kitId).filter(Boolean))
+  );
   const entry = {
     id: catalogId(n),
     title: n.title,
@@ -883,6 +1121,7 @@ async function generateOne(n: NicheDef, index: number) {
     theme: n.theme.label,
     themeId: n.theme.palette,
     slideCount: deck.layoutSequence.length,
+    kitsUsed,
     pptxPath: rel(pptxPath),
     coverPreviewPath: rel(coverPath),
     gridPreviewPath: rel(gridPath),
@@ -896,7 +1135,7 @@ async function generateOne(n: NicheDef, index: number) {
 }
 
 async function main() {
-  const { proof, limit } = parseArgs();
+  const { proof, kitTest, limit } = parseArgs();
   ensureDir(OUT_ROOT);
   console.log("Schema gate…");
   assertEngineSchemas();
@@ -907,8 +1146,22 @@ async function main() {
       .join(", ")
   );
 
-  const arsenal = proof || limit ? PRIMARY_NICHES.slice(0, limit || 5) : expandArsenal();
-  console.log("Generating", arsenal.length, proof ? "proof templates (1 per niche)" : "catalog templates");
+  const arsenal = kitTest
+    ? kitTestArsenal().map((n, i) => ({ ...n, _kitForces: kitTestForces(i) } as any))
+    : proof && !limit
+      ? PRIMARY_NICHES.slice(0, 5)
+      : limit
+        ? expandArsenal().slice(0, limit)
+        : expandArsenal();
+  console.log(
+    "Generating",
+    arsenal.length,
+    kitTest
+      ? "kit-test templates"
+      : proof && !limit
+        ? "proof templates (1 per niche)"
+        : "catalog templates (anti-grid pools on)"
+  );
 
   const catalog: any[] = [];
   for (let i = 0; i < arsenal.length; i++) {

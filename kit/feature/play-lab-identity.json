@@ -1,0 +1,214 @@
+{
+  "id": "feature/play-lab-identity",
+  "role": "feature",
+  "variant": "play-lab-identity",
+  "family": "play-lab",
+  "preserveLayout": true,
+  "status": "approved",
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "copy0": {
+      "kind": "text",
+      "from": "items0",
+      "optional": false
+    },
+    "title": {
+      "kind": "text",
+      "from": "title",
+      "optional": false
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1",
+      "optional": false
+    },
+    "copy2": {
+      "kind": "text",
+      "from": "items2",
+      "optional": false
+    },
+    "copy3": {
+      "kind": "text",
+      "from": "items3",
+      "optional": false
+    }
+  },
+  "fit": {
+    "copy0": {
+      "minFont": 27,
+      "maxFont": 27,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "title": {
+      "minFont": 96,
+      "maxFont": 96,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 42,
+      "maxFont": 42,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "copy2": {
+      "minFont": 31,
+      "maxFont": 31,
+      "lineClamp": 3,
+      "shrinkMin": 1
+    },
+    "copy3": {
+      "minFont": 24,
+      "maxFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "copy0": {
+      "kind": "text"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    },
+    "copy3": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "field",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 650,
+        "height": 900,
+        "tokenFill": "ink",
+        "z": 1,
+        "morphId": "field"
+      },
+      {
+        "id": "fingerprint",
+        "type": "smartAsset",
+        "x": 70,
+        "y": 165,
+        "width": 510,
+        "height": 510,
+        "z": 3,
+        "smartAsset": {
+          "type": "icon",
+          "query": "fingerprint",
+          "style": "play-lab-live"
+        },
+        "morphId": "fingerprint"
+      },
+      {
+        "id": "leftlabel",
+        "type": "text",
+        "x": 70,
+        "y": 760,
+        "width": 520,
+        "height": 60,
+        "fontSize": 27,
+        "tokenColor": "bg",
+        "textStyleRole": "kicker",
+        "fontRole": "body",
+        "lineHeight": 1.12,
+        "fontWeight": 400,
+        "z": 4,
+        "morphId": "leftlabel",
+        "slot": "copy0"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 720,
+        "y": 95,
+        "width": 810,
+        "height": 230,
+        "fontSize": 96,
+        "tokenColor": "ink",
+        "textStyleRole": "display",
+        "fontRole": "display",
+        "lineHeight": 1.12,
+        "fontWeight": 700,
+        "z": 4,
+        "morphId": "title",
+        "slot": "title"
+      },
+      {
+        "id": "rule",
+        "type": "shape",
+        "shape": "rect",
+        "x": 725,
+        "y": 400,
+        "width": 790,
+        "height": 5,
+        "tokenFill": "accent",
+        "z": 1,
+        "morphId": "rule"
+      },
+      {
+        "id": "prompt",
+        "type": "text",
+        "x": 725,
+        "y": 460,
+        "width": 750,
+        "height": 100,
+        "fontSize": 42,
+        "tokenColor": "ink",
+        "textStyleRole": "body",
+        "fontRole": "body",
+        "lineHeight": 1.12,
+        "fontWeight": 400,
+        "z": 4,
+        "morphId": "prompt",
+        "slot": "copy1"
+      },
+      {
+        "id": "body",
+        "type": "text",
+        "x": 725,
+        "y": 620,
+        "width": 710,
+        "height": 130,
+        "fontSize": 31,
+        "tokenColor": "ink",
+        "textStyleRole": "body",
+        "fontRole": "body",
+        "lineHeight": 1.12,
+        "fontWeight": 400,
+        "z": 4,
+        "morphId": "body",
+        "slot": "copy2"
+      },
+      {
+        "id": "foot",
+        "type": "text",
+        "x": 725,
+        "y": 810,
+        "width": 700,
+        "height": 40,
+        "fontSize": 23,
+        "tokenColor": "ink",
+        "textStyleRole": "kicker",
+        "fontRole": "body",
+        "lineHeight": 1.12,
+        "fontWeight": 400,
+        "z": 4,
+        "morphId": "foot",
+        "slot": "copy3"
+      }
+    ]
+  }
+}

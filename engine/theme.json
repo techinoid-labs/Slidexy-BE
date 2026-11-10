@@ -268,6 +268,36 @@
         "card_radius": 0,
         "card_border": { "width": 2, "color": "#22D3EE" }
       }
+    },
+    "nordic-frost": {
+      "label": "Nordic Frost (Cool Calm)",
+      "typePair": "nordic-segoe",
+      "imageTreatment": "full-bleed",
+      "imageTone": "color-soft",
+      "motif": "refined",
+      "shapes": { "cardRadius": 2, "useCards": true, "borderWidth": 0 },
+      "card_shadow": { "color": "#1C2B33", "blur": 20, "offset": 6, "opacity": 0.1 },
+      "primitives": {
+        "callout": { "radius": 2, "shadow": true },
+        "header": { "kickerTracking": 0.14 }
+      },
+      "typography": { "letterSpacing": 0.05, "titleLetterSpacing": -0.2 },
+      "tokens": {
+        "label": "Nordic Frost",
+        "vibe": "clean",
+        "dark": false,
+        "bg": "#E8EEF2",
+        "surface": "#F4F7F9",
+        "surface_color": "#F0F4F7",
+        "card_bg": "#FFFFFF",
+        "ink": "#1C2B33",
+        "muted": "#5A6B75",
+        "accent": "#3D7A8C",
+        "accent2": "#2F5F6D",
+        "line": "#C5D0D6",
+        "useCards": true,
+        "card_radius": 2
+      }
     }
   }
 }

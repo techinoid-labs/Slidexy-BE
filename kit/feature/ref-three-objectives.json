@@ -1,0 +1,368 @@
+{
+  "id": "feature/ref-three-objectives",
+  "role": "feature",
+  "variant": "ref-three-objectives",
+  "family": "minimal-commercial-ref-three-objectives",
+  "sourceRef": "ref-three-objectives",
+  "designGuide": "minimal-commercial",
+  "steal": "Three unboxed text columns; small outline icons float well above short headings and paragraphs. Large gap between title and icon row.",
+  "preserveLayout": true,
+  "status": "draft",
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    },
+    "copy1": {
+      "kind": "text",
+      "optional": true
+    },
+    "copy2": {
+      "kind": "text",
+      "optional": true,
+      "from": "body0"
+    },
+    "copy3": {
+      "kind": "text",
+      "optional": true,
+      "from": "body1"
+    },
+    "copy4": {
+      "kind": "text",
+      "optional": true
+    },
+    "copy5": {
+      "kind": "text",
+      "optional": true,
+      "from": "body2"
+    },
+    "copy6": {
+      "kind": "text",
+      "optional": true,
+      "from": "body3"
+    },
+    "copy7": {
+      "kind": "text",
+      "optional": true
+    },
+    "copy8": {
+      "kind": "text",
+      "optional": true,
+      "from": "body4"
+    },
+    "copy9": {
+      "kind": "text",
+      "optional": true,
+      "from": "body5"
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 60,
+      "minFont": 48,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy1": {
+      "maxFont": 40,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy2": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy3": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 4,
+      "shrinkMin": 0.9
+    },
+    "copy4": {
+      "maxFont": 40,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy5": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy6": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 4,
+      "shrinkMin": 0.9
+    },
+    "copy7": {
+      "maxFont": 40,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy8": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy9": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 4,
+      "shrinkMin": 0.9
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    },
+    "copy3": {
+      "kind": "text"
+    },
+    "copy4": {
+      "kind": "text"
+    },
+    "copy5": {
+      "kind": "text"
+    },
+    "copy6": {
+      "kind": "text"
+    },
+    "copy7": {
+      "kind": "text"
+    },
+    "copy8": {
+      "kind": "text"
+    },
+    "copy9": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "x": 225,
+        "y": 166.67,
+        "width": 616.67,
+        "height": 78.33,
+        "z": 4,
+        "morphId": "title",
+        "fontRole": "display",
+        "fontSize": 60,
+        "fontWeight": 300,
+        "tokenColor": "ink",
+        "align": "left",
+        "lineHeight": 1.05,
+        "usePrimitive": false
+      },
+      {
+        "id": "title-rule",
+        "type": "shape",
+        "shape": "rect",
+        "x": 225,
+        "y": 249.17,
+        "width": 50,
+        "height": 3.33,
+        "z": 2,
+        "morphId": "title-rule",
+        "tokenFill": "accent"
+      },
+      {
+        "id": "icon-0",
+        "type": "text",
+        "slot": "copy1",
+        "x": 225,
+        "y": 400,
+        "width": 70,
+        "height": 65,
+        "z": 4,
+        "morphId": "icon-0",
+        "fontRole": "body",
+        "fontSize": 40,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.25,
+        "usePrimitive": false,
+        "literal": "01"
+      },
+      {
+        "id": "heading-0",
+        "type": "text",
+        "slot": "copy2",
+        "x": 225,
+        "y": 529.17,
+        "width": 344.17,
+        "height": 43.2,
+        "z": 4,
+        "morphId": "heading-0",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "ink",
+        "align": "left",
+        "lineHeight": 1.3,
+        "usePrimitive": false
+      },
+      {
+        "id": "body-0",
+        "type": "text",
+        "slot": "copy3",
+        "x": 225,
+        "y": 589.17,
+        "width": 344.17,
+        "height": 145,
+        "z": 4,
+        "morphId": "body-0",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.32,
+        "usePrimitive": false
+      },
+      {
+        "id": "icon-1",
+        "type": "text",
+        "slot": "copy4",
+        "x": 627.5,
+        "y": 400,
+        "width": 70,
+        "height": 65,
+        "z": 4,
+        "morphId": "icon-1",
+        "fontRole": "body",
+        "fontSize": 40,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.25,
+        "usePrimitive": false,
+        "literal": "02"
+      },
+      {
+        "id": "heading-1",
+        "type": "text",
+        "slot": "copy5",
+        "x": 627.5,
+        "y": 529.17,
+        "width": 344.17,
+        "height": 43.2,
+        "z": 4,
+        "morphId": "heading-1",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "ink",
+        "align": "left",
+        "lineHeight": 1.3,
+        "usePrimitive": false
+      },
+      {
+        "id": "body-1",
+        "type": "text",
+        "slot": "copy6",
+        "x": 627.5,
+        "y": 589.17,
+        "width": 344.17,
+        "height": 145,
+        "z": 4,
+        "morphId": "body-1",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.32,
+        "usePrimitive": false
+      },
+      {
+        "id": "icon-2",
+        "type": "text",
+        "slot": "copy7",
+        "x": 1030.83,
+        "y": 400,
+        "width": 70,
+        "height": 65,
+        "z": 4,
+        "morphId": "icon-2",
+        "fontRole": "body",
+        "fontSize": 40,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.25,
+        "usePrimitive": false,
+        "literal": "03"
+      },
+      {
+        "id": "heading-2",
+        "type": "text",
+        "slot": "copy8",
+        "x": 1030.83,
+        "y": 529.17,
+        "width": 344.17,
+        "height": 43.2,
+        "z": 4,
+        "morphId": "heading-2",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "ink",
+        "align": "left",
+        "lineHeight": 1.3,
+        "usePrimitive": false
+      },
+      {
+        "id": "body-2",
+        "type": "text",
+        "slot": "copy9",
+        "x": 1030.83,
+        "y": 589.17,
+        "width": 344.17,
+        "height": 145,
+        "z": 4,
+        "morphId": "body-2",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.32,
+        "usePrimitive": false
+      }
+    ]
+  },
+  "motion": {
+    "transition": "fade",
+    "fallbackTransition": "fade",
+    "durationMs": 500
+  },
+  "implementationNotes": [
+    "Geometry estimated from the supplied raster and scaled to 1600x900.",
+    "Body text raised to readable export floors; copy must fit the original whitespace.",
+    "Soft grain and photographic edge fades replaced by clean crops and flat palette surfaces.",
+    "icon-0: editable step number replaces the reference outline icon.",
+    "icon-1: editable step number replaces the reference outline icon.",
+    "icon-2: editable step number replaces the reference outline icon."
+  ]
+}

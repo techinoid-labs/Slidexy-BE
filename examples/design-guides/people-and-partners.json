@@ -1,0 +1,81 @@
+{
+  "style": {
+    "palette": "ink-night",
+    "typePair": "modern-segoe",
+    "imageTreatment": "full-bleed",
+    "motif": "bar-accent",
+    "sequence": "guide-people-and-partners"
+  },
+  "slides": [
+    {
+      "role": "cover",
+      "variantHint": "ref-group-project",
+      "title": "Studio\nOverview",
+      "caption": "STUDIO",
+      "body": [
+        "DESIGN COLLECTION",
+        "studio.example"
+      ]
+    },
+    {
+      "role": "team",
+      "variantHint": "ref-four-portrait-team",
+      "title": "People behind the work",
+      "members": [
+        {
+          "name": "Alex Chen",
+          "role": "Design"
+        },
+        {
+          "name": "Sam Rivera",
+          "role": "Strategy"
+        },
+        {
+          "name": "Taylor Park",
+          "role": "Research"
+        },
+        {
+          "name": "Jordan Lee",
+          "role": "Delivery"
+        }
+      ],
+      "photoQueries": [
+        "studio headshot portrait looking at camera ref-four-portrait-team portrait-0 0",
+        "studio headshot portrait looking at camera ref-four-portrait-team portrait-1 1",
+        "studio headshot portrait looking at camera ref-four-portrait-team portrait-2 2",
+        "studio headshot portrait looking at camera ref-four-portrait-team portrait-3 3"
+      ],
+      "photoOrientations": [
+        "portrait",
+        "portrait",
+        "portrait",
+        "portrait"
+      ]
+    },
+    {
+      "role": "portfolio",
+      "variantHint": "ref-staggered-partners",
+      "title": "Better together",
+      "items": [
+        "PARTNER ONE",
+        "PARTNER TWO",
+        "PARTNER THREE",
+        "PARTNER FOUR",
+        "PARTNER FIVE",
+        "PARTNER SIX"
+      ],
+      "caption": "A flexible space for the partners who support your work."
+    },
+    {
+      "role": "closing",
+      "variantHint": "ref-contact-footer-columns",
+      "title": "Start a conversation",
+      "caption": "STUDIO",
+      "body": [
+        "+00 000 000 000",
+        "hello@studio.example",
+        "studio.example"
+      ]
+    }
+  ]
+}

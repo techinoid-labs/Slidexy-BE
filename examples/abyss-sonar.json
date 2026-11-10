@@ -1,0 +1,118 @@
+{
+  "name": "Abyss • Sonar",
+  "description": "Deep-ocean dive brief — full-bleed sonar cover, contact list, porthole split, pressure board and dive close.",
+  "brand": {
+    "colors": {
+      "bg": "#021018",
+      "surface": "#0A2230",
+      "surface_color": "#123848",
+      "ink": "#E8F7F4",
+      "muted": "#7AA4B0",
+      "accent": "#2EF3C5",
+      "line": "#1A4A5C"
+    },
+    "fonts": {
+      "display": "Orbitron",
+      "body": "Space Grotesk"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "abyss"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "ABYSS",
+        "items": [
+          "Sonar lab · 4100m",
+          "dive brief",
+          "01"
+        ],
+        "photoQuery": "005c50a2a14e"
+      },
+      {
+        "role": "feature",
+        "title": "Contacts",
+        "items": [
+          "Alpha",
+          "1200m — soft return",
+          "Bravo",
+          "2400m — hard ping",
+          "Charlie",
+          "4100m — hull check",
+          "Three pings. One hull."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Through the glass",
+        "items": [
+          "Black water",
+          "Green return holds the beam longer than sight.",
+          "Keep the lamp low",
+          "Listen before you push ballast."
+        ],
+        "photoQuery": "0ca17fecb06d"
+      },
+      {
+        "role": "feature",
+        "title": "Board",
+        "items": [
+          "01",
+          "Set depth",
+          "02",
+          "Open ballast",
+          "03",
+          "Hold beam",
+          "04",
+          "Log return"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Listen longer.",
+        "items": [
+          "— Dive log, trench 7"
+        ],
+        "photoQuery": "005c50a2a14e"
+      },
+      {
+        "role": "closing",
+        "title": "Dive.",
+        "items": [
+          "Abyss Sonar · night watch"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "abyss-dive"
+    },
+    {
+      "role": "feature",
+      "variant": "abyss-contacts"
+    },
+    {
+      "role": "feature",
+      "variant": "abyss-glass"
+    },
+    {
+      "role": "feature",
+      "variant": "abyss-board"
+    },
+    {
+      "role": "feature",
+      "variant": "abyss-quote"
+    },
+    {
+      "role": "closing",
+      "variant": "abyss-close"
+    }
+  ]
+}

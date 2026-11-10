@@ -1,0 +1,121 @@
+{
+  "name": "Apiary • Jar",
+  "description": "Soft honey apiary — jar labels, comb cells, hive bars and a gentle gather close.",
+  "brand": {
+    "colors": {
+      "bg": "#F7F1E4",
+      "surface": "#EBE2D0",
+      "surface_color": "#DDD2BA",
+      "ink": "#3A3228",
+      "muted": "#8A7E6E",
+      "accent": "#D4A017",
+      "line": "#C8BBA4"
+    },
+    "fonts": {
+      "display": "Georgia",
+      "body": "Georgia"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "apiary"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Apiary",
+        "items": [
+          "Jar shelf · morning",
+          "small batch",
+          "03"
+        ],
+        "photoQuery": "092c8c1420fb"
+      },
+      {
+        "role": "feature",
+        "title": "Jars",
+        "items": [
+          "Spring",
+          "light floral",
+          "Summer",
+          "deep gold",
+          "Fall",
+          "dark amber",
+          "Label by season."
+        ],
+        "photoQuery": "141ae86a78f3"
+      },
+      {
+        "role": "feature",
+        "title": "Comb",
+        "items": [
+          "Cap",
+          "soft white",
+          "Cell",
+          "full weight",
+          "Frame",
+          "warm pull"
+        ],
+        "photoQuery": "16df8343dc3d"
+      },
+      {
+        "role": "feature",
+        "title": "Hive",
+        "items": [
+          "I",
+          "Open",
+          "II",
+          "Smoke",
+          "III",
+          "Lift",
+          "IV",
+          "Close"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Sweetness keeps its time.",
+        "items": [
+          "— Keeper note"
+        ],
+        "photoQuery": "092c8c1420fb"
+      },
+      {
+        "role": "closing",
+        "title": "Gather.",
+        "items": [
+          "Apiary Jar · morning shelf"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "apiary-cover"
+    },
+    {
+      "role": "feature",
+      "variant": "apiary-jars"
+    },
+    {
+      "role": "feature",
+      "variant": "apiary-comb"
+    },
+    {
+      "role": "feature",
+      "variant": "apiary-hive"
+    },
+    {
+      "role": "feature",
+      "variant": "apiary-quote"
+    },
+    {
+      "role": "closing",
+      "variant": "apiary-gather"
+    }
+  ]
+}

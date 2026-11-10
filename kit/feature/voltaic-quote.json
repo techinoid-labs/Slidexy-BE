@@ -1,0 +1,147 @@
+{
+  "id": "feature/voltaic-quote",
+  "role": "feature",
+  "variant": "voltaic-quote",
+  "family": "voltaic",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 64,
+      "maxFont": 64,
+      "lineClamp": 3,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 26,
+      "maxFont": 26,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "photo",
+        "type": "image",
+        "x": 0,
+        "y": 0,
+        "width": 780,
+        "height": 900,
+        "z": 1,
+        "slot": "photo",
+        "zoom": 1.2,
+        "alignX": 0.35
+      },
+      {
+        "id": "panel",
+        "type": "shape",
+        "shape": "rect",
+        "x": 780,
+        "y": 0,
+        "width": 820,
+        "height": 900,
+        "tokenFill": "bg",
+        "z": 2
+      },
+      {
+        "id": "hqheat0",
+        "type": "shape",
+        "shape": "rect",
+        "x": 860,
+        "y": 120,
+        "width": 224,
+        "height": 28,
+        "tokenFill": "surface",
+        "z": 3,
+        "morphId": "plate"
+      },
+      {
+        "id": "hqheat1",
+        "type": "shape",
+        "shape": "rect",
+        "x": 860,
+        "y": 162,
+        "width": 432,
+        "height": 28,
+        "tokenFill": "accent",
+        "z": 3
+      },
+      {
+        "id": "hqheat2",
+        "type": "shape",
+        "shape": "rect",
+        "x": 860,
+        "y": 204,
+        "width": 640,
+        "height": 28,
+        "tokenFill": "accent",
+        "z": 3,
+        "morphId": "accent"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 860,
+        "y": 360,
+        "width": 680,
+        "height": 240,
+        "fontSize": 64,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.15,
+        "letterSpacing": 0,
+        "z": 3,
+        "textStyleRole": "quote",
+        "morphId": "title"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 860,
+        "y": 660,
+        "width": 600,
+        "height": 50,
+        "fontSize": 26,
+        "slot": "copy0",
+        "tokenColor": "accent",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 3
+      }
+    ]
+  }
+}

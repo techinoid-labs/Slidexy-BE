@@ -1,0 +1,258 @@
+{
+  "id": "portfolio/ref-masonry-showcase",
+  "role": "portfolio",
+  "variant": "ref-masonry-showcase",
+  "family": "architecture-portfolio-ref-masonry-showcase",
+  "sourceRef": "ref-masonry-showcase",
+  "designGuide": "architecture-portfolio",
+  "steal": "Left showcase copy repeats the prior slide's stack. Four cropped photos form a right rectangular collage with deliberately offset internal seams.",
+  "preserveLayout": true,
+  "status": "draft",
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo-top-left",
+    "photo-top-right",
+    "photo-bottom-left",
+    "photo-bottom-right"
+  ],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    },
+    "copy1": {
+      "kind": "text",
+      "optional": true,
+      "from": "caption"
+    },
+    "copy2": {
+      "kind": "text",
+      "optional": true,
+      "from": "body0"
+    },
+    "copy3": {
+      "kind": "text",
+      "optional": true,
+      "from": "body1"
+    },
+    "photo-top-left": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo0"
+    },
+    "photo-top-right": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo1"
+    },
+    "photo-bottom-left": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo2"
+    },
+    "photo-bottom-right": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo3"
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 60,
+      "minFont": 48,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy1": {
+      "maxFont": 46.67,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy2": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy3": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 3,
+      "shrinkMin": 0.9
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    },
+    "copy3": {
+      "kind": "text"
+    },
+    "photo-top-left": {
+      "kind": "picture"
+    },
+    "photo-top-right": {
+      "kind": "picture"
+    },
+    "photo-bottom-left": {
+      "kind": "picture"
+    },
+    "photo-bottom-right": {
+      "kind": "picture"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "x": 225,
+        "y": 166.67,
+        "width": 616.67,
+        "height": 78.33,
+        "z": 4,
+        "morphId": "title",
+        "fontRole": "display",
+        "fontSize": 60,
+        "fontWeight": 300,
+        "tokenColor": "ink",
+        "align": "left",
+        "lineHeight": 1.05,
+        "usePrimitive": false
+      },
+      {
+        "id": "title-rule",
+        "type": "shape",
+        "shape": "rect",
+        "x": 225,
+        "y": 249.17,
+        "width": 50,
+        "height": 3.33,
+        "z": 2,
+        "morphId": "title-rule",
+        "tokenFill": "accent"
+      },
+      {
+        "id": "index",
+        "type": "text",
+        "slot": "copy1",
+        "x": 225,
+        "y": 395,
+        "width": 125,
+        "height": 72.671,
+        "z": 4,
+        "morphId": "index",
+        "fontRole": "body",
+        "fontSize": 46.67,
+        "fontWeight": 300,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.3,
+        "usePrimitive": false
+      },
+      {
+        "id": "item-title",
+        "type": "text",
+        "slot": "copy2",
+        "x": 225,
+        "y": 529.17,
+        "width": 391.67,
+        "height": 43.2,
+        "z": 4,
+        "morphId": "item-title",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "ink",
+        "align": "left",
+        "lineHeight": 1.3,
+        "usePrimitive": false
+      },
+      {
+        "id": "body",
+        "type": "text",
+        "slot": "copy3",
+        "x": 225,
+        "y": 589.17,
+        "width": 366.67,
+        "height": 96.67,
+        "z": 4,
+        "morphId": "body",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.32,
+        "usePrimitive": false
+      },
+      {
+        "id": "photo-top-left",
+        "type": "image",
+        "slot": "photo-top-left",
+        "x": 741.67,
+        "y": 166.67,
+        "width": 276.67,
+        "height": 280,
+        "z": 1,
+        "morphId": "photo-top-left",
+        "mask": "rect"
+      },
+      {
+        "id": "photo-top-right",
+        "type": "image",
+        "slot": "photo-top-right",
+        "x": 1026.67,
+        "y": 166.67,
+        "width": 348.33,
+        "height": 280,
+        "z": 1,
+        "morphId": "photo-top-right",
+        "mask": "rect"
+      },
+      {
+        "id": "photo-bottom-left",
+        "type": "image",
+        "slot": "photo-bottom-left",
+        "x": 741.67,
+        "y": 454.17,
+        "width": 348.33,
+        "height": 279.17,
+        "z": 1,
+        "morphId": "photo-bottom-left",
+        "mask": "rect"
+      },
+      {
+        "id": "photo-bottom-right",
+        "type": "image",
+        "slot": "photo-bottom-right",
+        "x": 1098.33,
+        "y": 454.17,
+        "width": 276.67,
+        "height": 279.17,
+        "z": 1,
+        "morphId": "photo-bottom-right",
+        "mask": "rect"
+      }
+    ]
+  },
+  "motion": {
+    "transition": "fade",
+    "fallbackTransition": "fade",
+    "durationMs": 500
+  },
+  "implementationNotes": [
+    "Geometry estimated from the supplied raster and scaled to 1600x900.",
+    "Body text raised to readable export floors; copy must fit the original whitespace.",
+    "Soft grain and photographic edge fades replaced by clean crops and flat palette surfaces."
+  ]
+}

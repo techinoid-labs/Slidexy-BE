@@ -1,0 +1,143 @@
+{
+  "name": "Side A • Low Tide LP",
+  "description": "Album launch deck — a record sliding out of its sleeve, side A/B tracklist, waveform single, tour pills.",
+  "brand": {
+    "colors": {
+      "bg": "#EDE6D8",
+      "surface": "#141414",
+      "surface_color": "#262626",
+      "card_bg": "#4A4A4A",
+      "ink": "#141414",
+      "muted": "#6E675C",
+      "accent": "#FF5A1F",
+      "accent2": "#2F45FF",
+      "line": "#D3CABA"
+    },
+    "fonts": {
+      "display": "Syne",
+      "body": "Space Grotesk"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "side-a"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Low **Tide**",
+        "items": [
+          "New LP · Out Friday",
+          "Marlow Vance",
+          "12 tracks · 180 g vinyl",
+          "LP"
+        ],
+        "photoQuery": "3410c0ffb7"
+      },
+      {
+        "role": "feature",
+        "title": "Tracklist",
+        "items": [
+          "Side A",
+          "Glass Harbour",
+          "3:52",
+          "Salt Lines",
+          "4:10",
+          "Northern Room",
+          "3:27",
+          "Undertow",
+          "5:04",
+          "Side B",
+          "Lamplight",
+          "3:41",
+          "Ferry at Six",
+          "4:22",
+          "Low Tide",
+          "6:08",
+          "Coming Home Slow",
+          "4:47"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Glass **Harbour**",
+        "items": [
+          "The single",
+          "1:48",
+          "3:52",
+          "Recorded live in one take at the old harbour church, with the doors left open to the sea."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Pressed",
+        "items": [
+          "33",
+          "Revolutions per minute, slow and warm",
+          "180",
+          "Grams of heavyweight black vinyl",
+          "12",
+          "Tracks across two sides"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "On tour",
+        "items": [
+          "MAR 14",
+          "Glasgow",
+          "Barrowland Ballroom",
+          "Sold out",
+          "MAR 16",
+          "Manchester",
+          "Albert Hall",
+          "Sold out",
+          "MAR 19",
+          "Bristol",
+          "SWX",
+          "Tickets",
+          "MAR 22",
+          "London",
+          "Roundhouse",
+          "Tickets"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Play it loud.",
+        "items": [
+          "Afterglow Records · out 14 March"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "side-a-sleeve"
+    },
+    {
+      "role": "feature",
+      "variant": "side-a-tracklist"
+    },
+    {
+      "role": "feature",
+      "variant": "side-a-wave"
+    },
+    {
+      "role": "feature",
+      "variant": "side-a-pressed"
+    },
+    {
+      "role": "feature",
+      "variant": "side-a-tour"
+    },
+    {
+      "role": "feature",
+      "variant": "side-a-loud"
+    }
+  ]
+}

@@ -1,0 +1,201 @@
+{
+  "id": "feature/pantry-counter-shelf",
+  "role": "feature",
+  "variant": "pantry-counter-shelf",
+  "family": "pantry-counter",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "copy2": {
+      "kind": "text",
+      "from": "items2"
+    },
+    "copy3": {
+      "kind": "text",
+      "from": "items3"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 64,
+      "maxFont": 64,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 30,
+      "maxFont": 30,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 26,
+      "maxFont": 26,
+      "lineClamp": 6,
+      "shrinkMin": 1
+    },
+    "copy2": {
+      "minFont": 30,
+      "maxFont": 30,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy3": {
+      "minFont": 26,
+      "maxFont": 26,
+      "lineClamp": 6,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    },
+    "copy3": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "photo",
+        "type": "image",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 480,
+        "z": 1,
+        "slot": "photo",
+        "morphId": "hero"
+      },
+      {
+        "id": "panel",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 480,
+        "width": 1600,
+        "height": 420,
+        "tokenFill": "bg",
+        "z": 2
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 70,
+        "y": 510,
+        "width": 1460,
+        "height": 90,
+        "fontSize": 64,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "morphId": "title"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 70,
+        "y": 620,
+        "width": 700,
+        "height": 45,
+        "fontSize": 30,
+        "slot": "copy0",
+        "tokenColor": "accent",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "copy1",
+        "type": "text",
+        "x": 70,
+        "y": 675,
+        "width": 700,
+        "height": 180,
+        "fontSize": 26,
+        "slot": "copy1",
+        "tokenColor": {
+          "lineHeight": 1.28
+        },
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "copy2",
+        "type": "text",
+        "x": 840,
+        "y": 620,
+        "width": 700,
+        "height": 45,
+        "fontSize": 30,
+        "slot": "copy2",
+        "tokenColor": "accent",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "copy3",
+        "type": "text",
+        "x": 840,
+        "y": 675,
+        "width": 700,
+        "height": 180,
+        "fontSize": 26,
+        "slot": "copy3",
+        "tokenColor": {
+          "lineHeight": 1.28
+        },
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      }
+    ]
+  }
+}

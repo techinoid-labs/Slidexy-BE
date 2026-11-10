@@ -1,0 +1,546 @@
+{
+  "id": "team/ref-four-portrait-team",
+  "role": "team",
+  "variant": "ref-four-portrait-team",
+  "family": "people-and-partners-ref-four-portrait-team",
+  "sourceRef": "ref-four-portrait-team",
+  "designGuide": "people-and-partners",
+  "steal": "Four equal portrait columns centered across the content band. Names and roles sit below, offset right of oversized index numbers.",
+  "preserveLayout": true,
+  "status": "draft",
+  "requiresPhoto": true,
+  "photoSlots": [
+    "portrait-0",
+    "portrait-1",
+    "portrait-2",
+    "portrait-3"
+  ],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    },
+    "portrait-0": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo0"
+    },
+    "copy1": {
+      "kind": "text",
+      "optional": true
+    },
+    "copy2": {
+      "kind": "text",
+      "optional": true,
+      "from": "members0.name"
+    },
+    "copy3": {
+      "kind": "text",
+      "optional": true,
+      "from": "members0.role"
+    },
+    "portrait-1": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo1"
+    },
+    "copy4": {
+      "kind": "text",
+      "optional": true
+    },
+    "copy5": {
+      "kind": "text",
+      "optional": true,
+      "from": "members1.name"
+    },
+    "copy6": {
+      "kind": "text",
+      "optional": true,
+      "from": "members1.role"
+    },
+    "portrait-2": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo2"
+    },
+    "copy7": {
+      "kind": "text",
+      "optional": true
+    },
+    "copy8": {
+      "kind": "text",
+      "optional": true,
+      "from": "members2.name"
+    },
+    "copy9": {
+      "kind": "text",
+      "optional": true,
+      "from": "members2.role"
+    },
+    "portrait-3": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo3"
+    },
+    "copy10": {
+      "kind": "text",
+      "optional": true
+    },
+    "copy11": {
+      "kind": "text",
+      "optional": true,
+      "from": "members3.name"
+    },
+    "copy12": {
+      "kind": "text",
+      "optional": true,
+      "from": "members3.role"
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 60,
+      "minFont": 48,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy1": {
+      "maxFont": 30,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy2": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy3": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy4": {
+      "maxFont": 30,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy5": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy6": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy7": {
+      "maxFont": 30,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy8": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy9": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy10": {
+      "maxFont": 30,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy11": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy12": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "portrait-0": {
+      "kind": "picture"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    },
+    "copy3": {
+      "kind": "text"
+    },
+    "portrait-1": {
+      "kind": "picture"
+    },
+    "copy4": {
+      "kind": "text"
+    },
+    "copy5": {
+      "kind": "text"
+    },
+    "copy6": {
+      "kind": "text"
+    },
+    "portrait-2": {
+      "kind": "picture"
+    },
+    "copy7": {
+      "kind": "text"
+    },
+    "copy8": {
+      "kind": "text"
+    },
+    "copy9": {
+      "kind": "text"
+    },
+    "portrait-3": {
+      "kind": "picture"
+    },
+    "copy10": {
+      "kind": "text"
+    },
+    "copy11": {
+      "kind": "text"
+    },
+    "copy12": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "x": 225,
+        "y": 166.67,
+        "width": 616.67,
+        "height": 78.33,
+        "z": 4,
+        "morphId": "title",
+        "fontRole": "display",
+        "fontSize": 60,
+        "fontWeight": 300,
+        "tokenColor": "ink",
+        "align": "left",
+        "lineHeight": 1.05,
+        "usePrimitive": false
+      },
+      {
+        "id": "title-rule",
+        "type": "shape",
+        "shape": "rect",
+        "x": 225,
+        "y": 249.17,
+        "width": 50,
+        "height": 3.33,
+        "z": 2,
+        "morphId": "title-rule",
+        "tokenFill": "accent"
+      },
+      {
+        "id": "portrait-0",
+        "type": "image",
+        "slot": "portrait-0",
+        "x": 225,
+        "y": 360.83,
+        "width": 241.67,
+        "height": 258.33,
+        "z": 1,
+        "morphId": "portrait-0",
+        "mask": "rect"
+      },
+      {
+        "id": "index-0",
+        "type": "text",
+        "slot": "copy1",
+        "x": 225,
+        "y": 680.83,
+        "width": 45,
+        "height": 51,
+        "z": 4,
+        "morphId": "index-0",
+        "fontRole": "body",
+        "fontSize": 30,
+        "fontWeight": 300,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.3,
+        "usePrimitive": false,
+        "literal": "01"
+      },
+      {
+        "id": "name-0",
+        "type": "text",
+        "slot": "copy2",
+        "x": 278.33,
+        "y": 683.33,
+        "width": 196.67,
+        "height": 43.2,
+        "z": 4,
+        "morphId": "name-0",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "ink",
+        "align": "left",
+        "lineHeight": 1.3,
+        "usePrimitive": false
+      },
+      {
+        "id": "job-0",
+        "type": "text",
+        "slot": "copy3",
+        "x": 278.33,
+        "y": 711.67,
+        "width": 196.67,
+        "height": 43.2,
+        "z": 4,
+        "morphId": "job-0",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.3,
+        "usePrimitive": false
+      },
+      {
+        "id": "portrait-1",
+        "type": "image",
+        "slot": "portrait-1",
+        "x": 527.5,
+        "y": 360.83,
+        "width": 241.67,
+        "height": 258.33,
+        "z": 1,
+        "morphId": "portrait-1",
+        "mask": "rect"
+      },
+      {
+        "id": "index-1",
+        "type": "text",
+        "slot": "copy4",
+        "x": 527.5,
+        "y": 680.83,
+        "width": 45,
+        "height": 51,
+        "z": 4,
+        "morphId": "index-1",
+        "fontRole": "body",
+        "fontSize": 30,
+        "fontWeight": 300,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.3,
+        "usePrimitive": false,
+        "literal": "02"
+      },
+      {
+        "id": "name-1",
+        "type": "text",
+        "slot": "copy5",
+        "x": 580.83,
+        "y": 683.33,
+        "width": 196.67,
+        "height": 43.2,
+        "z": 4,
+        "morphId": "name-1",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "ink",
+        "align": "left",
+        "lineHeight": 1.3,
+        "usePrimitive": false
+      },
+      {
+        "id": "job-1",
+        "type": "text",
+        "slot": "copy6",
+        "x": 580.83,
+        "y": 711.67,
+        "width": 196.67,
+        "height": 43.2,
+        "z": 4,
+        "morphId": "job-1",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.3,
+        "usePrimitive": false
+      },
+      {
+        "id": "portrait-2",
+        "type": "image",
+        "slot": "portrait-2",
+        "x": 830.83,
+        "y": 360.83,
+        "width": 241.67,
+        "height": 258.33,
+        "z": 1,
+        "morphId": "portrait-2",
+        "mask": "rect"
+      },
+      {
+        "id": "index-2",
+        "type": "text",
+        "slot": "copy7",
+        "x": 830.83,
+        "y": 680.83,
+        "width": 45,
+        "height": 51,
+        "z": 4,
+        "morphId": "index-2",
+        "fontRole": "body",
+        "fontSize": 30,
+        "fontWeight": 300,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.3,
+        "usePrimitive": false,
+        "literal": "03"
+      },
+      {
+        "id": "name-2",
+        "type": "text",
+        "slot": "copy8",
+        "x": 884.17,
+        "y": 683.33,
+        "width": 196.67,
+        "height": 43.2,
+        "z": 4,
+        "morphId": "name-2",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "ink",
+        "align": "left",
+        "lineHeight": 1.3,
+        "usePrimitive": false
+      },
+      {
+        "id": "job-2",
+        "type": "text",
+        "slot": "copy9",
+        "x": 884.17,
+        "y": 711.67,
+        "width": 196.67,
+        "height": 43.2,
+        "z": 4,
+        "morphId": "job-2",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.3,
+        "usePrimitive": false
+      },
+      {
+        "id": "portrait-3",
+        "type": "image",
+        "slot": "portrait-3",
+        "x": 1133.33,
+        "y": 360.83,
+        "width": 241.67,
+        "height": 258.33,
+        "z": 1,
+        "morphId": "portrait-3",
+        "mask": "rect"
+      },
+      {
+        "id": "index-3",
+        "type": "text",
+        "slot": "copy10",
+        "x": 1133.33,
+        "y": 680.83,
+        "width": 45,
+        "height": 51,
+        "z": 4,
+        "morphId": "index-3",
+        "fontRole": "body",
+        "fontSize": 30,
+        "fontWeight": 300,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.3,
+        "usePrimitive": false,
+        "literal": "04"
+      },
+      {
+        "id": "name-3",
+        "type": "text",
+        "slot": "copy11",
+        "x": 1186.67,
+        "y": 683.33,
+        "width": 196.67,
+        "height": 43.2,
+        "z": 4,
+        "morphId": "name-3",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "ink",
+        "align": "left",
+        "lineHeight": 1.3,
+        "usePrimitive": false
+      },
+      {
+        "id": "job-3",
+        "type": "text",
+        "slot": "copy12",
+        "x": 1186.67,
+        "y": 711.67,
+        "width": 196.67,
+        "height": 43.2,
+        "z": 4,
+        "morphId": "job-3",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.3,
+        "usePrimitive": false
+      }
+    ]
+  },
+  "motion": {
+    "transition": "fade",
+    "fallbackTransition": "fade",
+    "durationMs": 500
+  },
+  "implementationNotes": [
+    "Geometry estimated from the supplied raster and scaled to 1600x900.",
+    "Body text raised to readable export floors; copy must fit the original whitespace.",
+    "Soft grain and photographic edge fades replaced by clean crops and flat palette surfaces."
+  ]
+}

@@ -1,0 +1,292 @@
+{
+  "name": "Tidal Lab",
+  "description": "An ocean monitoring briefing with a station schematic, native chart and research photography.",
+  "brand": {
+    "colors": {
+      "bg": "#092C40",
+      "ink": "#EAF7EF",
+      "accent": "#80E3C0",
+      "surface": "#16455B",
+      "line": "#4D91A5"
+    },
+    "fonts": {
+      "display": "Arial",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "TIDAL\nLAB",
+        "items": [
+          "COASTAL OBSERVATORY",
+          "A proposal for three stations and four seasonal visits."
+        ],
+        "photoQuery": "tidal-lab-0"
+      },
+      {
+        "role": "feature",
+        "title": "The coast is changing",
+        "items": [
+          "Research question",
+          "Where does seasonal sediment collect after heavy rainfall? The proposed study follows water from the river mouth into the sheltered bay.",
+          "Field approach",
+          "A small team will revisit the same sampling stations through the season. Each visit records visibility, temperature and the conditions around collection.",
+          "Decision value",
+          "The resulting record will help the harbour team choose where a longer monitoring programme is justified. Early observations will guide the next sampling round.",
+          "Sample proposal"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Three stations, one coastline",
+        "items": [
+          "A",
+          "B",
+          "C",
+          "Station schematic • positions illustrative",
+          "A / RIVER MOUTH",
+          "Collect near the freshwater boundary after the tide turns. Record recent rainfall because runoff can change the appearance of the water within hours.",
+          "B / INNER BAY",
+          "Sample the sheltered water beside the moorings. Use the same collection depth each time to make comparisons between visits easier to interpret.",
+          "C / OUTER REEF",
+          "Record the exposed station when conditions permit safe access. Keep a weather log so missed visits and unusual observations remain visible in the record.",
+          "Sample proposal"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "From collection to evidence",
+        "items": [
+          "01",
+          "COLLECT",
+          "Label the bottle before it enters the water. Write the station, collection time and depth on the field sheet while the sample is taken.",
+          "02",
+          "COMPARE",
+          "Process samples using the same equipment and sequence. Include a reference reading at the beginning of the session to identify changes in instrument behaviour.",
+          "03",
+          "EXPLAIN",
+          "Compare each observation with the field notes before proposing a cause. A clear result includes the conditions that could have influenced the measurement.",
+          "Sample proposal"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Read the seasonal signal",
+        "items": [
+          "River 12–21   /   Bay 8–12   /   Reef 4–5",
+          "Visit 1",
+          "Visit 2",
+          "Visit 3",
+          "Visit 4",
+          "Illustrative readings • arbitrary units",
+          "Illustrative series",
+          "The example chart shows how a monitoring report could compare three stations across four visits. These values are demonstration data for the template.",
+          "Useful comparison",
+          "Read the change within each station before comparing stations with one another. Differences in exposure and depth may influence the baseline at each location.",
+          "Next measurement",
+          "A sudden change should trigger another visit and a review of field conditions. One unusual reading is a reason to investigate the collection context.",
+          "Sample proposal"
+        ],
+        "chart": {
+          "type": "line",
+          "labels": [
+            "Visit 1",
+            "Visit 2",
+            "Visit 3",
+            "Visit 4"
+          ],
+          "series": [
+            {
+              "name": "River",
+              "values": [
+                12,
+                21,
+                16,
+                14
+              ]
+            },
+            {
+              "name": "Bay",
+              "values": [
+                8,
+                12,
+                10,
+                9
+              ]
+            },
+            {
+              "name": "Reef",
+              "values": [
+                4,
+                5,
+                4,
+                5
+              ]
+            }
+          ],
+          "colors": [
+            "#80E3C0",
+            "#F4C978",
+            "#82ACFF"
+          ],
+          "showLegend": true,
+          "ink": "#172B39"
+        }
+      },
+      {
+        "role": "feature",
+        "title": "A closer look at the reef",
+        "items": [
+          "Visible condition",
+          "Use a fixed photographic viewpoint to record the same patch of reef. Keep distance and camera angle consistent enough to compare successive visits.",
+          "Supporting observations",
+          "Record water visibility and the approximate time of day with each photograph. Both affect what can be distinguished in the image later.",
+          "Interpretation boundary",
+          "Photography documents visible change at the sampled location. Extend the conclusion only after checking whether nearby patches show the same pattern over repeated visits.",
+          "Sample proposal"
+        ],
+        "photoQuery": "tidal-lab-1"
+      },
+      {
+        "role": "feature",
+        "title": "The equipment fits the question",
+        "items": [
+          "FIELD KIT",
+          "Carry labelled bottles, a temperature probe and a waterproof field sheet. Check the kit against the collection plan before leaving the shore.",
+          "LAB BENCH",
+          "Use a consistent processing station and keep the reference material nearby. Record the instrument settings so another team member can repeat the procedure.",
+          "SHARED RECORD",
+          "Store photographs and measurements under the same station identifier. A short description of conditions makes the numerical results easier to interpret during review.",
+          "Sample proposal"
+        ],
+        "photoQuery": "tidal-lab-2"
+      },
+      {
+        "role": "feature",
+        "title": "Four visits build a baseline",
+        "items": [
+          "01",
+          "VISIT 01 / SETUP",
+          "Confirm safe access and photograph each station marker. Take the first measurements and document the collection method for the rest of the team.",
+          "02",
+          "VISITS 02–03 / REPEAT",
+          "Return to the same points and record departures from the original conditions. Keep an explicit note when weather prevents a planned collection.",
+          "03",
+          "VISIT 04 / REVIEW",
+          "Complete the final sampling round and compare the records together. Identify the gaps that would need attention before extending the programme.",
+          "Sample proposal"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Plan for uncertain conditions",
+        "items": [
+          "FIELD CONSTRAINT",
+          "RESPONSE",
+          "WEATHER WINDOW",
+          "Set the visit window around local marine conditions and the team's operating procedures. Reschedule whenever the collection cannot be completed safely.",
+          "SAMPLE QUALITY",
+          "Check labels before transport and document any compromised sample. A missing result is easier to interpret than a measurement with an uncertain origin.",
+          "STAFF COVER",
+          "Pair each collection role with a trained backup. Keep the station notes accessible so a change in personnel does not change the method.",
+          "Sample proposal"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "What the briefing will deliver",
+        "items": [
+          "01",
+          "A spatial record",
+          "A station map will connect every measurement to its collection location. Include the access route and the reason each station was selected.",
+          "02",
+          "A comparable series",
+          "A simple chart will show the sequence of observations for each station. Mark missed visits and explain any changes in the measurement method.",
+          "03",
+          "A focused recommendation",
+          "The final briefing will identify the most useful next question. Link the proposed follow-up to specific observations and describe the remaining uncertainty.",
+          "Sample proposal"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Approve the first field season",
+        "items": [
+          "Confirm the scope",
+          "Agree the three stations and four planned visits before scheduling the team. Record the conditions that would require the plan to change.",
+          "Assign the owners",
+          "Name a collection lead and a record keeper for each visit. Allocate review time while the field observations are still fresh.",
+          "Return with evidence",
+          "Bring the station map, photographs and measurement series to the closing review. Use them to decide whether a longer study is warranted.",
+          "Sample proposal"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "The next\nfield season",
+        "items": [
+          "COASTAL OBSERVATORY",
+          "A proposal for three stations and four seasonal visits."
+        ],
+        "photoQuery": "tidal-lab-3"
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "tidal-lab-0"
+    },
+    {
+      "role": "feature",
+      "variant": "tidal-lab-1"
+    },
+    {
+      "role": "feature",
+      "variant": "tidal-lab-2"
+    },
+    {
+      "role": "feature",
+      "variant": "tidal-lab-3"
+    },
+    {
+      "role": "feature",
+      "variant": "tidal-lab-4"
+    },
+    {
+      "role": "feature",
+      "variant": "tidal-lab-5"
+    },
+    {
+      "role": "feature",
+      "variant": "tidal-lab-6"
+    },
+    {
+      "role": "feature",
+      "variant": "tidal-lab-7"
+    },
+    {
+      "role": "feature",
+      "variant": "tidal-lab-8"
+    },
+    {
+      "role": "feature",
+      "variant": "tidal-lab-9"
+    },
+    {
+      "role": "feature",
+      "variant": "tidal-lab-10"
+    },
+    {
+      "role": "feature",
+      "variant": "tidal-lab-11"
+    }
+  ]
+}

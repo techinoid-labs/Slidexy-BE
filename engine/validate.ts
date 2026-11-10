@@ -122,6 +122,10 @@ export function validateDeckSpec(input: unknown): ValidateResult {
   const limits = tokens.limits;
   (spec.slides || []).forEach((slide, i) => {
     if (!slide) return;
+    if (slide.variantHint && /^[a-z0-9][a-z0-9-]*$/.test(String(slide.variantHint))) {
+      const file = path.join(ROOT, "..", "kit", String(slide.role), String(slide.variantHint) + ".json");
+      if (!fs.existsSync(file)) errors.push("slide " + i + " unknown variant for " + slide.role + ": " + slide.variantHint);
+    }
     if (tokens.roles.indexOf(slide.role) < 0) {
       errors.push(
         'slide ' + i + ' unknown role "' + slide.role + '"; allowed: ' + listJoin(tokens.roles)

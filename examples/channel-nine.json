@@ -1,0 +1,135 @@
+{
+  "name": "Channel Nine • Media kit",
+  "description": "Broadcast media kit — test-card cover, prime-time guide grid, live lower third, VU audience meters.",
+  "brand": {
+    "colors": {
+      "bg": "#0D0D0F",
+      "surface": "#EDEDE6",
+      "surface_color": "#F2C83A",
+      "card_bg": "#4CB963",
+      "ink": "#EDEDE6",
+      "muted": "#9A9AA3",
+      "accent": "#E5403A",
+      "accent2": "#35BEDD",
+      "line": "#3046D8"
+    },
+    "fonts": {
+      "display": "Antonio",
+      "body": "Space Grotesk"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "channel-nine"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Channel **Nine**",
+        "items": [
+          "On air",
+          "Media kit 2027",
+          "Season 14 · weeknights 21:00",
+          "9"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Tonight on Nine",
+        "items": [
+          "19:00",
+          "20:00",
+          "21:00",
+          "22:00",
+          "Nine",
+          "Nine+",
+          "Nine Sport",
+          "Nine News",
+          "The Long Table",
+          "Harbour Lights",
+          "Quiz",
+          "Night Market",
+          "Feature: Northbound",
+          "Live: Cup semi-final",
+          "Extra Time",
+          "Highlights"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Nightly at Nine",
+        "items": [
+          "Hosted by Ren Adler · weeknights 21:00",
+          "Up next: Harbour Lights  ·  Then: The Long Table  ·  Weather at 22:55",
+          "Live",
+          "9"
+        ],
+        "photoQuery": "2c29305c6d"
+      },
+      {
+        "role": "feature",
+        "title": "The numbers",
+        "items": [
+          "Weekly reach",
+          "Viewers across TV and stream",
+          "2.4M",
+          "Prime-time share",
+          "Of everyone watching at 21:00",
+          "38%",
+          "Under 35",
+          "Of the Nine+ audience",
+          "61%"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Formats",
+        "items": [
+          "News",
+          "Thirty minutes at seven. Local first, then the world.",
+          "Drama",
+          "Six-part series filmed on the coast, released weekly.",
+          "Live sport",
+          "Cup nights, finals and highlights straight after."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Stay tuned.",
+        "items": [
+          "Please stand by",
+          "sales@channelnine.tv · +44 20 7946 0109"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "channel-nine-testcard"
+    },
+    {
+      "role": "feature",
+      "variant": "channel-nine-guide"
+    },
+    {
+      "role": "feature",
+      "variant": "channel-nine-lower"
+    },
+    {
+      "role": "feature",
+      "variant": "channel-nine-meters"
+    },
+    {
+      "role": "feature",
+      "variant": "channel-nine-sets"
+    },
+    {
+      "role": "feature",
+      "variant": "channel-nine-standby"
+    }
+  ]
+}

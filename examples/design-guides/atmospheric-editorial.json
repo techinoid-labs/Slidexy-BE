@@ -1,0 +1,52 @@
+{
+  "style": {
+    "palette": "ink-night",
+    "typePair": "modern-segoe",
+    "imageTreatment": "full-bleed",
+    "motif": "bar-accent",
+    "sequence": "guide-atmospheric-editorial"
+  },
+  "slides": [
+    {
+      "role": "cover",
+      "variantHint": "ref-group-project",
+      "title": "Studio\nOverview",
+      "caption": "STUDIO",
+      "body": [
+        "DESIGN COLLECTION",
+        "studio.example"
+      ]
+    },
+    {
+      "role": "agenda",
+      "variantHint": "ref-two-column-contents",
+      "title": "Inside the studio",
+      "items": [
+        "Introduction",
+        "Team",
+        "Objectives",
+        "Projects",
+        "Insights",
+        "Timeline",
+        "Services",
+        "Contact"
+      ]
+    },
+    {
+      "role": "feature",
+      "variantHint": "ref-centered-interlude",
+      "title": "Room to think"
+    },
+    {
+      "role": "closing",
+      "variantHint": "ref-contact-footer-columns",
+      "title": "Start a conversation",
+      "caption": "STUDIO",
+      "body": [
+        "+00 000 000 000",
+        "hello@studio.example",
+        "studio.example"
+      ]
+    }
+  ]
+}

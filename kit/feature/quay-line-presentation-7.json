@@ -1,0 +1,327 @@
+{
+  "id": "feature/quay-line-presentation-7",
+  "role": "feature",
+  "variant": "quay-line-presentation-7",
+  "family": "quay-line",
+  "status": "draft",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy2": {
+      "kind": "text",
+      "from": "items2"
+    },
+    "copy3": {
+      "kind": "text",
+      "from": "items3"
+    },
+    "copy4": {
+      "kind": "text",
+      "from": "items4"
+    },
+    "copy5": {
+      "kind": "text",
+      "from": "items5"
+    },
+    "copy6": {
+      "kind": "text",
+      "from": "items6"
+    },
+    "copy7": {
+      "kind": "text",
+      "from": "items7"
+    },
+    "copy8": {
+      "kind": "text",
+      "from": "items8"
+    },
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    }
+  },
+  "fit": {
+    "copy0": {
+      "minFont": 19,
+      "maxFont": 19,
+      "lineClamp": 12,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 22,
+      "maxFont": 22,
+      "lineClamp": 12,
+      "shrinkMin": 1
+    },
+    "title": {
+      "minFont": 55,
+      "maxFont": 55,
+      "lineClamp": 12,
+      "shrinkMin": 1
+    },
+    "copy2": {
+      "minFont": 30,
+      "maxFont": 30,
+      "lineClamp": 12,
+      "shrinkMin": 1
+    },
+    "copy3": {
+      "minFont": 24,
+      "maxFont": 24,
+      "lineClamp": 12,
+      "shrinkMin": 1
+    },
+    "copy4": {
+      "minFont": 30,
+      "maxFont": 30,
+      "lineClamp": 12,
+      "shrinkMin": 1
+    },
+    "copy5": {
+      "minFont": 24,
+      "maxFont": 24,
+      "lineClamp": 12,
+      "shrinkMin": 1
+    },
+    "copy6": {
+      "minFont": 30,
+      "maxFont": 30,
+      "lineClamp": 12,
+      "shrinkMin": 1
+    },
+    "copy7": {
+      "minFont": 24,
+      "maxFont": 24,
+      "lineClamp": 12,
+      "shrinkMin": 1
+    },
+    "copy8": {
+      "minFont": 17,
+      "maxFont": 17,
+      "lineClamp": 12,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    },
+    "copy3": {
+      "kind": "text"
+    },
+    "copy4": {
+      "kind": "text"
+    },
+    "copy5": {
+      "kind": "text"
+    },
+    "copy6": {
+      "kind": "text"
+    },
+    "copy7": {
+      "kind": "text"
+    },
+    "copy8": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "photo-main",
+        "morphId": "photo-main",
+        "type": "image",
+        "slot": "photo",
+        "x": 1080,
+        "y": 0,
+        "width": 520,
+        "height": 810,
+        "z": 1
+      },
+      {
+        "id": "e3",
+        "morphId": "e3",
+        "type": "text",
+        "slot": "title",
+        "x": 75,
+        "y": 65,
+        "width": 890,
+        "height": 150,
+        "fontSize": 55,
+        "textStyleRole": "display",
+        "fontWeight": 700,
+        "fontRole": "display",
+        "tokenColor": "ink",
+        "z": 4
+      },
+      {
+        "id": "e7",
+        "morphId": "e7",
+        "type": "text",
+        "slot": "copy2",
+        "x": 75,
+        "y": 265,
+        "width": 875,
+        "height": 65,
+        "fontSize": 30,
+        "textStyleRole": "body",
+        "fontWeight": 700,
+        "fontRole": "body",
+        "tokenColor": "ink",
+        "z": 4
+      },
+      {
+        "id": "e8",
+        "morphId": "e8",
+        "type": "text",
+        "slot": "copy3",
+        "x": 75,
+        "y": 330,
+        "width": 875,
+        "height": 110,
+        "fontSize": 24,
+        "textStyleRole": "body",
+        "fontWeight": 400,
+        "fontRole": "body",
+        "tokenColor": "ink",
+        "z": 4
+      },
+      {
+        "id": "e11",
+        "morphId": "e11",
+        "type": "text",
+        "slot": "copy4",
+        "x": 75,
+        "y": 440,
+        "width": 875,
+        "height": 65,
+        "fontSize": 30,
+        "textStyleRole": "body",
+        "fontWeight": 700,
+        "fontRole": "body",
+        "tokenColor": "ink",
+        "z": 4
+      },
+      {
+        "id": "e12",
+        "morphId": "e12",
+        "type": "text",
+        "slot": "copy5",
+        "x": 75,
+        "y": 505,
+        "width": 875,
+        "height": 110,
+        "fontSize": 24,
+        "textStyleRole": "body",
+        "fontWeight": 400,
+        "fontRole": "body",
+        "tokenColor": "ink",
+        "z": 4
+      },
+      {
+        "id": "e15",
+        "morphId": "e15",
+        "type": "text",
+        "slot": "copy6",
+        "x": 75,
+        "y": 615,
+        "width": 875,
+        "height": 65,
+        "fontSize": 30,
+        "textStyleRole": "body",
+        "fontWeight": 700,
+        "fontRole": "body",
+        "tokenColor": "ink",
+        "z": 4
+      },
+      {
+        "id": "e16",
+        "morphId": "e16",
+        "type": "text",
+        "slot": "copy7",
+        "x": 75,
+        "y": 680,
+        "width": 875,
+        "height": 110,
+        "fontSize": 24,
+        "textStyleRole": "body",
+        "fontWeight": 400,
+        "fontRole": "body",
+        "tokenColor": "ink",
+        "z": 4
+      },
+      {
+        "id": "e1",
+        "morphId": "e1",
+        "type": "text",
+        "slot": "copy0",
+        "x": 75,
+        "y": 842,
+        "width": 1100,
+        "height": 32,
+        "fontSize": 19,
+        "textStyleRole": "body",
+        "fontWeight": 400,
+        "fontRole": "body",
+        "tokenColor": "ink",
+        "z": 4
+      },
+      {
+        "id": "e2",
+        "morphId": "e2",
+        "type": "text",
+        "slot": "copy1",
+        "x": 1450,
+        "y": 840,
+        "width": 75,
+        "height": 35,
+        "fontSize": 22,
+        "textStyleRole": "body",
+        "fontWeight": 400,
+        "fontRole": "body",
+        "tokenColor": "ink",
+        "z": 4
+      },
+      {
+        "id": "e17",
+        "morphId": "e17",
+        "type": "text",
+        "slot": "copy8",
+        "x": 1120,
+        "y": 842,
+        "width": 400,
+        "height": 30,
+        "fontSize": 17,
+        "textStyleRole": "body",
+        "fontWeight": 400,
+        "fontRole": "body",
+        "tokenColor": "ink",
+        "z": 4
+      }
+    ]
+  }
+}

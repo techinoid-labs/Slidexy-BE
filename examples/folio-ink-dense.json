@@ -1,0 +1,111 @@
+{
+  "name": "Folio Ink • Issue 07",
+  "description": "Editorial typography journal — giant type, margin notes, pull quote, index rows. No lookbook photo splits.",
+  "brand": {
+    "colors": {
+      "bg": "#F7F2E8",
+      "surface": "#EFE8DA",
+      "surface_color": "#E6DDCC",
+      "ink": "#1A1714",
+      "muted": "#6A6158",
+      "accent": "#9C2F2F",
+      "line": "#D2C6B4"
+    },
+    "fonts": {
+      "display": "Georgia",
+      "body": "Georgia"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "folio-ink"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Folio Ink",
+        "items": [
+          "Issue 07 · Spring paper",
+          "07"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "On margins",
+        "items": [
+          "Note",
+          "We print the essay first and design around the leftover paper.",
+          "The page is not a container. It is a second voice.",
+          "Keep the outer margin wider than the inner one — the hand needs room."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "A quiet press still leaves a mark.",
+        "items": [
+          "— Press room, March"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Index",
+        "items": [
+          "01",
+          "Letter from the press",
+          "02",
+          "On margins",
+          "03",
+          "Paper stock tests",
+          "04",
+          "Contributors"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Two columns",
+        "items": [
+          "Left",
+          "Short lines hold better on warm stock. We cut adjectives before we cut space.",
+          "Right",
+          "Longer passages belong here. The eye can travel without losing the spine of the argument."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Printed, not posted.",
+        "items": [
+          "Folio Ink Press"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "folio-ink-mast"
+    },
+    {
+      "role": "feature",
+      "variant": "folio-ink-margin"
+    },
+    {
+      "role": "feature",
+      "variant": "folio-ink-pull"
+    },
+    {
+      "role": "feature",
+      "variant": "folio-ink-index"
+    },
+    {
+      "role": "feature",
+      "variant": "folio-ink-columns"
+    },
+    {
+      "role": "feature",
+      "variant": "folio-ink-colophon"
+    }
+  ]
+}

@@ -1,0 +1,191 @@
+{
+  "name": "After Hours",
+  "brand": {
+    "colors": {
+      "bg": "#F3DEB1",
+      "ink": "#211D29",
+      "accent": "#E66948",
+      "surface": "#F0BF52",
+      "line": "#554651"
+    },
+    "fonts": {
+      "display": "Arial",
+      "body": "Consolas"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "After Hours",
+        "items": [
+          "Midnight sessions",
+          "STEREO / VOL. 01"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Meet the trio",
+        "items": [
+          "Mara at the piano",
+          "Mara Vale opens the set with a spare left hand and a melody that leaves room between phrases. When the band leans into the second chorus, she moves the tune an octave higher.",
+          "Ellis and June",
+          "Ellis Reed follows on bass with a warm, rounded attack. June Park starts on brushes and keeps the snare quiet enough for the audience to hear the strings settle."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Side A",
+        "items": [
+          "Blue Doorway / 04:18",
+          "The opener begins without a count. A three-note piano phrase hangs over the room, then the bass finds its answer. By the time the brushes enter, the pulse already feels familiar.",
+          "Corner Booth / 05:42",
+          "The second tune sits a little further behind the beat. Halfway through, the piano drops out and the bass carries the melody past the end of the chorus."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Side B",
+        "items": [
+          "Half Past Two / 03:56",
+          "A short tune built around a descending line gives the trio a chance to play softly. The cymbal keeps a thin shimmer under the bass, even through the quietest passage.",
+          "The Last Tram / 06:07",
+          "The closing track gathers pace in the middle. Just before the final chord, June returns to the brush pattern from the opening number and brings the room full circle."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Room tone",
+        "items": [
+          "Before the downbeat",
+          "Just before the music starts, a stool creaks near the bass microphone. A glass touches the bar. Both sounds made it onto the opening take and stayed in the final mix.",
+          "Between the songs",
+          "In the gaps, the club sounds much smaller than it does during the choruses. The murmur at the back wall gives way to a single clear breath from the front row."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "The bass break",
+        "items": [
+          "Four bars alone",
+          "Ellis holds the last note of the melody while the others pull away. His first solo phrase circles the same three pitches, with a tiny change of emphasis each time around.",
+          "The return",
+          "Mara comes back under the fourth phrase with a low chord. The bass moves up a register and the two lines cross before the drums bring back the original pulse."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Brushwork",
+        "items": [
+          "The first chorus",
+          "June traces a wide circle on the snare with her left brush. The right hand marks the edges of the melody, leaving a soft scrape underneath each clipped piano chord.",
+          "The drum break",
+          "When the band opens up, she changes the circle into short strokes. The kick lands on the fourth beat, and the bass answers before the next bar begins."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "From the booth",
+        "items": [
+          "Room mics",
+          "Two microphones above the audience catch the space around the trio. The piano comes through first, followed by the reflection from the low ceiling and the sound of the nearest tables.",
+          "Close sound",
+          "A separate bass microphone keeps the softest notes present. In the mix, the room rises during the applause and falls back as the next tune begins."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "The second take",
+        "items": [
+          "A different opening",
+          "The first performance of Corner Booth started with the full trio. On the second, Mara waited for the bass to state the theme twice before placing a chord beneath it.",
+          "Why it stayed",
+          "That pause changed the shape of the entire tune. The audience grew quiet earlier, and June could start with a brush against the rim instead of a sharp snare accent."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Live at midnight",
+        "items": [
+          "Front row",
+          "The tables nearest the piano filled before the first set. By midnight the lamps were low, the door was closed and the audience had settled into the long spaces between songs.",
+          "At the back",
+          "Near the bar, the bass felt stronger than the piano. The recording holds a trace of both listening positions, with a close melody and a deeper sound behind it."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Sleeve notes",
+        "items": [
+          "The drawing",
+          "The circles on the sleeve follow the grooves of a record. A small warm centre echoes the lamps above the stage, while the dark outer band takes its colour from the room after closing.",
+          "The credits",
+          "Mara Vale plays piano, Ellis Reed plays bass and June Park plays drums. All four pieces belong to the same late session, from the unannounced opener to the last tram home."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Last set.",
+        "items": [
+          "After Hours / Midnight sessions"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "after-hours-sleeve"
+    },
+    {
+      "role": "feature",
+      "variant": "after-hours-spread-1"
+    },
+    {
+      "role": "feature",
+      "variant": "after-hours-spread-2"
+    },
+    {
+      "role": "feature",
+      "variant": "after-hours-spread-3"
+    },
+    {
+      "role": "feature",
+      "variant": "after-hours-spread-4"
+    },
+    {
+      "role": "feature",
+      "variant": "after-hours-spread-5"
+    },
+    {
+      "role": "feature",
+      "variant": "after-hours-spread-6"
+    },
+    {
+      "role": "feature",
+      "variant": "after-hours-spread-7"
+    },
+    {
+      "role": "feature",
+      "variant": "after-hours-spread-8"
+    },
+    {
+      "role": "feature",
+      "variant": "after-hours-spread-9"
+    },
+    {
+      "role": "feature",
+      "variant": "after-hours-spread-10"
+    },
+    {
+      "role": "feature",
+      "variant": "after-hours-outro"
+    }
+  ],
+  "description": "Mara Vale opens the set with a spare left hand and a melody that leaves room between phrases. When the band leans into the second chorus, she moves the tune an octave higher."
+}

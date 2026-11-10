@@ -1,0 +1,134 @@
+{
+  "name": "North Cabin • Winter retreat",
+  "description": "Team retreat deck — a polaroid stack in falling snow, day polaroids, thermometer forecast and a packing checklist.",
+  "brand": {
+    "colors": {
+      "bg": "#1F3A33",
+      "surface": "#FBF8F2",
+      "surface_color": "#2B4A42",
+      "card_bg": "#E6DFD0",
+      "ink": "#FBF8F2",
+      "muted": "#A9BDB5",
+      "accent": "#EF8354",
+      "accent2": "#F6C453",
+      "line": "#36574E"
+    },
+    "fonts": {
+      "display": "Fraunces",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "north-cabin"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "North **Cabin**",
+        "items": [
+          "Winter retreat · 3 nights",
+          "Team offsite · 14–17 February",
+          "Lake Varde, February"
+        ],
+        "photoQuery": "80c3658377"
+      },
+      {
+        "role": "feature",
+        "title": "Three days",
+        "items": [
+          "Fri",
+          "Arrive by dark",
+          "Sauna, soup and a slow first night by the stove.",
+          "Sat",
+          "Out on the ice",
+          "Snowshoes at nine, strategy in the glass house after lunch.",
+          "Sun",
+          "Plan the year",
+          "One room, one wall, one plan. Train home at four."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Where we stay",
+        "items": [
+          "Three glass houses",
+          "Each sleeps four, with a wood stove and a view of the lake.",
+          "One long table",
+          "Breakfast and dinner together in the main cabin.",
+          "No signal by design",
+          "Wi-Fi in the work room only. The rest of the woods stay quiet.",
+          "The glass houses, Varde"
+        ],
+        "photoQuery": "cce4400950"
+      },
+      {
+        "role": "feature",
+        "title": "The forecast",
+        "items": [
+          "-8°",
+          "Friday",
+          "-12°",
+          "Saturday",
+          "-3°",
+          "Sunday",
+          "1°",
+          "Monday",
+          "Below -10° the lake is safe for skating by the north jetty."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Pack light, pack warm",
+        "items": [
+          "Wool socks, two pairs",
+          "Thermal base layer",
+          "Swimsuit for the sauna",
+          "Head torch",
+          "Laptop and charger",
+          "A paper notebook",
+          "A book for the train",
+          "Something to share",
+          "Boots and crampons are waiting at the cabin."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "See you by the **fire**.",
+        "items": [
+          "North Cabin · Lake Varde",
+          "14–17 February"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "north-cabin-polaroid"
+    },
+    {
+      "role": "feature",
+      "variant": "north-cabin-days"
+    },
+    {
+      "role": "feature",
+      "variant": "north-cabin-stay"
+    },
+    {
+      "role": "feature",
+      "variant": "north-cabin-forecast"
+    },
+    {
+      "role": "feature",
+      "variant": "north-cabin-pack"
+    },
+    {
+      "role": "feature",
+      "variant": "north-cabin-fire"
+    }
+  ]
+}

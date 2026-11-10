@@ -1,0 +1,119 @@
+{
+  "name": "Admit One • Night gate",
+  "description": "Event ticket language — stub split, perforation, seat grid, barcode strip. Not a photo lookbook.",
+  "brand": {
+    "colors": {
+      "bg": "#0E0A14",
+      "surface": "#1A1424",
+      "surface_color": "#241C32",
+      "ink": "#F6F0FF",
+      "muted": "#A89BB8",
+      "accent": "#C8F542",
+      "line": "#3A2F4A"
+    },
+    "fonts": {
+      "display": "Archivo Black",
+      "body": "Arial"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "admit-one"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Admit One",
+        "items": [
+          "Night gate · Door C",
+          "A14"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Your stub",
+        "items": [
+          "GATE C",
+          "Keep this half.",
+          "Doors 21:00",
+          "No re-entry after midnight.",
+          "Row A · Seat 14",
+          "Standing optional after the first act."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Seat map",
+        "items": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "14",
+          "taken",
+          "open",
+          "hold"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Lineup",
+        "items": [
+          "21:10",
+          "Warm lights — no talking over the openers.",
+          "22:00",
+          "Headliner. Phones down for the first three songs.",
+          "23:30",
+          "Encore window. Stub still required at the bar rail."
+        ],
+        "photoQuery": "01f3884069"
+      },
+      {
+        "role": "feature",
+        "title": "Scan me",
+        "items": [
+          "PASS",
+          "Barcode faces up. Tear only on the perforation.",
+          "Void if copied",
+          "One stub, one body. Plus-ones buy their own."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Go in loud.",
+        "items": [
+          "Night Gate Collective"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "admit-one-ticket"
+    },
+    {
+      "role": "feature",
+      "variant": "admit-one-stubdetail"
+    },
+    {
+      "role": "feature",
+      "variant": "admit-one-seats"
+    },
+    {
+      "role": "feature",
+      "variant": "admit-one-lineup"
+    },
+    {
+      "role": "feature",
+      "variant": "admit-one-scan"
+    },
+    {
+      "role": "feature",
+      "variant": "admit-one-go"
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "name": "Arcade Signal • Late session",
+  "description": "Esports lounge lookbook — ink field, neon magenta, letterbox photo and playlist board.",
+  "brand": {
+    "colors": {
+      "bg": "#0B0B12",
+      "surface": "#161622",
+      "surface_color": "#1E1E2C",
+      "ink": "#F4F0FF",
+      "muted": "#9B95B0",
+      "accent": "#FF3D81",
+      "line": "#2C2C3C"
+    },
+    "fonts": {
+      "display": "Archivo Black",
+      "body": "Arial"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "arcade-signal"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Arcade Signal",
+        "items": [
+          "Late session · Floor B",
+          "88"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "On the floor",
+        "items": [
+          "Couch queue",
+          "Controllers warm up first. The arcade cabinet keeps score while the back row watches the draft.",
+          "Desk lane",
+          "Four stations, matched chairs, one rule: winner stays, loser buys the next round of drinks."
+        ],
+        "photoQuery": "08de969478"
+      },
+      {
+        "role": "feature",
+        "title": "Tonight’s playlist",
+        "items": [
+          "Warm-up lobby   19:00",
+          "Free play and seat claims. Bring your own headset if you care about callouts.",
+          "Squad draft   19:40",
+          "Random teams for the first bracket. Captains pick last.",
+          "Main bracket   20:15",
+          "Best of three. Losers drop to the side board.",
+          "Afterglow   22:00",
+          "Arcade tokens, soft drinks, and the highlight reel on the wall."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Signal check",
+        "items": [
+          "House rules",
+          "No rage-quits. Pause only for hardware. Keep drinks off the mousepads.",
+          "Host note",
+          "If the neon strip flickers, leave it. That is part of the room now."
+        ],
+        "photoQuery": "0b7195874a"
+      },
+      {
+        "role": "feature",
+        "title": "Kit list",
+        "items": [
+          "Pads",
+          "Wired controllers preferred. Wireless only if the battery is full.",
+          "Audio",
+          "Shared chat on channel 3. Mute when you are not in the match.",
+          "Seats",
+          "Racing chairs for desk lane. Couch for spectators and co-op."
+        ],
+        "photoQuery": "01f3884069"
+      },
+      {
+        "role": "feature",
+        "title": "Stay for one more.",
+        "items": [
+          "Arcade Signal Collective"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "arcade-signal-masthead"
+    },
+    {
+      "role": "feature",
+      "variant": "arcade-signal-letterbox"
+    },
+    {
+      "role": "feature",
+      "variant": "arcade-signal-playlist"
+    },
+    {
+      "role": "feature",
+      "variant": "arcade-signal-strip"
+    },
+    {
+      "role": "feature",
+      "variant": "arcade-signal-kit"
+    },
+    {
+      "role": "feature",
+      "variant": "arcade-signal-closing"
+    }
+  ]
+}

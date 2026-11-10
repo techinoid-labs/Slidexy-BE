@@ -1,0 +1,121 @@
+{
+  "name": "Darkroom • Proof sheet",
+  "description": "Photography lab deck — film-strip cover, contact sheet, exposure dials, chemical baths and a print.",
+  "brand": {
+    "colors": {
+      "bg": "#111111",
+      "surface": "#1C1C1C",
+      "surface_color": "#F2EDE4",
+      "ink": "#F2EDE4",
+      "muted": "#8A8A8A",
+      "accent": "#C4A574",
+      "line": "#2A2A2A"
+    },
+    "fonts": {
+      "display": "Playfair Display",
+      "body": "IBM Plex Mono"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "darkroom"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Proof",
+        "items": [
+          "Sheet 14 · Ilford HP5",
+          "14",
+          "f/8 · 1/125"
+        ],
+        "photoQuery": "50597e1fdb"
+      },
+      {
+        "role": "feature",
+        "title": "Contact",
+        "items": [
+          "01",
+          "02",
+          "03",
+          "04",
+          "05",
+          "06"
+        ],
+        "photoQuery": "50597e1fdb"
+      },
+      {
+        "role": "feature",
+        "title": "Exposure",
+        "items": [
+          "f/2.8",
+          "Wide open",
+          "f/5.6",
+          "Working stop",
+          "f/11",
+          "Deep field",
+          "f/16",
+          "Landscape"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Baths",
+        "items": [
+          "Developer",
+          "2:00",
+          "Stop",
+          "0:30",
+          "Fix",
+          "5:00",
+          "Wash",
+          "10:00"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Final print",
+        "items": [
+          "Selenium toned, fibre paper, air dried overnight."
+        ],
+        "photoQuery": "50597e1fdb"
+      },
+      {
+        "role": "closing",
+        "title": "Fix it.",
+        "items": [
+          "Darkroom Proof · tray three"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "darkroom-strip"
+    },
+    {
+      "role": "feature",
+      "variant": "darkroom-contact"
+    },
+    {
+      "role": "feature",
+      "variant": "darkroom-exposure"
+    },
+    {
+      "role": "feature",
+      "variant": "darkroom-baths"
+    },
+    {
+      "role": "feature",
+      "variant": "darkroom-print"
+    },
+    {
+      "role": "closing",
+      "variant": "darkroom-fix"
+    }
+  ]
+}

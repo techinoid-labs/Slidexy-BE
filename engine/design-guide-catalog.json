@@ -1,0 +1,285 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "guideId": "architecture-portfolio",
+      "role": "feature",
+      "variant": "ref-left-photo-introduction",
+      "kitId": "feature/ref-left-photo-introduction",
+      "photoSlots": [
+        "photo"
+      ]
+    },
+    {
+      "guideId": "architecture-portfolio",
+      "role": "portfolio",
+      "variant": "ref-right-bleed-showcase",
+      "kitId": "portfolio/ref-right-bleed-showcase",
+      "photoSlots": [
+        "photo"
+      ]
+    },
+    {
+      "guideId": "architecture-portfolio",
+      "role": "portfolio",
+      "variant": "ref-masonry-showcase",
+      "kitId": "portfolio/ref-masonry-showcase",
+      "photoSlots": [
+        "photo-top-left",
+        "photo-top-right",
+        "photo-bottom-left",
+        "photo-bottom-right"
+      ]
+    },
+    {
+      "guideId": "atmospheric-editorial",
+      "role": "cover",
+      "variant": "ref-group-project",
+      "kitId": "cover/ref-group-project",
+      "photoSlots": []
+    },
+    {
+      "guideId": "atmospheric-editorial",
+      "role": "agenda",
+      "variant": "ref-two-column-contents",
+      "kitId": "agenda/ref-two-column-contents",
+      "photoSlots": []
+    },
+    {
+      "guideId": "atmospheric-editorial",
+      "role": "feature",
+      "variant": "ref-centered-interlude",
+      "kitId": "feature/ref-centered-interlude",
+      "photoSlots": []
+    },
+    {
+      "guideId": "atmospheric-editorial",
+      "role": "closing",
+      "variant": "ref-contact-footer-columns",
+      "kitId": "closing/ref-contact-footer-columns",
+      "photoSlots": []
+    },
+    {
+      "guideId": "executive-insight",
+      "role": "report",
+      "variant": "ref-insight-donut",
+      "kitId": "report/ref-insight-donut",
+      "photoSlots": []
+    },
+    {
+      "guideId": "executive-insight",
+      "role": "report",
+      "variant": "ref-line-chart-commentary",
+      "kitId": "report/ref-line-chart-commentary",
+      "photoSlots": []
+    },
+    {
+      "guideId": "executive-insight",
+      "role": "report",
+      "variant": "ref-photo-progress",
+      "kitId": "report/ref-photo-progress",
+      "photoSlots": [
+        "photo"
+      ]
+    },
+    {
+      "guideId": "executive-insight",
+      "role": "timeline",
+      "variant": "ref-timeline-opening",
+      "kitId": "timeline/ref-timeline-opening",
+      "photoSlots": []
+    },
+    {
+      "guideId": "executive-insight",
+      "role": "timeline",
+      "variant": "ref-timeline-continuation",
+      "kitId": "timeline/ref-timeline-continuation",
+      "photoSlots": []
+    },
+    {
+      "guideId": "minimal-commercial",
+      "role": "feature",
+      "variant": "ref-three-objectives",
+      "kitId": "feature/ref-three-objectives",
+      "photoSlots": []
+    },
+    {
+      "guideId": "minimal-commercial",
+      "role": "pricing",
+      "variant": "ref-three-price-outlines",
+      "kitId": "pricing/ref-three-price-outlines",
+      "photoSlots": []
+    },
+    {
+      "guideId": "people-and-partners",
+      "role": "team",
+      "variant": "ref-four-portrait-team",
+      "kitId": "team/ref-four-portrait-team",
+      "photoSlots": [
+        "portrait-0",
+        "portrait-1",
+        "portrait-2",
+        "portrait-3"
+      ]
+    },
+    {
+      "guideId": "people-and-partners",
+      "role": "portfolio",
+      "variant": "ref-staggered-partners",
+      "kitId": "portfolio/ref-staggered-partners",
+      "photoSlots": []
+    }
+  ],
+  "sequences": [
+    {
+      "id": "guide-architecture-portfolio",
+      "label": "Architecture Portfolio",
+      "beats": [
+        {
+          "role": "cover",
+          "variant": "ref-group-project",
+          "beat": "ref-group-project-0"
+        },
+        {
+          "role": "feature",
+          "variant": "ref-left-photo-introduction",
+          "beat": "ref-left-photo-introduction-1"
+        },
+        {
+          "role": "portfolio",
+          "variant": "ref-right-bleed-showcase",
+          "beat": "ref-right-bleed-showcase-2"
+        },
+        {
+          "role": "portfolio",
+          "variant": "ref-masonry-showcase",
+          "beat": "ref-masonry-showcase-3"
+        },
+        {
+          "role": "closing",
+          "variant": "ref-contact-footer-columns",
+          "beat": "ref-contact-footer-columns-4"
+        }
+      ]
+    },
+    {
+      "id": "guide-atmospheric-editorial",
+      "label": "Atmospheric Editorial",
+      "beats": [
+        {
+          "role": "cover",
+          "variant": "ref-group-project",
+          "beat": "ref-group-project-0"
+        },
+        {
+          "role": "agenda",
+          "variant": "ref-two-column-contents",
+          "beat": "ref-two-column-contents-1"
+        },
+        {
+          "role": "feature",
+          "variant": "ref-centered-interlude",
+          "beat": "ref-centered-interlude-2"
+        },
+        {
+          "role": "closing",
+          "variant": "ref-contact-footer-columns",
+          "beat": "ref-contact-footer-columns-3"
+        }
+      ]
+    },
+    {
+      "id": "guide-executive-insight",
+      "label": "Executive Insight",
+      "beats": [
+        {
+          "role": "cover",
+          "variant": "ref-group-project",
+          "beat": "ref-group-project-0"
+        },
+        {
+          "role": "report",
+          "variant": "ref-insight-donut",
+          "beat": "ref-insight-donut-1"
+        },
+        {
+          "role": "report",
+          "variant": "ref-line-chart-commentary",
+          "beat": "ref-line-chart-commentary-2"
+        },
+        {
+          "role": "report",
+          "variant": "ref-photo-progress",
+          "beat": "ref-photo-progress-3"
+        },
+        {
+          "role": "timeline",
+          "variant": "ref-timeline-opening",
+          "beat": "ref-timeline-opening-4"
+        },
+        {
+          "role": "timeline",
+          "variant": "ref-timeline-continuation",
+          "beat": "ref-timeline-continuation-5"
+        },
+        {
+          "role": "closing",
+          "variant": "ref-contact-footer-columns",
+          "beat": "ref-contact-footer-columns-6"
+        }
+      ]
+    },
+    {
+      "id": "guide-minimal-commercial",
+      "label": "Minimal Commercial",
+      "beats": [
+        {
+          "role": "cover",
+          "variant": "ref-group-project",
+          "beat": "ref-group-project-0"
+        },
+        {
+          "role": "feature",
+          "variant": "ref-three-objectives",
+          "beat": "ref-three-objectives-1"
+        },
+        {
+          "role": "pricing",
+          "variant": "ref-three-price-outlines",
+          "beat": "ref-three-price-outlines-2"
+        },
+        {
+          "role": "closing",
+          "variant": "ref-contact-footer-columns",
+          "beat": "ref-contact-footer-columns-3"
+        }
+      ]
+    },
+    {
+      "id": "guide-people-and-partners",
+      "label": "People and Partners",
+      "beats": [
+        {
+          "role": "cover",
+          "variant": "ref-group-project",
+          "beat": "ref-group-project-0"
+        },
+        {
+          "role": "team",
+          "variant": "ref-four-portrait-team",
+          "beat": "ref-four-portrait-team-1"
+        },
+        {
+          "role": "portfolio",
+          "variant": "ref-staggered-partners",
+          "beat": "ref-staggered-partners-2"
+        },
+        {
+          "role": "closing",
+          "variant": "ref-contact-footer-columns",
+          "beat": "ref-contact-footer-columns-3"
+        }
+      ]
+    }
+  ]
+}

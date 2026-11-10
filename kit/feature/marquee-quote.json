@@ -1,0 +1,308 @@
+{
+  "id": "feature/marquee-quote",
+  "role": "feature",
+  "variant": "marquee-quote",
+  "family": "marquee",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 56,
+      "maxFont": 56,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 24,
+      "maxFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "photo",
+        "type": "image",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "z": 1,
+        "slot": "photo",
+        "zoom": 1.1,
+        "morphId": "hero"
+      },
+      {
+        "id": "qbulb0",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 200,
+        "y": 280,
+        "width": 28,
+        "height": 28,
+        "tokenFill": "accent",
+        "z": 2,
+        "opacity": 1,
+        "morphId": "accent"
+      },
+      {
+        "id": "qbulb1",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 246,
+        "y": 280,
+        "width": 28,
+        "height": 28,
+        "tokenFill": "ink",
+        "z": 2,
+        "opacity": 0.35
+      },
+      {
+        "id": "qbulb2",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 292,
+        "y": 280,
+        "width": 28,
+        "height": 28,
+        "tokenFill": "ink",
+        "z": 2,
+        "opacity": 0.35
+      },
+      {
+        "id": "qbulb3",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 338,
+        "y": 280,
+        "width": 28,
+        "height": 28,
+        "tokenFill": "accent",
+        "z": 2,
+        "opacity": 1
+      },
+      {
+        "id": "qbulb4",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 384,
+        "y": 280,
+        "width": 28,
+        "height": 28,
+        "tokenFill": "ink",
+        "z": 2,
+        "opacity": 0.35
+      },
+      {
+        "id": "qbulb5",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 430,
+        "y": 280,
+        "width": 28,
+        "height": 28,
+        "tokenFill": "ink",
+        "z": 2,
+        "opacity": 0.35
+      },
+      {
+        "id": "qbulb6",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 476,
+        "y": 280,
+        "width": 28,
+        "height": 28,
+        "tokenFill": "accent",
+        "z": 2,
+        "opacity": 1
+      },
+      {
+        "id": "qbulb7",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 522,
+        "y": 280,
+        "width": 28,
+        "height": 28,
+        "tokenFill": "ink",
+        "z": 2,
+        "opacity": 0.35
+      },
+      {
+        "id": "qbulb8",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 568,
+        "y": 280,
+        "width": 28,
+        "height": 28,
+        "tokenFill": "ink",
+        "z": 2,
+        "opacity": 0.35
+      },
+      {
+        "id": "qbulb9",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 614,
+        "y": 280,
+        "width": 28,
+        "height": 28,
+        "tokenFill": "accent",
+        "z": 2,
+        "opacity": 1
+      },
+      {
+        "id": "qbulb10",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 660,
+        "y": 280,
+        "width": 28,
+        "height": 28,
+        "tokenFill": "ink",
+        "z": 2,
+        "opacity": 0.35
+      },
+      {
+        "id": "qbulb11",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 706,
+        "y": 280,
+        "width": 28,
+        "height": 28,
+        "tokenFill": "ink",
+        "z": 2,
+        "opacity": 0.35
+      },
+      {
+        "id": "qbulb12",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 752,
+        "y": 280,
+        "width": 28,
+        "height": 28,
+        "tokenFill": "accent",
+        "z": 2,
+        "opacity": 1
+      },
+      {
+        "id": "qbulb13",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 798,
+        "y": 280,
+        "width": 28,
+        "height": 28,
+        "tokenFill": "ink",
+        "z": 2,
+        "opacity": 0.35
+      },
+      {
+        "id": "qbulb14",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 844,
+        "y": 280,
+        "width": 28,
+        "height": 28,
+        "tokenFill": "ink",
+        "z": 2,
+        "opacity": 0.35
+      },
+      {
+        "id": "qbulb15",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 890,
+        "y": 280,
+        "width": 28,
+        "height": 28,
+        "tokenFill": "accent",
+        "z": 2,
+        "opacity": 1
+      },
+      {
+        "id": "band",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 360,
+        "width": 1600,
+        "height": 240,
+        "tokenFill": "bg",
+        "z": 3,
+        "opacity": 0.8
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 100,
+        "y": 400,
+        "width": 1400,
+        "height": 120,
+        "fontSize": 56,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "textStyleRole": "quote",
+        "align": "center",
+        "morphId": "title"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 100,
+        "y": 540,
+        "width": 1400,
+        "height": 40,
+        "fontSize": 24,
+        "slot": "copy0",
+        "tokenColor": "accent",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "align": "center"
+      }
+    ]
+  }
+}

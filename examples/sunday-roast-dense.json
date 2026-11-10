@@ -1,0 +1,115 @@
+{
+  "name": "Sunday Roast • Weekend edition",
+  "brand": {
+    "colors": {
+      "bg": "#FFF3DC",
+      "ink": "#422626",
+      "accent": "#A92737",
+      "surface": "#F0C1AA",
+      "line": "#BF9D8C"
+    },
+    "fonts": {
+      "display": "Georgia",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Sunday Roast",
+        "items": [
+          "Coffee & company",
+          "The house collection"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "The corner shop",
+        "items": [
+          "Through the front door",
+          "The first pot is on by seven. From the window seat you can watch the street wake up while the barista folds warm milk into the first flat white of the day.",
+          "At the long table",
+          "Saturday papers, a pot of filter coffee and almond cake from the kitchen. There is usually room for one more chair."
+        ],
+        "photoQuery": "092c8c1420"
+      },
+      {
+        "role": "feature",
+        "title": "At the bar",
+        "items": [
+          "Espresso   3.00",
+          "A double shot of our house blend. Cocoa up front, with orange peel on the finish.",
+          "Flat white   4.25",
+          "A short pour of steamed milk over espresso. Silky and full-bodied, with just a little foam.",
+          "Cold brew   4.50",
+          "Steeped overnight and served over ice. Dark chocolate and a light sweetness linger.",
+          "Filter pot   6.00",
+          "Enough for two small cups. This weekend’s roast opens with caramel and finishes with toasted hazelnut."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Milk & honey",
+        "items": [
+          "The Sunday latte",
+          "A spoonful of wildflower honey dissolves into a double espresso. Steamed milk softens the edges, leaving a little floral sweetness in the last sip.",
+          "From the bar",
+          "Served in our wide ceramic cup. Oat milk brings out the toasted notes in the blend."
+        ],
+        "photoQuery": "081717d284"
+      },
+      {
+        "role": "feature",
+        "title": "House blend",
+        "items": [
+          "Cocoa",
+          "The first sip is rounded and soft, like the edge of a square of milk chocolate.",
+          "Toasted hazelnut",
+          "As the cup cools, a warming nuttiness comes through. It carries especially well in a flat white.",
+          "Orange peel",
+          "A light citrus lift sits at the finish. Try the blend black to catch the brighter end of the roast."
+        ],
+        "photoQuery": "0d7b07d1c3"
+      },
+      {
+        "role": "feature",
+        "title": "See you Sunday.",
+        "items": [
+          "Sunday Roast Coffee Club"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "sunday-roast-masthead"
+    },
+    {
+      "role": "feature",
+      "variant": "sunday-roast-interior-dense"
+    },
+    {
+      "role": "feature",
+      "variant": "sunday-roast-menu-dense"
+    },
+    {
+      "role": "feature",
+      "variant": "sunday-roast-portrait-dense"
+    },
+    {
+      "role": "feature",
+      "variant": "sunday-roast-tasting-dense"
+    },
+    {
+      "role": "feature",
+      "variant": "sunday-roast-postcard"
+    }
+  ]
+}

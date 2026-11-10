@@ -1,0 +1,194 @@
+{
+  "name": "Open Volume",
+  "brand": {
+    "colors": {
+      "bg": "#F5F6F1",
+      "ink": "#202727",
+      "accent": "#396881",
+      "surface": "#DCE7E8",
+      "line": "#9AABAD"
+    },
+    "fonts": {
+      "display": "Segoe UI",
+      "body": "Segoe UI"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Open Volume",
+        "items": [
+          "Selected interiors"
+        ],
+        "photoQuery": "06deb5843e"
+      },
+      {
+        "role": "feature",
+        "title": "The shared floor",
+        "items": [
+          "An open threshold",
+          "A long table sits near the centre of the room. The main route follows its edge, leaving a clear view from the entrance to the windows and enough space to pull out a chair.",
+          "A quieter edge",
+          "Smaller desks gather along the perimeter. People can move from a group conversation to individual work without crossing the middle of another meeting."
+        ],
+        "photoQuery": "06deb5843e"
+      },
+      {
+        "role": "feature",
+        "title": "Daylight study",
+        "items": [
+          "Morning light",
+          "High windows carry light across the pale ceiling. The first desks receive a soft side light, while the central table stays evenly lit through much of the morning.",
+          "Late afternoon",
+          "As the sun moves, the brightest strip shifts toward the wall. Adjustable blinds temper direct light on screens while keeping a view of the street from the seated position."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Material palette",
+        "items": [
+          "Chalk and graphite",
+          "Pale wall panels reflect daylight into the deeper parts of the plan. Graphite appears at the door frames and table legs, giving the edges enough contrast to read from across the room.",
+          "A cooler note",
+          "Mist-blue fabric softens the meeting chairs. Its colour returns in a narrow shelf near the window, linking the furniture to the fixed finishes."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "A place to work",
+        "items": [
+          "At the desk",
+          "The desk sits slightly away from the wall so cables can run behind it. A shallow shelf holds daily objects, leaving the main work surface free for drawings, a laptop and a reading lamp.",
+          "From the chair",
+          "The seated view ends at the window. Storage stays low on either side so the horizon remains visible even when the room is full."
+        ],
+        "photoQuery": "07fef60a17"
+      },
+      {
+        "role": "feature",
+        "title": "The entrance",
+        "items": [
+          "Arrival",
+          "A change in floor texture marks the transition from the street. Inside, the reception bench sits against one wall, keeping the first sightline through the building open for arriving visitors.",
+          "Orientation",
+          "From the bench, both the shared table and the stair are visible. A single wall light marks the turn toward the smaller rooms beyond."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Movement through the plan",
+        "items": [
+          "Main route",
+          "The widest route runs from the door along the central table. It serves the everyday flow of people, deliveries and chairs while keeping circulation outside the places where people stop to talk.",
+          "Short connections",
+          "Narrower passages link the perimeter desks to the shared floor. Their openings align with gaps in the furniture so a person can cross the room without doubling back."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "The meeting corner",
+        "items": [
+          "A smaller scale",
+          "A pair of low chairs and a round table occupy the corner beside the window. Their backs form a gentle boundary, giving a conversation some privacy while leaving the larger room in view.",
+          "Shared use",
+          "The table holds a notebook and two cups comfortably. For a longer discussion, a mobile board rolls into the open side and becomes a surface for pinning drawings."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Joinery details",
+        "items": [
+          "The shelf edge",
+          "A narrow timber lip gives the pale shelf a warm front edge. Its profile catches the light in a fine line, enough to describe the depth of the board from a distance.",
+          "At the wall",
+          "The brackets sit behind the books and sample boxes. From the entrance, the shelf reads as a continuous horizontal line across the meeting area."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "After the workday",
+        "items": [
+          "Evening light",
+          "When daylight fades, the room changes from a broad field of light to smaller pools around the tables. The lamps nearest the windows come on first and give the perimeter a warmer tone.",
+          "Closing time",
+          "Chairs tuck under the long table and the mobile board returns to its recess. The clear floor leaves the circulation pattern visible after the last meeting ends."
+        ],
+        "photoQuery": "07fef60a17"
+      },
+      {
+        "role": "feature",
+        "title": "Studio record",
+        "items": [
+          "What the drawings show",
+          "The floor plan records the principal routes, the furniture positions and the openings between rooms. Detail drawings describe the shelf edges and the junction between the wall and window frame.",
+          "What the photographs add",
+          "The photographs follow a person through the space. They show how daylight changes the finishes and how the scale of the room feels from a chair."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Open Volume",
+        "items": [
+          "Studio portfolio / Interiors"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "open-volume-facade"
+    },
+    {
+      "role": "feature",
+      "variant": "open-volume-spread-1"
+    },
+    {
+      "role": "feature",
+      "variant": "open-volume-spread-2"
+    },
+    {
+      "role": "feature",
+      "variant": "open-volume-spread-3"
+    },
+    {
+      "role": "feature",
+      "variant": "open-volume-spread-4"
+    },
+    {
+      "role": "feature",
+      "variant": "open-volume-spread-5"
+    },
+    {
+      "role": "feature",
+      "variant": "open-volume-spread-6"
+    },
+    {
+      "role": "feature",
+      "variant": "open-volume-spread-7"
+    },
+    {
+      "role": "feature",
+      "variant": "open-volume-spread-8"
+    },
+    {
+      "role": "feature",
+      "variant": "open-volume-spread-9"
+    },
+    {
+      "role": "feature",
+      "variant": "open-volume-spread-10"
+    },
+    {
+      "role": "feature",
+      "variant": "open-volume-colophon"
+    }
+  ],
+  "description": "A long table sits near the centre of the room. The main route follows its edge, leaving a clear view from the entrance to the windows and enough space to pull out a chair."
+}

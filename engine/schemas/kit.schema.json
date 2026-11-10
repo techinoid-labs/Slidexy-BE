@@ -15,6 +15,7 @@
     "designReview": { "type": "string" },
     "pptxGroup": { "type": "string" },
     "requiresPhoto": { "type": "boolean" },
+    "preserveLayout": { "type": "boolean" },
     "photoSlots": { "type": "array", "items": { "type": "string" } },
     "motion": {
       "type": "object",
@@ -49,8 +50,24 @@
               "id": { "type": "string" },
               "type": {
                 "type": "string",
-                "enum": ["text", "image", "shape", "sparkBars", "sparkLine", "group", "table", "primitive", "chart"]
+                "enum": ["text", "image", "shape", "sparkBars", "sparkLine", "group", "table", "primitive", "chart", "smartAsset"]
               },
+              "smartAsset": {
+                "type": "object",
+                "required": ["type", "query"],
+                "additionalProperties": true,
+                "properties": {
+                  "type": { "type": "string", "enum": ["icon", "photo", "illustration"] },
+                  "query": { "type": "string", "minLength": 1 },
+                  "style": { "type": "string" },
+                  "x": { "type": "number" },
+                  "y": { "type": "number" },
+                  "width": { "type": "number" },
+                  "height": { "type": "number" }
+                }
+              },
+              "query": { "type": "string" },
+              "assetType": { "type": "string", "enum": ["icon", "photo", "illustration"] },
               "primitive": {
                 "type": "string",
                 "enum": ["header", "callout", "list", "listItem"]
@@ -63,6 +80,8 @@
               "zIndex": { "type": "number" },
               "morphId": { "type": "string" },
               "slot": { "type": "string" },
+              "fontWeight": { "type": "number", "enum": [100, 200, 300, 400, 500, 600, 700, 800, 900] },
+              "widthFrom": { "type": "string", "pattern": "^stats[0-2]\\.value$" },
               "shapeTreatment": { "type": "string" },
               "ambientTarget": { "type": "string" },
               "transition": {

@@ -1,0 +1,151 @@
+{
+  "id": "feature/asset-showcase",
+  "role": "feature",
+  "variant": "asset-showcase",
+  "family": "asset-pipeline",
+  "steal": "Three-lane free-asset showcase: Recraft illustration left, Pexels photo center, Iconify icon row bottom.",
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": { "kind": "text", "optional": false, "from": "title" },
+    "caption": { "kind": "text", "optional": true, "from": "caption" },
+    "body": { "kind": "text", "optional": true, "from": "body" }
+  },
+  "fit": {
+    "title": { "maxFont": 56, "minFont": 32, "lineClamp": 2, "shrinkMin": 0.85 },
+    "caption": { "maxFont": 24, "minFont": 16, "lineClamp": 2, "shrinkMin": 0.9 },
+    "body": { "maxFont": 20, "minFont": 14, "lineClamp": 4, "shrinkMin": 0.9 }
+  },
+  "pptxMapping": {
+    "title": { "kind": "text" },
+    "caption": { "kind": "text" },
+    "body": { "kind": "text" }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "x": 72,
+        "y": 48,
+        "width": 1456,
+        "height": 80,
+        "z": 4,
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 52,
+        "align": "left",
+        "usePrimitive": false,
+        "morphId": "title"
+      },
+      {
+        "id": "caption",
+        "type": "text",
+        "slot": "caption",
+        "x": 72,
+        "y": 128,
+        "width": 1456,
+        "height": 40,
+        "z": 4,
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontSize": 22,
+        "align": "left",
+        "morphId": "caption"
+      },
+      {
+        "id": "illustration",
+        "type": "smartAsset",
+        "x": 72,
+        "y": 200,
+        "width": 520,
+        "height": 420,
+        "z": 2,
+        "smartAsset": {
+          "type": "illustration",
+          "query": "eco fashion illustration",
+          "style": "Illustration"
+        },
+        "morphId": "illustration"
+      },
+      {
+        "id": "photo",
+        "type": "smartAsset",
+        "x": 640,
+        "y": 200,
+        "width": 888,
+        "height": 420,
+        "z": 2,
+        "smartAsset": {
+          "type": "photo",
+          "query": "sustainable clothing"
+        },
+        "morphId": "photo"
+      },
+      {
+        "id": "icon-recycle",
+        "type": "smartAsset",
+        "x": 72,
+        "y": 660,
+        "width": 96,
+        "height": 96,
+        "z": 3,
+        "smartAsset": {
+          "type": "icon",
+          "query": "recycle",
+          "style": "duotone"
+        },
+        "morphId": "icon-1"
+      },
+      {
+        "id": "icon-leaf",
+        "type": "smartAsset",
+        "x": 220,
+        "y": 660,
+        "width": 96,
+        "height": 96,
+        "z": 3,
+        "smartAsset": {
+          "type": "icon",
+          "query": "leaf",
+          "style": "duotone"
+        },
+        "morphId": "icon-2"
+      },
+      {
+        "id": "icon-hanger",
+        "type": "smartAsset",
+        "x": 368,
+        "y": 660,
+        "width": 96,
+        "height": 96,
+        "z": 3,
+        "smartAsset": {
+          "type": "icon",
+          "query": "clothes hanger",
+          "style": "duotone"
+        },
+        "morphId": "icon-3"
+      },
+      {
+        "id": "icon-label",
+        "type": "text",
+        "slot": "body",
+        "x": 500,
+        "y": 680,
+        "width": 1028,
+        "height": 72,
+        "z": 4,
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontSize": 20,
+        "align": "left",
+        "literal": "Iconify · recycle / leaf / hanger   ·   Pexels photo   ·   Recraft illustration",
+        "morphId": "icon-label"
+      }
+    ]
+  },
+  "status": "draft",
+  "motion": { "transition": "fade", "fallbackTransition": "fade", "durationMs": 500 }
+}

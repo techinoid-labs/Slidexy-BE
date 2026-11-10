@@ -456,12 +456,15 @@ export function applyGlobalPrimitives(
   layoutElements: any[],
   slide: any,
   palette: any,
-  typePair: any
+  typePair: any,
+  options?: { kitId?: string }
 ): any[] {
   const els = Array.isArray(layoutElements) ? layoutElements.slice() : [];
   const ctx: PrimitiveContext = { palette, typePair, slide };
   const out: any[] = [];
   const skip = new Set<string>();
+  const kitId = String((options && options.kitId) || "");
+  const skipTakeawayCallout = /pull-quote/i.test(kitId);
 
   const titleEl = els.find(
     (e) => e && (e.primitive === "header" || e.slot === "title" || e.id === "title") && e.type !== "shape"
@@ -528,7 +531,10 @@ export function applyGlobalPrimitives(
     );
   }
 
-  if (calloutPlate || takeawayText || (slide && slide.takeaway)) {
+  if (
+    !skipTakeawayCallout &&
+    (calloutPlate || takeawayText || (slide && slide.takeaway))
+  ) {
     if (calloutPlate) skip.add(calloutPlate.id);
     if (takeawayText) skip.add(takeawayText.id);
     if (takeawayLabel) skip.add(takeawayLabel.id);
@@ -663,6 +669,8 @@ export function enrichPalette(palette: any, worldKey?: string): any {
   }
   const on_accent =
     merged.on_accent || (accentLum(accentHex) < 0.55 ? "#FFFFFF" : "#0F172A");
+  // Always-dark scrim for full-bleed photo washes (works on light + dark themes)
+  const scrim = merged.scrim || "#0A0A0A";
   return {
     ...merged,
     useCards,
@@ -670,6 +678,7 @@ export function enrichPalette(palette: any, worldKey?: string): any {
     card_bg,
     card_shadow: shadow,
     on_accent,
+    scrim,
     card_radius:
       merged.card_radius != null
         ? Number(merged.card_radius)

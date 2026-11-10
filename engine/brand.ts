@@ -9,9 +9,12 @@ export type BrandConfig = {
   colors?: {
     bg?: string;
     surface?: string;
+    surface_color?: string;
+    card_bg?: string;
     ink?: string;
     muted?: string;
     accent?: string;
+    accent2?: string;
     line?: string;
   };
   fonts?: {
@@ -39,7 +42,7 @@ export function loadBrand(fileOrObj: string | BrandConfig): BrandConfig {
 function sanitizeBrand(raw: any): BrandConfig {
   const colors: BrandConfig["colors"] = {};
   const src = (raw && raw.colors) || {};
-  ["bg", "surface", "ink", "muted", "accent", "line"].forEach((k) => {
+  ["bg", "surface", "surface_color", "card_bg", "ink", "muted", "accent", "accent2", "line"].forEach((k) => {
     const hex = normalizeHex(src[k]);
     if (hex) (colors as any)[k] = hex;
   });

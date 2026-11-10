@@ -1,0 +1,161 @@
+{
+  "id": "cover/ref-group-project",
+  "role": "cover",
+  "variant": "ref-group-project",
+  "family": "atmospheric-editorial-ref-group-project",
+  "sourceRef": "ref-group-project",
+  "designGuide": "atmospheric-editorial",
+  "steal": "Oversized two-line title left of center; small brand upper-left; arrow upper-right; date and URL share a low baseline. Background sweep travels from lower-left toward upper-right.",
+  "preserveLayout": true,
+  "status": "draft",
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "copy0": {
+      "kind": "text",
+      "optional": true,
+      "from": "caption"
+    },
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    },
+    "copy2": {
+      "kind": "text",
+      "optional": true,
+      "from": "body0"
+    },
+    "copy3": {
+      "kind": "text",
+      "optional": true,
+      "from": "body1"
+    }
+  },
+  "fit": {
+    "copy0": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "title": {
+      "maxFont": 136.67,
+      "minFont": 48,
+      "lineClamp": 2,
+      "shrinkMin": 0.9
+    },
+    "copy2": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy3": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    }
+  },
+  "pptxMapping": {
+    "copy0": {
+      "kind": "text"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    },
+    "copy3": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "brand",
+        "type": "text",
+        "slot": "copy0",
+        "x": 266.67,
+        "y": 165,
+        "width": 158.33,
+        "height": 43.2,
+        "z": 4,
+        "morphId": "brand",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.3,
+        "usePrimitive": false
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "x": 225,
+        "y": 308.33,
+        "width": 658.33,
+        "height": 283.33,
+        "z": 4,
+        "morphId": "title",
+        "fontRole": "display",
+        "fontSize": 136.67,
+        "fontWeight": 300,
+        "tokenColor": "ink",
+        "align": "left",
+        "lineHeight": 1.03,
+        "usePrimitive": false
+      },
+      {
+        "id": "date",
+        "type": "text",
+        "slot": "copy2",
+        "x": 225,
+        "y": 705.83,
+        "width": 250,
+        "height": 43.2,
+        "z": 4,
+        "morphId": "date",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.3,
+        "usePrimitive": false
+      },
+      {
+        "id": "website",
+        "type": "text",
+        "slot": "copy3",
+        "x": 1100,
+        "y": 705.83,
+        "width": 275,
+        "height": 43.2,
+        "z": 4,
+        "morphId": "website",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "right",
+        "lineHeight": 1.3,
+        "usePrimitive": false
+      }
+    ]
+  },
+  "motion": {
+    "transition": "fade",
+    "fallbackTransition": "fade",
+    "durationMs": 500
+  },
+  "implementationNotes": [
+    "Geometry estimated from the supplied raster and scaled to 1600x900.",
+    "Body text raised to readable export floors; copy must fit the original whitespace.",
+    "Soft grain and photographic edge fades replaced by clean crops and flat palette surfaces."
+  ]
+}

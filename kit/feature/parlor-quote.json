@@ -1,0 +1,127 @@
+{
+  "id": "feature/parlor-quote",
+  "role": "feature",
+  "variant": "parlor-quote",
+  "family": "parlor",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 64,
+      "maxFont": 64,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 26,
+      "maxFont": 26,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "bg",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "surface",
+        "z": 0
+      },
+      {
+        "id": "qrule",
+        "type": "shape",
+        "shape": "rect",
+        "x": 584,
+        "y": 290,
+        "width": 432,
+        "height": 3,
+        "tokenFill": "accent",
+        "z": 1,
+        "morphId": "accent"
+      },
+      {
+        "id": "qL",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 560,
+        "y": 280,
+        "width": 24,
+        "height": 24,
+        "tokenFill": "accent",
+        "z": 1
+      },
+      {
+        "id": "qR",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 1016,
+        "y": 280,
+        "width": 24,
+        "height": 24,
+        "tokenFill": "accent",
+        "z": 1
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 160,
+        "y": 360,
+        "width": 1280,
+        "height": 180,
+        "fontSize": 64,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 400,
+        "lineHeight": 1.2,
+        "letterSpacing": 0,
+        "z": 2,
+        "textStyleRole": "quote",
+        "align": "center",
+        "morphId": "title"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 160,
+        "y": 580,
+        "width": 1280,
+        "height": 50,
+        "fontSize": 26,
+        "slot": "copy0",
+        "tokenColor": "accent",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 2,
+        "align": "center"
+      }
+    ]
+  }
+}

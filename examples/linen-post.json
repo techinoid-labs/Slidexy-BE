@@ -1,0 +1,118 @@
+{
+  "name": "Linen • Post",
+  "description": "Soft linen postcard rack — stamp blocks, postcard frames, ribbon bands and a send close.",
+  "brand": {
+    "colors": {
+      "bg": "#E9EFEA",
+      "surface": "#DDE6E0",
+      "surface_color": "#CDD8D1",
+      "ink": "#2F3B38",
+      "muted": "#6F817A",
+      "accent": "#3F7F74",
+      "line": "#B7C5BE"
+    },
+    "fonts": {
+      "display": "Garamond",
+      "body": "Georgia"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "linen"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Linen",
+        "items": [
+          "Post rack · morning",
+          "send soft",
+          "02"
+        ],
+        "photoQuery": "0ca17fecb06d"
+      },
+      {
+        "role": "feature",
+        "title": "Stamps",
+        "items": [
+          "Sea",
+          "field",
+          "Hill",
+          "dusk",
+          "Port",
+          "quiet",
+          "Pick one. Press firm."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Cards",
+        "items": [
+          "Front",
+          "Keep the sky wide.",
+          "Back",
+          "Write less than you feel."
+        ],
+        "photoQuery": "005c50a2a14e"
+      },
+      {
+        "role": "feature",
+        "title": "Routes",
+        "items": [
+          "01",
+          "Address",
+          "02",
+          "Stamp",
+          "03",
+          "Ribbon",
+          "04",
+          "Post"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Arrive gently.",
+        "items": [
+          "— Desk clerk"
+        ],
+        "photoQuery": "0ca17fecb06d"
+      },
+      {
+        "role": "closing",
+        "title": "Send.",
+        "items": [
+          "Linen Post · morning desk"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "linen-rack"
+    },
+    {
+      "role": "feature",
+      "variant": "linen-stamps"
+    },
+    {
+      "role": "feature",
+      "variant": "linen-cards"
+    },
+    {
+      "role": "feature",
+      "variant": "linen-routes"
+    },
+    {
+      "role": "feature",
+      "variant": "linen-quote"
+    },
+    {
+      "role": "closing",
+      "variant": "linen-send"
+    }
+  ]
+}

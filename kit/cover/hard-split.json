@@ -1,0 +1,128 @@
+{
+  "role": "cover",
+  "family": "anti-grid",
+  "slots": {
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    },
+    "caption": {
+      "kind": "text",
+      "optional": true,
+      "from": "caption"
+    },
+    "photo": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo"
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 100,
+      "minFont": 48,
+      "lineClamp": 3,
+      "shrinkMin": 0.85
+    },
+    "caption": {
+      "maxFont": 28,
+      "minFont": 24,
+      "lineClamp": 3,
+      "shrinkMin": 0.9
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "caption": {
+      "kind": "text"
+    },
+    "photo": {
+      "kind": "picture"
+    }
+  },
+  "status": "draft",
+  "motion": {
+    "transition": "fade",
+    "fallbackTransition": "fade",
+    "durationMs": 500
+  },
+  "id": "cover/hard-split",
+  "variant": "hard-split",
+  "steal": "Hard vertical divide between a solid title panel and a full-height image.",
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "layout": {
+    "elements": [
+      {
+        "id": "panel",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 800,
+        "height": 900,
+        "tokenFill": "bg",
+        "z": 0,
+        "morphId": "panel"
+      },
+      {
+        "id": "photo",
+        "type": "image",
+        "slot": "photo",
+        "x": 800,
+        "y": 0,
+        "width": 800,
+        "height": 900,
+        "z": 1,
+        "morphId": "photo"
+      },
+      {
+        "id": "accent",
+        "type": "shape",
+        "shape": "rect",
+        "x": 72,
+        "y": 190,
+        "width": 80,
+        "height": 8,
+        "tokenFill": "accent",
+        "z": 3,
+        "morphId": "accent"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "x": 72,
+        "y": 244,
+        "width": 656,
+        "height": 310,
+        "z": 4,
+        "morphId": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 80,
+        "align": "left"
+      },
+      {
+        "id": "caption",
+        "type": "text",
+        "slot": "caption",
+        "x": 72,
+        "y": 610,
+        "width": 656,
+        "height": 180,
+        "z": 4,
+        "morphId": "caption",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontSize": 26,
+        "align": "left"
+      }
+    ]
+  }
+}

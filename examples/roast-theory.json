@@ -1,0 +1,130 @@
+{
+  "name": "Roast Theory • Lot 12",
+  "description": "Coffee roaster deck — long-shadow poster cover, rising roast-curve bars, origin cards and a giant brew ratio.",
+  "brand": {
+    "colors": {
+      "bg": "#140D09",
+      "surface": "#24170F",
+      "surface_color": "#2E1F15",
+      "ink": "#F5E9DA",
+      "muted": "#B89C82",
+      "accent": "#E07A2F",
+      "line": "#3A2A1E"
+    },
+    "fonts": {
+      "display": "Archivo Black",
+      "body": "Arial"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "roast-theory"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "ROAST",
+        "items": [
+          "THEORY",
+          "Small batch roastery · est. 2014",
+          "12",
+          "Lot 12 — Huila, Colombia · medium roast"
+        ],
+        "photoQuery": "a721c1cf1b"
+      },
+      {
+        "role": "feature",
+        "title": "The roast curve",
+        "items": [
+          "Green",
+          "24°",
+          "Yellowing",
+          "160°",
+          "First crack",
+          "196°",
+          "Development",
+          "205°",
+          "Drop",
+          "212°"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Origins",
+        "items": [
+          "CO",
+          "Huila, Colombia",
+          "1,750 m. Red apple, panela and a soft cocoa finish.",
+          "ET",
+          "Guji, Ethiopia",
+          "2,100 m. Bergamot, peach and black tea.",
+          "GT",
+          "Huehuetenango",
+          "1,900 m. Toffee, orange peel and a gentle body."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "In the drum",
+        "items": [
+          "Charge",
+          "Beans drop into a drum already at 200°. The first minute decides the evenness.",
+          "Turn",
+          "Airflow rises as moisture leaves. We listen for first crack before we look.",
+          "Drop",
+          "Out onto the cooling tray. Four minutes later the lot is bagged and dated."
+        ],
+        "photoQuery": "a721c1cf1b"
+      },
+      {
+        "role": "feature",
+        "title": "The house ratio",
+        "items": [
+          "1:16",
+          "Dose",
+          "20 g of coffee to 320 g of water.",
+          "Water",
+          "94°C, filtered, never straight off the boil.",
+          "Time",
+          "Three minutes thirty, give or take a breath."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Drink it fresh.",
+        "items": [
+          "Roast Theory · roasted Tuesdays, shipped Wednesdays"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "roast-theory-poster"
+    },
+    {
+      "role": "feature",
+      "variant": "roast-theory-curve"
+    },
+    {
+      "role": "feature",
+      "variant": "roast-theory-origins"
+    },
+    {
+      "role": "feature",
+      "variant": "roast-theory-drum"
+    },
+    {
+      "role": "feature",
+      "variant": "roast-theory-ratio"
+    },
+    {
+      "role": "feature",
+      "variant": "roast-theory-fresh"
+    }
+  ]
+}

@@ -1,0 +1,214 @@
+{
+  "id": "closing/press-pull",
+  "role": "closing",
+  "variant": "press-pull",
+  "family": "platepress",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 72,
+      "maxFont": 72,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 24,
+      "maxFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "bg",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "bg",
+        "z": 0
+      },
+      {
+        "id": "crshelf",
+        "type": "shape",
+        "shape": "rect",
+        "x": 280,
+        "y": 520,
+        "width": 1000,
+        "height": 40,
+        "tokenFill": "surface_color",
+        "z": 1,
+        "morphId": "plate"
+      },
+      {
+        "id": "crslot0",
+        "type": "shape",
+        "shape": "rect",
+        "x": 300,
+        "y": 40,
+        "width": 120,
+        "height": 480,
+        "tokenFill": "ink",
+        "z": 2,
+        "opacity": 0.2,
+        "morphId": "accent"
+      },
+      {
+        "id": "crslot1",
+        "type": "shape",
+        "shape": "rect",
+        "x": 460,
+        "y": 40,
+        "width": 120,
+        "height": 480,
+        "tokenFill": "surface",
+        "z": 2,
+        "opacity": 1
+      },
+      {
+        "id": "crslot2",
+        "type": "shape",
+        "shape": "rect",
+        "x": 620,
+        "y": 40,
+        "width": 120,
+        "height": 480,
+        "tokenFill": "ink",
+        "z": 2,
+        "opacity": 0.2
+      },
+      {
+        "id": "crslot3",
+        "type": "shape",
+        "shape": "rect",
+        "x": 780,
+        "y": 40,
+        "width": 120,
+        "height": 480,
+        "tokenFill": "surface",
+        "z": 2,
+        "opacity": 1
+      },
+      {
+        "id": "crslot4",
+        "type": "shape",
+        "shape": "rect",
+        "x": 940,
+        "y": 40,
+        "width": 120,
+        "height": 480,
+        "tokenFill": "ink",
+        "z": 2,
+        "opacity": 0.2
+      },
+      {
+        "id": "crslot5",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1100,
+        "y": 40,
+        "width": 120,
+        "height": 480,
+        "tokenFill": "surface",
+        "z": 2,
+        "opacity": 1
+      },
+      {
+        "id": "cwwell",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 720,
+        "y": 560,
+        "width": 140,
+        "height": 140,
+        "tokenFill": "ink",
+        "z": 2,
+        "morphId": "accent"
+      },
+      {
+        "id": "cwpool",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 752,
+        "y": 592,
+        "width": 77,
+        "height": 77,
+        "tokenFill": "accent",
+        "z": 3,
+        "opacity": 0.85
+      },
+      {
+        "id": "pulse-bg",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 755,
+        "y": 595,
+        "width": 70,
+        "height": 70,
+        "tokenFill": "accent",
+        "z": 3,
+        "morphId": "pulse-bg"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 80,
+        "y": 740,
+        "width": 1440,
+        "height": 120,
+        "fontSize": 72,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 3,
+        "textStyleRole": "display",
+        "align": "center",
+        "morphId": "title"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 80,
+        "y": 860,
+        "width": 1440,
+        "height": 32,
+        "fontSize": 22,
+        "slot": "copy0",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 3,
+        "align": "center"
+      }
+    ]
+  }
+}

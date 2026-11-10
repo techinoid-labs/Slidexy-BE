@@ -1,0 +1,124 @@
+{
+  "name": "Dossier • Clip",
+  "description": "Clipped dossier portfolio — binder sheets, index tabs, case pages and a filed close.",
+  "brand": {
+    "colors": {
+      "bg": "#1A1C18",
+      "surface": "#2A2E28",
+      "surface_color": "#3A4036",
+      "ink": "#F2EFE6",
+      "muted": "#9AA094",
+      "accent": "#C4A35A",
+      "line": "#4A5248"
+    },
+    "fonts": {
+      "display": "Rockwell",
+      "body": "Georgia"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "dossier"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "DOSSIER",
+        "items": [
+          "Clip set · selected briefs",
+          "confidential",
+          "A"
+        ],
+        "photoQuery": "01c1358c7bf8"
+      },
+      {
+        "role": "feature",
+        "title": "Index",
+        "items": [
+          "Brief",
+          "scope locked",
+          "Research",
+          "field notes",
+          "Build",
+          "prototype",
+          "Review",
+          "sign-off",
+          "Ship",
+          "handoff"
+        ],
+        "photoQuery": "05b78bfac32c"
+      },
+      {
+        "role": "feature",
+        "title": "Pages",
+        "items": [
+          "Problem",
+          "What broke the old flow.",
+          "Approach",
+          "Clip only what matters.",
+          "Outcome",
+          "Quiet, measurable lift."
+        ],
+        "photoQuery": "0aaf07e051b3"
+      },
+      {
+        "role": "feature",
+        "title": "Order",
+        "items": [
+          "01",
+          "Collect",
+          "02",
+          "Clip",
+          "03",
+          "Annotate",
+          "04",
+          "File"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Keep the brief thin.",
+        "items": [
+          "— Studio lead"
+        ],
+        "photoQuery": "01c1358c7bf8"
+      },
+      {
+        "role": "closing",
+        "title": "Filed.",
+        "items": [
+          "Dossier Clip · archive"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "dossier-cover"
+    },
+    {
+      "role": "feature",
+      "variant": "dossier-index"
+    },
+    {
+      "role": "feature",
+      "variant": "dossier-pages"
+    },
+    {
+      "role": "feature",
+      "variant": "dossier-order"
+    },
+    {
+      "role": "feature",
+      "variant": "dossier-quote"
+    },
+    {
+      "role": "closing",
+      "variant": "dossier-filed"
+    }
+  ]
+}

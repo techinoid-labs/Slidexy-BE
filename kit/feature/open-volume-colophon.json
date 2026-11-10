@@ -1,0 +1,112 @@
+{
+  "id": "feature/open-volume-colophon",
+  "role": "feature",
+  "variant": "open-volume-colophon",
+  "family": "open-volume",
+  "status": "draft",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 125,
+      "maxFont": 125,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 41,
+      "maxFont": 41,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "type": "shape",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "ink",
+        "shape": "rect",
+        "z": 1,
+        "id": "shape0",
+        "morphId": "shape0"
+      },
+      {
+        "type": "shape",
+        "x": 1100,
+        "y": 100,
+        "width": 380,
+        "height": 3,
+        "tokenFill": "bg",
+        "shape": "rect",
+        "z": 1,
+        "id": "shape1",
+        "morphId": "shape1"
+      },
+      {
+        "type": "shape",
+        "x": 1477,
+        "y": 100,
+        "width": 3,
+        "height": 630,
+        "tokenFill": "bg",
+        "shape": "rect",
+        "z": 1,
+        "id": "shape2",
+        "morphId": "shape2"
+      },
+      {
+        "x": 70,
+        "y": 255,
+        "width": 1260,
+        "height": 210,
+        "fontSize": 125,
+        "tokenColor": "bg",
+        "type": "text",
+        "z": 4,
+        "id": "text3",
+        "morphId": "text3",
+        "slot": "title",
+        "fontRole": "display",
+        "fontWeight": 700
+      },
+      {
+        "x": 78,
+        "y": 650,
+        "width": 1000,
+        "height": 90,
+        "fontSize": 41,
+        "tokenColor": "bg",
+        "type": "text",
+        "z": 4,
+        "id": "text4",
+        "morphId": "text4",
+        "slot": "copy0",
+        "fontRole": "body",
+        "fontWeight": 400
+      }
+    ]
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "id": "feature/citrus-almanac-kitchen",
+  "role": "feature",
+  "variant": "citrus-almanac-kitchen",
+  "family": "citrus-almanac",
+  "status": "draft",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "copy2": {
+      "kind": "text",
+      "from": "items2"
+    },
+    "copy3": {
+      "kind": "text",
+      "from": "items3"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 89,
+      "maxFont": 89,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 46,
+      "maxFont": 46,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 40,
+      "maxFont": 40,
+      "lineClamp": 5,
+      "shrinkMin": 1
+    },
+    "copy2": {
+      "minFont": 59,
+      "maxFont": 59,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy3": {
+      "minFont": 39,
+      "maxFont": 39,
+      "lineClamp": 5,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    },
+    "copy3": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "x": 72,
+        "y": 65,
+        "width": 1450,
+        "height": 175,
+        "fontSize": 89,
+        "tokenColor": "ink",
+        "type": "text",
+        "z": 4,
+        "id": "text0",
+        "morphId": "text0",
+        "slot": "title",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "textStyleRole": "display"
+      },
+      {
+        "type": "shape",
+        "x": 70,
+        "y": 270,
+        "width": 495,
+        "height": 535,
+        "tokenFill": "surface",
+        "shape": "rect",
+        "z": 1,
+        "id": "shape1",
+        "morphId": "shape1"
+      },
+      {
+        "x": 110,
+        "y": 322,
+        "width": 420,
+        "height": 85,
+        "fontSize": 46,
+        "tokenColor": "ink",
+        "type": "text",
+        "z": 4,
+        "id": "text2",
+        "morphId": "text2",
+        "slot": "copy0",
+        "fontRole": "body",
+        "fontWeight": 400
+      },
+      {
+        "x": 110,
+        "y": 466,
+        "width": 410,
+        "height": 245,
+        "fontSize": 40,
+        "tokenColor": "ink",
+        "type": "text",
+        "z": 4,
+        "id": "text3",
+        "morphId": "text3",
+        "slot": "copy1",
+        "fontRole": "body",
+        "fontWeight": 400
+      },
+      {
+        "x": 655,
+        "y": 305,
+        "width": 790,
+        "height": 100,
+        "fontSize": 59,
+        "tokenColor": "ink",
+        "type": "text",
+        "z": 4,
+        "id": "text4",
+        "morphId": "text4",
+        "slot": "copy2",
+        "fontRole": "body",
+        "fontWeight": 400
+      },
+      {
+        "x": 660,
+        "y": 448,
+        "width": 770,
+        "height": 245,
+        "fontSize": 39,
+        "tokenColor": "ink",
+        "type": "text",
+        "z": 4,
+        "id": "text5",
+        "morphId": "text5",
+        "slot": "copy3",
+        "fontRole": "body",
+        "fontWeight": 400
+      }
+    ]
+  }
+}

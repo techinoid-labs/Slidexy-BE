@@ -32,6 +32,14 @@ const {
 } = require("./primitives");
 const { parseHighlightSpans, stripHighlightMarkers } = require("./highlight");
 const { extractHeroStat } = require("./heroStat");
+const { getAssetService } = require("./asset-service");
+const {
+  inferTextStyleRole,
+  resolveTextStyle,
+  normalizeTreatment,
+  guardDepthTreatment,
+  isDepthTreatment,
+} = require("./textStyles");
 
 /** Map style.imageTreatment → photo tone for theme catalog worlds. */
 function resolveImageTone(treatment: string, explicit?: string): string | undefined {
@@ -48,8 +56,20 @@ function resolveImageTone(treatment: string, explicit?: string): string | undefi
 const ROOT = path.join(__dirname, "..");
 const KIT = path.join(ROOT, "kit");
 const PHOTO_PUB = path.join(ROOT, "generated-templates", "photos", "engine-v1");
+const ASSET_PUB = path.join(ROOT, "generated-templates", "photos", "smart-assets");
 const tokensDoc = JSON.parse(fs.readFileSync(path.join(__dirname, "tokens.json"), "utf8"));
 validateTokensObject(tokensDoc, "engine/tokens.json");
+
+/** Copy cached smart-asset into generated-templates so PNG/PPTX resolvers can find it. */
+function publishAsset(absPath: string): string {
+  fs.mkdirSync(ASSET_PUB, { recursive: true });
+  const name = path.basename(absPath);
+  const dest = path.join(ASSET_PUB, name);
+  if (!fs.existsSync(dest) || fs.statSync(dest).size !== fs.statSync(absPath).size) {
+    fs.copyFileSync(absPath, dest);
+  }
+  return "photos/smart-assets/" + name;
+}
 
 /** PPTX-native masks: circle, roundedRect, rect, arch, pill. */
 function resolveMask(el: any): { kind: string; cornerRadius: number } | null {
@@ -123,8 +143,16 @@ function resolveTiers(slide: any): any[] {
 function slotText(slide: any, from: string): string {
   if (!from) return "";
   if (from === "title") return slide.title || "";
+  const itemMatch = from.match(/^items(\d+)$/);
+  if (itemMatch) return (slide.items && slide.items[Number(itemMatch[1])]) || "";
   if (from === "caption") return slide.caption || "";
-  if (from === "takeaway") return slide.takeaway || slide.caption || "";
+  if (from === "takeaway")
+    return (
+      slide.takeaway ||
+      (Array.isArray(slide.body) && slide.body[0]) ||
+      slide.caption ||
+      ""
+    );
   if (from === "heroStat") {
     if (slide.heroStat) return String(slide.heroStat);
     const source = Array.isArray(slide.body) && slide.body[0] ? slide.body[0] : slide.caption || "";
@@ -222,17 +250,119 @@ function publishPhoto(absPath: string): string {
 }
 
 function paletteDarkHex(palette: any): string {
-  function lum(hex: string): number {
-    const h = String(hex || "").replace("#", "");
-    if (h.length < 6) return 0.5;
-    const r = parseInt(h.slice(0, 2), 16) / 255;
-    const g = parseInt(h.slice(2, 4), 16) / 255;
-    const b = parseInt(h.slice(4, 6), 16) / 255;
-    return 0.2126 * r + 0.7152 * g + 0.0722 * b;
-  }
   const bg = palette.bg || "#111111";
   const ink = palette.ink || "#111111";
-  return lum(bg) <= lum(ink) ? bg : ink;
+  return relativeLuminance(bg) <= relativeLuminance(ink) ? bg : ink;
+}
+
+/** WCAG relative luminance (sRGB). */
+function relativeLuminance(hex: string): number {
+  const h = String(hex || "").replace("#", "");
+  if (h.length < 6) return 0.5;
+  const toLin = (c: number) => {
+    const s = c / 255;
+    return s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
+  };
+  const r = toLin(parseInt(h.slice(0, 2), 16));
+  const g = toLin(parseInt(h.slice(2, 4), 16));
+  const b = toLin(parseInt(h.slice(4, 6), 16));
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+
+function contrastRatio(fg: string, bg: string): number {
+  const L1 = relativeLuminance(fg);
+  const L2 = relativeLuminance(bg);
+  const hi = Math.max(L1, L2);
+  const lo = Math.min(L1, L2);
+  return (hi + 0.05) / (lo + 0.05);
+}
+
+/**
+ * If fg/bg fail WCAG AA (4.5:1 normal, 3:1 large), flip to white or near-black —
+ * whichever contrasts better against the local background.
+ */
+function ensureContrast(fg: string, bg: string, largeText: boolean): string {
+  const min = largeText ? 3 : 4.5;
+  if (contrastRatio(fg, bg) >= min) return fg;
+  const white = "#FFFFFF";
+  const black = "#0A0A0A";
+  return contrastRatio(white, bg) >= contrastRatio(black, bg) ? white : black;
+}
+
+type ContrastRegion = {
+  z: number;
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  color: string;
+};
+
+function collectContrastRegions(layoutEls: any[], palette: any): ContrastRegion[] {
+  const regions: ContrastRegion[] = [];
+  const slideBg = palette.bg || "#FFFFFF";
+  const photoProxy = palette.dark ? "#141414" : "#2A2A2A";
+  for (const el of layoutEls || []) {
+    if (!el || el.x == null || el.y == null || el.width == null || el.height == null) continue;
+    if (el.type === "shape") {
+      const fillKey = el.tokenFill || "surface";
+      let color =
+        fillKey === "card_bg"
+          ? palette.card_bg || palette.surface || slideBg
+          : palette[fillKey] || palette.surface || slideBg;
+      const opacity = el.opacity != null ? Number(el.opacity) : 1;
+      if (opacity < 1 && opacity >= 0) {
+        // Approximate translucent wash over slide bg
+        const mix = (a: string, b: string, t: number) => {
+          const pa = String(a).replace("#", "");
+          const pb = String(b).replace("#", "");
+          if (pa.length < 6 || pb.length < 6) return a;
+          const ch = (h: string, i: number) => parseInt(h.slice(i, i + 2), 16);
+          const m = (i: number) => Math.round(ch(pa, i) * t + ch(pb, i) * (1 - t));
+          const hex = (n: number) => n.toString(16).padStart(2, "0");
+          return "#" + hex(m(0)) + hex(m(2)) + hex(m(4));
+        };
+        color = mix(String(color), slideBg, opacity);
+      }
+      regions.push({
+        z: Number(el.z) || 0,
+        x: Number(el.x),
+        y: Number(el.y),
+        w: Number(el.width),
+        h: Number(el.height),
+        color: String(color),
+      });
+    } else if (el.type === "image") {
+      regions.push({
+        z: Number(el.z) || 0,
+        x: Number(el.x),
+        y: Number(el.y),
+        w: Number(el.width),
+        h: Number(el.height),
+        color: photoProxy,
+      });
+    }
+  }
+  return regions;
+}
+
+function bgBehindText(
+  regions: ContrastRegion[],
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+  slideBg: string
+): string {
+  const cx = x + width / 2;
+  const cy = y + height / 2;
+  let best: ContrastRegion | null = null;
+  for (const r of regions) {
+    if (cx >= r.x && cx <= r.x + r.w && cy >= r.y && cy <= r.y + r.h) {
+      if (!best || r.z >= best.z) best = r;
+    }
+  }
+  return best ? best.color : slideBg;
 }
 
 /** Organic underline = chain of soft ellipses (editable shapes, not a brush raster). */
@@ -312,7 +442,8 @@ function ghostStepNumber(
 export async function renderDeckFromSpec(
   spec: DeckSpec,
   selections: Array<{ role: string; variant: string }>,
-  options?: { id?: string; usedPexelsIds?: Set<string>; brand?: any }
+  options?: { id?: string; usedPexelsIds?: Set<string>; brand?: any;
+    photoResolver?: typeof safePhoto }
 ): Promise<any> {
   const worldKey = String(spec.style.palette || "");
   const world = resolveCatalogWorld(worldKey);
@@ -343,8 +474,7 @@ export async function renderDeckFromSpec(
   const treatment = treatmentRaw === "duotone" ? "tint" : treatmentRaw;
   const defaultImageTone =
     (world && world.imageTone) || resolveImageTone(String(treatment || ""));
-  const typeTreatment =
-    (spec.style as any).typeTreatment === "outline" ? "outline" : "solid";
+  const typeTreatment = normalizeTreatment((spec.style as any).typeTreatment);
   const rawMotif = (world && world.motif) || spec.style.motif || "bar-accent";
   const motifId =
     rawMotif === "brush-stroke" || rawMotif === "bar-accent" ? "refined" : rawMotif;
@@ -388,7 +518,7 @@ export async function renderDeckFromSpec(
         : "landscape";
     const key = query + "|" + orient + "|" + cropMode + "|" + (tone || "color");
     if (photoByQuery[key]) return photoByQuery[key];
-    const got = await safePhoto(query, orient, treatment, palette, usedPexelsIds, cropMode, tone);
+    const got = await (options?.photoResolver || safePhoto)(query, orient, treatment, palette, usedPexelsIds, cropMode, tone);
     if (got.pexelsId) usedPexelsIds.add(String(got.pexelsId));
     const rel = publishPhoto(got.path);
     photoByQuery[key] = rel;
@@ -546,17 +676,18 @@ export async function renderDeckFromSpec(
     const photoOrients: string[] = Array.isArray((slide as any).photoOrientations)
       ? (slide as any).photoOrientations
       : [];
-
     const ghost = ghostStepNumber(i, slide.role, palette, typePair);
-    if (ghost) elements.push(ghost);
+    if (ghost && !variant.preserveLayout) elements.push(ghost);
 
     // Global primitives: header / callout / list — strips thick bars & ellipse brushes
-    const layoutEls = applyGlobalPrimitives(
+    const layoutEls = variant.preserveLayout ? variant.layout.elements : applyGlobalPrimitives(
       variant.layout.elements || [],
       slide,
       palette,
-      typePair
+      typePair,
+      { kitId: variant.id }
     );
+    const contrastRegions = collectContrastRegions(layoutEls, palette);
 
     // Kit typography floor enforcement (schema-level hard limits)
     Object.keys(variant.fit || {}).forEach((slot) => {
@@ -696,6 +827,13 @@ export async function renderDeckFromSpec(
           }
         }
       }
+      if (el.widthFrom) {
+        const raw = String(slotText(slide, el.widthFrom)).trim();
+        if (!/^\d+(?:\.\d+)?%$/.test(raw) || Number(raw.slice(0, -1)) > 100) {
+          throw new Error(variant.id + ": " + el.widthFrom + " must be a percentage from 0% to 100%");
+        }
+        width *= Number(raw.slice(0, -1)) / 100;
+      }
       const next: any = {
         id: el.id,
         type: el.type,
@@ -823,6 +961,15 @@ export async function renderDeckFromSpec(
               ? "After"
               : "Regional Differences";
         }
+        if (!String(text || "").trim() && variant.id === "comparison/quadrant") {
+          const qd: Record<string, string> = {
+            q0h: "Quick wins",
+            q1h: "Big bets",
+            q2h: "Fill-ins",
+            q3h: "Avoid",
+          };
+          if (qd[el.slot]) text = qd[el.slot];
+        }
         if (!String(text || "").trim() && el.slot === "badge" && variant.id === "pricing/three-tier") {
           text = "Most Popular";
         }
@@ -874,11 +1021,23 @@ export async function renderDeckFromSpec(
           rules.lineClamp = Math.max(rules.lineClamp || 4, density === "report" ? 12 : 4);
         }
         const fitted = fitText(plainForFit, { width, height }, rules);
-        const fontName = el.fontRole === "display" || isTitle ? typePair.display : typePair.body;
-        const colorKey = el.tokenColor || "ink";
-        const color = palette[colorKey] || palette.ink;
-        const accent = palette.accent || color;
         let size = Math.max(roleFloor, fitted.fontSize || el.fontSize || roleFloor);
+        const familyIdEarly = variant.family || (spec.style as any).family || null;
+        const styleRoleEarly = inferTextStyleRole(el, { isTitle, isBody, size });
+        const styleDefEarly = resolveTextStyle(familyIdEarly, styleRoleEarly, el);
+        // Heavy display faces (Archivo Black etc.) only on punch roles — mid headlines stay on body face for fit.
+        const useDisplayFace =
+          styleRoleEarly === "display" ||
+          styleRoleEarly === "stat" ||
+          styleRoleEarly === "quote" ||
+          ((el.fontRole === "display" || isTitle) && Number(size) >= 96);
+        const fontName = useDisplayFace ? typePair.display : typePair.body;
+        const colorKey = el.tokenColor || "ink";
+        let color =
+          el.color != null && String(el.color).trim()
+            ? String(el.color).trim()
+            : palette[colorKey] || palette.ink;
+        const accent = palette.accent || color;
         // Hard schema enforcement: never render below floors — split instead of shrink
         if (size < roleFloor) {
           if (typoLimits.enforcement === "error-or-split" && rules.splitOnOverflow) {
@@ -897,18 +1056,60 @@ export async function renderDeckFromSpec(
           }
           size = roleFloor;
         }
+        const familyId = familyIdEarly;
+        const styleRole = styleRoleEarly;
+        const textStyleDef = styleDefEarly;
         const weight =
-          el.fontRole === "display" || el.fontRole === "label" || isTitle ? 700 : 400;
-        const useOutline =
-          el.typeTreatment === "outline" ||
-          (typeTreatment === "outline" &&
-            (el.fontRole === "display" || el.slot === "title" || Number(size) >= 56));
+          Number(el.fontWeight) ||
+          Number(textStyleDef.fontWeight) ||
+          (el.fontRole === "display" || el.fontRole === "label" || isTitle ? 700 : 400);
+        // WCAG contrast: invert to white/black when text fails against local background
+        const localBg = bgBehindText(
+          contrastRegions,
+          x,
+          y,
+          width,
+          height,
+          palette.bg || "#FFFFFF"
+        );
+        const largeText = isTitle || weight >= 700 || size >= ptToEngine(24);
+        color = ensureContrast(String(color), localBg, largeText);
+        const deckTreatment = typeTreatment;
+        let resolvedTreatment = normalizeTreatment(
+          el.typeTreatment ||
+            textStyleDef.typeTreatment ||
+            (deckTreatment !== "solid" &&
+            (el.fontRole === "display" || el.slot === "title" || Number(size) >= 56)
+              ? deckTreatment
+              : "solid")
+        );
+        // Depth (offset-3d / long-shadow) only on short single-line punch titles.
+        if (isDepthTreatment(resolvedTreatment)) {
+          const approxCharW = Math.max(size * 0.55, 1);
+          const hardBreaks = String(fitted.text || text || "").split(/\n/).length;
+          const wrapEstimate = Math.max(
+            hardBreaks,
+            Math.ceil(Array.from(String(fitted.text || text || "").replace(/\s+/g, " ").trim()).length / Math.max(1, Math.floor(width / approxCharW)))
+          );
+          resolvedTreatment = guardDepthTreatment(resolvedTreatment, fitted.text || text || "", {
+            lineCount: wrapEstimate,
+            fallback: "solid",
+          });
+        }
+        const useOutline = resolvedTreatment === "outline";
         const lineHeight =
           Number(el.lineHeight) ||
+          Number(textStyleDef.lineHeight) ||
           (isBody || density === "report" ? 1.5 : 1.2);
-        const letterSpacing = isTitle
+        const pairTracking = isTitle
           ? Number(typePair.titleLetterSpacing != null ? typePair.titleLetterSpacing : typePair.letterSpacing) || 0
           : Number(typePair.letterSpacing) || 0;
+        const letterSpacing =
+          el.letterSpacing != null
+            ? Number(el.letterSpacing)
+            : textStyleDef.letterSpacing != null
+              ? Number(textStyleDef.letterSpacing)
+              : pairTracking;
         next.textStyle = {
           fontFamily: fontName,
           fontSize: size,
@@ -918,23 +1119,34 @@ export async function renderDeckFromSpec(
           verticalAlign: el.verticalAlign || "top",
           lineHeight,
           letterSpacing,
-          typeTreatment: useOutline ? "outline" : "solid",
+          typeTreatment: resolvedTreatment,
+          textStyleRole: styleRole,
           strokeWidth: useOutline ? 2 : 0,
+          offsetSteps: textStyleDef.offsetSteps || 4,
+          offsetX: textStyleDef.offsetX || 4,
+          offsetY: textStyleDef.offsetY || 4,
+          shadowLength: textStyleDef.shadowLength || 48,
+          shadowStep: textStyleDef.shadowStep || 3,
         };
         // **highlight** → bold accent spans when content fully fits
+        const sameWords = (value: string) => String(value || "").replace(/\s+/g, " ").trim();
         const highlightParts =
-          !fitted.reason && fitted.text === plainForFit
+          !fitted.reason && sameWords(fitted.text) === sameWords(plainForFit)
             ? parseHighlightSpans(text)
             : [{ text: fitted.text || " " }];
+        const accentSafe = ensureContrast(String(accent), localBg, true);
+        const maybeUpper = (value: string) =>
+          textStyleDef.uppercase ? String(value || "").toUpperCase() : value || " ";
         next.textContent = {
           spans: highlightParts.map((part: any) => ({
-            text: part.text || " ",
+            text: maybeUpper(part.text || " "),
             fontFamily: fontName,
             fontSize: size,
             fontWeight: part.highlight || part.bold ? 700 : weight,
-            color: part.highlight ? accent : color,
+            color: part.highlight ? accentSafe : color,
             highlight: !!part.highlight,
-            typeTreatment: useOutline ? "outline" : "solid",
+            typeTreatment: resolvedTreatment,
+            letterSpacing,
           })),
         };
         if (el.rotate) {
@@ -1006,14 +1218,32 @@ export async function renderDeckFromSpec(
         const tone =
           el.tone || defaultImageTone || resolveImageTone(String(treatment || ""));
         const url = await photoRel(query, slotOrient, crop, tone);
+        const alignX =
+          el.alignX != null
+            ? Math.max(0, Math.min(1, Number(el.alignX)))
+            : el.focalX != null
+              ? Math.max(0, Math.min(1, Number(el.focalX)))
+              : 0.5;
+        const alignY =
+          el.alignY != null
+            ? Math.max(0, Math.min(1, Number(el.alignY)))
+            : el.focalY != null
+              ? Math.max(0, Math.min(1, Number(el.focalY)))
+              : crop && crop.startsWith("top-center")
+                ? 0
+                : 0.5;
+        const zoomRaw = el.zoom != null ? Number(el.zoom) : 1;
+        const zoom =
+          Number.isFinite(zoomRaw) && zoomRaw > 1 ? Math.min(2.5, zoomRaw) : undefined;
         next.imageContent = {
           url,
           // Uniform cover — never stretch/squash mixed source ratios
           fit: "cover",
-          alignX: 0.5,
-          alignY: crop && crop.startsWith("top-center") ? 0 : 0.5,
+          alignX,
+          alignY,
           crop: crop || "cover",
           tone: tone || null,
+          ...(zoom ? { zoom } : {}),
         };
         const clip = resolveMask(el);
         if (clip) next.imageContent.clip = clip;
@@ -1047,6 +1277,58 @@ export async function renderDeckFromSpec(
             },
           });
         }
+        continue;
+      } else if (el.type === "smartAsset") {
+        const sa = el.smartAsset || {};
+        const kind = String(sa.type || el.assetType || "photo");
+        const saQueries = (slide as any).smartAssetQueries || {};
+        let query = String(
+          sa.query || el.query || slide.photoQuery || slide.title || "abstract"
+        ).trim();
+        if (kind === "illustration" && saQueries.illustration) {
+          query = String(saQueries.illustration);
+        } else if (kind === "photo" && saQueries.photo) {
+          query = String(saQueries.photo);
+        } else if (kind === "icon" && Array.isArray(saQueries.icons)) {
+          const iconEls = (variant.layout.elements || []).filter(
+            (e: any) => e && e.type === "smartAsset" && String((e.smartAsset || {}).type) === "icon"
+          );
+          const idx = iconEls.findIndex((e: any) => e && e.id === el.id);
+          if (idx >= 0 && saQueries.icons[idx]) query = String(saQueries.icons[idx]);
+        }
+        const style = sa.style || el.style || undefined;
+        // Nested geometry (inches) only when element box is missing/zero
+        const inchToCanvas = (inches: number) => (Number(inches) || 0) * (1600 / 13.333);
+        if ((!width || !height) && (sa.width || sa.height)) {
+          next.x = sa.x != null ? inchToCanvas(sa.x) : x;
+          next.y = sa.y != null ? inchToCanvas(sa.y) : y;
+          next.width = sa.width != null ? inchToCanvas(sa.width) : width;
+          next.height = sa.height != null ? inchToCanvas(sa.height) : height;
+        }
+        const assets = getAssetService();
+        const accent = palette.accent || palette.on_accent || "#2563EB";
+        const result = await assets.resolve(kind as any, query, {
+          color: kind === "icon" ? String(accent) : undefined,
+          style: style ? String(style) : undefined,
+        });
+        const rel = publishAsset(result.path);
+        next.type = "image";
+        next.imageContent = {
+          url: rel,
+          fit: kind === "icon" ? "contain" : "cover",
+          alignX: 0.5,
+          alignY: 0.5,
+          smartAsset: {
+            kind,
+            query,
+            style: style || null,
+            dataUri: result.dataUri || null,
+            iconId: result.iconId || null,
+            mocked: !!result.mocked,
+            source: result.source,
+          },
+        };
+        elements.push(next);
         continue;
       }
       elements.push(next);
@@ -1107,6 +1389,7 @@ export async function renderDeckFromSpec(
       theme: { version: theme.version, motif: theme.motif && theme.motif.id },
       primitives: ["header", "callout", "listItem"],
       usedPexelsIds: Array.from(usedPexelsIds),
+      assetPipeline: getAssetService().lastStatus,
       brand: branded.brand
         ? {
             name: branded.brand.name || null,
@@ -1126,6 +1409,7 @@ export async function renderDeckFromSpec(
         groupedOverlaps: true,
         imageTension: true,
         typeOutline: typeTreatment === "outline",
+        typeTreatment,
       },
     },
   };

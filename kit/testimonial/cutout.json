@@ -1,0 +1,114 @@
+{
+  "id": "testimonial/cutout",
+  "role": "testimonial",
+  "variant": "cutout",
+  "family": "anti-grid",
+  "steal": "Circular portrait overlapping accent block; quote and attribution on the right.",
+  "requiresPhoto": true,
+  "photoSlots": ["portrait"],
+  "slots": {
+    "title": { "kind": "text", "optional": false, "from": "title" },
+    "body": { "kind": "text", "optional": false, "from": "body" },
+    "caption": { "kind": "text", "optional": true, "from": "caption" },
+    "portrait": { "kind": "image", "optional": false, "from": "photo" }
+  },
+  "fit": {
+    "title": { "maxFont": 36, "minFont": 24, "lineClamp": 1, "shrinkMin": 0.9 },
+    "body": { "maxFont": 28, "minFont": 20, "lineClamp": 6, "shrinkMin": 0.9 },
+    "caption": { "maxFont": 18, "minFont": 14, "lineClamp": 2, "shrinkMin": 1 }
+  },
+  "pptxMapping": {
+    "title": { "kind": "text" },
+    "body": { "kind": "text" },
+    "caption": { "kind": "text" },
+    "portrait": { "kind": "picture" }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 1,
+        "id": "accentBlock",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "accent",
+        "x": 80,
+        "y": 300,
+        "width": 520,
+        "height": 440,
+        "morphId": "accent-block"
+      },
+      {
+        "z": 2,
+        "id": "disk",
+        "type": "shape",
+        "shape": "ellipse",
+        "tokenFill": "card_bg",
+        "x": 120,
+        "y": 240,
+        "width": 440,
+        "height": 440,
+        "morphId": "disk"
+      },
+      {
+        "z": 3,
+        "id": "portrait",
+        "type": "image",
+        "slot": "portrait",
+        "mask": "circle",
+        "x": 140,
+        "y": 180,
+        "width": 400,
+        "height": 400,
+        "morphId": "photo-1"
+      },
+      {
+        "z": 4,
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 32,
+        "align": "left",
+        "x": 720,
+        "y": 180,
+        "width": 760,
+        "height": 56,
+        "morphId": "title"
+      },
+      {
+        "z": 4,
+        "id": "body",
+        "type": "text",
+        "slot": "body",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontSize": 26,
+        "lineHeight": 1.4,
+        "align": "left",
+        "x": 720,
+        "y": 280,
+        "width": 760,
+        "height": 320,
+        "morphId": "body"
+      },
+      {
+        "z": 4,
+        "id": "caption",
+        "type": "text",
+        "slot": "caption",
+        "tokenColor": "accent",
+        "fontRole": "label",
+        "fontSize": 18,
+        "align": "left",
+        "x": 720,
+        "y": 640,
+        "width": 760,
+        "height": 60,
+        "morphId": "caption"
+      }
+    ]
+  },
+  "status": "draft",
+  "motion": { "transition": "fade", "fallbackTransition": "fade", "durationMs": 500 }
+}

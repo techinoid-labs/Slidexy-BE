@@ -1,0 +1,213 @@
+{
+  "name": "Form & Space",
+  "description": "An architecture portfolio with conceptual case studies and reference photography.",
+  "brand": {
+    "colors": {
+      "bg": "#EDEAE4",
+      "ink": "#303733",
+      "accent": "#895D46",
+      "surface": "#D2CEC4",
+      "line": "#A29D92"
+    },
+    "fonts": {
+      "display": "Georgia",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "FORM\n& SPACE",
+        "items": [
+          "Architecture & interior concepts",
+          "Selected work / Concept portfolio"
+        ],
+        "photoQuery": "form-space-0"
+      },
+      {
+        "role": "feature",
+        "title": "Space shaped by daily life",
+        "items": [
+          "Design position",
+          "My work begins with how a place is used across an ordinary day. Arrival, changing light and the movement between shared and private areas become the basis for the plan.",
+          "Portfolio context",
+          "The following fictional projects explore a courtyard home, a neighbourhood library and a compact workspace. Stock reference photographs illustrate the intended atmosphere. They are visual references for the concepts presented here.",
+          "Concept study • Stock reference photography"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Three studies in inhabitation",
+        "items": [
+          "Courtyard House",
+          "A compact home organised around a protected outdoor room. The study tests how a shared centre can bring daylight into the plan while preserving quieter edges for reading and rest.",
+          "Neighbourhood Library",
+          "A public interior arranged around different levels of activity. A clear arrival space connects the collection, shared tables and a quieter reading area, allowing visitors to choose where they feel comfortable.",
+          "Concept study • Stock reference photography"
+        ],
+        "photoQuery": "form-space-3"
+      },
+      {
+        "role": "feature",
+        "title": "Courtyard House",
+        "items": [
+          "The question",
+          "How can a small home feel open without exposing every room to the street? The concept places the main outdoor space inside the plan and uses the perimeter to moderate views.",
+          "The proposal",
+          "Shared rooms address the courtyard while service spaces occupy the outer edge. Openings are considered in relation to neighbouring properties, and the entrance creates a gradual transition from public approach to private life.",
+          "Concept study • Stock reference photography"
+        ],
+        "photoQuery": "form-space-1"
+      },
+      {
+        "role": "feature",
+        "title": "A sequence of thresholds",
+        "items": [
+          "Conceptual threshold sequence",
+          "Arrival",
+          "The entrance is designed as a short sequence rather than a single exposed opening. A covered pause gives residents time to arrive before the view opens toward the shared interior.",
+          "Connection",
+          "Rooms meet through deliberate changes in width and light. The concept uses these transitions to distinguish social areas from quieter spaces while maintaining a legible route through the house.",
+          "Concept study • Stock reference photography"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Neighbourhood Library",
+        "items": [
+          "The question",
+          "A small public library must support conversation and concentration within the same interior. The study asks how the plan can make these different activities understandable without relying on constant signage.",
+          "The proposal",
+          "The welcome desk faces the entrance and the busiest tables sit nearby. Shelving provides a gradual transition toward quieter seats. Clear sightlines help staff remain available while allowing visitors to settle independently.",
+          "Concept study • Stock reference photography"
+        ],
+        "photoQuery": "form-space-2"
+      },
+      {
+        "role": "feature",
+        "title": "Light as a working material",
+        "items": [
+          "Daylight",
+          "The design studies where useful daylight reaches the room and where direct glare could interrupt reading or work. Openings are evaluated against furniture placement instead of being treated as an isolated facade pattern.",
+          "Evening use",
+          "Artificial lighting supports the same hierarchy after sunset. General illumination defines the route, while local light serves reading and working positions. The intention is a comfortable transition between different times of day.",
+          "Concept study • Stock reference photography"
+        ],
+        "photoQuery": "form-space-4"
+      },
+      {
+        "role": "feature",
+        "title": "A room for focused work",
+        "items": [
+          "The question",
+          "The workspace concept supports a small team with both shared tasks and periods of concentration. Its limited footprint requires each zone to have a clear purpose and an accessible relationship to the others.",
+          "The proposal",
+          "A central worktable anchors the shared area. Storage forms a useful boundary beside the quieter seats, and a small meeting zone remains close to the entrance so visitors can arrive without crossing every workspace.",
+          "Concept study • Stock reference photography"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Material choices with a purpose",
+        "items": [
+          "01",
+          "Touch and wear",
+          "Materials are selected in relation to the surfaces people use most. Handles, seats and worktops need different qualities from walls viewed at a distance. The study considers maintenance alongside colour and texture.",
+          "02",
+          "Assembly",
+          "The proposal favours details that can be explained clearly in a drawing and reviewed with the fabricator. Junctions between materials receive attention early, when changes can still improve both appearance and construction.",
+          "Concept study • Stock reference photography"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "A process that makes decisions visible",
+        "items": [
+          "01",
+          "Study",
+          "I use diagrams and simple models to compare the consequences of different plans. Each study addresses a specific question, such as the length of an arrival route or the depth of a shared room.",
+          "02",
+          "Develop",
+          "The selected approach is translated into coordinated drawings and a material study. Reviews focus on unresolved relationships between use, structure and enclosure before the design moves into more detailed work.",
+          "Concept study • Stock reference photography"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "From concept to conversation",
+        "items": [
+          "Project fit",
+          "I am interested in small buildings and interiors where careful planning can change everyday experience. A useful brief describes who will use the space, what currently causes difficulty and what the project must achieve.",
+          "Next steps",
+          "An initial discussion reviews the site information, ambitions and constraints. The next stage is a defined study that identifies the design questions and the material needed to answer them.",
+          "Concept study • Stock reference photography"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Begin with\na place.",
+        "items": [
+          "Architecture & interior concepts",
+          "hello@example.com • example.com"
+        ],
+        "photoQuery": "form-space-5"
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "form-space-0"
+    },
+    {
+      "role": "feature",
+      "variant": "form-space-1"
+    },
+    {
+      "role": "feature",
+      "variant": "form-space-2"
+    },
+    {
+      "role": "feature",
+      "variant": "form-space-3"
+    },
+    {
+      "role": "feature",
+      "variant": "form-space-4"
+    },
+    {
+      "role": "feature",
+      "variant": "form-space-5"
+    },
+    {
+      "role": "feature",
+      "variant": "form-space-6"
+    },
+    {
+      "role": "feature",
+      "variant": "form-space-7"
+    },
+    {
+      "role": "feature",
+      "variant": "form-space-8"
+    },
+    {
+      "role": "feature",
+      "variant": "form-space-9"
+    },
+    {
+      "role": "feature",
+      "variant": "form-space-10"
+    },
+    {
+      "role": "feature",
+      "variant": "form-space-11"
+    }
+  ]
+}

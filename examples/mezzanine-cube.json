@@ -1,0 +1,122 @@
+{
+  "name": "Mezzanine • Cube",
+  "description": "White-cube gallery portfolio — wall works, didactic labels, pedestal markers and an install close.",
+  "brand": {
+    "colors": {
+      "bg": "#F7F7F5",
+      "surface": "#FFFFFF",
+      "surface_color": "#ECECE8",
+      "ink": "#111111",
+      "muted": "#6B6B6B",
+      "accent": "#E10600",
+      "line": "#D0D0CC"
+    },
+    "fonts": {
+      "display": "Antonio",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "mezzanine"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "MEZZANINE",
+        "items": [
+          "Cube · installation view",
+          "level 2",
+          "02"
+        ],
+        "photoQuery": "0ca17fecb06d"
+      },
+      {
+        "role": "feature",
+        "title": "Hang",
+        "items": [
+          "North",
+          "triptych",
+          "East",
+          "single large",
+          "South",
+          "study wall",
+          "West",
+          "projection"
+        ],
+        "photoQuery": "005c50a2a14e"
+      },
+      {
+        "role": "feature",
+        "title": "Didactics",
+        "items": [
+          "Artist",
+          "name only",
+          "Title",
+          "italic, soft",
+          "Year",
+          "flush right"
+        ],
+        "photoQuery": "030052bf4adb"
+      },
+      {
+        "role": "feature",
+        "title": "Walk",
+        "items": [
+          "01",
+          "Enter",
+          "02",
+          "Pause",
+          "03",
+          "Circle",
+          "04",
+          "Exit"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "The room does half the work.",
+        "items": [
+          "— Install notes"
+        ],
+        "photoQuery": "0ca17fecb06d"
+      },
+      {
+        "role": "closing",
+        "title": "Install.",
+        "items": [
+          "Mezzanine Cube · open hours"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "mezz-cover"
+    },
+    {
+      "role": "feature",
+      "variant": "mezz-hang"
+    },
+    {
+      "role": "feature",
+      "variant": "mezz-didactics"
+    },
+    {
+      "role": "feature",
+      "variant": "mezz-walk"
+    },
+    {
+      "role": "feature",
+      "variant": "mezz-quote"
+    },
+    {
+      "role": "closing",
+      "variant": "mezz-install"
+    }
+  ]
+}

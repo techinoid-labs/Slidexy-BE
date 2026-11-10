@@ -1,0 +1,125 @@
+{
+  "id": "feature/citrus-almanac-still-life",
+  "role": "feature",
+  "variant": "citrus-almanac-still-life",
+  "family": "citrus-almanac",
+  "status": "draft",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 95,
+      "maxFont": 95,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 38,
+      "maxFont": 38,
+      "lineClamp": 4,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "type": "shape",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "ink",
+        "shape": "rect",
+        "z": 1,
+        "id": "shape0",
+        "morphId": "shape0"
+      },
+      {
+        "type": "shape",
+        "x": 90,
+        "y": 95,
+        "width": 325,
+        "height": 325,
+        "tokenFill": "accent",
+        "shape": "ellipse",
+        "z": 1,
+        "id": "shape1",
+        "morphId": "shape1"
+      },
+      {
+        "type": "shape",
+        "x": 305,
+        "y": 285,
+        "width": 400,
+        "height": 400,
+        "tokenFill": "surface",
+        "shape": "ellipse",
+        "z": 1,
+        "id": "shape2",
+        "morphId": "shape2"
+      },
+      {
+        "type": "shape",
+        "x": 100,
+        "y": 540,
+        "width": 195,
+        "height": 195,
+        "tokenFill": "accent",
+        "shape": "ellipse",
+        "z": 1,
+        "id": "shape3",
+        "morphId": "shape3"
+      },
+      {
+        "x": 800,
+        "y": 220,
+        "width": 750,
+        "height": 210,
+        "fontSize": 95,
+        "tokenColor": "bg",
+        "type": "text",
+        "z": 4,
+        "id": "text4",
+        "morphId": "text4",
+        "slot": "title",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "textStyleRole": "display"
+      },
+      {
+        "x": 810,
+        "y": 520,
+        "width": 640,
+        "height": 205,
+        "fontSize": 38,
+        "tokenColor": "bg",
+        "type": "text",
+        "z": 4,
+        "id": "text5",
+        "morphId": "text5",
+        "slot": "copy0",
+        "fontRole": "body",
+        "fontWeight": 400
+      }
+    ]
+  }
+}

@@ -1,0 +1,161 @@
+{
+  "id": "report/ref-insight-donut",
+  "role": "report",
+  "variant": "ref-insight-donut",
+  "family": "executive-insight-ref-insight-donut",
+  "sourceRef": "ref-insight-donut",
+  "designGuide": "executive-insight",
+  "steal": "Header upper-left; insight and explanation stacked lower-left; large donut centered in the right half with three external labels.",
+  "preserveLayout": true,
+  "status": "draft",
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    },
+    "copy1": {
+      "kind": "text",
+      "optional": true,
+      "from": "body0"
+    },
+    "copy2": {
+      "kind": "text",
+      "optional": true,
+      "from": "body1"
+    },
+    "chart": {
+      "kind": "chart",
+      "optional": false,
+      "from": "chart"
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 60,
+      "minFont": 48,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy1": {
+      "maxFont": 26.67,
+      "minFont": 24,
+      "lineClamp": 2,
+      "shrinkMin": 0.9
+    },
+    "copy2": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 3,
+      "shrinkMin": 0.9
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    },
+    "chart": {
+      "kind": "chart"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "x": 225,
+        "y": 166.67,
+        "width": 616.67,
+        "height": 78.33,
+        "z": 4,
+        "morphId": "title",
+        "fontRole": "display",
+        "fontSize": 60,
+        "fontWeight": 300,
+        "tokenColor": "ink",
+        "align": "left",
+        "lineHeight": 1.05,
+        "usePrimitive": false
+      },
+      {
+        "id": "title-rule",
+        "type": "shape",
+        "shape": "rect",
+        "x": 225,
+        "y": 249.17,
+        "width": 50,
+        "height": 3.33,
+        "z": 2,
+        "morphId": "title-rule",
+        "tokenFill": "accent"
+      },
+      {
+        "id": "takeaway",
+        "type": "text",
+        "slot": "copy1",
+        "x": 225,
+        "y": 431.67,
+        "width": 441.67,
+        "height": 110,
+        "z": 4,
+        "morphId": "takeaway",
+        "fontRole": "body",
+        "fontSize": 26.67,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.38,
+        "usePrimitive": false
+      },
+      {
+        "id": "body",
+        "type": "text",
+        "slot": "copy2",
+        "x": 225,
+        "y": 589.17,
+        "width": 441.67,
+        "height": 120.83,
+        "z": 4,
+        "morphId": "body",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.32,
+        "usePrimitive": false
+      },
+      {
+        "id": "chart",
+        "type": "chart",
+        "slot": "chart",
+        "x": 957.5,
+        "y": 298.33,
+        "width": 372.5,
+        "height": 372.5,
+        "z": 2,
+        "morphId": "chart"
+      }
+    ]
+  },
+  "motion": {
+    "transition": "fade",
+    "fallbackTransition": "fade",
+    "durationMs": 500
+  },
+  "implementationNotes": [
+    "Geometry estimated from the supplied raster and scaled to 1600x900.",
+    "Body text raised to readable export floors; copy must fit the original whitespace.",
+    "Soft grain and photographic edge fades replaced by clean crops and flat palette surfaces.",
+    "Native chart supplies its data labels; manual reference labels are omitted."
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "id": "cover/cafe-pour",
+  "role": "cover",
+  "variant": "cafe-pour",
+  "family": "transit-diagram",
+  "status": "draft",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "note": {
+      "kind": "text",
+      "from": "caption"
+    },
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 112,
+      "minFont": 93,
+      "lineClamp": 4,
+      "shrinkMin": 0.83
+    },
+    "note": {
+      "maxFont": 34,
+      "minFont": 28,
+      "lineClamp": 4,
+      "shrinkMin": 0.83
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "note": {
+      "kind": "text"
+    },
+    "photo": {
+      "kind": "picture"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "photo",
+        "slot": "photo",
+        "type": "image",
+        "x": 590,
+        "y": 0,
+        "width": 1010,
+        "height": 900,
+        "z": 1,
+        "morphId": "photo"
+      },
+      {
+        "id": "panel",
+        "type": "shape",
+        "x": 0,
+        "y": 0,
+        "width": 660,
+        "height": 900,
+        "z": 1,
+        "tokenFill": "ink",
+        "shape": "rect",
+        "morphId": "panel"
+      },
+      {
+        "id": "tab",
+        "type": "shape",
+        "x": 620,
+        "y": 210,
+        "width": 170,
+        "height": 16,
+        "z": 1,
+        "tokenFill": "accent",
+        "shape": "rect",
+        "morphId": "tab"
+      },
+      {
+        "id": "title",
+        "slot": "title",
+        "type": "text",
+        "x": 55,
+        "y": 240,
+        "width": 565,
+        "height": 350,
+        "fontSize": 112,
+        "fontRole": "display",
+        "tokenColor": "bg",
+        "z": 5,
+        "morphId": "title"
+      },
+      {
+        "id": "note",
+        "slot": "note",
+        "type": "text",
+        "x": 62,
+        "y": 708,
+        "width": 490,
+        "height": 130,
+        "fontSize": 34,
+        "fontRole": "body",
+        "tokenColor": "bg",
+        "z": 5,
+        "morphId": "note"
+      }
+    ]
+  }
+}

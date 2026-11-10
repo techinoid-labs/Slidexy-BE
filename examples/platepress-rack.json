@@ -1,0 +1,123 @@
+{
+  "name": "Platepress • Rack",
+  "description": "Printmaker portfolio — plate rack cover, ink well, pull prints and a pull close.",
+  "brand": {
+    "colors": {
+      "bg": "#12110F",
+      "surface": "#1E1C18",
+      "surface_color": "#2C2922",
+      "ink": "#F5F0E6",
+      "muted": "#9A9488",
+      "accent": "#3D6FBF",
+      "line": "#3A362E"
+    },
+    "fonts": {
+      "display": "Impact",
+      "body": "Georgia"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "platepress"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "PLATEPRESS",
+        "items": [
+          "Rack · edition notes",
+          "pull",
+          "07"
+        ],
+        "photoQuery": "50597e1fdb"
+      },
+      {
+        "role": "feature",
+        "title": "Plates",
+        "items": [
+          "Copper",
+          "line cut",
+          "Zinc",
+          "aquatint",
+          "Wood",
+          "relief",
+          "Stone",
+          "litho",
+          "Slot by medium."
+        ],
+        "photoQuery": "07c71ad45242"
+      },
+      {
+        "role": "feature",
+        "title": "Pulls",
+        "items": [
+          "Artist proof",
+          "first clean pull",
+          "Edition",
+          "numbered stack",
+          "State",
+          "before wipe"
+        ],
+        "photoQuery": "0506d14bb966"
+      },
+      {
+        "role": "feature",
+        "title": "Press",
+        "items": [
+          "01",
+          "Ink",
+          "02",
+          "Wipe",
+          "03",
+          "Pull",
+          "04",
+          "Dry"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Pressure remembers the hand.",
+        "items": [
+          "— Print shop"
+        ],
+        "photoQuery": "50597e1fdb"
+      },
+      {
+        "role": "closing",
+        "title": "Pull.",
+        "items": [
+          "Platepress Rack · edition"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "press-cover"
+    },
+    {
+      "role": "feature",
+      "variant": "press-plates"
+    },
+    {
+      "role": "feature",
+      "variant": "press-pulls"
+    },
+    {
+      "role": "feature",
+      "variant": "press-steps"
+    },
+    {
+      "role": "feature",
+      "variant": "press-quote"
+    },
+    {
+      "role": "closing",
+      "variant": "press-pull"
+    }
+  ]
+}

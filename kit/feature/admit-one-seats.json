@@ -1,0 +1,733 @@
+{
+  "id": "feature/admit-one-seats",
+  "role": "feature",
+  "variant": "admit-one-seats",
+  "family": "admit-one",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "copy2": {
+      "kind": "text",
+      "from": "items2"
+    },
+    "copy3": {
+      "kind": "text",
+      "from": "items3"
+    },
+    "copy4": {
+      "kind": "text",
+      "from": "items4"
+    },
+    "copy5": {
+      "kind": "text",
+      "from": "items5"
+    },
+    "copy6": {
+      "kind": "text",
+      "from": "items6"
+    },
+    "copy7": {
+      "kind": "text",
+      "from": "items7"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 56,
+      "maxFont": 56,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 36,
+      "maxFont": 36,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 36,
+      "maxFont": 36,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy2": {
+      "minFont": 36,
+      "maxFont": 36,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy3": {
+      "minFont": 36,
+      "maxFont": 36,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy4": {
+      "minFont": 28,
+      "maxFont": 28,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy5": {
+      "minFont": 28,
+      "maxFont": 28,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy6": {
+      "minFont": 28,
+      "maxFont": 28,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy7": {
+      "minFont": 28,
+      "maxFont": 28,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    },
+    "copy3": {
+      "kind": "text"
+    },
+    "copy4": {
+      "kind": "text"
+    },
+    "copy5": {
+      "kind": "text"
+    },
+    "copy6": {
+      "kind": "text"
+    },
+    "copy7": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "bg",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "bg",
+        "z": 0
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 70,
+        "y": 40,
+        "width": 1460,
+        "height": 80,
+        "fontSize": 56,
+        "slot": "title",
+        "tokenColor": "accent",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "morphId": "title"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 70,
+        "y": 140,
+        "width": 80,
+        "height": 50,
+        "fontSize": 36,
+        "slot": "copy0",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "copy1",
+        "type": "text",
+        "x": 70,
+        "y": 280,
+        "width": 80,
+        "height": 50,
+        "fontSize": 36,
+        "slot": "copy1",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "copy2",
+        "type": "text",
+        "x": 70,
+        "y": 420,
+        "width": 80,
+        "height": 50,
+        "fontSize": 36,
+        "slot": "copy2",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "copy3",
+        "type": "text",
+        "x": 70,
+        "y": 560,
+        "width": 80,
+        "height": 50,
+        "fontSize": 36,
+        "slot": "copy3",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "copy4",
+        "type": "text",
+        "x": 200,
+        "y": 800,
+        "width": 200,
+        "height": 50,
+        "fontSize": 28,
+        "slot": "copy4",
+        "tokenColor": "accent",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "copy5",
+        "type": "text",
+        "x": 500,
+        "y": 800,
+        "width": 200,
+        "height": 50,
+        "fontSize": 28,
+        "slot": "copy5",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "copy6",
+        "type": "text",
+        "x": 800,
+        "y": 800,
+        "width": 200,
+        "height": 50,
+        "fontSize": 28,
+        "slot": "copy6",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "copy7",
+        "type": "text",
+        "x": 1100,
+        "y": 800,
+        "width": 200,
+        "height": 50,
+        "fontSize": 28,
+        "slot": "copy7",
+        "tokenColor": "accent",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "seat0_0",
+        "type": "shape",
+        "shape": "rect",
+        "x": 180,
+        "y": 140,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "surface",
+        "z": 2
+      },
+      {
+        "id": "seat0_1",
+        "type": "shape",
+        "shape": "rect",
+        "x": 310,
+        "y": 140,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "accent",
+        "z": 2
+      },
+      {
+        "id": "seat0_2",
+        "type": "shape",
+        "shape": "rect",
+        "x": 440,
+        "y": 140,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "surface",
+        "z": 2
+      },
+      {
+        "id": "seat0_3",
+        "type": "shape",
+        "shape": "rect",
+        "x": 570,
+        "y": 140,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "seat0_4",
+        "type": "shape",
+        "shape": "rect",
+        "x": 700,
+        "y": 140,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "surface",
+        "z": 2
+      },
+      {
+        "id": "seat0_5",
+        "type": "shape",
+        "shape": "rect",
+        "x": 830,
+        "y": 140,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "surface",
+        "z": 2
+      },
+      {
+        "id": "seat0_6",
+        "type": "shape",
+        "shape": "rect",
+        "x": 960,
+        "y": 140,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "accent",
+        "z": 2
+      },
+      {
+        "id": "seat0_7",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1090,
+        "y": 140,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "surface",
+        "z": 2
+      },
+      {
+        "id": "seat0_8",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1220,
+        "y": 140,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "seat0_9",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1350,
+        "y": 140,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "surface",
+        "z": 2
+      },
+      {
+        "id": "seat1_0",
+        "type": "shape",
+        "shape": "rect",
+        "x": 180,
+        "y": 280,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "surface",
+        "z": 2
+      },
+      {
+        "id": "seat1_1",
+        "type": "shape",
+        "shape": "rect",
+        "x": 310,
+        "y": 280,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "accent",
+        "z": 2
+      },
+      {
+        "id": "seat1_2",
+        "type": "shape",
+        "shape": "rect",
+        "x": 440,
+        "y": 280,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "surface",
+        "z": 2
+      },
+      {
+        "id": "seat1_3",
+        "type": "shape",
+        "shape": "rect",
+        "x": 570,
+        "y": 280,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "accent",
+        "z": 2
+      },
+      {
+        "id": "seat1_4",
+        "type": "shape",
+        "shape": "rect",
+        "x": 700,
+        "y": 280,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "surface",
+        "z": 2
+      },
+      {
+        "id": "seat1_5",
+        "type": "shape",
+        "shape": "rect",
+        "x": 830,
+        "y": 280,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "seat1_6",
+        "type": "shape",
+        "shape": "rect",
+        "x": 960,
+        "y": 280,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "surface",
+        "z": 2
+      },
+      {
+        "id": "seat1_7",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1090,
+        "y": 280,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "surface",
+        "z": 2
+      },
+      {
+        "id": "seat1_8",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1220,
+        "y": 280,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "accent",
+        "z": 2
+      },
+      {
+        "id": "seat1_9",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1350,
+        "y": 280,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "surface",
+        "z": 2
+      },
+      {
+        "id": "seat2_0",
+        "type": "shape",
+        "shape": "rect",
+        "x": 180,
+        "y": 420,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "seat2_1",
+        "type": "shape",
+        "shape": "rect",
+        "x": 310,
+        "y": 420,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "surface",
+        "z": 2
+      },
+      {
+        "id": "seat2_2",
+        "type": "shape",
+        "shape": "rect",
+        "x": 440,
+        "y": 420,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "surface",
+        "z": 2
+      },
+      {
+        "id": "seat2_3",
+        "type": "shape",
+        "shape": "rect",
+        "x": 570,
+        "y": 420,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "accent",
+        "z": 2
+      },
+      {
+        "id": "seat2_4",
+        "type": "shape",
+        "shape": "rect",
+        "x": 700,
+        "y": 420,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "surface",
+        "z": 2
+      },
+      {
+        "id": "seat2_5",
+        "type": "shape",
+        "shape": "rect",
+        "x": 830,
+        "y": 420,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "accent",
+        "z": 2
+      },
+      {
+        "id": "seat2_6",
+        "type": "shape",
+        "shape": "rect",
+        "x": 960,
+        "y": 420,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "surface",
+        "z": 2
+      },
+      {
+        "id": "seat2_7",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1090,
+        "y": 420,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "seat2_8",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1220,
+        "y": 420,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "surface",
+        "z": 2
+      },
+      {
+        "id": "seat2_9",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1350,
+        "y": 420,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "surface",
+        "z": 2
+      },
+      {
+        "id": "seat3_0",
+        "type": "shape",
+        "shape": "rect",
+        "x": 180,
+        "y": 560,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "accent",
+        "z": 2
+      },
+      {
+        "id": "seat3_1",
+        "type": "shape",
+        "shape": "rect",
+        "x": 310,
+        "y": 560,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "surface",
+        "z": 2
+      },
+      {
+        "id": "seat3_2",
+        "type": "shape",
+        "shape": "rect",
+        "x": 440,
+        "y": 560,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "seat3_3",
+        "type": "shape",
+        "shape": "rect",
+        "x": 570,
+        "y": 560,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "surface",
+        "z": 2
+      },
+      {
+        "id": "seat3_4",
+        "type": "shape",
+        "shape": "rect",
+        "x": 700,
+        "y": 560,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "surface",
+        "z": 2
+      },
+      {
+        "id": "seat3_5",
+        "type": "shape",
+        "shape": "rect",
+        "x": 830,
+        "y": 560,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "accent",
+        "z": 2
+      },
+      {
+        "id": "seat3_6",
+        "type": "shape",
+        "shape": "rect",
+        "x": 960,
+        "y": 560,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "surface",
+        "z": 2
+      },
+      {
+        "id": "seat3_7",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1090,
+        "y": 560,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "accent",
+        "z": 2
+      },
+      {
+        "id": "seat3_8",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1220,
+        "y": 560,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "surface",
+        "z": 2
+      },
+      {
+        "id": "seat3_9",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1350,
+        "y": 560,
+        "width": 100,
+        "height": 100,
+        "tokenFill": "line",
+        "z": 2
+      }
+    ]
+  }
+}

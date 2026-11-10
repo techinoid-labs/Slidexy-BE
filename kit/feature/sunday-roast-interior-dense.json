@@ -1,0 +1,219 @@
+{
+    "id":  "feature/sunday-roast-interior-dense",
+    "role":  "feature",
+    "variant":  "sunday-roast-interior-dense",
+    "family":  "sunday-roast",
+    "status":  "approved",
+    "preserveLayout":  true,
+    "requiresPhoto":  true,
+    "photoSlots":  [
+                       "photo"
+                   ],
+    "slots":  {
+                  "photo":  {
+                                "kind":  "image",
+                                "from":  "photo"
+                            },
+                  "title":  {
+                                "kind":  "text",
+                                "from":  "title"
+                            },
+                  "copy0":  {
+                                "kind":  "text",
+                                "from":  "items0"
+                            },
+                  "copy1":  {
+                                "kind":  "text",
+                                "from":  "items1"
+                            },
+                  "copy2":  {
+                                "kind":  "text",
+                                "from":  "items2"
+                            },
+                  "copy3":  {
+                                "kind":  "text",
+                                "from":  "items3"
+                            }
+              },
+    "fit":  {
+                "title":  {
+                              "maxFont":  78,
+                              "minFont":  78,
+                              "lineClamp":  1,
+                              "shrinkMin":  1
+                          },
+                "copy0":  {
+                              "maxFont":  36,
+                              "minFont":  36,
+                              "lineClamp":  1,
+                              "shrinkMin":  1
+                          },
+                "copy1":  {
+                              "maxFont":  32,
+                              "minFont":  32,
+                              "lineClamp":  5,
+                              "shrinkMin":  1
+                          },
+                "copy2":  {
+                              "maxFont":  36,
+                              "minFont":  36,
+                              "lineClamp":  1,
+                              "shrinkMin":  1
+                          },
+                "copy3":  {
+                              "maxFont":  30,
+                              "minFont":  30,
+                              "lineClamp":  4,
+                              "shrinkMin":  1
+                          }
+            },
+    "pptxMapping":  {
+                        "photo":  {
+                                      "kind":  "picture"
+                                  },
+                        "title":  {
+                                      "kind":  "text"
+                                  },
+                        "copy0":  {
+                                      "kind":  "text"
+                                  },
+                        "copy1":  {
+                                      "kind":  "text"
+                                  },
+                        "copy2":  {
+                                      "kind":  "text"
+                                  },
+                        "copy3":  {
+                                      "kind":  "text"
+                                  }
+                    },
+    "layout":  {
+                   "elements":  [
+                                    {
+                                        "type":  "image",
+                                        "x":  0,
+                                        "y":  0,
+                                        "width":  700,
+                                        "height":  900,
+                                        "z":  1,
+                                        "id":  "image0",
+                                        "morphId":  "image0",
+                                        "slot":  "photo"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  700,
+                                        "y":  0,
+                                        "width":  900,
+                                        "height":  900,
+                                        "tokenFill":  "surface",
+                                        "z":  1,
+                                        "id":  "shape1",
+                                        "morphId":  "shape1"
+                                    },
+                                    {
+                                        "type":  "text",
+                                        "x":  760,
+                                        "y":  70,
+                                        "width":  760,
+                                        "height":  120,
+                                        "fontSize":  78,
+                                        "tokenColor":  "ink",
+                                        "fontRole":  "display",
+                                        "fontWeight":  700,
+                                        "lineHeight":  1.05,
+                                        "z":  4,
+                                        "id":  "text2",
+                                        "morphId":  "text2",
+                                        "slot":  "title"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  760,
+                                        "y":  210,
+                                        "width":  160,
+                                        "height":  5,
+                                        "tokenFill":  "accent",
+                                        "z":  2,
+                                        "id":  "rule",
+                                        "morphId":  "rule"
+                                    },
+                                    {
+                                        "type":  "text",
+                                        "x":  760,
+                                        "y":  250,
+                                        "width":  740,
+                                        "height":  55,
+                                        "fontSize":  36,
+                                        "tokenColor":  "accent",
+                                        "fontRole":  "body",
+                                        "fontWeight":  700,
+                                        "lineHeight":  1.12,
+                                        "z":  4,
+                                        "id":  "text3",
+                                        "morphId":  "text3",
+                                        "slot":  "copy0"
+                                    },
+                                    {
+                                        "type":  "text",
+                                        "x":  760,
+                                        "y":  320,
+                                        "width":  740,
+                                        "height":  200,
+                                        "fontSize":  32,
+                                        "tokenColor":  "ink",
+                                        "fontRole":  "body",
+                                        "lineHeight":  1.28,
+                                        "z":  4,
+                                        "id":  "text4",
+                                        "morphId":  "text4",
+                                        "slot":  "copy1"
+                                    },
+                                    {
+                                        "type":  "shape",
+                                        "shape":  "rect",
+                                        "x":  760,
+                                        "y":  545,
+                                        "width":  740,
+                                        "height":  2,
+                                        "tokenFill":  "line",
+                                        "z":  1,
+                                        "id":  "shape5",
+                                        "morphId":  "shape5"
+                                    },
+                                    {
+                                        "type":  "text",
+                                        "x":  760,
+                                        "y":  580,
+                                        "width":  740,
+                                        "height":  55,
+                                        "fontSize":  36,
+                                        "tokenColor":  "accent",
+                                        "fontRole":  "body",
+                                        "fontWeight":  700,
+                                        "lineHeight":  1.12,
+                                        "z":  4,
+                                        "id":  "text6",
+                                        "morphId":  "text6",
+                                        "slot":  "copy2"
+                                    },
+                                    {
+                                        "type":  "text",
+                                        "x":  760,
+                                        "y":  655,
+                                        "width":  740,
+                                        "height":  180,
+                                        "fontSize":  30,
+                                        "tokenColor":  "ink",
+                                        "fontRole":  "body",
+                                        "lineHeight":  1.28,
+                                        "z":  4,
+                                        "id":  "text7",
+                                        "morphId":  "text7",
+                                        "slot":  "copy3"
+                                    }
+                                ]
+               }
+}

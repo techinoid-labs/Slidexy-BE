@@ -1,0 +1,209 @@
+{
+  "id": "feature/abyss-port",
+  "role": "feature",
+  "variant": "abyss-port",
+  "family": "abyss",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 64,
+      "maxFont": 64,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 40,
+      "maxFont": 40,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 28,
+      "maxFont": 28,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "photo": {
+      "kind": "picture"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "bg",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "bg",
+        "z": 0
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 80,
+        "y": 50,
+        "width": 700,
+        "height": 91,
+        "fontSize": 64,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "textStyleRole": "display",
+        "morphId": "title"
+      },
+      {
+        "id": "viewrim",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 820,
+        "y": 100,
+        "width": 680,
+        "height": 680,
+        "tokenFill": "surface_color",
+        "z": 1,
+        "morphId": "plate"
+      },
+      {
+        "id": "viewinner",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 874,
+        "y": 154,
+        "width": 572,
+        "height": 572,
+        "tokenFill": "bg",
+        "z": 2
+      },
+      {
+        "id": "viewphoto",
+        "type": "image",
+        "x": 886,
+        "y": 166,
+        "width": 548,
+        "height": 548,
+        "z": 3,
+        "slot": "photo",
+        "zoom": 1.2
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 80,
+        "y": 280,
+        "width": 640,
+        "height": 120,
+        "fontSize": 40,
+        "slot": "copy0",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "copy1",
+        "type": "text",
+        "x": 80,
+        "y": 440,
+        "width": 500,
+        "height": 50,
+        "fontSize": 28,
+        "slot": "copy1",
+        "tokenColor": "accent",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "gbody",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 80,
+        "y": 560,
+        "width": 220,
+        "height": 220,
+        "tokenFill": "surface",
+        "z": 2,
+        "morphId": "plate"
+      },
+      {
+        "id": "gface",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 130,
+        "y": 610,
+        "width": 121,
+        "height": 121,
+        "tokenFill": "bg",
+        "z": 3
+      },
+      {
+        "id": "gneedle",
+        "type": "shape",
+        "shape": "rect",
+        "x": 187,
+        "y": 600,
+        "width": 6,
+        "height": 75,
+        "tokenFill": "accent",
+        "z": 4,
+        "morphId": "accent"
+      },
+      {
+        "id": "ghub",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 180,
+        "y": 660,
+        "width": 20,
+        "height": 20,
+        "tokenFill": "accent",
+        "z": 5
+      }
+    ]
+  }
+}

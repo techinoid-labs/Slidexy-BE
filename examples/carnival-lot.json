@@ -1,0 +1,119 @@
+{
+  "name": "Carnival • Lot",
+  "description": "Funky night carnival — striped awning cover, prize tags, ferris cabs and a ride close.",
+  "brand": {
+    "colors": {
+      "bg": "#0F1A2E",
+      "surface": "#1A2B48",
+      "surface_color": "#243860",
+      "ink": "#FFF7E8",
+      "muted": "#9BB0D0",
+      "accent": "#FFB703",
+      "line": "#35507A"
+    },
+    "fonts": {
+      "display": "Franklin Gothic Heavy",
+      "body": "Trebuchet MS"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "carnival"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "CARNIVAL",
+        "items": [
+          "Lot B · after dark",
+          "tickets",
+          "03"
+        ],
+        "photoQuery": "092c8c1420fb"
+      },
+      {
+        "role": "feature",
+        "title": "Prizes",
+        "items": [
+          "Goldfish",
+          "easy win",
+          "Bear",
+          "three rings",
+          "Whistle",
+          "side booth",
+          "Crown",
+          "top shelf"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Booths",
+        "items": [
+          "Ring toss",
+          "Soft aim, hard laugh.",
+          "Dart wall",
+          "Pop three, walk tall.",
+          "Strongman",
+          "Bell is optional."
+        ],
+        "photoQuery": "0288432f0b82"
+      },
+      {
+        "role": "feature",
+        "title": "Wheel",
+        "items": [
+          "Cab 1",
+          "Cab 2",
+          "Cab 3",
+          "Cab 4",
+          "Cab 5",
+          "Cab 6"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Stay for the lights.",
+        "items": [
+          "— Lot notes"
+        ],
+        "photoQuery": "092c8c1420fb"
+      },
+      {
+        "role": "closing",
+        "title": "Ride.",
+        "items": [
+          "Carnival Lot · last loop"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "carnival-awning"
+    },
+    {
+      "role": "feature",
+      "variant": "carnival-prizes"
+    },
+    {
+      "role": "feature",
+      "variant": "carnival-booths"
+    },
+    {
+      "role": "feature",
+      "variant": "carnival-wheel"
+    },
+    {
+      "role": "feature",
+      "variant": "carnival-quote"
+    },
+    {
+      "role": "closing",
+      "variant": "carnival-ride"
+    }
+  ]
+}

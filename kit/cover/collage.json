@@ -1,0 +1,157 @@
+{
+  "role": "cover",
+  "family": "anti-grid",
+  "slots": {
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    },
+    "caption": {
+      "kind": "text",
+      "optional": true,
+      "from": "caption"
+    },
+    "p1": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo"
+    },
+    "p2": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo"
+    },
+    "p3": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo"
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 100,
+      "minFont": 48,
+      "lineClamp": 3,
+      "shrinkMin": 0.85
+    },
+    "caption": {
+      "maxFont": 28,
+      "minFont": 24,
+      "lineClamp": 3,
+      "shrinkMin": 0.9
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "caption": {
+      "kind": "text"
+    },
+    "p1": {
+      "kind": "picture"
+    },
+    "p2": {
+      "kind": "picture"
+    },
+    "p3": {
+      "kind": "picture"
+    }
+  },
+  "status": "draft",
+  "motion": {
+    "transition": "fade",
+    "fallbackTransition": "fade",
+    "durationMs": 500
+  },
+  "id": "cover/collage",
+  "variant": "collage",
+  "steal": "Three staggered photo crops form an editorial collage beside the title.",
+  "requiresPhoto": true,
+  "photoSlots": [
+    "p1",
+    "p2",
+    "p3"
+  ],
+  "layout": {
+    "elements": [
+      {
+        "id": "p1",
+        "type": "image",
+        "slot": "p1",
+        "x": 840,
+        "y": 60,
+        "width": 688,
+        "height": 420,
+        "z": 1,
+        "morphId": "p1"
+      },
+      {
+        "id": "p2",
+        "type": "image",
+        "slot": "p2",
+        "x": 760,
+        "y": 520,
+        "width": 360,
+        "height": 320,
+        "z": 2,
+        "morphId": "p2"
+      },
+      {
+        "id": "p3",
+        "type": "image",
+        "slot": "p3",
+        "x": 1160,
+        "y": 440,
+        "width": 368,
+        "height": 400,
+        "z": 3,
+        "morphId": "p3"
+      },
+      {
+        "id": "accent",
+        "type": "shape",
+        "shape": "rect",
+        "x": 72,
+        "y": 180,
+        "width": 72,
+        "height": 8,
+        "tokenFill": "accent",
+        "z": 3,
+        "morphId": "accent"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "x": 72,
+        "y": 240,
+        "width": 640,
+        "height": 300,
+        "z": 4,
+        "morphId": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 88,
+        "align": "left"
+      },
+      {
+        "id": "caption",
+        "type": "text",
+        "slot": "caption",
+        "x": 72,
+        "y": 600,
+        "width": 600,
+        "height": 180,
+        "z": 4,
+        "morphId": "caption",
+        "tokenColor": "muted",
+        "color": "#594B3F",
+        "fontRole": "body",
+        "fontSize": 26,
+        "align": "left"
+      }
+    ]
+  }
+}

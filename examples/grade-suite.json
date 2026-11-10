@@ -1,0 +1,127 @@
+{
+  "name": "Grade • Suite",
+  "description": "Color-grade deck — RGB waveform cover, color wheels, node chain and a timeline scrubber.",
+  "brand": {
+    "colors": {
+      "bg": "#0D0F12",
+      "surface": "#171A20",
+      "surface_color": "#22262F",
+      "ink": "#F2F4F7",
+      "muted": "#8B919C",
+      "accent": "#6C8CFF",
+      "line": "#2C313C"
+    },
+    "fonts": {
+      "display": "Syne",
+      "body": "IBM Plex Mono"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "grade"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "GRADE",
+        "items": [
+          "Edit suite · node graph",
+          "LUT pack 04",
+          "4K"
+        ],
+        "photoQuery": "8260f0bf57"
+      },
+      {
+        "role": "feature",
+        "title": "Waveforms",
+        "items": [
+          "R",
+          "72%",
+          "G",
+          "58%",
+          "B",
+          "41%",
+          "Y",
+          "66%"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Wheels",
+        "items": [
+          "Lift",
+          "warm",
+          "Gamma",
+          "neutral",
+          "Gain",
+          "cool"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Node graph",
+        "items": [
+          "01",
+          "Raw",
+          "02",
+          "Balance",
+          "03",
+          "Look",
+          "04",
+          "Export"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Timeline",
+        "items": [
+          "00:00",
+          "Teaser",
+          "00:42",
+          "Interview",
+          "01:18",
+          "B-roll",
+          "02:05",
+          "End card"
+        ],
+        "photoQuery": "8260f0bf57"
+      },
+      {
+        "role": "closing",
+        "title": "Render.",
+        "items": [
+          "Grade Suite · overnight queue"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "grade-scopes"
+    },
+    {
+      "role": "feature",
+      "variant": "grade-waveforms"
+    },
+    {
+      "role": "feature",
+      "variant": "grade-wheels"
+    },
+    {
+      "role": "feature",
+      "variant": "grade-nodes"
+    },
+    {
+      "role": "feature",
+      "variant": "grade-timeline"
+    },
+    {
+      "role": "closing",
+      "variant": "grade-render"
+    }
+  ]
+}

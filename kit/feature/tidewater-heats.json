@@ -1,0 +1,416 @@
+{
+  "id": "feature/tidewater-heats",
+  "role": "feature",
+  "variant": "tidewater-heats",
+  "family": "tidewater",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "copy2": {
+      "kind": "text",
+      "from": "items2"
+    },
+    "copy3": {
+      "kind": "text",
+      "from": "items3"
+    },
+    "copy4": {
+      "kind": "text",
+      "from": "items4"
+    },
+    "copy5": {
+      "kind": "text",
+      "from": "items5"
+    },
+    "copy6": {
+      "kind": "text",
+      "from": "items6"
+    },
+    "copy7": {
+      "kind": "text",
+      "from": "items7"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 84,
+      "maxFont": 84,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 36,
+      "maxFont": 36,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 32,
+      "maxFont": 32,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy2": {
+      "minFont": 36,
+      "maxFont": 36,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy3": {
+      "minFont": 32,
+      "maxFont": 32,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy4": {
+      "minFont": 36,
+      "maxFont": 36,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy5": {
+      "minFont": 32,
+      "maxFont": 32,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy6": {
+      "minFont": 36,
+      "maxFont": 36,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy7": {
+      "minFont": 32,
+      "maxFont": 32,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    },
+    "copy3": {
+      "kind": "text"
+    },
+    "copy4": {
+      "kind": "text"
+    },
+    "copy5": {
+      "kind": "text"
+    },
+    "copy6": {
+      "kind": "text"
+    },
+    "copy7": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "bg",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "bg",
+        "z": 0
+      },
+      {
+        "id": "photo",
+        "type": "image",
+        "x": 80,
+        "y": 150,
+        "width": 600,
+        "height": 600,
+        "z": 1,
+        "slot": "photo",
+        "mask": "circle",
+        "zoom": 1.6,
+        "alignX": 0.3,
+        "morphId": "hero"
+      },
+      {
+        "id": "ring",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 600,
+        "y": 140,
+        "width": 120,
+        "height": 120,
+        "tokenFill": "accent",
+        "z": 2
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 760,
+        "y": 70,
+        "width": 780,
+        "height": 120,
+        "fontSize": 84,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "textStyleRole": "display",
+        "morphId": "title"
+      },
+      {
+        "id": "dot0",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 760,
+        "y": 244,
+        "width": 26,
+        "height": 26,
+        "tokenFill": "accent",
+        "z": 1
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 810,
+        "y": 230,
+        "width": 190,
+        "height": 52,
+        "fontSize": 36,
+        "slot": "copy0",
+        "tokenColor": "accent",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "copy1",
+        "type": "text",
+        "x": 1010,
+        "y": 232,
+        "width": 530,
+        "height": 50,
+        "fontSize": 32,
+        "slot": "copy1",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "rule0",
+        "type": "shape",
+        "shape": "rect",
+        "x": 760,
+        "y": 320,
+        "width": 780,
+        "height": 2,
+        "tokenFill": "line",
+        "z": 1
+      },
+      {
+        "id": "dot1",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 760,
+        "y": 394,
+        "width": 26,
+        "height": 26,
+        "tokenFill": "accent",
+        "z": 1
+      },
+      {
+        "id": "copy2",
+        "type": "text",
+        "x": 810,
+        "y": 380,
+        "width": 190,
+        "height": 52,
+        "fontSize": 36,
+        "slot": "copy2",
+        "tokenColor": "accent",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "copy3",
+        "type": "text",
+        "x": 1010,
+        "y": 382,
+        "width": 530,
+        "height": 50,
+        "fontSize": 32,
+        "slot": "copy3",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "rule1",
+        "type": "shape",
+        "shape": "rect",
+        "x": 760,
+        "y": 470,
+        "width": 780,
+        "height": 2,
+        "tokenFill": "line",
+        "z": 1
+      },
+      {
+        "id": "dot2",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 760,
+        "y": 544,
+        "width": 26,
+        "height": 26,
+        "tokenFill": "accent",
+        "z": 1
+      },
+      {
+        "id": "copy4",
+        "type": "text",
+        "x": 810,
+        "y": 530,
+        "width": 190,
+        "height": 52,
+        "fontSize": 36,
+        "slot": "copy4",
+        "tokenColor": "accent",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "copy5",
+        "type": "text",
+        "x": 1010,
+        "y": 532,
+        "width": 530,
+        "height": 50,
+        "fontSize": 32,
+        "slot": "copy5",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "rule2",
+        "type": "shape",
+        "shape": "rect",
+        "x": 760,
+        "y": 620,
+        "width": 780,
+        "height": 2,
+        "tokenFill": "line",
+        "z": 1
+      },
+      {
+        "id": "dot3",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 760,
+        "y": 694,
+        "width": 26,
+        "height": 26,
+        "tokenFill": "accent",
+        "z": 1
+      },
+      {
+        "id": "copy6",
+        "type": "text",
+        "x": 810,
+        "y": 680,
+        "width": 190,
+        "height": 52,
+        "fontSize": 36,
+        "slot": "copy6",
+        "tokenColor": "accent",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "copy7",
+        "type": "text",
+        "x": 1010,
+        "y": 682,
+        "width": 530,
+        "height": 50,
+        "fontSize": 32,
+        "slot": "copy7",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "rule3",
+        "type": "shape",
+        "shape": "rect",
+        "x": 760,
+        "y": 770,
+        "width": 780,
+        "height": 2,
+        "tokenFill": "line",
+        "z": 1
+      }
+    ]
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "name": "Jukebox • Reel",
+  "description": "Funky diner jukebox deck — neon arch cover, vinyl spines, song tickets and a play close.",
+  "brand": {
+    "colors": {
+      "bg": "#14080C",
+      "surface": "#2A1218",
+      "surface_color": "#3D1A24",
+      "ink": "#FFF4E8",
+      "muted": "#C49AA6",
+      "accent": "#FF2E63",
+      "line": "#5A2A38"
+    },
+    "fonts": {
+      "display": "Impact",
+      "body": "Bahnschrift"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "jukebox"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "JUKEBOX",
+        "items": [
+          "Reel 12 · late night",
+          "credits",
+          "A1"
+        ],
+        "photoQuery": "07c71ad45242"
+      },
+      {
+        "role": "feature",
+        "title": "Spines",
+        "items": [
+          "Red",
+          "Mint",
+          "Gold",
+          "Ink",
+          "Rose",
+          "Navy",
+          "Chrome",
+          "Dust",
+          "Pull one. Play loud."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Requests",
+        "items": [
+          "Side A",
+          "Slow burn opener",
+          "Side B",
+          "Crowd chorus",
+          "Encore",
+          "Leave the needle warm."
+        ],
+        "photoQuery": "0506d14bb966"
+      },
+      {
+        "role": "feature",
+        "title": "Setlist",
+        "items": [
+          "01",
+          "Walk in",
+          "02",
+          "Drop the coin",
+          "03",
+          "Hold the chorus",
+          "04",
+          "Fade out"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Keep the coin warm.",
+        "items": [
+          "— Night host"
+        ],
+        "photoQuery": "07c71ad45242"
+      },
+      {
+        "role": "closing",
+        "title": "Play.",
+        "items": [
+          "Jukebox Reel · last dance"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "jukebox-arch"
+    },
+    {
+      "role": "feature",
+      "variant": "jukebox-spines"
+    },
+    {
+      "role": "feature",
+      "variant": "jukebox-requests"
+    },
+    {
+      "role": "feature",
+      "variant": "jukebox-setlist"
+    },
+    {
+      "role": "feature",
+      "variant": "jukebox-quote"
+    },
+    {
+      "role": "closing",
+      "variant": "jukebox-play"
+    }
+  ]
+}

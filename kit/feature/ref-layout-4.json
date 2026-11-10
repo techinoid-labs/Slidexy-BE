@@ -1,0 +1,285 @@
+{
+  "id": "feature/ref-layout-4",
+  "role": "feature",
+  "variant": "ref-layout-4",
+  "family": "canva-ref",
+  "steal": "Three unboxed text columns; small outline icons float well above short headings and paragraphs. Large gap between title and icon row.",
+  "sourceRef": "ref-three-objectives",
+  "status": "draft",
+  "motion": {
+    "transition": "fade",
+    "fallbackTransition": "fade",
+    "durationMs": 500
+  },
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    },
+    "heading-0": {
+      "kind": "text",
+      "optional": true,
+      "from": "steps0.title"
+    },
+    "body-0": {
+      "kind": "text",
+      "optional": true,
+      "from": "steps0.body"
+    },
+    "heading-1": {
+      "kind": "text",
+      "optional": true,
+      "from": "steps1.title"
+    },
+    "body-1": {
+      "kind": "text",
+      "optional": true,
+      "from": "steps1.body"
+    },
+    "heading-2": {
+      "kind": "text",
+      "optional": true,
+      "from": "steps2.title"
+    },
+    "body-2": {
+      "kind": "text",
+      "optional": true,
+      "from": "steps2.body"
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 60,
+      "minFont": 42,
+      "lineClamp": 2,
+      "shrinkMin": 0.85
+    },
+    "heading-0": {
+      "maxFont": 23,
+      "minFont": 16,
+      "lineClamp": 2,
+      "shrinkMin": 0.9
+    },
+    "body-0": {
+      "maxFont": 18,
+      "minFont": 14,
+      "lineClamp": 5,
+      "shrinkMin": 0.9
+    },
+    "heading-1": {
+      "maxFont": 23,
+      "minFont": 16,
+      "lineClamp": 2,
+      "shrinkMin": 0.9
+    },
+    "body-1": {
+      "maxFont": 18,
+      "minFont": 14,
+      "lineClamp": 5,
+      "shrinkMin": 0.9
+    },
+    "heading-2": {
+      "maxFont": 23,
+      "minFont": 16,
+      "lineClamp": 2,
+      "shrinkMin": 0.9
+    },
+    "body-2": {
+      "maxFont": 18,
+      "minFont": 14,
+      "lineClamp": 5,
+      "shrinkMin": 0.9
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "heading-0": {
+      "kind": "text"
+    },
+    "body-0": {
+      "kind": "text"
+    },
+    "heading-1": {
+      "kind": "text"
+    },
+    "body-1": {
+      "kind": "text"
+    },
+    "heading-2": {
+      "kind": "text"
+    },
+    "body-2": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "x": 225,
+        "y": 167,
+        "width": 617,
+        "height": 78,
+        "z": 3,
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 60,
+        "align": "left",
+        "textTransform": "uppercase",
+        "morphId": "title",
+        "usePrimitive": false
+      },
+      {
+        "id": "title-rule",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "accent",
+        "x": 225,
+        "y": 249,
+        "width": 50,
+        "height": 3,
+        "z": 2,
+        "morphId": "title-rule"
+      },
+      {
+        "id": "icon-0",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "accent",
+        "opacity": 0.9,
+        "x": 225,
+        "y": 400,
+        "width": 70,
+        "height": 57,
+        "z": 1,
+        "morphId": "icon-0"
+      },
+      {
+        "id": "heading-0",
+        "type": "text",
+        "slot": "heading-0",
+        "x": 225,
+        "y": 529,
+        "width": 344,
+        "height": 37,
+        "z": 3,
+        "tokenColor": "ink",
+        "fontRole": "label",
+        "fontSize": 23,
+        "align": "left",
+        "morphId": "heading-0"
+      },
+      {
+        "id": "body-0",
+        "type": "text",
+        "slot": "body-0",
+        "x": 225,
+        "y": 589,
+        "width": 344,
+        "height": 145,
+        "z": 3,
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontSize": 18,
+        "align": "left",
+        "lineHeight": 1.32,
+        "morphId": "body-0"
+      },
+      {
+        "id": "icon-1",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "accent",
+        "opacity": 0.9,
+        "x": 628,
+        "y": 400,
+        "width": 70,
+        "height": 57,
+        "z": 1,
+        "morphId": "icon-1"
+      },
+      {
+        "id": "heading-1",
+        "type": "text",
+        "slot": "heading-1",
+        "x": 628,
+        "y": 529,
+        "width": 344,
+        "height": 37,
+        "z": 3,
+        "tokenColor": "ink",
+        "fontRole": "label",
+        "fontSize": 23,
+        "align": "left",
+        "morphId": "heading-1"
+      },
+      {
+        "id": "body-1",
+        "type": "text",
+        "slot": "body-1",
+        "x": 628,
+        "y": 589,
+        "width": 344,
+        "height": 145,
+        "z": 3,
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontSize": 18,
+        "align": "left",
+        "lineHeight": 1.32,
+        "morphId": "body-1"
+      },
+      {
+        "id": "icon-2",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "accent",
+        "opacity": 0.9,
+        "x": 1031,
+        "y": 400,
+        "width": 70,
+        "height": 57,
+        "z": 1,
+        "morphId": "icon-2"
+      },
+      {
+        "id": "heading-2",
+        "type": "text",
+        "slot": "heading-2",
+        "x": 1031,
+        "y": 529,
+        "width": 344,
+        "height": 37,
+        "z": 3,
+        "tokenColor": "ink",
+        "fontRole": "label",
+        "fontSize": 23,
+        "align": "left",
+        "morphId": "heading-2"
+      },
+      {
+        "id": "body-2",
+        "type": "text",
+        "slot": "body-2",
+        "x": 1031,
+        "y": 589,
+        "width": 344,
+        "height": 145,
+        "z": 3,
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontSize": 18,
+        "align": "left",
+        "lineHeight": 1.32,
+        "morphId": "body-2"
+      }
+    ]
+  }
+}

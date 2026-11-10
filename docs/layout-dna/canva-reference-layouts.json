@@ -1,0 +1,6119 @@
+{
+  "format": "slidexy-layout-dna-handoff",
+  "version": "1.0.0",
+  "scope": {
+    "requestedImageCount": 5,
+    "attachedImageCount": 16,
+    "analyzedImageCount": 16,
+    "selectionPolicy": "All supplied images, preserved in attachment order; sourceFile is the authoritative identifier."
+  },
+  "measurement": {
+    "source": "User-supplied flattened PNG images",
+    "precision": "Estimated from visual inspection, not extracted Figma/Canva node geometry.",
+    "geometryTolerancePx": 12,
+    "fontSizeTolerancePx": 4,
+    "decorativeBlurTolerance": "Not reliably measurable from the flattened images.",
+    "canvas": {
+      "width": 1920,
+      "height": 1080,
+      "aspectRatio": "16:9"
+    },
+    "coordinates": {
+      "unit": "px",
+      "origin": "top-left",
+      "xDirection": "right",
+      "yDirection": "down",
+      "boundsMeaning": "Estimated layout allocation, including leading and padding; not glyph ink bounding boxes.",
+      "normalizedBounds": "x,width divided by 1920; y,height divided by 1080; values are fractions, not percentages."
+    }
+  },
+  "implementation": {
+    "purpose": "Developer handoff specification; not an engine-loadable kit collection.",
+    "engineCanvas": {
+      "width": 1600,
+      "height": 900
+    },
+    "conversion": {
+      "x": "source.x * 5 / 6",
+      "y": "source.y * 5 / 6",
+      "width": "source.width * 5 / 6",
+      "height": "source.height * 5 / 6",
+      "fontSize": "source.fontSizePx * 5 / 6",
+      "letterSpacing": "source.letterSpacingPx * 5 / 6",
+      "note": "Scale every pixel-valued field, including chart plots, radii, strokes and negative-space zones. Keep ratios, percentages, angles and normalized fractions unchanged."
+    },
+    "integrationNotes": [
+      "Choose a role-specific kit rather than coercing team, charts, cover and pricing into feature.",
+      "Convert text roles into engine slots/from mappings and add fit, pptxMapping, status and layout.elements using the existing kit schema.",
+      "Map dynamic content and original photo/icon/logo assets to slots; the slide screenshot is a reference, not an implementation asset.",
+      "Fade masks, chart geometry, letter spacing and progress tracks may need renderer support; these specification fields are not asserted to be recognized by the current engine.",
+      "Keep geometry fixed for 16:9; on other aspect ratios letterbox or explicitly reflow instead of stretching.",
+      "When text exceeds the indicated box, shorten or split content first; do not silently consume reserved whitespace.",
+      "Colors are intentionally omitted. Preserve hierarchy through size, spacing and alignment."
+    ]
+  },
+  "sharedDNA": {
+    "commonContentEdgesPx": {
+      "left": 270,
+      "right": 1650,
+      "top": 200,
+      "bottom": 880
+    },
+    "commonContentWidthPx": 1380,
+    "standardSectionTitlePx": 72,
+    "standardParagraphPx": 22,
+    "standardTitleToBodyRatio": 3.273,
+    "standardTitleRulePx": {
+      "width": 60,
+      "height": 4,
+      "y": 299
+    },
+    "defaultTextTreatment": "Light/regular geometric sans; section headings uppercase; paragraphs left aligned.",
+    "importantExceptions": [
+      "Cover title is approximately 164px.",
+      "Break slide has a centered title and no body.",
+      "Timeline left-stage paragraphs and pricing descriptions are approximately 20px.",
+      "Partners and pricing titles are centered.",
+      "Introduction and progress use full-height left photos; showcase uses right-side photography."
+    ]
+  },
+  "slides": [
+    {
+      "id": "ref-group-project",
+      "sourceFile": "1.png",
+      "sourcePath": "C:/Users/SP Grid/Desktop/Canva Designs Images/1.png",
+      "suggestedEngineRole": "cover",
+      "spatialGeometry": "Oversized two-line title left of center; small brand upper-left; arrow upper-right; date and URL share a low baseline. Background sweep travels from lower-left toward upper-right.",
+      "elements": [
+        {
+          "id": "brand",
+          "type": "text",
+          "role": "brand",
+          "bounds": {
+            "x": 320,
+            "y": 198,
+            "width": 190,
+            "height": 34
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 24,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "BORCELLE"
+          },
+          "normalizedBounds": {
+            "x": 0.166667,
+            "y": 0.183333,
+            "width": 0.098958,
+            "height": 0.031481
+          }
+        },
+        {
+          "id": "brand-symbol",
+          "type": "image",
+          "bounds": {
+            "x": 270,
+            "y": 201,
+            "width": 28,
+            "height": 28
+          },
+          "z": 1,
+          "fit": "contain",
+          "assetRole": "logo",
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.186111,
+            "width": 0.014583,
+            "height": 0.025926
+          }
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "role": "title",
+          "bounds": {
+            "x": 270,
+            "y": 370,
+            "width": 790,
+            "height": 340
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 164,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1.03,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "textTransform": "uppercase",
+            "referenceText": "GROUP\nPROJECT",
+            "explicitLineBreaks": true,
+            "maxLines": 2
+          },
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.342593,
+            "width": 0.411458,
+            "height": 0.314815
+          }
+        },
+        {
+          "id": "arrow",
+          "type": "image",
+          "bounds": {
+            "x": 1610,
+            "y": 200,
+            "width": 40,
+            "height": 40
+          },
+          "z": 1,
+          "fit": "contain",
+          "assetRole": "directional-icon",
+          "normalizedBounds": {
+            "x": 0.838542,
+            "y": 0.185185,
+            "width": 0.020833,
+            "height": 0.037037
+          }
+        },
+        {
+          "id": "date",
+          "type": "text",
+          "role": "metadata",
+          "bounds": {
+            "x": 270,
+            "y": 847,
+            "width": 300,
+            "height": 36
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 24,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "DECEMBER 2030"
+          },
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.784259,
+            "width": 0.15625,
+            "height": 0.033333
+          }
+        },
+        {
+          "id": "website",
+          "type": "text",
+          "role": "metadata",
+          "bounds": {
+            "x": 1320,
+            "y": 847,
+            "width": 330,
+            "height": 36
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 24,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "right",
+            "referenceText": "reallygreatsite.com"
+          },
+          "normalizedBounds": {
+            "x": 0.6875,
+            "y": 0.784259,
+            "width": 0.171875,
+            "height": 0.033333
+          }
+        }
+      ],
+      "negativeSpace": {
+        "definition": "Reserved breathing room; background decoration is excluded from foreground occupancy.",
+        "zones": [
+          {
+            "id": "top-air",
+            "bounds": {
+              "x": 270,
+              "y": 0,
+              "width": 1380,
+              "height": 180
+            },
+            "reason": "Separates header from the top edge.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          },
+          {
+            "id": "right-open-field",
+            "bounds": {
+              "x": 1080,
+              "y": 300,
+              "width": 570,
+              "height": 490
+            },
+            "reason": "Counterbalances the oversized title.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          },
+          {
+            "id": "title-footer-gap",
+            "bounds": {
+              "x": 270,
+              "y": 720,
+              "width": 790,
+              "height": 120
+            },
+            "reason": "Separates headline from metadata.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          }
+        ],
+        "rules": [
+          "Use x=270 as the brand, title and date alignment axis.",
+          "Title-to-metadata scale is approximately 6.83:1.",
+          "Do not fill the open right side with copy."
+        ],
+        "reservedAreaFraction": 0.3002,
+        "areaMetric": "Sum of the listed non-overlapping reserved rectangles divided by canvas area; not the total visible whitespace or a measured background-pixel ratio."
+      },
+      "typographyHierarchy": {
+        "titleSizePx": 164,
+        "bodySizePx": null,
+        "titleToBodyRatio": null,
+        "titleToMetadataRatio": 6.833,
+        "levels": [
+          {
+            "role": "brand",
+            "sizePx": [
+              24
+            ]
+          },
+          {
+            "role": "title",
+            "sizePx": [
+              164
+            ]
+          },
+          {
+            "role": "metadata",
+            "sizePx": [
+              24
+            ]
+          }
+        ],
+        "fontIdentification": "Visual estimate only; exact family and original text-box metrics are unavailable from the flattened raster."
+      },
+      "backgroundDecoration": {
+        "type": "soft-grain-sweep",
+        "layer": "behind-all-content",
+        "geometryPrecision": "low",
+        "countsAsForegroundOccupancy": false,
+        "notes": "Soft amorphous diagonal sweep, not a hard image frame. Preserve text legibility; decorative color is intentionally unspecified.",
+        "placement": "lower-left toward upper-right"
+      }
+    },
+    {
+      "id": "ref-two-column-contents",
+      "sourceFile": "2.png",
+      "sourcePath": "C:/Users/SP Grid/Desktop/Canva Designs Images/2.png",
+      "suggestedEngineRole": "agenda",
+      "spatialGeometry": "Eight numbered rows in two equal columns; left column 01–04 and right column 05–08; numbers and text share baselines with long separators.",
+      "elements": [
+        {
+          "id": "title",
+          "type": "text",
+          "role": "title",
+          "bounds": {
+            "x": 270,
+            "y": 200,
+            "width": 740,
+            "height": 94
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 72,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1.05,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "textTransform": "uppercase",
+            "referenceText": "TABLE OF CONTENTS"
+          },
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.185185,
+            "width": 0.385417,
+            "height": 0.087037
+          }
+        },
+        {
+          "id": "title-rule",
+          "type": "shape",
+          "bounds": {
+            "x": 270,
+            "y": 299,
+            "width": 60,
+            "height": 4
+          },
+          "z": 2,
+          "shape": "rect",
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.276852,
+            "width": 0.03125,
+            "height": 0.003704
+          }
+        },
+        {
+          "id": "number-1",
+          "type": "text",
+          "role": "index",
+          "bounds": {
+            "x": 270,
+            "y": 424,
+            "width": 64,
+            "height": 54
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 42,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "01"
+          },
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.392593,
+            "width": 0.033333,
+            "height": 0.05
+          }
+        },
+        {
+          "id": "item-1",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 348,
+            "y": 432,
+            "width": 542,
+            "height": 40
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 24,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "Introduction"
+          },
+          "normalizedBounds": {
+            "x": 0.18125,
+            "y": 0.4,
+            "width": 0.282292,
+            "height": 0.037037
+          }
+        },
+        {
+          "id": "rule-1",
+          "type": "shape",
+          "bounds": {
+            "x": 270,
+            "y": 509,
+            "width": 620,
+            "height": 1
+          },
+          "z": 2,
+          "shape": "rect",
+          "strokeWidthPx": 1,
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.471296,
+            "width": 0.322917,
+            "height": 0.000926
+          }
+        },
+        {
+          "id": "number-2",
+          "type": "text",
+          "role": "index",
+          "bounds": {
+            "x": 270,
+            "y": 547.5,
+            "width": 64,
+            "height": 54
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 42,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "02"
+          },
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.506944,
+            "width": 0.033333,
+            "height": 0.05
+          }
+        },
+        {
+          "id": "item-2",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 348,
+            "y": 555.5,
+            "width": 542,
+            "height": 40
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 24,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "Team"
+          },
+          "normalizedBounds": {
+            "x": 0.18125,
+            "y": 0.514352,
+            "width": 0.282292,
+            "height": 0.037037
+          }
+        },
+        {
+          "id": "rule-2",
+          "type": "shape",
+          "bounds": {
+            "x": 270,
+            "y": 632.5,
+            "width": 620,
+            "height": 1
+          },
+          "z": 2,
+          "shape": "rect",
+          "strokeWidthPx": 1,
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.585648,
+            "width": 0.322917,
+            "height": 0.000926
+          }
+        },
+        {
+          "id": "number-3",
+          "type": "text",
+          "role": "index",
+          "bounds": {
+            "x": 270,
+            "y": 671,
+            "width": 64,
+            "height": 54
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 42,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "03"
+          },
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.621296,
+            "width": 0.033333,
+            "height": 0.05
+          }
+        },
+        {
+          "id": "item-3",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 348,
+            "y": 679,
+            "width": 542,
+            "height": 40
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 24,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "Objectives"
+          },
+          "normalizedBounds": {
+            "x": 0.18125,
+            "y": 0.628704,
+            "width": 0.282292,
+            "height": 0.037037
+          }
+        },
+        {
+          "id": "rule-3",
+          "type": "shape",
+          "bounds": {
+            "x": 270,
+            "y": 756,
+            "width": 620,
+            "height": 1
+          },
+          "z": 2,
+          "shape": "rect",
+          "strokeWidthPx": 1,
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.7,
+            "width": 0.322917,
+            "height": 0.000926
+          }
+        },
+        {
+          "id": "number-4",
+          "type": "text",
+          "role": "index",
+          "bounds": {
+            "x": 270,
+            "y": 794.5,
+            "width": 64,
+            "height": 54
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 42,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "04"
+          },
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.735648,
+            "width": 0.033333,
+            "height": 0.05
+          }
+        },
+        {
+          "id": "item-4",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 348,
+            "y": 802.5,
+            "width": 542,
+            "height": 40
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 24,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "Showcases"
+          },
+          "normalizedBounds": {
+            "x": 0.18125,
+            "y": 0.743056,
+            "width": 0.282292,
+            "height": 0.037037
+          }
+        },
+        {
+          "id": "rule-4",
+          "type": "shape",
+          "bounds": {
+            "x": 270,
+            "y": 879.5,
+            "width": 620,
+            "height": 1
+          },
+          "z": 2,
+          "shape": "rect",
+          "strokeWidthPx": 1,
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.814352,
+            "width": 0.322917,
+            "height": 0.000926
+          }
+        },
+        {
+          "id": "number-5",
+          "type": "text",
+          "role": "index",
+          "bounds": {
+            "x": 1030,
+            "y": 424,
+            "width": 64,
+            "height": 54
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 42,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "05"
+          },
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.392593,
+            "width": 0.033333,
+            "height": 0.05
+          }
+        },
+        {
+          "id": "item-5",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 1108,
+            "y": 432,
+            "width": 542,
+            "height": 40
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 24,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "Data Analysis"
+          },
+          "normalizedBounds": {
+            "x": 0.577083,
+            "y": 0.4,
+            "width": 0.282292,
+            "height": 0.037037
+          }
+        },
+        {
+          "id": "rule-5",
+          "type": "shape",
+          "bounds": {
+            "x": 1030,
+            "y": 509,
+            "width": 620,
+            "height": 1
+          },
+          "z": 2,
+          "shape": "rect",
+          "strokeWidthPx": 1,
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.471296,
+            "width": 0.322917,
+            "height": 0.000926
+          }
+        },
+        {
+          "id": "number-6",
+          "type": "text",
+          "role": "index",
+          "bounds": {
+            "x": 1030,
+            "y": 547.5,
+            "width": 64,
+            "height": 54
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 42,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "06"
+          },
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.506944,
+            "width": 0.033333,
+            "height": 0.05
+          }
+        },
+        {
+          "id": "item-6",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 1108,
+            "y": 555.5,
+            "width": 542,
+            "height": 40
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 24,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "Timeline"
+          },
+          "normalizedBounds": {
+            "x": 0.577083,
+            "y": 0.514352,
+            "width": 0.282292,
+            "height": 0.037037
+          }
+        },
+        {
+          "id": "rule-6",
+          "type": "shape",
+          "bounds": {
+            "x": 1030,
+            "y": 632.5,
+            "width": 620,
+            "height": 1
+          },
+          "z": 2,
+          "shape": "rect",
+          "strokeWidthPx": 1,
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.585648,
+            "width": 0.322917,
+            "height": 0.000926
+          }
+        },
+        {
+          "id": "number-7",
+          "type": "text",
+          "role": "index",
+          "bounds": {
+            "x": 1030,
+            "y": 671,
+            "width": 64,
+            "height": 54
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 42,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "07"
+          },
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.621296,
+            "width": 0.033333,
+            "height": 0.05
+          }
+        },
+        {
+          "id": "item-7",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 1108,
+            "y": 679,
+            "width": 542,
+            "height": 40
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 24,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "Pricing"
+          },
+          "normalizedBounds": {
+            "x": 0.577083,
+            "y": 0.628704,
+            "width": 0.282292,
+            "height": 0.037037
+          }
+        },
+        {
+          "id": "rule-7",
+          "type": "shape",
+          "bounds": {
+            "x": 1030,
+            "y": 756,
+            "width": 620,
+            "height": 1
+          },
+          "z": 2,
+          "shape": "rect",
+          "strokeWidthPx": 1,
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.7,
+            "width": 0.322917,
+            "height": 0.000926
+          }
+        },
+        {
+          "id": "number-8",
+          "type": "text",
+          "role": "index",
+          "bounds": {
+            "x": 1030,
+            "y": 794.5,
+            "width": 64,
+            "height": 54
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 42,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "08"
+          },
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.735648,
+            "width": 0.033333,
+            "height": 0.05
+          }
+        },
+        {
+          "id": "item-8",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 1108,
+            "y": 802.5,
+            "width": 542,
+            "height": 40
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 24,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "Partners"
+          },
+          "normalizedBounds": {
+            "x": 0.577083,
+            "y": 0.743056,
+            "width": 0.282292,
+            "height": 0.037037
+          }
+        },
+        {
+          "id": "rule-8",
+          "type": "shape",
+          "bounds": {
+            "x": 1030,
+            "y": 879.5,
+            "width": 620,
+            "height": 1
+          },
+          "z": 2,
+          "shape": "rect",
+          "strokeWidthPx": 1,
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.814352,
+            "width": 0.322917,
+            "height": 0.000926
+          }
+        }
+      ],
+      "negativeSpace": {
+        "definition": "Reserved breathing room; background decoration is excluded from foreground occupancy.",
+        "zones": [
+          {
+            "id": "heading-list-gap",
+            "bounds": {
+              "x": 270,
+              "y": 304,
+              "width": 1380,
+              "height": 120
+            },
+            "reason": "Broad vertical pause before the first agenda row.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          },
+          {
+            "id": "column-gutter",
+            "bounds": {
+              "x": 890,
+              "y": 424,
+              "width": 140,
+              "height": 456
+            },
+            "reason": "Keeps the two reading streams separate.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          }
+        ],
+        "rules": [
+          "Columns start at x=270 and x=1030; each is 620px wide.",
+          "Rows advance by 123.5px.",
+          "Title, number and label sizes are 72, 42 and 24px."
+        ],
+        "reservedAreaFraction": 0.1106,
+        "areaMetric": "Sum of the listed non-overlapping reserved rectangles divided by canvas area; not the total visible whitespace or a measured background-pixel ratio."
+      },
+      "typographyHierarchy": {
+        "titleSizePx": 72,
+        "bodySizePx": 24,
+        "titleToBodyRatio": 3,
+        "titleToMetadataRatio": null,
+        "levels": [
+          {
+            "role": "title",
+            "sizePx": [
+              72
+            ]
+          },
+          {
+            "role": "index",
+            "sizePx": [
+              42
+            ]
+          },
+          {
+            "role": "body",
+            "sizePx": [
+              24
+            ]
+          }
+        ],
+        "fontIdentification": "Visual estimate only; exact family and original text-box metrics are unavailable from the flattened raster."
+      },
+      "backgroundDecoration": {
+        "type": "soft-grain-sweep",
+        "layer": "behind-all-content",
+        "geometryPrecision": "low",
+        "countsAsForegroundOccupancy": false,
+        "notes": "Soft amorphous diagonal sweep, not a hard image frame. Preserve text legibility; decorative color is intentionally unspecified.",
+        "placement": "Broad soft sweep behind the header or content field; see the supplied source raster."
+      }
+    },
+    {
+      "id": "ref-four-portrait-team",
+      "sourceFile": "4.png",
+      "sourcePath": "C:/Users/SP Grid/Desktop/Canva Designs Images/4.png",
+      "suggestedEngineRole": "team",
+      "spatialGeometry": "Four equal portrait columns centered across the content band. Names and roles sit below, offset right of oversized index numbers.",
+      "elements": [
+        {
+          "id": "title",
+          "type": "text",
+          "role": "title",
+          "bounds": {
+            "x": 270,
+            "y": 200,
+            "width": 740,
+            "height": 94
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 72,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1.05,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "textTransform": "uppercase",
+            "referenceText": "OUR TEAM"
+          },
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.185185,
+            "width": 0.385417,
+            "height": 0.087037
+          }
+        },
+        {
+          "id": "title-rule",
+          "type": "shape",
+          "bounds": {
+            "x": 270,
+            "y": 299,
+            "width": 60,
+            "height": 4
+          },
+          "z": 2,
+          "shape": "rect",
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.276852,
+            "width": 0.03125,
+            "height": 0.003704
+          }
+        },
+        {
+          "id": "portrait-0",
+          "type": "image",
+          "bounds": {
+            "x": 270,
+            "y": 433,
+            "width": 290,
+            "height": 310
+          },
+          "z": 1,
+          "fit": "cover",
+          "focalPointNormalized": {
+            "x": 0.5,
+            "y": 0.4
+          },
+          "mask": "rect",
+          "edgeTreatment": {
+            "bottomFadeToBackground": {
+              "startFraction": 0.72,
+              "endFraction": 1
+            }
+          },
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.400926,
+            "width": 0.151042,
+            "height": 0.287037
+          }
+        },
+        {
+          "id": "index-0",
+          "type": "text",
+          "role": "index",
+          "bounds": {
+            "x": 270,
+            "y": 817,
+            "width": 54,
+            "height": 52
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 36,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "01"
+          },
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.756481,
+            "width": 0.028125,
+            "height": 0.048148
+          }
+        },
+        {
+          "id": "name-0",
+          "type": "text",
+          "role": "item-heading",
+          "bounds": {
+            "x": 334,
+            "y": 820,
+            "width": 236,
+            "height": 40
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 28,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "Claudia Alves"
+          },
+          "normalizedBounds": {
+            "x": 0.173958,
+            "y": 0.759259,
+            "width": 0.122917,
+            "height": 0.037037
+          }
+        },
+        {
+          "id": "job-0",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 334,
+            "y": 854,
+            "width": 236,
+            "height": 32
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 22,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "Founder"
+          },
+          "normalizedBounds": {
+            "x": 0.173958,
+            "y": 0.790741,
+            "width": 0.122917,
+            "height": 0.02963
+          }
+        },
+        {
+          "id": "portrait-1",
+          "type": "image",
+          "bounds": {
+            "x": 633,
+            "y": 433,
+            "width": 290,
+            "height": 310
+          },
+          "z": 1,
+          "fit": "cover",
+          "focalPointNormalized": {
+            "x": 0.5,
+            "y": 0.4
+          },
+          "mask": "rect",
+          "edgeTreatment": {
+            "bottomFadeToBackground": {
+              "startFraction": 0.72,
+              "endFraction": 1
+            }
+          },
+          "normalizedBounds": {
+            "x": 0.329688,
+            "y": 0.400926,
+            "width": 0.151042,
+            "height": 0.287037
+          }
+        },
+        {
+          "id": "index-1",
+          "type": "text",
+          "role": "index",
+          "bounds": {
+            "x": 633,
+            "y": 817,
+            "width": 54,
+            "height": 52
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 36,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "02"
+          },
+          "normalizedBounds": {
+            "x": 0.329688,
+            "y": 0.756481,
+            "width": 0.028125,
+            "height": 0.048148
+          }
+        },
+        {
+          "id": "name-1",
+          "type": "text",
+          "role": "item-heading",
+          "bounds": {
+            "x": 697,
+            "y": 820,
+            "width": 236,
+            "height": 40
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 28,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "Morgan Maxwell"
+          },
+          "normalizedBounds": {
+            "x": 0.363021,
+            "y": 0.759259,
+            "width": 0.122917,
+            "height": 0.037037
+          }
+        },
+        {
+          "id": "job-1",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 697,
+            "y": 854,
+            "width": 236,
+            "height": 32
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 22,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "Founder"
+          },
+          "normalizedBounds": {
+            "x": 0.363021,
+            "y": 0.790741,
+            "width": 0.122917,
+            "height": 0.02963
+          }
+        },
+        {
+          "id": "portrait-2",
+          "type": "image",
+          "bounds": {
+            "x": 997,
+            "y": 433,
+            "width": 290,
+            "height": 310
+          },
+          "z": 1,
+          "fit": "cover",
+          "focalPointNormalized": {
+            "x": 0.5,
+            "y": 0.4
+          },
+          "mask": "rect",
+          "edgeTreatment": {
+            "bottomFadeToBackground": {
+              "startFraction": 0.72,
+              "endFraction": 1
+            }
+          },
+          "normalizedBounds": {
+            "x": 0.519271,
+            "y": 0.400926,
+            "width": 0.151042,
+            "height": 0.287037
+          }
+        },
+        {
+          "id": "index-2",
+          "type": "text",
+          "role": "index",
+          "bounds": {
+            "x": 997,
+            "y": 817,
+            "width": 54,
+            "height": 52
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 36,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "03"
+          },
+          "normalizedBounds": {
+            "x": 0.519271,
+            "y": 0.756481,
+            "width": 0.028125,
+            "height": 0.048148
+          }
+        },
+        {
+          "id": "name-2",
+          "type": "text",
+          "role": "item-heading",
+          "bounds": {
+            "x": 1061,
+            "y": 820,
+            "width": 236,
+            "height": 40
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 28,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "Estelle Darcy"
+          },
+          "normalizedBounds": {
+            "x": 0.552604,
+            "y": 0.759259,
+            "width": 0.122917,
+            "height": 0.037037
+          }
+        },
+        {
+          "id": "job-2",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 1061,
+            "y": 854,
+            "width": 236,
+            "height": 32
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 22,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "Founder"
+          },
+          "normalizedBounds": {
+            "x": 0.552604,
+            "y": 0.790741,
+            "width": 0.122917,
+            "height": 0.02963
+          }
+        },
+        {
+          "id": "portrait-3",
+          "type": "image",
+          "bounds": {
+            "x": 1360,
+            "y": 433,
+            "width": 290,
+            "height": 310
+          },
+          "z": 1,
+          "fit": "cover",
+          "focalPointNormalized": {
+            "x": 0.5,
+            "y": 0.4
+          },
+          "mask": "rect",
+          "edgeTreatment": {
+            "bottomFadeToBackground": {
+              "startFraction": 0.72,
+              "endFraction": 1
+            }
+          },
+          "normalizedBounds": {
+            "x": 0.708333,
+            "y": 0.400926,
+            "width": 0.151042,
+            "height": 0.287037
+          }
+        },
+        {
+          "id": "index-3",
+          "type": "text",
+          "role": "index",
+          "bounds": {
+            "x": 1360,
+            "y": 817,
+            "width": 54,
+            "height": 52
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 36,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "04"
+          },
+          "normalizedBounds": {
+            "x": 0.708333,
+            "y": 0.756481,
+            "width": 0.028125,
+            "height": 0.048148
+          }
+        },
+        {
+          "id": "name-3",
+          "type": "text",
+          "role": "item-heading",
+          "bounds": {
+            "x": 1424,
+            "y": 820,
+            "width": 236,
+            "height": 40
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 28,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "Ndemi Otieno"
+          },
+          "normalizedBounds": {
+            "x": 0.741667,
+            "y": 0.759259,
+            "width": 0.122917,
+            "height": 0.037037
+          }
+        },
+        {
+          "id": "job-3",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 1424,
+            "y": 854,
+            "width": 236,
+            "height": 32
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 22,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "Founder"
+          },
+          "normalizedBounds": {
+            "x": 0.741667,
+            "y": 0.790741,
+            "width": 0.122917,
+            "height": 0.02963
+          }
+        }
+      ],
+      "negativeSpace": {
+        "definition": "Reserved breathing room; background decoration is excluded from foreground occupancy.",
+        "zones": [
+          {
+            "id": "heading-portraits-gap",
+            "bounds": {
+              "x": 270,
+              "y": 304,
+              "width": 1380,
+              "height": 129
+            },
+            "reason": "Separates title from the portrait row.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          },
+          {
+            "id": "portrait-caption-gap",
+            "bounds": {
+              "x": 270,
+              "y": 744,
+              "width": 1380,
+              "height": 72
+            },
+            "reason": "Leaves a deliberate pause below portraits.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          }
+        ],
+        "rules": [
+          "Portraits are 290×310px with approximately 73px gutters.",
+          "All portraits share y=433; all name blocks share y=820.",
+          "No card containers or individual portrait borders."
+        ],
+        "reservedAreaFraction": 0.1338,
+        "areaMetric": "Sum of the listed non-overlapping reserved rectangles divided by canvas area; not the total visible whitespace or a measured background-pixel ratio."
+      },
+      "typographyHierarchy": {
+        "titleSizePx": 72,
+        "bodySizePx": 22,
+        "titleToBodyRatio": 3.273,
+        "titleToMetadataRatio": null,
+        "levels": [
+          {
+            "role": "title",
+            "sizePx": [
+              72
+            ]
+          },
+          {
+            "role": "index",
+            "sizePx": [
+              36
+            ]
+          },
+          {
+            "role": "item-heading",
+            "sizePx": [
+              28
+            ]
+          },
+          {
+            "role": "body",
+            "sizePx": [
+              22
+            ]
+          }
+        ],
+        "fontIdentification": "Visual estimate only; exact family and original text-box metrics are unavailable from the flattened raster."
+      },
+      "backgroundDecoration": {
+        "type": "soft-grain-sweep",
+        "layer": "behind-all-content",
+        "geometryPrecision": "low",
+        "countsAsForegroundOccupancy": false,
+        "notes": "Soft amorphous diagonal sweep, not a hard image frame. Preserve text legibility; decorative color is intentionally unspecified.",
+        "placement": "Broad soft sweep behind the header or content field; see the supplied source raster."
+      }
+    },
+    {
+      "id": "ref-three-objectives",
+      "sourceFile": "5.png",
+      "sourcePath": "C:/Users/SP Grid/Desktop/Canva Designs Images/5.png",
+      "suggestedEngineRole": "feature",
+      "spatialGeometry": "Three unboxed text columns; small outline icons float well above short headings and paragraphs. Large gap between title and icon row.",
+      "elements": [
+        {
+          "id": "title",
+          "type": "text",
+          "role": "title",
+          "bounds": {
+            "x": 270,
+            "y": 200,
+            "width": 740,
+            "height": 94
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 72,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1.05,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "textTransform": "uppercase",
+            "referenceText": "OBJECTIVES"
+          },
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.185185,
+            "width": 0.385417,
+            "height": 0.087037
+          }
+        },
+        {
+          "id": "title-rule",
+          "type": "shape",
+          "bounds": {
+            "x": 270,
+            "y": 299,
+            "width": 60,
+            "height": 4
+          },
+          "z": 2,
+          "shape": "rect",
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.276852,
+            "width": 0.03125,
+            "height": 0.003704
+          }
+        },
+        {
+          "id": "icon-0",
+          "type": "image",
+          "bounds": {
+            "x": 270,
+            "y": 480,
+            "width": 84,
+            "height": 68
+          },
+          "z": 1,
+          "fit": "contain",
+          "assetRole": "outline-icon",
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.444444,
+            "width": 0.04375,
+            "height": 0.062963
+          }
+        },
+        {
+          "id": "heading-0",
+          "type": "text",
+          "role": "item-heading",
+          "bounds": {
+            "x": 270,
+            "y": 635,
+            "width": 413,
+            "height": 44
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 28,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "Increase Revenue"
+          },
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.587963,
+            "width": 0.215104,
+            "height": 0.040741
+          }
+        },
+        {
+          "id": "body-0",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 270,
+            "y": 707,
+            "width": 413,
+            "height": 174
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 22,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.32,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "maxLines": 6
+          },
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.65463,
+            "width": 0.215104,
+            "height": 0.161111
+          }
+        },
+        {
+          "id": "icon-1",
+          "type": "image",
+          "bounds": {
+            "x": 753,
+            "y": 480,
+            "width": 84,
+            "height": 68
+          },
+          "z": 1,
+          "fit": "contain",
+          "assetRole": "outline-icon",
+          "normalizedBounds": {
+            "x": 0.392188,
+            "y": 0.444444,
+            "width": 0.04375,
+            "height": 0.062963
+          }
+        },
+        {
+          "id": "heading-1",
+          "type": "text",
+          "role": "item-heading",
+          "bounds": {
+            "x": 753,
+            "y": 635,
+            "width": 413,
+            "height": 44
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 28,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "Customer Satisfaction"
+          },
+          "normalizedBounds": {
+            "x": 0.392188,
+            "y": 0.587963,
+            "width": 0.215104,
+            "height": 0.040741
+          }
+        },
+        {
+          "id": "body-1",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 753,
+            "y": 707,
+            "width": 413,
+            "height": 174
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 22,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.32,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "maxLines": 6
+          },
+          "normalizedBounds": {
+            "x": 0.392188,
+            "y": 0.65463,
+            "width": 0.215104,
+            "height": 0.161111
+          }
+        },
+        {
+          "id": "icon-2",
+          "type": "image",
+          "bounds": {
+            "x": 1237,
+            "y": 480,
+            "width": 84,
+            "height": 68
+          },
+          "z": 1,
+          "fit": "contain",
+          "assetRole": "outline-icon",
+          "normalizedBounds": {
+            "x": 0.644271,
+            "y": 0.444444,
+            "width": 0.04375,
+            "height": 0.062963
+          }
+        },
+        {
+          "id": "heading-2",
+          "type": "text",
+          "role": "item-heading",
+          "bounds": {
+            "x": 1237,
+            "y": 635,
+            "width": 413,
+            "height": 44
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 28,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "Operational Efficiency"
+          },
+          "normalizedBounds": {
+            "x": 0.644271,
+            "y": 0.587963,
+            "width": 0.215104,
+            "height": 0.040741
+          }
+        },
+        {
+          "id": "body-2",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 1237,
+            "y": 707,
+            "width": 413,
+            "height": 174
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 22,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.32,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "maxLines": 6
+          },
+          "normalizedBounds": {
+            "x": 0.644271,
+            "y": 0.65463,
+            "width": 0.215104,
+            "height": 0.161111
+          }
+        }
+      ],
+      "negativeSpace": {
+        "definition": "Reserved breathing room; background decoration is excluded from foreground occupancy.",
+        "zones": [
+          {
+            "id": "heading-icons-gap",
+            "bounds": {
+              "x": 270,
+              "y": 304,
+              "width": 1380,
+              "height": 176
+            },
+            "reason": "Prevents the header from crowding the icon row.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          },
+          {
+            "id": "icon-heading-gap",
+            "bounds": {
+              "x": 270,
+              "y": 549,
+              "width": 1380,
+              "height": 86
+            },
+            "reason": "Makes each icon read as an independent visual cue.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          }
+        ],
+        "rules": [
+          "Column starts: 270,753,1237; widths approximately 413px; gutters approximately 70px.",
+          "Keep icon, heading and paragraph left edges identical within each column.",
+          "Use 28px subheadings and 22px paragraph text; do not inflate icons to fill column width."
+        ],
+        "reservedAreaFraction": 0.1744,
+        "areaMetric": "Sum of the listed non-overlapping reserved rectangles divided by canvas area; not the total visible whitespace or a measured background-pixel ratio."
+      },
+      "typographyHierarchy": {
+        "titleSizePx": 72,
+        "bodySizePx": 22,
+        "titleToBodyRatio": 3.273,
+        "titleToMetadataRatio": null,
+        "levels": [
+          {
+            "role": "title",
+            "sizePx": [
+              72
+            ]
+          },
+          {
+            "role": "item-heading",
+            "sizePx": [
+              28
+            ]
+          },
+          {
+            "role": "body",
+            "sizePx": [
+              22
+            ]
+          }
+        ],
+        "fontIdentification": "Visual estimate only; exact family and original text-box metrics are unavailable from the flattened raster."
+      },
+      "backgroundDecoration": {
+        "type": "soft-grain-sweep",
+        "layer": "behind-all-content",
+        "geometryPrecision": "low",
+        "countsAsForegroundOccupancy": false,
+        "notes": "Soft amorphous diagonal sweep, not a hard image frame. Preserve text legibility; decorative color is intentionally unspecified.",
+        "placement": "Broad soft sweep behind the header or content field; see the supplied source raster."
+      }
+    },
+    {
+      "id": "ref-centered-interlude",
+      "sourceFile": "6.png",
+      "sourcePath": "C:/Users/SP Grid/Desktop/Canva Designs Images/6.png",
+      "suggestedEngineRole": "feature",
+      "spatialGeometry": "One short title centered horizontally and near the vertical midpoint; short rule underneath. All other foreground regions remain empty.",
+      "elements": [
+        {
+          "id": "title",
+          "type": "text",
+          "role": "title",
+          "bounds": {
+            "x": 660,
+            "y": 490,
+            "width": 600,
+            "height": 90
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 72,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1.05,
+            "letterSpacingPx": 0,
+            "align": "center",
+            "textTransform": "uppercase",
+            "referenceText": "THE BREAK"
+          },
+          "normalizedBounds": {
+            "x": 0.34375,
+            "y": 0.453704,
+            "width": 0.3125,
+            "height": 0.083333
+          }
+        },
+        {
+          "id": "title-rule",
+          "type": "shape",
+          "bounds": {
+            "x": 930,
+            "y": 588,
+            "width": 60,
+            "height": 4
+          },
+          "z": 2,
+          "shape": "rect",
+          "normalizedBounds": {
+            "x": 0.484375,
+            "y": 0.544444,
+            "width": 0.03125,
+            "height": 0.003704
+          }
+        }
+      ],
+      "negativeSpace": {
+        "definition": "Reserved breathing room; background decoration is excluded from foreground occupancy.",
+        "zones": [
+          {
+            "id": "upper-field",
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 1920,
+              "height": 470
+            },
+            "reason": "Large quiet field before the interlude.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          },
+          {
+            "id": "lower-field",
+            "bounds": {
+              "x": 0,
+              "y": 610,
+              "width": 1920,
+              "height": 470
+            },
+            "reason": "Large quiet field below the interlude.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          },
+          {
+            "id": "left-field",
+            "bounds": {
+              "x": 0,
+              "y": 470,
+              "width": 640,
+              "height": 140
+            },
+            "reason": "Keeps the title isolated.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          },
+          {
+            "id": "right-field",
+            "bounds": {
+              "x": 1280,
+              "y": 470,
+              "width": 640,
+              "height": 140
+            },
+            "reason": "Keeps the title isolated.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          }
+        ],
+        "rules": [
+          "No body copy, logo, footer or foreground photo.",
+          "Do not invent a title/body ratio because there is no body text.",
+          "Title center x=960; rule center x=960."
+        ],
+        "reservedAreaFraction": 0.9568,
+        "areaMetric": "Sum of the listed non-overlapping reserved rectangles divided by canvas area; not the total visible whitespace or a measured background-pixel ratio."
+      },
+      "typographyHierarchy": {
+        "titleSizePx": 72,
+        "bodySizePx": null,
+        "titleToBodyRatio": null,
+        "titleToMetadataRatio": null,
+        "levels": [
+          {
+            "role": "title",
+            "sizePx": [
+              72
+            ]
+          }
+        ],
+        "fontIdentification": "Visual estimate only; exact family and original text-box metrics are unavailable from the flattened raster."
+      },
+      "backgroundDecoration": {
+        "type": "soft-grain-sweep",
+        "layer": "behind-all-content",
+        "geometryPrecision": "low",
+        "countsAsForegroundOccupancy": false,
+        "notes": "Soft amorphous diagonal sweep, not a hard image frame. Preserve text legibility; decorative color is intentionally unspecified.",
+        "placement": "lower-left toward upper-right"
+      }
+    },
+    {
+      "id": "ref-insight-donut",
+      "sourceFile": "9.png",
+      "sourcePath": "C:/Users/SP Grid/Desktop/Canva Designs Images/9.png",
+      "suggestedEngineRole": "report",
+      "spatialGeometry": "Header upper-left; insight and explanation stacked lower-left; large donut centered in the right half with three external labels.",
+      "elements": [
+        {
+          "id": "title",
+          "type": "text",
+          "role": "title",
+          "bounds": {
+            "x": 270,
+            "y": 200,
+            "width": 740,
+            "height": 94
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 72,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1.05,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "textTransform": "uppercase",
+            "referenceText": "DATA ANALYSIS"
+          },
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.185185,
+            "width": 0.385417,
+            "height": 0.087037
+          }
+        },
+        {
+          "id": "title-rule",
+          "type": "shape",
+          "bounds": {
+            "x": 270,
+            "y": 299,
+            "width": 60,
+            "height": 4
+          },
+          "z": 2,
+          "shape": "rect",
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.276852,
+            "width": 0.03125,
+            "height": 0.003704
+          }
+        },
+        {
+          "id": "takeaway",
+          "type": "text",
+          "role": "takeaway",
+          "bounds": {
+            "x": 270,
+            "y": 518,
+            "width": 530,
+            "height": 132
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 32,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.38,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "maxLines": 3
+          },
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.47963,
+            "width": 0.276042,
+            "height": 0.122222
+          }
+        },
+        {
+          "id": "body",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 270,
+            "y": 707,
+            "width": 530,
+            "height": 145
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 22,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.32,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "maxLines": 5
+          },
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.65463,
+            "width": 0.276042,
+            "height": 0.134259
+          }
+        },
+        {
+          "id": "donut",
+          "type": "chart",
+          "chartType": "donut",
+          "bounds": {
+            "x": 1149,
+            "y": 358,
+            "width": 447,
+            "height": 447
+          },
+          "z": 2,
+          "geometry": {
+            "center": {
+              "x": 1372.5,
+              "y": 581.5
+            },
+            "outerRadiusPx": 223.5,
+            "innerRadiusPx": 111.75,
+            "innerToOuterRadiusRatio": 0.5,
+            "startAngleDegrees": -90,
+            "clockwise": true
+          },
+          "referenceData": [
+            12.5,
+            25,
+            62.5
+          ],
+          "normalizedBounds": {
+            "x": 0.598437,
+            "y": 0.331481,
+            "width": 0.232813,
+            "height": 0.413889
+          }
+        },
+        {
+          "id": "label-1",
+          "type": "text",
+          "role": "chart-label",
+          "bounds": {
+            "x": 1420,
+            "y": 320,
+            "width": 100,
+            "height": 48
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 18,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.15,
+            "letterSpacingPx": 0,
+            "align": "center",
+            "referenceText": "Item 1\n12.5%"
+          },
+          "normalizedBounds": {
+            "x": 0.739583,
+            "y": 0.296296,
+            "width": 0.052083,
+            "height": 0.044444
+          }
+        },
+        {
+          "id": "label-2",
+          "type": "text",
+          "role": "chart-label",
+          "bounds": {
+            "x": 1598,
+            "y": 558,
+            "width": 78,
+            "height": 48
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 18,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.15,
+            "letterSpacingPx": 0,
+            "align": "center",
+            "referenceText": "Item 2\n25%"
+          },
+          "normalizedBounds": {
+            "x": 0.832292,
+            "y": 0.516667,
+            "width": 0.040625,
+            "height": 0.044444
+          }
+        },
+        {
+          "id": "label-3",
+          "type": "text",
+          "role": "chart-label",
+          "bounds": {
+            "x": 1080,
+            "y": 660,
+            "width": 90,
+            "height": 48
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 18,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.15,
+            "letterSpacingPx": 0,
+            "align": "center",
+            "referenceText": "Item 3\n62.5%"
+          },
+          "normalizedBounds": {
+            "x": 0.5625,
+            "y": 0.611111,
+            "width": 0.046875,
+            "height": 0.044444
+          }
+        }
+      ],
+      "negativeSpace": {
+        "definition": "Reserved breathing room; background decoration is excluded from foreground occupancy.",
+        "zones": [
+          {
+            "id": "header-insight-gap",
+            "bounds": {
+              "x": 270,
+              "y": 304,
+              "width": 530,
+              "height": 214
+            },
+            "reason": "Lets the insight stand apart from the section title.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          },
+          {
+            "id": "text-chart-gutter",
+            "bounds": {
+              "x": 820,
+              "y": 360,
+              "width": 250,
+              "height": 490
+            },
+            "reason": "Separates prose from chart annotation.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          }
+        ],
+        "rules": [
+          "Reserve label space outside the donut's 447px square.",
+          "Do not center prose vertically with the title; the insight starts around y=525.",
+          "Use a real chart rather than a flattened screenshot."
+        ],
+        "reservedAreaFraction": 0.1138,
+        "areaMetric": "Sum of the listed non-overlapping reserved rectangles divided by canvas area; not the total visible whitespace or a measured background-pixel ratio."
+      },
+      "typographyHierarchy": {
+        "titleSizePx": 72,
+        "bodySizePx": 22,
+        "titleToBodyRatio": 3.273,
+        "titleToMetadataRatio": null,
+        "levels": [
+          {
+            "role": "title",
+            "sizePx": [
+              72
+            ]
+          },
+          {
+            "role": "takeaway",
+            "sizePx": [
+              32
+            ]
+          },
+          {
+            "role": "body",
+            "sizePx": [
+              22
+            ]
+          },
+          {
+            "role": "chart-label",
+            "sizePx": [
+              18
+            ]
+          }
+        ],
+        "fontIdentification": "Visual estimate only; exact family and original text-box metrics are unavailable from the flattened raster."
+      },
+      "backgroundDecoration": {
+        "type": "soft-grain-sweep",
+        "layer": "behind-all-content",
+        "geometryPrecision": "low",
+        "countsAsForegroundOccupancy": false,
+        "notes": "Soft amorphous diagonal sweep, not a hard image frame. Preserve text legibility; decorative color is intentionally unspecified.",
+        "placement": "upper-left patch and bottom-right edge patch"
+      }
+    },
+    {
+      "id": "ref-line-chart-commentary",
+      "sourceFile": "10.png",
+      "sourcePath": "C:/Users/SP Grid/Desktop/Canva Designs Images/10.png",
+      "suggestedEngineRole": "report",
+      "spatialGeometry": "Left-hand line chart balanced by two explanatory legend blocks on the right. Each legend marker is outside the text column.",
+      "elements": [
+        {
+          "id": "title",
+          "type": "text",
+          "role": "title",
+          "bounds": {
+            "x": 270,
+            "y": 200,
+            "width": 740,
+            "height": 94
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 72,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1.05,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "textTransform": "uppercase",
+            "referenceText": "DATA ANALYSIS"
+          },
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.185185,
+            "width": 0.385417,
+            "height": 0.087037
+          }
+        },
+        {
+          "id": "title-rule",
+          "type": "shape",
+          "bounds": {
+            "x": 270,
+            "y": 299,
+            "width": 60,
+            "height": 4
+          },
+          "z": 2,
+          "shape": "rect",
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.276852,
+            "width": 0.03125,
+            "height": 0.003704
+          }
+        },
+        {
+          "id": "sales-chart",
+          "type": "chart",
+          "chartType": "line",
+          "bounds": {
+            "x": 270,
+            "y": 420,
+            "width": 620,
+            "height": 465
+          },
+          "z": 2,
+          "geometry": {
+            "plotBounds": {
+              "x": 308,
+              "y": 431,
+              "width": 582,
+              "height": 423
+            },
+            "xAxisBaselineY": 854,
+            "yAxisRange": [
+              0,
+              50
+            ],
+            "yAxisStep": 10,
+            "gridLineWidthPx": 1,
+            "lineWidthPx": 4,
+            "markerRadiusPx": 5,
+            "legendInsidePlot": false
+          },
+          "referenceData": {
+            "categories": [
+              "Aug",
+              "Sep",
+              "Oct",
+              "Nov",
+              "Dec"
+            ],
+            "series": [
+              {
+                "name": "Domestic Sales",
+                "values": [
+                  18,
+                  30,
+                  25,
+                  40,
+                  42
+                ]
+              },
+              {
+                "name": "International Sales",
+                "values": [
+                  12,
+                  4,
+                  20,
+                  15,
+                  50
+                ]
+              }
+            ]
+          },
+          "labelTypography": {
+            "fontSizePx": 18
+          },
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.388889,
+            "width": 0.322917,
+            "height": 0.430556
+          }
+        },
+        {
+          "id": "legend-1",
+          "type": "shape",
+          "bounds": {
+            "x": 1030,
+            "y": 433,
+            "width": 46,
+            "height": 14
+          },
+          "z": 2,
+          "shape": "rect",
+          "cornerRadiusPx": 7,
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.400926,
+            "width": 0.023958,
+            "height": 0.012963
+          }
+        },
+        {
+          "id": "series-1",
+          "type": "text",
+          "role": "item-heading",
+          "bounds": {
+            "x": 1117,
+            "y": 424,
+            "width": 533,
+            "height": 44
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 28,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "Domestic Sales"
+          },
+          "normalizedBounds": {
+            "x": 0.581771,
+            "y": 0.392593,
+            "width": 0.277604,
+            "height": 0.040741
+          }
+        },
+        {
+          "id": "body-1",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 1117,
+            "y": 493,
+            "width": 533,
+            "height": 116
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 22,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.32,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "maxLines": 4
+          },
+          "normalizedBounds": {
+            "x": 0.581771,
+            "y": 0.456481,
+            "width": 0.277604,
+            "height": 0.107407
+          }
+        },
+        {
+          "id": "legend-2",
+          "type": "shape",
+          "bounds": {
+            "x": 1030,
+            "y": 705,
+            "width": 46,
+            "height": 14
+          },
+          "z": 2,
+          "shape": "rect",
+          "cornerRadiusPx": 7,
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.652778,
+            "width": 0.023958,
+            "height": 0.012963
+          }
+        },
+        {
+          "id": "series-2",
+          "type": "text",
+          "role": "item-heading",
+          "bounds": {
+            "x": 1117,
+            "y": 696,
+            "width": 533,
+            "height": 44
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 28,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "International Sales"
+          },
+          "normalizedBounds": {
+            "x": 0.581771,
+            "y": 0.644444,
+            "width": 0.277604,
+            "height": 0.040741
+          }
+        },
+        {
+          "id": "body-2",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 1117,
+            "y": 765,
+            "width": 533,
+            "height": 116
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 22,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.32,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "maxLines": 4
+          },
+          "normalizedBounds": {
+            "x": 0.581771,
+            "y": 0.708333,
+            "width": 0.277604,
+            "height": 0.107407
+          }
+        }
+      ],
+      "negativeSpace": {
+        "definition": "Reserved breathing room; background decoration is excluded from foreground occupancy.",
+        "zones": [
+          {
+            "id": "header-content-gap",
+            "bounds": {
+              "x": 270,
+              "y": 304,
+              "width": 1380,
+              "height": 116
+            },
+            "reason": "Keeps the plot and commentary below the title zone.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          },
+          {
+            "id": "chart-commentary-gutter",
+            "bounds": {
+              "x": 890,
+              "y": 420,
+              "width": 140,
+              "height": 465
+            },
+            "reason": "Separates visualization from prose.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          },
+          {
+            "id": "commentary-block-gap",
+            "bounds": {
+              "x": 1117,
+              "y": 610,
+              "width": 533,
+              "height": 86
+            },
+            "reason": "Distinguishes the two series narratives.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          }
+        ],
+        "rules": [
+          "Plot labels remain 18px while commentary paragraphs are 22px.",
+          "Align first narrative heading with the plot top, not the header.",
+          "Keep the 41px gap from legend swatch right edge to text left edge."
+        ],
+        "reservedAreaFraction": 0.1307,
+        "areaMetric": "Sum of the listed non-overlapping reserved rectangles divided by canvas area; not the total visible whitespace or a measured background-pixel ratio."
+      },
+      "typographyHierarchy": {
+        "titleSizePx": 72,
+        "bodySizePx": 22,
+        "titleToBodyRatio": 3.273,
+        "titleToMetadataRatio": null,
+        "levels": [
+          {
+            "role": "title",
+            "sizePx": [
+              72
+            ]
+          },
+          {
+            "role": "item-heading",
+            "sizePx": [
+              28
+            ]
+          },
+          {
+            "role": "body",
+            "sizePx": [
+              22
+            ]
+          }
+        ],
+        "fontIdentification": "Visual estimate only; exact family and original text-box metrics are unavailable from the flattened raster."
+      },
+      "backgroundDecoration": {
+        "type": "soft-grain-sweep",
+        "layer": "behind-all-content",
+        "geometryPrecision": "low",
+        "countsAsForegroundOccupancy": false,
+        "notes": "Soft amorphous diagonal sweep, not a hard image frame. Preserve text legibility; decorative color is intentionally unspecified.",
+        "placement": "Broad soft sweep behind the header or content field; see the supplied source raster."
+      }
+    },
+    {
+      "id": "ref-timeline-opening",
+      "sourceFile": "12.png",
+      "sourcePath": "C:/Users/SP Grid/Desktop/Canva Designs Images/12.png",
+      "suggestedEngineRole": "timeline",
+      "spatialGeometry": "Narrow two-stage vertical timeline on the left; large section heading and explanatory text on the right. Connector occupies a dedicated rail rather than running behind copy.",
+      "elements": [
+        {
+          "id": "title",
+          "type": "text",
+          "role": "title",
+          "bounds": {
+            "x": 1030,
+            "y": 200,
+            "width": 740,
+            "height": 94
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 72,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1.05,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "textTransform": "uppercase",
+            "referenceText": "TIMELINE"
+          },
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.185185,
+            "width": 0.385417,
+            "height": 0.087037
+          }
+        },
+        {
+          "id": "title-rule",
+          "type": "shape",
+          "bounds": {
+            "x": 1030,
+            "y": 299,
+            "width": 60,
+            "height": 4
+          },
+          "z": 2,
+          "shape": "rect",
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.276852,
+            "width": 0.03125,
+            "height": 0.003704
+          }
+        },
+        {
+          "id": "stage-icon-1",
+          "type": "image",
+          "bounds": {
+            "x": 270,
+            "y": 200,
+            "width": 56,
+            "height": 56
+          },
+          "z": 1,
+          "fit": "contain",
+          "assetRole": "outline-icon",
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.185185,
+            "width": 0.029167,
+            "height": 0.051852
+          }
+        },
+        {
+          "id": "stage-title-1",
+          "type": "text",
+          "role": "item-heading",
+          "bounds": {
+            "x": 450,
+            "y": 200,
+            "width": 330,
+            "height": 42
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 28,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "textTransform": "uppercase",
+            "referenceText": "RESEARCH"
+          },
+          "normalizedBounds": {
+            "x": 0.234375,
+            "y": 0.185185,
+            "width": 0.171875,
+            "height": 0.038889
+          }
+        },
+        {
+          "id": "stage-body-1",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 450,
+            "y": 262,
+            "width": 330,
+            "height": 130
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 20,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "maxLines": 5
+          },
+          "normalizedBounds": {
+            "x": 0.234375,
+            "y": 0.242593,
+            "width": 0.171875,
+            "height": 0.12037
+          }
+        },
+        {
+          "id": "rail-mid",
+          "type": "shape",
+          "bounds": {
+            "x": 297,
+            "y": 326,
+            "width": 1,
+            "height": 189
+          },
+          "z": 2,
+          "shape": "rect",
+          "normalizedBounds": {
+            "x": 0.154688,
+            "y": 0.301852,
+            "width": 0.000521,
+            "height": 0.175
+          }
+        },
+        {
+          "id": "stage-icon-2",
+          "type": "image",
+          "bounds": {
+            "x": 270,
+            "y": 586,
+            "width": 56,
+            "height": 56
+          },
+          "z": 1,
+          "fit": "contain",
+          "assetRole": "outline-icon",
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.542593,
+            "width": 0.029167,
+            "height": 0.051852
+          }
+        },
+        {
+          "id": "stage-title-2",
+          "type": "text",
+          "role": "item-heading",
+          "bounds": {
+            "x": 450,
+            "y": 595,
+            "width": 330,
+            "height": 42
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 28,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "textTransform": "uppercase",
+            "referenceText": "PLANNING"
+          },
+          "normalizedBounds": {
+            "x": 0.234375,
+            "y": 0.550926,
+            "width": 0.171875,
+            "height": 0.038889
+          }
+        },
+        {
+          "id": "stage-body-2",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 450,
+            "y": 656,
+            "width": 330,
+            "height": 140
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 20,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "maxLines": 5
+          },
+          "normalizedBounds": {
+            "x": 0.234375,
+            "y": 0.607407,
+            "width": 0.171875,
+            "height": 0.12963
+          }
+        },
+        {
+          "id": "rail-bottom",
+          "type": "shape",
+          "bounds": {
+            "x": 297,
+            "y": 711,
+            "width": 1,
+            "height": 369
+          },
+          "z": 2,
+          "shape": "rect",
+          "normalizedBounds": {
+            "x": 0.154688,
+            "y": 0.658333,
+            "width": 0.000521,
+            "height": 0.341667
+          }
+        },
+        {
+          "id": "subtitle",
+          "type": "text",
+          "role": "item-heading",
+          "bounds": {
+            "x": 1030,
+            "y": 383,
+            "width": 620,
+            "height": 46
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 28,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "Project Timeline"
+          },
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.35463,
+            "width": 0.322917,
+            "height": 0.042593
+          }
+        },
+        {
+          "id": "overview",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 1030,
+            "y": 455,
+            "width": 620,
+            "height": 203
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 22,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.32,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "maxLines": 7
+          },
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.421296,
+            "width": 0.322917,
+            "height": 0.187963
+          }
+        }
+      ],
+      "negativeSpace": {
+        "definition": "Reserved breathing room; background decoration is excluded from foreground occupancy.",
+        "zones": [
+          {
+            "id": "rail-copy-gutter",
+            "bounds": {
+              "x": 327,
+              "y": 200,
+              "width": 123,
+              "height": 596
+            },
+            "reason": "Separates icons and connectors from stage copy.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          },
+          {
+            "id": "timeline-overview-gutter",
+            "bounds": {
+              "x": 780,
+              "y": 200,
+              "width": 250,
+              "height": 596
+            },
+            "reason": "Separates the two independent content systems.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          },
+          {
+            "id": "right-lower-air",
+            "bounds": {
+              "x": 1030,
+              "y": 680,
+              "width": 620,
+              "height": 300
+            },
+            "reason": "Balances the tall timeline on the left.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          }
+        ],
+        "rules": [
+          "Right panel stays fixed between the opening and continuation slides.",
+          "The opening rail exits the bottom edge; the continuation rail enters from the top.",
+          "Left-stage body is 20px; right overview is 22px; preserve the intentional size difference."
+        ],
+        "reservedAreaFraction": 0.1969,
+        "areaMetric": "Sum of the listed non-overlapping reserved rectangles divided by canvas area; not the total visible whitespace or a measured background-pixel ratio."
+      },
+      "typographyHierarchy": {
+        "titleSizePx": 72,
+        "bodySizePx": 20,
+        "titleToBodyRatio": 3.6,
+        "titleToMetadataRatio": null,
+        "levels": [
+          {
+            "role": "title",
+            "sizePx": [
+              72
+            ]
+          },
+          {
+            "role": "item-heading",
+            "sizePx": [
+              28
+            ]
+          },
+          {
+            "role": "body",
+            "sizePx": [
+              20,
+              22
+            ]
+          }
+        ],
+        "fontIdentification": "Visual estimate only; exact family and original text-box metrics are unavailable from the flattened raster."
+      },
+      "backgroundDecoration": {
+        "type": "soft-grain-sweep",
+        "layer": "behind-all-content",
+        "geometryPrecision": "low",
+        "countsAsForegroundOccupancy": false,
+        "notes": "Soft amorphous diagonal sweep, not a hard image frame. Preserve text legibility; decorative color is intentionally unspecified.",
+        "placement": "Broad soft sweep behind the header or content field; see the supplied source raster."
+      }
+    },
+    {
+      "id": "ref-timeline-continuation",
+      "sourceFile": "13.png",
+      "sourcePath": "C:/Users/SP Grid/Desktop/Canva Designs Images/13.png",
+      "suggestedEngineRole": "timeline",
+      "spatialGeometry": "Narrow two-stage vertical timeline on the left; large section heading and explanatory text on the right. Connector occupies a dedicated rail rather than running behind copy.",
+      "elements": [
+        {
+          "id": "title",
+          "type": "text",
+          "role": "title",
+          "bounds": {
+            "x": 1030,
+            "y": 200,
+            "width": 740,
+            "height": 94
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 72,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1.05,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "textTransform": "uppercase",
+            "referenceText": "TIMELINE"
+          },
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.185185,
+            "width": 0.385417,
+            "height": 0.087037
+          }
+        },
+        {
+          "id": "title-rule",
+          "type": "shape",
+          "bounds": {
+            "x": 1030,
+            "y": 299,
+            "width": 60,
+            "height": 4
+          },
+          "z": 2,
+          "shape": "rect",
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.276852,
+            "width": 0.03125,
+            "height": 0.003704
+          }
+        },
+        {
+          "id": "rail-top",
+          "type": "shape",
+          "bounds": {
+            "x": 297,
+            "y": 0,
+            "width": 1,
+            "height": 130
+          },
+          "z": 2,
+          "shape": "rect",
+          "normalizedBounds": {
+            "x": 0.154688,
+            "y": 0,
+            "width": 0.000521,
+            "height": 0.12037
+          }
+        },
+        {
+          "id": "stage-icon-1",
+          "type": "image",
+          "bounds": {
+            "x": 270,
+            "y": 200,
+            "width": 56,
+            "height": 56
+          },
+          "z": 1,
+          "fit": "contain",
+          "assetRole": "outline-icon",
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.185185,
+            "width": 0.029167,
+            "height": 0.051852
+          }
+        },
+        {
+          "id": "stage-title-1",
+          "type": "text",
+          "role": "item-heading",
+          "bounds": {
+            "x": 450,
+            "y": 200,
+            "width": 330,
+            "height": 42
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 28,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "textTransform": "uppercase",
+            "referenceText": "DEVELOPMENT"
+          },
+          "normalizedBounds": {
+            "x": 0.234375,
+            "y": 0.185185,
+            "width": 0.171875,
+            "height": 0.038889
+          }
+        },
+        {
+          "id": "stage-body-1",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 450,
+            "y": 262,
+            "width": 330,
+            "height": 130
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 20,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "maxLines": 5
+          },
+          "normalizedBounds": {
+            "x": 0.234375,
+            "y": 0.242593,
+            "width": 0.171875,
+            "height": 0.12037
+          }
+        },
+        {
+          "id": "rail-mid",
+          "type": "shape",
+          "bounds": {
+            "x": 297,
+            "y": 326,
+            "width": 1,
+            "height": 189
+          },
+          "z": 2,
+          "shape": "rect",
+          "normalizedBounds": {
+            "x": 0.154688,
+            "y": 0.301852,
+            "width": 0.000521,
+            "height": 0.175
+          }
+        },
+        {
+          "id": "stage-icon-2",
+          "type": "image",
+          "bounds": {
+            "x": 270,
+            "y": 586,
+            "width": 56,
+            "height": 56
+          },
+          "z": 1,
+          "fit": "contain",
+          "assetRole": "outline-icon",
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.542593,
+            "width": 0.029167,
+            "height": 0.051852
+          }
+        },
+        {
+          "id": "stage-title-2",
+          "type": "text",
+          "role": "item-heading",
+          "bounds": {
+            "x": 450,
+            "y": 595,
+            "width": 330,
+            "height": 42
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 28,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "textTransform": "uppercase",
+            "referenceText": "LAUNCHING"
+          },
+          "normalizedBounds": {
+            "x": 0.234375,
+            "y": 0.550926,
+            "width": 0.171875,
+            "height": 0.038889
+          }
+        },
+        {
+          "id": "stage-body-2",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 450,
+            "y": 656,
+            "width": 330,
+            "height": 140
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 20,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "maxLines": 5
+          },
+          "normalizedBounds": {
+            "x": 0.234375,
+            "y": 0.607407,
+            "width": 0.171875,
+            "height": 0.12963
+          }
+        },
+        {
+          "id": "subtitle",
+          "type": "text",
+          "role": "item-heading",
+          "bounds": {
+            "x": 1030,
+            "y": 383,
+            "width": 620,
+            "height": 46
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 28,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "Project Timeline"
+          },
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.35463,
+            "width": 0.322917,
+            "height": 0.042593
+          }
+        },
+        {
+          "id": "overview",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 1030,
+            "y": 455,
+            "width": 620,
+            "height": 203
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 22,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.32,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "maxLines": 7
+          },
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.421296,
+            "width": 0.322917,
+            "height": 0.187963
+          }
+        }
+      ],
+      "negativeSpace": {
+        "definition": "Reserved breathing room; background decoration is excluded from foreground occupancy.",
+        "zones": [
+          {
+            "id": "rail-copy-gutter",
+            "bounds": {
+              "x": 327,
+              "y": 200,
+              "width": 123,
+              "height": 596
+            },
+            "reason": "Separates icons and connectors from stage copy.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          },
+          {
+            "id": "timeline-overview-gutter",
+            "bounds": {
+              "x": 780,
+              "y": 200,
+              "width": 250,
+              "height": 596
+            },
+            "reason": "Separates the two independent content systems.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          },
+          {
+            "id": "right-lower-air",
+            "bounds": {
+              "x": 1030,
+              "y": 680,
+              "width": 620,
+              "height": 300
+            },
+            "reason": "Balances the tall timeline on the left.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          }
+        ],
+        "rules": [
+          "Right panel stays fixed between the opening and continuation slides.",
+          "The opening rail exits the bottom edge; the continuation rail enters from the top.",
+          "Left-stage body is 20px; right overview is 22px; preserve the intentional size difference."
+        ],
+        "reservedAreaFraction": 0.1969,
+        "areaMetric": "Sum of the listed non-overlapping reserved rectangles divided by canvas area; not the total visible whitespace or a measured background-pixel ratio."
+      },
+      "typographyHierarchy": {
+        "titleSizePx": 72,
+        "bodySizePx": 20,
+        "titleToBodyRatio": 3.6,
+        "titleToMetadataRatio": null,
+        "levels": [
+          {
+            "role": "title",
+            "sizePx": [
+              72
+            ]
+          },
+          {
+            "role": "item-heading",
+            "sizePx": [
+              28
+            ]
+          },
+          {
+            "role": "body",
+            "sizePx": [
+              20,
+              22
+            ]
+          }
+        ],
+        "fontIdentification": "Visual estimate only; exact family and original text-box metrics are unavailable from the flattened raster."
+      },
+      "backgroundDecoration": {
+        "type": "soft-grain-sweep",
+        "layer": "behind-all-content",
+        "geometryPrecision": "low",
+        "countsAsForegroundOccupancy": false,
+        "notes": "Soft amorphous diagonal sweep, not a hard image frame. Preserve text legibility; decorative color is intentionally unspecified.",
+        "placement": "Broad soft sweep behind the header or content field; see the supplied source raster."
+      }
+    },
+    {
+      "id": "ref-staggered-partners",
+      "sourceFile": "15.png",
+      "sourcePath": "C:/Users/SP Grid/Desktop/Canva Designs Images/15.png",
+      "suggestedEngineRole": "portfolio",
+      "spatialGeometry": "Centered title above six logo lockups in two staggered rows; a single centered statement sits below the logos.",
+      "elements": [
+        {
+          "id": "title",
+          "type": "text",
+          "role": "title",
+          "bounds": {
+            "x": 560,
+            "y": 200,
+            "width": 800,
+            "height": 94
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 72,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1.05,
+            "letterSpacingPx": 0,
+            "align": "center",
+            "textTransform": "uppercase",
+            "referenceText": "OUR PARTNERS"
+          },
+          "normalizedBounds": {
+            "x": 0.291667,
+            "y": 0.185185,
+            "width": 0.416667,
+            "height": 0.087037
+          }
+        },
+        {
+          "id": "title-rule",
+          "type": "shape",
+          "bounds": {
+            "x": 930,
+            "y": 299,
+            "width": 60,
+            "height": 4
+          },
+          "z": 2,
+          "shape": "rect",
+          "normalizedBounds": {
+            "x": 0.484375,
+            "y": 0.276852,
+            "width": 0.03125,
+            "height": 0.003704
+          }
+        },
+        {
+          "id": "partner-0",
+          "type": "image",
+          "bounds": {
+            "x": 270,
+            "y": 460,
+            "width": 200,
+            "height": 44
+          },
+          "z": 1,
+          "fit": "contain",
+          "assetRole": "logo-lockup",
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.425926,
+            "width": 0.104167,
+            "height": 0.040741
+          }
+        },
+        {
+          "id": "partner-1",
+          "type": "image",
+          "bounds": {
+            "x": 850,
+            "y": 460,
+            "width": 200,
+            "height": 44
+          },
+          "z": 1,
+          "fit": "contain",
+          "assetRole": "logo-lockup",
+          "normalizedBounds": {
+            "x": 0.442708,
+            "y": 0.425926,
+            "width": 0.104167,
+            "height": 0.040741
+          }
+        },
+        {
+          "id": "partner-2",
+          "type": "image",
+          "bounds": {
+            "x": 1460,
+            "y": 460,
+            "width": 190,
+            "height": 44
+          },
+          "z": 1,
+          "fit": "contain",
+          "assetRole": "logo-lockup",
+          "normalizedBounds": {
+            "x": 0.760417,
+            "y": 0.425926,
+            "width": 0.098958,
+            "height": 0.040741
+          }
+        },
+        {
+          "id": "partner-3",
+          "type": "image",
+          "bounds": {
+            "x": 445,
+            "y": 634,
+            "width": 180,
+            "height": 44
+          },
+          "z": 1,
+          "fit": "contain",
+          "assetRole": "logo-lockup",
+          "normalizedBounds": {
+            "x": 0.231771,
+            "y": 0.587037,
+            "width": 0.09375,
+            "height": 0.040741
+          }
+        },
+        {
+          "id": "partner-4",
+          "type": "image",
+          "bounds": {
+            "x": 845,
+            "y": 634,
+            "width": 220,
+            "height": 44
+          },
+          "z": 1,
+          "fit": "contain",
+          "assetRole": "logo-lockup",
+          "normalizedBounds": {
+            "x": 0.440104,
+            "y": 0.587037,
+            "width": 0.114583,
+            "height": 0.040741
+          }
+        },
+        {
+          "id": "partner-5",
+          "type": "image",
+          "bounds": {
+            "x": 1360,
+            "y": 634,
+            "width": 220,
+            "height": 44
+          },
+          "z": 1,
+          "fit": "contain",
+          "assetRole": "logo-lockup",
+          "normalizedBounds": {
+            "x": 0.708333,
+            "y": 0.587037,
+            "width": 0.114583,
+            "height": 0.040741
+          }
+        },
+        {
+          "id": "caption",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 340,
+            "y": 844,
+            "width": 1240,
+            "height": 48
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 28,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "center",
+            "maxLines": 1
+          },
+          "normalizedBounds": {
+            "x": 0.177083,
+            "y": 0.781481,
+            "width": 0.645833,
+            "height": 0.044444
+          }
+        }
+      ],
+      "negativeSpace": {
+        "definition": "Reserved breathing room; background decoration is excluded from foreground occupancy.",
+        "zones": [
+          {
+            "id": "title-logo-gap",
+            "bounds": {
+              "x": 270,
+              "y": 304,
+              "width": 1380,
+              "height": 156
+            },
+            "reason": "Leaves clear separation before the partner field.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          },
+          {
+            "id": "logo-row-gap",
+            "bounds": {
+              "x": 270,
+              "y": 505,
+              "width": 1380,
+              "height": 129
+            },
+            "reason": "Maintains airy spacing between rows.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          },
+          {
+            "id": "logos-caption-gap",
+            "bounds": {
+              "x": 270,
+              "y": 679,
+              "width": 1380,
+              "height": 165
+            },
+            "reason": "Keeps the closing statement separate from the marks.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          }
+        ],
+        "rules": [
+          "Use contain fitting for logos; never crop them.",
+          "Second-row centers differ from the first-row centers; avoid forcing a rigid six-cell grid.",
+          "Title is approximately 2.57 times the 28px caption size."
+        ],
+        "reservedAreaFraction": 0.2995,
+        "areaMetric": "Sum of the listed non-overlapping reserved rectangles divided by canvas area; not the total visible whitespace or a measured background-pixel ratio."
+      },
+      "typographyHierarchy": {
+        "titleSizePx": 72,
+        "bodySizePx": 28,
+        "titleToBodyRatio": 2.571,
+        "titleToMetadataRatio": null,
+        "levels": [
+          {
+            "role": "title",
+            "sizePx": [
+              72
+            ]
+          },
+          {
+            "role": "body",
+            "sizePx": [
+              28
+            ]
+          }
+        ],
+        "fontIdentification": "Visual estimate only; exact family and original text-box metrics are unavailable from the flattened raster."
+      },
+      "backgroundDecoration": {
+        "type": "soft-grain-sweep",
+        "layer": "behind-all-content",
+        "geometryPrecision": "low",
+        "countsAsForegroundOccupancy": false,
+        "notes": "Soft amorphous diagonal sweep, not a hard image frame. Preserve text legibility; decorative color is intentionally unspecified.",
+        "placement": "Broad soft sweep behind the header or content field; see the supplied source raster."
+      }
+    },
+    {
+      "id": "ref-three-price-outlines",
+      "sourceFile": "14.png",
+      "sourcePath": "C:/Users/SP Grid/Desktop/Canva Designs Images/14.png",
+      "suggestedEngineRole": "pricing",
+      "spatialGeometry": "Three widely separated centered plan stacks; only prices are boxed. Small horizontal dividers occupy the gaps between plan labels.",
+      "elements": [
+        {
+          "id": "title",
+          "type": "text",
+          "role": "title",
+          "bounds": {
+            "x": 560,
+            "y": 200,
+            "width": 800,
+            "height": 94
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 72,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1.05,
+            "letterSpacingPx": 0,
+            "align": "center",
+            "textTransform": "uppercase",
+            "referenceText": "OUR PRICING"
+          },
+          "normalizedBounds": {
+            "x": 0.291667,
+            "y": 0.185185,
+            "width": 0.416667,
+            "height": 0.087037
+          }
+        },
+        {
+          "id": "title-rule",
+          "type": "shape",
+          "bounds": {
+            "x": 930,
+            "y": 299,
+            "width": 60,
+            "height": 4
+          },
+          "z": 2,
+          "shape": "rect",
+          "normalizedBounds": {
+            "x": 0.484375,
+            "y": 0.276852,
+            "width": 0.03125,
+            "height": 0.003704
+          }
+        },
+        {
+          "id": "price-outline-0",
+          "type": "shape",
+          "bounds": {
+            "x": 270,
+            "y": 424,
+            "width": 265,
+            "height": 157
+          },
+          "z": 2,
+          "shape": "rect",
+          "fill": "none",
+          "strokeRole": "foreground",
+          "strokeWidthPx": 1,
+          "cornerRadiusPx": 23,
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.392593,
+            "width": 0.138021,
+            "height": 0.14537
+          }
+        },
+        {
+          "id": "price-0",
+          "type": "text",
+          "role": "price",
+          "bounds": {
+            "x": 280,
+            "y": 448,
+            "width": 245,
+            "height": 104
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 88,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1,
+            "letterSpacingPx": 0,
+            "align": "center",
+            "referenceText": "$299"
+          },
+          "normalizedBounds": {
+            "x": 0.145833,
+            "y": 0.414815,
+            "width": 0.127604,
+            "height": 0.096296
+          }
+        },
+        {
+          "id": "plan-0",
+          "type": "text",
+          "role": "item-heading",
+          "bounds": {
+            "x": 245,
+            "y": 649,
+            "width": 315,
+            "height": 44
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 28,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "center",
+            "textTransform": "uppercase",
+            "referenceText": "BASIC PLAN"
+          },
+          "normalizedBounds": {
+            "x": 0.127604,
+            "y": 0.600926,
+            "width": 0.164063,
+            "height": 0.040741
+          }
+        },
+        {
+          "id": "description-0",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 276,
+            "y": 751,
+            "width": 253,
+            "height": 130
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 20,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "center",
+            "maxLines": 5
+          },
+          "normalizedBounds": {
+            "x": 0.14375,
+            "y": 0.69537,
+            "width": 0.131771,
+            "height": 0.12037
+          }
+        },
+        {
+          "id": "price-outline-1",
+          "type": "shape",
+          "bounds": {
+            "x": 828,
+            "y": 424,
+            "width": 265,
+            "height": 157
+          },
+          "z": 2,
+          "shape": "rect",
+          "fill": "none",
+          "strokeRole": "foreground",
+          "strokeWidthPx": 1,
+          "cornerRadiusPx": 23,
+          "normalizedBounds": {
+            "x": 0.43125,
+            "y": 0.392593,
+            "width": 0.138021,
+            "height": 0.14537
+          }
+        },
+        {
+          "id": "price-1",
+          "type": "text",
+          "role": "price",
+          "bounds": {
+            "x": 838,
+            "y": 448,
+            "width": 245,
+            "height": 104
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 88,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1,
+            "letterSpacingPx": 0,
+            "align": "center",
+            "referenceText": "$599"
+          },
+          "normalizedBounds": {
+            "x": 0.436458,
+            "y": 0.414815,
+            "width": 0.127604,
+            "height": 0.096296
+          }
+        },
+        {
+          "id": "plan-1",
+          "type": "text",
+          "role": "item-heading",
+          "bounds": {
+            "x": 803,
+            "y": 649,
+            "width": 315,
+            "height": 44
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 28,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "center",
+            "textTransform": "uppercase",
+            "referenceText": "BUSINESS PLAN"
+          },
+          "normalizedBounds": {
+            "x": 0.418229,
+            "y": 0.600926,
+            "width": 0.164063,
+            "height": 0.040741
+          }
+        },
+        {
+          "id": "description-1",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 834,
+            "y": 751,
+            "width": 253,
+            "height": 130
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 20,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "center",
+            "maxLines": 5
+          },
+          "normalizedBounds": {
+            "x": 0.434375,
+            "y": 0.69537,
+            "width": 0.131771,
+            "height": 0.12037
+          }
+        },
+        {
+          "id": "price-outline-2",
+          "type": "shape",
+          "bounds": {
+            "x": 1385,
+            "y": 424,
+            "width": 265,
+            "height": 157
+          },
+          "z": 2,
+          "shape": "rect",
+          "fill": "none",
+          "strokeRole": "foreground",
+          "strokeWidthPx": 1,
+          "cornerRadiusPx": 23,
+          "normalizedBounds": {
+            "x": 0.721354,
+            "y": 0.392593,
+            "width": 0.138021,
+            "height": 0.14537
+          }
+        },
+        {
+          "id": "price-2",
+          "type": "text",
+          "role": "price",
+          "bounds": {
+            "x": 1395,
+            "y": 448,
+            "width": 245,
+            "height": 104
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 88,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1,
+            "letterSpacingPx": 0,
+            "align": "center",
+            "referenceText": "$899"
+          },
+          "normalizedBounds": {
+            "x": 0.726563,
+            "y": 0.414815,
+            "width": 0.127604,
+            "height": 0.096296
+          }
+        },
+        {
+          "id": "plan-2",
+          "type": "text",
+          "role": "item-heading",
+          "bounds": {
+            "x": 1360,
+            "y": 649,
+            "width": 315,
+            "height": 44
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 28,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "center",
+            "textTransform": "uppercase",
+            "referenceText": "ENTERPRISE PLAN"
+          },
+          "normalizedBounds": {
+            "x": 0.708333,
+            "y": 0.600926,
+            "width": 0.164063,
+            "height": 0.040741
+          }
+        },
+        {
+          "id": "description-2",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 1391,
+            "y": 751,
+            "width": 253,
+            "height": 130
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 20,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "center",
+            "maxLines": 5
+          },
+          "normalizedBounds": {
+            "x": 0.724479,
+            "y": 0.69537,
+            "width": 0.131771,
+            "height": 0.12037
+          }
+        },
+        {
+          "id": "tier-separator-1",
+          "type": "shape",
+          "bounds": {
+            "x": 621,
+            "y": 667,
+            "width": 120,
+            "height": 1
+          },
+          "z": 2,
+          "shape": "rect",
+          "normalizedBounds": {
+            "x": 0.323437,
+            "y": 0.617593,
+            "width": 0.0625,
+            "height": 0.000926
+          }
+        },
+        {
+          "id": "tier-separator-2",
+          "type": "shape",
+          "bounds": {
+            "x": 1178,
+            "y": 667,
+            "width": 120,
+            "height": 1
+          },
+          "z": 2,
+          "shape": "rect",
+          "normalizedBounds": {
+            "x": 0.613542,
+            "y": 0.617593,
+            "width": 0.0625,
+            "height": 0.000926
+          }
+        }
+      ],
+      "negativeSpace": {
+        "definition": "Reserved breathing room; background decoration is excluded from foreground occupancy.",
+        "zones": [
+          {
+            "id": "title-prices-gap",
+            "bounds": {
+              "x": 270,
+              "y": 304,
+              "width": 1380,
+              "height": 120
+            },
+            "reason": "Separates headline from the plan comparison.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          },
+          {
+            "id": "price-plan-gap",
+            "bounds": {
+              "x": 270,
+              "y": 582,
+              "width": 1380,
+              "height": 67
+            },
+            "reason": "Keeps labels visually outside the price boxes.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          },
+          {
+            "id": "plan-description-gap",
+            "bounds": {
+              "x": 270,
+              "y": 694,
+              "width": 1380,
+              "height": 57
+            },
+            "reason": "Separates plan names from explanatory copy.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          }
+        ],
+        "rules": [
+          "Price: 88px; section heading:72px; plan:28px; description:20px.",
+          "Keep containers limited to 265×157px price outlines.",
+          "Plan centers are approximately x=402.5,960.5,1517.5."
+        ],
+        "reservedAreaFraction": 0.1624,
+        "areaMetric": "Sum of the listed non-overlapping reserved rectangles divided by canvas area; not the total visible whitespace or a measured background-pixel ratio."
+      },
+      "typographyHierarchy": {
+        "titleSizePx": 72,
+        "bodySizePx": 20,
+        "titleToBodyRatio": 3.6,
+        "titleToMetadataRatio": null,
+        "levels": [
+          {
+            "role": "title",
+            "sizePx": [
+              72
+            ]
+          },
+          {
+            "role": "price",
+            "sizePx": [
+              88
+            ]
+          },
+          {
+            "role": "item-heading",
+            "sizePx": [
+              28
+            ]
+          },
+          {
+            "role": "body",
+            "sizePx": [
+              20
+            ]
+          }
+        ],
+        "fontIdentification": "Visual estimate only; exact family and original text-box metrics are unavailable from the flattened raster."
+      },
+      "backgroundDecoration": {
+        "type": "soft-grain-sweep",
+        "layer": "behind-all-content",
+        "geometryPrecision": "low",
+        "countsAsForegroundOccupancy": false,
+        "notes": "Soft amorphous diagonal sweep, not a hard image frame. Preserve text legibility; decorative color is intentionally unspecified.",
+        "placement": "Broad soft sweep behind the header or content field; see the supplied source raster."
+      }
+    },
+    {
+      "id": "ref-contact-footer-columns",
+      "sourceFile": "16.png",
+      "sourcePath": "C:/Users/SP Grid/Desktop/Canva Designs Images/16.png",
+      "suggestedEngineRole": "closing",
+      "spatialGeometry": "Brand and title upper-left; three uneven contact columns anchored low on the slide; broad empty central field contains only background decoration.",
+      "elements": [
+        {
+          "id": "brand-symbol",
+          "type": "image",
+          "bounds": {
+            "x": 270,
+            "y": 201,
+            "width": 28,
+            "height": 28
+          },
+          "z": 1,
+          "fit": "contain",
+          "assetRole": "logo",
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.186111,
+            "width": 0.014583,
+            "height": 0.025926
+          }
+        },
+        {
+          "id": "brand",
+          "type": "text",
+          "role": "brand",
+          "bounds": {
+            "x": 320,
+            "y": 198,
+            "width": 190,
+            "height": 34
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 24,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "BORCELLE"
+          },
+          "normalizedBounds": {
+            "x": 0.166667,
+            "y": 0.183333,
+            "width": 0.098958,
+            "height": 0.031481
+          }
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "role": "title",
+          "bounds": {
+            "x": 270,
+            "y": 270,
+            "width": 650,
+            "height": 90
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 72,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1.05,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "textTransform": "uppercase",
+            "referenceText": "CONTACT US"
+          },
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.25,
+            "width": 0.338542,
+            "height": 0.083333
+          }
+        },
+        {
+          "id": "title-rule",
+          "type": "shape",
+          "bounds": {
+            "x": 270,
+            "y": 368,
+            "width": 60,
+            "height": 4
+          },
+          "z": 2,
+          "shape": "rect",
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.340741,
+            "width": 0.03125,
+            "height": 0.003704
+          }
+        },
+        {
+          "id": "phone-label",
+          "type": "text",
+          "role": "item-heading",
+          "bounds": {
+            "x": 270,
+            "y": 800,
+            "width": 300,
+            "height": 44
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 32,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "Phone"
+          },
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.740741,
+            "width": 0.15625,
+            "height": 0.040741
+          }
+        },
+        {
+          "id": "phone-value",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 270,
+            "y": 845,
+            "width": 300,
+            "height": 44
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 28,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left"
+          },
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.782407,
+            "width": 0.15625,
+            "height": 0.040741
+          }
+        },
+        {
+          "id": "email-label",
+          "type": "text",
+          "role": "item-heading",
+          "bounds": {
+            "x": 740,
+            "y": 800,
+            "width": 560,
+            "height": 44
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 32,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "Email"
+          },
+          "normalizedBounds": {
+            "x": 0.385417,
+            "y": 0.740741,
+            "width": 0.291667,
+            "height": 0.040741
+          }
+        },
+        {
+          "id": "email-value",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 740,
+            "y": 845,
+            "width": 560,
+            "height": 44
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 28,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left"
+          },
+          "normalizedBounds": {
+            "x": 0.385417,
+            "y": 0.782407,
+            "width": 0.291667,
+            "height": 0.040741
+          }
+        },
+        {
+          "id": "website-label",
+          "type": "text",
+          "role": "item-heading",
+          "bounds": {
+            "x": 1370,
+            "y": 800,
+            "width": 280,
+            "height": 44
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 32,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "Website"
+          },
+          "normalizedBounds": {
+            "x": 0.713542,
+            "y": 0.740741,
+            "width": 0.145833,
+            "height": 0.040741
+          }
+        },
+        {
+          "id": "website-value",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 1370,
+            "y": 845,
+            "width": 280,
+            "height": 44
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 28,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left"
+          },
+          "normalizedBounds": {
+            "x": 0.713542,
+            "y": 0.782407,
+            "width": 0.145833,
+            "height": 0.040741
+          }
+        }
+      ],
+      "negativeSpace": {
+        "definition": "Reserved breathing room; background decoration is excluded from foreground occupancy.",
+        "zones": [
+          {
+            "id": "central-field",
+            "bounds": {
+              "x": 270,
+              "y": 390,
+              "width": 1380,
+              "height": 390
+            },
+            "reason": "Reserves nearly the entire middle band as breathing room.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          }
+        ],
+        "rules": [
+          "Contact widths are deliberately unequal to accommodate email.",
+          "All labels align at y≈807 and all values at y≈851.",
+          "Do not add icons or cards around the footer contact blocks."
+        ],
+        "reservedAreaFraction": 0.2595,
+        "areaMetric": "Sum of the listed non-overlapping reserved rectangles divided by canvas area; not the total visible whitespace or a measured background-pixel ratio."
+      },
+      "typographyHierarchy": {
+        "titleSizePx": 72,
+        "bodySizePx": 28,
+        "titleToBodyRatio": 2.571,
+        "titleToMetadataRatio": null,
+        "levels": [
+          {
+            "role": "brand",
+            "sizePx": [
+              24
+            ]
+          },
+          {
+            "role": "title",
+            "sizePx": [
+              72
+            ]
+          },
+          {
+            "role": "item-heading",
+            "sizePx": [
+              32
+            ]
+          },
+          {
+            "role": "body",
+            "sizePx": [
+              28
+            ]
+          }
+        ],
+        "fontIdentification": "Visual estimate only; exact family and original text-box metrics are unavailable from the flattened raster."
+      },
+      "backgroundDecoration": {
+        "type": "soft-grain-sweep",
+        "layer": "behind-all-content",
+        "geometryPrecision": "low",
+        "countsAsForegroundOccupancy": false,
+        "notes": "Soft amorphous diagonal sweep, not a hard image frame. Preserve text legibility; decorative color is intentionally unspecified.",
+        "placement": "lower-left toward upper-right"
+      }
+    },
+    {
+      "id": "ref-left-photo-introduction",
+      "sourceFile": "3.png",
+      "sourcePath": "C:/Users/SP Grid/Desktop/Canva Designs Images/3.png",
+      "suggestedEngineRole": "feature",
+      "spatialGeometry": "Full-height photo bleeds off left, top and bottom; soft transition near the center leads into a right text panel with title, lead and paragraph.",
+      "elements": [
+        {
+          "id": "photo",
+          "type": "image",
+          "bounds": {
+            "x": 0,
+            "y": 0,
+            "width": 930,
+            "height": 1080
+          },
+          "z": 1,
+          "fit": "cover",
+          "edgeTreatment": {
+            "rightFadeToBackground": {
+              "startFraction": 0.72,
+              "endFraction": 1
+            }
+          },
+          "focalPointNormalized": {
+            "x": 0.45,
+            "y": 0.45
+          },
+          "normalizedBounds": {
+            "x": 0,
+            "y": 0,
+            "width": 0.484375,
+            "height": 1
+          }
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "role": "title",
+          "bounds": {
+            "x": 1030,
+            "y": 200,
+            "width": 740,
+            "height": 94
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 72,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1.05,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "textTransform": "uppercase",
+            "referenceText": "INTRODUCTION"
+          },
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.185185,
+            "width": 0.385417,
+            "height": 0.087037
+          }
+        },
+        {
+          "id": "title-rule",
+          "type": "shape",
+          "bounds": {
+            "x": 1030,
+            "y": 299,
+            "width": 60,
+            "height": 4
+          },
+          "z": 2,
+          "shape": "rect",
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.276852,
+            "width": 0.03125,
+            "height": 0.003704
+          }
+        },
+        {
+          "id": "lead",
+          "type": "text",
+          "role": "takeaway",
+          "bounds": {
+            "x": 1030,
+            "y": 421,
+            "width": 620,
+            "height": 114
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 28,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.38,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "maxLines": 3
+          },
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.389815,
+            "width": 0.322917,
+            "height": 0.105556
+          }
+        },
+        {
+          "id": "body",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 1030,
+            "y": 571,
+            "width": 620,
+            "height": 232
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 22,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.32,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "maxLines": 8
+          },
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.528704,
+            "width": 0.322917,
+            "height": 0.214815
+          }
+        }
+      ],
+      "negativeSpace": {
+        "definition": "Reserved breathing room; background decoration is excluded from foreground occupancy.",
+        "zones": [
+          {
+            "id": "photo-text-gutter",
+            "bounds": {
+              "x": 930,
+              "y": 320,
+              "width": 100,
+              "height": 600
+            },
+            "reason": "Protects readability beside the photo transition.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          },
+          {
+            "id": "title-lead-gap",
+            "bounds": {
+              "x": 1030,
+              "y": 304,
+              "width": 620,
+              "height": 117
+            },
+            "reason": "Creates a pause after the header rule.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          },
+          {
+            "id": "bottom-text-air",
+            "bounds": {
+              "x": 1030,
+              "y": 820,
+              "width": 620,
+              "height": 200
+            },
+            "reason": "Avoids filling the full right panel with copy.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          }
+        ],
+        "rules": [
+          "Photo occupies approximately 48.44% of slide width; text begins at 53.65%.",
+          "Photo subjects stay left of the fade, with no text over faces.",
+          "Title/body≈3.27; lead/body≈1.27."
+        ],
+        "reservedAreaFraction": 0.1237,
+        "areaMetric": "Sum of the listed non-overlapping reserved rectangles divided by canvas area; not the total visible whitespace or a measured background-pixel ratio."
+      },
+      "typographyHierarchy": {
+        "titleSizePx": 72,
+        "bodySizePx": 22,
+        "titleToBodyRatio": 3.273,
+        "titleToMetadataRatio": null,
+        "levels": [
+          {
+            "role": "title",
+            "sizePx": [
+              72
+            ]
+          },
+          {
+            "role": "takeaway",
+            "sizePx": [
+              28
+            ]
+          },
+          {
+            "role": "body",
+            "sizePx": [
+              22
+            ]
+          }
+        ],
+        "fontIdentification": "Visual estimate only; exact family and original text-box metrics are unavailable from the flattened raster."
+      },
+      "backgroundDecoration": {
+        "type": "soft-grain-sweep",
+        "layer": "behind-all-content",
+        "geometryPrecision": "low",
+        "countsAsForegroundOccupancy": false,
+        "notes": "Soft amorphous diagonal sweep, not a hard image frame. Preserve text legibility; decorative color is intentionally unspecified.",
+        "placement": "Broad soft sweep behind the header or content field; see the supplied source raster."
+      }
+    },
+    {
+      "id": "ref-right-bleed-showcase",
+      "sourceFile": "7.png",
+      "sourcePath": "C:/Users/SP Grid/Desktop/Canva Designs Images/7.png",
+      "suggestedEngineRole": "portfolio",
+      "spatialGeometry": "Narrow left text stack and oversized full-height architecture photograph on the right; photo fades into text field around the slide center.",
+      "elements": [
+        {
+          "id": "title",
+          "type": "text",
+          "role": "title",
+          "bounds": {
+            "x": 270,
+            "y": 200,
+            "width": 740,
+            "height": 94
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 72,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1.05,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "textTransform": "uppercase",
+            "referenceText": "SHOWCASE"
+          },
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.185185,
+            "width": 0.385417,
+            "height": 0.087037
+          }
+        },
+        {
+          "id": "title-rule",
+          "type": "shape",
+          "bounds": {
+            "x": 270,
+            "y": 299,
+            "width": 60,
+            "height": 4
+          },
+          "z": 2,
+          "shape": "rect",
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.276852,
+            "width": 0.03125,
+            "height": 0.003704
+          }
+        },
+        {
+          "id": "photo",
+          "type": "image",
+          "bounds": {
+            "x": 860,
+            "y": 0,
+            "width": 1060,
+            "height": 1080
+          },
+          "z": 1,
+          "fit": "cover",
+          "edgeTreatment": {
+            "leftFadeFromBackground": {
+              "startFraction": 0,
+              "endFraction": 0.2
+            }
+          },
+          "bleedEdges": [
+            "top",
+            "right",
+            "bottom"
+          ],
+          "normalizedBounds": {
+            "x": 0.447917,
+            "y": 0,
+            "width": 0.552083,
+            "height": 1
+          }
+        },
+        {
+          "id": "index",
+          "type": "text",
+          "role": "index",
+          "bounds": {
+            "x": 270,
+            "y": 474,
+            "width": 150,
+            "height": 74
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 56,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "01"
+          },
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.438889,
+            "width": 0.078125,
+            "height": 0.068519
+          }
+        },
+        {
+          "id": "item-title",
+          "type": "text",
+          "role": "item-heading",
+          "bounds": {
+            "x": 270,
+            "y": 635,
+            "width": 470,
+            "height": 44
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 28,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "Contemporary Building"
+          },
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.587963,
+            "width": 0.244792,
+            "height": 0.040741
+          }
+        },
+        {
+          "id": "body",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 270,
+            "y": 707,
+            "width": 440,
+            "height": 116
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 22,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.32,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "maxLines": 4
+          },
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.65463,
+            "width": 0.229167,
+            "height": 0.107407
+          }
+        }
+      ],
+      "negativeSpace": {
+        "definition": "Reserved breathing room; background decoration is excluded from foreground occupancy.",
+        "zones": [
+          {
+            "id": "header-index-gap",
+            "bounds": {
+              "x": 270,
+              "y": 304,
+              "width": 440,
+              "height": 170
+            },
+            "reason": "Isolates the project number.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          },
+          {
+            "id": "index-caption-gap",
+            "bounds": {
+              "x": 270,
+              "y": 549,
+              "width": 440,
+              "height": 86
+            },
+            "reason": "Separates index from the descriptive stack.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          },
+          {
+            "id": "text-photo-gutter",
+            "bounds": {
+              "x": 710,
+              "y": 630,
+              "width": 150,
+              "height": 220
+            },
+            "reason": "Keeps paragraphs away from the photograph.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          }
+        ],
+        "rules": [
+          "Photo is 55.2% of slide width and bleeds off three edges.",
+          "Keep paragraph width around 440px even when more horizontal room is available.",
+          "Preserve the number as a separate tier between header and item heading."
+        ],
+        "reservedAreaFraction": 0.0702,
+        "areaMetric": "Sum of the listed non-overlapping reserved rectangles divided by canvas area; not the total visible whitespace or a measured background-pixel ratio."
+      },
+      "typographyHierarchy": {
+        "titleSizePx": 72,
+        "bodySizePx": 22,
+        "titleToBodyRatio": 3.273,
+        "titleToMetadataRatio": null,
+        "levels": [
+          {
+            "role": "title",
+            "sizePx": [
+              72
+            ]
+          },
+          {
+            "role": "index",
+            "sizePx": [
+              56
+            ]
+          },
+          {
+            "role": "item-heading",
+            "sizePx": [
+              28
+            ]
+          },
+          {
+            "role": "body",
+            "sizePx": [
+              22
+            ]
+          }
+        ],
+        "fontIdentification": "Visual estimate only; exact family and original text-box metrics are unavailable from the flattened raster."
+      },
+      "backgroundDecoration": {
+        "type": "soft-grain-sweep",
+        "layer": "behind-all-content",
+        "geometryPrecision": "low",
+        "countsAsForegroundOccupancy": false,
+        "notes": "Soft amorphous diagonal sweep, not a hard image frame. Preserve text legibility; decorative color is intentionally unspecified.",
+        "placement": "Broad soft sweep behind the header or content field; see the supplied source raster."
+      }
+    },
+    {
+      "id": "ref-masonry-showcase",
+      "sourceFile": "8.png",
+      "sourcePath": "C:/Users/SP Grid/Desktop/Canva Designs Images/8.png",
+      "suggestedEngineRole": "portfolio",
+      "spatialGeometry": "Left showcase copy repeats the prior slide's stack. Four cropped photos form a right rectangular collage with deliberately offset internal seams.",
+      "elements": [
+        {
+          "id": "title",
+          "type": "text",
+          "role": "title",
+          "bounds": {
+            "x": 270,
+            "y": 200,
+            "width": 740,
+            "height": 94
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 72,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1.05,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "textTransform": "uppercase",
+            "referenceText": "SHOWCASE"
+          },
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.185185,
+            "width": 0.385417,
+            "height": 0.087037
+          }
+        },
+        {
+          "id": "title-rule",
+          "type": "shape",
+          "bounds": {
+            "x": 270,
+            "y": 299,
+            "width": 60,
+            "height": 4
+          },
+          "z": 2,
+          "shape": "rect",
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.276852,
+            "width": 0.03125,
+            "height": 0.003704
+          }
+        },
+        {
+          "id": "index",
+          "type": "text",
+          "role": "index",
+          "bounds": {
+            "x": 270,
+            "y": 474,
+            "width": 150,
+            "height": 74
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 56,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "02"
+          },
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.438889,
+            "width": 0.078125,
+            "height": 0.068519
+          }
+        },
+        {
+          "id": "item-title",
+          "type": "text",
+          "role": "item-heading",
+          "bounds": {
+            "x": 270,
+            "y": 635,
+            "width": 470,
+            "height": 44
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 28,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "Architecture"
+          },
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.587963,
+            "width": 0.244792,
+            "height": 0.040741
+          }
+        },
+        {
+          "id": "body",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 270,
+            "y": 707,
+            "width": 440,
+            "height": 116
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 22,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.32,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "maxLines": 4
+          },
+          "normalizedBounds": {
+            "x": 0.140625,
+            "y": 0.65463,
+            "width": 0.229167,
+            "height": 0.107407
+          }
+        },
+        {
+          "id": "photo-top-left",
+          "type": "image",
+          "bounds": {
+            "x": 890,
+            "y": 200,
+            "width": 332,
+            "height": 336
+          },
+          "z": 1,
+          "fit": "cover",
+          "normalizedBounds": {
+            "x": 0.463542,
+            "y": 0.185185,
+            "width": 0.172917,
+            "height": 0.311111
+          }
+        },
+        {
+          "id": "photo-top-right",
+          "type": "image",
+          "bounds": {
+            "x": 1232,
+            "y": 200,
+            "width": 418,
+            "height": 336
+          },
+          "z": 1,
+          "fit": "cover",
+          "normalizedBounds": {
+            "x": 0.641667,
+            "y": 0.185185,
+            "width": 0.217708,
+            "height": 0.311111
+          }
+        },
+        {
+          "id": "photo-bottom-left",
+          "type": "image",
+          "bounds": {
+            "x": 890,
+            "y": 545,
+            "width": 418,
+            "height": 335
+          },
+          "z": 1,
+          "fit": "cover",
+          "normalizedBounds": {
+            "x": 0.463542,
+            "y": 0.50463,
+            "width": 0.217708,
+            "height": 0.310185
+          }
+        },
+        {
+          "id": "photo-bottom-right",
+          "type": "image",
+          "bounds": {
+            "x": 1318,
+            "y": 545,
+            "width": 332,
+            "height": 335
+          },
+          "z": 1,
+          "fit": "cover",
+          "normalizedBounds": {
+            "x": 0.686458,
+            "y": 0.50463,
+            "width": 0.172917,
+            "height": 0.310185
+          }
+        }
+      ],
+      "negativeSpace": {
+        "definition": "Reserved breathing room; background decoration is excluded from foreground occupancy.",
+        "zones": [
+          {
+            "id": "header-index-gap",
+            "bounds": {
+              "x": 270,
+              "y": 304,
+              "width": 440,
+              "height": 170
+            },
+            "reason": "Maintains the same narrative rhythm as the single-photo showcase.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          },
+          {
+            "id": "copy-collage-gap",
+            "bounds": {
+              "x": 710,
+              "y": 200,
+              "width": 180,
+              "height": 680
+            },
+            "reason": "Separates prose from the image block.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          }
+        ],
+        "rules": [
+          "Collage outer bounds: x=890,y=200,w=760,h=680.",
+          "Horizontal gutter is 10px; row gutter is 9px.",
+          "Top seam at x≈1227; bottom seam at x≈1313. Do not align them into a regular 2×2 grid."
+        ],
+        "reservedAreaFraction": 0.0951,
+        "areaMetric": "Sum of the listed non-overlapping reserved rectangles divided by canvas area; not the total visible whitespace or a measured background-pixel ratio."
+      },
+      "typographyHierarchy": {
+        "titleSizePx": 72,
+        "bodySizePx": 22,
+        "titleToBodyRatio": 3.273,
+        "titleToMetadataRatio": null,
+        "levels": [
+          {
+            "role": "title",
+            "sizePx": [
+              72
+            ]
+          },
+          {
+            "role": "index",
+            "sizePx": [
+              56
+            ]
+          },
+          {
+            "role": "item-heading",
+            "sizePx": [
+              28
+            ]
+          },
+          {
+            "role": "body",
+            "sizePx": [
+              22
+            ]
+          }
+        ],
+        "fontIdentification": "Visual estimate only; exact family and original text-box metrics are unavailable from the flattened raster."
+      },
+      "backgroundDecoration": {
+        "type": "soft-grain-sweep",
+        "layer": "behind-all-content",
+        "geometryPrecision": "low",
+        "countsAsForegroundOccupancy": false,
+        "notes": "Soft amorphous diagonal sweep, not a hard image frame. Preserve text legibility; decorative color is intentionally unspecified.",
+        "placement": "Broad soft sweep behind the header or content field; see the supplied source raster."
+      }
+    },
+    {
+      "id": "ref-photo-progress",
+      "sourceFile": "11.png",
+      "sourcePath": "C:/Users/SP Grid/Desktop/Canva Designs Images/11.png",
+      "suggestedEngineRole": "report",
+      "spatialGeometry": "Full-height left photo bleeds off three edges and fades toward the center. Right panel stacks a title, paragraph and three slim progress bars with labels above and values outside right.",
+      "elements": [
+        {
+          "id": "photo",
+          "type": "image",
+          "bounds": {
+            "x": 0,
+            "y": 0,
+            "width": 930,
+            "height": 1080
+          },
+          "z": 1,
+          "fit": "cover",
+          "edgeTreatment": {
+            "rightFadeToBackground": {
+              "startFraction": 0.72,
+              "endFraction": 1
+            }
+          },
+          "bleedEdges": [
+            "top",
+            "left",
+            "bottom"
+          ],
+          "normalizedBounds": {
+            "x": 0,
+            "y": 0,
+            "width": 0.484375,
+            "height": 1
+          }
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "role": "title",
+          "bounds": {
+            "x": 1030,
+            "y": 200,
+            "width": 740,
+            "height": 94
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 72,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 300,
+            "lineHeightRatio": 1.05,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "textTransform": "uppercase",
+            "referenceText": "WORK PROGRESS"
+          },
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.185185,
+            "width": 0.385417,
+            "height": 0.087037
+          }
+        },
+        {
+          "id": "title-rule",
+          "type": "shape",
+          "bounds": {
+            "x": 1030,
+            "y": 299,
+            "width": 60,
+            "height": 4
+          },
+          "z": 2,
+          "shape": "rect",
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.276852,
+            "width": 0.03125,
+            "height": 0.003704
+          }
+        },
+        {
+          "id": "body",
+          "type": "text",
+          "role": "body",
+          "bounds": {
+            "x": 1030,
+            "y": 431,
+            "width": 620,
+            "height": 145
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 22,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.32,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "maxLines": 5
+          },
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.399074,
+            "width": 0.322917,
+            "height": 0.134259
+          }
+        },
+        {
+          "id": "progress-label-0",
+          "type": "text",
+          "role": "chart-label",
+          "bounds": {
+            "x": 1030,
+            "y": 666,
+            "width": 559,
+            "height": 32
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 20,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 4,
+            "align": "left",
+            "referenceText": "PLANNING"
+          },
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.616667,
+            "width": 0.291146,
+            "height": 0.02963
+          }
+        },
+        {
+          "id": "track-0",
+          "type": "shape",
+          "bounds": {
+            "x": 1030,
+            "y": 716,
+            "width": 559,
+            "height": 6
+          },
+          "z": 2,
+          "shape": "rect",
+          "semanticRole": "progress-track",
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.662963,
+            "width": 0.291146,
+            "height": 0.005556
+          }
+        },
+        {
+          "id": "fill-0",
+          "type": "shape",
+          "bounds": {
+            "x": 1030,
+            "y": 716,
+            "width": 559,
+            "height": 6
+          },
+          "z": 3,
+          "shape": "rect",
+          "semanticRole": "progress-fill",
+          "fraction": 1,
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.662963,
+            "width": 0.291146,
+            "height": 0.005556
+          }
+        },
+        {
+          "id": "percent-0",
+          "type": "text",
+          "role": "chart-label",
+          "bounds": {
+            "x": 1616,
+            "y": 707,
+            "width": 48,
+            "height": 26
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 18,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.2,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "100%"
+          },
+          "normalizedBounds": {
+            "x": 0.841667,
+            "y": 0.65463,
+            "width": 0.025,
+            "height": 0.024074
+          }
+        },
+        {
+          "id": "progress-label-1",
+          "type": "text",
+          "role": "chart-label",
+          "bounds": {
+            "x": 1030,
+            "y": 742,
+            "width": 559,
+            "height": 32
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 20,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 4,
+            "align": "left",
+            "referenceText": "DESIGN"
+          },
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.687037,
+            "width": 0.291146,
+            "height": 0.02963
+          }
+        },
+        {
+          "id": "track-1",
+          "type": "shape",
+          "bounds": {
+            "x": 1030,
+            "y": 792,
+            "width": 559,
+            "height": 6
+          },
+          "z": 2,
+          "shape": "rect",
+          "semanticRole": "progress-track",
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.733333,
+            "width": 0.291146,
+            "height": 0.005556
+          }
+        },
+        {
+          "id": "fill-1",
+          "type": "shape",
+          "bounds": {
+            "x": 1030,
+            "y": 792,
+            "width": 447.20000000000005,
+            "height": 6
+          },
+          "z": 3,
+          "shape": "rect",
+          "semanticRole": "progress-fill",
+          "fraction": 0.8,
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.733333,
+            "width": 0.232917,
+            "height": 0.005556
+          }
+        },
+        {
+          "id": "percent-1",
+          "type": "text",
+          "role": "chart-label",
+          "bounds": {
+            "x": 1616,
+            "y": 783,
+            "width": 48,
+            "height": 26
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 18,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.2,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "80%"
+          },
+          "normalizedBounds": {
+            "x": 0.841667,
+            "y": 0.725,
+            "width": 0.025,
+            "height": 0.024074
+          }
+        },
+        {
+          "id": "progress-label-2",
+          "type": "text",
+          "role": "chart-label",
+          "bounds": {
+            "x": 1030,
+            "y": 818,
+            "width": 559,
+            "height": 32
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 20,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.3,
+            "letterSpacingPx": 4,
+            "align": "left",
+            "referenceText": "FINISHED PRODUCT"
+          },
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.757407,
+            "width": 0.291146,
+            "height": 0.02963
+          }
+        },
+        {
+          "id": "track-2",
+          "type": "shape",
+          "bounds": {
+            "x": 1030,
+            "y": 868,
+            "width": 559,
+            "height": 6
+          },
+          "z": 2,
+          "shape": "rect",
+          "semanticRole": "progress-track",
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.803704,
+            "width": 0.291146,
+            "height": 0.005556
+          }
+        },
+        {
+          "id": "fill-2",
+          "type": "shape",
+          "bounds": {
+            "x": 1030,
+            "y": 868,
+            "width": 374.53000000000003,
+            "height": 6
+          },
+          "z": 3,
+          "shape": "rect",
+          "semanticRole": "progress-fill",
+          "fraction": 0.67,
+          "normalizedBounds": {
+            "x": 0.536458,
+            "y": 0.803704,
+            "width": 0.195068,
+            "height": 0.005556
+          }
+        },
+        {
+          "id": "percent-2",
+          "type": "text",
+          "role": "chart-label",
+          "bounds": {
+            "x": 1616,
+            "y": 859,
+            "width": 48,
+            "height": 26
+          },
+          "z": 3,
+          "typography": {
+            "fontSizePx": 18,
+            "fontFamilyClass": "geometric-sans",
+            "fontFamilyExact": null,
+            "fontWeight": 400,
+            "lineHeightRatio": 1.2,
+            "letterSpacingPx": 0,
+            "align": "left",
+            "referenceText": "67%"
+          },
+          "normalizedBounds": {
+            "x": 0.841667,
+            "y": 0.79537,
+            "width": 0.025,
+            "height": 0.024074
+          }
+        }
+      ],
+      "negativeSpace": {
+        "definition": "Reserved breathing room; background decoration is excluded from foreground occupancy.",
+        "zones": [
+          {
+            "id": "title-body-gap",
+            "bounds": {
+              "x": 1030,
+              "y": 304,
+              "width": 620,
+              "height": 127
+            },
+            "reason": "Separates header from project narrative.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          },
+          {
+            "id": "body-bars-gap",
+            "bounds": {
+              "x": 1030,
+              "y": 577,
+              "width": 620,
+              "height": 89
+            },
+            "reason": "Separates prose from the progress display.",
+            "keepClearOf": [
+              "text",
+              "foreground-images",
+              "icons",
+              "charts"
+            ],
+            "decorationAllowed": true
+          }
+        ],
+        "rules": [
+          "Progress tracks are 559×6px with 76px row pitch.",
+          "Percentages sit 27px beyond the track endpoint.",
+          "Keep progress labels at 20px with wide letter spacing; percentages are 18px."
+        ],
+        "reservedAreaFraction": 0.0646,
+        "areaMetric": "Sum of the listed non-overlapping reserved rectangles divided by canvas area; not the total visible whitespace or a measured background-pixel ratio."
+      },
+      "typographyHierarchy": {
+        "titleSizePx": 72,
+        "bodySizePx": 22,
+        "titleToBodyRatio": 3.273,
+        "titleToMetadataRatio": null,
+        "levels": [
+          {
+            "role": "title",
+            "sizePx": [
+              72
+            ]
+          },
+          {
+            "role": "body",
+            "sizePx": [
+              22
+            ]
+          },
+          {
+            "role": "chart-label",
+            "sizePx": [
+              20,
+              18
+            ]
+          }
+        ],
+        "fontIdentification": "Visual estimate only; exact family and original text-box metrics are unavailable from the flattened raster."
+      },
+      "backgroundDecoration": {
+        "type": "soft-grain-sweep",
+        "layer": "behind-all-content",
+        "geometryPrecision": "low",
+        "countsAsForegroundOccupancy": false,
+        "notes": "Soft amorphous diagonal sweep, not a hard image frame. Preserve text legibility; decorative color is intentionally unspecified.",
+        "placement": "Broad soft sweep behind the header or content field; see the supplied source raster."
+      }
+    }
+  ]
+}

@@ -1,0 +1,903 @@
+{
+  "version": 1,
+  "rule": "Every creative family owns 3–5 named SEL units; identical sets across families are rejected.",
+  "units": [
+    {
+      "id": "filmStrip",
+      "name": "Film strip",
+      "description": "Horizontal sprocket frames with one developed photo cell",
+      "tier": "A",
+      "morphIds": [
+        "plate"
+      ]
+    },
+    {
+      "id": "dial",
+      "name": "Exposure dial",
+      "description": "Concentric circle gauge with needle",
+      "tier": "B",
+      "morphIds": [
+        "accent",
+        "plate"
+      ]
+    },
+    {
+      "id": "neonBadge",
+      "name": "Neon badge",
+      "description": "Solid circle stamp with short label",
+      "tier": "B",
+      "morphIds": [
+        "accent"
+      ]
+    },
+    {
+      "id": "waveform",
+      "name": "Waveform HUD",
+      "description": "Vertical equalizer bars for scopes / signal",
+      "tier": "B",
+      "morphIds": [
+        "accent"
+      ]
+    },
+    {
+      "id": "nodeChain",
+      "name": "Node chain",
+      "description": "Horizontal process nodes connected by a wire",
+      "tier": "B",
+      "morphIds": [
+        "plate",
+        "accent"
+      ]
+    },
+    {
+      "id": "destinationBoard",
+      "name": "Destination board",
+      "description": "Transit LED plate with route badge",
+      "tier": "B",
+      "morphIds": [
+        "titlePlate",
+        "accent"
+      ]
+    },
+    {
+      "id": "radioPlate",
+      "name": "Radio call plate",
+      "description": "Pit-wall callout plate with LED rail",
+      "tier": "B",
+      "morphIds": [
+        "titlePlate",
+        "accent"
+      ]
+    },
+    {
+      "id": "hearthSurround",
+      "name": "Hearth surround",
+      "description": "Thick fireplace frame around a photo with ember bar",
+      "tier": "A",
+      "morphIds": [
+        "plate",
+        "accent"
+      ]
+    },
+    {
+      "id": "colorWheels",
+      "name": "Color wheels",
+      "description": "Lift / Gamma / Gain concentric wheels",
+      "tier": "B",
+      "morphIds": [
+        "plate",
+        "accent"
+      ]
+    },
+    {
+      "id": "startLights",
+      "name": "Start lights",
+      "description": "Row of race-start circles",
+      "tier": "B",
+      "morphIds": [
+        "accent"
+      ]
+    },
+    {
+      "id": "sonarRings",
+      "name": "Sonar rings",
+      "description": "Concentric detection rings for deep-ocean decks",
+      "tier": "A",
+      "morphIds": [
+        "plate",
+        "accent"
+      ]
+    },
+    {
+      "id": "porthole",
+      "name": "Porthole",
+      "description": "Thick circular viewport framing a photo",
+      "tier": "A",
+      "morphIds": [
+        "plate"
+      ]
+    },
+    {
+      "id": "pressureGauge",
+      "name": "Pressure gauge",
+      "description": "Bathysphere depth / PSI dial cluster",
+      "tier": "B",
+      "morphIds": [
+        "accent",
+        "plate"
+      ]
+    },
+    {
+      "id": "constellationMap",
+      "name": "Constellation map",
+      "description": "Star nodes linked by hairline routes",
+      "tier": "A",
+      "morphIds": [
+        "accent",
+        "plate"
+      ]
+    },
+    {
+      "id": "eclipseBite",
+      "name": "Eclipse bite",
+      "description": "Overlapping celestial discs that form a crescent",
+      "tier": "A",
+      "morphIds": [
+        "plate",
+        "accent"
+      ]
+    },
+    {
+      "id": "orbitTracks",
+      "name": "Orbit tracks",
+      "description": "Nested elliptical / rounded orbit lanes",
+      "tier": "B",
+      "morphIds": [
+        "plate"
+      ]
+    },
+    {
+      "id": "heatBars",
+      "name": "Heat bars",
+      "description": "Temperature strip ladder for foundry decks",
+      "tier": "B",
+      "morphIds": [
+        "accent",
+        "plate"
+      ]
+    },
+    {
+      "id": "slagChips",
+      "name": "Slag chips",
+      "description": "Irregular cooled-metal sample tiles",
+      "tier": "B",
+      "morphIds": [
+        "plate",
+        "accent"
+      ]
+    },
+    {
+      "id": "pourPath",
+      "name": "Pour path",
+      "description": "Diagonal molten pour channel",
+      "tier": "A",
+      "morphIds": [
+        "accent"
+      ]
+    },
+    {
+      "id": "prismShards",
+      "name": "Prism shards",
+      "description": "Angled glass shard cluster",
+      "tier": "A",
+      "morphIds": [
+        "accent",
+        "plate"
+      ]
+    },
+    {
+      "id": "spectrumStrip",
+      "name": "Spectrum strip",
+      "description": "Segmented refraction bar",
+      "tier": "B",
+      "morphIds": [
+        "accent"
+      ]
+    },
+    {
+      "id": "roseWindow",
+      "name": "Rose window",
+      "description": "Radial cathedral glass segments",
+      "tier": "A",
+      "morphIds": [
+        "plate",
+        "accent"
+      ]
+    },
+    {
+      "id": "vinylSpines",
+      "name": "Vinyl spines",
+      "description": "Stacked record-spine strips for jukebox decks",
+      "tier": "B",
+      "morphIds": [
+        "plate",
+        "accent"
+      ]
+    },
+    {
+      "id": "songTicket",
+      "name": "Song ticket",
+      "description": "Perforated request ticket plate",
+      "tier": "B",
+      "morphIds": [
+        "titlePlate",
+        "accent"
+      ]
+    },
+    {
+      "id": "neonArch",
+      "name": "Neon arch",
+      "description": "Diner jukebox arch frame",
+      "tier": "A",
+      "morphIds": [
+        "accent",
+        "plate"
+      ]
+    },
+    {
+      "id": "tentStripe",
+      "name": "Tent stripe",
+      "description": "Carnival awning stripe field",
+      "tier": "B",
+      "morphIds": [
+        "plate",
+        "accent"
+      ]
+    },
+    {
+      "id": "prizeTag",
+      "name": "Prize tag",
+      "description": "Carnival booth prize ticket tags",
+      "tier": "B",
+      "morphIds": [
+        "accent"
+      ]
+    },
+    {
+      "id": "ferrisCab",
+      "name": "Ferris cab",
+      "description": "Ferris-wheel gondola chip row",
+      "tier": "B",
+      "morphIds": [
+        "plate",
+        "accent"
+      ]
+    },
+    {
+      "id": "waxSeal",
+      "name": "Wax seal",
+      "description": "Letterpress wax seal stamp",
+      "tier": "B",
+      "morphIds": [
+        "accent"
+      ]
+    },
+    {
+      "id": "callingCard",
+      "name": "Calling card",
+      "description": "Soft parlor calling-card stack",
+      "tier": "A",
+      "morphIds": [
+        "plate",
+        "titlePlate"
+      ]
+    },
+    {
+      "id": "letterRule",
+      "name": "Letter rule",
+      "description": "Hairline letterpress rules with end marks",
+      "tier": "B",
+      "morphIds": [
+        "accent"
+      ]
+    },
+    {
+      "id": "stampBlock",
+      "name": "Stamp block",
+      "description": "Postage stamp grid for linen post decks",
+      "tier": "B",
+      "morphIds": [
+        "plate",
+        "accent"
+      ]
+    },
+    {
+      "id": "postcardFrame",
+      "name": "Postcard frame",
+      "description": "Soft bordered postcard photo plate",
+      "tier": "A",
+      "morphIds": [
+        "plate"
+      ]
+    },
+    {
+      "id": "softRibbon",
+      "name": "Soft ribbon",
+      "description": "Horizontal ribbon band with fold notches",
+      "tier": "B",
+      "morphIds": [
+        "accent",
+        "plate"
+      ]
+    },
+    {
+      "id": "bulbRow",
+      "name": "Bulb row",
+      "description": "Theater marquee light bulbs",
+      "tier": "B",
+      "morphIds": [
+        "accent"
+      ]
+    },
+    {
+      "id": "marqueePanel",
+      "name": "Marquee panel",
+      "description": "Title letterboard panel for theater decks",
+      "tier": "A",
+      "morphIds": [
+        "titlePlate",
+        "plate"
+      ]
+    },
+    {
+      "id": "stubTicket",
+      "name": "Stub ticket",
+      "description": "Torn theater ticket stub",
+      "tier": "B",
+      "morphIds": [
+        "accent",
+        "plate"
+      ]
+    },
+    {
+      "id": "laneStripe",
+      "name": "Lane stripe",
+      "description": "Bowling lane wood + arrow guides",
+      "tier": "A",
+      "morphIds": [
+        "plate",
+        "accent"
+      ]
+    },
+    {
+      "id": "pinSet",
+      "name": "Pin set",
+      "description": "Tenpin triangle chip set",
+      "tier": "B",
+      "morphIds": [
+        "accent",
+        "plate"
+      ]
+    },
+    {
+      "id": "scoreBox",
+      "name": "Score box",
+      "description": "Bowling score frame boxes",
+      "tier": "B",
+      "morphIds": [
+        "plate"
+      ]
+    },
+    {
+      "id": "combCell",
+      "name": "Comb cell",
+      "description": "Honeycomb cell cluster",
+      "tier": "B",
+      "morphIds": [
+        "plate",
+        "accent"
+      ]
+    },
+    {
+      "id": "jarLabel",
+      "name": "Jar label",
+      "description": "Apothecary / honey jar label cards",
+      "tier": "A",
+      "morphIds": [
+        "titlePlate",
+        "plate"
+      ]
+    },
+    {
+      "id": "hiveBar",
+      "name": "Hive bar",
+      "description": "Soft hive shelf bars",
+      "tier": "B",
+      "morphIds": [
+        "accent"
+      ]
+    },
+    {
+      "id": "magazineSpine",
+      "name": "Magazine spine",
+      "description": "Newsstand magazine spine stack",
+      "tier": "B",
+      "morphIds": [
+        "plate",
+        "accent"
+      ]
+    },
+    {
+      "id": "mastheadRule",
+      "name": "Masthead rule",
+      "description": "Editorial masthead double rule",
+      "tier": "B",
+      "morphIds": [
+        "accent"
+      ]
+    },
+    {
+      "id": "issueBadge",
+      "name": "Issue badge",
+      "description": "Magazine issue number badge",
+      "tier": "B",
+      "morphIds": [
+        "accent"
+      ]
+    },
+    {
+      "id": "glassPane",
+      "name": "Glass pane",
+      "description": "Museum vitrine glass frame around work",
+      "tier": "A",
+      "morphIds": [
+        "plate"
+      ]
+    },
+    {
+      "id": "plinthBlock",
+      "name": "Plinth block",
+      "description": "Gallery plinth / pedestal block",
+      "tier": "B",
+      "morphIds": [
+        "plate",
+        "accent"
+      ]
+    },
+    {
+      "id": "captionRail",
+      "name": "Caption rail",
+      "description": "Wall caption plaque rail",
+      "tier": "B",
+      "morphIds": [
+        "titlePlate",
+        "accent"
+      ]
+    },
+    {
+      "id": "clipBar",
+      "name": "Clip bar",
+      "description": "Metal dossier binder clip",
+      "tier": "B",
+      "morphIds": [
+        "accent"
+      ]
+    },
+    {
+      "id": "tabIndex",
+      "name": "Tab index",
+      "description": "Side index tabs for dossier folios",
+      "tier": "B",
+      "morphIds": [
+        "accent",
+        "plate"
+      ]
+    },
+    {
+      "id": "folioSheet",
+      "name": "Folio sheet",
+      "description": "Stacked dossier paper sheets",
+      "tier": "A",
+      "morphIds": [
+        "titlePlate",
+        "plate"
+      ]
+    },
+    {
+      "id": "whiteCube",
+      "name": "White cube",
+      "description": "Gallery white-cube wall field",
+      "tier": "A",
+      "morphIds": [
+        "plate"
+      ]
+    },
+    {
+      "id": "wallLabel",
+      "name": "Wall label",
+      "description": "Museum wall didactic label",
+      "tier": "B",
+      "morphIds": [
+        "titlePlate",
+        "accent"
+      ]
+    },
+    {
+      "id": "pedestalDot",
+      "name": "Pedestal dot",
+      "description": "Floor marker dots under works",
+      "tier": "B",
+      "morphIds": [
+        "accent"
+      ]
+    },
+    {
+      "id": "plateRack",
+      "name": "Plate rack",
+      "description": "Printmaker plate rack slots",
+      "tier": "B",
+      "morphIds": [
+        "plate",
+        "accent"
+      ]
+    },
+    {
+      "id": "inkWell",
+      "name": "Ink well",
+      "description": "Ink pot / well circle",
+      "tier": "B",
+      "morphIds": [
+        "accent"
+      ]
+    },
+    {
+      "id": "pullPrint",
+      "name": "Pull print",
+      "description": "Fresh print pull mat with photo",
+      "tier": "A",
+      "morphIds": [
+        "plate"
+      ]
+    }
+  ],
+  "families": [
+    {
+      "family": "darkroom",
+      "metaphor": "Photo lab / proof sheet",
+      "units": [
+        "filmStrip",
+        "dial",
+        "neonBadge"
+      ],
+      "motion": {
+        "cover": "fade",
+        "feature": "entrances",
+        "close": "pulse"
+      }
+    },
+    {
+      "family": "grade",
+      "metaphor": "Color-grade edit suite",
+      "units": [
+        "waveform",
+        "colorWheels",
+        "nodeChain",
+        "neonBadge"
+      ],
+      "motion": {
+        "cover": "fade",
+        "feature": "entrances",
+        "close": "float"
+      }
+    },
+    {
+      "family": "gulhane",
+      "metaphor": "Transit destination board",
+      "units": [
+        "destinationBoard",
+        "neonBadge",
+        "nodeChain"
+      ],
+      "motion": {
+        "cover": "fade",
+        "feature": "entrances",
+        "close": "pulse"
+      }
+    },
+    {
+      "family": "gridlock",
+      "metaphor": "Pit-lane radio",
+      "units": [
+        "radioPlate",
+        "startLights",
+        "neonBadge",
+        "waveform"
+      ],
+      "motion": {
+        "cover": "fade",
+        "feature": "entrances",
+        "close": "pulse"
+      }
+    },
+    {
+      "family": "hearth",
+      "metaphor": "Interior fireplace folio",
+      "units": [
+        "hearthSurround",
+        "neonBadge",
+        "dial"
+      ],
+      "motion": {
+        "cover": "fade",
+        "feature": "entrances",
+        "close": "float"
+      }
+    },
+    {
+      "family": "oxide",
+      "metaphor": "Street mural atelier",
+      "units": [
+        "neonBadge",
+        "waveform",
+        "radioPlate"
+      ],
+      "motion": {
+        "cover": "fade",
+        "feature": "entrances",
+        "close": "pulse"
+      }
+    },
+    {
+      "family": "lantern",
+      "metaphor": "Night cafe counter",
+      "units": [
+        "destinationBoard",
+        "neonBadge",
+        "hearthSurround"
+      ],
+      "motion": {
+        "cover": "fade",
+        "feature": "entrances",
+        "close": "float"
+      }
+    },
+    {
+      "family": "rosso",
+      "metaphor": "Private garage bay",
+      "units": [
+        "neonBadge",
+        "waveform",
+        "startLights"
+      ],
+      "motion": {
+        "cover": "fade",
+        "feature": "entrances",
+        "close": "pulse"
+      }
+    },
+    {
+      "family": "abyss",
+      "metaphor": "Bathysphere / sonar lab",
+      "units": [
+        "sonarRings",
+        "porthole",
+        "pressureGauge"
+      ],
+      "motion": {
+        "cover": "fade",
+        "feature": "entrances",
+        "close": "pulse"
+      }
+    },
+    {
+      "family": "eclipse",
+      "metaphor": "Planetarium vault",
+      "units": [
+        "constellationMap",
+        "eclipseBite",
+        "orbitTracks"
+      ],
+      "motion": {
+        "cover": "fade",
+        "feature": "entrances",
+        "close": "float"
+      }
+    },
+    {
+      "family": "voltaic",
+      "metaphor": "Molten foundry pour",
+      "units": [
+        "heatBars",
+        "slagChips",
+        "pourPath"
+      ],
+      "motion": {
+        "cover": "fade",
+        "feature": "entrances",
+        "close": "pulse"
+      }
+    },
+    {
+      "family": "prism",
+      "metaphor": "Stained-glass crypt",
+      "units": [
+        "prismShards",
+        "spectrumStrip",
+        "roseWindow"
+      ],
+      "motion": {
+        "cover": "fade",
+        "feature": "entrances",
+        "close": "float"
+      }
+    },
+    {
+      "family": "jukebox",
+      "metaphor": "Diner jukebox reel",
+      "units": [
+        "vinylSpines",
+        "songTicket",
+        "neonArch"
+      ],
+      "motion": {
+        "cover": "fade",
+        "feature": "entrances",
+        "close": "pulse"
+      }
+    },
+    {
+      "family": "carnival",
+      "metaphor": "Night carnival lot",
+      "units": [
+        "tentStripe",
+        "prizeTag",
+        "ferrisCab"
+      ],
+      "motion": {
+        "cover": "fade",
+        "feature": "entrances",
+        "close": "float"
+      }
+    },
+    {
+      "family": "parlor",
+      "metaphor": "Soft parlor stationery",
+      "units": [
+        "waxSeal",
+        "callingCard",
+        "letterRule"
+      ],
+      "motion": {
+        "cover": "fade",
+        "feature": "entrances",
+        "close": "float"
+      }
+    },
+    {
+      "family": "linen",
+      "metaphor": "Linen postcard rack",
+      "units": [
+        "stampBlock",
+        "postcardFrame",
+        "softRibbon"
+      ],
+      "motion": {
+        "cover": "fade",
+        "feature": "entrances",
+        "close": "pulse"
+      }
+    },
+    {
+      "family": "marquee",
+      "metaphor": "Theater marquee night",
+      "units": [
+        "bulbRow",
+        "marqueePanel",
+        "stubTicket"
+      ],
+      "motion": {
+        "cover": "fade",
+        "feature": "entrances",
+        "close": "pulse"
+      }
+    },
+    {
+      "family": "strike",
+      "metaphor": "Bowling alley lane",
+      "units": [
+        "laneStripe",
+        "pinSet",
+        "scoreBox"
+      ],
+      "motion": {
+        "cover": "fade",
+        "feature": "entrances",
+        "close": "float"
+      }
+    },
+    {
+      "family": "apiary",
+      "metaphor": "Soft honey apiary",
+      "units": [
+        "combCell",
+        "jarLabel",
+        "hiveBar"
+      ],
+      "motion": {
+        "cover": "fade",
+        "feature": "entrances",
+        "close": "float"
+      }
+    },
+    {
+      "family": "newsstand",
+      "metaphor": "Corner newsstand rack",
+      "units": [
+        "magazineSpine",
+        "mastheadRule",
+        "issueBadge"
+      ],
+      "motion": {
+        "cover": "fade",
+        "feature": "entrances",
+        "close": "pulse"
+      }
+    },
+    {
+      "family": "vitrine",
+      "metaphor": "Museum vitrine portfolio",
+      "units": [
+        "glassPane",
+        "plinthBlock",
+        "captionRail"
+      ],
+      "motion": {
+        "cover": "fade",
+        "feature": "entrances",
+        "close": "float"
+      }
+    },
+    {
+      "family": "dossier",
+      "metaphor": "Clipped dossier portfolio",
+      "units": [
+        "clipBar",
+        "tabIndex",
+        "folioSheet"
+      ],
+      "motion": {
+        "cover": "fade",
+        "feature": "entrances",
+        "close": "pulse"
+      }
+    },
+    {
+      "family": "mezzanine",
+      "metaphor": "White-cube mezzanine gallery",
+      "units": [
+        "whiteCube",
+        "wallLabel",
+        "pedestalDot"
+      ],
+      "motion": {
+        "cover": "fade",
+        "feature": "entrances",
+        "close": "float"
+      }
+    },
+    {
+      "family": "platepress",
+      "metaphor": "Printmaker plate rack",
+      "units": [
+        "plateRack",
+        "inkWell",
+        "pullPrint"
+      ],
+      "motion": {
+        "cover": "fade",
+        "feature": "entrances",
+        "close": "pulse"
+      }
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "name": "Voltaic • Foundry",
+  "description": "Foundry night pour — photo cover with heat accent, ladder, slag samples, pour steps and ignite close.",
+  "brand": {
+    "colors": {
+      "bg": "#0C0A08",
+      "surface": "#1A1410",
+      "surface_color": "#2A1E16",
+      "ink": "#F7F0E6",
+      "muted": "#A89078",
+      "accent": "#FF5A1F",
+      "line": "#3D2C20"
+    },
+    "fonts": {
+      "display": "Impact",
+      "body": "Bahnschrift"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "voltaic"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "VOLTAIC",
+        "items": [
+          "Foundry · pour 07",
+          "night shift",
+          "07"
+        ],
+        "photoQuery": "0506d14bb966"
+      },
+      {
+        "role": "feature",
+        "title": "Heat ladder",
+        "items": [
+          "Warm",
+          "floor idle",
+          "Hot",
+          "ready to tap",
+          "Bright",
+          "pour window",
+          "Critical",
+          "hold the line",
+          "Keep moving heat."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Slag samples",
+        "items": [
+          "A1",
+          "cool edge",
+          "A2",
+          "glass skin",
+          "B1",
+          "dark core",
+          "B2",
+          "spark fleck"
+        ],
+        "photoQuery": "07c71ad45242"
+      },
+      {
+        "role": "feature",
+        "title": "Pour",
+        "items": [
+          "01",
+          "Tap the gate",
+          "02",
+          "Guide the run",
+          "03",
+          "Quench the skin",
+          "04",
+          "Break the mold"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Keep the heat moving.",
+        "items": [
+          "— Floor boss"
+        ],
+        "photoQuery": "0506d14bb966"
+      },
+      {
+        "role": "closing",
+        "title": "Ignite.",
+        "items": [
+          "Voltaic Foundry · night pour"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "voltaic-night"
+    },
+    {
+      "role": "feature",
+      "variant": "voltaic-heat"
+    },
+    {
+      "role": "feature",
+      "variant": "voltaic-slag"
+    },
+    {
+      "role": "feature",
+      "variant": "voltaic-pour"
+    },
+    {
+      "role": "feature",
+      "variant": "voltaic-quote"
+    },
+    {
+      "role": "closing",
+      "variant": "voltaic-close"
+    }
+  ]
+}

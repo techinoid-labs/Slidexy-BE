@@ -1,0 +1,172 @@
+{
+  "id": "feature/ref-layout-1",
+  "role": "feature",
+  "variant": "ref-layout-1",
+  "family": "canva-ref",
+  "steal": "Oversized two-line title left of center; small brand upper-left; arrow upper-right; date and URL share a low baseline. Background sweep travels from lower-left toward upper-right.",
+  "sourceRef": "ref-group-project",
+  "status": "draft",
+  "motion": {
+    "transition": "fade",
+    "fallbackTransition": "fade",
+    "durationMs": 500
+  },
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "brand": {
+      "kind": "text",
+      "optional": true,
+      "from": "caption"
+    },
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    },
+    "date": {
+      "kind": "text",
+      "optional": true,
+      "from": "caption"
+    },
+    "website": {
+      "kind": "text",
+      "optional": true
+    }
+  },
+  "fit": {
+    "brand": {
+      "maxFont": 20,
+      "minFont": 14,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "title": {
+      "maxFont": 137,
+      "minFont": 96,
+      "lineClamp": 2,
+      "shrinkMin": 0.85
+    },
+    "date": {
+      "maxFont": 20,
+      "minFont": 14,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "website": {
+      "maxFont": 20,
+      "minFont": 14,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    }
+  },
+  "pptxMapping": {
+    "brand": {
+      "kind": "text"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "date": {
+      "kind": "text"
+    },
+    "website": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "brand-symbol",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "accent",
+        "x": 225,
+        "y": 168,
+        "width": 23,
+        "height": 23,
+        "z": 1,
+        "morphId": "brand-symbol"
+      },
+      {
+        "id": "brand",
+        "type": "text",
+        "slot": "brand",
+        "x": 267,
+        "y": 165,
+        "width": 158,
+        "height": 28,
+        "z": 3,
+        "tokenColor": "muted",
+        "fontRole": "label",
+        "fontSize": 20,
+        "align": "left",
+        "morphId": "brand",
+        "literal": "BORCELLE"
+      },
+      {
+        "id": "arrow",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "accent",
+        "x": 1342,
+        "y": 167,
+        "width": 33,
+        "height": 33,
+        "z": 1,
+        "morphId": "arrow"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "x": 225,
+        "y": 308,
+        "width": 658,
+        "height": 283,
+        "z": 4,
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 137,
+        "align": "left",
+        "lineHeight": 1.03,
+        "textTransform": "uppercase",
+        "morphId": "title",
+        "usePrimitive": false
+      },
+      {
+        "id": "date",
+        "type": "text",
+        "slot": "date",
+        "x": 225,
+        "y": 706,
+        "width": 250,
+        "height": 30,
+        "z": 3,
+        "tokenColor": "muted",
+        "fontRole": "label",
+        "fontSize": 20,
+        "align": "left",
+        "morphId": "date",
+        "literal": "DECEMBER 2030"
+      },
+      {
+        "id": "website",
+        "type": "text",
+        "slot": "website",
+        "literal": "reallygreatsite.com",
+        "x": 1100,
+        "y": 706,
+        "width": 275,
+        "height": 30,
+        "z": 3,
+        "tokenColor": "muted",
+        "fontRole": "label",
+        "fontSize": 20,
+        "align": "right",
+        "morphId": "website"
+      }
+    ]
+  },
+  "aliasOf": "cover/ref-layout-1"
+}

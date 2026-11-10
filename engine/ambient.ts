@@ -115,8 +115,16 @@ function resolveTarget(kit: AmbientKit, layout: any): string | null {
   }
 
   if (kit.effect === "kenBurns") {
-    const img = els.find((el: any) => el && el.type === "image" && el.morphId);
-    if (img) return img.morphId;
+    // Only full-bleed / explicit hero — never a contact cell or film-frame inset
+    const hero = els.find((el: any) => {
+      if (!el || el.type !== "image" || el.morphId !== "hero") return false;
+      const w = Number(el.width) || 0;
+      const h = Number(el.height) || 0;
+      const x = Number(el.x) || 0;
+      const y = Number(el.y) || 0;
+      return (w >= 1500 && h >= 850 && x <= 40 && y <= 40) || (w >= 1580 && h >= 880);
+    });
+    if (hero) return hero.morphId;
   }
   if (kit.effect === "float") {
     const bigEnough = (el: any) => el && (Number(el.width) || 0) >= 80 && (Number(el.height) || 0) >= 40;
@@ -135,11 +143,18 @@ function resolveTarget(kit: AmbientKit, layout: any): string | null {
         el.type === "shape" &&
         el.morphId &&
         bigEnough(el) &&
-        (el.id === "titlePlate" || el.id === "neon" || el.overlapPlate || el.id === "accent" || el.morphId === "plate")
+        (el.id === "titlePlate" ||
+          el.id === "neon" ||
+          el.overlapPlate ||
+          el.id === "accent" ||
+          el.morphId === "plate" ||
+          el.morphId === "titlePlate" ||
+          el.morphId === "pulse-bg" ||
+          el.morphId === "accent")
     );
     if (plate) return plate.morphId;
-    const img = els.find((el: any) => el && el.type === "image" && el.morphId && bigEnough(el));
-    if (img) return img.morphId;
+    // Do not float photos by default — Morph/ambient on hero images looks like a bug
+    // (framed insets, side photos). Ken Burns owns intentional image motion.
   }
   if (kit.effect === "pulse") {
     const bg = els.find(

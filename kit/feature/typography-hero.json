@@ -1,0 +1,93 @@
+{
+  "id": "feature/typography-hero",
+  "role": "feature",
+  "variant": "typography-hero",
+  "family": "anti-grid",
+  "steal": "No images. Massive 80pt title left (vertically centered); small body right; giant '01' watermark at 5% opacity.",
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": { "kind": "text", "optional": false, "from": "title" },
+    "body": { "kind": "text", "optional": false, "from": "body" },
+    "ghost": { "kind": "text", "optional": true }
+  },
+  "fit": {
+    "title": { "maxFont": 80, "minFont": 56, "lineClamp": 4, "shrinkMin": 0.85 },
+    "body": { "maxFont": 18, "minFont": 14, "lineClamp": 12, "shrinkMin": 0.95 },
+    "ghost": { "maxFont": 420, "minFont": 420, "lineClamp": 1, "shrinkMin": 1 }
+  },
+  "pptxMapping": {
+    "title": { "kind": "text" },
+    "body": { "kind": "text" },
+    "ghost": { "kind": "text" }
+  },
+  "layout": {
+    "elements": [
+      {
+        "z": 0,
+        "id": "ghost",
+        "type": "text",
+        "slot": "ghost",
+        "literal": "01",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 420,
+        "opacity": 0.05,
+        "align": "left",
+        "verticalAlign": "middle",
+        "x": 40,
+        "y": 40,
+        "width": 900,
+        "height": 820,
+        "morphId": "ghost"
+      },
+      {
+        "z": 2,
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontSize": 80,
+        "align": "left",
+        "verticalAlign": "middle",
+        "x": 72,
+        "y": 160,
+        "width": 780,
+        "height": 580,
+        "morphId": "title"
+      },
+      {
+        "z": 2,
+        "id": "rule",
+        "type": "shape",
+        "shape": "rect",
+        "tokenFill": "line",
+        "x": 920,
+        "y": 280,
+        "width": 1,
+        "height": 340,
+        "morphId": "rule"
+      },
+      {
+        "z": 2,
+        "id": "body",
+        "type": "text",
+        "slot": "body",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontSize": 16,
+        "lineHeight": 1.5,
+        "align": "left",
+        "verticalAlign": "middle",
+        "x": 960,
+        "y": 260,
+        "width": 520,
+        "height": 380,
+        "morphId": "body"
+      }
+    ]
+  },
+  "status": "draft",
+  "motion": { "transition": "fade", "fallbackTransition": "fade", "durationMs": 500 }
+}

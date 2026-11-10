@@ -1,0 +1,119 @@
+{
+  "name": "Tidewater • Summer regatta",
+  "description": "Coastal festival deck — cream disc over aerial boards, buoy stats, pill-cropped photo and a sunset close.",
+  "brand": {
+    "colors": {
+      "bg": "#0B2E3A",
+      "surface": "#F4EBDD",
+      "surface_color": "#FFC857",
+      "ink": "#F4EBDD",
+      "muted": "#9FC3C9",
+      "accent": "#EE4F3A",
+      "line": "#16485A"
+    },
+    "fonts": {
+      "display": "DM Serif Display",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "tidewater"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Tide **water**",
+        "items": [
+          "Summer regatta",
+          "July 19 · Harbour Mile",
+          "07"
+        ],
+        "photoQuery": "80346a24bf"
+      },
+      {
+        "role": "feature",
+        "title": "The course",
+        "items": [
+          "3.2 km",
+          "Course length",
+          "14",
+          "Boards per heat",
+          "6",
+          "Buoys to round",
+          "Start horn at 09:00 from the harbour wall. Round every buoy to port and finish under the red flag."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Heats",
+        "items": [
+          "09:00",
+          "Sprint — open",
+          "10:30",
+          "Relay — teams of four",
+          "12:00",
+          "Paddle parade",
+          "14:00",
+          "Long course final"
+        ],
+        "photoQuery": "80346a24bf"
+      },
+      {
+        "role": "feature",
+        "title": "From above",
+        "items": [
+          "Bring colour",
+          "Every board in a different livery reads beautifully from the drone at noon.",
+          "Stay close",
+          "Rafting up between heats keeps the course clear and the photos full."
+        ],
+        "photoQuery": "80346a24bf"
+      },
+      {
+        "role": "feature",
+        "title": "Read the water before you read the map.",
+        "items": [
+          "— Harbour master’s briefing"
+        ],
+        "photoQuery": "ed2250ed0c"
+      },
+      {
+        "role": "feature",
+        "title": "See you on the water.",
+        "items": [
+          "Tidewater Regatta · Harbour Mile"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "tidewater-disc"
+    },
+    {
+      "role": "feature",
+      "variant": "tidewater-buoys"
+    },
+    {
+      "role": "feature",
+      "variant": "tidewater-heats"
+    },
+    {
+      "role": "feature",
+      "variant": "tidewater-pill"
+    },
+    {
+      "role": "feature",
+      "variant": "tidewater-texture"
+    },
+    {
+      "role": "feature",
+      "variant": "tidewater-sunset"
+    }
+  ]
+}

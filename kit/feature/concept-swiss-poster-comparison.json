@@ -1,0 +1,160 @@
+{
+  "id": "feature/concept-swiss-poster-comparison",
+  "role": "feature",
+  "variant": "concept-swiss-poster-comparison",
+  "family": "swiss-poster",
+  "status": "draft",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "a": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "b": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "note": {
+      "kind": "text",
+      "from": "items2"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 142,
+      "maxFont": 142,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "a": {
+      "minFont": 50,
+      "maxFont": 50,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "b": {
+      "minFont": 50,
+      "maxFont": 50,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "note": {
+      "minFont": 27,
+      "maxFont": 27,
+      "lineClamp": 3,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "a": {
+      "kind": "text"
+    },
+    "b": {
+      "kind": "text"
+    },
+    "note": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "mark0",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 32,
+        "height": 900,
+        "tokenFill": "accent",
+        "z": 1,
+        "morphId": "mark0"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "x": 65,
+        "y": 55,
+        "width": 1490,
+        "height": 360,
+        "fontSize": 142,
+        "fontRole": "display",
+        "fontWeight": 700,
+        "tokenColor": "ink",
+        "lineHeight": 1.1,
+        "z": 4,
+        "morphId": "title"
+      },
+      {
+        "id": "mark2",
+        "type": "shape",
+        "shape": "rect",
+        "x": 80,
+        "y": 490,
+        "width": 1450,
+        "height": 14,
+        "tokenFill": "ink",
+        "z": 1,
+        "morphId": "mark2"
+      },
+      {
+        "id": "a",
+        "type": "text",
+        "slot": "a",
+        "x": 80,
+        "y": 560,
+        "width": 680,
+        "height": 125,
+        "fontSize": 50,
+        "fontRole": "body",
+        "fontWeight": 400,
+        "tokenColor": "ink",
+        "lineHeight": 1.1,
+        "z": 4,
+        "morphId": "a"
+      },
+      {
+        "id": "b",
+        "type": "text",
+        "slot": "b",
+        "x": 840,
+        "y": 560,
+        "width": 680,
+        "height": 135,
+        "fontSize": 50,
+        "fontRole": "body",
+        "fontWeight": 400,
+        "tokenColor": "ink",
+        "lineHeight": 1.1,
+        "z": 4,
+        "morphId": "b"
+      },
+      {
+        "id": "note",
+        "type": "text",
+        "slot": "note",
+        "x": 70,
+        "y": 800,
+        "width": 1450,
+        "height": 94,
+        "fontSize": 27,
+        "fontRole": "body",
+        "fontWeight": 400,
+        "tokenColor": "ink",
+        "lineHeight": 1.1,
+        "z": 4,
+        "morphId": "note"
+      }
+    ]
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "name": "Idea Wall • Workshop kit",
+  "description": "Workshop deck — a pinned sticky note over a real wall, staggered step notes, affinity clusters and a dot vote.",
+  "brand": {
+    "colors": {
+      "bg": "#FFFDF7",
+      "surface": "#FFE45C",
+      "surface_color": "#7BD3F7",
+      "ink": "#161616",
+      "muted": "#55524A",
+      "accent": "#D92638",
+      "line": "#E6E1D3"
+    },
+    "fonts": {
+      "display": "Poppins Bold",
+      "body": "Poppins"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "idea-wall"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Idea **Wall**",
+        "items": [
+          "Workshop kit · 3 hours",
+          "40 notes · 6 clusters · 1 decision"
+        ],
+        "photoQuery": "95988ad283"
+      },
+      {
+        "role": "feature",
+        "title": "How it works",
+        "items": [
+          "01",
+          "Dump",
+          "Everyone writes alone for ten minutes. One idea per note.",
+          "02",
+          "Cluster",
+          "Silently move notes into groups. Name a group only when it is obvious.",
+          "03",
+          "Vote",
+          "Three dots each. Spend them on what you would actually fund."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Clusters",
+        "items": [
+          "Onboarding",
+          "Shorter first-run checklist",
+          "Welcome call in week one",
+          "Pricing",
+          "One plan for small teams",
+          "Annual discount up front",
+          "Support",
+          "Reply inside four hours",
+          "Public status page"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Day one",
+        "items": [
+          "Before lunch",
+          "Two hundred notes went up before anyone sat back down.",
+          "After lunch",
+          "The wall got quieter. Duplicates were stacked, not thrown away.",
+          "214 notes"
+        ],
+        "photoQuery": "95988ad283"
+      },
+      {
+        "role": "feature",
+        "title": "Dot vote",
+        "items": [
+          "Welcome call in week one",
+          "14",
+          "One plan for small teams",
+          "9",
+          "Public status page",
+          "5",
+          "The top cluster ships first. Everything else stays on the wall for next quarter."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Stick with it.",
+        "items": [
+          "Idea Wall · workshop kit"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "idea-wall-pinned"
+    },
+    {
+      "role": "feature",
+      "variant": "idea-wall-steps"
+    },
+    {
+      "role": "feature",
+      "variant": "idea-wall-clusters"
+    },
+    {
+      "role": "feature",
+      "variant": "idea-wall-dayone"
+    },
+    {
+      "role": "feature",
+      "variant": "idea-wall-votes"
+    },
+    {
+      "role": "feature",
+      "variant": "idea-wall-stick"
+    }
+  ]
+}

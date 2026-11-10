@@ -1,0 +1,197 @@
+{
+  "id": "cover/tidewater-disc",
+  "role": "cover",
+  "variant": "tidewater-disc",
+  "family": "tidewater",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "copy2": {
+      "kind": "text",
+      "from": "items2"
+    }
+  },
+  "fit": {
+    "copy0": {
+      "minFont": 26,
+      "maxFont": 26,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "title": {
+      "minFont": 130,
+      "maxFont": 130,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 30,
+      "maxFont": 30,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy2": {
+      "minFont": 88,
+      "maxFont": 88,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "photo",
+        "type": "image",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "z": 1,
+        "slot": "photo",
+        "morphId": "hero"
+      },
+      {
+        "id": "disc",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 70,
+        "y": 90,
+        "width": 720,
+        "height": 720,
+        "tokenFill": "surface",
+        "z": 2
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 170,
+        "y": 220,
+        "width": 520,
+        "height": 44,
+        "fontSize": 26,
+        "slot": "copy0",
+        "tokenColor": "accent",
+        "fontRole": "label",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 3,
+        "textStyleRole": "kicker",
+        "align": "center"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 150,
+        "y": 270,
+        "width": 560,
+        "height": 340,
+        "fontSize": 130,
+        "slot": "title",
+        "tokenColor": "bg",
+        "fontRole": "display",
+        "fontWeight": 400,
+        "lineHeight": 1,
+        "letterSpacing": 0,
+        "z": 3,
+        "textStyleRole": "display",
+        "align": "center",
+        "morphId": "title"
+      },
+      {
+        "id": "dash",
+        "type": "shape",
+        "shape": "rect",
+        "x": 400,
+        "y": 620,
+        "width": 60,
+        "height": 4,
+        "tokenFill": "accent",
+        "z": 3
+      },
+      {
+        "id": "copy1",
+        "type": "text",
+        "x": 170,
+        "y": 645,
+        "width": 520,
+        "height": 50,
+        "fontSize": 30,
+        "slot": "copy1",
+        "tokenColor": "bg",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 3,
+        "align": "center"
+      },
+      {
+        "id": "sticker",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 1290,
+        "y": 80,
+        "width": 230,
+        "height": 230,
+        "tokenFill": "accent",
+        "z": 3
+      },
+      {
+        "id": "copy2",
+        "type": "text",
+        "x": 1310,
+        "y": 125,
+        "width": 190,
+        "height": 140,
+        "fontSize": 88,
+        "slot": "copy2",
+        "tokenColor": "surface",
+        "fontRole": "display",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "textStyleRole": "stat",
+        "align": "center"
+      }
+    ]
+  }
+}

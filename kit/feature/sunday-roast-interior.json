@@ -1,0 +1,108 @@
+{
+  "id": "feature/sunday-roast-interior",
+  "role": "feature",
+  "variant": "sunday-roast-interior",
+  "family": "sunday-roast",
+  "status": "draft",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 76,
+      "maxFont": 76,
+      "lineClamp": 3,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 37,
+      "maxFont": 37,
+      "lineClamp": 4,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "type": "image",
+        "x": 0,
+        "y": 0,
+        "width": 1010,
+        "height": 900,
+        "z": 1,
+        "id": "image0",
+        "morphId": "image0",
+        "slot": "photo"
+      },
+      {
+        "type": "shape",
+        "shape": "rect",
+        "x": 1010,
+        "y": 0,
+        "width": 590,
+        "height": 900,
+        "tokenFill": "surface",
+        "z": 1,
+        "id": "shape1",
+        "morphId": "shape1"
+      },
+      {
+        "type": "text",
+        "x": 1060,
+        "y": 210,
+        "width": 490,
+        "height": 270,
+        "fontSize": 76,
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "z": 5,
+        "lineHeight": 1.12,
+        "id": "text2",
+        "morphId": "text2",
+        "slot": "title"
+      },
+      {
+        "type": "text",
+        "x": 1060,
+        "y": 600,
+        "width": 470,
+        "height": 180,
+        "fontSize": 37,
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "z": 5,
+        "lineHeight": 1.12,
+        "id": "text3",
+        "morphId": "text3",
+        "slot": "copy0"
+      }
+    ]
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "name": "Gridlock • Radio",
+  "description": "Pit-lane deck — radio call plate cover, tire compound pills, sector deltas and a pit-light close.",
+  "brand": {
+    "colors": {
+      "bg": "#070B14",
+      "surface": "#121826",
+      "surface_color": "#1B2436",
+      "ink": "#F4F6FA",
+      "muted": "#8B93A7",
+      "accent": "#FFCC00",
+      "line": "#2A3348"
+    },
+    "fonts": {
+      "display": "Antonio",
+      "body": "Space Grotesk"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "gridlock"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "GRID **LOCK**",
+        "items": [
+          "Team radio · Lap 38",
+          "BOX BOX",
+          "P2"
+        ],
+        "photoQuery": "334783120c"
+      },
+      {
+        "role": "feature",
+        "title": "Compounds",
+        "items": [
+          "SOFT",
+          "12 laps",
+          "MEDIUM",
+          "28 laps",
+          "HARD",
+          "40 laps",
+          "INTER",
+          "wet only"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Sectors",
+        "items": [
+          "S1",
+          "-0.12",
+          "S2",
+          "+0.08",
+          "S3",
+          "-0.21",
+          "LAP",
+          "-0.25"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Pit wall",
+        "items": [
+          "Fuel",
+          "On target",
+          "Wing",
+          "Minus 1",
+          "Brake",
+          "Cooling",
+          "Mode",
+          "Push"
+        ],
+        "photoQuery": "334783120c"
+      },
+      {
+        "role": "feature",
+        "title": "Box this lap.",
+        "items": [
+          "— Race engineer"
+        ],
+        "photoQuery": "334783120c"
+      },
+      {
+        "role": "closing",
+        "title": "Lights out.",
+        "items": [
+          "Gridlock Radio · pit wall"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "gridlock-call"
+    },
+    {
+      "role": "feature",
+      "variant": "gridlock-compounds"
+    },
+    {
+      "role": "feature",
+      "variant": "gridlock-sectors"
+    },
+    {
+      "role": "feature",
+      "variant": "gridlock-wall"
+    },
+    {
+      "role": "feature",
+      "variant": "gridlock-quote"
+    },
+    {
+      "role": "closing",
+      "variant": "gridlock-lights"
+    }
+  ]
+}

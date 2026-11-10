@@ -1,0 +1,114 @@
+{
+  "id": "feature/library-executive-problem",
+  "role": "feature",
+  "variant": "library-executive-problem",
+  "family": "executive",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "body": {
+      "kind": "text",
+      "from": "items2"
+    },
+    "purpose": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "folio": {
+      "kind": "text",
+      "from": "items1"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 90,
+      "maxFont": 90,
+      "lineClamp": 3,
+      "shrinkMin": 1
+    },
+    "body": {
+      "minFont": 36,
+      "maxFont": 36,
+      "lineClamp": 6,
+      "shrinkMin": 1
+    },
+    "purpose": {
+      "minFont": 25,
+      "maxFont": 25,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {},
+  "layout": {
+    "elements": [
+      {
+        "id": "panel",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 760,
+        "height": 900,
+        "tokenFill": "ink",
+        "z": 1
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 70,
+        "y": 170,
+        "width": 620,
+        "height": 380,
+        "fontSize": 90,
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "tokenColor": "bg",
+        "slot": "title",
+        "textStyleRole": "headline",
+        "z": 4,
+        "morphId": "title"
+      },
+      {
+        "id": "body",
+        "type": "text",
+        "x": 880,
+        "y": 320,
+        "width": 620,
+        "height": 280,
+        "fontSize": 36,
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "tokenColor": "ink",
+        "slot": "body",
+        "textStyleRole": "body",
+        "z": 4,
+        "morphId": "body"
+      },
+      {
+        "id": "purpose",
+        "type": "text",
+        "x": 880,
+        "y": 820,
+        "width": 700,
+        "height": 40,
+        "fontSize": 25,
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "tokenColor": "muted",
+        "slot": "purpose",
+        "textStyleRole": "kicker",
+        "z": 4
+      }
+    ]
+  }
+}

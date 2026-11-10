@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "id": "people-and-partners",
+  "name": "People and Partners",
+  "purpose": "Leadership, teams, collaborators, client rosters and ecosystem stories.",
+  "canvas": {
+    "width": 1600,
+    "height": 900
+  },
+  "referenceLayoutIds": [
+    "ref-four-portrait-team",
+    "ref-staggered-partners"
+  ],
+  "existingKitStartingPoints": [
+    "team/b",
+    "team/cutout",
+    "portfolio/masonry",
+    "testimonial/cutout"
+  ],
+  "existingKitCaveat": "These are working starting points, not exact implementations of the reference geometry.",
+  "identityRules": [
+    "Keep portraits equal in frame size, crop scale and caption baseline.",
+    "Place index numbers beside names rather than over portraits.",
+    "Set partner marks in a staggered field with generous gaps."
+  ],
+  "typography": {
+    "unit": "engine-canvas",
+    "preferredSizes": {
+      "display": 88,
+      "heading": 60,
+      "itemHeading": 28,
+      "body": 24,
+      "metadata": 24
+    },
+    "bodyFloor": 24,
+    "titleFloor": 40,
+    "chartLabelFloor": 20,
+    "sourceAdjustment": "Reference body sizes scaled from 1920px often fall below the engine's 14pt export floor. Raise body text to at least 24 engine units and shorten or split copy; do not preserve an unreadable exact ratio."
+  },
+  "whitespace": {
+    "contentFrame": {
+      "x": 225,
+      "y": 167,
+      "width": 1150,
+      "height": 566
+    },
+    "minimumColumnGutter": 58,
+    "policy": "Reference negative-space zones are reserved. Do not introduce text, photos or charts into those zones; full-bleed backgrounds may cross them.",
+    "referenceFrameCaveat": "The common content frame applies to inset copy. Bleeding photographs and intentionally off-canvas elements follow their own pattern bounds."
+  },
+  "variationRecipes": [
+    "Alternate team slides with a quote or partner field.",
+    "Use three larger portraits for a small leadership team, keeping equal gutters.",
+    "Rebalance logo row centers according to each mark's visual width."
+  ],
+  "antiPatterns": [
+    "Cropping logos with cover fitting.",
+    "Inventing missing people or partner affiliations.",
+    "Adding identical cards around every person or logo."
+  ],
+  "deckRhythm": [
+    "brand-statement",
+    "team",
+    "quote",
+    "partner-field",
+    "contact"
+  ],
+  "contentRules": {
+    "titleMaxWords": 8,
+    "titleMaxChars": 60,
+    "keynoteBodyMaxWordsPerBlock": 20,
+    "keynoteBodyMaxCharsPerItem": 90,
+    "photoQueries": "Use distinct domain-specific queries; keep imagery dynamic.",
+    "overflow": "Shorten text or split slides before reducing font size or occupying whitespace."
+  },
+  "readiness": {
+    "guide": "ready",
+    "blueprints": "implemented as draft engine kits",
+    "runtimeAutoSelection": false,
+    "newKitStatus": "Registered; opt in through sequenceId or explicit variantHint. Existing default pools are unchanged."
+  },
+  "generatedKits": [
+    "team/ref-four-portrait-team",
+    "portfolio/ref-staggered-partners"
+  ],
+  "sequenceId": "guide-people-and-partners",
+  "exampleDeck": "examples/design-guides/people-and-partners.json"
+}

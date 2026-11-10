@@ -1,0 +1,119 @@
+{
+  "name": "Harbor Ops • Morning brief",
+  "description": "Logistics briefing deck — cool slate, teal markers, clear ownership and next moves.",
+  "brand": {
+    "colors": {
+      "bg": "#F1F5F7",
+      "surface": "#DCE8EC",
+      "surface_color": "#E8F0F3",
+      "ink": "#0F2A3D",
+      "muted": "#4A6675",
+      "accent": "#0D9488",
+      "line": "#B7CBD2"
+    },
+    "fonts": {
+      "display": "Arial",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "harbor-ops"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Harbor Ops",
+        "items": [
+          "Morning brief · Shift 06:00–14:00",
+          "01"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "On the quay",
+        "items": [
+          "Berth status",
+          "Three vessels alongside. Crane two is online. Pilot boat standing by for the 09:40 departure.",
+          "Weather window",
+          "Wind stays under twelve knots until noon. Keep the outbound schedule tight."
+        ],
+        "photoQuery": "005c50a2a1"
+      },
+      {
+        "role": "feature",
+        "title": "Priority board",
+        "items": [
+          "Unload bay A   08:15",
+          "Container block C12–C18. Confirm seal check before release.",
+          "Pilot call   09:10",
+          "Outbound tanker. Bridge team briefed; tug assist reserved.",
+          "Yard sweep   10:00",
+          "Clear empty chassis from lane 4 before the midday inbound.",
+          "Gate audit   11:30",
+          "Random inspection sample. Log exceptions in the shift report."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Signal clear",
+        "items": [
+          "Radio net",
+          "Channel 12 for quay. Channel 8 for yard. Keep chatter short when the pilot is on.",
+          "Escalation",
+          "Anything that slips the weather window goes to the duty superintendent first."
+        ],
+        "photoQuery": "010f55d65d"
+      },
+      {
+        "role": "feature",
+        "title": "Watch items",
+        "items": [
+          "Crane two",
+          "Back online after overnight service. Watch the first three lifts.",
+          "Lane 4",
+          "Empty chassis stacking is blocking the sweep route.",
+          "Tide turn",
+          "Outbound window closes at 12:20. No soft delays."
+        ],
+        "photoQuery": "03b756c19e"
+      },
+      {
+        "role": "feature",
+        "title": "Keep the tide.",
+        "items": [
+          "Harbor Ops Control"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "harbor-ops-masthead"
+    },
+    {
+      "role": "feature",
+      "variant": "harbor-ops-interior"
+    },
+    {
+      "role": "feature",
+      "variant": "harbor-ops-menu"
+    },
+    {
+      "role": "feature",
+      "variant": "harbor-ops-portrait"
+    },
+    {
+      "role": "feature",
+      "variant": "harbor-ops-notes"
+    },
+    {
+      "role": "feature",
+      "variant": "harbor-ops-closing"
+    }
+  ]
+}

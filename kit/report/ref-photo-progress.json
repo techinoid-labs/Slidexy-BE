@@ -1,0 +1,398 @@
+{
+  "id": "report/ref-photo-progress",
+  "role": "report",
+  "variant": "ref-photo-progress",
+  "family": "executive-insight-ref-photo-progress",
+  "sourceRef": "ref-photo-progress",
+  "designGuide": "executive-insight",
+  "steal": "Full-height left photo bleeds off three edges and fades toward the center. Right panel stacks a title, paragraph and three slim progress bars with labels above and values outside right.",
+  "preserveLayout": true,
+  "status": "draft",
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "optional": false,
+      "from": "photo0"
+    },
+    "title": {
+      "kind": "text",
+      "optional": false,
+      "from": "title"
+    },
+    "copy1": {
+      "kind": "text",
+      "optional": true,
+      "from": "body0"
+    },
+    "copy2": {
+      "kind": "text",
+      "optional": true,
+      "from": "stats0.label"
+    },
+    "copy3": {
+      "kind": "text",
+      "optional": true,
+      "from": "stats0.value"
+    },
+    "copy4": {
+      "kind": "text",
+      "optional": true,
+      "from": "stats1.label"
+    },
+    "copy5": {
+      "kind": "text",
+      "optional": true,
+      "from": "stats1.value"
+    },
+    "copy6": {
+      "kind": "text",
+      "optional": true,
+      "from": "stats2.label"
+    },
+    "copy7": {
+      "kind": "text",
+      "optional": true,
+      "from": "stats2.value"
+    }
+  },
+  "fit": {
+    "title": {
+      "maxFont": 60,
+      "minFont": 48,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy1": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 3,
+      "shrinkMin": 0.9
+    },
+    "copy2": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy3": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy4": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy5": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy6": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    },
+    "copy7": {
+      "maxFont": 24,
+      "minFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 0.9
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    },
+    "copy3": {
+      "kind": "text"
+    },
+    "copy4": {
+      "kind": "text"
+    },
+    "copy5": {
+      "kind": "text"
+    },
+    "copy6": {
+      "kind": "text"
+    },
+    "copy7": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "photo",
+        "type": "image",
+        "slot": "photo",
+        "x": 0,
+        "y": 0,
+        "width": 775,
+        "height": 900,
+        "z": 1,
+        "morphId": "photo",
+        "mask": "rect"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "x": 858.33,
+        "y": 166.67,
+        "width": 616.67,
+        "height": 78.33,
+        "z": 4,
+        "morphId": "title",
+        "fontRole": "display",
+        "fontSize": 60,
+        "fontWeight": 300,
+        "tokenColor": "ink",
+        "align": "left",
+        "lineHeight": 1.05,
+        "usePrimitive": false
+      },
+      {
+        "id": "title-rule",
+        "type": "shape",
+        "shape": "rect",
+        "x": 858.33,
+        "y": 249.17,
+        "width": 50,
+        "height": 3.33,
+        "z": 2,
+        "morphId": "title-rule",
+        "tokenFill": "accent"
+      },
+      {
+        "id": "body",
+        "type": "text",
+        "slot": "copy1",
+        "x": 858.33,
+        "y": 359.17,
+        "width": 516.67,
+        "height": 120.83,
+        "z": 4,
+        "morphId": "body",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.32,
+        "usePrimitive": false
+      },
+      {
+        "id": "progress-label-0",
+        "type": "text",
+        "slot": "copy2",
+        "x": 858.33,
+        "y": 555,
+        "width": 465.83,
+        "height": 43.2,
+        "z": 4,
+        "morphId": "progress-label-0",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.3,
+        "usePrimitive": false
+      },
+      {
+        "id": "track-0",
+        "type": "shape",
+        "shape": "rect",
+        "x": 858.33,
+        "y": 596.67,
+        "width": 465.83,
+        "height": 5,
+        "z": 2,
+        "morphId": "track-0",
+        "tokenFill": "line"
+      },
+      {
+        "id": "fill-0",
+        "type": "shape",
+        "shape": "rect",
+        "x": 858.33,
+        "y": 596.67,
+        "width": 465.83,
+        "height": 5,
+        "z": 3,
+        "morphId": "fill-0",
+        "tokenFill": "accent",
+        "widthFrom": "stats0.value"
+      },
+      {
+        "id": "percent-0",
+        "type": "text",
+        "slot": "copy3",
+        "x": 1346.67,
+        "y": 589.17,
+        "width": 80,
+        "height": 40.8,
+        "z": 4,
+        "morphId": "percent-0",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.2,
+        "usePrimitive": false
+      },
+      {
+        "id": "progress-label-1",
+        "type": "text",
+        "slot": "copy4",
+        "x": 858.33,
+        "y": 618.33,
+        "width": 465.83,
+        "height": 43.2,
+        "z": 4,
+        "morphId": "progress-label-1",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.3,
+        "usePrimitive": false
+      },
+      {
+        "id": "track-1",
+        "type": "shape",
+        "shape": "rect",
+        "x": 858.33,
+        "y": 660,
+        "width": 465.83,
+        "height": 5,
+        "z": 2,
+        "morphId": "track-1",
+        "tokenFill": "line"
+      },
+      {
+        "id": "fill-1",
+        "type": "shape",
+        "shape": "rect",
+        "x": 858.33,
+        "y": 660,
+        "width": 465.83,
+        "height": 5,
+        "z": 3,
+        "morphId": "fill-1",
+        "tokenFill": "accent",
+        "widthFrom": "stats1.value"
+      },
+      {
+        "id": "percent-1",
+        "type": "text",
+        "slot": "copy5",
+        "x": 1346.67,
+        "y": 652.5,
+        "width": 80,
+        "height": 40.8,
+        "z": 4,
+        "morphId": "percent-1",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.2,
+        "usePrimitive": false
+      },
+      {
+        "id": "progress-label-2",
+        "type": "text",
+        "slot": "copy6",
+        "x": 858.33,
+        "y": 681.67,
+        "width": 465.83,
+        "height": 43.2,
+        "z": 4,
+        "morphId": "progress-label-2",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.3,
+        "usePrimitive": false
+      },
+      {
+        "id": "track-2",
+        "type": "shape",
+        "shape": "rect",
+        "x": 858.33,
+        "y": 723.33,
+        "width": 465.83,
+        "height": 5,
+        "z": 2,
+        "morphId": "track-2",
+        "tokenFill": "line"
+      },
+      {
+        "id": "fill-2",
+        "type": "shape",
+        "shape": "rect",
+        "x": 858.33,
+        "y": 723.33,
+        "width": 465.83,
+        "height": 5,
+        "z": 3,
+        "morphId": "fill-2",
+        "tokenFill": "accent",
+        "widthFrom": "stats2.value"
+      },
+      {
+        "id": "percent-2",
+        "type": "text",
+        "slot": "copy7",
+        "x": 1346.67,
+        "y": 715.83,
+        "width": 80,
+        "height": 40.8,
+        "z": 4,
+        "morphId": "percent-2",
+        "fontRole": "body",
+        "fontSize": 24,
+        "fontWeight": 400,
+        "tokenColor": "muted",
+        "align": "left",
+        "lineHeight": 1.2,
+        "usePrimitive": false
+      }
+    ]
+  },
+  "motion": {
+    "transition": "fade",
+    "fallbackTransition": "fade",
+    "durationMs": 500
+  },
+  "implementationNotes": [
+    "Geometry estimated from the supplied raster and scaled to 1600x900.",
+    "Body text raised to readable export floors; copy must fit the original whitespace.",
+    "Soft grain and photographic edge fades replaced by clean crops and flat palette surfaces."
+  ]
+}
