@@ -85,6 +85,8 @@ Ambient pulse/float is allowed on closings/features when a clear `morphId` targe
 | Mix | `scripts/generate-mix-batch.ts` | marquee, strike (funky); apiary, newsstand (soft) | `npm run publish:mix-batch:local` |
 | Portfolio | `scripts/generate-portfolio-batch.ts` | vitrine, dossier, mezzanine, platepress | `npm run publish:portfolio-batch:local` |
 
+**Mobile sync:** after publish, `npm run bake:tier-b` then `npm run publish:firestore-templates` (see `FIDELITY-TIERS.md`). Flutter consumes Firestore on branch `feat/be-template-catalog-sync`.
+
 Single family: append `--only=<id>` (e.g. `--only=carnival-lot`).
 
 Previews and decks: `out/<id>/preview.png`, `slide-*.png`, `deck.json`.

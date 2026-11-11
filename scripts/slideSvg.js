@@ -1393,13 +1393,29 @@ function paintChart(ctx, element, tokens) {
         // 0.92 headroom keeps the tallest stack inside the clipped box
         const bh = (v / maxV) * plotH * 0.92;
         ctx.fillStyle = colors[s % colors.length];
-        ctx.fillRect(bx, plotBottom - stack - bh, barW, bh);
-        stack += bh;
+        const seriesW = stacked ? barW : barW / values.length;
+        ctx.fillRect(bx + (stacked ? 0 : s * seriesW), plotBottom - (stacked ? stack : 0) - bh, seriesW, bh);
+        if (stacked) stack += bh;
+        if (!stacked) {
+          ctx.fillStyle = ink;
+          ctx.font = "400 18px Calibri";
+          ctx.textAlign = "center";
+          ctx.fillText(String(v), bx + s * seriesW + seriesW / 2, plotBottom - bh - 5);
+        }
       }
       ctx.fillStyle = ink;
-      ctx.font = "400 14px Calibri";
+      ctx.font = "400 18px Calibri";
       ctx.textAlign = "center";
-      ctx.fillText(String(labels[i]).slice(0, 10), bx + barW / 2, Math.min(y + h - 8, plotBottom + 18));
+      ctx.fillText(String(labels[i]), bx + barW / 2, Math.min(y + h - 8, plotBottom + 22));
+    }
+    if (content.showLegend !== false && !stacked) {
+      series.forEach((s, i) => {
+        const lx = x + padX + i * (w - padX * 2) / series.length;
+        ctx.fillStyle = colors[i % colors.length];
+        ctx.fillRect(lx, y + h - 23, 18, 12);
+        ctx.fillStyle = ink; ctx.textAlign = "left"; ctx.font = "400 17px Calibri";
+        ctx.fillText(String(s.name || "Series"), lx + 26, y + h - 12);
+      });
     }
   } else {
     const plotW = w - padX * 2;
@@ -1497,6 +1513,22 @@ function paintTable(ctx, element, tokens) {
 function paintShape(ctx, element, tokens) {
   const shape = element.shapeContent || {};
   const fill = token(shape.fill, tokens) || "none";
+  if (shape.kind === "wave") {
+    ctx.save();
+    ctx.translate(element.x, element.y);
+    ctx.scale(element.width / 2000, element.height / 180);
+    ctx.beginPath();
+    for (const [kind, ...p] of require("../engine/waveGeometry").waveCommands()) {
+      if (kind === "M") ctx.moveTo(...p);
+      else if (kind === "C") ctx.bezierCurveTo(...p);
+      else if (kind === "L") ctx.lineTo(...p);
+      else ctx.closePath();
+    }
+    ctx.fillStyle = fill;
+    ctx.fill();
+    ctx.restore();
+    return;
+  }
   const params = shape.decorParams || {};
   ctx.save();
   if (element.opacity != null) ctx.globalAlpha *= Number(element.opacity);

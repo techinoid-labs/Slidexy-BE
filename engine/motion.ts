@@ -4,8 +4,10 @@
  */
 
 const { applyAmbientToDeck } = require("./ambient");
+const { applyWaveDesign } = require("./waveDesign");
 
 export type MotionConfig = {
+  wave?: import("./waveDesign").WaveDesignOptions | false;
   morph?: boolean;
   /** Continuous on-slide loops (Pulse / Float / Ken Burns / Teeter). One per slide. */
   ambient?: boolean;
@@ -229,6 +231,7 @@ export function expandMotionScenes(deck: any, motion?: MotionConfig | null): any
     deck.engine.motion = { ...cfg, v: "1.1", scenes: [] };
     deck.engine.v = "1.5-pro-motion";
     if (cfg.ambient) applyAmbientToDeck(deck);
+    applyWaveDesign(deck, cfg.wave);
     return deck;
   }
 
@@ -292,6 +295,7 @@ export function expandMotionScenes(deck: any, motion?: MotionConfig | null): any
   };
   deck.engine.v = "1.5-pro-motion";
   if (cfg.ambient) applyAmbientToDeck(deck);
+  applyWaveDesign(deck, cfg.wave);
   return deck;
 }
 

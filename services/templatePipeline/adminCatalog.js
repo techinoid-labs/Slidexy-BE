@@ -327,6 +327,12 @@ async function publishTemplate(id) {
   const catalogFile = path.join(PUBLISHED, publishedId + ".json");
   fs.writeFileSync(catalogFile, JSON.stringify(deck, null, 2) + "\n");
   fs.writeFileSync(path.join(dest, "deck.json"), JSON.stringify(deck, null, 2) + "\n");
+  try {
+    const { writeManifest, buildManifest } = require("./catalogManifest");
+    writeManifest(buildManifest());
+  } catch (error) {
+    console.warn("catalog manifest refresh failed:", error && error.message);
+  }
   safeRm(dir, { recursive: true, force: true });
   photoDirs.forEach((photoDir) => safeRm(photoDir, { recursive: true, force: true }));
   return {

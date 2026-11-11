@@ -5,7 +5,7 @@
 const fs = require("fs");
 const path = require("path");
 
-export type AmbientEffectId = "pulse" | "float" | "kenBurns" | "teeter";
+export type AmbientEffectId = "pulse" | "float" | "kenBurns" | "teeter" | "waveLoop";
 
 export type AmbientAssignment = {
   effect: AmbientEffectId;
@@ -102,6 +102,7 @@ function resolveTarget(kit: AmbientKit, layout: any): string | null {
   for (const id of prefer) {
     if (!present.has(id)) continue;
     const el = els.find((e: any) => e && e.morphId === id);
+    if (kit.effect === "waveLoop" && el?.shapeContent?.kind !== "wave") continue;
     // Pulse must never hit text numbers
     if (kit.effect === "pulse" && el && el.type === "text") continue;
     // Float must never target hairline accents (invisible motion)

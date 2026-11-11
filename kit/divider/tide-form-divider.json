@@ -1,0 +1,137 @@
+{
+  "id": "divider/tide-form-divider",
+  "role": "divider",
+  "variant": "tide-form-divider",
+  "family": "tide-form",
+  "status": "draft",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "c0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "c1": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "c2": {
+      "kind": "text",
+      "from": "items2"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 88,
+      "maxFont": 88,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "c0": {
+      "minFont": 30,
+      "maxFont": 30,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "c1": {
+      "minFont": 32,
+      "maxFont": 32,
+      "lineClamp": 6,
+      "shrinkMin": 1
+    },
+    "c2": {
+      "minFont": 26,
+      "maxFont": 26,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "c0": {
+      "kind": "text"
+    },
+    "c1": {
+      "kind": "text"
+    },
+    "c2": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "x": 80,
+        "y": 120,
+        "width": 1400,
+        "height": 130,
+        "fontSize": 88,
+        "fontRole": "display",
+        "textStyleRole": "display",
+        "fontWeight": 400,
+        "lineHeight": 1.18,
+        "tokenColor": "ink",
+        "z": 4,
+        "morphId": "title"
+      },
+      {
+        "id": "c0",
+        "type": "text",
+        "slot": "c0",
+        "x": 85,
+        "y": 290,
+        "width": 1200,
+        "height": 55,
+        "fontSize": 30,
+        "fontRole": "body",
+        "textStyleRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.18,
+        "tokenColor": "ink",
+        "z": 4
+      },
+      {
+        "id": "c1",
+        "type": "text",
+        "slot": "c1",
+        "x": 85,
+        "y": 390,
+        "width": 1250,
+        "height": 240,
+        "fontSize": 32,
+        "fontRole": "body",
+        "textStyleRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.18,
+        "tokenColor": "ink",
+        "z": 4
+      },
+      {
+        "id": "c2",
+        "type": "text",
+        "slot": "c2",
+        "x": 85,
+        "y": 650,
+        "width": 1300,
+        "height": 55,
+        "fontSize": 26,
+        "fontRole": "body",
+        "textStyleRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.18,
+        "tokenColor": "ink",
+        "z": 4
+      }
+    ]
+  }
+}

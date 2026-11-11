@@ -57,26 +57,17 @@ function slideFile(id, name) {
 }
 
 function listCatalog() {
-  if (!fs.existsSync(PUBLISHED)) return [];
-  return fs.readdirSync(PUBLISHED)
-    .filter((name) => name.endsWith(".json") && fs.statSync(path.join(PUBLISHED, name)).isFile())
-    .map((name) => {
-      const id = name.replace(/\.json$/, "");
-      let deck = {};
-      try {
-        deck = JSON.parse(fs.readFileSync(path.join(PUBLISHED, name), "utf8"));
-      } catch (error) {
-        deck = {};
-      }
-      const cover = slideNames(id).find((slide) => slide === "slide-01.png") || slideNames(id)[0] || "";
-      return {
-        id,
-        name: deck.name || id,
-        description: deck.description || "",
-        thumbnailUrl: cover ? "/api/catalog/" + id + "/slides/" + cover : "",
-      };
-    })
-    .sort((a, b) => a.name.localeCompare(b.name));
+  const { buildManifest, writeManifest } = require("./catalogManifest");
+  const manifest = writeManifest(buildManifest());
+  return manifest.decks || [];
+}
+
+function photoFile(id, name) {
+  const safe = String(name || "");
+  if (!/^[a-zA-Z0-9._-]+\.(png|jpe?g|webp)$/i.test(safe)) throw fail(400, "Unknown photo");
+  const file = path.join(PUBLISHED, assertId(id), "photos", safe);
+  if (!fs.existsSync(file) || !fs.statSync(file).isFile()) throw fail(404, "Photo not found");
+  return file;
 }
 
 function readCatalog(id) {
@@ -107,6 +98,7 @@ async function pptxBuffer(deck, deckId) {
   let buffer = Buffer.from(await pptx.write({ outputType: "nodebuffer" }));
   buffer = await applyNativePictureMasks(buffer);
   buffer = await groupNamedElements(buffer);
+  buffer = await require("./waveOoxml").applyWaveGeometry(buffer, deck);
   buffer = await applyMotionOoxml(buffer, deck);
   return buffer;
 }
@@ -1089,6 +1081,7 @@ module.exports = {
   listCatalog,
   readCatalog,
   slideFile,
+  photoFile,
   buildPptx,
   exportDeckPptx,
   ENTRANCE_TEMPLATES,

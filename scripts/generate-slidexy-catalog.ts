@@ -22,6 +22,7 @@ const { selectAll } = require("../engine/selectVariant");
 const { runGates } = require("../engine/gates");
 const { renderDeckFromSpec, tokens } = require("../engine/render");
 const { expandMotionScenes } = require("../engine/motion");
+const { waveOptionsFromArgs } = require("../engine/waveDesign");
 const { normalizeDeckSpec, resolveContentDensity } = require("../engine/content");
 const { assertEngineSchemas } = require("../engine/validateSchema");
 const { exportDeckPptx } = require("../services/templatePipeline/catalog");
@@ -1060,6 +1061,7 @@ async function generateOne(n: NicheDef, index: number) {
   deck = expandMotionScenes(deck, {
     morph: false,
     ambient: false,
+    wave: waveOptionsFromArgs(process.argv),
     cameraPan: false,
     scatter: false,
     defaultTransition: "fade",

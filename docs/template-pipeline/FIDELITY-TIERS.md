@@ -43,3 +43,18 @@ Unknown BE types fall back to text — do not ship BE kits to Firestore without 
 | Flutter / Firestore | Tier B only, or Tier A after bake |
 
 SEL unit tiers are marked in [`sel-catalog.json`](../../engine/design-system/sel-catalog.json) (`tier: "A" | "B"`).
+
+## Sync checklist (web + mobile)
+
+1. Author / regenerate family → `npm run publish:<batch>:local` (or admin publish).
+2. Catalog refresh: `GET /api/catalog` (+ `/api/catalog/manifest`) lists `family`, `tier`, `capabilities`.
+3. **Web use:** browse design systems → download PPTX (editor starters stay separate).
+4. **Mobile use:** bake then Firestore:
+   ```bash
+   npm run bake:tier-b
+   # optional: PUBLIC_CATALOG_BASE=https://your-api-host npm run bake:tier-b
+   npm run publish:firestore-templates          # dry-run payload
+   FIRESTORE_PUBLISH=1 npm run publish:firestore-templates
+   ```
+5. Flutter branch `feat/be-template-catalog-sync` consumes Firestore; do not merge to `enhance-slides` until verified.
+6. Refuse Firestore publish unless `tierB.baked === true` and `mobileTier === "B"`.

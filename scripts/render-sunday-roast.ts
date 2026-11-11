@@ -3,6 +3,7 @@ import * as path from "path";
 const { renderDeckFromSpec } = require("../engine/render");
 const { renderSlidePng } = require("./slideSvg");
 const { exportDeckPptx } = require("../services/templatePipeline/catalog");
+const { applyWaveDesign, waveOptionsFromArgs } = require("../engine/waveDesign");
 const { createCanvas, loadImage } = require("canvas");
 
 const ROOT = path.join(__dirname, "..");
@@ -38,6 +39,7 @@ async function main() {
     template.description ||
     "A warm cafe lookbook — interior, menu, latte, tasting notes and a closing postcard.";
   deck.family = edition.replace(/-dense$/, "");
+  applyWaveDesign(deck, template.wave || waveOptionsFromArgs(process.argv));
 
   const sheet = createCanvas(1280, 368 * Math.ceil(deck.layoutSequence.length / 2));
   const ctx = sheet.getContext("2d");

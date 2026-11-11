@@ -1,0 +1,98 @@
+{
+  "id": "cover/rolling-wave",
+  "role": "cover",
+  "variant": "rolling-wave",
+  "family": "rolling-wave",
+  "status": "draft",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "subtitle": {
+      "kind": "text",
+      "from": "items0"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 90,
+      "maxFont": 90,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "subtitle": {
+      "minFont": 32,
+      "maxFont": 32,
+      "lineClamp": 3,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "subtitle": {
+      "kind": "text"
+    }
+  },
+  "motion": {
+    "transition": "none",
+    "entrances": [],
+    "ambient": {
+      "effect": "waveLoop",
+      "morphId": "wave",
+      "durationMs": 8000,
+      "autoReverse": false,
+      "repeatCount": "indefinite"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "wave",
+        "morphId": "wave",
+        "type": "shape",
+        "shape": "wave",
+        "x": 0,
+        "y": 720,
+        "width": 2000,
+        "height": 180,
+        "tokenFill": "accent",
+        "z": 0
+      },
+      {
+        "id": "title",
+        "morphId": "title",
+        "type": "text",
+        "slot": "title",
+        "x": 110,
+        "y": 240,
+        "width": 1380,
+        "height": 220,
+        "fontSize": 90,
+        "fontRole": "display",
+        "textStyleRole": "display",
+        "tokenColor": "ink",
+        "z": 3
+      },
+      {
+        "id": "subtitle",
+        "morphId": "subtitle",
+        "type": "text",
+        "slot": "subtitle",
+        "x": 115,
+        "y": 510,
+        "width": 1200,
+        "height": 150,
+        "fontSize": 32,
+        "fontRole": "body",
+        "tokenColor": "ink",
+        "z": 3
+      }
+    ]
+  }
+}

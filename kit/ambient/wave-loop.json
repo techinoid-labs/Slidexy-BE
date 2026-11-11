@@ -1,0 +1,9 @@
+{
+  "id": "ambient/wave-loop",
+  "kind": "ambient",
+  "effect": "waveLoop",
+  "target": { "prefer": ["wave"] },
+  "params": { "durationMs": 8000, "autoReverse": false, "repeatCount": "indefinite" },
+  "variants": ["cover/rolling-wave", "rolling-wave"],
+  "priority": 10
+}

@@ -70,6 +70,13 @@ const ENTRANCE_TEMPLATES = {
 };
 
 const AMBIENT_TEMPLATES = {
+  waveLoop: {
+    presetID: 0,
+    presetClass: "path",
+    presetSubtype: 0,
+    kind: "waveLoop",
+    defaultDur: 8000,
+  },
   pulse: {
     presetID: 6,
     presetClass: "emph",
@@ -314,11 +321,11 @@ function entranceParXml(templateKey, spid, cTnId, delayMs, index) {
   return { xml, nextId: id };
 }
 
-function ambientMotionPathXml(path, spid, bhvrId, dur, autoRevAttr) {
+function ambientMotionPathXml(path, spid, bhvrId, dur, autoRevAttr, easing = AMBIENT_EASE) {
   return (
     `<p:animMotion origin="layout" path="${path}" pathEditMode="relative" ptsTypes="A" rCtr="0 0">` +
     `<p:cBhvr additive="base">` +
-    `<p:cTn id="${bhvrId}" dur="${dur}"${easeAttrs(AMBIENT_EASE)}${autoRevAttr} repeatCount="indefinite" fill="hold"/>` +
+    `<p:cTn id="${bhvrId}" dur="${dur}"${easeAttrs(easing)}${autoRevAttr} repeatCount="indefinite" fill="hold"/>` +
     `<p:tgtEl><p:spTgt spid="${spid}"/></p:tgtEl>` +
     `<p:attrNameLst><p:attrName>ppt_x</p:attrName><p:attrName>ppt_y</p:attrName></p:attrNameLst>` +
     `</p:cBhvr>` +
@@ -336,6 +343,10 @@ function ambientInnerXml(ambient, spid, bhvrId) {
   const scalePct = Math.round((Number(ambient.scale) || t.defaultScale || 1.035) * 100000);
   const pulseBy = Math.min(4000, Math.max(2000, scalePct - 100000));
   const ease = AMBIENT_EASE;
+
+  if (t.kind === "waveLoop") {
+    return ambientMotionPathXml("M 0 0 L -0.25 0 E", spid, bhvrId, dur, "", { accel: 0, decel: 0 });
+  }
 
   if (t.kind === "pulse") {
     return (

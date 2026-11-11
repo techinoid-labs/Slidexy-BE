@@ -1,0 +1,78 @@
+import * as fs from "fs";
+import * as path from "path";
+import assert from "node:assert/strict";
+const {renderDeckFromSpec}=require("../engine/render");
+const {validateKitObject}=require("../engine/validateSchema");
+const {applyWaveDesign}=require("../engine/waveDesign");
+const {renderSlidePng}=require("./slideSvg");
+const {exportDeckPptx}=require("../services/templatePipeline/catalog");
+const {createCanvas,loadImage}=require("canvas");
+const JSZip=require("jszip");
+const ROOT=path.resolve(__dirname,"..");
+const out=path.join(ROOT,"out/tide-form");
+const brand={colors:{bg:"#F1EDE3",ink:"#183D42",accent:"#3F8988",surface:"#DFD8C8",line:"#B7B9AA"},fonts:{display:"Georgia",body:"Arial"}};
+type E=Record<string,any>;
+const text=(slot:string,x:number,y:number,w:number,h:number,size:number,color="ink"):E=>({id:slot,type:"text",slot,x,y,width:w,height:h,fontSize:size,fontRole:slot==="title"?"display":"body",textStyleRole:slot==="title"?"display":"body",fontWeight:400,lineHeight:1.18,tokenColor:color,z:4});
+const box=(id:string,x:number,y:number,w:number,h:number,fill="surface"):E=>({id,type:"shape",shape:"rect",x,y,width:w,height:h,tokenFill:fill,z:1});
+const photo=(x:number,y:number,w:number,h:number):E=>({id:"photo",type:"image",slot:"photo",x,y,width:w,height:h,z:2});
+const slides:any[]=[]; const selections:any[]=[];
+function add(name:string,title:string,items:string[],els:E[],image?:string,role="feature",chart?:any){
+  const variant="tide-form-"+name;
+  const slots:E={},fit:E={},pptxMapping:E={};
+  for(const e of els){if(e.type==="text"){
+    slots[e.slot]={kind:"text",from:e.slot==="title"?"title":"items"+e.slot.slice(1)};
+    fit[e.slot]={minFont:e.fontSize,maxFont:e.fontSize,lineClamp:Math.floor(e.height/(e.fontSize*1.18)),shrinkMin:1};
+    pptxMapping[e.slot]={kind:"text"};
+  }if(e.type==="image"){slots.photo={kind:"image",from:"photo"};pptxMapping.photo={kind:"picture"};}}
+  const kit={id:role+"/"+variant,role,variant,family:"tide-form",status:"draft",preserveLayout:true,requiresPhoto:!!image,photoSlots:image?["photo"]:[],slots,fit,pptxMapping,layout:{elements:els}};
+  validateKitObject(kit);fs.mkdirSync(path.join(ROOT,"kit",role),{recursive:true});fs.writeFileSync(path.join(ROOT,"kit",role,variant+".json"),JSON.stringify(kit,null,2));
+  slides.push({role,title,items,photoQuery:image,chart});selections.push({role,variant});
+}
+const heading=(titleH=100)=>[text("title",80,60,1430,titleH,64),box("rule",80,185,1440,2,"line")];
+function split(name:string,title:string,a:string,b:string,c:string,d:string,img:string,reverse=false){
+ const tx=reverse?80:850,px=reverse?850:80;
+ add(name,title,[a,b,c,d,"Reference photography · fictional concept study"],[...heading(),photo(px,225,670,570),text("c0",tx,235,660,55,30),text("c1",tx,305,660,220,24),box("divider",tx,530,660,2,"line"),text("c2",tx,565,660,55,30),text("c3",tx,630,660,185,24),text("c4",80,840,1400,30,17)],img);
+}
+async function main(){
+fs.mkdirSync(out,{recursive:true});
+add("cover","Tide / Form",["Architecture shaped by the coast","Selected concept studies  /  2026","Fictional studio portfolio · reference photography"],[text("title",80,165,780,150,110),text("c0",85,345,700,110,36),text("c1",85,560,700,45,24),text("c2",85,640,730,36,18),photo(960,70,560,650)],"tidal-lab-3","cover");
+split("practice","Buildings that belong to their setting","A quieter architectural language","Tide / Form explores homes and public spaces at the meeting of land and water. Our concept work begins with exposure, access and the daily routines of occupants. Massing follows those observations before materials or decorative details are chosen.","A portfolio of three studies","Dune House investigates shelter and privacy. Harbour Rooms explores a shared waterfront threshold. The Field Station combines observation, teaching and research. These fictional projects use reference imagery to communicate an architectural direction, not completed commissions.","form-space-0",true);
+add("principles","Read the site before drawing the building",["01  Exposure","Map seasonal sun, prevailing winds and salt-laden weather. Place sheltered outdoor rooms where they remain useful throughout the year. Test openings against both glare and the views they frame.","02  Ground","Keep public paths legible and avoid treating the shoreline as private frontage. Establish a survey baseline before deciding floor levels, drainage routes or landscape edges. Coordinate habitat protection with local specialists.","03  Occupation","Design for ordinary days: arriving wet, storing equipment, gathering for a meal and finding a quiet seat. Give those activities enough room before expanding the formal programme or adding architectural gestures."],[...heading(),...[0,1,2].flatMap(i=>[box("bar"+i,80+i*500,270,90,6,"accent"),text("c"+(i*2),80+i*500,320,430,60,34),text("c"+(i*2+1),80+i*500,425,430,300,27)])]);
+split("dune","Dune House / a sheltered courtyard","01  Residential concept","A compact courtyard house turns its most protected rooms toward an inner garden. A low perimeter wall moderates exposure without closing the dwelling to its surroundings. The entrance sequence moves from a shared approach to a sheltered porch and then into the central court.","Privacy without isolation","Living spaces face the garden while service rooms form a buffer along the exposed edge. Deep reveals create places to sit beside an opening. The concept prioritises durable surfaces, replaceable components and a clear route from outdoors to utility storage.","form-space-1");
+add("plan","A courtyard organises movement",["Arrival → court → shared living","The plan separates a quiet sleeping wing from spaces used together. A covered route connects the entrance and utility room, allowing wet equipment to be stored before entering the house. The central court brings orientation to a compact footprint.","Schematic only · not to scale","Final dimensions, structure, accessible circulation and statutory requirements would be developed with the project team. The drawing shows relationships between spaces rather than a construction-ready solution.","ENTRY","LIVING","COURT","BEDROOMS","UTILITY"],[...heading(),box("site",80,235,850,550),box("wing1",125,280,760,110,"ink"),box("wing2",125,390,170,310,"ink"),box("wing3",695,390,190,310,"ink"),box("court",330,430,330,220,"bg"),text("c4",360,310,280,50,25,"bg"),text("c5",145,505,150,50,24,"bg"),text("c6",385,510,260,55,32),text("c7",700,505,180,50,22,"bg"),text("c8",375,715,250,45,24),text("c0",1010,245,500,95,32),text("c1",1010,365,500,240,25),text("c2",1010,620,500,40,21),text("c3",1010,670,500,190,24)]);
+split("light","Light is a material, too","Shade before equipment","External shading and the depth of a reveal can reduce direct exposure while preserving useful daylight. The concept places larger openings toward the court and uses narrower apertures on the exposed edge. Seasonal studies would establish whether the proposed balance works.","A sequence of light levels","Brighter shared rooms contrast with quieter passages and resting spaces. Materials are selected for their response to grazing light as well as their appearance in direct sun. Reference imagery illustrates the desired atmosphere; daylight performance remains to be tested.","atelier-form-3",true);
+add("divider","The shared shoreline",["02 / Public space and fieldwork","Harbour Rooms and the Field Station extend the portfolio beyond the home. Both studies use a sheltered threshold to connect indoor activity with outdoor observation. Public access, equipment storage and clear circulation are treated as central design questions.","A common approach, expressed at different scales."],[text("title",80,120,1400,130,88),text("c0",85,290,1200,55,30),text("c1",85,390,1250,240,32),text("c2",85,650,1300,55,26)],undefined,"divider");
+split("harbour","Harbour Rooms / a civic threshold","02  Community concept","The waterfront room is imagined as a place to read, meet and wait between journeys. A generous roof gathers the programme without enclosing every activity. A flexible interior can host small exhibitions while a covered edge supports informal occupation outside opening hours.","Designed around change","Simple circulation keeps the public route visible from the entrance. Furniture can be rearranged without blocking exits, and service storage sits near the event space. The structure and acoustic strategy would be developed together so flexibility does not depend on an empty room.","form-space-2");
+split("structure","A clear structure supports a flexible room","Repeat the useful parts","A regular structural rhythm can simplify the relationship between roof, lighting and internal partitions. The concept uses this repetition to organise a large shared room without prescribing a single furniture arrangement. Connections remain accessible so components can be inspected and maintained.","Keep the assembly understandable","Specification would compare durability, transport and repair requirements alongside embodied impact. Timber, metalwork and protective finishes need an exposure-specific strategy. The reference roof illustrates structural legibility, not the engineered solution for this concept.","form-space-4",true);
+add("materials","A restrained palette, chosen for use",["Mineral finish","A robust base at high-contact edges. Compare repair methods, porosity and cleaning requirements before specifying a finish for salt exposure.","Timber lining","A warmer surface in sheltered rooms. Detail ventilation and replaceable boards, and verify the source and finish with the supplier.","Metalwork","Use a coordinated system for external fixings. Review compatibility, drainage and inspection access rather than selecting by colour alone.","Textile layers","Introduce acoustic absorption where people gather. Choose removable covers and a maintenance schedule suited to public use."],[...heading(),...[0,1,2,3].flatMap(i=>[box("swatch"+i,80+i*370,240,330,170,["surface","line","ink","accent"][i]),text("c"+(i*2),80+i*370,450,330,50,29),text("c"+(i*2+1),80+i*370,535,330,230,24)])]);
+split("station","Field Station / learning at the edge","03  Research concept","The station brings a small teaching room, sample preparation space and equipment store around a shared working threshold. Wet and dry routes are separated early in the plan so visitors can observe activity without crossing the handling area. The landscape remains part of the learning experience.","Make operations visible","An accessible teaching bench faces the shared room, while service access supports deliveries and waste removal. Equipment needs and supervision requirements would shape the final layout. The ocean reference establishes context; the project and its operational brief are illustrative.","tidal-lab-0");
+add("performance","Set targets before claiming results",["Illustrative design targets","The bars compare a baseline index of 100 with concept targets. Lower values represent proposed reductions, not measured outcomes. These illustrative targets guide later modelling and cost review; they do not establish compliance or certify performance.","How the targets would be tested","Energy modelling would examine occupancy and seasonal loads. Water estimates would use a defined fixture schedule. Material quantities would support an embodied-impact assessment. Report scope, assumptions and uncertainty alongside each result."],[...heading(),{id:"chart",type:"chart",x:80,y:250,width:850,height:500,z:2},text("c0",1010,240,500,80,31),text("c1",1010,340,500,230,24),text("c2",1010,595,500,75,29),text("c3",1010,680,500,205,24)],undefined,"feature",{type:"bar",labels:["Energy","Water","Material impact"],series:[{name:"Baseline index",values:[100,100,100]},{name:"Concept target",values:[65,70,75]}],colors:["#B7B9AA","#3F8988"],showLegend:true});
+split("process","From an early idea to a tested proposal","Observe and compare","Start with a measured survey, an operational brief and a record of environmental constraints. Develop two or three distinct options and compare them against the same criteria. Physical models help teams discuss scale and circulation before details become expensive to change.","Resolve and document","Select an option only after reviewing spatial quality, delivery risk and cost. Coordinate structure, services and the envelope as one design. Record unresolved assumptions, then return to them at each stage so an attractive drawing is never mistaken for a tested proposition.","form-space-5",true);
+add("closing","Begin with the place.", ["Tide / Form  /  Coastal architecture concepts","Bring a site, a brief and the questions that matter. We begin by understanding how a place is used, then test a small set of architectural responses against those needs.","Portfolio enquiries  ·  studio@tideform.example","Fictional portfolio · concept drawings and targets are illustrative."],[text("title",80,125,1430,130,92),text("c0",85,295,1300,55,30),text("c1",85,405,1150,160,34),text("c2",85,620,1400,50,26),text("c3",85,700,1400,30,18)],undefined,"closing");
+const template={name:"Tide / Form",description:"A fictional coastal architecture portfolio with reference photography and editable concept drawings.",brand,spec:{style:{palette:"ink-night",typePair:"modern-segoe",motif:"bar-accent"},slides},selections,wave:{style:"balanced",mode:"animated"}};
+fs.writeFileSync(path.join(ROOT,"examples/tide-form.json"),JSON.stringify(template,null,2));
+let deck=await renderDeckFromSpec(template.spec,selections,{id:"tide-form",brand,photoResolver:async(key:string)=>({path:path.join(ROOT,"engine/cache/photos",key+".jpg"),pexelsId:"local:"+key})});
+deck.name=template.name;deck.description=template.description;
+applyWaveDesign(deck,template.wave);
+assert.equal(deck.engine.waveDesign.report.filter((r:any)=>r.status==="applied").length,3);
+const sheet=createCanvas(1280,Math.ceil(slides.length/2)*370),ctx=sheet.getContext("2d");ctx.fillStyle="#D9D5CC";ctx.fillRect(0,0,sheet.width,sheet.height);
+for(const [i,id] of deck.layoutSequence.entries()){
+ const file=path.join(out,`slide-${String(i+1).padStart(2,"0")}.png`);
+ const warnings=renderSlidePng(deck,id,file);if(warnings.length)throw Error(`Slide ${i+1}: `+warnings.join(", "));
+ for(const e of deck.layouts[id].elements)if(e.textContent?.spans.some((s:any)=>s.text.includes("…")))throw Error("Truncated slide "+(i+1)+" element "+e.id+" "+JSON.stringify(e.textContent));
+ ctx.drawImage(await loadImage(file),i%2*640+4,Math.floor(i/2)*370+4,632,355.5);
+}
+fs.writeFileSync(path.join(out,"preview.png"),sheet.toBuffer("image/png"));
+fs.writeFileSync(path.join(out,"deck.json"),JSON.stringify(deck,null,2));
+await exportDeckPptx(deck,path.join(out,"tide-form-animated.pptx"));
+const staticDeck=JSON.parse(JSON.stringify(deck));applyWaveDesign(staticDeck,{style:"balanced",mode:"static"});
+await exportDeckPptx(staticDeck,path.join(out,"tide-form-static.pptx"));
+fs.writeFileSync(path.join(out,"deck-static.json"),JSON.stringify(staticDeck,null,2));
+for(const [file,count] of [["tide-form-animated.pptx",3],["tide-form-static.pptx",0]] as const){
+ const zip=await JSZip.loadAsync(fs.readFileSync(path.join(out,file)));let loops=0;
+ for(let i=1;i<=slides.length;i++){const xml=await zip.file(`ppt/slides/slide${i}.xml`).async("string");if(xml.includes('path="M 0 0 L -0.25 0 E"')){loops++;assert.match(xml,/dur="10000" accel="0" decel="0"/);}}
+ assert.equal(loops,count);
+}
+console.log(`PASS: ${slides.length} slides; three animated waves; static export contains no loops. ${out}`);
+}
+main().catch(e=>{console.error(e);process.exitCode=1;});

@@ -388,9 +388,9 @@ const LOOKBOOKS: Lookbook[] = [
           rect("panel", 0, 480, 1600, 420, "bg", 2),
           t("title", 70, 510, 1460, 90, 64, "title"),
           t("copy0", 70, 620, 700, 45, 30, "copy0", "accent"),
-          t("copy1", 70, 675, 700, 180, 26, "copy1", { lineHeight: 1.28 }),
+          t("copy1", 70, 675, 700, 180, 26, "copy1", "ink", { lineHeight: 1.28 }),
           t("copy2", 840, 620, 700, 45, 30, "copy2", "accent"),
-          t("copy3", 840, 675, 700, 180, 26, "copy3", { lineHeight: 1.28 }),
+          t("copy3", 840, 675, 700, 180, 26, "copy3", "ink", { lineHeight: 1.28 }),
         ],
         { requiresPhoto: true }
       );
@@ -401,15 +401,15 @@ const LOOKBOOKS: Lookbook[] = [
         rect("rule", 70, 160, 160, 4, "accent", 2),
         rect("c1", 70, 210, 470, 620, "surface"),
         t("copy0", 100, 250, 410, 90, 36, "copy0", "accent"),
-        t("copy1", 100, 360, 410, 400, 26, "copy1", { lineHeight: 1.3 }),
+        t("copy1", 100, 360, 410, 400, 26, "copy1", "ink", { lineHeight: 1.3 }),
         rect("c2", 565, 210, 470, 620, "surface"),
         t("copy2", 595, 250, 410, 90, 36, "copy2", "accent"),
-        t("copy3", 595, 360, 410, 400, 26, "copy3", { lineHeight: 1.3 }),
+        t("copy3", 595, 360, 410, 400, 26, "copy3", "ink", { lineHeight: 1.3 }),
         rect("c3", 1060, 210, 470, 620, "surface"),
         t("copy4", 1090, 250, 410, 90, 36, "copy4", "accent"),
-        t("copy5", 1090, 360, 410, 220, 26, "copy5", { lineHeight: 1.3 }),
+        t("copy5", 1090, 360, 410, 220, 26, "copy5", "ink", { lineHeight: 1.3 }),
         t("copy6", 1090, 600, 410, 70, 32, "copy6", "accent"),
-        t("copy7", 1090, 680, 410, 120, 24, "copy7", { lineHeight: 1.28 }),
+        t("copy7", 1090, 680, 410, 120, 24, "copy7", "ink", { lineHeight: 1.28 }),
       ]);
       // Photo left 55%, quiet text right (cafe hands).
       writeKit(
@@ -422,10 +422,10 @@ const LOOKBOOKS: Lookbook[] = [
           t("title", 940, 80, 600, 140, 64, "title"),
           rect("rule", 940, 250, 120, 4, "accent", 2),
           t("copy0", 940, 290, 580, 50, 32, "copy0", "accent"),
-          t("copy1", 940, 360, 580, 200, 26, "copy1", { lineHeight: 1.3 }),
+          t("copy1", 940, 360, 580, 200, 26, "copy1", "ink", { lineHeight: 1.3 }),
           rect("line", 940, 590, 580, 2, "line"),
           t("copy2", 940, 630, 580, 50, 32, "copy2", "accent"),
-          t("copy3", 940, 700, 580, 150, 26, "copy3", { lineHeight: 1.3 }),
+          t("copy3", 940, 700, 580, 150, 26, "copy3", "ink", { lineHeight: 1.3 }),
         ],
         { requiresPhoto: true }
       );

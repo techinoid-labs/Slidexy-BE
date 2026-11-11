@@ -1,0 +1,283 @@
+{
+  "name": "Tide / Form",
+  "description": "A fictional coastal architecture portfolio with reference photography and editable concept drawings.",
+  "brand": {
+    "colors": {
+      "bg": "#F1EDE3",
+      "ink": "#183D42",
+      "accent": "#3F8988",
+      "surface": "#DFD8C8",
+      "line": "#B7B9AA"
+    },
+    "fonts": {
+      "display": "Georgia",
+      "body": "Arial"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Tide / Form",
+        "items": [
+          "Architecture shaped by the coast",
+          "Selected concept studies  /  2026",
+          "Fictional studio portfolio · reference photography"
+        ],
+        "photoQuery": "tidal-lab-3"
+      },
+      {
+        "role": "feature",
+        "title": "Buildings that belong to their setting",
+        "items": [
+          "A quieter architectural language",
+          "Tide / Form explores homes and public spaces at the meeting of land and water. Our concept work begins with exposure, access and the daily routines of occupants. Massing follows those observations before materials or decorative details are chosen.",
+          "A portfolio of three studies",
+          "Dune House investigates shelter and privacy. Harbour Rooms explores a shared waterfront threshold. The Field Station combines observation, teaching and research. These fictional projects use reference imagery to communicate an architectural direction, not completed commissions.",
+          "Reference photography · fictional concept study"
+        ],
+        "photoQuery": "form-space-0"
+      },
+      {
+        "role": "feature",
+        "title": "Read the site before drawing the building",
+        "items": [
+          "01  Exposure",
+          "Map seasonal sun, prevailing winds and salt-laden weather. Place sheltered outdoor rooms where they remain useful throughout the year. Test openings against both glare and the views they frame.",
+          "02  Ground",
+          "Keep public paths legible and avoid treating the shoreline as private frontage. Establish a survey baseline before deciding floor levels, drainage routes or landscape edges. Coordinate habitat protection with local specialists.",
+          "03  Occupation",
+          "Design for ordinary days: arriving wet, storing equipment, gathering for a meal and finding a quiet seat. Give those activities enough room before expanding the formal programme or adding architectural gestures."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Dune House / a sheltered courtyard",
+        "items": [
+          "01  Residential concept",
+          "A compact courtyard house turns its most protected rooms toward an inner garden. A low perimeter wall moderates exposure without closing the dwelling to its surroundings. The entrance sequence moves from a shared approach to a sheltered porch and then into the central court.",
+          "Privacy without isolation",
+          "Living spaces face the garden while service rooms form a buffer along the exposed edge. Deep reveals create places to sit beside an opening. The concept prioritises durable surfaces, replaceable components and a clear route from outdoors to utility storage.",
+          "Reference photography · fictional concept study"
+        ],
+        "photoQuery": "form-space-1"
+      },
+      {
+        "role": "feature",
+        "title": "A courtyard organises movement",
+        "items": [
+          "Arrival → court → shared living",
+          "The plan separates a quiet sleeping wing from spaces used together. A covered route connects the entrance and utility room, allowing wet equipment to be stored before entering the house. The central court brings orientation to a compact footprint.",
+          "Schematic only · not to scale",
+          "Final dimensions, structure, accessible circulation and statutory requirements would be developed with the project team. The drawing shows relationships between spaces rather than a construction-ready solution.",
+          "ENTRY",
+          "LIVING",
+          "COURT",
+          "BEDROOMS",
+          "UTILITY"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Light is a material, too",
+        "items": [
+          "Shade before equipment",
+          "External shading and the depth of a reveal can reduce direct exposure while preserving useful daylight. The concept places larger openings toward the court and uses narrower apertures on the exposed edge. Seasonal studies would establish whether the proposed balance works.",
+          "A sequence of light levels",
+          "Brighter shared rooms contrast with quieter passages and resting spaces. Materials are selected for their response to grazing light as well as their appearance in direct sun. Reference imagery illustrates the desired atmosphere; daylight performance remains to be tested.",
+          "Reference photography · fictional concept study"
+        ],
+        "photoQuery": "atelier-form-3"
+      },
+      {
+        "role": "divider",
+        "title": "The shared shoreline",
+        "items": [
+          "02 / Public space and fieldwork",
+          "Harbour Rooms and the Field Station extend the portfolio beyond the home. Both studies use a sheltered threshold to connect indoor activity with outdoor observation. Public access, equipment storage and clear circulation are treated as central design questions.",
+          "A common approach, expressed at different scales."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Harbour Rooms / a civic threshold",
+        "items": [
+          "02  Community concept",
+          "The waterfront room is imagined as a place to read, meet and wait between journeys. A generous roof gathers the programme without enclosing every activity. A flexible interior can host small exhibitions while a covered edge supports informal occupation outside opening hours.",
+          "Designed around change",
+          "Simple circulation keeps the public route visible from the entrance. Furniture can be rearranged without blocking exits, and service storage sits near the event space. The structure and acoustic strategy would be developed together so flexibility does not depend on an empty room.",
+          "Reference photography · fictional concept study"
+        ],
+        "photoQuery": "form-space-2"
+      },
+      {
+        "role": "feature",
+        "title": "A clear structure supports a flexible room",
+        "items": [
+          "Repeat the useful parts",
+          "A regular structural rhythm can simplify the relationship between roof, lighting and internal partitions. The concept uses this repetition to organise a large shared room without prescribing a single furniture arrangement. Connections remain accessible so components can be inspected and maintained.",
+          "Keep the assembly understandable",
+          "Specification would compare durability, transport and repair requirements alongside embodied impact. Timber, metalwork and protective finishes need an exposure-specific strategy. The reference roof illustrates structural legibility, not the engineered solution for this concept.",
+          "Reference photography · fictional concept study"
+        ],
+        "photoQuery": "form-space-4"
+      },
+      {
+        "role": "feature",
+        "title": "A restrained palette, chosen for use",
+        "items": [
+          "Mineral finish",
+          "A robust base at high-contact edges. Compare repair methods, porosity and cleaning requirements before specifying a finish for salt exposure.",
+          "Timber lining",
+          "A warmer surface in sheltered rooms. Detail ventilation and replaceable boards, and verify the source and finish with the supplier.",
+          "Metalwork",
+          "Use a coordinated system for external fixings. Review compatibility, drainage and inspection access rather than selecting by colour alone.",
+          "Textile layers",
+          "Introduce acoustic absorption where people gather. Choose removable covers and a maintenance schedule suited to public use."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Field Station / learning at the edge",
+        "items": [
+          "03  Research concept",
+          "The station brings a small teaching room, sample preparation space and equipment store around a shared working threshold. Wet and dry routes are separated early in the plan so visitors can observe activity without crossing the handling area. The landscape remains part of the learning experience.",
+          "Make operations visible",
+          "An accessible teaching bench faces the shared room, while service access supports deliveries and waste removal. Equipment needs and supervision requirements would shape the final layout. The ocean reference establishes context; the project and its operational brief are illustrative.",
+          "Reference photography · fictional concept study"
+        ],
+        "photoQuery": "tidal-lab-0"
+      },
+      {
+        "role": "feature",
+        "title": "Set targets before claiming results",
+        "items": [
+          "Illustrative design targets",
+          "The bars compare a baseline index of 100 with concept targets. Lower values represent proposed reductions, not measured outcomes. These illustrative targets guide later modelling and cost review; they do not establish compliance or certify performance.",
+          "How the targets would be tested",
+          "Energy modelling would examine occupancy and seasonal loads. Water estimates would use a defined fixture schedule. Material quantities would support an embodied-impact assessment. Report scope, assumptions and uncertainty alongside each result."
+        ],
+        "chart": {
+          "type": "bar",
+          "labels": [
+            "Energy",
+            "Water",
+            "Material impact"
+          ],
+          "series": [
+            {
+              "name": "Baseline index",
+              "values": [
+                100,
+                100,
+                100
+              ]
+            },
+            {
+              "name": "Concept target",
+              "values": [
+                65,
+                70,
+                75
+              ]
+            }
+          ],
+          "colors": [
+            "#B7B9AA",
+            "#3F8988"
+          ],
+          "showLegend": true
+        }
+      },
+      {
+        "role": "feature",
+        "title": "From an early idea to a tested proposal",
+        "items": [
+          "Observe and compare",
+          "Start with a measured survey, an operational brief and a record of environmental constraints. Develop two or three distinct options and compare them against the same criteria. Physical models help teams discuss scale and circulation before details become expensive to change.",
+          "Resolve and document",
+          "Select an option only after reviewing spatial quality, delivery risk and cost. Coordinate structure, services and the envelope as one design. Record unresolved assumptions, then return to them at each stage so an attractive drawing is never mistaken for a tested proposition.",
+          "Reference photography · fictional concept study"
+        ],
+        "photoQuery": "form-space-5"
+      },
+      {
+        "role": "closing",
+        "title": "Begin with the place.",
+        "items": [
+          "Tide / Form  /  Coastal architecture concepts",
+          "Bring a site, a brief and the questions that matter. We begin by understanding how a place is used, then test a small set of architectural responses against those needs.",
+          "Portfolio enquiries  ·  studio@tideform.example",
+          "Fictional portfolio · concept drawings and targets are illustrative."
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "tide-form-cover"
+    },
+    {
+      "role": "feature",
+      "variant": "tide-form-practice"
+    },
+    {
+      "role": "feature",
+      "variant": "tide-form-principles"
+    },
+    {
+      "role": "feature",
+      "variant": "tide-form-dune"
+    },
+    {
+      "role": "feature",
+      "variant": "tide-form-plan"
+    },
+    {
+      "role": "feature",
+      "variant": "tide-form-light"
+    },
+    {
+      "role": "divider",
+      "variant": "tide-form-divider"
+    },
+    {
+      "role": "feature",
+      "variant": "tide-form-harbour"
+    },
+    {
+      "role": "feature",
+      "variant": "tide-form-structure"
+    },
+    {
+      "role": "feature",
+      "variant": "tide-form-materials"
+    },
+    {
+      "role": "feature",
+      "variant": "tide-form-station"
+    },
+    {
+      "role": "feature",
+      "variant": "tide-form-performance"
+    },
+    {
+      "role": "feature",
+      "variant": "tide-form-process"
+    },
+    {
+      "role": "closing",
+      "variant": "tide-form-closing"
+    }
+  ],
+  "wave": {
+    "style": "balanced",
+    "mode": "animated"
+  }
+}
