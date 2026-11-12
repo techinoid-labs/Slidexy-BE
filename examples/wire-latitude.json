@@ -1,0 +1,148 @@
+{
+  "name": "Wire Latitude • Signal kit",
+  "description": "Hairline coordinate deck — type and nodes on a wire grid. No filled cards; structure is the linework.",
+  "brand": {
+    "colors": {
+      "bg": "#F3F4F1",
+      "surface": "#FFFFFF",
+      "surface_color": "#E7EAE3",
+      "ink": "#10140F",
+      "muted": "#5C6558",
+      "accent": "#C8F000",
+      "line": "#10140F"
+    },
+    "fonts": {
+      "display": "Arial Black",
+      "body": "Consolas"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "wire-latitude"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "WIRE",
+        "items": [
+          "SIGNAL KIT · LAT 00",
+          "Plot · ping · pass"
+        ],
+        "photoQuery": "80346a24bf"
+      },
+      {
+        "role": "feature",
+        "title": "Axes",
+        "items": [
+          "X",
+          "Time",
+          "Y",
+          "Force",
+          "Z",
+          "Noise"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Nodes",
+        "items": [
+          "N1",
+          "Gate",
+          "N2",
+          "Fork",
+          "N3",
+          "Sink",
+          "N4",
+          "Loop"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Latitudes",
+        "items": [
+          "40N",
+          "Brief",
+          "20N",
+          "Draft",
+          "0",
+          "Build",
+          "20S",
+          "Ship"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Ping count",
+        "items": [
+          "Live",
+          "42",
+          "Queued",
+          "17",
+          "Drop",
+          "3"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Trace",
+        "items": [
+          "HOLD",
+          "Follow the wire until the node goes quiet."
+        ],
+        "photoQuery": "80346a24bf"
+      },
+      {
+        "role": "quote",
+        "title": "NOTE",
+        "items": [
+          "Empty space is a signal too.",
+          "— Desk wall"
+        ]
+      },
+      {
+        "role": "closing",
+        "title": "Cut.",
+        "items": [
+          "Wire Latitude · signal kit"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "wire-cover"
+    },
+    {
+      "role": "feature",
+      "variant": "wire-axes"
+    },
+    {
+      "role": "feature",
+      "variant": "wire-nodes"
+    },
+    {
+      "role": "feature",
+      "variant": "wire-lats"
+    },
+    {
+      "role": "feature",
+      "variant": "wire-ping"
+    },
+    {
+      "role": "feature",
+      "variant": "wire-trace"
+    },
+    {
+      "role": "quote",
+      "variant": "wire-quote"
+    },
+    {
+      "role": "closing",
+      "variant": "wire-close"
+    }
+  ]
+}

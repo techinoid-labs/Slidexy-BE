@@ -9,7 +9,22 @@
  *
  *   node -r ts-node/register/transpile-only scripts/generate-cover-first-batch.ts [--publish-local] [--only=id]
  */
-import { Template, text, rect, circle, photo, writeKit, runTemplates, El } from "./lib/designKit";
+import {
+  Template,
+  text,
+  rect,
+  circle,
+  photo,
+  writeKit,
+  runTemplates,
+  El,
+  asBeat,
+  asChrome,
+  asLabel,
+  asDot,
+  asTitle,
+  asStage,
+} from "./lib/designKit";
 
 const serif = { fontWeight: 400 };
 const display = { textStyleRole: "display", fontRole: "display" };
@@ -487,6 +502,7 @@ const ideaWall: Template = {
   name: "Idea Wall • Workshop kit",
   description: "Workshop deck — a pinned sticky note over a real wall, staggered step notes, affinity clusters and a dot vote.",
   family: "idea-wall",
+  // motion omitted → designKit applies FLAGSHIP_MOTION (continuity fade + ambient)
   brand: {
     colors: {
       bg: "#FFFDF7",
@@ -569,18 +585,18 @@ const ideaWall: Template = {
     kits.push(
       writeKit("cover", "idea-wall-pinned", f, [
         photo("photo", 0, 0, 1600, 900),
-        rect("shadow", 478, 170, 680, 600, "ink", { z: 2, opacity: 0.35 }),
-        rect("note", 460, 150, 680, 600, "surface", { z: 3 }),
-        circle("pin", 770, 118, 60, "accent", { z: 4 }),
-        text("copy0", 510, 215, 580, 40, 24, "copy0", "ink", { ...kicker, align: "center", z: 4 }),
-        text("title", 500, 270, 600, 350, 130, "title", "ink", { ...display, align: "center", lineHeight: 1.0, z: 4 }),
-        text("copy1", 510, 640, 580, 50, 26, "copy1", "ink", { align: "center", z: 4 }),
+        asChrome(rect("shadow", 478, 170, 680, 600, "ink", { z: 2, opacity: 0.35 })),
+        asBeat(rect("note", 460, 150, 680, 600, "surface", { z: 3 }), { morphId: "note-0" }),
+        asChrome(circle("pin", 770, 118, 60, "accent", { z: 4 })),
+        asLabel(text("copy0", 510, 215, 580, 40, 24, "copy0", "ink", { ...kicker, align: "center", z: 4 }), "note"),
+        asTitle(text("title", 500, 270, 600, 350, 130, "title", "ink", { ...display, align: "center", lineHeight: 1.0, z: 4 })),
+        asLabel(text("copy1", 510, 640, 580, 50, 26, "copy1", "ink", { align: "center", z: 4 }), "note"),
       ])
     );
 
     const steps: El[] = [
-      rect("bg", 0, 0, 1600, 900, "bg", { z: 0 }),
-      text("title", 80, 60, 1440, 110, 80, "title", "ink", display),
+      asStage(rect("bg", 0, 0, 1600, 900, "bg", { z: 0 })),
+      asTitle(text("title", 80, 60, 1440, 110, 80, "title", "ink", display)),
     ];
     const pos = [
       [80, 230],
@@ -589,40 +605,52 @@ const ideaWall: Template = {
     ];
     const noteFills = ["surface", "surface_color", "accent"];
     pos.forEach(([x, y], i) => {
-      steps.push(rect("shade" + i, x + 14, y + 16, 440, 440, "ink", { opacity: 0.18 }));
-      steps.push(rect("note" + i, x, y, 440, 440, noteFills[i], { z: 2 }));
-      steps.push(text("copy" + i * 3, x + 40, y + 36, 360, 110, 96, "copy" + i * 3, "ink", { ...stat, z: 3 }));
-      steps.push(text("copy" + (i * 3 + 1), x + 40, y + 170, 360, 52, 36, "copy" + (i * 3 + 1), "ink", { z: 3 }));
-      steps.push(text("copy" + (i * 3 + 2), x + 40, y + 236, 360, 170, 24, "copy" + (i * 3 + 2), "ink", { lineHeight: 1.35, z: 3 }));
+      const noteId = "note" + i;
+      steps.push(asChrome(rect("shade" + i, x + 14, y + 16, 440, 440, "ink", { opacity: 0.18 })));
+      steps.push(asBeat(rect(noteId, x, y, 440, 440, noteFills[i], { z: 2 }), { morphId: "note-" + i }));
+      steps.push(asLabel(text("copy" + i * 3, x + 40, y + 36, 360, 110, 96, "copy" + i * 3, "ink", { ...stat, z: 3 }), noteId));
+      steps.push(asLabel(text("copy" + (i * 3 + 1), x + 40, y + 170, 360, 52, 36, "copy" + (i * 3 + 1), "ink", { z: 3 }), noteId));
+      steps.push(
+        asLabel(
+          text("copy" + (i * 3 + 2), x + 40, y + 236, 360, 170, 24, "copy" + (i * 3 + 2), "ink", { lineHeight: 1.35, z: 3 }),
+          noteId
+        )
+      );
     });
     kits.push(writeKit("feature", "idea-wall-steps", f, steps));
 
     const clusters: El[] = [
-      rect("bg", 0, 0, 1600, 900, "bg", { z: 0 }),
-      text("title", 80, 50, 1440, 110, 80, "title", "ink", display),
+      asStage(rect("bg", 0, 0, 1600, 900, "bg", { z: 0 })),
+      asTitle(text("title", 80, 50, 1440, 110, 80, "title", "ink", display)),
     ];
     for (let i = 0; i < 3; i++) {
       const x = 80 + i * 500;
-      clusters.push(rect("head" + i, x, 190, 440, 80, "ink"));
-      clusters.push(text("copy" + i * 3, x + 30, 208, 380, 46, 30, "copy" + i * 3, "bg", { z: 2 }));
+      clusters.push(asChrome(rect("head" + i, x, 190, 440, 80, "ink")));
+      clusters.push(asChrome(text("copy" + i * 3, x + 30, 208, 380, 46, 30, "copy" + i * 3, "bg", { z: 2 })));
       [0, 1].forEach((k) => {
         const y = 300 + k * 270;
         const nx = x + (k === 0 ? 10 : 30);
-        clusters.push(rect("n" + i + k, nx, y, 400, 230, k === 0 ? "surface" : "surface_color"));
-        clusters.push(text("copy" + (i * 3 + 1 + k), nx + 30, y + 30, 340, 150, 30, "copy" + (i * 3 + 1 + k), "ink", { lineHeight: 1.25, z: 2 }));
+        const noteId = "n" + i + k;
+        clusters.push(asBeat(rect(noteId, nx, y, 400, 230, k === 0 ? "surface" : "surface_color"), { morphId: "note-" + i + "-" + k }));
+        clusters.push(
+          asLabel(
+            text("copy" + (i * 3 + 1 + k), nx + 30, y + 30, 340, 150, 30, "copy" + (i * 3 + 1 + k), "ink", { lineHeight: 1.25, z: 2 }),
+            noteId
+          )
+        );
       });
     }
     kits.push(writeKit("feature", "idea-wall-clusters", f, clusters));
 
     kits.push(
       writeKit("feature", "idea-wall-dayone", f, [
-        rect("bg", 0, 0, 1600, 900, "bg", { z: 0 }),
+        asStage(rect("bg", 0, 0, 1600, 900, "bg", { z: 0 })),
         photo("photo", 0, 0, 1000, 900),
-        rect("stickerShade", 892, 652, 220, 200, "ink", { z: 2, opacity: 0.3 }),
-        rect("sticker", 880, 640, 220, 200, "surface", { z: 3 }),
-        text("copy4", 895, 685, 190, 110, 36, "copy4", "ink", { ...display, align: "center", z: 4 }),
-        text("title", 1140, 80, 400, 110, 80, "title", "ink", display),
-        rect("rule", 1140, 210, 80, 6, "accent"),
+        asChrome(rect("stickerShade", 892, 652, 220, 200, "ink", { z: 2, opacity: 0.3 })),
+        asBeat(rect("sticker", 880, 640, 220, 200, "surface", { z: 3 }), { morphId: "note-sticker" }),
+        asLabel(text("copy4", 895, 685, 190, 110, 36, "copy4", "ink", { ...display, align: "center", z: 4 }), "sticker"),
+        asTitle(text("title", 1140, 80, 400, 110, 80, "title", "ink", display)),
+        asChrome(rect("rule", 1140, 210, 80, 6, "accent")),
         text("copy0", 1140, 250, 400, 46, 30, "copy0", "accent"),
         text("copy1", 1140, 305, 400, 170, 24, "copy1", "muted", { lineHeight: 1.35 }),
         text("copy2", 1140, 500, 400, 46, 30, "copy2", "accent"),
@@ -631,24 +659,24 @@ const ideaWall: Template = {
     );
 
     const votes: El[] = [
-      rect("bg", 0, 0, 1600, 900, "bg", { z: 0 }),
-      text("title", 80, 60, 1440, 110, 80, "title", "ink", display),
+      asStage(rect("bg", 0, 0, 1600, 900, "bg", { z: 0 })),
+      asTitle(text("title", 80, 60, 1440, 110, 80, "title", "ink", display)),
     ];
     [14, 9, 5].forEach((n, i) => {
       const y = 250 + i * 160;
       votes.push(text("copy" + i * 2, 80, y, 440, 50, 28, "copy" + i * 2, "ink"));
-      for (let d = 0; d < n; d++) votes.push(circle("v" + i + "_" + d, 560 + d * 58, y + 2, 44, "accent"));
+      for (let d = 0; d < n; d++) votes.push(asDot(circle("v" + i + "_" + d, 560 + d * 58, y + 2, 44, "accent"), i, d));
       votes.push(text("copy" + (i * 2 + 1), 1420, y - 6, 120, 60, 44, "copy" + (i * 2 + 1), "accent", { ...display, align: "right" }));
-      votes.push(rect("rule" + i, 80, y + 95, 1440, 2, "line"));
+      votes.push(asChrome(rect("rule" + i, 80, y + 95, 1440, 2, "line")));
     });
     votes.push(text("copy6", 80, 760, 1300, 80, 26, "copy6", "muted", { lineHeight: 1.3 }));
     kits.push(writeKit("feature", "idea-wall-votes", f, votes));
 
     kits.push(
       writeKit("feature", "idea-wall-stick", f, [
-        rect("bg", 0, 0, 1600, 900, "surface", { z: 0 }),
-        circle("pin", 770, 200, 60, "accent"),
-        text("title", 80, 320, 1440, 150, 120, "title", "ink", { ...display, align: "center" }),
+        asStage(rect("bg", 0, 0, 1600, 900, "surface", { z: 0 })),
+        asChrome(circle("pin", 770, 200, 60, "accent")),
+        asTitle(text("title", 80, 320, 1440, 150, 120, "title", "ink", { ...display, align: "center" })),
         text("copy0", 80, 500, 1440, 50, 30, "copy0", "ink", { align: "center" }),
       ])
     );

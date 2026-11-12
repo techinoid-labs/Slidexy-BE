@@ -1,0 +1,223 @@
+{
+  "name": "Spike Rail • Service kit",
+  "description": "12-slide back-of-house kit — tickets on a steel rail, fire times, stations, allergies, 86 board, covers, and clear-down.",
+  "brand": {
+    "colors": {
+      "bg": "#141618",
+      "surface": "#E7F2EC",
+      "surface_color": "#C8E6D4",
+      "ink": "#121417",
+      "muted": "#6B7570",
+      "accent": "#E23D28",
+      "line": "#2A2E32"
+    },
+    "fonts": {
+      "display": "Poppins Bold",
+      "body": "Consolas"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "spike-rail"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Spike **Rail**",
+        "items": [
+          "Service kit · Friday rush",
+          "Table 12 · fire now"
+        ],
+        "photoQuery": "081717d284"
+      },
+      {
+        "role": "feature",
+        "title": "How we run",
+        "items": [
+          "01",
+          "Ticket lands",
+          "Spike it · read allergies",
+          "02",
+          "Fire call",
+          "Expo owns the clock",
+          "03",
+          "Pass clean",
+          "No orphan plates"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "On the rail",
+        "items": [
+          "T12",
+          "Steak frites",
+          "Allergy: butter",
+          "T4",
+          "Omakase set",
+          "Seat 2 no shellfish",
+          "T9",
+          "Negroni · up",
+          "Bar · rush"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Fire times",
+        "items": [
+          "Apps",
+          "0:00 fire",
+          "Mains",
+          "0:08 fire",
+          "Dessert",
+          "hold"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Course ladder",
+        "items": [
+          "Bread",
+          "drop",
+          "App",
+          "fire",
+          "Main",
+          "hold :08",
+          "Dessert",
+          "walk"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Stations",
+        "items": [
+          "Grill",
+          "Proteins rest · mark temps · call expo before plating.",
+          "Pass",
+          "Wipe · wipe · wipe",
+          "Bar",
+          "Garnish ready",
+          "Pastry",
+          "Cold box full"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Allergy flags",
+        "items": [
+          "GF",
+          "No wheat",
+          "NF",
+          "No tree nuts",
+          "DF",
+          "Butter swap"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "86 board",
+        "items": [
+          "Oysters · sold out",
+          "Lamb chop · ask expo",
+          "Sorrel · sub kale",
+          "OUT"
+        ],
+        "photoQuery": "081717d284"
+      },
+      {
+        "role": "feature",
+        "title": "Covers tonight",
+        "items": [
+          "Patio",
+          "42",
+          "Main",
+          "68",
+          "Bar",
+          "24"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Ticket age",
+        "items": [
+          "0–5m",
+          "18",
+          "green",
+          "5–10m",
+          "9",
+          "watch",
+          "10m+",
+          "3",
+          "red"
+        ]
+      },
+      {
+        "role": "quote",
+        "title": "BRIEF",
+        "items": [
+          "If it’s on the rail, it’s owned.",
+          "— Expo · Friday briefing"
+        ]
+      },
+      {
+        "role": "closing",
+        "title": "Clear the rail.",
+        "items": [
+          "Spike Rail · service kit"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "spike-rail-pinned"
+    },
+    {
+      "role": "feature",
+      "variant": "spike-rail-how"
+    },
+    {
+      "role": "feature",
+      "variant": "spike-rail-tickets"
+    },
+    {
+      "role": "feature",
+      "variant": "spike-rail-fire"
+    },
+    {
+      "role": "feature",
+      "variant": "spike-rail-ladder"
+    },
+    {
+      "role": "feature",
+      "variant": "spike-rail-stations"
+    },
+    {
+      "role": "feature",
+      "variant": "spike-rail-allergy"
+    },
+    {
+      "role": "feature",
+      "variant": "spike-rail-86"
+    },
+    {
+      "role": "feature",
+      "variant": "spike-rail-covers"
+    },
+    {
+      "role": "feature",
+      "variant": "spike-rail-age"
+    },
+    {
+      "role": "quote",
+      "variant": "spike-rail-brief"
+    },
+    {
+      "role": "closing",
+      "variant": "spike-rail-clear"
+    }
+  ]
+}

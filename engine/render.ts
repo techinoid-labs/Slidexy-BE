@@ -846,6 +846,12 @@ export async function renderDeckFromSpec(
       if (el.opacity != null) next.opacity = el.opacity;
       if (groupId) next.pptxGroup = groupId;
       if (el.morphId) next.morphId = el.morphId;
+      if (el.motionKind) next.motionKind = el.motionKind;
+      if (el.motionHost) next.motionHost = el.motionHost;
+      if (el.motionPreset) next.motionPreset = el.motionPreset;
+      if (el.motion != null) next.motion = el.motion;
+      if (el.motionRow != null) next.motionRow = el.motionRow;
+      if (el.motionCol != null) next.motionCol = el.motionCol;
       if (el.shapeTreatment) next.shapeTreatment = el.shapeTreatment;
       if (el.ambientTarget) next.ambientTarget = el.ambientTarget;
       if (el.overlapPlate) next.overlapPlate = true;

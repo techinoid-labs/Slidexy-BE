@@ -63,14 +63,64 @@ Use this spine; vary the clothes:
 const FLAGSHIP_MOTION = {
   morph: false,
   ambient: true,
+  continuityFade: true, // Landscapes recipe
   cameraPan: false,
   scatter: false,
   defaultTransition: "fade",
-  durationMs: 800,
+  durationMs: 1600,
 };
 ```
 
-Ambient pulse/float is allowed on closings/features when a clear `morphId` target exists (`pulse-bg`, large plate). Do not float random photos.
+### Continuity fade (why Landscapes feels perfect)
+
+That deck is **not Morph**. It is a **slow crossfade** (`spd="slow"`) between slides that keep most shapes at the **same x/y/size**. Only the beat changes (title word, one freeform cluster). Shared chrome dissolves in place — so it *looks* like elements settle into place.
+
+**Design rules to match that feel:**
+1. Keep persistent chrome (wall, plate, brand lockup) on a **stable morphId + identical box** across consecutive slides.
+2. Change only 1–3 beat elements per advance (new sticky, new title, new photo crop).
+3. Prefer **slow fade (~1600–1800ms)** over wipe/push for feature sequences.
+4. Entrance-animate **new morphIds only** — never re-animate shared chrome.
+
+**Role transitions** (with `continuityFade`):
+
+| Role | Transition | Feel |
+|------|------------|------|
+| cover / feature / process / stats / close | fade (~1600–1800ms) | settle / dissolve |
+| problem / solution / comparison | push (~900ms) | argument beat |
+
+**Entrances:** soft `fadeIn` stagger on **new** targets only (`entrancesMode: "newOnly"`).
+
+**Target awareness** (`engine/motionTargets.js` + `engine/motionGrammar.js`):
+
+Future generations should **mark motion at kit-write time** (preferred), with pattern fallback:
+
+```ts
+import { asBeat, asChrome, asLabel, asDot, asTitle, asStage } from "./lib/designKit";
+
+asBeat(rect("note0", …), { morphId: "note-0" })
+asLabel(text("copy0", …), "note0")          // host id — slams with the note
+asDot(circle("v0_3", …), 0, 3)              // fast pop cascade
+asChrome(rect("shade0", …))                 // persist under fade
+asStage(rect("bg", …))
+asTitle(text("title", …))
+```
+
+| Kind | Intent | Preset |
+|------|--------|--------|
+| `beat` (sticky / card) | enter | slam / slamDrop with labels |
+| `label` + `motionHost` | enter | same delay as host, slamDrop |
+| `dot` | enter | pop (fast cascade) |
+| `chrome` / `stage` | persist | none (continuity fade only) |
+| `title` | enter | fadeUp |
+
+- Pattern fallback still tags `note*`, `n##`, `sticker`, `vR_C`, `bg`, `shade*` when unmarked
+- Continuity is **geometry-aware**; note+label pairs use **slamDrop** (no scale) so paper/text stay locked
+- `designKit` defaults to `FLAGSHIP_MOTION` and runs `annotateDeck` + `lintMotion` on every generate
+- Caps ~6 host beats/slide; **all** vote dots still cascade
+
+**Ambient:** Ken Burns on cover heroes; pulse on close/stats plates; float only on clear motif targets. One ambient effect per slide. Ambient must never use `interactiveSeq`/`cancelBubble` (breaks Back).
+
+Re-apply to published decks: `npm run motion:flagship`
 
 ---
 

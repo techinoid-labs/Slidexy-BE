@@ -1,0 +1,152 @@
+{
+  "name": "Darkroom Strip • Edit kit",
+  "description": "Film lab deck — contact-sheet frames under safelight amber, sprocket dots, and a developing close.",
+  "brand": {
+    "colors": {
+      "bg": "#0E0E10",
+      "surface": "#1C1C20",
+      "surface_color": "#2A2A30",
+      "ink": "#F2EDE4",
+      "muted": "#9A948A",
+      "accent": "#E8A04A",
+      "line": "#3A3A42"
+    },
+    "fonts": {
+      "display": "Impact",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "darkroom-strip"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "DARKROOM",
+        "items": [
+          "EDIT KIT · ROLL 24",
+          "Expose · develop · print"
+        ],
+        "photoQuery": "af9632a845"
+      },
+      {
+        "role": "feature",
+        "title": "Contact sheet",
+        "items": [
+          "01",
+          "Street",
+          "02",
+          "Window",
+          "03",
+          "Hands",
+          "04",
+          "Rain",
+          "05",
+          "Door",
+          "06",
+          "Night"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Develop bath",
+        "items": [
+          "Stop",
+          "0:30",
+          "Fix",
+          "2:00",
+          "Wash",
+          "5:00"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Crop language",
+        "items": [
+          "Tight",
+          "Face fills",
+          "Wide",
+          "Context first",
+          "Split",
+          "Two subjects"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Keepers",
+        "items": [
+          "12",
+          "Keepers on the sheet",
+          "8 shortlisted",
+          "3 to print"
+        ],
+        "photoQuery": "af9632a845"
+      },
+      {
+        "role": "feature",
+        "title": "Sprocket count",
+        "items": [
+          "Roll A",
+          "24",
+          "Roll B",
+          "18",
+          "Roll C",
+          "12"
+        ]
+      },
+      {
+        "role": "quote",
+        "title": "NOTE",
+        "items": [
+          "Light is the subject. Everything else is furniture.",
+          "— Lab wall"
+        ]
+      },
+      {
+        "role": "closing",
+        "title": "Hang to dry.",
+        "items": [
+          "Darkroom Strip · edit kit"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "darkroom-cover"
+    },
+    {
+      "role": "feature",
+      "variant": "darkroom-contact"
+    },
+    {
+      "role": "feature",
+      "variant": "darkroom-bath"
+    },
+    {
+      "role": "feature",
+      "variant": "darkroom-crop"
+    },
+    {
+      "role": "feature",
+      "variant": "darkroom-keepers"
+    },
+    {
+      "role": "feature",
+      "variant": "darkroom-sprocket"
+    },
+    {
+      "role": "quote",
+      "variant": "darkroom-quote"
+    },
+    {
+      "role": "closing",
+      "variant": "darkroom-close"
+    }
+  ]
+}

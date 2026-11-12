@@ -4,6 +4,11 @@
  */
 
 const JSZip = require("jszip");
+const {
+  tagMorphIds,
+  pickEntranceTargets,
+  layoutMorphGeometry,
+} = require("../../engine/motionTargets");
 
 const P14 = "http://schemas.microsoft.com/office/powerpoint/2010/main";
 const P159 = "http://schemas.microsoft.com/office/powerpoint/2015/main";
@@ -16,6 +21,8 @@ const AMBIENT_EASE = { accel: 100000, decel: 100000 };
 const STAGGER_MS = 200;
 /** 20px rise on 900-tall design canvas → relative path units. */
 const FADE_UP_DY = (20 / 900).toFixed(5);
+/** Sticky slam: drop ~48px onto the wall. */
+const SLAM_DY = (48 / 900).toFixed(5);
 
 /** Classic + premium entrance presets. */
 const ENTRANCE_TEMPLATES = {
@@ -66,6 +73,36 @@ const ENTRANCE_TEMPLATES = {
     presetSubtype: 16,
     dur: 750,
     kind: "zoomSettle",
+  },
+  /**
+   * Sticky slam: drop from above + 118%→100% scale + fade.
+   * Heavy decel so it feels pinned to the wall.
+   * Solo notes only — scaling a note+text pair from different centers tears them apart.
+   */
+  slam: {
+    presetID: 53,
+    presetClass: "entr",
+    presetSubtype: 16,
+    dur: 520,
+    kind: "slam",
+  },
+  /**
+   * Note+label unit slam: same drop + fade, no scale — keeps paper and copy locked.
+   */
+  slamDrop: {
+    presetID: 2,
+    presetClass: "entr",
+    presetSubtype: 4,
+    dur: 520,
+    kind: "slamDrop",
+  },
+  /** Vote-dot pop: snappy scale-in (fast cascade). */
+  pop: {
+    presetID: 53,
+    presetClass: "entr",
+    presetSubtype: 16,
+    dur: 220,
+    kind: "pop",
   },
 };
 
@@ -140,7 +177,9 @@ function resolveFloatPath(ambient) {
 function transitionXml(kind, durationMs) {
   const dur = Math.max(200, Math.min(10000, Number(durationMs) || 800));
   const spd = dur >= 1500 ? "slow" : dur >= 750 ? "med" : "fast";
-  const head = `<p:transition spd="${spd}" xmlns:p14="${P14}" p14:dur="${dur}">`;
+  // advClick=1 keeps click / arrow / Back free to change slides (default is
+  // usually on, but we set it explicitly so ambient timing never traps nav).
+  const head = `<p:transition spd="${spd}" advClick="1" xmlns:p14="${P14}" p14:dur="${dur}">`;
   if (kind === "morph") {
     return head + `<p159:morph xmlns:p159="${P159}" option="byObject"/></p:transition>`;
   }
@@ -244,7 +283,9 @@ function bhvrCTn(id, dur, ease, extraAttrs) {
 }
 
 /**
- * Auto-play entrances (withEffect / afterEffect) — never clickEffect.
+ * Auto-play entrances on slide enter — always withEffect + delay stagger.
+ * Never clickEffect / afterEffect: those become separate "Next" steps in
+ * slideshow (nextAc=seek), so one arrow only advances one element.
  */
 function entranceParXml(templateKey, spid, cTnId, delayMs, index) {
   const t = ENTRANCE_TEMPLATES[templateKey];
@@ -252,7 +293,8 @@ function entranceParXml(templateKey, spid, cTnId, delayMs, index) {
   let id = cTnId;
   const delay = Math.max(0, Number(delayMs) || 0);
   const rootId = id++;
-  const nodeType = index === 0 ? "withEffect" : "afterEffect";
+  void index;
+  const nodeType = "withEffect";
   const ease = EASE;
   let child = "";
 
@@ -299,6 +341,55 @@ function entranceParXml(templateKey, spid, cTnId, delayMs, index) {
       `<p:tgtEl><p:spTgt spid="${spid}"/></p:tgtEl>` +
       `</p:cBhvr>` +
       `<p:from x="105000" y="105000"/><p:to x="100000" y="100000"/>` +
+      `</p:animScale>`;
+  } else if (t.kind === "slam" || t.kind === "slamDrop") {
+    // Drop + fade. Full slam also scales; slamDrop skips scale so note+text stay glued.
+    const slamEase = { accel: 20000, decel: 80000 };
+    const fadeId = id++;
+    const moveId = id++;
+    child =
+      `<p:animEffect transition="in" filter="fade">` +
+      `<p:cBhvr>` +
+      bhvrCTn(fadeId, t.dur, slamEase) +
+      `<p:tgtEl><p:spTgt spid="${spid}"/></p:tgtEl>` +
+      `</p:cBhvr>` +
+      `</p:animEffect>` +
+      `<p:animMotion origin="layout" path="M 0 -${SLAM_DY} L 0 0" pathEditMode="relative" ptsTypes="A" rCtr="0 0">` +
+      `<p:cBhvr additive="base">` +
+      bhvrCTn(moveId, t.dur, slamEase, ` fill="hold"`) +
+      `<p:tgtEl><p:spTgt spid="${spid}"/></p:tgtEl>` +
+      `<p:attrNameLst><p:attrName>ppt_x</p:attrName><p:attrName>ppt_y</p:attrName></p:attrNameLst>` +
+      `</p:cBhvr>` +
+      `</p:animMotion>`;
+    if (t.kind === "slam") {
+      const scaleId = id++;
+      child +=
+        `<p:animScale>` +
+        `<p:cBhvr>` +
+        bhvrCTn(scaleId, t.dur, slamEase, ` fill="hold"`) +
+        `<p:tgtEl><p:spTgt spid="${spid}"/></p:tgtEl>` +
+        `</p:cBhvr>` +
+        `<p:from x="118000" y="118000"/><p:to x="100000" y="100000"/>` +
+        `</p:animScale>`;
+    }
+  } else if (t.kind === "pop") {
+    // Fast vote-dot pop: 40% → 100% + fade, snappy ease
+    const popEase = { accel: 10000, decel: 70000 };
+    const fadeId = id++;
+    const scaleId = id++;
+    child =
+      `<p:animEffect transition="in" filter="fade">` +
+      `<p:cBhvr>` +
+      bhvrCTn(fadeId, t.dur, popEase) +
+      `<p:tgtEl><p:spTgt spid="${spid}"/></p:tgtEl>` +
+      `</p:cBhvr>` +
+      `</p:animEffect>` +
+      `<p:animScale>` +
+      `<p:cBhvr>` +
+      bhvrCTn(scaleId, t.dur, popEase, ` fill="hold"`) +
+      `<p:tgtEl><p:spTgt spid="${spid}"/></p:tgtEl>` +
+      `</p:cBhvr>` +
+      `<p:from x="40000" y="40000"/><p:to x="100000" y="100000"/>` +
       `</p:animScale>`;
   } else {
     const bhvrId = id++;
@@ -381,21 +472,27 @@ function ambientInnerXml(ambient, spid, bhvrId) {
   return "";
 }
 
+/**
+ * Ambient must NOT use interactiveSeq / cancelBubble.
+ * That pattern owns clicks on the target shape — on a full-bleed hero it
+ * swallows Back/Prev and traps slideshow reverse navigation.
+ * Run ambient as a plain parallel under tmRoot (sibling of mainSeq).
+ */
 function ambientSeqXml(ambient, spid, cTnId) {
   if (!ambient || !spid) return { xml: "", nextId: cTnId };
   const effect = ambient.effect || ambient.preset || "pulse";
   const t = AMBIENT_TEMPLATES[effect];
   if (!t) return { xml: "", nextId: cTnId };
   let id = cTnId;
-  const seqId = id++;
+  const rootId = id++;
   const effectId = id++;
   const bhvrId = id++;
   const inner = ambientInnerXml(ambient, spid, bhvrId);
   if (!inner) return { xml: "", nextId: cTnId };
 
   const xml =
-    `<p:seq concurrent="1" nextAc="seek">` +
-    `<p:cTn id="${seqId}" restart="always" fill="hold" evtFilter="cancelBubble" nodeType="interactiveSeq">` +
+    `<p:par>` +
+    `<p:cTn id="${rootId}" dur="indefinite" restart="always" fill="hold">` +
     `<p:stCondLst><p:cond delay="0"/></p:stCondLst>` +
     `<p:childTnLst>` +
     `<p:par>` +
@@ -406,10 +503,7 @@ function ambientSeqXml(ambient, spid, cTnId) {
     `</p:par>` +
     `</p:childTnLst>` +
     `</p:cTn>` +
-    `<p:nextCondLst>` +
-    `<p:cond evt="onNext" delay="0"><p:tgtEl><p:sldTgt/></p:tgtEl></p:cond>` +
-    `</p:nextCondLst>` +
-    `</p:seq>`;
+    `</p:par>`;
   return { xml, nextId: id };
 }
 
@@ -441,10 +535,22 @@ function buildTimingXml(entrances, idMap, ambient) {
 
   if (!entranceKids.length && !ambientXml) return "";
 
-  const mainKids =
-    entranceKids.length > 0
-      ? entranceKids.join("")
-      : `<p:par><p:cTn id="${cTnId++}" fill="hold"><p:stCondLst><p:cond delay="0"/></p:stCondLst></p:cTn></p:par>`;
+  // One mainSeq child only — if each entrance is a sibling, PowerPoint treats
+  // them as Next-steps. Wrap + withEffect delays = all play on slide enter;
+  // Next advances the slide, not the next sticky.
+  let mainKids;
+  if (entranceKids.length > 0) {
+    const wrapId = cTnId++;
+    mainKids =
+      `<p:par>` +
+      `<p:cTn id="${wrapId}" fill="hold">` +
+      `<p:stCondLst><p:cond delay="0"/></p:stCondLst>` +
+      `<p:childTnLst>${entranceKids.join("")}</p:childTnLst>` +
+      `</p:cTn>` +
+      `</p:par>`;
+  } else {
+    mainKids = `<p:par><p:cTn id="${cTnId++}" fill="hold"><p:stCondLst><p:cond delay="0"/></p:stCondLst></p:cTn></p:par>`;
+  }
 
   const mainSeq =
     `<p:seq concurrent="1" nextAc="seek">` +
@@ -547,14 +653,59 @@ function resolveTransitionWithFallback(requested, motionRoot, per) {
   return requested;
 }
 
+/** Collect morphIds present on a layout (for continuity newOnly entrances). */
+function layoutMorphIds(layout) {
+  const ids = new Set();
+  ((layout && layout.elements) || []).forEach((el) => {
+    if (el && el.morphId) ids.add(String(el.morphId));
+  });
+  return ids;
+}
+
+/**
+ * Landscapes recipe: only animate elements that are NEW vs the previous slide.
+ * Shared chrome (same morphId) must dissolve in place via the slide fade — not re-enter.
+ */
+function filterEntrancesNewOnly(entrances, prevIds) {
+  if (!prevIds || !prevIds.size) return entrances || [];
+  return (entrances || []).filter((ent) => {
+    const id = String(ent.morphId || ent.target || "");
+    return id && !prevIds.has(id);
+  });
+}
+
+/**
+ * Continuity: keep expressive beat presets (slam / slamDrop / pop / fadeUp).
+ * Only flatten harsh wipe/fly into fadeUp — never strip movement from notes/votes.
+ */
+function softenEntrancesForContinuity(entrances) {
+  return (entrances || []).map((ent, index) => {
+    const preset = ent.preset || "fadeIn";
+    const soft =
+      preset === "wipeRight" || preset === "flyInFromBottom" || preset === "zoomIn"
+        ? "fadeUp"
+        : preset;
+    return Object.assign({}, ent, {
+      preset: soft,
+      delayMs: ent.delayMs != null ? ent.delayMs : index * Math.round(STAGGER_MS * 1.25),
+    });
+  });
+}
+
 async function applyMotionOoxml(buffer, deck) {
   const motionRoot = (deck && deck.engine && deck.engine.motion) || {};
+  const deckMotion = (deck && deck.motion) || {};
   const sequence = (deck && deck.layoutSequence) || [];
   const layouts = (deck && deck.layouts) || {};
   if (!sequence.length) return buffer;
 
+  const continuityDefault =
+    deckMotion.continuityFade !== false && motionRoot.continuityFade !== false;
+
   const zip = await JSZip.loadAsync(buffer);
   let changed = false;
+  let prevMorphIds = new Set();
+  let prevGeom = new Map();
 
   for (let i = 0; i < sequence.length; i++) {
     const layoutId = sequence[i];
@@ -565,6 +716,10 @@ async function applyMotionOoxml(buffer, deck) {
     let xml = await file.async("string");
 
     const per = layout.motion || {};
+    const continuity =
+      per.continuityFade != null
+        ? !!per.continuityFade
+        : continuityDefault;
     let ambient = per.ambient && per.ambient.effect ? per.ambient : null;
     // Static fallback state: ambient loops must declare resting geometry (no-op if missing)
     if (ambient) {
@@ -578,12 +733,38 @@ async function applyMotionOoxml(buffer, deck) {
 
     let entrances = [];
     if (!isMorphStart) {
-      entrances =
-        per.entrances ||
-        (motionRoot.entrances && !isMorphDest
-          ? motionRoot.entrances
-          : defaultEntrancesForLayout(layout, { morphSafe: isMorphDest }));
+      // Ensure pattern morphIds + intents exist even if deck was published before tagging
+      tagMorphIds(layout.elements || [], layout.role);
+      const mode = per.entrancesMode || (continuity ? "newOnly" : "all");
+      const smart = pickEntranceTargets(layout, {
+        continuity,
+        prevIds: prevMorphIds,
+        prevGeom,
+        newOnly: mode === "newOnly" && i > 0,
+      });
+      if (per.entrances && per.entrances.length) {
+        entrances = per.entrances;
+        if (mode === "newOnly" && i > 0) {
+          entrances = filterEntrancesNewOnly(entrances, prevMorphIds);
+        }
+      } else if (smart.length) {
+        entrances = smart;
+      } else if (motionRoot.entrances && !isMorphDest) {
+        entrances = motionRoot.entrances;
+        if (mode === "newOnly" && i > 0) {
+          entrances = filterEntrancesNewOnly(entrances, prevMorphIds);
+        }
+      } else {
+        entrances = defaultEntrancesForLayout(layout, {
+          morphSafe: isMorphDest,
+          continuity,
+        });
+        if (mode === "newOnly" && i > 0) {
+          entrances = filterEntrancesNewOnly(entrances, prevMorphIds);
+        }
+      }
       if (isMorphDest) entrances = filterEntrancesForMorph(entrances);
+      if (continuity) entrances = softenEntrancesForContinuity(entrances);
     }
 
     let transition =
@@ -598,7 +779,7 @@ async function applyMotionOoxml(buffer, deck) {
       durationMs:
         per.durationMs ||
         motionRoot.durationMs ||
-        (transition === "morph" || isMorphDest ? 2000 : 800),
+        (transition === "morph" || isMorphDest ? 2000 : continuity ? 1600 : 800),
       entrances,
       ambient: isMorphStart || isMorphDest ? null : ambient,
       morphSafe: isMorphDest,
@@ -639,6 +820,8 @@ async function applyMotionOoxml(buffer, deck) {
       zip.file(slideName, next);
       changed = true;
     }
+    prevMorphIds = layoutMorphIds(layout);
+    prevGeom = layoutMorphGeometry(layout);
   }
 
   if (!changed) return buffer;
@@ -647,39 +830,62 @@ async function applyMotionOoxml(buffer, deck) {
 
 function defaultEntrancesForLayout(layout, opts) {
   const morphSafe = opts && opts.morphSafe;
+  const continuity = opts && opts.continuity;
+  // Continuity: soft fadeIn only — the slow slide fade does the "settle into place"
+  const soft = continuity ? "fadeIn" : "fadeUp";
+  const accent = continuity ? "fadeIn" : "wipeRight";
+  const hero = continuity ? "fadeIn" : "zoomSettle";
   const role = layout && layout.role;
   let list;
   if (role === "cover") {
     list = [
-      { morphId: "title", preset: "fadeUp", delayMs: 0 },
-      { morphId: "caption", preset: "fadeUp", delayMs: STAGGER_MS },
-      { morphId: "accent", preset: "wipeRight", delayMs: STAGGER_MS * 2 },
+      { morphId: "title", preset: soft, delayMs: 0 },
+      { morphId: "caption", preset: soft, delayMs: STAGGER_MS },
+      { morphId: "accent", preset: accent, delayMs: STAGGER_MS * 2 },
     ];
   } else if (role === "feature" || role === "problem" || role === "solution") {
     list = [
-      { morphId: "title", preset: "fadeUp", delayMs: 0 },
-      { morphId: "body", preset: "fadeUp", delayMs: STAGGER_MS },
-      { morphId: "accent", preset: "wipeRight", delayMs: STAGGER_MS * 2 },
-      { morphId: "hero", preset: "zoomSettle", delayMs: STAGGER_MS },
+      { morphId: "title", preset: soft, delayMs: 0 },
+      { morphId: "body", preset: soft, delayMs: STAGGER_MS },
+      { morphId: "accent", preset: accent, delayMs: STAGGER_MS * 2 },
+      { morphId: "hero", preset: hero, delayMs: STAGGER_MS },
     ];
   } else if (role === "stats") {
     list = [
-      { morphId: "title", preset: "fadeUp", delayMs: 0 },
-      { morphId: "pulse-bg", preset: "zoomSettle", delayMs: STAGGER_MS },
-      { morphId: "stat-0", preset: "fadeUp", delayMs: STAGGER_MS },
-      { morphId: "stat-1", preset: "fadeUp", delayMs: STAGGER_MS * 2 },
-      { morphId: "stat-2", preset: "fadeUp", delayMs: STAGGER_MS * 3 },
+      { morphId: "title", preset: soft, delayMs: 0 },
+      { morphId: "pulse-bg", preset: hero, delayMs: STAGGER_MS },
+      { morphId: "stat-0", preset: soft, delayMs: STAGGER_MS },
+      { morphId: "stat-1", preset: soft, delayMs: STAGGER_MS * 2 },
+      { morphId: "stat-2", preset: soft, delayMs: STAGGER_MS * 3 },
     ];
-  } else if (role === "testimonial") {
+  } else if (role === "testimonial" || role === "quote") {
     list = [
-      { morphId: "title", preset: "fadeUp", delayMs: 0 },
-      { morphId: "body", preset: "fadeUp", delayMs: STAGGER_MS },
-      { morphId: "hero", preset: "zoomSettle", delayMs: STAGGER_MS },
+      { morphId: "title", preset: soft, delayMs: 0 },
+      { morphId: "body", preset: soft, delayMs: STAGGER_MS },
+      { morphId: "hero", preset: hero, delayMs: STAGGER_MS },
+      { morphId: "accent", preset: accent, delayMs: STAGGER_MS * 2 },
+    ];
+  } else if (role === "closing" || role === "close" || role === "cta") {
+    list = [
+      { morphId: "title", preset: soft, delayMs: 0 },
+      { morphId: "body", preset: soft, delayMs: STAGGER_MS },
+      { morphId: "accent", preset: accent, delayMs: STAGGER_MS * 2 },
+      { morphId: "pulse-bg", preset: hero, delayMs: STAGGER_MS },
+    ];
+  } else if (role === "process" || role === "how-it-works" || role === "agenda") {
+    list = [
+      { morphId: "title", preset: soft, delayMs: 0 },
+      { morphId: "body", preset: soft, delayMs: STAGGER_MS },
+      { morphId: "body-0", preset: soft, delayMs: STAGGER_MS },
+      { morphId: "body-1", preset: soft, delayMs: STAGGER_MS * 2 },
+      { morphId: "body-2", preset: soft, delayMs: STAGGER_MS * 3 },
+      { morphId: "accent", preset: accent, delayMs: STAGGER_MS * 2 },
     ];
   } else {
     list = [
-      { morphId: "title", preset: "fadeUp", delayMs: 0 },
-      { morphId: "body", preset: "fadeUp", delayMs: STAGGER_MS },
+      { morphId: "title", preset: soft, delayMs: 0 },
+      { morphId: "body", preset: soft, delayMs: STAGGER_MS },
+      { morphId: "accent", preset: accent, delayMs: STAGGER_MS * 2 },
     ];
   }
   if (morphSafe) return filterEntrancesForMorph(list);

@@ -30,6 +30,7 @@
     "publish:portfolio-batch:local": "node -r ts-node/register/transpile-only scripts/generate-portfolio-batch.ts --publish-local",
     "bake:tier-b": "node -r ts-node/register/transpile-only scripts/bake-tier-b.ts",
     "sync:tier-b-flutter": "node -r ts-node/register/transpile-only scripts/sync-tier-b-to-flutter.ts",
+    "motion:flagship": "node -r ts-node/register/transpile-only scripts/apply-flagship-motion.ts",
     "publish:firestore-templates": "node -r ts-node/register/transpile-only scripts/publish-firestore-templates.ts",
     "catalog:manifest": "node -e \"require('./services/templatePipeline/catalogManifest').writeManifest(); console.log('manifest ok');\"",
     "template:competitive-demo": "node -r ts-node/register/transpile-only scripts/generate-competitive-demo.ts",

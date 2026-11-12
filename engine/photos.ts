@@ -5,7 +5,7 @@ const sharp = require("sharp");
 
 const CACHE = path.join(__dirname, "cache", "photos");
 
-export type PhotoResult = { path: string; pexelsId: string };
+export type PhotoResult = { path: string; pexelsId: string; sourceUrl?: string; photographer?: string; alt?: string };
 
 /** Non-person / non-team subjects that must not win team portrait slots. */
 const TEAM_REJECT =
@@ -73,7 +73,7 @@ async function fetchPexelsRaw(
   query: string,
   orientation: string,
   excludeIds: Set<string>
-): Promise<{ buffer: Buffer; pexelsId: string }> {
+): Promise<{ buffer: Buffer; pexelsId: string; sourceUrl: string; photographer: string; alt: string }> {
   loadEnv();
   const key = process.env.PEXELS_API_KEY;
   if (!key) throw new Error("PEXELS_API_KEY is not set");
@@ -93,7 +93,7 @@ async function fetchPexelsRaw(
   const src = pick.src.large2x || pick.src.large || pick.src.original;
   const img = await fetch(src);
   if (!img.ok) throw new Error("Pexels image download failed");
-  return { buffer: Buffer.from(await img.arrayBuffer()), pexelsId: String(pick.id) };
+  return { buffer: Buffer.from(await img.arrayBuffer()), pexelsId: String(pick.id), sourceUrl: pick.url, photographer: pick.photographer, alt: pick.alt || "" };
 }
 
 /**
@@ -103,7 +103,10 @@ async function fetchPexelsRaw(
  */
 async function toColorPng(buf: Buffer, crop?: string, tone?: string): Promise<Buffer> {
   let pipeline = sharp(buf);
-  if (crop === "top-center-square") {
+  if (crop === "preserve") {
+    // Let the final slide frame make the only crop; avoid landscape-then-portrait cropping.
+    pipeline = pipeline.resize(2000, 2000, { fit: "inside", withoutEnlargement: true });
+  } else if (crop === "top-center-square") {
     pipeline = pipeline.resize(1200, 1200, { fit: "cover", position: "north" });
   } else if (crop === "top-center-45") {
     pipeline = pipeline.resize(900, 1125, { fit: "cover", position: "north" });
@@ -141,7 +144,7 @@ export async function resolvePhoto(
   fs.mkdirSync(CACHE, { recursive: true });
   const excluded = excludeIds || new Set<string>();
   const cropMode =
-    crop === "top-center-square" || crop === "top-center-45"
+    crop === "preserve" || crop === "top-center-square" || crop === "top-center-45"
       ? crop
       : crop === "top-center"
         ? "top-center-square"
@@ -170,7 +173,7 @@ export async function resolvePhoto(
     const treated = await toColorPng(raw.buffer, cropMode, photoTone);
     fs.writeFileSync(dest, treated);
   }
-  return { path: dest, pexelsId: raw.pexelsId };
+  return { path: dest, pexelsId: raw.pexelsId, sourceUrl: raw.sourceUrl, photographer: raw.photographer, alt: raw.alt };
 }
 
 /** Offline placeholder when network unavailable — solid gradient PNG. */

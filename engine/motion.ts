@@ -5,12 +5,18 @@
 
 const { applyAmbientToDeck } = require("./ambient");
 const { applyWaveDesign } = require("./waveDesign");
+const motionTargets = require("./motionTargets");
 
 export type MotionConfig = {
   wave?: import("./waveDesign").WaveDesignOptions | false;
   morph?: boolean;
   /** Continuous on-slide loops (Pulse / Float / Ken Burns / Teeter). One per slide. */
   ambient?: boolean;
+  /**
+   * Landscapes-style continuity: slow crossfade + only NEW morphIds get entrances.
+   * Persistent chrome (same morphId / same box) must stay put across slides.
+   */
+  continuityFade?: boolean;
   /** Faux-3D: background scale between cover keyframes (1.2–1.3). */
   parallaxScale?: number;
   /** Foreground title shift as fraction of slide width (default 0.05). */
@@ -42,52 +48,9 @@ function coverHasCameraPanHero(layout: any): boolean {
   return ((layout && layout.elements) || []).some(isFullBleedHero);
 }
 
+/** Pattern-aware morphId + motionIntent (enter/persist/none). See motionTargets.js. */
 function tagMorphIds(elements: any[], role: string) {
-  const seen = new Set<string>();
-  (elements || []).forEach((el) => {
-    if (!el) return;
-    if (!el.morphId) {
-      const slot = String(el.slot || el.id || "");
-      if (el.type === "text" && (el.id === "title" || el.slot === "title" || slot === "title")) el.morphId = "title";
-      else if (el.type === "text" && (el.id === "caption" || el.slot === "caption" || slot === "caption")) el.morphId = "caption";
-      else if (el.type === "text" && (el.id === "body" || el.slot === "body" || /^b\d$/.test(slot))) {
-        el.morphId = /^b\d$/.test(slot) ? "body-" + slot.slice(1) : "body";
-      } else if (el.type === "image") {
-        // Only full-bleed / explicit multi-photo slots get Morph ids.
-        // Framed insets must not inherit "hero" or camera-pan / float will steal them.
-        if (/^p\d$/.test(slot)) el.morphId = "photo-" + slot.slice(1);
-        else if (isFullBleedHero(el)) el.morphId = "hero";
-      } else if (el.type === "text" && /^v\d$/.test(slot)) {
-        el.morphId = "stat-" + (Number(slot.slice(1)) - 1);
-      } else if (
-        el.type === "shape" &&
-        (el.id === "neon" ||
-          el.id === "accent" ||
-          el.id === "pulse-bg" ||
-          el.id === "titlePlate" ||
-          String(el.id || "").startsWith("accent") ||
-          el.motif ||
-          el.overlapPlate ||
-          el.shapeTreatment === "depth")
-      ) {
-        if (el.id === "pulse-bg") el.morphId = "pulse-bg";
-        else if (String(el.id || "").startsWith("accent") || el.id === "accent" || el.motif) el.morphId = "accent";
-        else if (el.id === "titlePlate") el.morphId = "titlePlate";
-        else el.morphId = el.id || "plate";
-        if (el.overlapPlate || el.shapeTreatment === "depth") el.shapeTreatment = el.shapeTreatment || "depth";
-      }
-    }
-    // Deduplicate — Morph byObject breaks when two shapes share one id
-    if (el.morphId) {
-      if (seen.has(el.morphId)) {
-        if (el.morphId === "accent") el.morphId = "accent-" + (seen.size + 1);
-        else if (el.morphId !== "hero" && el.morphId !== "title") el.morphId = el.morphId + "-" + (seen.size + 1);
-        else delete el.morphId;
-      }
-      if (el.morphId) seen.add(el.morphId);
-    }
-    void role;
-  });
+  return motionTargets.tagMorphIds(elements, role);
 }
 
 /**
@@ -220,15 +183,10 @@ export function expandMotionScenes(deck: any, motion?: MotionConfig | null): any
       const layout = deck.layouts[lid];
       if (!layout) return;
       tagMorphIds(layout.elements || [], layout.role);
-      if (!layout.motion) {
-        layout.motion = {
-          transition: pickRoleTransition(layout.role, cfg),
-          durationMs: 800,
-        };
-      }
+      stampFlagshipSlideMotion(layout, cfg);
     });
     deck.engine = deck.engine || {};
-    deck.engine.motion = { ...cfg, v: "1.1", scenes: [] };
+    deck.engine.motion = { ...cfg, v: "1.2-flagship", scenes: [] };
     deck.engine.v = "1.5-pro-motion";
     if (cfg.ambient) applyAmbientToDeck(deck);
     applyWaveDesign(deck, cfg.wave);
@@ -271,15 +229,10 @@ export function expandMotionScenes(deck: any, motion?: MotionConfig | null): any
       return;
     }
 
-    // Non-morph slides: stamp default transition + morphIds for entrances
+    // Non-morph slides: stamp role transition + morphIds for entrances
     const copy = deepClone(layout);
     tagMorphIds(copy.elements || [], copy.role);
-    if (!copy.motion) {
-      copy.motion = {
-        transition: pickRoleTransition(copy.role, cfg),
-        durationMs: 800,
-      };
-    }
+    stampFlagshipSlideMotion(copy, cfg);
     layouts[lid] = copy;
     sequence.push(lid);
   });
@@ -299,12 +252,87 @@ export function expandMotionScenes(deck: any, motion?: MotionConfig | null): any
   return deck;
 }
 
+/**
+ * Flagship motion grammar (Morph off):
+ * - Continuity fade (default): slow crossfade everywhere — Landscapes recipe
+ * - Problem / solution still push (argument beat) unless continuity forces fade
+ * Ambient (Ken Burns / pulse / float) is assigned separately by ambient.ts
+ */
 function pickRoleTransition(role: string, cfg: MotionConfig): string {
-  if (role === "problem" || role === "solution") return cfg.defaultTransition === "morph" ? "push" : cfg.defaultTransition || "push";
-  if (role === "closing") return "fade";
-  if (role === "stats" || role === "how-it-works") return "wipe";
+  const r = String(role || "").toLowerCase();
+  if (cfg.continuityFade !== false) {
+    // Landscapes recipe: almost everything crossfades; keep push only for hard argument turns
+    if (r === "problem" || r === "solution" || r === "comparison" || r === "versus") return "push";
+    return "fade";
+  }
+  if (r === "cover" || r === "title" || r === "section" || r === "divider") return "fade";
+  if (r === "quote" || r === "testimonial" || r === "closing" || r === "close" || r === "cta") {
+    return "fade";
+  }
+  if (r === "problem" || r === "solution" || r === "comparison" || r === "versus") {
+    return "push";
+  }
+  if (
+    r === "stats" ||
+    r === "how-it-works" ||
+    r === "process" ||
+    r === "feature" ||
+    r === "agenda" ||
+    r === "team" ||
+    r === "gallery"
+  ) {
+    return "wipe";
+  }
   return cfg.defaultTransition || "fade";
 }
+
+function pickRoleDurationMs(role: string, cfg: MotionConfig): number {
+  const r = String(role || "").toLowerCase();
+  const base = cfg.durationMs != null ? Number(cfg.durationMs) : 800;
+  if (cfg.continuityFade !== false) {
+    // Match PowerPoint spd="slow" feel (~1.6–2.0s)
+    if (r === "cover" || r === "quote" || r === "testimonial" || r === "closing" || r === "close") {
+      return Math.max(base, 1800);
+    }
+    if (r === "problem" || r === "solution" || r === "comparison") return Math.max(base, 900);
+    return Math.max(base, 1600);
+  }
+  if (r === "cover" || r === "quote" || r === "testimonial" || r === "closing" || r === "close") {
+    return Math.max(base, 900);
+  }
+  if (r === "problem" || r === "solution" || r === "comparison") return Math.max(base, 750);
+  return base || 800;
+}
+
+/** Stamp role transition without clobbering an author lock or ambient assignment. */
+function stampFlagshipSlideMotion(layout: any, cfg: MotionConfig) {
+  if (!layout) return;
+  const locked = !!(layout.motion && layout.motion.lockTransition);
+  const transition = locked
+    ? layout.motion.transition
+    : pickRoleTransition(layout.role, cfg);
+  const durationMs = locked
+    ? layout.motion.durationMs || pickRoleDurationMs(layout.role, cfg)
+    : pickRoleDurationMs(layout.role, cfg);
+  layout.motion = {
+    ...(layout.motion || {}),
+    transition,
+    durationMs,
+    continuityFade: cfg.continuityFade !== false,
+    entrancesMode: cfg.continuityFade !== false ? "newOnly" : layout.motion?.entrancesMode,
+  };
+}
+
+/** Shared flagship defaults — Morph retired; Landscapes-style continuity fade on. */
+export const FLAGSHIP_MOTION: MotionConfig = {
+  morph: false,
+  ambient: true,
+  continuityFade: true,
+  cameraPan: false,
+  scatter: false,
+  defaultTransition: "fade",
+  durationMs: 1600,
+};
 
 module.exports = {
   expandMotionScenes,
@@ -314,4 +342,8 @@ module.exports = {
   isFullBleedHero,
   coverHasCameraPanHero,
   limitCameraPanMorphIds,
+  pickRoleTransition,
+  pickRoleDurationMs,
+  stampFlagshipSlideMotion,
+  FLAGSHIP_MOTION,
 };

@@ -9,8 +9,22 @@ const { renderDeckFromSpec } = require("../../engine/render");
 const { validateKitObject } = require("../../engine/validateSchema");
 const { renderSlidePng } = require("../slideSvg");
 const { exportDeckPptx } = require("../../services/templatePipeline/catalog");
-const { expandMotionScenes } = require("../../engine/motion");
+const { expandMotionScenes, FLAGSHIP_MOTION } = require("../../engine/motion");
+const {
+  asBeat,
+  asChrome,
+  asLabel,
+  asDot,
+  asTitle,
+  asStage,
+  asNone,
+  annotateDeck,
+  lintMotion,
+} = require("../../engine/motionGrammar");
 const { createCanvas, loadImage } = require("canvas");
+
+/** Re-export motion grammar markers for template authors. */
+export { asBeat, asChrome, asLabel, asDot, asTitle, asStage, asNone, annotateDeck, lintMotion };
 
 export const ROOT = path.join(__dirname, "..", "..");
 export const PHOTOS = path.join(ROOT, "engine/cache/photos");
@@ -20,6 +34,7 @@ export type El = Record<string, any>;
 export type MotionOpts = {
   morph?: boolean;
   ambient?: boolean;
+  continuityFade?: boolean;
   cameraPan?: boolean;
   scatter?: boolean;
   defaultTransition?: "fade" | "push" | "wipe" | "morph" | "none";
@@ -34,8 +49,11 @@ export type Template = {
   brand: El;
   slides: El[];
   kits: () => { role: string; variant: string }[];
-  /** When set, expands Morph camera-pan / ambient after render (flagship differentiator). */
-  motion?: MotionOpts;
+  /**
+   * Motion profile. Creative flagships default to FLAGSHIP_MOTION
+   * (continuity fade + ambient, Morph off) when omitted.
+   */
+  motion?: MotionOpts | false;
 };
 
 export const text = (
@@ -187,16 +205,25 @@ export async function renderTemplate(tpl: Template, publish: boolean) {
   deck.description = tpl.description;
   deck.family = tpl.family;
 
-  if (tpl.motion) {
-    const expanded = expandMotionScenes(deck, {
-      morph: Boolean(tpl.motion.morph),
-      ambient: Boolean(tpl.motion.ambient),
-      cameraPan: Boolean(tpl.motion.cameraPan),
-      scatter: Boolean(tpl.motion.scatter),
-      defaultTransition: tpl.motion.defaultTransition || "fade",
-      durationMs: tpl.motion.durationMs || 800,
-    });
+  // Creative flagships get continuity motion by default unless motion: false
+  const motionCfg =
+    tpl.motion === false
+      ? null
+      : {
+          ...FLAGSHIP_MOTION,
+          ...(tpl.motion || {}),
+        };
+  if (motionCfg) {
+    const expanded = expandMotionScenes(deck, motionCfg);
     Object.assign(deck, expanded);
+  }
+  annotateDeck(deck);
+  const lint = lintMotion(deck);
+  if (lint.errors.length) {
+    throw Error(`${tpl.id} motion lint: ${lint.errors.join("; ")}`);
+  }
+  if (lint.warnings.length) {
+    console.warn(`${tpl.id} motion warnings:\n  - ${lint.warnings.join("\n  - ")}`);
   }
   for (const lid of deck.layoutSequence || []) {
     if (deck.layouts[lid]) deck.layouts[lid].family = tpl.family;

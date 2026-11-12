@@ -1,0 +1,149 @@
+{
+  "name": "Crate Press • A-side kit",
+  "description": "Record-shop deck — kraft sleeves slammed into a wood crate, A/B sides, listening notes, and a sold stamp.",
+  "brand": {
+    "colors": {
+      "bg": "#2B2118",
+      "surface": "#E6D3B4",
+      "surface_color": "#D4B896",
+      "ink": "#1A120C",
+      "muted": "#6E5A48",
+      "accent": "#C45C26",
+      "line": "#4A3A2C"
+    },
+    "fonts": {
+      "display": "Georgia",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "crate-press"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "CRATE **PRESS**",
+        "items": [
+          "A-SIDE KIT · BIN 14",
+          "Pull · play · press"
+        ],
+        "photoQuery": "a721c1cf1b"
+      },
+      {
+        "role": "feature",
+        "title": "In the bin",
+        "items": [
+          "A1",
+          "Neon Harbor",
+          "Jazz · 1974",
+          "A2",
+          "Night Bus",
+          "Soul · 1979",
+          "A3",
+          "Wire Bloom",
+          "Post · 1982"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "A / B sides",
+        "items": [
+          "A",
+          "Lead single",
+          "B",
+          "Deep cut",
+          "Extra",
+          "Live take"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Listening notes",
+        "items": [
+          "Warm",
+          "Tube amp",
+          "Bright",
+          "Needle new",
+          "Dusty",
+          "Clean first"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Press run",
+        "items": [
+          "Black",
+          "500",
+          "Color",
+          "200",
+          "Test",
+          "25"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Sold wall",
+        "items": [
+          "Hold for Friday",
+          "No holds after 6",
+          "Cash preferred",
+          "SOLD"
+        ],
+        "photoQuery": "a721c1cf1b"
+      },
+      {
+        "role": "quote",
+        "title": "STAFF",
+        "items": [
+          "If it jumps the crate, it earns the needle.",
+          "— Saturday opener"
+        ]
+      },
+      {
+        "role": "closing",
+        "title": "Flip it.",
+        "items": [
+          "Crate Press · A-side kit"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "crate-cover"
+    },
+    {
+      "role": "feature",
+      "variant": "crate-bin"
+    },
+    {
+      "role": "feature",
+      "variant": "crate-sides"
+    },
+    {
+      "role": "feature",
+      "variant": "crate-listen"
+    },
+    {
+      "role": "feature",
+      "variant": "crate-press-run"
+    },
+    {
+      "role": "feature",
+      "variant": "crate-sold"
+    },
+    {
+      "role": "quote",
+      "variant": "crate-quote"
+    },
+    {
+      "role": "closing",
+      "variant": "crate-close"
+    }
+  ]
+}
