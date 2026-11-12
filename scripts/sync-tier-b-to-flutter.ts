@@ -1,9 +1,10 @@
 /**
  * Stage (if needed) → bake Tier B → copy into Flutter assets for offline picker.
  *
- *   node -r ts-node/register/transpile-only scripts/sync-tier-b-to-flutter.ts
- *   node -r ts-node/register/transpile-only scripts/sync-tier-b-to-flutter.ts --only=dossier-clip
- *   FLUTTER_ROOT=C:\work\slidesX node -r ts-node/register/transpile-only scripts/sync-tier-b-to-flutter.ts
+ *   FLUTTER_ROOT=C:\work\slidesX npm run sync:tier-b-flutter
+ *   FLUTTER_ROOT=... node -r ts-node/register/transpile-only scripts/sync-tier-b-to-flutter.ts --all
+ *   FLUTTER_ROOT=... node -r ts-node/register/transpile-only scripts/sync-tier-b-to-flutter.ts --remaining
+ *   FLUTTER_ROOT=... node -r ts-node/register/transpile-only scripts/sync-tier-b-to-flutter.ts --only=dossier-clip
  */
 import * as fs from "fs";
 import * as path from "path";
@@ -14,7 +15,8 @@ const PUBLISHED = path.join(ROOT, "app-library", "published");
 const OUT = path.join(ROOT, "out");
 const PHOTOS_V1 = path.join(ROOT, "generated-templates", "photos", "engine-v1");
 
-const DEFAULT_IDS = [
+/** Prefer these at the front of the mobile picker when present. */
+const PINNED_ORDER = [
   "night-market",
   "idea-wall",
   "tide-form",
@@ -22,7 +24,19 @@ const DEFAULT_IDS = [
   "channel-nine",
   "dossier-clip",
   "eclipse-vault",
+  "vitrine-case",
+  "mezzanine-cube",
+  "platepress-rack",
+  "darkroom-proof",
+  "hearth-folio",
+  "oxide-atelier",
+  "gulhane-line",
 ];
+
+const SKIP_IDS = new Set([
+  "_manifest",
+  "kit-v1-gaming-lounge-overview-mvt8jmat",
+]);
 
 const DISPLAY_NAMES: Record<string, string> = {
   "night-market": "NIGHT MARKET",
@@ -33,11 +47,21 @@ const DISPLAY_NAMES: Record<string, string> = {
   "dossier-clip": "DOSSIER CLIP",
   "eclipse-vault": "ECLIPSE VAULT",
   "vitrine-case": "VITRINE NEW",
+  "mezzanine-cube": "MEZZANINE CUBE",
+  "platepress-rack": "PLATEPRESS",
+  "darkroom-proof": "DARKROOM PROOF",
+  "hearth-folio": "HEARTH FOLIO",
+  "oxide-atelier": "OXIDE ATELIER",
+  "gulhane-line": "GULHANE LINE",
 };
 
 function arg(name: string): string | undefined {
   const hit = process.argv.find((a) => a.startsWith("--" + name + "="));
   return hit ? hit.slice(name.length + 3) : undefined;
+}
+
+function hasFlag(name: string) {
+  return process.argv.includes("--" + name);
 }
 
 function flutterId(id: string) {
@@ -55,6 +79,34 @@ function resolveFlutterRoot(): string {
     if (fs.existsSync(path.join(c, "pubspec.yaml"))) return c;
   }
   throw new Error("Flutter root not found. Set FLUTTER_ROOT.");
+}
+
+function listReadyPublishedIds(): string[] {
+  if (!fs.existsSync(PUBLISHED)) return [];
+  return fs
+    .readdirSync(PUBLISHED)
+    .filter((name) => name.endsWith(".json"))
+    .map((name) => name.slice(0, -5))
+    .filter((id) => !SKIP_IDS.has(id))
+    .filter((id) => {
+      try {
+        const deck = JSON.parse(
+          fs.readFileSync(path.join(PUBLISHED, id + ".json"), "utf8")
+        );
+        const layouts = deck.layouts || {};
+        return Object.keys(layouts).length > 0;
+      } catch {
+        return false;
+      }
+    })
+    .sort((a, b) => a.localeCompare(b));
+}
+
+function shipOrder(ids: string[]): string[] {
+  const set = new Set(ids);
+  const pinned = PINNED_ORDER.filter((id) => set.has(id));
+  const rest = ids.filter((id) => !PINNED_ORDER.includes(id)).sort();
+  return [...pinned, ...rest];
 }
 
 function resolvePhoto(relOrName: string): string | null {
@@ -101,7 +153,6 @@ function stagePublished(id: string) {
   }
 
   fs.writeFileSync(jsonPath, JSON.stringify(deck, null, 2) + "\n");
-  // Keep a deck.json mirror in the published folder for catalog tooling.
   fs.mkdirSync(path.join(PUBLISHED, id), { recursive: true });
   fs.copyFileSync(jsonPath, path.join(PUBLISHED, id, "deck.json"));
   console.log("STAGED", id, "→ published");
@@ -125,7 +176,6 @@ function collectChromeFiles(id: string, chromeDir: string): string[] {
     }
   }
 
-  // Prefer rendered previews as cover + picker thumbs.
   const previewCandidates = [
     path.join(OUT, id, "preview.png"),
     path.join(OUT, id, "slide-01.png"),
@@ -157,7 +207,7 @@ function collectChromeFiles(id: string, chromeDir: string): string[] {
   return copied;
 }
 
-function rewriteToAssetUrls(deck: any, id: string, flutterDeckId: string) {
+function rewriteToAssetUrls(deck: any, flutterDeckId: string) {
   const chromePrefix = `assets/templates/chrome/be_${flutterDeckId}/`;
   const rewrite = (url: string): string => {
     if (!url || url.startsWith("assets/")) return url;
@@ -173,22 +223,23 @@ function rewriteToAssetUrls(deck: any, id: string, flutterDeckId: string) {
   return chromePrefix;
 }
 
-function buildPreviewSlides(deck: any, flutterDeckId: string, chromePrefix: string) {
+function displayNameFor(id: string, deck: any): string {
+  if (DISPLAY_NAMES[id]) return DISPLAY_NAMES[id];
+  const raw = String(deck.name || id)
+    .replace(/\s*[•·].*$/, "")
+    .replace(/[-_]+/g, " ")
+    .trim();
+  return raw.toUpperCase();
+}
+
+function buildPreviewSlides(deck: any, flutterDeckId: string, chromePrefix: string, chromeDir: string) {
   const seq: string[] = deck.layoutSequence || [];
   const cover = chromePrefix + "cover.png";
   const slides = [];
   for (let i = 0; i < Math.min(3, Math.max(1, seq.length)); i++) {
     const layout = seq[i] || "layoutTitleFocus";
-    const previewFile = fs.existsSync(
-      path.join(
-        resolveFlutterRoot(),
-        "assets",
-        "templates",
-        "chrome",
-        `be_${flutterDeckId}`,
-        `preview_${i + 1}.png`
-      )
-    )
+    const previewPath = path.join(chromeDir, `preview_${i + 1}.png`);
+    const previewFile = fs.existsSync(previewPath)
       ? `${chromePrefix}preview_${i + 1}.png`
       : cover;
     const layoutObj = deck.layouts?.[layout];
@@ -222,9 +273,9 @@ function installIntoFlutter(id: string) {
 
   const deck = JSON.parse(fs.readFileSync(bakedPath, "utf8"));
   deck.id = fid;
-  deck.name = DISPLAY_NAMES[id] || String(deck.name || id).toUpperCase();
-  const chromePrefix = rewriteToAssetUrls(deck, id, fid);
-  buildPreviewSlides(deck, fid, chromePrefix);
+  deck.name = displayNameFor(id, deck);
+  const chromePrefix = rewriteToAssetUrls(deck, fid);
+  buildPreviewSlides(deck, fid, chromePrefix, chromeDir);
   deck.description = deck.description || `${deck.name} — BE design system`;
   deck.enabled = true;
 
@@ -232,37 +283,81 @@ function installIntoFlutter(id: string) {
   fs.mkdirSync(decksDir, { recursive: true });
   fs.writeFileSync(path.join(decksDir, fid + ".json"), JSON.stringify(deck, null, 2) + "\n");
 
+  console.log("FLUTTER", fid, "→", path.relative(flutterRoot, path.join(decksDir, fid + ".json")));
+}
+
+function rewriteIndex(beIds: string[]) {
+  const flutterRoot = resolveFlutterRoot();
   const indexPath = path.join(flutterRoot, "assets", "templates", "index.json");
   const index = JSON.parse(fs.readFileSync(indexPath, "utf8"));
-  const order: string[] = Array.isArray(index.order) ? index.order.filter((x: string) => x !== fid) : [];
-  order.unshift(fid);
-  index.order = order;
+  const beFlutterIds = beIds.map(flutterId);
+  const beSet = new Set(beFlutterIds);
+  const legacy = (Array.isArray(index.order) ? index.order : []).filter(
+    (id: string) => !beSet.has(id)
+  );
+  index.order = [...beFlutterIds, ...legacy];
+  index.version = (Number(index.version) || 0) + 1;
   fs.writeFileSync(indexPath, JSON.stringify(index, null, 2) + "\n");
-
-  console.log("FLUTTER", fid, "→", path.relative(flutterRoot, path.join(decksDir, fid + ".json")));
+  return index.version as number;
 }
 
 async function main() {
   const only = arg("only");
-  const ids = only ? [only] : DEFAULT_IDS;
-  for (const id of ids) stagePublished(id);
-  for (const id of ids) {
-    const result = bakeTierBDeck({
-      id,
-      publicBaseUrl: process.env.PUBLIC_CATALOG_BASE || "http://127.0.0.1:4000",
-    });
-    console.log("BAKED", result.meta.id);
+  const ready = listReadyPublishedIds();
+  let ids: string[];
+  if (only) {
+    ids = [only];
+  } else if (hasFlag("remaining")) {
+    const flutterRoot = resolveFlutterRoot();
+    const decksDir = path.join(flutterRoot, "assets", "templates", "decks");
+    ids = shipOrder(
+      ready.filter((id) => !fs.existsSync(path.join(decksDir, flutterId(id) + ".json")))
+    );
+  } else {
+    // Default / --all: every ready published deck.
+    ids = shipOrder(ready);
   }
-  // Install in reverse so DEFAULT_IDS[0] ends up first in the picker.
-  for (const id of [...ids].reverse()) installIntoFlutter(id);
 
+  if (!ids.length) {
+    console.log("Nothing to sync.");
+    return;
+  }
+
+  console.log(`Syncing ${ids.length} deck(s)…`);
+  for (const id of ids) stagePublished(id);
+
+  const failed: string[] = [];
+  for (const id of ids) {
+    try {
+      const result = bakeTierBDeck({
+        id,
+        publicBaseUrl: process.env.PUBLIC_CATALOG_BASE || "http://127.0.0.1:4000",
+      });
+      console.log("BAKED", result.meta.id);
+      installIntoFlutter(id);
+    } catch (e: any) {
+      failed.push(id);
+      console.error("FAIL", id, e?.message || e);
+    }
+  }
+
+  const ok = ids.filter((id) => !failed.includes(id));
+  // Rebuild picker order from the full ready set that exists in Flutter, so
+  // --remaining still lands in the pinned+alpha ship order.
   const flutterRoot = resolveFlutterRoot();
-  const indexPath = path.join(flutterRoot, "assets", "templates", "index.json");
-  const index = JSON.parse(fs.readFileSync(indexPath, "utf8"));
-  index.version = (Number(index.version) || 0) + 1;
-  fs.writeFileSync(indexPath, JSON.stringify(index, null, 2) + "\n");
+  const decksDir = path.join(flutterRoot, "assets", "templates", "decks");
+  const present = shipOrder(
+    ready.filter((id) => fs.existsSync(path.join(decksDir, flutterId(id) + ".json")))
+  );
+  const version = rewriteIndex(present);
 
-  console.log("Done:", ids.map(flutterId).join(", "), "index v" + index.version);
+  console.log(
+    "Done:",
+    ok.map(flutterId).join(", "),
+    "index v" + version,
+    failed.length ? `| failed: ${failed.join(", ")}` : ""
+  );
+  if (failed.length) process.exitCode = 1;
 }
 
 main().catch((e) => {
