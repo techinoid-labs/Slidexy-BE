@@ -190,14 +190,20 @@ function collectChromeFiles(id: string, chromeDir: string): string[] {
     }
   }
 
-  for (let i = 1; i <= 3; i++) {
+  // Copy every rendered slide frame so the mobile picker can show the
+  // exact BE catalog look (not a Tier-B reconstruction).
+  for (let i = 1; i <= 24; i++) {
     const padded = `slide-${String(i).padStart(2, "0")}.png`;
     const plain = `slide-${i}.png`;
     const src =
       [path.join(OUT, id, padded), path.join(OUT, id, plain), path.join(PUBLISHED, id, padded)].find(
         (p) => fs.existsSync(p)
       ) || null;
-    if (src) {
+    if (!src) continue;
+    const slideName = `slide_${String(i).padStart(2, "0")}.png`;
+    fs.copyFileSync(src, path.join(chromeDir, slideName));
+    copied.push(slideName);
+    if (i <= 3) {
       const destName = `preview_${i}.png`;
       fs.copyFileSync(src, path.join(chromeDir, destName));
       copied.push(destName);
@@ -232,17 +238,36 @@ function displayNameFor(id: string, deck: any): string {
   return raw.toUpperCase();
 }
 
+function firstAuthoredPhotoUrl(layoutObj: any): string {
+  for (const el of layoutObj?.elements || []) {
+    const url = el?.imageContent?.url;
+    if (typeof url !== "string" || !url) continue;
+    const name = path.basename(url.split("?")[0]).toLowerCase();
+    if (name === "cover.png" || name.startsWith("preview_") || name === "preview.png") {
+      continue;
+    }
+    return url;
+  }
+  return "";
+}
+
 function buildPreviewSlides(deck: any, flutterDeckId: string, chromePrefix: string, chromeDir: string) {
   const seq: string[] = deck.layoutSequence || [];
   const cover = chromePrefix + "cover.png";
   const slides = [];
-  for (let i = 0; i < Math.min(3, Math.max(1, seq.length)); i++) {
-    const layout = seq[i] || "layoutTitleFocus";
-    const previewPath = path.join(chromeDir, `preview_${i + 1}.png`);
-    const previewFile = fs.existsSync(previewPath)
-      ? `${chromePrefix}preview_${i + 1}.png`
-      : cover;
+  const count = Math.min(Math.max(seq.length, 1), 12);
+  for (let i = 0; i < count; i++) {
+    const layout = seq[i] || seq[0] || "layoutTitleFocus";
     const layoutObj = deck.layouts?.[layout];
+    const slideName = `slide_${String(i + 1).padStart(2, "0")}.png`;
+    const slidePath = path.join(chromeDir, slideName);
+    const previewPath = path.join(chromeDir, `preview_${i + 1}.png`);
+    // Exact BE render wins — this is what makes mobile match the catalog.
+    let exact = "";
+    if (fs.existsSync(slidePath)) exact = chromePrefix + slideName;
+    else if (fs.existsSync(previewPath)) exact = chromePrefix + `preview_${i + 1}.png`;
+    else if (i === 0 && fs.existsSync(path.join(chromeDir, "cover.png"))) exact = cover;
+
     const titleEl = (layoutObj?.elements || []).find(
       (e: any) => e.type === "text" && (e.role === "title" || e.id === "title")
     );
@@ -251,15 +276,19 @@ function buildPreviewSlides(deck: any, flutterDeckId: string, chromePrefix: stri
       titleEl?.textContent?.spans?.map((s: any) => s.text).join("") ||
       deck.name ||
       flutterDeckId;
+    const authored = firstAuthoredPhotoUrl(layoutObj);
     slides.push({
       id: `${flutterDeckId}-p${i + 1}`,
       layout,
       title: String(title).slice(0, 80),
       bullets: [deck.description || "Design system template"].filter(Boolean).slice(0, 2),
-      image: previewFile,
+      image: exact || authored || cover,
+      exactRender: Boolean(exact),
     });
   }
   deck.previewSlides = slides;
+  // Generation must walk the same order the picker shows.
+  deck.fixedSequence = true;
 }
 
 function installIntoFlutter(id: string) {

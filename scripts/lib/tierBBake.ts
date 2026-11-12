@@ -199,26 +199,29 @@ export function bakeTierBDeck(opts: BakeOptions) {
   deck.layoutSequence = seq.map((lid: string) => idMap[lid] || lid);
 
   // Picker thumbnails require previewSlides; without them the card is a blank color.
-  const firstLayout = deck.layoutSequence[0] || "layoutTitleFocus";
-  const coverUrl = (() => {
-    let found = "";
-    walkElements(deck, (el) => {
-      if (found) return;
-      if (el.type === "image" && el.imageContent && typeof el.imageContent.url === "string") {
-        found = el.imageContent.url;
+  // Use each slide's authored photo URL (not a composite render) so mobile
+  // bindings keep the original imagery.
+  const previewCount = Math.min(3, Math.max(1, (deck.layoutSequence || []).length));
+  deck.previewSlides = [];
+  for (let i = 0; i < previewCount; i++) {
+    const layoutId = deck.layoutSequence[i] || "layoutTitleFocus";
+    const layout = deck.layouts?.[layoutId];
+    let photo = "";
+    for (const el of layout?.elements || []) {
+      const url = el?.imageContent?.url;
+      if (typeof url === "string" && url) {
+        photo = url;
+        break;
       }
-    });
-    return found;
-  })();
-  deck.previewSlides = [
-    {
-      id: id + "-p1",
-      layout: firstLayout,
+    }
+    deck.previewSlides.push({
+      id: `${id}-p${i + 1}`,
+      layout: layoutId,
       title: deck.name || id,
       bullets: [deck.description || "Design system template"].filter(Boolean),
-      image: coverUrl,
-    },
-  ];
+      image: photo,
+    });
+  }
 
   deck.schemaVersion = 2;
   deck.mobileTier = "B";
@@ -230,6 +233,7 @@ export function bakeTierBDeck(opts: BakeOptions) {
   };
   deck.enabled = true;
   deck.source = "be-published";
+  deck.fixedSequence = true;
 
   assertTierBSafe(deck);
 
