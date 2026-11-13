@@ -1561,6 +1561,62 @@ function paintShape(ctx, element, tokens) {
     return;
   }
   const radius = shape.kind === "circle" ? Math.min(element.width, element.height) / 2 : (shape.cornerRadius || 0);
+  if (
+    shape.kind === "triangle" ||
+    shape.kind === "chevron" ||
+    shape.kind === "diamond" ||
+    shape.kind === "hexagon"
+  ) {
+    ctx.beginPath();
+    if (shape.kind === "triangle") {
+      ctx.moveTo(element.x + element.width / 2, element.y);
+      ctx.lineTo(element.x + element.width, element.y + element.height);
+      ctx.lineTo(element.x, element.y + element.height);
+    } else if (shape.kind === "chevron") {
+      // chevron pointing right
+      const mid = element.y + element.height / 2;
+      const notch = Math.min(element.width * 0.35, element.height * 0.5);
+      ctx.moveTo(element.x, element.y);
+      ctx.lineTo(element.x + element.width - notch, element.y);
+      ctx.lineTo(element.x + element.width, mid);
+      ctx.lineTo(element.x + element.width - notch, element.y + element.height);
+      ctx.lineTo(element.x, element.y + element.height);
+      ctx.lineTo(element.x + notch, mid);
+    } else if (shape.kind === "diamond") {
+      const cx = element.x + element.width / 2;
+      const cy = element.y + element.height / 2;
+      ctx.moveTo(cx, element.y);
+      ctx.lineTo(element.x + element.width, cy);
+      ctx.lineTo(cx, element.y + element.height);
+      ctx.lineTo(element.x, cy);
+    } else {
+      // flat-top hexagon
+      const x0 = element.x;
+      const y0 = element.y;
+      const w = element.width;
+      const h = element.height;
+      const inset = w * 0.25;
+      ctx.moveTo(x0 + inset, y0);
+      ctx.lineTo(x0 + w - inset, y0);
+      ctx.lineTo(x0 + w, y0 + h / 2);
+      ctx.lineTo(x0 + w - inset, y0 + h);
+      ctx.lineTo(x0 + inset, y0 + h);
+      ctx.lineTo(x0, y0 + h / 2);
+    }
+    ctx.closePath();
+    if (fill && fill !== "none" && fill !== "transparent") {
+      ctx.fillStyle = fill;
+      ctx.fill();
+    }
+    const triStroke = token(shape.stroke || shape.strokeColor, tokens);
+    if (triStroke && triStroke !== "none" && shape.strokeWidth) {
+      ctx.strokeStyle = triStroke;
+      ctx.lineWidth = Number(shape.strokeWidth);
+      ctx.stroke();
+    }
+    ctx.restore();
+    return;
+  }
   if (shape.shadow && typeof shape.shadow === "object") {
     const sh = shape.shadow;
     ctx.save();
@@ -1573,7 +1629,10 @@ function paintShape(ctx, element, tokens) {
     ctx.fill();
     ctx.restore();
   }
-  tracePreset(ctx, element, { kind: "rect", cornerRadius: radius });
+  tracePreset(ctx, element, {
+    kind: shape.kind === "circle" || shape.kind === "ellipse" ? "ellipse" : "rect",
+    cornerRadius: radius,
+  });
   if (fill && fill !== "none" && fill !== "transparent") {
     ctx.fillStyle = shape.gradient && shape.gradient.stops ? linearFill(ctx, element, shape.gradient) : fill;
     ctx.fill();

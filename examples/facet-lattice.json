@@ -1,0 +1,141 @@
+{
+  "name": "Facet Lattice • Crystal kit",
+  "description": "Presentation deck — craft decisions cut like facets; diamonds are atmosphere.",
+  "brand": {
+    "colors": {
+      "bg": "#0B1020",
+      "surface": "#F4F1EA",
+      "surface_color": "#2A3350",
+      "ink": "#E8ECF8",
+      "muted": "#8B93B0",
+      "accent": "#7EF0D8",
+      "line": "#3D4666"
+    },
+    "fonts": {
+      "display": "Georgia",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "facet-lattice"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "The cut decides the light",
+        "items": [
+          "FACET LATTICE · CRAFT BRIEF",
+          "How we finish a product so it catches attention"
+        ],
+        "photoQuery": "glyph-facet-cover"
+      },
+      {
+        "role": "feature",
+        "title": "Tonight’s cut",
+        "items": [
+          "01 Plane",
+          "Name the decision before you polish the story.",
+          "02 Edge",
+          "Remove anything that does not carry weight.",
+          "03 Blaze",
+          "Leave one surface that catches the room."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Three planes we protect",
+        "items": [
+          "Table",
+          "The promise the customer can say in one breath.",
+          "Crown",
+          "The proof they can see without a demo.",
+          "Pavilion",
+          "The quiet work that keeps the cut from chipping."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Where the light lands",
+        "items": [
+          "HOLD",
+          "Ship only when one plane still burns under hard light."
+        ],
+        "photoQuery": "glyph-facet-cut"
+      },
+      {
+        "role": "feature",
+        "title": "Cut sequence",
+        "items": [
+          "Rough",
+          "Block the silhouette. No detail yet.",
+          "Facet",
+          "Carve the three planes. Kill the fourth.",
+          "Polish",
+          "Tighten copy. Raise contrast. Stop early."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Glass check",
+        "items": [
+          "PROOF",
+          "Hold the work against a bright window. If it goes flat, recut."
+        ],
+        "photoQuery": "glyph-facet-glass"
+      },
+      {
+        "role": "quote",
+        "title": "NOTE",
+        "items": [
+          "A facet is a decision you can see.",
+          "— Studio lapidary"
+        ]
+      },
+      {
+        "role": "closing",
+        "title": "Cut clean. Ship bright.",
+        "items": [
+          "Facet Lattice · craft brief"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "facet-cover"
+    },
+    {
+      "role": "feature",
+      "variant": "facet-agenda"
+    },
+    {
+      "role": "feature",
+      "variant": "facet-planes"
+    },
+    {
+      "role": "feature",
+      "variant": "facet-blaze"
+    },
+    {
+      "role": "feature",
+      "variant": "facet-sequence"
+    },
+    {
+      "role": "feature",
+      "variant": "facet-window"
+    },
+    {
+      "role": "quote",
+      "variant": "facet-quote"
+    },
+    {
+      "role": "closing",
+      "variant": "facet-close"
+    }
+  ]
+}

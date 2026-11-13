@@ -1,0 +1,146 @@
+{
+  "name": "Delta Flow • River kit",
+  "description": "River-delta deck — meander channel, chevron current, triangular mouth fan. Not orbs, belts, or tiles.",
+  "brand": {
+    "colors": {
+      "bg": "#071820",
+      "surface": "#E8F4F2",
+      "surface_color": "#134E4A",
+      "ink": "#E8F4F2",
+      "muted": "#5F8A86",
+      "accent": "#F4A261",
+      "line": "#1F3A3A"
+    },
+    "fonts": {
+      "display": "Georgia",
+      "body": "Consolas"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "delta-flow"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "DELTA",
+        "items": [
+          "RIVER KIT · MOUTH 09",
+          "Flow · fork · fan"
+        ],
+        "photoQuery": "geo-delta-cover"
+      },
+      {
+        "role": "feature",
+        "title": "Current",
+        "items": [
+          "Head",
+          "2 kn",
+          "Bend",
+          "4 kn",
+          "Reach",
+          "6 kn"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Banks",
+        "items": [
+          "Left",
+          "Silt",
+          "Right",
+          "Reed",
+          "Island",
+          "Spoil"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Forks",
+        "items": [
+          "Main",
+          "Keep",
+          "East arm",
+          "Shallow",
+          "West arm",
+          "Deep",
+          "Cut",
+          "New"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Mouth",
+        "items": [
+          "Fan",
+          "12km",
+          "Lobes",
+          "5",
+          "Tide",
+          "1.8m"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Passage",
+        "items": [
+          "HOLD",
+          "Follow the deepest fork to the sea."
+        ],
+        "photoQuery": "geo-delta-pass"
+      },
+      {
+        "role": "quote",
+        "title": "LOG",
+        "items": [
+          "A river writes its ending in many hands.",
+          "— Delta pilot"
+        ]
+      },
+      {
+        "role": "closing",
+        "title": "Fan out.",
+        "items": [
+          "Delta Flow · river kit"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "delta-cover"
+    },
+    {
+      "role": "feature",
+      "variant": "delta-current"
+    },
+    {
+      "role": "feature",
+      "variant": "delta-banks"
+    },
+    {
+      "role": "feature",
+      "variant": "delta-forks"
+    },
+    {
+      "role": "feature",
+      "variant": "delta-mouth"
+    },
+    {
+      "role": "feature",
+      "variant": "delta-passage"
+    },
+    {
+      "role": "quote",
+      "variant": "delta-quote"
+    },
+    {
+      "role": "closing",
+      "variant": "delta-close"
+    }
+  ]
+}

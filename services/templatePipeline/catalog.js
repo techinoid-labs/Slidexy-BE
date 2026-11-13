@@ -657,6 +657,10 @@ function addShape(slide, pptx, element, tokens) {
   const options = boxOf(element);
   let kind = pptx.ShapeType.rect;
   if (shape.kind === "circle" || shape.kind === "ellipse") kind = pptx.ShapeType.ellipse;
+  else if (shape.kind === "triangle") kind = pptx.ShapeType.triangle;
+  else if (shape.kind === "chevron") kind = pptx.ShapeType.chevron;
+  else if (shape.kind === "diamond") kind = pptx.ShapeType.diamond;
+  else if (shape.kind === "hexagon") kind = pptx.ShapeType.hexagon;
   else if (radius > 0) {
     kind = pptx.ShapeType.roundRect;
     const minSide = Math.min(Number(element.width) || 1, Number(element.height) || 1);

@@ -125,7 +125,7 @@ const orbit: Template = {
       role: "cover",
       title: "ORBIT",
       items: ["FIELD KIT · LAT 41", "Ring · mark · return"],
-      photoQuery: "ed2250ed0c",
+      photoQuery: "orbit-space-cover",
     },
     {
       role: "feature",
@@ -151,7 +151,7 @@ const orbit: Template = {
       role: "feature",
       title: "Sighting",
       items: ["Hold", "True north holds when the rim is quiet."],
-      photoQuery: "ed2250ed0c",
+      photoQuery: "orbit-space-sight",
     },
     {
       role: "quote",
@@ -472,7 +472,7 @@ const wireLat: Template = {
       role: "cover",
       title: "WIRE",
       items: ["SIGNAL KIT · LAT 00", "Plot · ping · pass"],
-      photoQuery: "80346a24bf",
+      photoQuery: "geo-wire-a",
     },
     {
       role: "feature",
@@ -498,7 +498,7 @@ const wireLat: Template = {
       role: "feature",
       title: "Trace",
       items: ["HOLD", "Follow the wire until the node goes quiet."],
-      photoQuery: "80346a24bf",
+      photoQuery: "geo-wire-b",
     },
     {
       role: "quote",

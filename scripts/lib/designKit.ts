@@ -111,6 +111,94 @@ export const circle = (id: string, x: number, y: number, size: number, fill: str
   ...extras,
 });
 
+/** Isosceles triangle (peak / delta glyph). */
+export const triangle = (
+  id: string,
+  x: number,
+  y: number,
+  w: number,
+  h: number,
+  fill: string,
+  extras: El = {}
+): El => ({
+  id,
+  type: "shape",
+  shape: "triangle",
+  x,
+  y,
+  width: w,
+  height: h,
+  tokenFill: fill,
+  z: 1,
+  ...extras,
+});
+
+/** Chevron (flow / bearing glyph). */
+export const chevron = (
+  id: string,
+  x: number,
+  y: number,
+  w: number,
+  h: number,
+  fill: string,
+  extras: El = {}
+): El => ({
+  id,
+  type: "shape",
+  shape: "chevron",
+  x,
+  y,
+  width: w,
+  height: h,
+  tokenFill: fill,
+  z: 1,
+  ...extras,
+});
+
+/** Diamond / rhombus (facet glyph). Point-up. */
+export const diamond = (
+  id: string,
+  x: number,
+  y: number,
+  w: number,
+  h: number,
+  fill: string,
+  extras: El = {}
+): El => ({
+  id,
+  type: "shape",
+  shape: "diamond",
+  x,
+  y,
+  width: w,
+  height: h,
+  tokenFill: fill,
+  z: 1,
+  ...extras,
+});
+
+/** Flat-top hexagon (hive glyph). */
+export const hexagon = (
+  id: string,
+  x: number,
+  y: number,
+  w: number,
+  h: number,
+  fill: string,
+  extras: El = {}
+): El => ({
+  id,
+  type: "shape",
+  shape: "hexagon",
+  x,
+  y,
+  width: w,
+  height: h,
+  tokenFill: fill,
+  z: 1,
+  ...extras,
+});
+
 export const photo = (id: string, x: number, y: number, w: number, h: number, extras: El = {}): El => ({
   id,
   type: "image",

@@ -19,6 +19,17 @@ const PHOTOS_V1 = path.join(ROOT, "generated-templates", "photos", "engine-v1");
 const PINNED_ORDER = [
   "night-market",
   "idea-wall",
+  "spike-rail",
+  "orbit-meridian",
+  "wire-latitude",
+  "darkroom-strip",
+  "crate-press",
+  "peak-chain",
+  "delta-flow",
+  "facet-lattice",
+  "hive-circuit",
+  "bracket-gate",
+  "incipit-tab",
   "tide-form",
   "arcade-signal-dense",
   "channel-nine",
@@ -41,6 +52,17 @@ const SKIP_IDS = new Set([
 const DISPLAY_NAMES: Record<string, string> = {
   "night-market": "NIGHT MARKET",
   "idea-wall": "IDEA WALL",
+  "spike-rail": "SPIKE RAIL",
+  "orbit-meridian": "ORBIT MERIDIAN",
+  "wire-latitude": "WIRE LATITUDE",
+  "darkroom-strip": "DARKROOM STRIP",
+  "crate-press": "CRATE PRESS",
+  "peak-chain": "PEAK CHAIN",
+  "delta-flow": "DELTA FLOW",
+  "facet-lattice": "FACET LATTICE",
+  "hive-circuit": "HIVE CIRCUIT",
+  "bracket-gate": "BRACKET GATE",
+  "incipit-tab": "INCIPIT TAB",
   "tide-form": "TIDE FORM",
   "arcade-signal-dense": "ARCADE SIGNAL",
   "channel-nine": "CHANNEL NINE",
@@ -335,7 +357,7 @@ async function main() {
   const ready = listReadyPublishedIds();
   let ids: string[];
   if (only) {
-    ids = [only];
+    ids = only.split(",").map((s) => s.trim()).filter(Boolean);
   } else if (hasFlag("remaining")) {
     const flutterRoot = resolveFlutterRoot();
     const decksDir = path.join(flutterRoot, "assets", "templates", "decks");

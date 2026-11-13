@@ -1,0 +1,215 @@
+{
+  "name": "Incipit Tab • Research kit",
+  "description": "Research-monograph deck — thumb-index tabs, running heads, dense abstract-to-references talk track.",
+  "brand": {
+    "colors": {
+      "bg": "#E8EEF2",
+      "surface": "#FBFCFD",
+      "surface_color": "#C5D0DA",
+      "ink": "#142033",
+      "muted": "#5A6B7C",
+      "accent": "#1F6B5E",
+      "line": "#8FA0B0"
+    },
+    "fonts": {
+      "display": "Georgia",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "incipit-tab"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Measuring what the model refuses to say",
+        "items": [
+          "WORKING PAPER 2026.04",
+          "Abstention, calibration, and reviewer trust in long-form QA",
+          "Techinoid Labs · Methods note"
+        ],
+        "photoQuery": "paper-incipit-cover"
+      },
+      {
+        "role": "feature",
+        "title": "Abstract",
+        "items": [
+          "Background",
+          "Large models answer fluently even when evidence is thin. Reviewers cannot see the refusal boundary.",
+          "Question",
+          "Can a visible abstention policy raise trust without cutting answer usefulness below an accepted floor?",
+          "Method",
+          "We ran a paired review study (n=48) across three domains with a shared rubric for usefulness and trust.",
+          "Finding",
+          "Forced abstention cut critical errors 31% while usefulness held within 4 points of the baseline."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Contributions",
+        "items": [
+          "C1 Protocol",
+          "A reusable abstention rubric that separates ‘I don’t know’ from ‘I won’t invent’.",
+          "C2 Measure",
+          "Trust-delta scoring that tracks reviewer confidence before and after seeing refusals.",
+          "C3 Result",
+          "Evidence that calibrated silence beats overconfident completion on high-stakes prompts.",
+          "C4 Artifact",
+          "Public prompts, rubric sheets, and anonymized reviewer notes for replication."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Related work",
+        "items": [
+          "Calibration",
+          "Prior work scores probability, not the social act of refusing in front of a reader.",
+          "Faithfulness",
+          "Citation checks catch missing sources; they do not teach when to stop generating.",
+          "UX of doubt",
+          "Product studies show hedges help, but rarely measure reviewer trust after a hard refuse.",
+          "Gap",
+          "We treat abstention as a first-class slide in the answer, not a log-line."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Method",
+        "items": [
+          "01 Sample",
+          "48 reviewers · 3 domains (clinical briefing, legal cite-check, lab methods).",
+          "02 Conditions",
+          "Baseline fluent answers vs policy-forced abstention on thin evidence.",
+          "03 Rubric",
+          "Usefulness 1–5 · Trust 1–5 · Critical-error flag · Time-to-decision.",
+          "04 Analysis",
+          "Paired Wilcoxon on trust/usefulness; McNemar on critical errors."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Experiment setup",
+        "items": [
+          "HOLD",
+          "Same model weights. Same prompts. Only the abstention policy changes. Reviewers are blind to condition labels."
+        ],
+        "photoQuery": "paper-incipit-lab"
+      },
+      {
+        "role": "feature",
+        "title": "Results",
+        "items": [
+          "Trust",
+          "+0.7 mean trust delta under abstention (p < 0.01).",
+          "Errors",
+          "Critical errors 31% lower when silence is allowed.",
+          "Usefulness",
+          "Usefulness −0.2 (ns) — within the pre-registered indifference band.",
+          "Time",
+          "Median decision time fell 18s when refusals were explicit."
+        ],
+        "photoQuery": "paper-incipit-figure"
+      },
+      {
+        "role": "feature",
+        "title": "Discussion",
+        "items": [
+          "What held",
+          "Reviewers trusted the system more when it showed its stop line.",
+          "What flexed",
+          "Usefulness dipped only on prompts where partial answers still helped.",
+          "Practice",
+          "Ship a visible abstain control next to generate — not only a backend threshold.",
+          "Theory",
+          "Abstention is a communicative act; scoring it as accuracy alone under-measures value."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Limitations",
+        "items": [
+          "Sample",
+          "Expert reviewers, not end consumers; domain set is narrow.",
+          "Policy",
+          "One abstention rule family; thresholds were not swept exhaustively.",
+          "Blindness",
+          "Style cues may still leak condition despite label blinding.",
+          "Next",
+          "Replicate with live traffic and longitudinal trust, not only one-shot review."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "References",
+        "items": [
+          "[1] Guo et al.",
+          "Calibration of modern neural nets. ICML.",
+          "[2] Kadavath et al.",
+          "Models mostly know what they know. arXiv.",
+          "[3] Rashkin et al.",
+          "Attribution in generated text. TACL.",
+          "[4] This note",
+          "Working paper 2026.04 — prompts in supplement."
+        ],
+        "photoQuery": "paper-incipit-stacks"
+      },
+      {
+        "role": "closing",
+        "title": "Refuse clearly. Measure the trust you earn.",
+        "items": [
+          "Incipit Tab · research kit · working paper 2026.04"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "incipit-cover"
+    },
+    {
+      "role": "feature",
+      "variant": "incipit-abstract"
+    },
+    {
+      "role": "feature",
+      "variant": "incipit-contrib"
+    },
+    {
+      "role": "feature",
+      "variant": "incipit-related"
+    },
+    {
+      "role": "feature",
+      "variant": "incipit-method"
+    },
+    {
+      "role": "feature",
+      "variant": "incipit-setup"
+    },
+    {
+      "role": "feature",
+      "variant": "incipit-results"
+    },
+    {
+      "role": "feature",
+      "variant": "incipit-discuss"
+    },
+    {
+      "role": "feature",
+      "variant": "incipit-limits"
+    },
+    {
+      "role": "feature",
+      "variant": "incipit-refs"
+    },
+    {
+      "role": "closing",
+      "variant": "incipit-close"
+    }
+  ]
+}

@@ -1,0 +1,199 @@
+{
+  "id": "feature/facet-blaze",
+  "role": "feature",
+  "variant": "facet-blaze",
+  "family": "facet-lattice",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 42,
+      "maxFont": 42,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 24,
+      "maxFont": 24,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 24,
+      "maxFont": 24,
+      "lineClamp": 7,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "photo",
+        "type": "image",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "z": 1,
+        "slot": "photo",
+        "morphId": "hero"
+      },
+      {
+        "id": "veil",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 900,
+        "height": 900,
+        "tokenFill": "bg",
+        "z": 2,
+        "opacity": 0.72,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-veil"
+      },
+      {
+        "id": "h0",
+        "type": "shape",
+        "shape": "diamond",
+        "x": -80,
+        "y": 200,
+        "width": 360,
+        "height": 480,
+        "tokenFill": "accent",
+        "z": 3,
+        "opacity": 0.3,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-h0"
+      },
+      {
+        "id": "h1",
+        "type": "shape",
+        "shape": "diamond",
+        "x": 200,
+        "y": 520,
+        "width": 280,
+        "height": 360,
+        "tokenFill": "surface_color",
+        "z": 3,
+        "opacity": 0.4,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-h1"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 80,
+        "y": 120,
+        "width": 720,
+        "height": 80,
+        "fontSize": 42,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "motionKind": "title",
+        "motion": "enter",
+        "motionPreset": "fadeUp",
+        "morphId": "title"
+      },
+      {
+        "id": "note",
+        "type": "shape",
+        "shape": "rect",
+        "x": 80,
+        "y": 280,
+        "width": 700,
+        "height": 360,
+        "tokenFill": "surface",
+        "z": 4,
+        "motionKind": "beat",
+        "motion": "enter",
+        "motionPreset": "slam",
+        "morphId": "note-0"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 120,
+        "y": 320,
+        "width": 620,
+        "height": 48,
+        "fontSize": 20,
+        "slot": "copy0",
+        "tokenColor": "accent",
+        "fontRole": "label",
+        "fontWeight": 600,
+        "lineHeight": 1.12,
+        "letterSpacing": 2.2,
+        "z": 5,
+        "motionKind": "label",
+        "motion": "enter",
+        "motionHost": "note",
+        "morphId": "label-0"
+      },
+      {
+        "id": "copy1",
+        "type": "text",
+        "x": 120,
+        "y": 400,
+        "width": 620,
+        "height": 200,
+        "fontSize": 24,
+        "slot": "copy1",
+        "tokenColor": "bg",
+        "fontRole": "body",
+        "fontWeight": 700,
+        "lineHeight": 1.35,
+        "letterSpacing": 0,
+        "z": 5,
+        "motionKind": "label",
+        "motion": "enter",
+        "motionHost": "note",
+        "morphId": "label-1"
+      }
+    ]
+  }
+}

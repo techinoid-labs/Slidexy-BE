@@ -31,7 +31,7 @@
           "SIGNAL KIT · LAT 00",
           "Plot · ping · pass"
         ],
-        "photoQuery": "80346a24bf"
+        "photoQuery": "geo-wire-a"
       },
       {
         "role": "feature",
@@ -92,7 +92,7 @@
           "HOLD",
           "Follow the wire until the node goes quiet."
         ],
-        "photoQuery": "80346a24bf"
+        "photoQuery": "geo-wire-b"
       },
       {
         "role": "quote",

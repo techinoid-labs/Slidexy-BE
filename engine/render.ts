@@ -885,7 +885,20 @@ export async function renderDeckFromSpec(
         const keepAccentFill =
           el.tokenFill === "accent" || el.keepFill === true || el.highlight === true;
         next.shapeContent = {
-          kind: shapeKind === "wave" ? "wave" : shapeKind === "ellipse" || shapeKind === "circle" ? "circle" : "rect",
+          kind:
+            shapeKind === "wave"
+              ? "wave"
+              : shapeKind === "ellipse" || shapeKind === "circle"
+                ? "circle"
+                : shapeKind === "triangle"
+                  ? "triangle"
+                  : shapeKind === "chevron"
+                    ? "chevron"
+                    : shapeKind === "diamond"
+                      ? "diamond"
+                      : shapeKind === "hexagon"
+                        ? "hexagon"
+                        : "rect",
           fill: fillResolved,
           cornerRadius: isCard ? cardRadius : el.radius || 0,
         };

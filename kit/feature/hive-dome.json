@@ -1,0 +1,184 @@
+{
+  "id": "feature/hive-dome",
+  "role": "feature",
+  "variant": "hive-dome",
+  "family": "hive-circuit",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 42,
+      "maxFont": 42,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 24,
+      "maxFont": 24,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 26,
+      "maxFont": 26,
+      "lineClamp": 6,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "photo",
+        "type": "image",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "z": 1,
+        "slot": "photo",
+        "morphId": "hero"
+      },
+      {
+        "id": "veil",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 860,
+        "height": 900,
+        "tokenFill": "ink",
+        "z": 2,
+        "opacity": 0.55,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-veil"
+      },
+      {
+        "id": "dh",
+        "type": "shape",
+        "shape": "hexagon",
+        "x": -40,
+        "y": 160,
+        "width": 360,
+        "height": 360,
+        "tokenFill": "accent",
+        "z": 3,
+        "opacity": 0.3,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-dh"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 80,
+        "y": 120,
+        "width": 700,
+        "height": 80,
+        "fontSize": 42,
+        "slot": "title",
+        "tokenColor": "surface",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "motionKind": "title",
+        "motion": "enter",
+        "motionPreset": "fadeUp",
+        "morphId": "title"
+      },
+      {
+        "id": "note",
+        "type": "shape",
+        "shape": "rect",
+        "x": 80,
+        "y": 280,
+        "width": 680,
+        "height": 380,
+        "tokenFill": "surface",
+        "z": 4,
+        "motionKind": "beat",
+        "motion": "enter",
+        "motionPreset": "slam",
+        "morphId": "note-0"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 120,
+        "y": 320,
+        "width": 600,
+        "height": 48,
+        "fontSize": 20,
+        "slot": "copy0",
+        "tokenColor": "accent",
+        "fontRole": "label",
+        "fontWeight": 600,
+        "lineHeight": 1.12,
+        "letterSpacing": 2.2,
+        "z": 5,
+        "motionKind": "label",
+        "motion": "enter",
+        "motionHost": "note",
+        "morphId": "label-0"
+      },
+      {
+        "id": "copy1",
+        "type": "text",
+        "x": 120,
+        "y": 400,
+        "width": 600,
+        "height": 200,
+        "fontSize": 26,
+        "slot": "copy1",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 700,
+        "lineHeight": 1.35,
+        "letterSpacing": 0,
+        "z": 5,
+        "motionKind": "label",
+        "motion": "enter",
+        "motionHost": "note",
+        "morphId": "label-1"
+      }
+    ]
+  }
+}

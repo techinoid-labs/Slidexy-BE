@@ -1,0 +1,145 @@
+{
+  "name": "Bracket Gate • Lintel kit",
+  "description": "Corner-bracket presentation — thresholds, courts, and openings.",
+  "brand": {
+    "colors": {
+      "bg": "#F3EEE4",
+      "surface": "#FFFDF8",
+      "surface_color": "#D9CFC0",
+      "ink": "#1C1914",
+      "muted": "#6E6558",
+      "accent": "#B84A2E",
+      "line": "#A89780"
+    },
+    "fonts": {
+      "display": "Georgia",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "bracket-gate"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Every room needs a threshold",
+        "items": [
+          "BRACKET GATE · SPACE BRIEF",
+          "How openings teach people where to pause"
+        ],
+        "photoQuery": "glyph-bracket-cover"
+      },
+      {
+        "role": "feature",
+        "title": "Three corners we mark",
+        "items": [
+          "Load",
+          "The corner that carries the span — never decorate it away.",
+          "Span",
+          "The clear distance people feel before they cross.",
+          "Post",
+          "The quiet vertical that keeps the story upright."
+        ],
+        "photoQuery": "glyph-bracket-cover"
+      },
+      {
+        "role": "feature",
+        "title": "Measure the opening",
+        "items": [
+          "Outer",
+          "4.2m — ceremonial approach, slow the pace.",
+          "Inner",
+          "2.8m — conversation distance, still public.",
+          "Clear",
+          "2.1m — one person, one decision, no crowd."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Courts in sequence",
+        "items": [
+          "Entry",
+          "Arrive. Put the phone away.",
+          "Pause",
+          "Read the wall. Breathe once.",
+          "Exit",
+          "Leave with one sentence, not ten photos.",
+          "Light",
+          "Daylight is the only spotlight we trust."
+        ],
+        "photoQuery": "glyph-bracket-court"
+      },
+      {
+        "role": "feature",
+        "title": "At the lintel",
+        "items": [
+          "HOLD",
+          "Stop under the beam before you speak. The room is listening."
+        ],
+        "photoQuery": "glyph-bracket-gate"
+      },
+      {
+        "role": "feature",
+        "title": "Along the colonnade",
+        "items": [
+          "WALK",
+          "Columns keep the sky honest — and your pitch short."
+        ],
+        "photoQuery": "glyph-bracket-court"
+      },
+      {
+        "role": "quote",
+        "title": "STONE",
+        "items": [
+          "A gate is a sentence with two capitals.",
+          "— Court mason"
+        ]
+      },
+      {
+        "role": "closing",
+        "title": "Pass through. Leave it open.",
+        "items": [
+          "Bracket Gate · space brief"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "bracket-cover"
+    },
+    {
+      "role": "feature",
+      "variant": "bracket-corners"
+    },
+    {
+      "role": "feature",
+      "variant": "bracket-spans"
+    },
+    {
+      "role": "feature",
+      "variant": "bracket-courts"
+    },
+    {
+      "role": "feature",
+      "variant": "bracket-threshold"
+    },
+    {
+      "role": "feature",
+      "variant": "bracket-colonnade"
+    },
+    {
+      "role": "quote",
+      "variant": "bracket-quote"
+    },
+    {
+      "role": "closing",
+      "variant": "bracket-close"
+    }
+  ]
+}

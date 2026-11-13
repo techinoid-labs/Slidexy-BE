@@ -1,0 +1,143 @@
+{
+  "name": "Hive Circuit • Cell kit",
+  "description": "Presentation deck — how a colony ships work; hexagons are atmosphere.",
+  "brand": {
+    "colors": {
+      "bg": "#FFF8E8",
+      "surface": "#FFFFFF",
+      "surface_color": "#F0D9A0",
+      "ink": "#1A1408",
+      "muted": "#8A7348",
+      "accent": "#E4572E",
+      "line": "#C4A86A"
+    },
+    "fonts": {
+      "display": "Georgia",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "hive-circuit"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "A colony that still feels human",
+        "items": [
+          "HIVE CIRCUIT · OPS BRIEF",
+          "Roles, routes, and the cells that carry the week"
+        ],
+        "photoQuery": "glyph-hive-cover"
+      },
+      {
+        "role": "feature",
+        "title": "How the hive moves",
+        "items": [
+          "01 Pack",
+          "Same cell shape so handoffs never reinvent the box.",
+          "02 Route",
+          "Work travels the warmest path, not the longest memo.",
+          "03 Brood",
+          "New work starts next to veterans, not in a side channel."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Cells on the floor",
+        "items": [
+          "Nurse",
+          "Owns intake. Turns noise into a ticket the floor can run.",
+          "Guard",
+          "Protects focus. Blocks scope that would crack the comb.",
+          "Forager",
+          "Brings proof back. Closes the loop in the same cell."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Queen cell",
+        "items": [
+          "Queen",
+          "Sets the week’s direction — one sentence, no slide deck.",
+          "Workers",
+          "Forty people, one cadence. Standups stay under eight minutes.",
+          "Drones",
+          "Specialists that plug in, then leave the comb intact.",
+          "Stores",
+          "Shared docs and templates. No private honey pots."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "The shell holds",
+        "items": [
+          "SHELL",
+          "Six clear walls beat four soft ones when pressure hits."
+        ],
+        "photoQuery": "glyph-hive-cell"
+      },
+      {
+        "role": "feature",
+        "title": "Follow the warmth",
+        "items": [
+          "FIELD",
+          "If a cell goes cold, move the work before you add process."
+        ],
+        "photoQuery": "glyph-hive-field"
+      },
+      {
+        "role": "quote",
+        "title": "WAX",
+        "items": [
+          "A hive is a city that still fits in a hand.",
+          "— Ops notebook"
+        ]
+      },
+      {
+        "role": "closing",
+        "title": "Pack tight. Leave room to breathe.",
+        "items": [
+          "Hive Circuit · ops brief"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "hive-cover"
+    },
+    {
+      "role": "feature",
+      "variant": "hive-move"
+    },
+    {
+      "role": "feature",
+      "variant": "hive-cells"
+    },
+    {
+      "role": "feature",
+      "variant": "hive-colony"
+    },
+    {
+      "role": "feature",
+      "variant": "hive-dome"
+    },
+    {
+      "role": "feature",
+      "variant": "hive-field"
+    },
+    {
+      "role": "quote",
+      "variant": "hive-quote"
+    },
+    {
+      "role": "closing",
+      "variant": "hive-close"
+    }
+  ]
+}

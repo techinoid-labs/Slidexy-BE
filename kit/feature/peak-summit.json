@@ -1,0 +1,216 @@
+{
+  "id": "feature/peak-summit",
+  "role": "feature",
+  "variant": "peak-summit",
+  "family": "peak-chain",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 48,
+      "maxFont": 48,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 24,
+      "maxFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 26,
+      "maxFont": 26,
+      "lineClamp": 4,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "photo",
+        "type": "image",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "z": 1,
+        "slot": "photo",
+        "morphId": "hero"
+      },
+      {
+        "id": "veil",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "ink",
+        "z": 2,
+        "opacity": 0.45,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-veil"
+      },
+      {
+        "id": "su_0",
+        "type": "shape",
+        "shape": "triangle",
+        "x": 60,
+        "y": 80,
+        "width": 700,
+        "height": 820,
+        "tokenFill": "ink",
+        "z": 3,
+        "opacity": 1,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-su-0"
+      },
+      {
+        "id": "su_1",
+        "type": "shape",
+        "shape": "triangle",
+        "x": 102,
+        "y": 178.39999999999998,
+        "width": 616,
+        "height": 721.6,
+        "tokenFill": "muted",
+        "z": 4,
+        "opacity": 0.92,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-su-1"
+      },
+      {
+        "id": "su_2",
+        "type": "shape",
+        "shape": "triangle",
+        "x": 144,
+        "y": 276.79999999999995,
+        "width": 532,
+        "height": 623.2,
+        "tokenFill": "accent",
+        "z": 5,
+        "opacity": 0.92,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-su-2"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 820,
+        "y": 80,
+        "width": 700,
+        "height": 70,
+        "fontSize": 48,
+        "slot": "title",
+        "tokenColor": "surface",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "motionKind": "title",
+        "motion": "enter",
+        "motionPreset": "fadeUp",
+        "morphId": "title"
+      },
+      {
+        "id": "note",
+        "type": "shape",
+        "shape": "triangle",
+        "x": 900,
+        "y": 280,
+        "width": 520,
+        "height": 400,
+        "tokenFill": "surface",
+        "z": 4,
+        "motionKind": "beat",
+        "motion": "enter",
+        "motionPreset": "slam",
+        "morphId": "note-0"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 980,
+        "y": 400,
+        "width": 360,
+        "height": 40,
+        "fontSize": 20,
+        "slot": "copy0",
+        "tokenColor": "accent",
+        "fontRole": "label",
+        "fontWeight": 600,
+        "lineHeight": 1.12,
+        "letterSpacing": 2.2,
+        "z": 5,
+        "align": "center",
+        "motionKind": "label",
+        "motion": "enter",
+        "motionHost": "note",
+        "morphId": "label-0"
+      },
+      {
+        "id": "copy1",
+        "type": "text",
+        "x": 960,
+        "y": 460,
+        "width": 400,
+        "height": 140,
+        "fontSize": 26,
+        "slot": "copy1",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 700,
+        "lineHeight": 1.25,
+        "letterSpacing": 0,
+        "z": 5,
+        "align": "center",
+        "motionKind": "label",
+        "motion": "enter",
+        "motionHost": "note",
+        "morphId": "label-1"
+      }
+    ]
+  }
+}

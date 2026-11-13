@@ -1,0 +1,147 @@
+{
+  "name": "Peak Chain • Alpine kit",
+  "description": "Mountain glyph deck — triangle peaks, arch sightings, summit marks. Not orbs, belts, or tiles.",
+  "brand": {
+    "colors": {
+      "bg": "#E8EEF2",
+      "surface": "#F7FAFC",
+      "surface_color": "#A8B8C4",
+      "ink": "#0E1A24",
+      "muted": "#5A6F7D",
+      "accent": "#2EC4B6",
+      "line": "#7A909E"
+    },
+    "fonts": {
+      "display": "Georgia",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "peak-chain"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "PEAKS",
+        "items": [
+          "ALPINE KIT · CHAIN 03",
+          "Rise · sight · summit"
+        ],
+        "photoQuery": "geo-peak-cover"
+      },
+      {
+        "role": "feature",
+        "title": "Skyline",
+        "items": [
+          "Aiguille",
+          "3120m",
+          "Col",
+          "2480m",
+          "Dome",
+          "4010m"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Approaches",
+        "items": [
+          "North face",
+          "Ice",
+          "West ridge",
+          "Rock",
+          "South couloir",
+          "Snow"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Camps",
+        "items": [
+          "C1",
+          "2100m",
+          "C2",
+          "2800m",
+          "C3",
+          "3400m",
+          "C4",
+          "3800m"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Sightings",
+        "items": [
+          "Dawn",
+          "Alpenglow",
+          "Noon",
+          "Hard light",
+          "Dusk",
+          "Blue hour"
+        ],
+        "photoQuery": "geo-peak-sight"
+      },
+      {
+        "role": "feature",
+        "title": "Summit",
+        "items": [
+          "TOP",
+          "Stand only as long as the wind allows."
+        ],
+        "photoQuery": "geo-peak-summit"
+      },
+      {
+        "role": "quote",
+        "title": "NOTE",
+        "items": [
+          "A peak is a sentence the land finishes.",
+          "— Alpine log"
+        ]
+      },
+      {
+        "role": "closing",
+        "title": "Summit.",
+        "items": [
+          "Peak Chain · alpine kit"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "peak-cover"
+    },
+    {
+      "role": "feature",
+      "variant": "peak-skyline"
+    },
+    {
+      "role": "feature",
+      "variant": "peak-approaches"
+    },
+    {
+      "role": "feature",
+      "variant": "peak-camps"
+    },
+    {
+      "role": "feature",
+      "variant": "peak-sightings"
+    },
+    {
+      "role": "feature",
+      "variant": "peak-summit"
+    },
+    {
+      "role": "quote",
+      "variant": "peak-quote"
+    },
+    {
+      "role": "closing",
+      "variant": "peak-close"
+    }
+  ]
+}

@@ -4,6 +4,7 @@ Living north star for Slidexy creative template systems. **Update this file when
 hard lessons change.** New agents should read this before inventing families.
 
 Companion docs:
+- **Agent progress handoff** → [`AGENT-HANDOFF.md`](./AGENT-HANDOFF.md) (read first when resuming work)
 - Gallery inventory → [`DESIGN-SYSTEMS-GALLERY.md`](./DESIGN-SYSTEMS-GALLERY.md)
 - AI routing → [`AI-FAMILY-ROUTING.md`](./AI-FAMILY-ROUTING.md)
 - Fidelity tiers → [`FIDELITY-TIERS.md`](./FIDELITY-TIERS.md)
@@ -50,7 +51,8 @@ Rough split for creative decks: **~85% author design decisions, ~15% engine exec
 
 Use this spine; vary the clothes:
 
-1. **Cover** — full-bleed (or framed) photo + scrim + big title + one family motif accent  
+1. **Cover** — full-bleed photo + one clear object (plate / motif lockup) with high-contrast type; brand readable at a glance; family motif as accent. Avoid dark-on-dark body copy.  
+
 2. **Feature list / cards** — content-forward, motif secondary  
 3. **Photo + copy split** — real image, short blocks  
 4. **Process / materials / set** — numbered or swatches  
@@ -164,15 +166,18 @@ Previews and decks: `out/<id>/preview.png`, `slide-*.png`, `deck.json`.
 | Four wild closes identical (accent + circle) | Unique close per family (rings / crescent / pour / rose) |
 | Carnival cab labels on fixed Y over arced circles | Flat label row under lowest cab |
 | Stale gallery still advertised Morph camera-pan | Gallery + this doc must match `FLAGSHIP_MOTION` |
+| “Geography” as cards/orbs/grids/belts/tiles | Rejected — use new glyphs (triangles Peak Chain, chevrons Delta Flow) |
+| Same Pexels images across decks; Orbit not space | Distinct cache keys; Orbit uses `orbit-space-*` |
 
 ---
 
 ## Evolution priorities (next)
 
-1. Stronger **native motion** to replace Morph (professional, intentional — not random ambient).
-2. Wire `routeFamily` into live compose with these kits.
-3. Keep expanding **funky** and **soft** lanes without converging silhouettes.
-4. Optional: Tier B Flutter bake for a subset of SEL units.
+1. Commit remaining BE geography + triangle/chevron + orbit photo work (`AGENT-HANDOFF.md`).
+2. Stronger **native motion** to replace Morph (professional, intentional — not random ambient).
+3. Wire `routeFamily` into live compose with these kits.
+4. Keep expanding **funky** / **soft** / **glyph** lanes without converging silhouettes.
+5. Tier B Flutter bake already used for flagships — keep sync after publish.
 
 ---
 
