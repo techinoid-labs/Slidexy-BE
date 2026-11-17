@@ -1,0 +1,164 @@
+{
+  "id": "cover/chorus-ledger-1",
+  "role": "cover",
+  "variant": "chorus-ledger-1",
+  "family": "chorus-ledger",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 96,
+      "maxFont": 96,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 42,
+      "maxFont": 42,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 25,
+      "maxFont": 25,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "stock",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "paper",
+        "z": 0,
+        "keepFill": true
+      },
+      {
+        "id": "plate",
+        "type": "image",
+        "x": 335,
+        "y": 174,
+        "width": 930,
+        "height": 523,
+        "z": 2,
+        "slot": "photo"
+      },
+      {
+        "id": "top-rule",
+        "type": "shape",
+        "shape": "rect",
+        "x": 77,
+        "y": 160,
+        "width": 1446,
+        "height": 3,
+        "tokenFill": "green",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "bottom-rule",
+        "type": "shape",
+        "shape": "rect",
+        "x": 77,
+        "y": 735,
+        "width": 1446,
+        "height": 2,
+        "tokenFill": "green",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 78,
+        "y": 16,
+        "width": 1450,
+        "height": 141,
+        "fontSize": 96,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 2,
+        "z": 5,
+        "textStyleRole": "display",
+        "morphId": "title"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 82,
+        "y": 761,
+        "width": 1060,
+        "height": 88,
+        "fontSize": 42,
+        "slot": "copy0",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5
+      },
+      {
+        "id": "copy1",
+        "type": "text",
+        "x": 1140,
+        "y": 786,
+        "width": 391,
+        "height": 58,
+        "fontSize": 25,
+        "slot": "copy1",
+        "tokenColor": "accent",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5
+      }
+    ]
+  }
+}

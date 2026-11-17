@@ -22,6 +22,29 @@ Slidexy does **not** win on template volume. Each family is a **design system**:
 metaphor + exclusive SEL anatomy + presentation talk-track. Different silhouette,
 not a recolor of the same grid.
 
+---
+
+## Free vs Premium (Atelier)
+
+Premium is a **different product**, not a nicer recolor of free. Full pack brief:
+[`ATELIER-PACK.md`](./ATELIER-PACK.md). Registry: `scripts/lib/atelierPack.ts`.
+
+| | Free | Premium (Atelier) |
+|--|------|-------------------|
+| Silhouette | Shared recipes OK | Exclusive metaphor — readable without color |
+| Depth craft | Flat panels / light shadows | Materials free never uses (glass, vellum, softEdge, grain, lamp, tear) |
+| Cover | Solid | Brand-first magazine/keynote quality |
+| Type | Safe hierarchy | Extreme locked editorial scale |
+| Photos | Shared OK | Unique keys per deck |
+| Close | Similar CTA plates OK | Unique silhouette per family |
+| Count | Many | Few — scarcity; only decks that clear the ship bar |
+
+**One-line test:** stranger viewing free vs paid previews says *different product*, not *same thing prettier*.
+
+**Do not** promote lookbook / vibe / dense commercial decks into paid. Free keeps utility + 1–2 creative teasers. Paid = Atelier flagships only (`premium: true` on the Template).
+
+**Do not** ship two premium decks that share the same plate/card silhouette. Unique metaphor required — drafts that still look like cousins stay in `ATELIER_DRAFT_IDS`, not the paid pack.
+
 ## Agent vs engine
 
 | Who | Owns |
@@ -35,6 +58,38 @@ Rough split for creative decks: **~85% author design decisions, ~15% engine exec
 
 ---
 
+## Engine proof: Cosmic Depth
+
+`cosmic-depth` proves **foregroundLayer**, **`blur` → OOXML `a:softEdge`**, **floatingElement** shadows, and **depthBackground** glow. Glass kits use translucent fill + softEdge only — **not** CSS backdrop-filter (unsupported in native PPTX). Keep this as an engine demo; creative flagships still avoid glow/HUD spam unless intentionally depth-led.
+
+### Faux-3D depth plates
+
+Shared helper: `depthPlate` / `contactShadow` / `DEPTH_SHADOWS` in `scripts/lib/designKit.ts`.
+Recipe: under-stack (offset + blur) → contact ellipse → front face with `outerShdw` → optional sheen.
+Use **per-family** fills/radii so Cosmic glass ≠ Vellum leaf ≠ Lumen cast stage. Never clone the same stack across paid decks.
+
+**Atelier pack (active):** `lumen-stage` only. Wave 2 drafts (`ferrotype`, `sumi-field`, `kiln-slab`) stay out until they clear the ship bar below.
+
+Fade-led only.
+
+```powershell
+node -r ts-node/register/transpile-only scripts/generate-atelier-pack.ts --only=lumen-stage --publish-local
+```
+
+## Ship recipe (communication first)
+
+Learned from strong ref decks (e.g. modern pitch systems) and from wave-2 failures:
+
+1. **Decide what the slide must say** — talk-track first, not metaphor theater.
+2. **Type carries the room** — extreme locked weight; period / hierarchy as design.
+3. **Atmosphere is real media** — photo or raster field, not empty blurred ellipses.
+4. **Brand chrome every slide** — wordmark / mark repeats; presence without a “theme object.”
+5. **Boxes only to group content** — stroked/filled containers with icon + title + copy. Never hollow ovals labeled with a word.
+6. **One motif accents** — never becomes the layout.
+7. **Tiny palette, high craft** — tonal layering over random accent spam.
+
+**Wave-2 failure mode (do not repeat):** unique silhouette optimized first → empty geometry decks that look “different from Lumen” but unshippable.
+
 ## Hard rules (do not regress)
 
 1. **Presentation-first.** Every deck must be presentable: photo-led cover, readable talk track, quote, close. Motifs accent — they do not become the slide.
@@ -44,6 +99,7 @@ Rough split for creative decks: **~85% author design decisions, ~15% engine exec
 5. **Morph is retired** for creative flagships. `FLAGSHIP_MOTION` = `morph: false`, `cameraPan: false`, fade + optional ambient only. Do not re-enable Morph until a stronger motion system is designed.
 6. **Label geometry must track layout.** If shapes arc/lift, labels either follow with the same formula or sit on a **flat baseline** under the cluster — never a single fixed Y over moving shapes (see carnival wheel fix).
 7. **Avoid AI-default looks** on branded pages: purple-on-white, cream+terracotta cluster, broadsheet hairline newspaper, generic Inter/Roboto stacks when a face is chosen.
+8. **Different ≠ good.** Do not ship motif sketches. Pass the preview test: looks like a deck someone can present.
 
 ---
 
@@ -65,32 +121,42 @@ Use this spine; vary the clothes:
 const FLAGSHIP_MOTION = {
   morph: false,
   ambient: true,
-  continuityFade: true, // Landscapes recipe
-  cameraPan: false,
-  scatter: false,
+  continuityFade: true,
+  entrancesMode: "none", // fade-led
+  blendEntrances: true,
   defaultTransition: "fade",
-  durationMs: 1600,
+  durationMs: 600,
+};
+
+const PREMIUM_MOTION = {
+  ...FLAGSHIP_MOTION,
+  entrancesMode: "newOnly", // role-aware entrances on new beats
+  durationMs: 750,
 };
 ```
 
-### Continuity fade (why Landscapes feels perfect)
+`designKit` applies **PREMIUM_MOTION** when `template.premium === true` (Atelier pack), otherwise FLAGSHIP_MOTION.
 
-That deck is **not Morph**. It is a **slow crossfade** (`spd="slow"`) between slides that keep most shapes at the **same x/y/size**. Only the beat changes (title word, one freeform cluster). Shared chrome dissolves in place — so it *looks* like elements settle into place.
+### Fade-led vs premium
 
-**Design rules to match that feel:**
-1. Keep persistent chrome (wall, plate, brand lockup) on a **stable morphId + identical box** across consecutive slides.
-2. Change only 1–3 beat elements per advance (new sticky, new title, new photo crop).
-3. Prefer **slow fade (~1600–1800ms)** over wipe/push for feature sequences.
-4. Entrance-animate **new morphIds only** — never re-animate shared chrome.
+| | Flagship (`none`) | Premium (`newOnly`) |
+|--|-------------------|---------------------|
+| Cover | no transition, no entrances | same |
+| Advance | fast fade only | fade + soft role entrances on **new** morphIds |
+| Chrome / stage | persist under fade | persist under fade |
+| Title / beat / label / dot | arrive inside dissolve | `fadeUp` / settle / `pop` after fade (blended) |
 
-**Role transitions** (with `continuityFade`):
+1. Tag elements with `asStage` / `asChrome` / `asTitle` / `asBeat` / `asLabel` / `asDot`.
+2. Keep shared chrome on stable morphId + box across slides.
+3. Premium blend softens slam→fadeUp and trims the dissolve so entrances don’t feel like a second act.
+
+**Role transitions:**
 
 | Role | Transition | Feel |
 |------|------------|------|
-| cover / feature / process / stats / close | fade (~1600–1800ms) | settle / dissolve |
-| problem / solution / comparison | push (~900ms) | argument beat |
-
-**Entrances:** soft `fadeIn` stagger on **new** targets only (`entrancesMode: "newOnly"`).
+| cover (slide 1) | none | land already there |
+| feature / process / stats / close | fade (~750–900ms) | dissolve (+ premium entrances) |
+| problem / solution / comparison | push (~750ms) | argument beat |
 
 **Target awareness** (`engine/motionTargets.js` + `engine/motionGrammar.js`):
 
@@ -168,6 +234,8 @@ Previews and decks: `out/<id>/preview.png`, `slide-*.png`, `deck.json`.
 | Stale gallery still advertised Morph camera-pan | Gallery + this doc must match `FLAGSHIP_MOTION` |
 | “Geography” as cards/orbs/grids/belts/tiles | Rejected — use new glyphs (triangles Peak Chain, chevrons Delta Flow) |
 | Same Pexels images across decks; Orbit not space | Distinct cache keys; Orbit uses `orbit-space-*` |
+| Wave 2 = empty ovals / blots / circles as “unique silhouette” | Demote; rebuild communication-first (photo + type + content boxes) |
+| Optimized “not Lumen” instead of “shippable” | Ship bar; different ≠ good |
 
 ---
 
@@ -183,8 +251,11 @@ Previews and decks: `out/<id>/preview.png`, `slide-*.png`, `deck.json`.
 
 ## Review gate before merge
 
-- [ ] Preview looks like a deck someone can present, not a UI kit  
+- [ ] Preview looks like a deck someone can present, not a UI kit / motif board  
+- [ ] Cover is photo-led (or equivalent real media atmosphere) + type that holds  
+- [ ] Motif can be removed and the slide still communicates  
 - [ ] Close slide is unique vs other families in the same batch  
 - [ ] Photo present on cover + at least one interior  
 - [ ] No Morph scenes (`layoutSequence` has no `-pan-` / `-scatter-`)  
 - [ ] Gallery + this direction doc updated if a new family shipped  
+- [ ] Premium pack membership matches `ATELIER_PACK_IDS` only  

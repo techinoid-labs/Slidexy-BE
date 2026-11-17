@@ -1,0 +1,203 @@
+{
+  "id": "feature/chorus-ledger-6",
+  "role": "feature",
+  "variant": "chorus-ledger-6",
+  "family": "chorus-ledger",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "copy2": {
+      "kind": "text",
+      "from": "items2"
+    },
+    "copy3": {
+      "kind": "text",
+      "from": "items3"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 77,
+      "maxFont": 77,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 143,
+      "maxFont": 143,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 33,
+      "maxFont": 33,
+      "lineClamp": 6,
+      "shrinkMin": 1
+    },
+    "copy2": {
+      "minFont": 48,
+      "maxFont": 48,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy3": {
+      "minFont": 29,
+      "maxFont": 29,
+      "lineClamp": 5,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    },
+    "copy3": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "stock",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "paper",
+        "z": 0,
+        "keepFill": true
+      },
+      {
+        "id": "ink-rule",
+        "type": "shape",
+        "shape": "rect",
+        "x": 78,
+        "y": 442,
+        "width": 1438,
+        "height": 3,
+        "tokenFill": "ink",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "ledger-foot",
+        "type": "shape",
+        "shape": "rect",
+        "x": 78,
+        "y": 818,
+        "width": 1438,
+        "height": 3,
+        "tokenFill": "ink",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 83,
+        "y": 55,
+        "width": 1430,
+        "height": 149,
+        "fontSize": 77,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 2,
+        "z": 5,
+        "textStyleRole": "display",
+        "morphId": "title"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 87,
+        "y": 208,
+        "width": 1380,
+        "height": 204,
+        "fontSize": 143,
+        "slot": "copy0",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5
+      },
+      {
+        "id": "copy1",
+        "type": "text",
+        "x": 80,
+        "y": 467,
+        "width": 684,
+        "height": 231,
+        "fontSize": 33,
+        "slot": "copy1",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5
+      },
+      {
+        "id": "copy2",
+        "type": "text",
+        "x": 842,
+        "y": 483,
+        "width": 660,
+        "height": 100,
+        "fontSize": 48,
+        "slot": "copy2",
+        "tokenColor": "accent",
+        "fontRole": "body",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5
+      },
+      {
+        "id": "copy3",
+        "type": "text",
+        "x": 846,
+        "y": 602,
+        "width": 649,
+        "height": 179,
+        "fontSize": 29,
+        "slot": "copy3",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5
+      }
+    ]
+  }
+}

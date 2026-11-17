@@ -1,0 +1,242 @@
+{
+  "name": "Bellwether",
+  "description": "Historic-tower monitoring pitch with suspended bronze and archival signal records.",
+  "brand": {
+    "fonts": {
+      "display": "Garamond",
+      "body": "Calibri"
+    },
+    "colors": {
+      "bg": "#F1E8D9",
+      "ink": "#342431",
+      "plum": "#342431",
+      "dark": "#211720",
+      "copper": "#DAAC7D",
+      "paper": "#F1E8D9",
+      "muted": "#76594B",
+      "accent": "#7F4935"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "bellwether"
+    },
+    "slides": [
+      {
+        "title": "BELL",
+        "items": [
+          "WETHER",
+          "A listening record for historic towers",
+          "HERITAGE MONITORING / SEED PITCH"
+        ],
+        "photoQuery": "bell-cover",
+        "role": "cover"
+      },
+      {
+        "title": "A familiar sound.\nAn unfamiliar change.",
+        "items": [
+          "A keeper hears the bell every week. A subtle change in vibration can disappear into memory between inspections.",
+          "Bellwether keeps comparable recordings from the same installation, so a conservator can review a change with the original conditions attached.",
+          "The record supports an inspection decision. A specialist remains responsible for the condition assessment."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "The tower is the context",
+        "items": [
+          "Every recording belongs to a bell, a mounting position and a ringing session.",
+          "The first visit records the installation, agrees access with the keeper and establishes a repeatable listening position."
+        ],
+        "photoQuery": "bell-tower",
+        "role": "feature"
+      },
+      {
+        "title": "Install once.\nCompare over time.",
+        "items": [
+          "A removable sensor records vibration at an agreed mounting point. Each session carries its date, ringing pattern and installation notes.",
+          "If a trace changes, the reviewer checks the recording conditions before requesting an on-site inspection."
+        ],
+        "photoQuery": "bell-sensor",
+        "role": "feature"
+      },
+      {
+        "title": "From strike to review",
+        "items": [
+          "Listen",
+          "Capture a scheduled ringing session. Log sensor position and any maintenance since the last record.",
+          "Compare",
+          "Match like-for-like sessions. Flag a repeatable shift and retain the original trace for review.",
+          "Decide",
+          "A specialist reviews the evidence, speaks to the keeper and records the next action."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Read the decay",
+        "items": [
+          "Illustrative normalized vibration after a strike",
+          "Two comparable sessions",
+          "The faster decay is a review prompt. Mounting, temperature and ringing conditions must be checked before attributing it to the bell."
+        ],
+        "chart": {
+          "type": "line",
+          "labels": [
+            "0.0 s",
+            "0.4 s",
+            "0.8 s",
+            "1.2 s",
+            "1.6 s"
+          ],
+          "series": [
+            {
+              "name": "Baseline",
+              "values": [
+                100,
+                74,
+                52,
+                36,
+                25
+              ]
+            },
+            {
+              "name": "Review session",
+              "values": [
+                100,
+                61,
+                33,
+                18,
+                9
+              ]
+            }
+          ],
+          "colors": [
+            "#342431",
+            "#AC6543"
+          ],
+          "showLegend": true
+        },
+        "role": "feature"
+      },
+      {
+        "title": "A tower subscription",
+        "items": [
+          "£240",
+          "per tower / month",
+          "Includes scheduled recording, a retained session archive and one monthly specialist review. Installation is quoted after the access survey.",
+          "£144 direct cost",
+          "£75 review time\n£39 equipment and support\n£30 storage and site liaison",
+          "£96 contribution per tower-month before central overhead."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Begin with the keeper",
+        "items": [
+          "A regional cluster",
+          "Recruit through conservation practices already serving several nearby towers. Each practice nominates a reviewer and an access contact.",
+          "40 towers",
+          "At the proposed subscription, forty installations would generate £115,200 in annual recurring revenue."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "A record that survives a handover",
+        "items": [
+          "Keeper changes",
+          "The next volunteer inherits recordings, installation photographs and an open-actions list.",
+          "Contractor changes",
+          "A new specialist can compare the original sessions and see why a previous decision was made.",
+          "Equipment moves",
+          "The installation gets a new baseline. The old series stays available with its position history."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "People who can interpret the signal",
+        "items": [
+          "Mira Hale",
+          "Conservation lead",
+          "Owns reviewer training, access protocols and the decision record. Each escalation has a named specialist.",
+          "Owen Reed",
+          "Instrumentation lead",
+          "Owns mounting repeatability, trace quality and the equipment log. The pilot measures how often a session must be repeated."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Three gates before expansion",
+        "items": [
+          "ACCESS",
+          "Six towers complete agreed installations with a keeper and specialist present.",
+          "REPEATABILITY",
+          "At least 95% of scheduled sessions meet the recording-quality checklist.",
+          "RENEWAL",
+          "Four pilot towers renew at full price after six months of documented review."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Keep the next century audible.",
+        "items": [
+          "£480k seed",
+          "£190k instrumentation · £170k reviewer capacity · £120k installations and access. An 18-month pilot targets forty subscribed towers.",
+          "Fictional venture and illustrative figures. Artwork generated for this template."
+        ],
+        "role": "closing"
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "bellwether-1"
+    },
+    {
+      "role": "feature",
+      "variant": "bellwether-2"
+    },
+    {
+      "role": "feature",
+      "variant": "bellwether-3"
+    },
+    {
+      "role": "feature",
+      "variant": "bellwether-4"
+    },
+    {
+      "role": "feature",
+      "variant": "bellwether-5"
+    },
+    {
+      "role": "feature",
+      "variant": "bellwether-6"
+    },
+    {
+      "role": "feature",
+      "variant": "bellwether-7"
+    },
+    {
+      "role": "feature",
+      "variant": "bellwether-8"
+    },
+    {
+      "role": "feature",
+      "variant": "bellwether-9"
+    },
+    {
+      "role": "feature",
+      "variant": "bellwether-10"
+    },
+    {
+      "role": "feature",
+      "variant": "bellwether-11"
+    },
+    {
+      "role": "closing",
+      "variant": "bellwether-12"
+    }
+  ]
+}

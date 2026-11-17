@@ -1,0 +1,315 @@
+{
+  "id": "feature/ferro-agenda",
+  "role": "feature",
+  "variant": "ferro-agenda",
+  "family": "ferrotype",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "copy5": {
+      "kind": "text",
+      "from": "items5"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "copy2": {
+      "kind": "text",
+      "from": "items2"
+    },
+    "copy3": {
+      "kind": "text",
+      "from": "items3"
+    },
+    "copy4": {
+      "kind": "text",
+      "from": "items4"
+    }
+  },
+  "fit": {
+    "copy5": {
+      "minFont": 24,
+      "maxFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "title": {
+      "minFont": 64,
+      "maxFont": 64,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 28,
+      "maxFont": 28,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 28,
+      "maxFont": 28,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy2": {
+      "minFont": 28,
+      "maxFont": 28,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy3": {
+      "minFont": 28,
+      "maxFont": 28,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy4": {
+      "minFont": 28,
+      "maxFont": 28,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "copy5": {
+      "kind": "text"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    },
+    "copy3": {
+      "kind": "text"
+    },
+    "copy4": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "bg",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "bg",
+        "z": 0,
+        "motionKind": "stage",
+        "motion": "persist",
+        "morphId": "stage"
+      },
+      {
+        "id": "brand",
+        "type": "text",
+        "x": 80,
+        "y": 36,
+        "width": 520,
+        "height": 32,
+        "fontSize": 20,
+        "slot": "",
+        "tokenColor": "ink",
+        "fontRole": "label",
+        "fontWeight": 600,
+        "lineHeight": 1.12,
+        "letterSpacing": 1.6,
+        "z": 8,
+        "lockFont": true,
+        "literal": "FERROTYPE",
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-brand"
+      },
+      {
+        "id": "top",
+        "type": "shape",
+        "shape": "rect",
+        "x": 80,
+        "y": 88,
+        "width": 680,
+        "height": 1,
+        "tokenFill": "line",
+        "z": 4,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-top"
+      },
+      {
+        "id": "copy5",
+        "type": "text",
+        "x": 80,
+        "y": 140,
+        "width": 400,
+        "height": 32,
+        "fontSize": 20,
+        "slot": "copy5",
+        "tokenColor": "accent",
+        "fontRole": "label",
+        "fontWeight": 600,
+        "lineHeight": 1.12,
+        "letterSpacing": 1.6,
+        "z": 6,
+        "lockFont": true,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-copy5"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 80,
+        "y": 520,
+        "width": 640,
+        "height": 160,
+        "fontSize": 64,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 6,
+        "lockFont": true,
+        "motionKind": "title",
+        "motion": "enter",
+        "motionPreset": "fadeUp",
+        "morphId": "title"
+      },
+      {
+        "id": "panel",
+        "type": "shape",
+        "shape": "rect",
+        "x": 820,
+        "y": 0,
+        "width": 780,
+        "height": 900,
+        "tokenFill": "surface_color",
+        "z": 2,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-panel"
+      },
+      {
+        "id": "a0",
+        "type": "text",
+        "x": 900,
+        "y": 160,
+        "width": 600,
+        "height": 48,
+        "fontSize": 28,
+        "slot": "copy0",
+        "tokenColor": "surface",
+        "fontRole": "body",
+        "fontWeight": 600,
+        "lineHeight": 1.4,
+        "letterSpacing": 0,
+        "z": 6,
+        "lockFont": true,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-a0"
+      },
+      {
+        "id": "a1",
+        "type": "text",
+        "x": 900,
+        "y": 260,
+        "width": 600,
+        "height": 48,
+        "fontSize": 28,
+        "slot": "copy1",
+        "tokenColor": "surface",
+        "fontRole": "body",
+        "fontWeight": 600,
+        "lineHeight": 1.4,
+        "letterSpacing": 0,
+        "z": 6,
+        "lockFont": true,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-a1"
+      },
+      {
+        "id": "a2",
+        "type": "text",
+        "x": 900,
+        "y": 360,
+        "width": 600,
+        "height": 48,
+        "fontSize": 28,
+        "slot": "copy2",
+        "tokenColor": "surface",
+        "fontRole": "body",
+        "fontWeight": 600,
+        "lineHeight": 1.4,
+        "letterSpacing": 0,
+        "z": 6,
+        "lockFont": true,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-a2"
+      },
+      {
+        "id": "a3",
+        "type": "text",
+        "x": 900,
+        "y": 460,
+        "width": 600,
+        "height": 48,
+        "fontSize": 28,
+        "slot": "copy3",
+        "tokenColor": "surface",
+        "fontRole": "body",
+        "fontWeight": 600,
+        "lineHeight": 1.4,
+        "letterSpacing": 0,
+        "z": 6,
+        "lockFont": true,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-a3"
+      },
+      {
+        "id": "a4",
+        "type": "text",
+        "x": 900,
+        "y": 560,
+        "width": 600,
+        "height": 48,
+        "fontSize": 28,
+        "slot": "copy4",
+        "tokenColor": "surface",
+        "fontRole": "body",
+        "fontWeight": 600,
+        "lineHeight": 1.4,
+        "letterSpacing": 0,
+        "z": 6,
+        "lockFont": true,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-a4"
+      }
+    ]
+  }
+}

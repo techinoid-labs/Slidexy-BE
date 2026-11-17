@@ -1,0 +1,128 @@
+{
+  "id": "feature/cacao-type-3",
+  "role": "feature",
+  "variant": "cacao-type-3",
+  "family": "cacao-type",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 78,
+      "maxFont": 78,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 32,
+      "maxFont": 32,
+      "lineClamp": 3,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 28,
+      "maxFont": 28,
+      "lineClamp": 3,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "object",
+        "type": "image",
+        "x": 80,
+        "y": 217,
+        "width": 1440,
+        "height": 473,
+        "z": 2,
+        "slot": "photo"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 80,
+        "y": 55,
+        "width": 1440,
+        "height": 136,
+        "fontSize": 78,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8,
+        "textStyleRole": "display",
+        "morphId": "title"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 84,
+        "y": 734,
+        "width": 873,
+        "height": 128,
+        "fontSize": 32,
+        "slot": "copy0",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8
+      },
+      {
+        "id": "copy1",
+        "type": "text",
+        "x": 1095,
+        "y": 738,
+        "width": 420,
+        "height": 121,
+        "fontSize": 28,
+        "slot": "copy1",
+        "tokenColor": "red",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8
+      }
+    ]
+  }
+}

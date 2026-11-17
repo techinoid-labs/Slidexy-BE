@@ -1,0 +1,287 @@
+{
+  "name": "Motion Garden",
+  "description": "Illustrated rehabilitation service deck with goal maps, patient support diagrams and editable process graphics.",
+  "brand": {
+    "fonts": {
+      "display": "Trebuchet MS",
+      "body": "Calibri"
+    },
+    "colors": {
+      "bg": "#F5F3E8",
+      "ink": "#203E34",
+      "green": "#203E34",
+      "lime": "#DDEB94",
+      "lilac": "#DCD2EC",
+      "paper": "#F5F3E8",
+      "accent": "#735E8D",
+      "line": "#9DAC91"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "motion-garden"
+    },
+    "slides": [
+      {
+        "title": "MOTION",
+        "items": [
+          "GARDEN",
+          "Rehabilitation built around\neveryday goals",
+          "Illustrative service presentation"
+        ],
+        "photoQuery": "motion-hero",
+        "role": "cover"
+      },
+      {
+        "title": "Everyday goals shape the conversation",
+        "items": [
+          "A person arrives with a life to return to. The service records what matters to them, then connects that goal to the plan agreed with their clinician.",
+          "The first conversation",
+          "What would you like to do more easily? What support do you already have? What would make appointments easier to attend?"
+        ],
+        "photoQuery": "motion-room",
+        "role": "feature"
+      },
+      {
+        "title": "A plan has four connected parts",
+        "items": [
+          "PERSONAL GOAL",
+          "Daily activity",
+          "Describe the task that matters to the person.",
+          "Clinical plan",
+          "Record the plan agreed with the treating professional.",
+          "Practical support",
+          "Agree access, appointment and communication needs.",
+          "Review point",
+          "Set a date to discuss progress and revise the plan."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "The first visit creates a shared record",
+        "items": [
+          "Listen",
+          "Capture the person’s priorities in their own words. Record any support needed for the appointment.",
+          "Agree",
+          "The clinician and patient agree the next step and how it will be reviewed.",
+          "The illustration shows a service conversation, with no exercise instructions."
+        ],
+        "photoQuery": "motion-hero",
+        "role": "feature"
+      },
+      {
+        "title": "The pathway has a place for review",
+        "items": [
+          "First contact",
+          "Understand the referral and arrange the first conversation.",
+          "Shared plan",
+          "Record the agreed goal, appointments and review point.",
+          "Review together",
+          "Discuss what has changed and record the next agreed action.",
+          "The timing and clinical content follow the local service pathway."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "One cohort, three appointment needs",
+        "items": [
+          "Synthetic snapshot of 60 people",
+          "36",
+          "In-person visits",
+          "Appointment at the clinic with access requirements recorded.",
+          "18",
+          "Remote reviews",
+          "Planned conversations using the service’s agreed remote channel.",
+          "6",
+          "Home visits",
+          "Locally agreed visits with travel time included in the schedule."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "The service plans around real journeys",
+        "items": [
+          "Before the visit",
+          "Agree the location, transport and communication needs.",
+          "During the visit",
+          "Make room for questions and check the shared record.",
+          "After the visit",
+          "Provide the agreed next step and a contact for queries."
+        ],
+        "photoQuery": "motion-walk",
+        "role": "feature"
+      },
+      {
+        "title": "Progress needs a consistent question",
+        "items": [
+          "Synthetic responses to “I understand my next step”",
+          "A communication measure",
+          "Each survey asks the same question after the review. Compare response counts as well as the share of positive answers.",
+          "40 responses per round. This example measures understanding of the plan."
+        ],
+        "chart": {
+          "type": "bar",
+          "labels": [
+            "Round 1",
+            "Round 2",
+            "Round 3"
+          ],
+          "series": [
+            {
+              "name": "Positive responses / 40",
+              "values": [
+                28,
+                32,
+                35
+              ]
+            }
+          ],
+          "colors": [
+            "#735E8D"
+          ],
+          "showLegend": false
+        },
+        "role": "feature"
+      },
+      {
+        "title": "The person stays at the centre",
+        "items": [
+          "PERSON",
+          "Treating clinician",
+          "Agrees and reviews the clinical plan.",
+          "Coordinator",
+          "Arranges appointments and tracks open queries.",
+          "Chosen supporter",
+          "Joins discussions when the person wishes.",
+          "Receiving team",
+          "Receives the agreed handover at transition."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "A complete handover answers four questions",
+        "items": [
+          "What matters?",
+          "The personal goal is clear enough for the next team to discuss.",
+          "What was agreed?",
+          "The current plan and its review date are recorded.",
+          "Who owns the next step?",
+          "A named service or professional accepts the handover.",
+          "How can the person ask?",
+          "The person has the contact details for queries about the plan."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "The pilot builds capacity in stages",
+        "items": [
+          "Month 1",
+          "Map the current service and rehearse the shared record with staff.",
+          "Month 2",
+          "Open a small cohort and review every unresolved handover.",
+          "Month 3",
+          "Review access, communication and workload before adding capacity."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "The weekly review keeps work visible",
+        "items": [
+          "Open referrals",
+          "24",
+          "People awaiting the first agreed appointment.",
+          "Active plans",
+          "60",
+          "People with a current plan and a scheduled review.",
+          "Handovers due",
+          "12",
+          "Transitions requiring confirmation from the receiving team.",
+          "Synthetic operational snapshot. These categories may overlap and should be reviewed separately."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "A pilot with a clear decision point",
+        "items": [
+          "£150k",
+          "Illustrative three-month budget",
+          "£75k staff capacity\n£45k access and coordination\n£30k evaluation and training",
+          "The decision",
+          "Expand only after the team reviews patient communication, completed handovers and the workload required to sustain the service."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Every plan belongs to a person",
+        "items": [
+          "A rehabilitation service proposal",
+          "The pilot connects everyday goals with a shared record, an agreed review point and an accountable handover.",
+          "Fictional service and synthetic data. Illustrations show service conversations. Clinical plans follow local practice."
+        ],
+        "photoQuery": "motion-room",
+        "role": "closing"
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "motion-garden-1"
+    },
+    {
+      "role": "feature",
+      "variant": "motion-garden-2"
+    },
+    {
+      "role": "feature",
+      "variant": "motion-garden-3"
+    },
+    {
+      "role": "feature",
+      "variant": "motion-garden-4"
+    },
+    {
+      "role": "feature",
+      "variant": "motion-garden-5"
+    },
+    {
+      "role": "feature",
+      "variant": "motion-garden-6"
+    },
+    {
+      "role": "feature",
+      "variant": "motion-garden-7"
+    },
+    {
+      "role": "feature",
+      "variant": "motion-garden-8"
+    },
+    {
+      "role": "feature",
+      "variant": "motion-garden-9"
+    },
+    {
+      "role": "feature",
+      "variant": "motion-garden-10"
+    },
+    {
+      "role": "feature",
+      "variant": "motion-garden-11"
+    },
+    {
+      "role": "feature",
+      "variant": "motion-garden-12"
+    },
+    {
+      "role": "feature",
+      "variant": "motion-garden-13"
+    },
+    {
+      "role": "closing",
+      "variant": "motion-garden-14"
+    }
+  ]
+}

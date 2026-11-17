@@ -305,12 +305,22 @@ function collectContrastRegions(layoutEls: any[], palette: any): ContrastRegion[
   for (const el of layoutEls || []) {
     if (!el || el.x == null || el.y == null || el.width == null || el.height == null) continue;
     if (el.type === "shape") {
+      // Skip sheens / near-invisible plates — they must not force black text on dark themes
+      if (el.ignoreContrast) continue;
+      const opacity = el.opacity != null ? Number(el.opacity) : 1;
+      if (Number.isFinite(opacity) && opacity < 0.2) continue;
+      if (el.gradient && Array.isArray(el.gradient.stops)) {
+        const maxA = Math.max(
+          0,
+          ...el.gradient.stops.map((s: any) => (s.alpha != null ? Number(s.alpha) : 1))
+        );
+        if (maxA < 0.25) continue;
+      }
       const fillKey = el.tokenFill || "surface";
       let color =
         fillKey === "card_bg"
           ? palette.card_bg || palette.surface || slideBg
           : palette[fillKey] || palette.surface || slideBg;
-      const opacity = el.opacity != null ? Number(el.opacity) : 1;
       if (opacity < 1 && opacity >= 0) {
         // Approximate translucent wash over slide bg
         const mix = (a: string, b: string, t: number) => {
@@ -680,18 +690,112 @@ export async function renderDeckFromSpec(
     if (ghost && !variant.preserveLayout) elements.push(ghost);
 
     // Global primitives: header / callout / list — strips thick bars & ellipse brushes
-    const layoutEls = variant.preserveLayout ? variant.layout.elements : applyGlobalPrimitives(
+    let layoutEls = variant.preserveLayout ? (variant.layout.elements || []).slice() : applyGlobalPrimitives(
       variant.layout.elements || [],
       slide,
       palette,
       typePair,
       { kitId: variant.id }
     );
+    // Depth canvas: massive soft ellipse behind content when brand.depthBackground is set
+    const brandFx = (options && options.brand) || branded.brand || {};
+    const wantDepth = !!(brandFx as any).depthBackground;
+    if (wantDepth && !layoutEls.some((el: any) => el && el.id === "depth-glow")) {
+      layoutEls = [
+        {
+          id: "depth-glow",
+          type: "shape",
+          shape: "ellipse",
+          x: -400,
+          y: -500,
+          width: 2400,
+          height: 2400,
+          tokenFill: "accent",
+          opacity: 0.1,
+          blur: 90,
+          z: 0.5,
+        },
+        ...layoutEls,
+      ];
+    }
+    // Cinematic top spotlight — radial white→transparent (no hard concentric rings)
+    const wantSpotlight = String((brandFx as any).lighting || "") === "spotlight";
+    if (wantSpotlight && !layoutEls.some((el: any) => el && el.id === "spotlight")) {
+      layoutEls = [
+        {
+          id: "spotlight",
+          type: "shape",
+          shape: "rect",
+          x: 0,
+          y: 0,
+          width: 1600,
+          height: 900,
+          // Transparent base — fill is the radial only (avoids cream/white wash if OOXML rewrite misses).
+          tokenFill: "bg",
+          opacity: 1,
+          ignoreContrast: true,
+          z: 0.55,
+          gradient: {
+            type: "radial",
+            cx: 0.5,
+            cy: 0.02,
+            r: 0.92,
+            stops: [
+              { hex: "#FFFFFF", pos: 0, alpha: 0.32 },
+              { hex: "#FFFFFF", pos: 0.28, alpha: 0.14 },
+              { hex: "#FFFFFF", pos: 0.55, alpha: 0.05 },
+              { hex: "#FFFFFF", pos: 1, alpha: 0 },
+            ],
+          },
+        },
+        {
+          id: "spotlight-bloom",
+          type: "shape",
+          shape: "ellipse",
+          x: 200,
+          y: -520,
+          width: 1200,
+          height: 900,
+          tokenFill: "bg",
+          opacity: 0.12,
+          blur: 80,
+          ignoreContrast: true,
+          z: 0.56,
+          gradient: {
+            type: "radial",
+            cx: 0.5,
+            cy: 0.45,
+            r: 0.7,
+            stops: [
+              { hex: "#FFFFFF", pos: 0, alpha: 0.22 },
+              { hex: "#FFFFFF", pos: 0.45, alpha: 0.08 },
+              { hex: "#FFFFFF", pos: 1, alpha: 0 },
+            ],
+          },
+        },
+        ...layoutEls,
+      ];
+    }
+    // Foreground layer always paints above body (absolute top z-band)
+    const foregroundLayer = (variant.layout && variant.layout.foregroundLayer) || [];
+    if (foregroundLayer.length) {
+      layoutEls = [
+        ...layoutEls,
+        ...foregroundLayer.map((el: any, fi: number) => ({
+          ...el,
+          foreground: true,
+          z: 1000 + fi + (Number(el.z) || 0) * 0.001,
+        })),
+      ];
+    }
     const contrastRegions = collectContrastRegions(layoutEls, palette);
 
     // Kit typography floor enforcement (schema-level hard limits)
     Object.keys(variant.fit || {}).forEach((slot) => {
       const rule = variant.fit[slot] || {};
+      const slotEl = (variant.layout.elements || []).find((e: any) => e && e.slot === slot);
+      // Editorial micro-type (lockFont / caption) is allowed below the readable floor
+      if (slotEl && (slotEl.lockFont || slotEl.fontRole === "caption")) return;
       const isTitleSlot = slot === "title" || slot === "takeaway" || /^h[A-Z]/.test(slot);
       const floorPt = isTitleSlot ? typoLimits.titleMinPt : typoLimits.bodyMinPt;
       if (rule.minFont != null && Number(rule.minFont) < ptToEngine(floorPt) * 0.55) {
@@ -844,6 +948,9 @@ export async function renderDeckFromSpec(
         zIndex: el.z != null ? el.z : 1,
       };
       if (el.opacity != null) next.opacity = el.opacity;
+      if (el.blur != null) next.blur = Number(el.blur);
+      if (el.shadow && typeof el.shadow === "object") next.shadow = el.shadow;
+      if (el.foreground) next.foreground = true;
       if (groupId) next.pptxGroup = groupId;
       if (el.morphId) next.morphId = el.morphId;
       if (el.motionKind) next.motionKind = el.motionKind;
@@ -902,12 +1009,42 @@ export async function renderDeckFromSpec(
           fill: fillResolved,
           cornerRadius: isCard ? cardRadius : el.radius || 0,
         };
+        if (el.blur != null) next.shapeContent.blur = Number(el.blur);
+        if (el.shadow && typeof el.shadow === "object") {
+          const sh = el.shadow;
+          next.shapeContent.shadow = {
+            color: sh.color || "#000000",
+            blur: Number(sh.blur) || 15,
+            offset: sh.offsetY != null ? Number(sh.offsetY) : Number(sh.offset) || 10,
+            opacity: sh.opacity != null ? Number(sh.opacity) : 0.3,
+          };
+        }
+        if (el.gradient && Array.isArray(el.gradient.stops)) {
+          next.shapeContent.gradient = {
+            type: el.gradient.type || "linear",
+            angle: Number(el.gradient.angle) || 0,
+            cx: el.gradient.cx != null ? Number(el.gradient.cx) : undefined,
+            cy: el.gradient.cy != null ? Number(el.gradient.cy) : undefined,
+            r: el.gradient.r != null ? Number(el.gradient.r) : undefined,
+            stops: el.gradient.stops.map((s: any) => ({
+              hex: String(s.hex || s.color || "#FFFFFF").replace(/^#/, "#").replace(/^##/, "#"),
+              pos: Number(s.pos) || 0,
+              alpha: s.alpha != null ? Number(s.alpha) : 1,
+            })),
+          };
+        }
+        if (el.stroke || el.tokenStroke || el.strokeColor) {
+          next.shapeContent.stroke =
+            el.strokeColor || palette[el.tokenStroke] || el.stroke || palette.line;
+          next.shapeContent.strokeWidth = Number(el.strokeWidth) || 1;
+          if (el.strokeOpacity != null) next.shapeContent.strokeOpacity = Number(el.strokeOpacity);
+        }
         if (isCard) {
           if (!keepAccentFill) {
             next.shapeContent.fill = palette.card_bg || fillResolved;
           }
           const shadow = palette.card_shadow || theme.card_shadow;
-          if (palette.useCards !== false && shadow && shadow.opacity !== 0) {
+          if (palette.useCards !== false && shadow && shadow.opacity !== 0 && !next.shapeContent.shadow) {
             next.shapeContent.shadow = shadow;
           }
           if (palette.card_border && palette.card_border.width && !keepAccentFill) {
@@ -1002,6 +1139,8 @@ export async function renderDeckFromSpec(
         const hardBody = ptToEngine(MIN_READABLE_PT);
         const hardTitle = ptToEngine(24);
         const plainForFit = stripHighlightMarkers(text);
+        // Editorial micro-type (captions / 12pt body) — author lock bypasses readable floor
+        const lockFont = !!(el.lockFont || el.fontRole === "caption");
         const rules: any = {
           minFont: density === "report" ? floors.bodyPref : hardBody,
           maxFont: el.fontSize || 32,
@@ -1026,12 +1165,19 @@ export async function renderDeckFromSpec(
           el.fontRole === "body";
         const isAxisLabel = el.fontRole === "label" && !isTitle;
         // Hard typographic scale — never below 14pt body / 24pt title (true PPT points → engine units)
-        const roleFloor = isTitle
-          ? Math.max(hardTitle, floors.titleMin)
-          : isAxisLabel
-            ? ptToEngine(AXIS_LABEL_MIN_PT)
-            : Math.max(hardBody, floors.bodyMin);
-        rules.minFont = Math.max(roleFloor, rules.minFont || roleFloor);
+        const roleFloor = lockFont
+          ? Math.max(8, Number(el.fontSize) || 12)
+          : isTitle
+            ? Math.max(hardTitle, floors.titleMin)
+            : isAxisLabel
+              ? ptToEngine(AXIS_LABEL_MIN_PT)
+              : Math.max(hardBody, floors.bodyMin);
+        rules.minFont = lockFont ? roleFloor : Math.max(roleFloor, rules.minFont || roleFloor);
+        if (lockFont) {
+          rules.maxFont = roleFloor;
+          rules.minFont = roleFloor;
+          rules.lineClamp = Math.max(rules.lineClamp || 2, 6);
+        }
         if (isTitle) {
           rules.lineClamp = Math.max(rules.lineClamp || 2, 2);
           rules.maxFont = Math.max(rules.maxFont || 40, rules.minFont);
@@ -1039,8 +1185,12 @@ export async function renderDeckFromSpec(
         if (isBody) {
           rules.lineClamp = Math.max(rules.lineClamp || 4, density === "report" ? 12 : 4);
         }
-        const fitted = fitText(plainForFit, { width, height }, rules);
-        let size = Math.max(roleFloor, fitted.fontSize || el.fontSize || roleFloor);
+        const fitted = lockFont
+          ? { text: plainForFit, fontSize: roleFloor, rejected: false }
+          : fitText(plainForFit, { width, height }, rules);
+        let size = lockFont
+          ? roleFloor
+          : Math.max(roleFloor, fitted.fontSize || el.fontSize || roleFloor);
         const familyIdEarly = variant.family || (spec.style as any).family || null;
         const styleRoleEarly = inferTextStyleRole(el, { isTitle, isBody, size });
         const styleDefEarly = resolveTextStyle(familyIdEarly, styleRoleEarly, el);
@@ -1141,9 +1291,9 @@ export async function renderDeckFromSpec(
           typeTreatment: resolvedTreatment,
           textStyleRole: styleRole,
           strokeWidth: useOutline ? 2 : 0,
-          offsetSteps: textStyleDef.offsetSteps || 4,
-          offsetX: textStyleDef.offsetX || 4,
-          offsetY: textStyleDef.offsetY || 4,
+          offsetSteps: textStyleDef.offsetSteps || 12,
+          offsetX: textStyleDef.offsetX || 2,
+          offsetY: textStyleDef.offsetY || 2,
           shadowLength: textStyleDef.shadowLength || 48,
           shadowStep: textStyleDef.shadowStep || 3,
         };
@@ -1326,12 +1476,19 @@ export async function renderDeckFromSpec(
         }
         const assets = getAssetService();
         const accent = palette.accent || palette.on_accent || "#2563EB";
+        const ink = palette.ink || "#1A1410";
+        const familyId = String((variant && variant.family) || "");
+        const vellumIcon =
+          kind === "icon" &&
+          (/vellum/i.test(String(style || "")) || /vellum/i.test(familyId));
+        const iconColor = vellumIcon ? String(ink) : String(accent);
         const result = await assets.resolve(kind as any, query, {
-          color: kind === "icon" ? String(accent) : undefined,
-          style: style ? String(style) : undefined,
+          color: kind === "icon" ? iconColor : undefined,
+          style: style ? String(style) : vellumIcon ? "vellum-line" : undefined,
         });
         const rel = publishAsset(result.path);
         next.type = "image";
+        if (el.opacity != null) next.opacity = el.opacity;
         next.imageContent = {
           url: rel,
           fit: kind === "icon" ? "contain" : "cover",
@@ -1340,13 +1497,18 @@ export async function renderDeckFromSpec(
           smartAsset: {
             kind,
             query,
-            style: style || null,
+            style: style || (vellumIcon ? "vellum-line" : null),
             dataUri: result.dataUri || null,
             iconId: result.iconId || null,
             mocked: !!result.mocked,
             source: result.source,
           },
         };
+        const saClip = resolveMask(el);
+        if (saClip) next.imageContent.clip = saClip;
+        if (el.shadow && typeof el.shadow === "object") {
+          next.imageContent.shadow = el.shadow;
+        }
         elements.push(next);
         continue;
       }
@@ -1418,8 +1580,13 @@ export async function renderDeckFromSpec(
           }
         : null,
       pptxRules: {
-        noGlassmorphism: true,
-        solidOverlayOpacity: "60-80%",
+        // Translucent fill + a:softEdge allowed; true backdrop-filter glass is not native PPTX.
+        softEdgeBlur: true,
+        foregroundLayer: true,
+        depthBackground: true,
+        lightingSpotlight: true,
+        noBackdropFilter: true,
+        solidOverlayOpacity: "10-80%",
         masks: ["circle", "roundedRect", "rect", "arch", "pill"],
         nativeCropToShape: true,
         editableTextOnly: true,

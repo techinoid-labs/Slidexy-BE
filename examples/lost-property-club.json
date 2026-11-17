@@ -1,0 +1,217 @@
+{
+  "name": "Lost Property Club",
+  "description": "A hotel lost-property software pitch.",
+  "brand": {
+    "fonts": {
+      "display": "Bernard MT Condensed",
+      "body": "Candara"
+    },
+    "colors": {
+      "bg": "#F9EDCD",
+      "ink": "#143C43",
+      "accent": "#A73724",
+      "sky": "#B8DDE1",
+      "sun": "#F6BC45",
+      "paper": "#FFF6D9",
+      "teal": "#164F51",
+      "red": "#AE3827"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "lost-property-club"
+    },
+    "slides": [
+      {
+        "title": "Lost Property Club",
+        "items": [
+          "A return desk for independent hotels.",
+          "Illustrative seed pitch"
+        ],
+        "photoQuery": "found-cover",
+        "role": "cover"
+      },
+      {
+        "title": "Somewhere on this shelf.",
+        "items": [
+          "A guest calls about a hat. The morning desk remembers a hat, but the night desk moved it. A useful answer depends on who picked up the phone.",
+          "One shelf record follows the item across shifts."
+        ],
+        "photoQuery": "found-shelf",
+        "role": "feature"
+      },
+      {
+        "title": "A dent beats a description.",
+        "items": [
+          "Found: green flask",
+          "Private detail: crescent dent at the base. Staff log one identifying mark and keep it off the guest-facing notice. The claimant describes it before release."
+        ],
+        "photoQuery": "found-tag",
+        "role": "feature"
+      },
+      {
+        "title": "The claim changes hands",
+        "items": [
+          "Reported",
+          "Guest records the item, date and a private detail. A reference number works across phone and email.",
+          "Matched",
+          "Staff compare the description with the shelf record and hold the item while they check ownership.",
+          "Returned",
+          "A handoff or courier receipt closes the record. The next shift sees who released it and when."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "One counter, two ways home",
+        "items": [
+          "A guest can collect at the desk with the claim number. For delivery, the desk confirms the address and sends a prepaid shipping link.",
+          "The property keeps its own release and retention policy. Staff record exceptions against the item."
+        ],
+        "photoQuery": "found-return",
+        "role": "feature"
+      },
+      {
+        "title": "The desk pays a flat fee",
+        "items": [
+          "$95",
+          "per property / month",
+          "A hotel gets unlimited staff logins, an item register and a guest claim page. Shipping is passed through at cost.",
+          "At $25 in modeled monthly support and hosting, one property contributes $70 before sales and overhead."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "How much desk time comes back?",
+        "items": [
+          "Minutes per enquiry, modeled front-desk trial",
+          "75 enquiries a month × 5 minutes saved gives 6¼ hours back to the desk. Staff time a sample during both shifts before and after rollout."
+        ],
+        "chart": {
+          "type": "bar",
+          "labels": [
+            "Manual search",
+            "Shared register"
+          ],
+          "series": [
+            {
+              "name": "Minutes",
+              "values": [
+                8,
+                3
+              ]
+            }
+          ],
+          "showLegend": false,
+          "colors": [
+            "#196568"
+          ]
+        },
+        "role": "feature"
+      },
+      {
+        "title": "Start with one city’s keys",
+        "items": [
+          "250 hotels",
+          "At $95 per month, 250 subscribing properties represent $285,000 in annual recurring revenue. This is a full-adoption scenario for the initial sales list.",
+          "The first introduction",
+          "Sell through local hotel operators’ groups. Start with one building and invite its sister properties only after two shifts use the register every day."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "What a notebook still does well",
+        "items": [
+          "The notebook",
+          "It costs almost nothing and stays at the counter. A remote enquiry still requires someone to find the right page and check the shelf.",
+          "The shared register",
+          "A second property or a night manager can look up the item, see the last action and leave a record for the person who opens the desk tomorrow."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Who runs the return desk?",
+        "items": [
+          "June Park",
+          "Hotel operations. June owns property onboarding, shelf labels and the release checklist used by desk staff.",
+          "Omar Bell",
+          "Product engineering. Omar owns claim matching, staff access and the activity record that carries across shifts."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Thirty desks in twelve months",
+        "items": [
+          "First 5",
+          "Pilot for six weeks. Measure time per enquiry and check unclaimed items against the physical shelf.",
+          "Next 10",
+          "Charge the monthly fee and document the first successful handover across sister properties.",
+          "Final 15",
+          "Train via the property manager. Seek paid renewals from four of the original five pilots."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Return to sender.",
+        "items": [
+          "$480k pre-seed",
+          "$210k builds the product, $150k funds hotel onboarding and $120k runs support and field trials. The twelve-month target is 30 paying properties.",
+          "Illustrative company and financial model."
+        ],
+        "role": "closing"
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "lost-property-club-1"
+    },
+    {
+      "role": "feature",
+      "variant": "lost-property-club-2"
+    },
+    {
+      "role": "feature",
+      "variant": "lost-property-club-3"
+    },
+    {
+      "role": "feature",
+      "variant": "lost-property-club-4"
+    },
+    {
+      "role": "feature",
+      "variant": "lost-property-club-5"
+    },
+    {
+      "role": "feature",
+      "variant": "lost-property-club-6"
+    },
+    {
+      "role": "feature",
+      "variant": "lost-property-club-7"
+    },
+    {
+      "role": "feature",
+      "variant": "lost-property-club-8"
+    },
+    {
+      "role": "feature",
+      "variant": "lost-property-club-9"
+    },
+    {
+      "role": "feature",
+      "variant": "lost-property-club-10"
+    },
+    {
+      "role": "feature",
+      "variant": "lost-property-club-11"
+    },
+    {
+      "role": "closing",
+      "variant": "lost-property-club-12"
+    }
+  ]
+}

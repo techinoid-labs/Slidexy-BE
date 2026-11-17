@@ -1,0 +1,134 @@
+{
+  "id": "feature/gatefold-cinema-6",
+  "role": "feature",
+  "variant": "gatefold-cinema-6",
+  "family": "gatefold-cinema",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 73,
+      "maxFont": 73,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 30,
+      "maxFont": 30,
+      "lineClamp": 7,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 29,
+      "maxFont": 29,
+      "lineClamp": 6,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "title",
+        "type": "text",
+        "x": 75,
+        "y": 55,
+        "width": 1460,
+        "height": 162,
+        "fontSize": 73,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5,
+        "morphId": "title"
+      },
+      {
+        "id": "chart-mount",
+        "type": "shape",
+        "shape": "rect",
+        "x": 760,
+        "y": 245,
+        "width": 755,
+        "height": 530,
+        "tokenFill": "paper",
+        "z": 1,
+        "shadow": {
+          "offsetY": 8,
+          "blur": 16,
+          "opacity": 0.23,
+          "color": "#242324"
+        }
+      },
+      {
+        "id": "comparison",
+        "type": "chart",
+        "x": 776,
+        "y": 265,
+        "width": 723,
+        "height": 475,
+        "z": 3
+      },
+      {
+        "id": "body-0",
+        "type": "text",
+        "x": 76,
+        "y": 270,
+        "width": 625,
+        "height": 275,
+        "fontSize": 30,
+        "slot": "copy0",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5
+      },
+      {
+        "id": "body-1",
+        "type": "text",
+        "x": 76,
+        "y": 600,
+        "width": 625,
+        "height": 205,
+        "fontSize": 29,
+        "slot": "copy1",
+        "tokenColor": "accent",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5
+      }
+    ]
+  }
+}

@@ -1,0 +1,214 @@
+{
+  "id": "feature/belt-crossing",
+  "role": "feature",
+  "variant": "belt-crossing",
+  "family": "belt-latitudes",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 48,
+      "maxFont": 48,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 24,
+      "maxFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 28,
+      "maxFont": 28,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "photo",
+        "type": "image",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "z": 1,
+        "slot": "photo",
+        "morphId": "hero"
+      },
+      {
+        "id": "veil",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "ink",
+        "z": 2,
+        "opacity": 0.4,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-veil"
+      },
+      {
+        "id": "b0",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 140,
+        "tokenFill": "ink",
+        "z": 3,
+        "opacity": 0.55,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-b0"
+      },
+      {
+        "id": "b1",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 140,
+        "width": 1600,
+        "height": 100,
+        "tokenFill": "accent",
+        "z": 3,
+        "opacity": 0.45,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-b1"
+      },
+      {
+        "id": "b2",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 700,
+        "width": 1600,
+        "height": 200,
+        "tokenFill": "ink",
+        "z": 3,
+        "opacity": 0.6,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-b2"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 80,
+        "y": 40,
+        "width": 700,
+        "height": 70,
+        "fontSize": 48,
+        "slot": "title",
+        "tokenColor": "surface",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "motionKind": "title",
+        "motion": "enter",
+        "motionPreset": "fadeUp",
+        "morphId": "title"
+      },
+      {
+        "id": "note",
+        "type": "shape",
+        "shape": "rect",
+        "x": 80,
+        "y": 740,
+        "width": 1440,
+        "height": 120,
+        "tokenFill": "surface",
+        "z": 4,
+        "motionKind": "beat",
+        "motion": "enter",
+        "motionPreset": "slam",
+        "morphId": "note-0"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 110,
+        "y": 760,
+        "width": 220,
+        "height": 40,
+        "fontSize": 18,
+        "slot": "copy0",
+        "tokenColor": "accent",
+        "fontRole": "label",
+        "fontWeight": 600,
+        "lineHeight": 1.12,
+        "letterSpacing": 2.4,
+        "z": 5,
+        "motionKind": "label",
+        "motion": "enter",
+        "motionHost": "note",
+        "morphId": "label-0"
+      },
+      {
+        "id": "copy1",
+        "type": "text",
+        "x": 360,
+        "y": 765,
+        "width": 1080,
+        "height": 70,
+        "fontSize": 28,
+        "slot": "copy1",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5,
+        "motionKind": "label",
+        "motion": "enter",
+        "motionHost": "note",
+        "morphId": "label-1"
+      }
+    ]
+  }
+}

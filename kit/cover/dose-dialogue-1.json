@@ -1,0 +1,206 @@
+{
+  "id": "cover/dose-dialogue-1",
+  "role": "cover",
+  "variant": "dose-dialogue-1",
+  "family": "dose-dialogue",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "copy2": {
+      "kind": "text",
+      "from": "items2"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 123,
+      "maxFont": 123,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 111,
+      "maxFont": 111,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 39,
+      "maxFont": 39,
+      "lineClamp": 3,
+      "shrinkMin": 1
+    },
+    "copy2": {
+      "minFont": 24,
+      "maxFont": 24,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "ground",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "blue",
+        "z": 0,
+        "keepFill": true
+      },
+      {
+        "id": "counter-band",
+        "type": "shape",
+        "shape": "rect",
+        "x": 637,
+        "y": 0,
+        "width": 963,
+        "height": 900,
+        "tokenFill": "apricot",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "speech",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 718,
+        "y": 53,
+        "width": 728,
+        "height": 728,
+        "tokenFill": "paper",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "object",
+        "type": "image",
+        "x": 557,
+        "y": 218,
+        "width": 1043,
+        "height": 782,
+        "z": 5,
+        "slot": "photo"
+      },
+      {
+        "id": "left-ground",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 480,
+        "width": 555,
+        "height": 420,
+        "tokenFill": "blue",
+        "z": 6,
+        "keepFill": true
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 79,
+        "y": 55,
+        "width": 1440,
+        "height": 180,
+        "fontSize": 123,
+        "slot": "title",
+        "tokenColor": "paper",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8,
+        "textStyleRole": "display",
+        "morphId": "title"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 81,
+        "y": 229,
+        "width": 1434,
+        "height": 175,
+        "fontSize": 111,
+        "slot": "copy0",
+        "tokenColor": "paper",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8,
+        "textStyleRole": "display"
+      },
+      {
+        "id": "copy1",
+        "type": "text",
+        "x": 89,
+        "y": 514,
+        "width": 524,
+        "height": 148,
+        "fontSize": 39,
+        "slot": "copy1",
+        "tokenColor": "paper",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8
+      },
+      {
+        "id": "copy2",
+        "type": "text",
+        "x": 91,
+        "y": 796,
+        "width": 813,
+        "height": 64,
+        "fontSize": 24,
+        "slot": "copy2",
+        "tokenColor": "paper",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8
+      }
+    ]
+  }
+}

@@ -1,0 +1,517 @@
+{
+  "id": "feature/chorus-ledger-4",
+  "role": "feature",
+  "variant": "chorus-ledger-4",
+  "family": "chorus-ledger",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "copy2": {
+      "kind": "text",
+      "from": "items2"
+    },
+    "copy3": {
+      "kind": "text",
+      "from": "items3"
+    },
+    "copy4": {
+      "kind": "text",
+      "from": "items4"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 75,
+      "maxFont": 75,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 29,
+      "maxFont": 29,
+      "lineClamp": 3,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 31,
+      "maxFont": 31,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy2": {
+      "minFont": 31,
+      "maxFont": 31,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy3": {
+      "minFont": 31,
+      "maxFont": 31,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy4": {
+      "minFont": 24,
+      "maxFont": 24,
+      "lineClamp": 5,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    },
+    "copy3": {
+      "kind": "text"
+    },
+    "copy4": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "stock",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "mint",
+        "z": 0,
+        "keepFill": true
+      },
+      {
+        "id": "ring-239",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 253,
+        "y": 216,
+        "width": 478,
+        "height": 478,
+        "tokenFill": "line",
+        "z": 1
+      },
+      {
+        "id": "inside-239",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 255,
+        "y": 218,
+        "width": 474,
+        "height": 474,
+        "tokenFill": "mint",
+        "z": 1
+      },
+      {
+        "id": "ring-171",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 321,
+        "y": 284,
+        "width": 342,
+        "height": 342,
+        "tokenFill": "line",
+        "z": 1
+      },
+      {
+        "id": "inside-171",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 323,
+        "y": 286,
+        "width": 338,
+        "height": 338,
+        "tokenFill": "mint",
+        "z": 1
+      },
+      {
+        "id": "ring-103",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 389,
+        "y": 352,
+        "width": 206,
+        "height": 206,
+        "tokenFill": "line",
+        "z": 1
+      },
+      {
+        "id": "inside-103",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 391,
+        "y": 354,
+        "width": 202,
+        "height": 202,
+        "tokenFill": "mint",
+        "z": 1
+      },
+      {
+        "id": "night-0-0",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 473,
+        "y": 333,
+        "width": 38,
+        "height": 38,
+        "tokenFill": "green",
+        "z": 2
+      },
+      {
+        "id": "night-0-1",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 553.5286426942071,
+        "y": 371.7805504085504,
+        "width": 38,
+        "height": 38,
+        "tokenFill": "green",
+        "z": 2
+      },
+      {
+        "id": "night-0-2",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 573.4175749547278,
+        "y": 458.9196561975004,
+        "width": 38,
+        "height": 38,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "night-0-3",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 517.6900251291084,
+        "y": 528.7997933939491,
+        "width": 38,
+        "height": 38,
+        "tokenFill": "green",
+        "z": 2
+      },
+      {
+        "id": "night-0-4",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 428.30997487089155,
+        "y": 528.7997933939491,
+        "width": 38,
+        "height": 38,
+        "tokenFill": "green",
+        "z": 2
+      },
+      {
+        "id": "night-0-5",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 372.5824250452722,
+        "y": 458.9196561975004,
+        "width": 38,
+        "height": 38,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "night-0-6",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 392.47135730579294,
+        "y": 371.7805504085505,
+        "width": 38,
+        "height": 38,
+        "tokenFill": "green",
+        "z": 2
+      },
+      {
+        "id": "night-1-0",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 473,
+        "y": 265,
+        "width": 38,
+        "height": 38,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "night-1-1",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 606.6931835020331,
+        "y": 329.38324388215653,
+        "width": 38,
+        "height": 38,
+        "tokenFill": "green",
+        "z": 2
+      },
+      {
+        "id": "night-1-2",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 639.7126729830918,
+        "y": 474.0510797065298,
+        "width": 38,
+        "height": 38,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "night-1-3",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 547.1941193891024,
+        "y": 590.0656764113137,
+        "width": 38,
+        "height": 38,
+        "tokenFill": "green",
+        "z": 2
+      },
+      {
+        "id": "night-1-4",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 398.8058806108976,
+        "y": 590.0656764113137,
+        "width": 38,
+        "height": 38,
+        "tokenFill": "green",
+        "z": 2
+      },
+      {
+        "id": "night-1-5",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 306.2873270169082,
+        "y": 474.0510797065298,
+        "width": 38,
+        "height": 38,
+        "tokenFill": "green",
+        "z": 2
+      },
+      {
+        "id": "night-1-6",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 339.3068164979669,
+        "y": 329.3832438821566,
+        "width": 38,
+        "height": 38,
+        "tokenFill": "green",
+        "z": 2
+      },
+      {
+        "id": "night-2-0",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 473,
+        "y": 197,
+        "width": 38,
+        "height": 38,
+        "tokenFill": "green",
+        "z": 2
+      },
+      {
+        "id": "night-2-1",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 659.8577243098591,
+        "y": 286.98593735576264,
+        "width": 38,
+        "height": 38,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "night-2-2",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 706.0077710114558,
+        "y": 489.1825032155591,
+        "width": 38,
+        "height": 38,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "night-2-3",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 576.6982136490964,
+        "y": 651.3315594286781,
+        "width": 38,
+        "height": 38,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "night-2-4",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 369.3017863509036,
+        "y": 651.3315594286781,
+        "width": 38,
+        "height": 38,
+        "tokenFill": "green",
+        "z": 2
+      },
+      {
+        "id": "night-2-5",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 239.99222898854418,
+        "y": 489.18250321555917,
+        "width": 38,
+        "height": 38,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "night-2-6",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 286.1422756901409,
+        "y": 286.98593735576276,
+        "width": 38,
+        "height": 38,
+        "tokenFill": "green",
+        "z": 2
+      },
+      {
+        "id": "spine",
+        "type": "shape",
+        "shape": "rect",
+        "x": 791,
+        "y": 75,
+        "width": 3,
+        "height": 755,
+        "tokenFill": "green",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 853,
+        "y": 113,
+        "width": 670,
+        "height": 193,
+        "fontSize": 75,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0.8,
+        "z": 5,
+        "textStyleRole": "display",
+        "morphId": "title"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 860,
+        "y": 334,
+        "width": 636,
+        "height": 120,
+        "fontSize": 29,
+        "slot": "copy0",
+        "tokenColor": "accent",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5
+      },
+      {
+        "id": "copy1",
+        "type": "text",
+        "x": 868,
+        "y": 488,
+        "width": 640,
+        "height": 53,
+        "fontSize": 31,
+        "slot": "copy1",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5
+      },
+      {
+        "id": "copy2",
+        "type": "text",
+        "x": 868,
+        "y": 549,
+        "width": 640,
+        "height": 53,
+        "fontSize": 31,
+        "slot": "copy2",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5
+      },
+      {
+        "id": "copy3",
+        "type": "text",
+        "x": 868,
+        "y": 610,
+        "width": 640,
+        "height": 53,
+        "fontSize": 31,
+        "slot": "copy3",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5
+      },
+      {
+        "id": "copy4",
+        "type": "text",
+        "x": 858,
+        "y": 706,
+        "width": 644,
+        "height": 156,
+        "fontSize": 24,
+        "slot": "copy4",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5
+      }
+    ]
+  }
+}

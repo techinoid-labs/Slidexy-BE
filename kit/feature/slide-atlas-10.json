@@ -1,0 +1,282 @@
+{
+  "id": "feature/slide-atlas-10",
+  "role": "feature",
+  "variant": "slide-atlas-10",
+  "family": "slide-atlas",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "copy2": {
+      "kind": "text",
+      "from": "items2"
+    },
+    "copy3": {
+      "kind": "text",
+      "from": "items3"
+    },
+    "copy4": {
+      "kind": "text",
+      "from": "items4"
+    },
+    "copy5": {
+      "kind": "text",
+      "from": "items5"
+    },
+    "copy6": {
+      "kind": "text",
+      "from": "items6"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 62,
+      "maxFont": 62,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 49,
+      "maxFont": 49,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 76,
+      "maxFont": 76,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy2": {
+      "minFont": 32,
+      "maxFont": 32,
+      "lineClamp": 3,
+      "shrinkMin": 1
+    },
+    "copy3": {
+      "minFont": 49,
+      "maxFont": 49,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy4": {
+      "minFont": 76,
+      "maxFont": 76,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy5": {
+      "minFont": 32,
+      "maxFont": 32,
+      "lineClamp": 3,
+      "shrinkMin": 1
+    },
+    "copy6": {
+      "minFont": 28,
+      "maxFont": 28,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    },
+    "copy3": {
+      "kind": "text"
+    },
+    "copy4": {
+      "kind": "text"
+    },
+    "copy5": {
+      "kind": "text"
+    },
+    "copy6": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "audit-left",
+        "type": "shape",
+        "shape": "rect",
+        "x": 77,
+        "y": 261,
+        "width": 662,
+        "height": 485,
+        "tokenFill": "lavender",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "audit-right",
+        "type": "shape",
+        "shape": "rect",
+        "x": 872,
+        "y": 261,
+        "width": 662,
+        "height": 485,
+        "tokenFill": "pink",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 75,
+        "y": 60,
+        "width": 1450,
+        "height": 146,
+        "fontSize": 62,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8,
+        "textStyleRole": "display",
+        "morphId": "title"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 100,
+        "y": 294,
+        "width": 619,
+        "height": 98,
+        "fontSize": 49,
+        "slot": "copy0",
+        "tokenColor": "purple",
+        "fontRole": "body",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8,
+        "textStyleRole": "display"
+      },
+      {
+        "id": "copy1",
+        "type": "text",
+        "x": 100,
+        "y": 423,
+        "width": 619,
+        "height": 117,
+        "fontSize": 76,
+        "slot": "copy1",
+        "tokenColor": "accent",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8,
+        "textStyleRole": "display"
+      },
+      {
+        "id": "copy2",
+        "type": "text",
+        "x": 103,
+        "y": 581,
+        "width": 600,
+        "height": 137,
+        "fontSize": 32,
+        "slot": "copy2",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8
+      },
+      {
+        "id": "copy3",
+        "type": "text",
+        "x": 895,
+        "y": 294,
+        "width": 619,
+        "height": 98,
+        "fontSize": 49,
+        "slot": "copy3",
+        "tokenColor": "purple",
+        "fontRole": "body",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8,
+        "textStyleRole": "display"
+      },
+      {
+        "id": "copy4",
+        "type": "text",
+        "x": 895,
+        "y": 423,
+        "width": 619,
+        "height": 117,
+        "fontSize": 76,
+        "slot": "copy4",
+        "tokenColor": "accent",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8,
+        "textStyleRole": "display"
+      },
+      {
+        "id": "copy5",
+        "type": "text",
+        "x": 898,
+        "y": 581,
+        "width": 600,
+        "height": 137,
+        "fontSize": 32,
+        "slot": "copy5",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8
+      },
+      {
+        "id": "copy6",
+        "type": "text",
+        "x": 102,
+        "y": 787,
+        "width": 1392,
+        "height": 86,
+        "fontSize": 28,
+        "slot": "copy6",
+        "tokenColor": "accent",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8
+      }
+    ]
+  }
+}

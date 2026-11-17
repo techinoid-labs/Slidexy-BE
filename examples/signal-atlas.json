@@ -1,0 +1,164 @@
+{
+  "name": "Signal Atlas • Strategy kit",
+  "description": "Draft — map plates; not Atelier until silhouette is unique vs shared plate recipes.",
+  "brand": {
+    "depthBackground": true,
+    "colors": {
+      "bg": "#D5DCE3",
+      "surface": "#FAFBFC",
+      "surface_color": "#C5CED8",
+      "ink": "#1A2330",
+      "muted": "#5A6A7A",
+      "accent": "#C45C26",
+      "line": "#8A9AAA"
+    },
+    "fonts": {
+      "display": "Georgia",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "signal-atlas"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Signal Atlas.",
+        "items": [
+          "ATELIER · STRATEGY",
+          "Routes, plates, and a legend that tells the room where to look next.",
+          "Volume 01 · Ops series"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Plot the route.",
+        "items": [
+          "THE BRIEF",
+          "Strategy decks fail as dashboards. An atlas gives the room a plate, a path, and a legend — then asks for a decision.",
+          "01 Lay the plate",
+          "One map field. No widget chrome.",
+          "02 Mark the route",
+          "Ticks and bearings that the eye can follow once.",
+          "03 Read the legend",
+          "Three keys max. Then the ask."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Four bearings",
+        "items": [
+          "01",
+          "Plate",
+          "The ground the argument stands on.",
+          "02",
+          "Route",
+          "A path with ticks — not a spaghetti chart.",
+          "03",
+          "Legend",
+          "Three keys. Anything more is noise.",
+          "04",
+          "Ask",
+          "One decision the plate was drawn to earn."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Legend set",
+        "items": [
+          "Route",
+          "Primary path",
+          "The line the room must follow first.",
+          "Node",
+          "Decision point",
+          "Where the path branches or stops.",
+          "Field",
+          "Context wash",
+          "Soft map ground — never a UI grid."
+        ]
+      },
+      {
+        "role": "quote",
+        "title": "One plate. One ask.",
+        "items": [
+          "FIELD NOTE",
+          "If the legend needs a second page, the strategy is not ready.",
+          "— Signal Atlas"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Survey",
+        "items": [
+          "8",
+          "Plates",
+          "Cover to close",
+          "3",
+          "Keys",
+          "Route, node, field",
+          "1",
+          "Ask",
+          "The decision on the map"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Ridge line.",
+        "items": [
+          "FIELD RECORD 07",
+          "Survey plate from the western ridge — route ticks still readable after the weather came in.",
+          "West ridge · ops survey",
+          "Plate 07 of 12"
+        ],
+        "photoQuery": "signal-atlas-field"
+      },
+      {
+        "role": "closing",
+        "title": "Fold the map.",
+        "items": [
+          "READY TO BRIEF",
+          "Mark the route. Read the legend. Ask once.",
+          "Schedule the brief · Send the plate"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "atlas-cover"
+    },
+    {
+      "role": "feature",
+      "variant": "atlas-brief"
+    },
+    {
+      "role": "feature",
+      "variant": "atlas-bearings"
+    },
+    {
+      "role": "feature",
+      "variant": "atlas-legend"
+    },
+    {
+      "role": "quote",
+      "variant": "atlas-quote"
+    },
+    {
+      "role": "feature",
+      "variant": "atlas-survey"
+    },
+    {
+      "role": "feature",
+      "variant": "atlas-photo"
+    },
+    {
+      "role": "closing",
+      "variant": "atlas-close"
+    }
+  ]
+}

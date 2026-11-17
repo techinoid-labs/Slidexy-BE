@@ -145,13 +145,28 @@ export class AssetService {
 
     try {
       const searchUrl =
-        "https://api.iconify.design/search?query=" + encodeURIComponent(query) + "&limit=32";
+        "https://api.iconify.design/search?query=" + encodeURIComponent(query) + "&limit=48";
       const searchRes = await fetch(searchUrl);
       if (!searchRes.ok) throw new Error("Iconify search HTTP " + searchRes.status);
       const searchJson: any = await searchRes.json();
       const icons: string[] = Array.isArray(searchJson.icons) ? searchJson.icons : [];
       if (!icons.length) throw new Error("Iconify: no icons for " + query);
-      const iconId = icons[0];
+      // Vellum / glyph line styles prefer monochrome outline sets over filled blobs.
+      const wantLine =
+        /vellum|glyph-line|line-art|line\b/i.test(String(style || "")) ||
+        /vellum/i.test(String(query || ""));
+      const LINE_PREFIX = /^(lucide|tabler|carbon|ph|heroicons|mdi|material-symbols|radix-icons|teenyicons):/i;
+      const OUTLINE_HINT = /outline|line|stroke|border|thin/i;
+      const ranked = icons.slice().sort((a, b) => {
+        const as = String(a);
+        const bs = String(b);
+        const aLine = LINE_PREFIX.test(as) ? 2 : 0;
+        const bLine = LINE_PREFIX.test(bs) ? 2 : 0;
+        const aOut = OUTLINE_HINT.test(as) ? 1 : 0;
+        const bOut = OUTLINE_HINT.test(bs) ? 1 : 0;
+        return wantLine ? bLine + bOut - (aLine + aOut) : 0;
+      });
+      const iconId = wantLine ? ranked[0] : icons[0];
       const parts = String(iconId).split(":");
       const prefix = parts[0];
       const name = parts.slice(1).join(":") || parts[0];

@@ -1,0 +1,340 @@
+{
+  "name": "Pulse Chamber",
+  "description": "Cardiac diagnostics service proposal with sculptural depth, patient cohorts and editable operational infographics.",
+  "brand": {
+    "fonts": {
+      "display": "Bahnschrift",
+      "body": "Calibri"
+    },
+    "colors": {
+      "bg": "#ECF5F3",
+      "ink": "#113A46",
+      "navy": "#113A46",
+      "deep": "#082B35",
+      "aqua": "#BDE6E0",
+      "coral": "#EA674D",
+      "paper": "#ECF5F3",
+      "accent": "#9F382B",
+      "line": "#A6C7C5"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "pulse-chamber"
+    },
+    "slides": [
+      {
+        "title": "PULSE",
+        "items": [
+          "CHAMBER",
+          "Cardiac diagnostics\nService redesign proposal",
+          "Illustrative medical service deck"
+        ],
+        "photoQuery": "pulse-heart",
+        "role": "cover"
+      },
+      {
+        "title": "A referral needs a visible next step",
+        "items": [
+          "The proposed service connects booking, scanning and report delivery in one accountable pathway.",
+          "Referral received",
+          "The coordinator checks that the request contains the information needed for clinical review.",
+          "Appointment agreed",
+          "The booking team confirms access needs and tells the patient who to contact if plans change.",
+          "Report returned",
+          "The referring team receives the report and owns communication about the next clinical step.",
+          "Proposed service workflow. Clinical prioritization follows the provider’s approved local pathway."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Every referral has a status",
+        "items": [
+          "100 referrals at the weekly review",
+          "78 booked",
+          "A date and location have been agreed with the patient.",
+          "14 awaiting contact",
+          "The coordinator owns the next call and records the attempt.",
+          "8 need clarification",
+          "One mark = one referral. Synthetic cohort of 100."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "The appointment starts before arrival",
+        "items": [
+          "Clear instructions reduce uncertainty",
+          "Confirm the place and time, access requirements and the contact number for changes. The local patient leaflet supplies preparation instructions.",
+          "Conceptual illustration of an echo service."
+        ],
+        "photoQuery": "pulse-room",
+        "role": "feature"
+      },
+      {
+        "title": "Four handovers, one accountable pathway",
+        "items": [
+          "REVIEW",
+          "Clinician checks the referral and assigns the appropriate pathway.",
+          "BOOK",
+          "Coordinator agrees the slot and records communication needs.",
+          "SCAN",
+          "Sonographer acquires images and documents the study.",
+          "REPORT",
+          "Authorized staff issue the report to the referrer.",
+          "Each handover carries an owner, a timestamp and an unresolved-actions field."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "The queue grows when arrivals exceed slots",
+        "items": [
+          "Synthetic weekly referral and completed-study counts",
+          "A capacity question",
+          "Review demand and completed studies together. A week with fewer completions can reflect staffing, access or equipment availability.",
+          "Sample data illustrate the reporting format."
+        ],
+        "chart": {
+          "type": "line",
+          "labels": [
+            "W1",
+            "W2",
+            "W3",
+            "W4",
+            "W5",
+            "W6"
+          ],
+          "series": [
+            {
+              "name": "Referrals",
+              "values": [
+                52,
+                58,
+                55,
+                62,
+                60,
+                64
+              ]
+            },
+            {
+              "name": "Completed",
+              "values": [
+                48,
+                50,
+                54,
+                56,
+                58,
+                62
+              ]
+            }
+          ],
+          "colors": [
+            "#EA674D",
+            "#113A46"
+          ],
+          "showLegend": true
+        },
+        "role": "feature"
+      },
+      {
+        "title": "A week has 64 planned study slots",
+        "items": [
+          "8 sessions × 8 slots",
+          "Room A",
+          "Room B",
+          "MON",
+          "TUE",
+          "WED",
+          "THU",
+          "8",
+          "8",
+          "8",
+          "8",
+          "8",
+          "8",
+          "8",
+          "8",
+          "Illustrative capacity plan. Slot duration and staffing require local approval. The model reserves separate time for reporting, breaks and room preparation."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "The report closes the information loop",
+        "items": [
+          "Study completed",
+          "Images and the study record are available to the reporting professional.",
+          "Report authorized",
+          "The referring clinician receives the findings through the agreed channel.",
+          "Communication recorded",
+          "The pathway records the receiving team and unresolved follow-up actions."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "A shorter wait is a measurable aim",
+        "items": [
+          "Synthetic median days from referral to appointment",
+          "Track the distribution",
+          "The median describes the middle of the queue. Review long waits separately and break results down by the locally assigned pathway.",
+          "Example values show a possible dashboard view; they represent no measured service."
+        ],
+        "chart": {
+          "type": "bar",
+          "labels": [
+            "Month 1",
+            "Month 2",
+            "Month 3",
+            "Month 4"
+          ],
+          "series": [
+            {
+              "name": "Median days",
+              "values": [
+                28,
+                25,
+                23,
+                21
+              ]
+            }
+          ],
+          "colors": [
+            "#113A46"
+          ],
+          "showLegend": false
+        },
+        "role": "feature"
+      },
+      {
+        "title": "Quality checks sit beside throughput",
+        "items": [
+          "Measure",
+          "Definition",
+          "Example",
+          "Referral completeness",
+          "Requests containing the locally required information",
+          "92 / 100",
+          "Report delivery",
+          "Authorized reports with a recorded receiving team",
+          "96 / 100",
+          "Patient feedback",
+          "Respondents who understood the next step",
+          "41 / 50",
+          "Synthetic audit values. Denominators describe different groups."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Ownership prevents a referral from stalling",
+        "items": [
+          "Clinical lead",
+          "Approves the pathway and reviews exceptions. Owns clinical escalation and reporting permissions.",
+          "Service coordinator",
+          "Owns contact attempts, access arrangements and the weekly queue review.",
+          "Shared review",
+          "A weekly meeting examines open referrals, available sessions and unresolved report-delivery issues."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "The pilot tests the whole pathway",
+        "items": [
+          "MONTH 1",
+          "Map and rehearse",
+          "Confirm handovers and run sample referrals through booking and reporting.",
+          "MONTH 2",
+          "Open a small cohort",
+          "Review every incomplete record and patient contact issue in the first sessions.",
+          "MONTH 3",
+          "Review the evidence",
+          "Compare access, workload and quality measures before adding sessions.",
+          "Expansion depends on locally agreed clinical and operational sign-off."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "A funded pilot with a defined decision",
+        "items": [
+          "£180k",
+          "Illustrative 90-day service-development budget",
+          "£90k",
+          "Staff capacity and training",
+          "£54k",
+          "Equipment access and room setup",
+          "£36k",
+          "Coordination and evaluation"
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "The next step stays visible",
+        "items": [
+          "A service proposal for clinical and operational review",
+          "The pilot decision combines access measures, report-delivery records, patient feedback and staff workload.",
+          "Fictional service and synthetic data. The heart is a conceptual illustration. Clinical processes require local approval.",
+          "Reference · Leeds Teaching Hospitals, Cardiac Ultrasound. Link in template sources."
+        ],
+        "role": "closing"
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "pulse-chamber-1"
+    },
+    {
+      "role": "feature",
+      "variant": "pulse-chamber-2"
+    },
+    {
+      "role": "feature",
+      "variant": "pulse-chamber-3"
+    },
+    {
+      "role": "feature",
+      "variant": "pulse-chamber-4"
+    },
+    {
+      "role": "feature",
+      "variant": "pulse-chamber-5"
+    },
+    {
+      "role": "feature",
+      "variant": "pulse-chamber-6"
+    },
+    {
+      "role": "feature",
+      "variant": "pulse-chamber-7"
+    },
+    {
+      "role": "feature",
+      "variant": "pulse-chamber-8"
+    },
+    {
+      "role": "feature",
+      "variant": "pulse-chamber-9"
+    },
+    {
+      "role": "feature",
+      "variant": "pulse-chamber-10"
+    },
+    {
+      "role": "feature",
+      "variant": "pulse-chamber-11"
+    },
+    {
+      "role": "feature",
+      "variant": "pulse-chamber-12"
+    },
+    {
+      "role": "feature",
+      "variant": "pulse-chamber-13"
+    },
+    {
+      "role": "closing",
+      "variant": "pulse-chamber-14"
+    }
+  ]
+}

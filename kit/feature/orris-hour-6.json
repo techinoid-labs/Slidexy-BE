@@ -1,0 +1,268 @@
+{
+  "id": "feature/orris-hour-6",
+  "role": "feature",
+  "variant": "orris-hour-6",
+  "family": "orris-hour",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy2": {
+      "kind": "text",
+      "from": "items2"
+    },
+    "copy3": {
+      "kind": "text",
+      "from": "items3"
+    }
+  },
+  "fit": {
+    "copy0": {
+      "minFont": 37,
+      "maxFont": 37,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 24,
+      "maxFont": 24,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "title": {
+      "minFont": 81,
+      "maxFont": 81,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "copy2": {
+      "minFont": 33,
+      "maxFont": 33,
+      "lineClamp": 5,
+      "shrinkMin": 1
+    },
+    "copy3": {
+      "minFont": 31,
+      "maxFont": 31,
+      "lineClamp": 4,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    },
+    "copy3": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "ground",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "paper",
+        "z": 0,
+        "keepFill": true
+      },
+      {
+        "id": "heel-shadow",
+        "type": "shape",
+        "shape": "rect",
+        "x": 159.46,
+        "y": 746.3299999999999,
+        "width": 461.47999999999996,
+        "height": 25.02,
+        "tokenFill": "rose",
+        "z": 1,
+        "keepFill": true,
+        "radius": 9
+      },
+      {
+        "id": "glass",
+        "type": "shape",
+        "shape": "rect",
+        "x": 140,
+        "y": 261.22,
+        "width": 472.59999999999997,
+        "height": 493.45,
+        "tokenFill": "violet",
+        "z": 2,
+        "keepFill": true,
+        "radius": 32,
+        "opacity": 0.54
+      },
+      {
+        "id": "juice",
+        "type": "shape",
+        "shape": "rect",
+        "x": 158.07,
+        "y": 418.28999999999996,
+        "width": 436.46,
+        "height": 305.79999999999995,
+        "tokenFill": "rose",
+        "z": 2.1,
+        "keepFill": true,
+        "radius": 22
+      },
+      {
+        "id": "neck",
+        "type": "shape",
+        "shape": "rect",
+        "x": 323.48,
+        "y": 215.35,
+        "width": 105.63999999999999,
+        "height": 65.33,
+        "tokenFill": "violet",
+        "z": 2,
+        "keepFill": true
+      },
+      {
+        "id": "stopper",
+        "type": "shape",
+        "shape": "rect",
+        "x": 273.44,
+        "y": 125,
+        "width": 205.72,
+        "height": 104.24999999999999,
+        "tokenFill": "ink",
+        "z": 2.2,
+        "keepFill": true,
+        "radius": 8
+      },
+      {
+        "id": "highlight",
+        "type": "shape",
+        "shape": "rect",
+        "x": 159.46,
+        "y": 298.75,
+        "width": 11.12,
+        "height": 379.46999999999997,
+        "tokenFill": "paper",
+        "z": 3,
+        "keepFill": true,
+        "opacity": 0.83
+      },
+      {
+        "id": "label-stock",
+        "type": "shape",
+        "shape": "rect",
+        "x": 241.47,
+        "y": 443.31,
+        "width": 269.65999999999997,
+        "height": 141.78,
+        "tokenFill": "paper",
+        "z": 3,
+        "keepFill": true
+      },
+      {
+        "id": "copy-0",
+        "type": "text",
+        "x": 257,
+        "y": 462,
+        "width": 246,
+        "height": 59,
+        "fontSize": 37,
+        "slot": "copy0",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "copy-1",
+        "type": "text",
+        "x": 257,
+        "y": 529,
+        "width": 252,
+        "height": 52,
+        "fontSize": 20,
+        "slot": "copy1",
+        "tokenColor": "accent",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 731,
+        "y": 126,
+        "width": 776,
+        "height": 220,
+        "fontSize": 81,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "morphId": "title"
+      },
+      {
+        "id": "copy-2",
+        "type": "text",
+        "x": 737,
+        "y": 409,
+        "width": 720,
+        "height": 191,
+        "fontSize": 33,
+        "slot": "copy2",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "copy-3",
+        "type": "text",
+        "x": 737,
+        "y": 645,
+        "width": 720,
+        "height": 166,
+        "fontSize": 31,
+        "slot": "copy3",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      }
+    ]
+  }
+}

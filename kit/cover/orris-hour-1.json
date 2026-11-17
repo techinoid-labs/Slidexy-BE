@@ -1,0 +1,154 @@
+{
+  "id": "cover/orris-hour-1",
+  "role": "cover",
+  "variant": "orris-hour-1",
+  "family": "orris-hour",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    }
+  },
+  "fit": {
+    "copy0": {
+      "minFont": 27,
+      "maxFont": 27,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "title": {
+      "minFont": 139,
+      "maxFont": 139,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 35,
+      "maxFont": 35,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "photograph",
+        "type": "image",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "z": 2,
+        "slot": "photo",
+        "morphId": "hero"
+      },
+      {
+        "id": "pink-light",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 675,
+        "height": 900,
+        "tokenFill": "rose",
+        "z": 3,
+        "gradient": {
+          "angle": 0,
+          "stops": [
+            {
+              "hex": "#F4D0CF",
+              "pos": 0,
+              "alpha": 0.34
+            },
+            {
+              "hex": "#F4D0CF",
+              "pos": 1,
+              "alpha": 0
+            }
+          ]
+        }
+      },
+      {
+        "id": "copy-0",
+        "type": "text",
+        "x": 73,
+        "y": 212,
+        "width": 570,
+        "height": 63,
+        "fontSize": 27,
+        "slot": "copy0",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 62,
+        "y": 293,
+        "width": 596,
+        "height": 325,
+        "fontSize": 139,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 400,
+        "lineHeight": 0.98,
+        "letterSpacing": 0,
+        "z": 4,
+        "morphId": "title"
+      },
+      {
+        "id": "copy-1",
+        "type": "text",
+        "x": 75,
+        "y": 680,
+        "width": 580,
+        "height": 82,
+        "fontSize": 35,
+        "slot": "copy1",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      }
+    ]
+  }
+}

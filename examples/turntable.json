@@ -1,0 +1,245 @@
+{
+  "brand": {
+    "colors": {
+      "bg": "#F2EAD8",
+      "ink": "#1D2526",
+      "accent": "#AA3C25",
+      "surface": "#FDF9EC",
+      "vinyl": "#191B1F",
+      "groove": "#41444B",
+      "label": "#F79A76",
+      "inner": "#CED5BE",
+      "line": "#A39B85"
+    },
+    "fonts": {
+      "display": "Franklin Gothic Heavy",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Turntable",
+        "photoQuery": "swimming pool underwater sunlight ripples",
+        "items": [
+          "Pool Music",
+          "NORA VALE   /   STEREO LP",
+          "Eight pieces for electric piano, brushed drums and tape, written after closing time at the municipal pool.",
+          "FIRST PRESSING   /   TT–004",
+          "Pool Music   •   A fictional release from Tidal Tone Records"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Inside the sleeve",
+        "photoQuery": "swimming pool underwater sunlight ripples",
+        "items": [
+          "Pool Music",
+          "NORA VALE   /   STEREO LP",
+          "The pool photograph wraps the outer jacket. A sage inner sleeve carries the session credits. Slide it aside to reveal the coral label on black vinyl.",
+          "PACKAGING STUDY   /   TT–004",
+          "Pictured from front to back     Printed jacket     /     Inner sleeve     /     12-inch record"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "The running order",
+        "items": [
+          "SIDE A",
+          "01     Waterline",
+          "3:25",
+          "02     Slow Lane",
+          "3:57",
+          "03     Under Glass",
+          "3:16",
+          "04     Deep End",
+          "4:05",
+          "Playing time     14:43",
+          "SIDE B",
+          "01     Blue Tile",
+          "3:38",
+          "02     Short Wave",
+          "3:02",
+          "03     Night Swim",
+          "4:23",
+          "04     Last Light",
+          "3:14",
+          "Playing time     14:17"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "The shape of the record",
+        "items": [
+          "PLAYING TIME IN SECONDS",
+          "Night Swim runs for 4:23, the longest track on either side. It follows Short Wave, the shortest piece at 3:02.",
+          "Side A runs 26 seconds longer than Side B. Together the eight tracks play for 29:00."
+        ],
+        "chart": {
+          "type": "bar",
+          "labels": [
+            "Track 1",
+            "Track 2",
+            "Track 3",
+            "Track 4"
+          ],
+          "series": [
+            {
+              "name": "Side A",
+              "values": [
+                205,
+                237,
+                196,
+                245
+              ]
+            },
+            {
+              "name": "Side B",
+              "values": [
+                218,
+                182,
+                263,
+                194
+              ]
+            }
+          ],
+          "colors": [
+            "#AA3C25",
+            "#536B68"
+          ],
+          "showLegend": true
+        }
+      },
+      {
+        "role": "feature",
+        "title": "Waterline",
+        "items": [
+          "A1   /   3:25",
+          "Nora Vale played the opening figure with the piano lid closed. The felt took the edge off the high notes and left room for the brushes to carry the pulse.",
+          "At the end of the take, the drummer let the last sweep run across the snare. That sound leads straight into Slow Lane."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Blue Tile",
+        "items": [
+          "B1   /   3:38",
+          "The second side starts with two chords and a bass note held across the bar. Vale leaves the first eight bars almost bare so the room tone becomes part of the rhythm.",
+          "On the return of the theme, the tape echo comes up just enough to answer the piano. That little change marks the start of the second half."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "The session",
+        "items": [
+          "ROOM NOTES",
+          "The players faced each other across the piano. A room microphone caught the brushes and the piano together, giving the engineer a reference for how close the two instruments felt in the room.",
+          "At the listening pass, the team kept the take with the strongest shared pulse. Small changes of tempo stayed in the edit."
+        ],
+        "photoQuery": "recording studio piano microphone"
+      },
+      {
+        "role": "feature",
+        "title": "Cut to tape",
+        "items": [
+          "MIX NOTES",
+          "Two mixes went to the listening room. The first kept the brushes close. The second gave the room microphone more space. The team used the drier version for Waterline and the wider version for Night Swim.",
+          "The final sequence leaves a breath between those textures. On headphones, the change in distance is easiest to hear just after the first piano chord."
+        ],
+        "photoQuery": "analog reel to reel tape recorder"
+      },
+      {
+        "role": "feature",
+        "title": "The first pressing",
+        "items": [
+          "PRODUCTION SHEET",
+          "A coral centre label identifies the first edition. The dark type around the spindle carries the side, speed and catalogue number, so the record can be matched to its jacket at a glance.",
+          "The sage inner sleeve holds the personnel and recording credits. The outer jacket carries the pool photograph, artist and title."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Listening room",
+        "items": [
+          "RELEASE EVENING",
+          "The first playback begins with both sides in sequence. Guests get the track list at the door and can follow the running times without a spoken introduction between songs.",
+          "After the flip, Vale and the engineer return to two passages: the dry opening of Waterline and the longer tape tail on Last Light."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Press selections",
+        "items": [
+          "TWO ENTRY POINTS",
+          "Waterline introduces the sound in the first few bars and works as a short radio excerpt. Night Swim gives a reviewer the widest contrast between the quiet piano figure and the full room sound.",
+          "The press pack pairs each excerpt with its full track, recording credits and the same cover image used on the sleeve."
+        ]
+      },
+      {
+        "role": "closing",
+        "title": "Last Light",
+        "items": [
+          "B4   /   3:14",
+          "The final piece leaves the brushes behind for a piano phrase played twice. On the repeat, Vale lifts the pedal earlier, letting the release of the keys come through.",
+          "The tape runs for a few seconds after the room falls quiet. That last stretch of silence belongs to the record as much as the opening note."
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "turntable-jacket"
+    },
+    {
+      "role": "feature",
+      "variant": "turntable-reveal"
+    },
+    {
+      "role": "feature",
+      "variant": "turntable-tracklist"
+    },
+    {
+      "role": "feature",
+      "variant": "turntable-timings"
+    },
+    {
+      "role": "feature",
+      "variant": "turntable-liner-1"
+    },
+    {
+      "role": "feature",
+      "variant": "turntable-liner-2"
+    },
+    {
+      "role": "feature",
+      "variant": "turntable-liner-3"
+    },
+    {
+      "role": "feature",
+      "variant": "turntable-liner-4"
+    },
+    {
+      "role": "feature",
+      "variant": "turntable-liner-5"
+    },
+    {
+      "role": "feature",
+      "variant": "turntable-liner-6"
+    },
+    {
+      "role": "feature",
+      "variant": "turntable-liner-7"
+    },
+    {
+      "role": "closing",
+      "variant": "turntable-liner-8"
+    }
+  ]
+}

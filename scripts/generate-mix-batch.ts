@@ -388,17 +388,44 @@ const newsstand: Template = {
         text("copy2", 105, 635, 110, 80, 48, "copy2", "bg", { ...stat, align: "center", z: 4 }),
       ])
     );
-    kits.push(
-      writeKit("feature", "newsstand-spines", f, [
-        rect("bg", 0, 0, 1600, 900, "bg", { z: 0 }),
-        text("title", 80, 50, 900, 90, 64, "title", "ink", { ...display, morphId: "title" }),
-        ...magazineSpine("ms", { x: 80, y: 160, count: 8, z: 1 }),
-        ...[0, 1, 2, 3, 4, 5, 6].map((i) =>
-          text("copy" + i, 90 + i * 120, 760, 100, 40, 20, "copy" + i, i % 3 === 0 ? "accent" : "muted", { align: "center", z: 2 })
-        ),
-        text("copy7", 80, 840, 1200, 40, 24, "copy7", "ink"),
-      ])
-    );
+    {
+      // Full rack + featured issue photo — fills the previous empty right half.
+      // Labels sit on one flat baseline under the shortest spine (not following stagger).
+      const spineWidths = [78, 58, 96, 64, 84, 54, 90];
+      const spineEls: El[] = [];
+      const labelEls: El[] = [];
+      let cursor = 80;
+      const labelY = 160 + 560 + 20; // flat baseline under the tallest spine
+      for (let i = 0; i < 7; i++) {
+        const w = spineWidths[i];
+        const h = 560 - (i % 3) * 36;
+        spineEls.push(
+          rect("msSpine" + i, cursor, 160, w, h, i % 3 === 0 ? "accent" : i % 2 ? "surface" : "surface_color", {
+            z: 1,
+            morphId: i === 0 ? "plate" : i === 3 ? "accent" : undefined,
+          })
+        );
+        labelEls.push(
+          text("copy" + i, cursor - 8, labelY, w + 16, 40, 18, "copy" + i, i % 3 === 0 ? "accent" : "muted", {
+            align: "center",
+            z: 2,
+          })
+        );
+        cursor += w + 14;
+      }
+      kits.push(
+        writeKit("feature", "newsstand-spines", f, [
+          rect("bg", 0, 0, 1600, 900, "bg", { z: 0 }),
+          text("title", 80, 50, 900, 90, 64, "title", "ink", { ...display, morphId: "title" }),
+          ...mastheadRule("sp", { x: 80, y: 130, w: 720, z: 1 }),
+          ...spineEls,
+          ...labelEls,
+          rect("frame", 980, 160, 540, 620, "ink", { z: 1 }),
+          photo("photo", 996, 176, 508, 588, { zoom: 1.15, z: 2 }),
+          text("copy7", 80, 820, 720, 44, 28, "copy7", "ink", { z: 3 }),
+        ])
+      );
+    }
     kits.push(
       writeKit("feature", "newsstand-mast", f, [
         rect("bg", 0, 0, 1600, 900, "bg", { z: 0 }),
@@ -432,17 +459,38 @@ const newsstand: Template = {
         text("copy0", 280, 540, 1040, 40, 24, "copy0", "accent", { align: "center", z: 3 }),
       ])
     );
-    kits.push(
-      writeKit("closing", "newsstand-read", f, [
-        rect("bg", 0, 0, 1600, 900, "bg", { z: 0 }),
-        ...magazineSpine("cs", { x: 200, y: 60, count: 10, z: 1 }),
-        ...mastheadRule("cm", { x: 200, y: 680, w: 1200, z: 2 }),
-        ...issueBadge("ci", { x: 1320, y: 620, size: 120, z: 3 }),
-        circle("pulse-bg", 1345, 645, 70, "surface", { z: 4, morphId: "pulse-bg" }),
-        text("title", 80, 720, 1440, 100, 88, "title", "ink", { ...display, align: "center", morphId: "title", z: 3 }),
-        text("copy0", 80, 840, 1440, 40, 24, "copy0", "muted", { align: "center", z: 3 }),
-      ])
-    );
+    {
+      // Closing shelf: full-bleed spine wall + centered masthead CTA (unique silhouette).
+      const closeSpines: El[] = [];
+      const closeWidths = [48, 64, 40, 80, 52, 70, 44, 76, 56, 62, 46, 72, 50, 68, 42, 74, 54, 60, 46, 66, 50, 58];
+      let cx = 0;
+      for (let i = 0; i < closeWidths.length; i++) {
+        const w = closeWidths[i];
+        const top = 30 + (i % 5) * 22;
+        closeSpines.push(
+          rect("csSpine" + i, cx, top, w, 900 - top, i % 3 === 0 ? "accent" : i % 2 ? "surface" : "surface_color", {
+            z: 1,
+          })
+        );
+        cx += w + 6;
+      }
+      // Stretch last spine to the right edge if short.
+      if (cx < 1600) {
+        closeSpines.push(rect("csSpineFill", cx, 50, 1600 - cx, 850, "surface_color", { z: 1 }));
+      }
+      kits.push(
+        writeKit("closing", "newsstand-read", f, [
+          rect("bg", 0, 0, 1600, 900, "bg", { z: 0 }),
+          ...closeSpines,
+          rect("plate", 260, 260, 1080, 380, "bg", { z: 2, opacity: 0.95, morphId: "titlePlate" }),
+          ...mastheadRule("cm", { x: 340, y: 310, w: 920, z: 3 }),
+          text("title", 300, 360, 1000, 150, 108, "title", "ink", { ...display, align: "center", morphId: "title", z: 3 }),
+          text("copy0", 300, 540, 1000, 50, 28, "copy0", "muted", { align: "center", z: 3 }),
+          ...issueBadge("ci", { x: 745, y: 600, size: 100, z: 4 }),
+          circle("pulse-bg", 765, 620, 60, "surface", { z: 5, morphId: "pulse-bg" }),
+        ])
+      );
+    }
     return kits;
   },
 };

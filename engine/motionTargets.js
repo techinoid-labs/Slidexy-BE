@@ -138,9 +138,10 @@ function inferMotionIntent(el) {
 
 function entrancePriority(morphId) {
   const id = String(morphId || "");
-  if (id.indexOf("note-") === 0) return 10;
-  if (id.indexOf("head-") === 0) return 20;
-  if (id === "title" || id === "caption") return 30;
+  // Title leads the keynote phrase; plates/notes cascade after.
+  if (id === "title" || id === "caption") return 5;
+  if (id.indexOf("note-") === 0) return 20;
+  if (id.indexOf("head-") === 0) return 25;
   if (id.indexOf("vote-row-") === 0 || id.indexOf("vote-") === 0) return 40;
   if (id.indexOf("stat-") === 0) return 45;
   if (id === "accent" || id.indexOf("accent-") === 0) return 50;
@@ -277,6 +278,8 @@ function isStablePersist(morphId, el, prevGeom, thresholdPx) {
 
 function passesNewOnly(el, mid, newOnly, prevIds, prevGeom) {
   if (!newOnly || !prevIds || !prevIds.size) return true;
+  // Title copy changes every slide — always allow a soft settle as the fade tail.
+  if (mid === "title" || (el && el.motionKind === "title")) return true;
   if (prevGeom) return !isStablePersist(mid, el, prevGeom);
   return !prevIds.has(mid);
 }
@@ -291,7 +294,11 @@ function pickEntranceTargets(layout, opts) {
   const prevGeom = (opts && opts.prevGeom) || null;
   const newOnly = opts && opts.newOnly;
   const max = (opts && opts.max) || MAX_ENTRANCES;
-  const stagger = continuity ? Math.round(200 * 1.25) : 200;
+  // Continuity + blend: tighter cascade so new beats read as one settle phrase
+  // right after the crossfade, not a second act.
+  const blend = !opts || opts.blend !== false;
+  // Connected blend: near-simultaneous settle so it reads as the fade's tail.
+  const stagger = continuity ? (blend ? 60 : Math.round(200 * 1.25)) : 200;
 
   const enterEls = [];
   ((layout && layout.elements) || []).forEach((el) => {
@@ -360,6 +367,22 @@ function pickEntranceTargets(layout, opts) {
   const hostSlots = [];
   noteGroups.forEach((g) => hostSlots.push({ kind: "note", group: g }));
   otherBeats.forEach((el) => hostSlots.push({ kind: "other", el }));
+  // Sort all hosts by role priority so title can lead plates (keynote phrase).
+  hostSlots.sort((a, b) => {
+    const midA =
+      a.kind === "note" ? String(a.group.note.morphId) : String(a.el.morphId);
+    const midB =
+      b.kind === "note" ? String(b.group.note.morphId) : String(b.el.morphId);
+    const yA =
+      a.kind === "note" ? Number(a.group.note.y) || 0 : Number(a.el.y) || 0;
+    const yB =
+      b.kind === "note" ? Number(b.group.note.y) || 0 : Number(b.el.y) || 0;
+    const xA =
+      a.kind === "note" ? Number(a.group.note.x) || 0 : Number(a.el.x) || 0;
+    const xB =
+      b.kind === "note" ? Number(b.group.note.x) || 0 : Number(b.el.x) || 0;
+    return entrancePriority(midA) - entrancePriority(midB) || yA - yB || xA - xB;
+  });
   const limited = hostSlots.slice(0, max);
 
   const out = [];
@@ -373,7 +396,16 @@ function pickEntranceTargets(layout, opts) {
       // Note+text: slamDrop (no scale) so paper and copy share the same path
       // and don't tear apart from different scale centers.
       const authored = note.motionPreset;
-      const preset = authored || (kids.length ? "slamDrop" : "slam");
+      // Blend: soft settle instead of slam so notes continue the dissolve, not punch after it.
+      const preset =
+        authored ||
+        (continuity && blend
+          ? kids.length
+            ? "fadeUp"
+            : "fadeIn"
+          : kids.length
+            ? "slamDrop"
+            : "slam");
       if (!seen.has(mid)) {
         seen.add(mid);
         out.push({ morphId: mid, preset, delayMs });
@@ -384,7 +416,7 @@ function pickEntranceTargets(layout, opts) {
         seen.add(lid);
         out.push({
           morphId: lid,
-          preset: lab.motionPreset || "slamDrop",
+          preset: lab.motionPreset || (continuity && blend ? "fadeUp" : "slamDrop"),
           delayMs,
         });
       });
@@ -395,7 +427,7 @@ function pickEntranceTargets(layout, opts) {
       seen.add(mid);
       out.push({
         morphId: mid,
-        preset: pickEntrancePreset(mid, continuity),
+        preset: slot.el.motionPreset || pickEntrancePreset(mid, continuity),
         delayMs,
       });
       hostIndex++;

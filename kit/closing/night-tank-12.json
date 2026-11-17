@@ -1,0 +1,281 @@
+{
+  "id": "closing/night-tank-12",
+  "role": "closing",
+  "variant": "night-tank-12",
+  "family": "night-tank",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "copy2": {
+      "kind": "text",
+      "from": "items2"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 82,
+      "maxFont": 82,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 126,
+      "maxFont": 126,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 33,
+      "maxFont": 33,
+      "lineClamp": 4,
+      "shrinkMin": 1
+    },
+    "copy2": {
+      "minFont": 27,
+      "maxFont": 27,
+      "lineClamp": 5,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "ground",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "ice",
+        "z": 0,
+        "keepFill": true
+      },
+      {
+        "id": "headline",
+        "type": "text",
+        "x": 75,
+        "y": 76,
+        "width": 1470,
+        "height": 155,
+        "fontSize": 82,
+        "slot": "title",
+        "tokenColor": "marine",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "morphId": "title"
+      },
+      {
+        "id": "copy-0",
+        "type": "text",
+        "x": 68,
+        "y": 310,
+        "width": 885,
+        "height": 232,
+        "fontSize": 126,
+        "slot": "copy0",
+        "tokenColor": "marine",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "run-0",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1020,
+        "y": 265,
+        "width": 437,
+        "height": 10,
+        "tokenFill": "copper",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "bend-0",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1447,
+        "y": 265,
+        "width": 10,
+        "height": 62,
+        "tokenFill": "copper",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "run-1",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1020,
+        "y": 317,
+        "width": 437,
+        "height": 10,
+        "tokenFill": "copper",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "bend-1",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1020,
+        "y": 317,
+        "width": 10,
+        "height": 62,
+        "tokenFill": "copper",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "run-2",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1020,
+        "y": 369,
+        "width": 437,
+        "height": 10,
+        "tokenFill": "copper",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "bend-2",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1447,
+        "y": 369,
+        "width": 10,
+        "height": 62,
+        "tokenFill": "copper",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "run-3",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1020,
+        "y": 421,
+        "width": 437,
+        "height": 10,
+        "tokenFill": "copper",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "bend-3",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1020,
+        "y": 421,
+        "width": 10,
+        "height": 62,
+        "tokenFill": "copper",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "run-4",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1020,
+        "y": 473,
+        "width": 437,
+        "height": 10,
+        "tokenFill": "copper",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "bend-4",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1447,
+        "y": 473,
+        "width": 10,
+        "height": 62,
+        "tokenFill": "copper",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "run-5",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1020,
+        "y": 525,
+        "width": 437,
+        "height": 10,
+        "tokenFill": "copper",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "copy-1",
+        "type": "text",
+        "x": 78,
+        "y": 625,
+        "width": 844,
+        "height": 179,
+        "fontSize": 33,
+        "slot": "copy1",
+        "tokenColor": "marine",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "copy-2",
+        "type": "text",
+        "x": 975,
+        "y": 641,
+        "width": 526,
+        "height": 169,
+        "fontSize": 27,
+        "slot": "copy2",
+        "tokenColor": "marine",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      }
+    ]
+  }
+}

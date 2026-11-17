@@ -1,0 +1,213 @@
+{
+  "name": "Fuse Rack",
+  "description": "Illustrative shared-fuse inventory seed pitch for regional utilities.",
+  "brand": {
+    "fonts": {
+      "display": "Bahnschrift",
+      "body": "Consolas"
+    },
+    "colors": {
+      "bg": "#F4F1EA",
+      "ink": "#1A1E24",
+      "slate": "#2B303A",
+      "yellow": "#F0C40D",
+      "porcelain": "#F7F4EE",
+      "tip": "#C43B2C",
+      "muted": "#6B7280",
+      "accent": "#C43B2C",
+      "white": "#FFFFFF"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "fuse-rack"
+    },
+    "slides": [
+      {
+        "title": "FUSE",
+        "items": [
+          "RACK",
+          "Shared fuse inventory for regional utilities",
+          "Illustrative seed pitch"
+        ],
+        "photoQuery": "fuse-cover",
+        "role": "cover"
+      },
+      {
+        "title": "A blown fuse should not strand a feeder.",
+        "items": [
+          "Crews already carry common cartridge sizes. What they lack is a shared count of what the neighboring yard still holds.",
+          "Fuse Rack pools spare stock across districts so a night truck can pull a verified cartridge before the feeder sits cold."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "The bay keeps the count",
+        "items": [
+          "Each bay scans a cartridge into a shared bin. The next crew sees live counts before leaving the yard.",
+          "A sealed bag travels with a lot number. The receiving bay confirms the amp rating before the truck rolls."
+        ],
+        "photoQuery": "fuse-bay",
+        "role": "feature"
+      },
+      {
+        "title": "Pull, confirm, replace",
+        "items": [
+          "01 Pull",
+          "The night lead selects a cartridge from the shared rack against the feeder ticket.",
+          "02 Confirm",
+          "A second tech verifies amp rating and lot number before the seal is broken.",
+          "03 Replace",
+          "The empty slot is marked pending restock. The shared count drops in the same minute."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Outage minutes the shared rack avoids",
+        "items": [
+          "Illustrative feeder model • minutes of cold time avoided after a blown cartridge",
+          "At twelve shared spares, modeled cold time falls from 94 to 28 minutes. The gain comes from skipping a cross-town parts run."
+        ],
+        "chart": {
+          "type": "bar",
+          "labels": [
+            "0 spares",
+            "4",
+            "8",
+            "12",
+            "16"
+          ],
+          "series": [
+            {
+              "name": "Cold minutes",
+              "values": [
+                94,
+                71,
+                48,
+                28,
+                22
+              ]
+            }
+          ],
+          "colors": [
+            "#C43B2C"
+          ],
+          "showLegend": false
+        },
+        "role": "feature"
+      },
+      {
+        "title": "Unit economics of a shared bay",
+        "items": [
+          "$18k / year",
+          "Subscription per participating bay for inventory software, sealed bags and quarterly audits.",
+          "$11.2k direct",
+          "Bag software $4.1k, bagging and seals $2.4k, audit labor $4.7k. Contribution $6.8k before head-office overhead."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Start with one corridor",
+        "items": [
+          "36 bays",
+          "Assume each bay avoids two cross-town runs a month. At $420 per avoided run, corridor savings are $362,880 before subscription fees.",
+          "Pilot rule",
+          "Open a corridor only when three adjacent yards can each commit twelve common cartridge SKUs."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Why share the rack?",
+        "items": [
+          "Local stock",
+          "Fast for familiar faults. Thin for rare amp ratings that sit idle for months.",
+          "Central warehouse",
+          "Deep assortment, but every night run pays the drive before the feeder is restored.",
+          "Shared bay",
+          "A verified cartridge in a neighboring yard. The truck leaves with a counted spare."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Two leads own the count",
+        "items": [
+          "Rafi Cole / inventory",
+          "Rafi owns SKU standards, sealed-bag lots and the quarterly audit. A disputed count freezes the SKU until both bays sign.",
+          "Nia Park / night ops",
+          "Nia owns feeder tickets and truck dispatch. Her team will not leave without a confirmed amp rating on the bag tag."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Ninety days on one corridor",
+        "items": [
+          "Days 1–30",
+          "Instrument three bays. Photograph every shared SKU and seal the first lots.",
+          "Days 31–60",
+          "Run night pulls against live counts. Target fewer than two count disputes per week.",
+          "Days 61–90",
+          "Prove a 40% cut in cross-town parts runs before opening a second corridor."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Stock the first corridor.",
+        "items": [
+          "$4.8M seed",
+          "$2.1M for bay hardware and seals, $1.5M for inventory software, $1.2M for ops hiring and audits. Illustrative company and figures.",
+          "Target: 36 instrumented bays and a 40% cut in cross-town runs within 12 months."
+        ],
+        "role": "closing"
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "fuse-rack-1"
+    },
+    {
+      "role": "feature",
+      "variant": "fuse-rack-2"
+    },
+    {
+      "role": "feature",
+      "variant": "fuse-rack-3"
+    },
+    {
+      "role": "feature",
+      "variant": "fuse-rack-4"
+    },
+    {
+      "role": "feature",
+      "variant": "fuse-rack-5"
+    },
+    {
+      "role": "feature",
+      "variant": "fuse-rack-6"
+    },
+    {
+      "role": "feature",
+      "variant": "fuse-rack-7"
+    },
+    {
+      "role": "feature",
+      "variant": "fuse-rack-8"
+    },
+    {
+      "role": "feature",
+      "variant": "fuse-rack-9"
+    },
+    {
+      "role": "feature",
+      "variant": "fuse-rack-10"
+    },
+    {
+      "role": "closing",
+      "variant": "fuse-rack-11"
+    }
+  ]
+}

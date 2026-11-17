@@ -1,0 +1,198 @@
+{
+  "name": "Knight Relay",
+  "description": "A fictional doubles chess invitational at East Hall.",
+  "brand": {
+    "fonts": {
+      "display": "Impact",
+      "body": "Arial"
+    },
+    "colors": {
+      "bg": "#F9F8ED",
+      "ink": "#171914",
+      "accent": "#38591B",
+      "lime": "#D7FF51",
+      "paper": "#F9F8ED",
+      "slate": "#707964"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "knight-relay"
+    },
+    "slides": [
+      {
+        "title": "KNIGHT RELAY",
+        "items": [
+          "EAST HALL INVITATIONAL",
+          "Doubles chess. Partners switch every fifth move."
+        ],
+        "photoQuery": "knight-relay-lacquer",
+        "role": "cover"
+      },
+      {
+        "title": "THE FIFTH MOVE",
+        "items": [
+          "01–05",
+          "The opening player chooses the first five moves for their side. Their partner watches from behind the table and keeps the score sheet.",
+          "06–10",
+          "After move five, the seated player starts the opposing clock. Partners exchange seats in silence. The new player inherits the position and the remaining time."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "ROOM FOR TWO",
+        "items": [
+          "On either side of the board, one chair faces the table and one waits behind it. The aisle stays clear so partners can change places without interrupting the next game.",
+          "Spectators follow the demonstration board from the end of the hall. Only the floor arbiter enters the playing aisle during a round."
+        ],
+        "photoQuery": "chess tournament players playing chess",
+        "role": "feature"
+      },
+      {
+        "title": "READ THE ROUTE",
+        "items": [
+          "d4  /  f5  /  e7",
+          "A warm-up for the handover. With the other pieces removed, a knight on d4 can reach e7 in two moves through f5. The three marks follow that route from bottom to top.",
+          "The first player names the destination. Their partner names the intermediate square, then plays both jumps on the practice board."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "ONE CLOCK",
+        "items": [
+          "18 minutes",
+          "Each pair starts with eighteen minutes for the entire game. The clock keeps running through every exchange of seats. There is no increment.",
+          "The arbiter checks both displays before the first move. If either partner notices a clock fault, they pause both sides and call the arbiter."
+        ],
+        "photoQuery": "chess clock on chess board",
+        "role": "feature"
+      },
+      {
+        "title": "SATURDAY DRAW",
+        "items": [
+          "10.00",
+          "Opening round",
+          "Pairs draw a table at check-in. The lower draw number takes White in the first game.",
+          "11.00",
+          "Second round",
+          "Partners reverse the opening seat. Pairings go up beside the hall doors after results are checked.",
+          "12.00",
+          "Final round",
+          "The leading pairs meet at the front tables. Spectators can follow the live position from the gallery."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "THE SILENT SEAT",
+        "items": [
+          "“I could see the fork from behind the chair. By the time I sat down, the board had changed.”",
+          "Mara Ellis, player in the rehearsal match",
+          "The silent partner records moves throughout the game. That gives both players a common record when they replay the position after the round."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "COUNT THE POINTS",
+        "items": [
+          "1",
+          "A win adds one point to the pair’s total, whichever partner plays the final move.",
+          "½",
+          "A draw earns half a point for each pair. Both players initial the same result slip.",
+          "0",
+          "A loss earns zero. If the final totals tie, the event compares the combined scores of each pair’s opponents."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "THE RESULT SLIP",
+        "items": [
+          "Table 04",
+          "White   /   Ellis & Fox",
+          "Black   /   Chan & Bell",
+          "½ – ½",
+          "After the players agreed a draw, both pairs checked the board number and the colour assignment. The arbiter carried the signed slip to the results desk."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "FOUR TABLES",
+        "items": [
+          "4 boards · 4 clocks · 16 chairs",
+          "Four games can run at once. Each table seats two active players, with one waiting chair behind each side. An extra clock stays at the arbiter’s desk.",
+          "The demonstration board belongs at the end of the hall. Spectators can gather there while players keep a clear route back to their seats."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "BACK TO THE BOARD",
+        "items": [
+          "After the round",
+          "The pair resets the pieces to its first handover. The outgoing player describes the plan they had in mind. The incoming player shows the move they considered first.",
+          "The score sheet settles the move order. Each pair circles one position to replay at the open boards before the next round."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "AT THE LAST BELL",
+        "items": [
+          "Bring the signed score sheet to the arbiter. The team at the results desk checks it against the table slip before posting the final standings.",
+          "The winning pair replays one handover position on the demonstration board. Both players explain what they saw from the second chair."
+        ],
+        "role": "closing"
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "knight-relay-1"
+    },
+    {
+      "role": "feature",
+      "variant": "knight-relay-2"
+    },
+    {
+      "role": "feature",
+      "variant": "knight-relay-3"
+    },
+    {
+      "role": "feature",
+      "variant": "knight-relay-4"
+    },
+    {
+      "role": "feature",
+      "variant": "knight-relay-5"
+    },
+    {
+      "role": "feature",
+      "variant": "knight-relay-6"
+    },
+    {
+      "role": "feature",
+      "variant": "knight-relay-7"
+    },
+    {
+      "role": "feature",
+      "variant": "knight-relay-8"
+    },
+    {
+      "role": "feature",
+      "variant": "knight-relay-9"
+    },
+    {
+      "role": "feature",
+      "variant": "knight-relay-10"
+    },
+    {
+      "role": "feature",
+      "variant": "knight-relay-11"
+    },
+    {
+      "role": "closing",
+      "variant": "knight-relay-12"
+    }
+  ]
+}

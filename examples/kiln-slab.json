@@ -1,0 +1,56 @@
+{
+  "name": "Kiln Slab • Draft",
+  "description": "Demoted draft — rebuild to communication-first bar before pack.",
+  "brand": {
+    "colors": {
+      "bg": "#C9A882",
+      "surface": "#F3E6D4",
+      "surface_color": "#A8845E",
+      "ink": "#2A1A12",
+      "muted": "#5C4030",
+      "accent": "#8B3A22",
+      "line": "#8F6A48"
+    },
+    "fonts": {
+      "display": "Georgia",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "kiln-slab"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Kiln Slab.",
+        "items": [
+          "DRAFT",
+          "Not in paid pack.",
+          "Rebuild pending"
+        ]
+      },
+      {
+        "role": "closing",
+        "title": "Draft only.",
+        "items": [
+          "Do not ship.",
+          "Communication-first rebuild next."
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "kiln-draft-cover"
+    },
+    {
+      "role": "closing",
+      "variant": "kiln-draft-close"
+    }
+  ]
+}

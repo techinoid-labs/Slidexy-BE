@@ -1,0 +1,148 @@
+{
+  "id": "feature/turntable-liner-7",
+  "role": "feature",
+  "variant": "turntable-liner-7",
+  "family": "turntable",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "copy2": {
+      "kind": "text",
+      "from": "items2"
+    }
+  },
+  "fit": {
+    "copy0": {
+      "minFont": 27,
+      "maxFont": 27,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "title": {
+      "minFont": 67,
+      "maxFont": 67,
+      "lineClamp": 4,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 35,
+      "maxFont": 35,
+      "lineClamp": 7,
+      "shrinkMin": 1
+    },
+    "copy2": {
+      "minFont": 33,
+      "maxFont": 33,
+      "lineClamp": 7,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "copy0": {
+      "kind": "text"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "label-field",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 600,
+        "height": 900,
+        "tokenFill": "inner",
+        "z": 1
+      },
+      {
+        "id": "number",
+        "type": "text",
+        "x": 75,
+        "y": 85,
+        "width": 460,
+        "height": 85,
+        "fontSize": 27,
+        "slot": "copy0",
+        "tokenColor": "accent",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 75,
+        "y": 280,
+        "width": 465,
+        "height": 310,
+        "fontSize": 67,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "morphId": "title"
+      },
+      {
+        "id": "notes",
+        "type": "text",
+        "x": 685,
+        "y": 150,
+        "width": 790,
+        "height": 285,
+        "fontSize": 35,
+        "slot": "copy1",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "session",
+        "type": "text",
+        "x": 685,
+        "y": 495,
+        "width": 790,
+        "height": 280,
+        "fontSize": 33,
+        "slot": "copy2",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      }
+    ]
+  }
+}

@@ -9,7 +9,7 @@ const { renderDeckFromSpec } = require("../../engine/render");
 const { validateKitObject } = require("../../engine/validateSchema");
 const { renderSlidePng } = require("../slideSvg");
 const { exportDeckPptx } = require("../../services/templatePipeline/catalog");
-const { expandMotionScenes, FLAGSHIP_MOTION } = require("../../engine/motion");
+const { expandMotionScenes, FLAGSHIP_MOTION, PREMIUM_MOTION } = require("../../engine/motion");
 const {
   asBeat,
   asChrome,
@@ -35,6 +35,11 @@ export type MotionOpts = {
   morph?: boolean;
   ambient?: boolean;
   continuityFade?: boolean;
+  /** Soften PPT transition→entrance handoff when entrances are enabled. */
+  blendEntrances?: boolean;
+  /** Flagship default "none" = fade-led (no post-transition entrances). */
+  entrancesMode?: "none" | "newOnly" | "all";
+  maxEntrances?: number;
   cameraPan?: boolean;
   scatter?: boolean;
   defaultTransition?: "fade" | "push" | "wipe" | "morph" | "none";
@@ -54,6 +59,8 @@ export type Template = {
    * (continuity fade + ambient, Morph off) when omitted.
    */
   motion?: MotionOpts | false;
+  /** Atelier / paid pack — written onto deck.json for Flutter entitlement. */
+  premium?: boolean;
 };
 
 export const text = (
@@ -211,12 +218,200 @@ export const photo = (id: string, x: number, y: number, w: number, h: number, ex
   ...extras,
 });
 
-export function writeKit(role: string, variant: string, family: string, elements: El[]) {
+/** Hovering depth motif — soft-edge blur + heavy offset shadow (native PPTX softEdge + outerShdw). */
+export const floatingElement = (
+  id: string,
+  x: number,
+  y: number,
+  size: number,
+  extras: El = {}
+): El => {
+  const kind = extras.kind || "dot";
+  const fill = extras.fill || extras.tokenFill || "surface";
+  const blur = extras.blur != null ? Number(extras.blur) : 5;
+  const shadow = extras.shadow || { offsetY: 10, blur: 15, opacity: 0.3, color: "#000000" };
+  const w = extras.width != null ? Number(extras.width) : kind === "pill" ? size * 2.4 : size;
+  const h = extras.height != null ? Number(extras.height) : kind === "pill" ? size * 0.7 : size;
+  const { kind: _k, fill: _f, tokenFill: _t, blur: _b, shadow: _s, width: _w, height: _h, ...rest } = extras;
+  return {
+    ...rest,
+    id,
+    type: "shape",
+    shape: kind === "pill" ? "rect" : "ellipse",
+    x,
+    y,
+    width: w,
+    height: h,
+    tokenFill: fill,
+    radius: kind === "pill" ? Math.min(w, h) / 2 : 0,
+    blur,
+    shadow,
+    z: extras.z != null ? extras.z : 1000,
+    foreground: extras.foreground !== false,
+  };
+};
+
+/** Preset outer shadows for faux-3D lift (maps to PPTX a:outerShdw). */
+export const DEPTH_SHADOWS = {
+  soft: { offsetY: 10, blur: 22, opacity: 0.16, color: "#000000" },
+  lift: { offsetY: 18, blur: 36, opacity: 0.28, color: "#000000" },
+  float: { offsetY: 28, blur: 52, opacity: 0.36, color: "#000000" },
+  /** Hard cast onto a ground plane (stage / desk). */
+  cast: { offsetY: 28, blur: 12, opacity: 0.48, color: "#000000" },
+} as const;
+
+export type DepthShadowKey = keyof typeof DEPTH_SHADOWS;
+
+/**
+ * Soft elliptical contact shadow under a lifted plate.
+ * Prefer this over softEdge cream washes — opacity keeps PPTX from tinting the slide.
+ */
+export function contactShadow(
+  id: string,
+  x: number,
+  y: number,
+  w: number,
+  h: number,
+  opts: { z?: number; opacity?: number; fill?: string; blur?: number } = {}
+): El {
+  return asChrome(
+    rect(id, x, y, w, h, opts.fill || "ink", {
+      z: opts.z != null ? opts.z : 2.4,
+      opacity: opts.opacity != null ? opts.opacity : 0.18,
+      blur: opts.blur != null ? opts.blur : 28,
+      shape: "ellipse",
+      ignoreContrast: true,
+    })
+  );
+}
+
+export type DepthPlateOpts = {
+  z?: number;
+  opacity?: number;
+  radius?: number;
+  morphId?: string;
+  fill?: string;
+  /** Under-plate stack count (0–2). Each layer offsets down-right and softens. */
+  stack?: 0 | 1 | 2;
+  /** Shadow preset on the front plate. */
+  shadow?: DepthShadowKey | { offsetY: number; blur: number; opacity: number; color?: string };
+  /** Soft contact ellipse under the front plate. */
+  contact?: boolean;
+  /** Diagonal sheen gradient on front. */
+  sheen?: boolean;
+  /** Stroke on front plate. */
+  strokeColor?: string;
+  strokeWidth?: number;
+  strokeOpacity?: number;
+  /** Soft-edge blur on under plates only (not front). */
+  underBlur?: number;
+  beat?: boolean;
+  /** Entrance preset when this plate is a beat (e.g. fadeUp, zoomSettle). */
+  preset?: string;
+};
+
+/**
+ * Faux-3D plate: optional under-stack + contact shadow + front face + sheen.
+ * Use per-family fills/radii so decks stay unique — shared is the depth recipe only.
+ */
+export function depthPlate(
+  id: string,
+  x: number,
+  y: number,
+  w: number,
+  h: number,
+  opts: DepthPlateOpts = {}
+): El[] {
+  const z = opts.z != null ? opts.z : 3;
+  const opacity = opts.opacity != null ? opts.opacity : 0.92;
+  const radius = opts.radius != null ? opts.radius : 8;
+  const fill = opts.fill || "surface";
+  const stack = opts.stack != null ? opts.stack : 1;
+  const shadow =
+    typeof opts.shadow === "string"
+      ? DEPTH_SHADOWS[opts.shadow]
+      : opts.shadow || DEPTH_SHADOWS.lift;
+  const out: El[] = [];
+
+  for (let i = stack; i >= 1; i--) {
+    const dx = 10 * i;
+    const dy = 12 * i;
+    out.push(
+      asChrome(
+        rect(`${id}-under${i}`, x + dx, y + dy, w, h, fill, {
+          z: z - 0.2 * i,
+          opacity: Math.max(0.12, opacity * (0.35 - i * 0.08)),
+          radius,
+          blur: opts.underBlur != null ? opts.underBlur : 4 + i * 2,
+          ignoreContrast: true,
+        })
+      )
+    );
+  }
+
+  if (opts.contact !== false) {
+    out.push(
+      contactShadow(`${id}-cast`, x + w * 0.08, y + h - 8, w * 0.84, Math.max(28, h * 0.12), {
+        z: z - 0.05,
+        opacity: 0.2,
+        blur: 32,
+      })
+    );
+  }
+
+  const front = rect(id, x, y, w, h, fill, {
+    z,
+    opacity,
+    radius,
+    strokeColor: opts.strokeColor,
+    strokeWidth: opts.strokeWidth,
+    strokeOpacity: opts.strokeOpacity,
+    shadow: { ...shadow },
+    ignoreContrast: true,
+  });
+  out.push(
+    opts.morphId || opts.beat
+      ? asBeat(front, { morphId: opts.morphId || id, preset: opts.preset })
+      : asChrome(front)
+  );
+
+  if (opts.sheen !== false) {
+    out.push(
+      asChrome(
+        rect(`${id}-sheen`, x, y, w, h, fill, {
+          z: z + 0.15,
+          opacity: 1,
+          radius,
+          ignoreContrast: true,
+          gradient: {
+            angle: 130,
+            stops: [
+              { hex: "#FFFFFF", pos: 0, alpha: 0 },
+              { hex: "#FFFFFF", pos: 0.45, alpha: 0.04 },
+              { hex: "#FFFFFF", pos: 1, alpha: 0.1 },
+            ],
+          },
+        } as any)
+      )
+    );
+  }
+
+  return out;
+}
+
+export function writeKit(
+  role: string,
+  variant: string,
+  family: string,
+  elements: El[],
+  extras: { foregroundLayer?: El[] } = {}
+) {
   const slots: El = {};
   const fit: El = {};
   const pptxMapping: El = {};
   let requiresPhoto = false;
-  for (const e of elements) {
+  const all = [...elements, ...(extras.foregroundLayer || [])];
+  for (const e of all) {
     if (e.type === "text" && e.slot) {
       slots[e.slot] = e.slot.startsWith("copy")
         ? { kind: "text", from: "items" + Number(String(e.slot).replace("copy", "")) }
@@ -247,7 +442,12 @@ export function writeKit(role: string, variant: string, family: string, elements
     slots,
     fit,
     pptxMapping,
-    layout: { elements },
+    layout: {
+      elements,
+      ...(extras.foregroundLayer && extras.foregroundLayer.length
+        ? { foregroundLayer: extras.foregroundLayer }
+        : {}),
+    },
   };
   validateKitObject(kit);
   const dir = path.join(ROOT, "kit", role);
@@ -256,7 +456,7 @@ export function writeKit(role: string, variant: string, family: string, elements
   return { role, variant };
 }
 
-export async function renderTemplate(tpl: Template, publish: boolean) {
+export async function renderTemplate(tpl: Template, publish: boolean, resolveImage?: (query: string) => Promise<{path:string; pexelsId:string}>) {
   const selections = tpl.kits();
   const example = {
     name: tpl.name,
@@ -282,23 +482,24 @@ export async function renderTemplate(tpl: Template, publish: boolean) {
   const deck = await renderDeckFromSpec(example.spec, selections, {
     id: tpl.id,
     brand: tpl.brand,
-    photoResolver: async (key: string) => {
+    photoResolver: resolveImage || (async (key: string) => {
       const file = fs.readdirSync(PHOTOS).find((name) => name.startsWith(key));
       if (!file) throw Error("Missing photograph " + key + " for " + tpl.id);
       return { path: path.join(PHOTOS, file), pexelsId: "local:" + key };
-    },
+    }),
   });
   deck.id = tpl.id;
   deck.name = tpl.name;
   deck.description = tpl.description;
   deck.family = tpl.family;
+  if (tpl.premium) deck.premium = true;
 
-  // Creative flagships get continuity motion by default unless motion: false
+  // Premium → role-aware entrances (newOnly). Other flagships stay fade-led.
   const motionCfg =
     tpl.motion === false
       ? null
       : {
-          ...FLAGSHIP_MOTION,
+          ...(tpl.premium ? PREMIUM_MOTION : FLAGSHIP_MOTION),
           ...(tpl.motion || {}),
         };
   if (motionCfg) {
@@ -339,16 +540,22 @@ export async function renderTemplate(tpl: Template, publish: boolean) {
   }
   fs.writeFileSync(path.join(output, "preview.png"), sheet.toBuffer("image/png"));
 
-  const pptxTemp = path.join(output, tpl.id + ".export.pptx");
   const pptxPath = path.join(output, tpl.id + ".pptx");
+  // Unique temp name so a locked *.export.pptx (open in PowerPoint) cannot block regen.
+  const pptxTemp = path.join(output, tpl.id + ".export-" + Date.now() + ".pptx");
   await exportDeckPptx(deck, pptxTemp);
+  let pptxForPublish = pptxTemp;
   try {
     fs.copyFileSync(pptxTemp, pptxPath);
-    fs.unlinkSync(pptxTemp);
+    pptxForPublish = pptxPath;
+    try {
+      fs.unlinkSync(pptxTemp);
+    } catch {
+      /* ignore */
+    }
   } catch {
-    console.warn(tpl.id + ": kept export pptx (target locked)");
+    console.warn(tpl.id + ": wrote " + path.basename(pptxTemp) + " (target .pptx locked)");
   }
-  const pptxForPublish = fs.existsSync(pptxPath) ? pptxPath : pptxTemp;
   fs.writeFileSync(path.join(output, "deck.json"), JSON.stringify(deck, null, 2));
   console.log("PASS", tpl.id, "→", path.relative(ROOT, output));
   if (!publish) return;

@@ -9,26 +9,48 @@
 import * as fs from "fs";
 import * as path from "path";
 import { bakeTierBDeck } from "./lib/tierBBake";
+import { ATELIER_PACK_IDS, ATELIER_DISPLAY_NAMES, isAtelierPackId } from "./lib/atelierPack";
 
 const ROOT = path.join(__dirname, "..");
 const PUBLISHED = path.join(ROOT, "app-library", "published");
 const OUT = path.join(ROOT, "out");
 const PHOTOS_V1 = path.join(ROOT, "generated-templates", "photos", "engine-v1");
 
-/** Prefer these at the front of the mobile picker when present. */
+/** Prefer these at the front of the mobile picker when present. Atelier pack first. */
 const PINNED_ORDER = [
+  ...ATELIER_PACK_IDS,
+  // Nov 17–18 new decks (premium pitches, illustrated care, medical depth, atelier drafts)
+  "fuse-rack",
+  "plate-river",
+  "dose-dialogue",
+  "motion-garden",
+  "pulse-chamber",
+  "slide-atlas",
+  "bellwether",
+  "cacao-type",
+  "heel-turn",
+  "shell-index",
+  "carta-folio",
+  "ferrotype",
+  "soft-landing",
+  "night-tank",
+  "knight-relay",
+  "orris-hour",
+  "cueglass",
+  "lost-property-club",
+  "chorus-ledger",
+  "pleat-house",
+  "sumi-field",
+  "kiln-slab",
   "night-market",
   "idea-wall",
   "spike-rail",
-  "orbit-meridian",
   "wire-latitude",
   "darkroom-strip",
   "crate-press",
-  "peak-chain",
   "delta-flow",
   "facet-lattice",
   "hive-circuit",
-  "bracket-gate",
   "incipit-tab",
   "tide-form",
   "arcade-signal-dense",
@@ -36,7 +58,6 @@ const PINNED_ORDER = [
   "dossier-clip",
   "eclipse-vault",
   "vitrine-case",
-  "mezzanine-cube",
   "platepress-rack",
   "darkroom-proof",
   "hearth-folio",
@@ -47,21 +68,42 @@ const PINNED_ORDER = [
 const SKIP_IDS = new Set([
   "_manifest",
   "kit-v1-gaming-lounge-overview-mvt8jmat",
+  "reference-first-aid",
 ]);
 
 const DISPLAY_NAMES: Record<string, string> = {
+  ...ATELIER_DISPLAY_NAMES,
+  "fuse-rack": "FUSE RACK",
+  "plate-river": "PLATE RIVER",
+  "dose-dialogue": "DOSE DIALOGUE",
+  "motion-garden": "MOTION GARDEN",
+  "pulse-chamber": "PULSE CHAMBER",
+  "slide-atlas": "SLIDE ATLAS",
+  "bellwether": "BELLWETHER",
+  "cacao-type": "CACAO & TYPE",
+  "heel-turn": "HEEL TURN",
+  "shell-index": "SHELL INDEX",
+  "carta-folio": "CARTA FOLIO",
+  "ferrotype": "FERROTYPE",
+  "soft-landing": "SOFT LANDING",
+  "night-tank": "NIGHT TANK",
+  "knight-relay": "KNIGHT RELAY",
+  "orris-hour": "ORRIS HOUR",
+  "cueglass": "CUEGLASS",
+  "lost-property-club": "LOST PROPERTY CLUB",
+  "chorus-ledger": "CHORUS LEDGER",
+  "pleat-house": "PLEAT HOUSE",
+  "sumi-field": "SUMI FIELD",
+  "kiln-slab": "KILN SLAB",
   "night-market": "NIGHT MARKET",
   "idea-wall": "IDEA WALL",
   "spike-rail": "SPIKE RAIL",
-  "orbit-meridian": "ORBIT MERIDIAN",
   "wire-latitude": "WIRE LATITUDE",
   "darkroom-strip": "DARKROOM STRIP",
   "crate-press": "CRATE PRESS",
-  "peak-chain": "PEAK CHAIN",
   "delta-flow": "DELTA FLOW",
   "facet-lattice": "FACET LATTICE",
   "hive-circuit": "HIVE CIRCUIT",
-  "bracket-gate": "BRACKET GATE",
   "incipit-tab": "INCIPIT TAB",
   "tide-form": "TIDE FORM",
   "arcade-signal-dense": "ARCADE SIGNAL",
@@ -69,7 +111,6 @@ const DISPLAY_NAMES: Record<string, string> = {
   "dossier-clip": "DOSSIER CLIP",
   "eclipse-vault": "ECLIPSE VAULT",
   "vitrine-case": "VITRINE NEW",
-  "mezzanine-cube": "MEZZANINE CUBE",
   "platepress-rack": "PLATEPRESS",
   "darkroom-proof": "DARKROOM PROOF",
   "hearth-folio": "HEARTH FOLIO",
@@ -329,6 +370,12 @@ function installIntoFlutter(id: string) {
   buildPreviewSlides(deck, fid, chromePrefix, chromeDir);
   deck.description = deck.description || `${deck.name} — BE design system`;
   deck.enabled = true;
+  // Atelier pack only — drafts that share plate recipes must not stay locked.
+  if (isAtelierPackId(id)) {
+    deck.premium = true;
+  } else {
+    delete deck.premium;
+  }
 
   const decksDir = path.join(flutterRoot, "assets", "templates", "decks");
   fs.mkdirSync(decksDir, { recursive: true });
@@ -395,10 +442,12 @@ async function main() {
   const ok = ids.filter((id) => !failed.includes(id));
   // Rebuild picker order from the full ready set that exists in Flutter, so
   // --remaining still lands in the pinned+alpha ship order.
+  // Re-scan published after staging so --only newly staged decks enter the index.
   const flutterRoot = resolveFlutterRoot();
   const decksDir = path.join(flutterRoot, "assets", "templates", "decks");
+  const readyAfter = listReadyPublishedIds();
   const present = shipOrder(
-    ready.filter((id) => fs.existsSync(path.join(decksDir, flutterId(id) + ".json")))
+    readyAfter.filter((id) => fs.existsSync(path.join(decksDir, flutterId(id) + ".json")))
   );
   const version = rewriteIndex(present);
 

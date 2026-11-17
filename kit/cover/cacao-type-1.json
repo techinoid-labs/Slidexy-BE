@@ -1,0 +1,231 @@
+{
+  "id": "cover/cacao-type-1",
+  "role": "cover",
+  "variant": "cacao-type-1",
+  "family": "cacao-type",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "copy2": {
+      "kind": "text",
+      "from": "items2"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 153,
+      "maxFont": 153,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 139,
+      "maxFont": 139,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 37,
+      "maxFont": 37,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "copy2": {
+      "minFont": 24,
+      "maxFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "ground",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "mint",
+        "z": 0,
+        "keepFill": true
+      },
+      {
+        "id": "paper-fold",
+        "type": "shape",
+        "shape": "rect",
+        "x": 28,
+        "y": 263,
+        "width": 1540,
+        "height": 405,
+        "tokenFill": "pink",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "crease",
+        "type": "shape",
+        "shape": "rect",
+        "x": 28,
+        "y": 263,
+        "width": 1540,
+        "height": 9,
+        "tokenFill": "paper",
+        "z": 2,
+        "keepFill": true
+      },
+      {
+        "id": "object",
+        "type": "image",
+        "x": 300,
+        "y": 191,
+        "width": 1035,
+        "height": 690,
+        "z": 5,
+        "slot": "photo"
+      },
+      {
+        "id": "caption-ground",
+        "type": "shape",
+        "shape": "rect",
+        "x": 58,
+        "y": 710,
+        "width": 660,
+        "height": 171,
+        "tokenFill": "mint",
+        "z": 6,
+        "keepFill": true
+      },
+      {
+        "id": "footer-ground",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 832,
+        "width": 1600,
+        "height": 68,
+        "tokenFill": "mint",
+        "z": 6,
+        "keepFill": true
+      },
+      {
+        "id": "type-band",
+        "type": "shape",
+        "shape": "rect",
+        "x": 747,
+        "y": 608,
+        "width": 853,
+        "height": 217,
+        "tokenFill": "berry",
+        "z": 7,
+        "keepFill": true
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 66,
+        "y": 37,
+        "width": 1470,
+        "height": 218,
+        "fontSize": 153,
+        "slot": "title",
+        "tokenColor": "berry",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 3,
+        "textStyleRole": "display",
+        "align": "center",
+        "morphId": "title"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 785,
+        "y": 611,
+        "width": 729,
+        "height": 198,
+        "fontSize": 139,
+        "slot": "copy0",
+        "tokenColor": "paper",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8,
+        "textStyleRole": "display"
+      },
+      {
+        "id": "copy1",
+        "type": "text",
+        "x": 77,
+        "y": 727,
+        "width": 620,
+        "height": 91,
+        "fontSize": 37,
+        "slot": "copy1",
+        "tokenColor": "berry",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8
+      },
+      {
+        "id": "copy2",
+        "type": "text",
+        "x": 79,
+        "y": 840,
+        "width": 1370,
+        "height": 39,
+        "fontSize": 20,
+        "slot": "copy2",
+        "tokenColor": "berry",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 2,
+        "z": 8
+      }
+    ]
+  }
+}

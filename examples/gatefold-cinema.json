@@ -1,0 +1,219 @@
+{
+  "name": "Gatefold Cinema",
+  "description": "Before the First Train, a fictional short film treatment",
+  "brand": {
+    "colors": {
+      "bg": "#151B26",
+      "ink": "#FCEDDA",
+      "accent": "#FFC072",
+      "surface": "#344052",
+      "line": "#79838E",
+      "paper": "#FFFFFF",
+      "dark": "#10151C"
+    },
+    "fonts": {
+      "display": "Franklin Gothic Heavy",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "gatefold-cinema"
+    },
+    "slides": [
+      {
+        "title": "Before the first train",
+        "role": "cover",
+        "items": [
+          "GATEFOLD CINEMA / SHORT FILM TREATMENT",
+          "One platform. Two night workers. Eleven minutes before the first departure."
+        ],
+        "photoQuery": "empty train platform night"
+      },
+      {
+        "title": "The handover",
+        "role": "feature",
+        "items": [
+          "A station cleaner discovers a small cassette player under a bench. Its handwritten label carries the name of the signal operator upstairs. Bringing it back means leaving the platform halfway through the last cleaning round of the night.",
+          "The film follows that short walk in real time. As the first passengers arrive downstairs, an ordinary handover becomes the last private conversation the two workers will have before the shift changes."
+        ]
+      },
+      {
+        "title": "The empty platform",
+        "role": "feature",
+        "items": [
+          "The opening frame looks down the platform from bench height. The cleaner enters at its far end and crosses the length of the shot before the cassette comes into view. The audience learns the scale of the walk by watching it happen.",
+          "Keep the station name outside the frame. Paint, tile and the spacing of the lights give the location its identity."
+        ],
+        "photoQuery": "railway station platform empty dawn"
+      },
+      {
+        "title": "Three distances",
+        "role": "feature",
+        "items": [
+          "Wide",
+          "Hold the length of the platform as a worker moves through it. Footsteps announce the character before a face is visible.",
+          "Medium",
+          "At the stairwell, move close enough to read the hand around the player. The operator remains behind glass.",
+          "Close",
+          "Save the first close view for the play button. A thumb hovering over it gives the audience a beat to listen."
+        ]
+      },
+      {
+        "title": "Sound from the next room",
+        "role": "feature",
+        "items": [
+          "The tape carries a rehearsal recorded years earlier. We hear its first notes through the player's small speaker. The sound stays narrow and local while the station ventilation continues underneath it.",
+          "Let a train announcement briefly cover the melody. When the voice ends, the two workers are still listening and the audience hears the room again."
+        ],
+        "photoQuery": "cassette tape player close up"
+      },
+      {
+        "title": "Eleven minutes on screen",
+        "role": "feature",
+        "items": [
+          "The proposed cut spends four minutes on the platform, two in the stairwell, three in the booth and two back at the gate. The longest uninterrupted passage belongs to the approach, when the cleaner has time to change their mind.",
+          "The edit can borrow seconds between passages. Keep enough silence after the cassette starts for both people to react before cutting away."
+        ],
+        "chart": {
+          "type": "bar",
+          "labels": [
+            "Platform",
+            "Stairwell",
+            "Booth",
+            "Gate"
+          ],
+          "series": [
+            {
+              "name": "Screen minutes",
+              "values": [
+                4,
+                2,
+                3,
+                2
+              ]
+            }
+          ],
+          "colors": [
+            "#485D73"
+          ],
+          "showLegend": false
+        }
+      },
+      {
+        "title": "Two people on a landing",
+        "role": "feature",
+        "items": [
+          "Cleaner",
+          "Stops one step below the door and holds out the player. The hand stays inside the frame throughout the exchange.",
+          "Operator",
+          "Opens the door partway, recognises the label and steps back. The invitation is visible before either person speaks.",
+          "Camera",
+          "Waits on the landing until the operator moves. Crossing the threshold becomes a decision the audience can share."
+        ]
+      },
+      {
+        "title": "The glass booth",
+        "role": "feature",
+        "items": [
+          "The booth has its own pool of light. Through the glass the platform is still visible, now with a handful of waiting passengers. Keep that second space readable so the approaching departure remains present during the conversation.",
+          "A reflection can briefly place the cleaner beside the operator before both appear in the same physical frame."
+        ],
+        "photoQuery": "train station window reflection night"
+      },
+      {
+        "title": "A night of coverage",
+        "role": "feature",
+        "items": [
+          "Before access",
+          "Rehearse the walk and handover in a marked space. Record the time it takes to reach the door at the actor's natural pace.",
+          "On location",
+          "Capture the wide platform passage first. Move to the landing while the practical lights and ambient sound remain consistent.",
+          "After the take",
+          "Record room tone in each space, plus the player opening, the door closing and the train leaving the platform."
+        ]
+      },
+      {
+        "title": "The last cut",
+        "role": "feature",
+        "items": [
+          "The cleaner returns downstairs while the operator rewinds the tape. The first passengers pass between the camera and the bench, briefly hiding the spot where the player was found. Hold until the platform clears again.",
+          "End on the next ordinary task: the cleaner turns the bucket toward the exit. The audience has seen enough of the earlier route to recognise the change in pace."
+        ]
+      },
+      {
+        "title": "The screening print",
+        "role": "feature",
+        "items": [
+          "Picture",
+          "Check that the cleaner's hand remains legible against the dark coat and that reflections leave both faces visible.",
+          "Sound",
+          "Test the cassette on a small speaker as well as the screening system. The first note should be recognisable in both rooms.",
+          "Credits",
+          "Leave a short bed of station ambience under the first credit, then let the room fall quiet."
+        ]
+      },
+      {
+        "title": "First departure",
+        "role": "closing",
+        "items": [
+          "End of treatment",
+          "As the train pulls away, the music continues upstairs. The last thing we see is the empty bench in the first light of day."
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "gatefold-cinema-1"
+    },
+    {
+      "role": "feature",
+      "variant": "gatefold-cinema-2"
+    },
+    {
+      "role": "feature",
+      "variant": "gatefold-cinema-3"
+    },
+    {
+      "role": "feature",
+      "variant": "gatefold-cinema-4"
+    },
+    {
+      "role": "feature",
+      "variant": "gatefold-cinema-5"
+    },
+    {
+      "role": "feature",
+      "variant": "gatefold-cinema-6"
+    },
+    {
+      "role": "feature",
+      "variant": "gatefold-cinema-7"
+    },
+    {
+      "role": "feature",
+      "variant": "gatefold-cinema-8"
+    },
+    {
+      "role": "feature",
+      "variant": "gatefold-cinema-9"
+    },
+    {
+      "role": "feature",
+      "variant": "gatefold-cinema-10"
+    },
+    {
+      "role": "feature",
+      "variant": "gatefold-cinema-11"
+    },
+    {
+      "role": "closing",
+      "variant": "gatefold-cinema-12"
+    }
+  ]
+}

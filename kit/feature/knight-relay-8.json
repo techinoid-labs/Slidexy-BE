@@ -1,0 +1,236 @@
+{
+  "id": "feature/knight-relay-8",
+  "role": "feature",
+  "variant": "knight-relay-8",
+  "family": "knight-relay",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "copy2": {
+      "kind": "text",
+      "from": "items2"
+    },
+    "copy3": {
+      "kind": "text",
+      "from": "items3"
+    },
+    "copy4": {
+      "kind": "text",
+      "from": "items4"
+    },
+    "copy5": {
+      "kind": "text",
+      "from": "items5"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 99,
+      "maxFont": 99,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 158,
+      "maxFont": 158,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 32,
+      "maxFont": 32,
+      "lineClamp": 6,
+      "shrinkMin": 1
+    },
+    "copy2": {
+      "minFont": 158,
+      "maxFont": 158,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy3": {
+      "minFont": 32,
+      "maxFont": 32,
+      "lineClamp": 6,
+      "shrinkMin": 1
+    },
+    "copy4": {
+      "minFont": 158,
+      "maxFont": 158,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy5": {
+      "minFont": 32,
+      "maxFont": 32,
+      "lineClamp": 6,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    },
+    "copy3": {
+      "kind": "text"
+    },
+    "copy4": {
+      "kind": "text"
+    },
+    "copy5": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "ground",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "ink",
+        "z": 0,
+        "keepFill": true
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 63,
+        "y": 58,
+        "width": 1470,
+        "height": 157,
+        "fontSize": 99,
+        "slot": "title",
+        "tokenColor": "paper",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "morphId": "title"
+      },
+      {
+        "id": "copy-0",
+        "type": "text",
+        "x": 72,
+        "y": 235,
+        "width": 450,
+        "height": 236,
+        "fontSize": 158,
+        "slot": "copy0",
+        "tokenColor": "lime",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "copy-1",
+        "type": "text",
+        "x": 72,
+        "y": 531,
+        "width": 420,
+        "height": 233,
+        "fontSize": 32,
+        "slot": "copy1",
+        "tokenColor": "paper",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "copy-2",
+        "type": "text",
+        "x": 562,
+        "y": 235,
+        "width": 450,
+        "height": 236,
+        "fontSize": 158,
+        "slot": "copy2",
+        "tokenColor": "lime",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "copy-3",
+        "type": "text",
+        "x": 562,
+        "y": 531,
+        "width": 420,
+        "height": 233,
+        "fontSize": 32,
+        "slot": "copy3",
+        "tokenColor": "paper",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "copy-4",
+        "type": "text",
+        "x": 1052,
+        "y": 235,
+        "width": 450,
+        "height": 236,
+        "fontSize": 158,
+        "slot": "copy4",
+        "tokenColor": "lime",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "copy-5",
+        "type": "text",
+        "x": 1052,
+        "y": 531,
+        "width": 420,
+        "height": 233,
+        "fontSize": 32,
+        "slot": "copy5",
+        "tokenColor": "paper",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      }
+    ]
+  }
+}

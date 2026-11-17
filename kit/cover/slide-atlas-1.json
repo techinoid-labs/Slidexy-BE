@@ -1,0 +1,230 @@
+{
+  "id": "cover/slide-atlas-1",
+  "role": "cover",
+  "variant": "slide-atlas-1",
+  "family": "slide-atlas",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "copy2": {
+      "kind": "text",
+      "from": "items2"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 159,
+      "maxFont": 159,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 143,
+      "maxFont": 143,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 34,
+      "maxFont": 34,
+      "lineClamp": 3,
+      "shrinkMin": 1
+    },
+    "copy2": {
+      "minFont": 24,
+      "maxFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "ground",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "lavender",
+        "z": 0,
+        "keepFill": true
+      },
+      {
+        "id": "rail-top",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 278,
+        "width": 1600,
+        "height": 2,
+        "tokenFill": "paper",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "rail-bottom",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 804,
+        "width": 1600,
+        "height": 2,
+        "tokenFill": "paper",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "object",
+        "type": "image",
+        "x": 534,
+        "y": 191,
+        "width": 972,
+        "height": 648,
+        "z": 5,
+        "slot": "photo"
+      },
+      {
+        "id": "label-ground",
+        "type": "shape",
+        "shape": "rect",
+        "x": 62,
+        "y": 302,
+        "width": 444,
+        "height": 198,
+        "tokenFill": "lavender",
+        "z": 6,
+        "keepFill": true
+      },
+      {
+        "id": "title-ground",
+        "type": "shape",
+        "shape": "rect",
+        "x": 60,
+        "y": 562,
+        "width": 472,
+        "height": 228,
+        "tokenFill": "lavender",
+        "z": 6,
+        "keepFill": true
+      },
+      {
+        "id": "footer",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 817,
+        "width": 1600,
+        "height": 83,
+        "tokenFill": "lavender",
+        "z": 6,
+        "keepFill": true
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 73,
+        "y": 64,
+        "width": 1436,
+        "height": 226,
+        "fontSize": 159,
+        "slot": "title",
+        "tokenColor": "purple",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 3,
+        "textStyleRole": "display",
+        "morphId": "title"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 70,
+        "y": 569,
+        "width": 465,
+        "height": 229,
+        "fontSize": 143,
+        "slot": "copy0",
+        "tokenColor": "purple",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8,
+        "textStyleRole": "display"
+      },
+      {
+        "id": "copy1",
+        "type": "text",
+        "x": 91,
+        "y": 313,
+        "width": 420,
+        "height": 156,
+        "fontSize": 34,
+        "slot": "copy1",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8
+      },
+      {
+        "id": "copy2",
+        "type": "text",
+        "x": 91,
+        "y": 832,
+        "width": 1400,
+        "height": 48,
+        "fontSize": 23,
+        "slot": "copy2",
+        "tokenColor": "accent",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8
+      }
+    ]
+  }
+}

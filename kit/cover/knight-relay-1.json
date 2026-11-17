@@ -1,0 +1,128 @@
+{
+  "id": "cover/knight-relay-1",
+  "role": "cover",
+  "variant": "knight-relay-1",
+  "family": "knight-relay",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    }
+  },
+  "fit": {
+    "copy0": {
+      "minFont": 29,
+      "maxFont": 29,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "title": {
+      "minFont": 189,
+      "maxFont": 189,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 32,
+      "maxFont": 32,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "photograph",
+        "type": "image",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "z": 2,
+        "slot": "photo",
+        "morphId": "hero"
+      },
+      {
+        "id": "copy-0",
+        "type": "text",
+        "x": 65,
+        "y": 64,
+        "width": 825,
+        "height": 58,
+        "fontSize": 29,
+        "slot": "copy0",
+        "tokenColor": "paper",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 52,
+        "y": 150,
+        "width": 848,
+        "height": 414,
+        "fontSize": 189,
+        "slot": "title",
+        "tokenColor": "lime",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 0.96,
+        "letterSpacing": 0,
+        "z": 4,
+        "morphId": "title"
+      },
+      {
+        "id": "copy-1",
+        "type": "text",
+        "x": 67,
+        "y": 593,
+        "width": 820,
+        "height": 84,
+        "fontSize": 32,
+        "slot": "copy1",
+        "tokenColor": "paper",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      }
+    ]
+  }
+}

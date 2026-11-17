@@ -17,6 +17,19 @@ export type MotionConfig = {
    * Persistent chrome (same morphId / same box) must stay put across slides.
    */
   continuityFade?: boolean;
+  /**
+   * Soften the PPT handoff when entrances are on (transition always finishes first).
+   */
+  blendEntrances?: boolean;
+  /**
+   * Entrance policy:
+   * - "none" — fade-led (flagship default); dissolve carries the beat
+   * - "newOnly" — animate only new morphIds (continuity)
+   * - "all" — animate eligible beats every slide
+   */
+  entrancesMode?: "none" | "newOnly" | "all";
+  /** Cap entrance hosts per slide (title + plates). Connected premium uses ~3. */
+  maxEntrances?: number;
   /** Faux-3D: background scale between cover keyframes (1.2–1.3). */
   parallaxScale?: number;
   /** Foreground title shift as fraction of slide width (default 0.05). */
@@ -289,19 +302,47 @@ function pickRoleTransition(role: string, cfg: MotionConfig): string {
 function pickRoleDurationMs(role: string, cfg: MotionConfig): number {
   const r = String(role || "").toLowerCase();
   const base = cfg.durationMs != null ? Number(cfg.durationMs) : 800;
+  const fadeLed = cfg.entrancesMode === "none";
   if (cfg.continuityFade !== false) {
-    // Match PowerPoint spd="slow" feel (~1.6–2.0s)
-    if (r === "cover" || r === "quote" || r === "testimonial" || r === "closing" || r === "close") {
-      return Math.max(base, 1800);
+    // Fade-led: snappy dissolve like Moodboard/EPK (spd=fast).
+    // Premium newOnly+blend: short dissolve then soft role entrances (not a long wait).
+    if (fadeLed) {
+      if (r === "cover" || r === "quote" || r === "testimonial" || r === "closing" || r === "close") {
+        return Math.max(base, 700);
+      }
+      if (r === "problem" || r === "solution" || r === "comparison") return Math.max(base, 650);
+      return Math.max(base, 600);
     }
-    if (r === "problem" || r === "solution" || r === "comparison") return Math.max(base, 900);
-    return Math.max(base, 1600);
+    const blend = cfg.blendEntrances !== false;
+    // Connected recipe: honor a short author durationMs (≤500) — long floors
+    // were forcing ~900ms fades that make entrances feel like a second act.
+    if (blend && base <= 500) {
+      if (r === "problem" || r === "solution" || r === "comparison") return Math.max(base, 400);
+      return base;
+    }
+    if (r === "cover" || r === "quote" || r === "testimonial" || r === "closing" || r === "close") {
+      return Math.max(base, blend ? 900 : 1800);
+    }
+    if (r === "problem" || r === "solution" || r === "comparison") return Math.max(base, 750);
+    return Math.max(base, blend ? 750 : 1600);
   }
   if (r === "cover" || r === "quote" || r === "testimonial" || r === "closing" || r === "close") {
     return Math.max(base, 900);
   }
   if (r === "problem" || r === "solution" || r === "comparison") return Math.max(base, 750);
   return base || 800;
+}
+
+function resolveEntrancesMode(cfg: MotionConfig, layout?: any): "none" | "newOnly" | "all" {
+  if (cfg.entrancesMode === "none" || cfg.entrancesMode === "newOnly" || cfg.entrancesMode === "all") {
+    return cfg.entrancesMode;
+  }
+  if (layout && layout.motion && layout.motion.entrancesMode) {
+    const m = String(layout.motion.entrancesMode);
+    if (m === "none" || m === "newOnly" || m === "all") return m;
+  }
+  // Flagship cfg usually sets entrancesMode explicitly; bare continuity → fade-led.
+  return cfg.continuityFade !== false ? "none" : "all";
 }
 
 /** Stamp role transition without clobbering an author lock or ambient assignment. */
@@ -319,19 +360,31 @@ function stampFlagshipSlideMotion(layout: any, cfg: MotionConfig) {
     transition,
     durationMs,
     continuityFade: cfg.continuityFade !== false,
-    entrancesMode: cfg.continuityFade !== false ? "newOnly" : layout.motion?.entrancesMode,
+    blendEntrances: cfg.blendEntrances !== false,
+    entrancesMode: resolveEntrancesMode(cfg, layout),
+    ...(cfg.maxEntrances != null ? { maxEntrances: cfg.maxEntrances } : {}),
   };
 }
 
-/** Shared flagship defaults — Morph retired; Landscapes-style continuity fade on. */
+/** Shared flagship defaults — Morph retired; fade-led continuity (no post-fade entrances). */
 export const FLAGSHIP_MOTION: MotionConfig = {
   morph: false,
   ambient: true,
   continuityFade: true,
+  entrancesMode: "none",
+  blendEntrances: true,
   cameraPan: false,
   scatter: false,
   defaultTransition: "fade",
-  durationMs: 1600,
+  durationMs: 600,
+};
+
+/** Premium / Atelier — short fade + few soft settles (connected phrase). */
+export const PREMIUM_MOTION: MotionConfig = {
+  ...FLAGSHIP_MOTION,
+  entrancesMode: "newOnly",
+  durationMs: 400,
+  maxEntrances: 3,
 };
 
 module.exports = {
@@ -346,4 +399,5 @@ module.exports = {
   pickRoleDurationMs,
   stampFlagshipSlideMotion,
   FLAGSHIP_MOTION,
+  PREMIUM_MOTION,
 };

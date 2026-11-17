@@ -206,7 +206,7 @@ function paintGlyphRun(ctx, font, text, x, yTop, size, color, gap, hollow) {
 }
 
 function depthShade(color, stepIndex) {
-  // Keep extrusion readable on near-black ink: step toward pure black, not muddy midtones.
+  // Keep extrusion readable on near-black ink: solid black stack under a slightly lighter face.
   const raw = String(color || "#000000").replace("#", "");
   if (!/^[0-9a-fA-F]{6}$/.test(raw)) return "#000000";
   const n = parseInt(raw, 16);
@@ -224,12 +224,20 @@ function paintGlyphs(ctx, family, text, x, yTop, size, color, spacing, treatment
   const gap = Number(spacing) || 0;
   const hollow = treatment === "outline";
   if (treatment === "offset-3d") {
-    const steps = Math.max(3, Math.min(8, Number(style && style.offsetSteps) || 6));
-    const dx = Number(style && style.offsetX) || 6;
-    const dy = Number(style && style.offsetY) || 6;
-    // Back → front: every layer shares the same origin as the face (no per-layer recenter).
+    // Poster block-shadow: few solid steps. Also stroke the face→depth diagonal so
+    // letter diagonals don't show hollow stair gaps between discrete glyph copies.
+    const steps = Math.max(3, Math.min(18, Number(style && style.offsetSteps) || 4));
+    const dx = Number(style && style.offsetX) || 5;
+    const dy = Number(style && style.offsetY) || 5;
+    const shade = depthShade(color, steps);
     for (let i = steps; i >= 1; i--) {
-      paintGlyphRun(ctx, font, text, x + dx * i, yTop + dy * i, size, depthShade(color, i), gap, false);
+      paintGlyphRun(ctx, font, text, x + dx * i, yTop + dy * i, size, shade, gap, false);
+    }
+    // Fill the extrusion volume by overdrawing along the offset axis at 1px.
+    const total = Math.max(Math.abs(dx * steps), Math.abs(dy * steps));
+    for (let d = total; d >= 1; d--) {
+      const t = d / total;
+      paintGlyphRun(ctx, font, text, x + dx * steps * t, yTop + dy * steps * t, size, shade, gap, false);
     }
     paintGlyphRun(ctx, font, text, x, yTop, size, color, gap, false);
     return true;
@@ -1045,6 +1053,77 @@ function linearFill(ctx, element, gradient) {
   return paint;
 }
 
+/** node-canvas accepts ctx.filter assignment but does not rasterize CSS blur. */
+let _canvasFilterWorks = null;
+function canvasFilterWorks(ctx) {
+  if (_canvasFilterWorks != null) return _canvasFilterWorks;
+  try {
+    if (!ctx || typeof ctx.filter === "undefined") {
+      _canvasFilterWorks = false;
+      return false;
+    }
+    // Probe once: assignment alone is not proof (node-canvas stores the string).
+    _canvasFilterWorks = false;
+  } catch (_) {
+    _canvasFilterWorks = false;
+  }
+  return _canvasFilterWorks;
+}
+
+/**
+ * Soft luminous ellipse via radial falloff (cinematic glow / dust / spotlight).
+ * Used when blur is requested but CSS filter blur is unavailable.
+ */
+function softRadialEllipse(ctx, element, fillHex, alpha, blurPx) {
+  const cx = element.x + element.width / 2;
+  const cy = element.y + element.height / 2;
+  const rx = Math.max(1, element.width / 2);
+  const ry = Math.max(1, element.height / 2);
+  const soft = Math.max(1, Number(blurPx) || 1);
+  const expandX = Math.min(soft * 1.35, rx * 1.1);
+  const expandY = Math.min(soft * 1.35, ry * 1.1);
+  const a = alpha == null ? 1 : Number(alpha);
+  const inner = Math.max(0.04, 1 - soft / Math.max(rx, ry, soft));
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.scale(rx + expandX, ry + expandY);
+  const g = ctx.createRadialGradient(0, 0, inner, 0, 0, 1);
+  g.addColorStop(0, rgba(fillHex, a));
+  g.addColorStop(0.4, rgba(fillHex, a * 0.72));
+  g.addColorStop(0.72, rgba(fillHex, a * 0.22));
+  g.addColorStop(1, rgba(fillHex, 0));
+  ctx.fillStyle = g;
+  ctx.beginPath();
+  ctx.arc(0, 0, 1, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
+}
+
+function radialFill(ctx, element, gradient) {
+  const cxRatio = gradient.cx != null ? Number(gradient.cx) : 0.5;
+  const cyRatio = gradient.cy != null ? Number(gradient.cy) : 0.5;
+  const cx = element.x + element.width * cxRatio;
+  const cy = element.y + element.height * cyRatio;
+  const rRatio = gradient.r != null ? Number(gradient.r) : 0.75;
+  const radius = Math.max(element.width, element.height) * rRatio;
+  const paint = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(1, radius));
+  let last = -1;
+  (gradient.stops || []).slice().sort((a, b) => Number(a.pos) - Number(b.pos)).forEach((stop) => {
+    let pos = Number(stop.pos);
+    if (!Number.isFinite(pos)) pos = 0;
+    if (pos <= last) pos = Math.min(1, last + 0.0001);
+    last = pos;
+    paint.addColorStop(Math.max(0, Math.min(1, pos)), rgba(stop.hex, stop.alpha));
+  });
+  return paint;
+}
+
+function shapeGradientFill(ctx, element, gradient) {
+  if (!gradient || !gradient.stops) return null;
+  if (String(gradient.type || "").toLowerCase() === "radial") return radialFill(ctx, element, gradient);
+  return linearFill(ctx, element, gradient);
+}
+
 function paintIllustration(ctx, element, body, warn, where, enabled, tokens) {
   ctx.save();
   if (element.opacity != null) ctx.globalAlpha *= Number(element.opacity);
@@ -1112,7 +1191,7 @@ function paintText(ctx, element, slide, warn, where, wrap, tokens) {
   }
   const pad =
     baseTreatment === "offset-3d"
-      ? Math.max(18, (Number(element.textStyle.offsetSteps) || 6) * Math.max(Number(element.textStyle.offsetX) || 6, Number(element.textStyle.offsetY) || 6))
+      ? Math.max(18, (Number(element.textStyle.offsetSteps) || 12) * Math.max(Number(element.textStyle.offsetX) || 2, Number(element.textStyle.offsetY) || 2))
       : baseTreatment === "long-shadow"
         ? Math.max(24, Number(element.textStyle.shadowLength) || 48)
         : 0;
@@ -1164,9 +1243,9 @@ function paintText(ctx, element, slide, warn, where, wrap, tokens) {
         } else if (treatment === "offset-3d" || treatment === "long-shadow") {
           const steps = treatment === "long-shadow"
             ? Math.ceil((Number(piece.style.shadowLength) || 48) / (Number(piece.style.shadowStep) || 3))
-            : Math.max(3, Number(piece.style.offsetSteps) || 6);
-          const dx = treatment === "long-shadow" ? 0.7 * (Number(piece.style.shadowStep) || 3) : (Number(piece.style.offsetX) || 6);
-          const dy = treatment === "long-shadow" ? 0.7 * (Number(piece.style.shadowStep) || 3) : (Number(piece.style.offsetY) || 6);
+            : Math.max(3, Math.min(18, Number(piece.style.offsetSteps) || 12));
+          const dx = treatment === "long-shadow" ? 0.7 * (Number(piece.style.shadowStep) || 3) : (Number(piece.style.offsetX) || 2);
+          const dy = treatment === "long-shadow" ? 0.7 * (Number(piece.style.shadowStep) || 3) : (Number(piece.style.offsetY) || 2);
           // Layers share the same piece origin (aligned with face); do not re-center per layer.
           for (let i = steps; i >= 1; i--) {
             ctx.fillStyle = depthShade(piece.style.color, i);
@@ -1531,7 +1610,15 @@ function paintShape(ctx, element, tokens) {
   }
   const params = shape.decorParams || {};
   ctx.save();
-  if (element.opacity != null) ctx.globalAlpha *= Number(element.opacity);
+  const parentAlpha = ctx.globalAlpha;
+  if (element.opacity != null) ctx.globalAlpha = parentAlpha * Number(element.opacity);
+  const softBlur = Number(element.blur != null ? element.blur : shape.blur) || 0;
+  const useCssBlur = softBlur > 0 && canvasFilterWorks(ctx);
+  if (useCssBlur) {
+    ctx.filter = "blur(" + softBlur + "px)";
+  }
+  const isEllipse = shape.kind === "circle" || shape.kind === "ellipse";
+  const useSoftRadial = softBlur > 0 && !useCssBlur && isEllipse && fill && fill !== "none" && fill !== "transparent" && !(shape.gradient && shape.gradient.stops);
   if (fill === "noise") {
     paintNoise(ctx, element);
     ctx.restore();
@@ -1617,35 +1704,44 @@ function paintShape(ctx, element, tokens) {
     ctx.restore();
     return;
   }
-  if (shape.shadow && typeof shape.shadow === "object") {
-    const sh = shape.shadow;
+  const shadowSpec = shape.shadow || element.shadow;
+  if (shadowSpec && typeof shadowSpec === "object" && !useSoftRadial) {
+    const sh = shadowSpec;
     ctx.save();
+    if (useCssBlur) ctx.filter = "blur(" + softBlur + "px)";
     ctx.shadowColor = String(sh.color || "#0F172A");
     ctx.shadowBlur = Number(sh.blur) || 24;
-    ctx.shadowOffsetY = Number(sh.offset) || 8;
+    ctx.shadowOffsetY = sh.offsetY != null ? Number(sh.offsetY) : Number(sh.offset) || 8;
+    ctx.shadowOffsetX = Number(sh.offsetX) || 0;
     ctx.globalAlpha *= sh.opacity != null ? Number(sh.opacity) : 0.12;
     ctx.fillStyle = fill !== "none" ? fill : "#FFFFFF";
-    tracePreset(ctx, element, { kind: shape.kind === "circle" || shape.kind === "ellipse" ? "ellipse" : "rect", cornerRadius: radius });
+    tracePreset(ctx, element, { kind: isEllipse ? "ellipse" : "rect", cornerRadius: radius });
     ctx.fill();
     ctx.restore();
   }
-  tracePreset(ctx, element, {
-    kind: shape.kind === "circle" || shape.kind === "ellipse" ? "ellipse" : "rect",
-    cornerRadius: radius,
-  });
-  if (fill && fill !== "none" && fill !== "transparent") {
-    ctx.fillStyle = shape.gradient && shape.gradient.stops ? linearFill(ctx, element, shape.gradient) : fill;
-    ctx.fill();
+  if (useSoftRadial) {
+    // Soft glow already encodes element opacity in the radial alphas.
+    softRadialEllipse(ctx, element, fill, 1, softBlur);
+  } else {
+    tracePreset(ctx, element, {
+      kind: isEllipse ? "ellipse" : "rect",
+      cornerRadius: radius,
+    });
+    if (fill && fill !== "none" && fill !== "transparent") {
+      ctx.fillStyle =
+        shape.gradient && shape.gradient.stops ? shapeGradientFill(ctx, element, shape.gradient) : fill;
+      ctx.fill();
+    }
   }
   const stroke = token(shape.stroke || shape.strokeColor, tokens);
-  if (stroke && stroke !== "none" && shape.strokeWidth) {
-    const previous = ctx.globalAlpha;
-    if (shape.strokeOpacity != null) ctx.globalAlpha = previous * Number(shape.strokeOpacity);
+  if (stroke && stroke !== "none" && shape.strokeWidth && !useSoftRadial) {
+    // Rim light stays luminous even when fill is translucent.
+    if (shape.strokeOpacity != null) ctx.globalAlpha = parentAlpha * Number(shape.strokeOpacity);
     ctx.strokeStyle = stroke;
     ctx.lineWidth = Number(shape.strokeWidth);
     ctx.stroke();
-    ctx.globalAlpha = previous;
   }
+  ctx.filter = "none";
   ctx.restore();
 }
 

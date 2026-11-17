@@ -1,0 +1,154 @@
+{
+  "name": "Ferrotype • Wet-plate pitch",
+  "description": "Heritage photography system — photo-led covers, heavy type, stroked content boards.",
+  "brand": {
+    "lighting": "flat",
+    "colors": {
+      "bg": "#E6E1D6",
+      "surface": "#F4F0E7",
+      "surface_color": "#161412",
+      "ink": "#161412",
+      "muted": "#5E574C",
+      "accent": "#8B7355",
+      "line": "#C2B8A8"
+    },
+    "fonts": {
+      "display": "Georgia",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "ferrotype"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Ferrotype.",
+        "items": [
+          "WET-PLATE SERIES",
+          "Pitch for a quieter kind of portrait.",
+          "Presented by Atelier"
+        ],
+        "photoQuery": "ferrotype-cover"
+      },
+      {
+        "role": "feature",
+        "title": "Today’s sitting",
+        "items": [
+          "01 The brief",
+          "02 Four baths",
+          "03 Studio craft",
+          "04 Field record",
+          "05 Hold still",
+          "AGENDA"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "The brief",
+        "items": [
+          "A portrait is not a collage. One plate, one light, one face that does not blink.",
+          "We coat lacquer black so silver has somewhere to land — then we wait longer than feels polite.",
+          "FERROTYPE"
+        ],
+        "photoQuery": "ferrotype-studio"
+      },
+      {
+        "role": "feature",
+        "title": "What we fix",
+        "items": [
+          "PROBLEM 01",
+          "Too many images. None of them hold still long enough to mean anything.",
+          "PROBLEM 02",
+          "Light that flatters everyone and remembers no one.",
+          "PROBLEM 03",
+          "Sessions that rush the chemistry — and lose the face."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Four baths",
+        "items": [
+          "01",
+          "Coat",
+          "Pour the plate. Black becomes the stage.",
+          "02",
+          "Sensitize",
+          "Silver waits in the dark for light.",
+          "03",
+          "Expose",
+          "One sitting. No second take.",
+          "04",
+          "Fix",
+          "Wash until the image stops running."
+        ]
+      },
+      {
+        "role": "quote",
+        "title": "Stillness is the point.",
+        "items": [
+          "If they smile too soon, the plate forgets them.",
+          "— Studio note"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Field record",
+        "items": [
+          "PLATE 07",
+          "Silver settling into lacquer — tray still warm.",
+          "North light · Tray 2",
+          "07 / 12"
+        ],
+        "photoQuery": "ferrotype-field"
+      },
+      {
+        "role": "closing",
+        "title": "Hold still.",
+        "items": [
+          "Coat. Expose. Fix.",
+          "Open the shutter",
+          "ATELIER · FERROTYPE"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "ferro-cover"
+    },
+    {
+      "role": "feature",
+      "variant": "ferro-agenda"
+    },
+    {
+      "role": "feature",
+      "variant": "ferro-brief"
+    },
+    {
+      "role": "feature",
+      "variant": "ferro-problems"
+    },
+    {
+      "role": "feature",
+      "variant": "ferro-baths"
+    },
+    {
+      "role": "quote",
+      "variant": "ferro-quote"
+    },
+    {
+      "role": "feature",
+      "variant": "ferro-field"
+    },
+    {
+      "role": "closing",
+      "variant": "ferro-close"
+    }
+  ]
+}

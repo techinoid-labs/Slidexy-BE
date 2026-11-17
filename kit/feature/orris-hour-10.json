@@ -1,0 +1,209 @@
+{
+  "id": "feature/orris-hour-10",
+  "role": "feature",
+  "variant": "orris-hour-10",
+  "family": "orris-hour",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "copy2": {
+      "kind": "text",
+      "from": "items2"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 57,
+      "maxFont": 57,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 53,
+      "maxFont": 53,
+      "lineClamp": 3,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 30,
+      "maxFont": 30,
+      "lineClamp": 5,
+      "shrinkMin": 1
+    },
+    "copy2": {
+      "minFont": 30,
+      "maxFont": 30,
+      "lineClamp": 5,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "ground",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "rose",
+        "z": 0,
+        "keepFill": true
+      },
+      {
+        "id": "panel-front",
+        "type": "shape",
+        "shape": "rect",
+        "x": 112,
+        "y": 264,
+        "width": 275,
+        "height": 365,
+        "tokenFill": "paper",
+        "z": 2,
+        "keepFill": true
+      },
+      {
+        "id": "panel-side",
+        "type": "shape",
+        "shape": "rect",
+        "x": 394,
+        "y": 264,
+        "width": 108,
+        "height": 365,
+        "tokenFill": "violet",
+        "z": 2,
+        "keepFill": true
+      },
+      {
+        "id": "panel-back",
+        "type": "shape",
+        "shape": "rect",
+        "x": 509,
+        "y": 264,
+        "width": 275,
+        "height": 365,
+        "tokenFill": "paper",
+        "z": 2,
+        "keepFill": true
+      },
+      {
+        "id": "flap",
+        "type": "shape",
+        "shape": "rect",
+        "x": 126,
+        "y": 182,
+        "width": 248,
+        "height": 75,
+        "tokenFill": "ink",
+        "z": 2,
+        "keepFill": true
+      },
+      {
+        "id": "tuck",
+        "type": "shape",
+        "shape": "rect",
+        "x": 520,
+        "y": 636,
+        "width": 246,
+        "height": 67,
+        "tokenFill": "paper",
+        "z": 2,
+        "keepFill": true
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 139,
+        "y": 356,
+        "width": 235,
+        "height": 149,
+        "fontSize": 57,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "morphId": "title"
+      },
+      {
+        "id": "copy-0",
+        "type": "text",
+        "x": 856,
+        "y": 126,
+        "width": 620,
+        "height": 215,
+        "fontSize": 53,
+        "slot": "copy0",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "copy-1",
+        "type": "text",
+        "x": 862,
+        "y": 395,
+        "width": 625,
+        "height": 205,
+        "fontSize": 30,
+        "slot": "copy1",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "copy-2",
+        "type": "text",
+        "x": 862,
+        "y": 646,
+        "width": 625,
+        "height": 183,
+        "fontSize": 30,
+        "slot": "copy2",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      }
+    ]
+  }
+}

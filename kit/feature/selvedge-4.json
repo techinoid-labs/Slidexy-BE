@@ -1,0 +1,1408 @@
+{
+  "id": "feature/selvedge-4",
+  "role": "feature",
+  "variant": "selvedge-4",
+  "family": "selvedge",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "copy2": {
+      "kind": "text",
+      "from": "items2"
+    },
+    "copy3": {
+      "kind": "text",
+      "from": "items3"
+    },
+    "copy4": {
+      "kind": "text",
+      "from": "items4"
+    },
+    "copy5": {
+      "kind": "text",
+      "from": "items5"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 72,
+      "maxFont": 72,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 38,
+      "maxFont": 38,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 29,
+      "maxFont": 29,
+      "lineClamp": 6,
+      "shrinkMin": 1
+    },
+    "copy2": {
+      "minFont": 38,
+      "maxFont": 38,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy3": {
+      "minFont": 29,
+      "maxFont": 29,
+      "lineClamp": 6,
+      "shrinkMin": 1
+    },
+    "copy4": {
+      "minFont": 38,
+      "maxFont": 38,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy5": {
+      "minFont": 29,
+      "maxFont": 29,
+      "lineClamp": 6,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    },
+    "copy3": {
+      "kind": "text"
+    },
+    "copy4": {
+      "kind": "text"
+    },
+    "copy5": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "title",
+        "type": "text",
+        "x": 75,
+        "y": 62,
+        "width": 1450,
+        "height": 165,
+        "fontSize": 72,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5,
+        "morphId": "title"
+      },
+      {
+        "id": "sample-0",
+        "type": "shape",
+        "shape": "rect",
+        "x": 76,
+        "y": 250,
+        "width": 438,
+        "height": 209,
+        "tokenFill": "paper",
+        "z": 1,
+        "shadow": {
+          "offsetY": 8,
+          "blur": 16,
+          "opacity": 0.23,
+          "color": "#242324"
+        }
+      },
+      {
+        "id": "body-0",
+        "type": "text",
+        "x": 76,
+        "y": 500,
+        "width": 440,
+        "height": 75,
+        "fontSize": 38,
+        "slot": "copy0",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5
+      },
+      {
+        "id": "body-1",
+        "type": "text",
+        "x": 76,
+        "y": 604,
+        "width": 440,
+        "height": 230,
+        "fontSize": 29,
+        "slot": "copy1",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5
+      },
+      {
+        "id": "warp-0-12",
+        "type": "shape",
+        "shape": "rect",
+        "x": 88,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "warp-0-39",
+        "type": "shape",
+        "shape": "rect",
+        "x": 115,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "warp-0-66",
+        "type": "shape",
+        "shape": "rect",
+        "x": 142,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "warp-0-93",
+        "type": "shape",
+        "shape": "rect",
+        "x": 169,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "warp-0-120",
+        "type": "shape",
+        "shape": "rect",
+        "x": 196,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "warp-0-147",
+        "type": "shape",
+        "shape": "rect",
+        "x": 223,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "warp-0-174",
+        "type": "shape",
+        "shape": "rect",
+        "x": 250,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "warp-0-201",
+        "type": "shape",
+        "shape": "rect",
+        "x": 277,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "warp-0-228",
+        "type": "shape",
+        "shape": "rect",
+        "x": 304,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "warp-0-255",
+        "type": "shape",
+        "shape": "rect",
+        "x": 331,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "warp-0-282",
+        "type": "shape",
+        "shape": "rect",
+        "x": 358,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "warp-0-309",
+        "type": "shape",
+        "shape": "rect",
+        "x": 385,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "warp-0-336",
+        "type": "shape",
+        "shape": "rect",
+        "x": 412,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "warp-0-363",
+        "type": "shape",
+        "shape": "rect",
+        "x": 439,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "warp-0-390",
+        "type": "shape",
+        "shape": "rect",
+        "x": 466,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "warp-0-417",
+        "type": "shape",
+        "shape": "rect",
+        "x": 493,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "weft-0-12",
+        "type": "shape",
+        "shape": "rect",
+        "x": 85,
+        "y": 262,
+        "width": 420,
+        "height": 1,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "weft-0-39",
+        "type": "shape",
+        "shape": "rect",
+        "x": 85,
+        "y": 289,
+        "width": 420,
+        "height": 1,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "weft-0-66",
+        "type": "shape",
+        "shape": "rect",
+        "x": 85,
+        "y": 316,
+        "width": 420,
+        "height": 1,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "weft-0-93",
+        "type": "shape",
+        "shape": "rect",
+        "x": 85,
+        "y": 343,
+        "width": 420,
+        "height": 1,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "weft-0-120",
+        "type": "shape",
+        "shape": "rect",
+        "x": 85,
+        "y": 370,
+        "width": 420,
+        "height": 1,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "weft-0-147",
+        "type": "shape",
+        "shape": "rect",
+        "x": 85,
+        "y": 397,
+        "width": 420,
+        "height": 1,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "weft-0-174",
+        "type": "shape",
+        "shape": "rect",
+        "x": 85,
+        "y": 424,
+        "width": 420,
+        "height": 1,
+        "tokenFill": "line",
+        "z": 2
+      },
+      {
+        "id": "sample-1",
+        "type": "shape",
+        "shape": "rect",
+        "x": 571,
+        "y": 250,
+        "width": 438,
+        "height": 209,
+        "tokenFill": "surface",
+        "z": 1,
+        "shadow": {
+          "offsetY": 8,
+          "blur": 16,
+          "opacity": 0.23,
+          "color": "#242324"
+        }
+      },
+      {
+        "id": "body-2",
+        "type": "text",
+        "x": 571,
+        "y": 500,
+        "width": 440,
+        "height": 75,
+        "fontSize": 38,
+        "slot": "copy2",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5
+      },
+      {
+        "id": "body-3",
+        "type": "text",
+        "x": 571,
+        "y": 604,
+        "width": 440,
+        "height": 230,
+        "fontSize": 29,
+        "slot": "copy3",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5
+      },
+      {
+        "id": "warp-1-12",
+        "type": "shape",
+        "shape": "rect",
+        "x": 583,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-24",
+        "type": "shape",
+        "shape": "rect",
+        "x": 595,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-36",
+        "type": "shape",
+        "shape": "rect",
+        "x": 607,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-48",
+        "type": "shape",
+        "shape": "rect",
+        "x": 619,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-60",
+        "type": "shape",
+        "shape": "rect",
+        "x": 631,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-72",
+        "type": "shape",
+        "shape": "rect",
+        "x": 643,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-84",
+        "type": "shape",
+        "shape": "rect",
+        "x": 655,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-96",
+        "type": "shape",
+        "shape": "rect",
+        "x": 667,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-108",
+        "type": "shape",
+        "shape": "rect",
+        "x": 679,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-120",
+        "type": "shape",
+        "shape": "rect",
+        "x": 691,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-132",
+        "type": "shape",
+        "shape": "rect",
+        "x": 703,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-144",
+        "type": "shape",
+        "shape": "rect",
+        "x": 715,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-156",
+        "type": "shape",
+        "shape": "rect",
+        "x": 727,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-168",
+        "type": "shape",
+        "shape": "rect",
+        "x": 739,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-180",
+        "type": "shape",
+        "shape": "rect",
+        "x": 751,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-192",
+        "type": "shape",
+        "shape": "rect",
+        "x": 763,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-204",
+        "type": "shape",
+        "shape": "rect",
+        "x": 775,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-216",
+        "type": "shape",
+        "shape": "rect",
+        "x": 787,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-228",
+        "type": "shape",
+        "shape": "rect",
+        "x": 799,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-240",
+        "type": "shape",
+        "shape": "rect",
+        "x": 811,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-252",
+        "type": "shape",
+        "shape": "rect",
+        "x": 823,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-264",
+        "type": "shape",
+        "shape": "rect",
+        "x": 835,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-276",
+        "type": "shape",
+        "shape": "rect",
+        "x": 847,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-288",
+        "type": "shape",
+        "shape": "rect",
+        "x": 859,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-300",
+        "type": "shape",
+        "shape": "rect",
+        "x": 871,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-312",
+        "type": "shape",
+        "shape": "rect",
+        "x": 883,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-324",
+        "type": "shape",
+        "shape": "rect",
+        "x": 895,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-336",
+        "type": "shape",
+        "shape": "rect",
+        "x": 907,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-348",
+        "type": "shape",
+        "shape": "rect",
+        "x": 919,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-360",
+        "type": "shape",
+        "shape": "rect",
+        "x": 931,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-372",
+        "type": "shape",
+        "shape": "rect",
+        "x": 943,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-384",
+        "type": "shape",
+        "shape": "rect",
+        "x": 955,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-396",
+        "type": "shape",
+        "shape": "rect",
+        "x": 967,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-408",
+        "type": "shape",
+        "shape": "rect",
+        "x": 979,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "warp-1-420",
+        "type": "shape",
+        "shape": "rect",
+        "x": 991,
+        "y": 262,
+        "width": 3,
+        "height": 185,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "weft-1-12",
+        "type": "shape",
+        "shape": "rect",
+        "x": 580,
+        "y": 262,
+        "width": 420,
+        "height": 1,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "weft-1-39",
+        "type": "shape",
+        "shape": "rect",
+        "x": 580,
+        "y": 289,
+        "width": 420,
+        "height": 1,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "weft-1-66",
+        "type": "shape",
+        "shape": "rect",
+        "x": 580,
+        "y": 316,
+        "width": 420,
+        "height": 1,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "weft-1-93",
+        "type": "shape",
+        "shape": "rect",
+        "x": 580,
+        "y": 343,
+        "width": 420,
+        "height": 1,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "weft-1-120",
+        "type": "shape",
+        "shape": "rect",
+        "x": 580,
+        "y": 370,
+        "width": 420,
+        "height": 1,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "weft-1-147",
+        "type": "shape",
+        "shape": "rect",
+        "x": 580,
+        "y": 397,
+        "width": 420,
+        "height": 1,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "weft-1-174",
+        "type": "shape",
+        "shape": "rect",
+        "x": 580,
+        "y": 424,
+        "width": 420,
+        "height": 1,
+        "tokenFill": "ink",
+        "z": 2
+      },
+      {
+        "id": "sample-2",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1066,
+        "y": 250,
+        "width": 438,
+        "height": 209,
+        "tokenFill": "accent",
+        "z": 1,
+        "shadow": {
+          "offsetY": 8,
+          "blur": 16,
+          "opacity": 0.23,
+          "color": "#242324"
+        }
+      },
+      {
+        "id": "body-4",
+        "type": "text",
+        "x": 1066,
+        "y": 500,
+        "width": 440,
+        "height": 75,
+        "fontSize": 38,
+        "slot": "copy4",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5
+      },
+      {
+        "id": "body-5",
+        "type": "text",
+        "x": 1066,
+        "y": 604,
+        "width": 440,
+        "height": 230,
+        "fontSize": 29,
+        "slot": "copy5",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5
+      },
+      {
+        "id": "warp-2-12",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1078,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "warp-2-31",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1097,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "warp-2-50",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1116,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "warp-2-69",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1135,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "warp-2-88",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1154,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "warp-2-107",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1173,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "warp-2-126",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1192,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "warp-2-145",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1211,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "warp-2-164",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1230,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "warp-2-183",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1249,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "warp-2-202",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1268,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "warp-2-221",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1287,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "warp-2-240",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1306,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "warp-2-259",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1325,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "warp-2-278",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1344,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "warp-2-297",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1363,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "warp-2-316",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1382,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "warp-2-335",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1401,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "warp-2-354",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1420,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "warp-2-373",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1439,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "warp-2-392",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1458,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "warp-2-411",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1477,
+        "y": 262,
+        "width": 1,
+        "height": 185,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "weft-2-12",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1075,
+        "y": 262,
+        "width": 420,
+        "height": 2,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "weft-2-24",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1075,
+        "y": 274,
+        "width": 420,
+        "height": 2,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "weft-2-36",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1075,
+        "y": 286,
+        "width": 420,
+        "height": 2,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "weft-2-48",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1075,
+        "y": 298,
+        "width": 420,
+        "height": 2,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "weft-2-60",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1075,
+        "y": 310,
+        "width": 420,
+        "height": 2,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "weft-2-72",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1075,
+        "y": 322,
+        "width": 420,
+        "height": 2,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "weft-2-84",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1075,
+        "y": 334,
+        "width": 420,
+        "height": 2,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "weft-2-96",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1075,
+        "y": 346,
+        "width": 420,
+        "height": 2,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "weft-2-108",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1075,
+        "y": 358,
+        "width": 420,
+        "height": 2,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "weft-2-120",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1075,
+        "y": 370,
+        "width": 420,
+        "height": 2,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "weft-2-132",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1075,
+        "y": 382,
+        "width": 420,
+        "height": 2,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "weft-2-144",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1075,
+        "y": 394,
+        "width": 420,
+        "height": 2,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "weft-2-156",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1075,
+        "y": 406,
+        "width": 420,
+        "height": 2,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "weft-2-168",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1075,
+        "y": 418,
+        "width": 420,
+        "height": 2,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "weft-2-180",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1075,
+        "y": 430,
+        "width": 420,
+        "height": 2,
+        "tokenFill": "paper",
+        "z": 2
+      },
+      {
+        "id": "weft-2-192",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1075,
+        "y": 442,
+        "width": 420,
+        "height": 2,
+        "tokenFill": "paper",
+        "z": 2
+      }
+    ]
+  }
+}

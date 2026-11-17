@@ -1,0 +1,226 @@
+{
+  "name": "Pleat House",
+  "description": "A folding retail fitting-room rental pitch.",
+  "brand": {
+    "fonts": {
+      "display": "Agency FB",
+      "body": "Trebuchet MS"
+    },
+    "colors": {
+      "bg": "#FFF0E6",
+      "ink": "#35132C",
+      "accent": "#9D004E",
+      "pink": "#FFC4D6",
+      "red": "#B90050",
+      "yellow": "#FFD420",
+      "paper": "#FFF5E8",
+      "purple": "#480E46"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "pleat-house"
+    },
+    "slides": [
+      {
+        "title": "PLEAT HOUSE",
+        "items": [
+          "A fitting room that travels flat.",
+          "Illustrative seed pitch"
+        ],
+        "photoQuery": "pleat-cover",
+        "role": "cover"
+      },
+      {
+        "title": "A room inside a room",
+        "items": [
+          "The first installation goes into a borrowed gallery. The booth stands clear of the clothes rail, and the host checks sightlines from the queue before opening.",
+          "The same screen closes at the end of the event and returns to inventory for the next booking."
+        ],
+        "photoQuery": "pleat-shop",
+        "role": "feature"
+      },
+      {
+        "title": "The lease lasts four days.",
+        "items": [
+          "The fitting room takes a week.",
+          "A pop-up producer books a temporary shop, then hires a carpenter, buys sheet goods and arranges removal. A simple privacy enclosure becomes another trade to schedule.",
+          "Our first buyer opens at least six short retail events each year."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "One case. Two feet.",
+        "items": [
+          "The kit arrives as a folded screen, two feet and a closure strap. On return, staff inspect the paper edges and replace a damaged segment before the next dispatch.",
+          "Pack-out checklist"
+        ],
+        "photoQuery": "pleat-pack",
+        "role": "feature"
+      },
+      {
+        "title": "One weekend on the books",
+        "items": [
+          "$540",
+          "Rental revenue per three-day event, excluding delivery billed at cost.",
+          "$180 variable cost",
+          "Cleaning, repair reserve and handling leave $360 contribution per booking. At a $1,440 build cost, four bookings recover the unit investment before overhead."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "The fourth booking pays for the booth",
+        "items": [
+          "Cumulative contribution after build cost • illustrative dollars",
+          "By booking six, the booth has contributed $720 beyond its build cost. Storage and fixed staff costs still come out of that balance."
+        ],
+        "chart": {
+          "type": "line",
+          "labels": [
+            "Build",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "series": [
+            {
+              "name": "Net contribution ($)",
+              "values": [
+                -1440,
+                -1080,
+                -720,
+                -360,
+                0,
+                360,
+                720
+              ]
+            }
+          ],
+          "colors": [
+            "#AC0052"
+          ],
+          "showLegend": false
+        },
+        "role": "feature"
+      },
+      {
+        "title": "Open the fold.",
+        "items": [
+          "A continuous folded wall curves back on itself to screen the entrance. Two removable feet hold its ends. The host chooses the orientation for the shop floor.",
+          "The prototype is for indoor retail. Stability, clear entry and local accessibility requirements are checked at the venue before use."
+        ],
+        "photoQuery": "pleat-fold",
+        "role": "feature"
+      },
+      {
+        "title": "Why rent the fold?",
+        "items": [
+          "Curtain rail",
+          "Lowest upfront cost. The producer still sources fabric, weights and a frame and owns the teardown.",
+          "Built partition",
+          "A fit for long residencies with a dedicated build crew. A one-week lease leaves little time to recover fabrication and removal costs.",
+          "Pleat House",
+          "One reusable object with a known pack size. The buyer pays for event dates and hands back the kit on collection."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Follow the producer",
+        "items": [
+          "30 agencies",
+          "At eight suitable events per agency and two booths per event, the starting territory represents 480 annual bookings. At $540 each, that is $259,200 in modeled rental revenue.",
+          "The route to the rack",
+          "Invite producers to a one-day setup trial. Quote the next three dates together and reserve stock only when a deposit lands."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "What breaks first?",
+        "items": [
+          "Edge wear",
+          "Record dents after each return. A replaceable outer segment must be cheaper than retiring the whole wall.",
+          "Changeover time",
+          "Time a two-person setup and pack-down at every pilot. The pass condition is under twenty minutes each way.",
+          "Availability",
+          "Book a second weekend only when inspection and repair can finish before the next dispatch."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "From sample to rental fleet",
+        "items": [
+          "Mira Song / industrial design",
+          "Mira owns fold geometry, foot stability and the repair manual. She will release the second tooling run after ten units pass repeated handling tests.",
+          "Rafi Lowe / event operations",
+          "Rafi owns dispatch, cleaning and agency contracts. He will pilot three venues in one city before adding a second delivery route."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Open for the weekend.",
+        "items": [
+          "$650k pre-seed",
+          "$300k for tooling and fleet, $200k for operations and $150k for agency trials. In twelve months the target is 60 paid bookings and six repeat agencies.",
+          "Illustrative venture and financial model."
+        ],
+        "role": "closing"
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "pleat-house-1"
+    },
+    {
+      "role": "feature",
+      "variant": "pleat-house-2"
+    },
+    {
+      "role": "feature",
+      "variant": "pleat-house-3"
+    },
+    {
+      "role": "feature",
+      "variant": "pleat-house-4"
+    },
+    {
+      "role": "feature",
+      "variant": "pleat-house-5"
+    },
+    {
+      "role": "feature",
+      "variant": "pleat-house-6"
+    },
+    {
+      "role": "feature",
+      "variant": "pleat-house-7"
+    },
+    {
+      "role": "feature",
+      "variant": "pleat-house-8"
+    },
+    {
+      "role": "feature",
+      "variant": "pleat-house-9"
+    },
+    {
+      "role": "feature",
+      "variant": "pleat-house-10"
+    },
+    {
+      "role": "feature",
+      "variant": "pleat-house-11"
+    },
+    {
+      "role": "closing",
+      "variant": "pleat-house-12"
+    }
+  ]
+}

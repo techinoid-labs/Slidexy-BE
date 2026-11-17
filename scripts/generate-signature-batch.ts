@@ -271,6 +271,7 @@ const channelNine: Template = {
       role: "cover",
       title: "Channel **Nine**",
       items: ["On air", "Media kit 2027", "Season 14 · weeknights 21:00", "9"],
+      photoQuery: "1e5180a999",
     },
     {
       role: "feature",
@@ -339,19 +340,25 @@ const channelNine: Template = {
     const bars = ["surface", "surface_color", "accent2", "card_bg", "accent", "line"];
     const kits = [];
 
-    const card: El[] = [rect("bg", 0, 0, 1600, 900, "bg", { z: 0 })];
-    bars.forEach((fill, i) => card.push(rect("bar" + i, i * 267, 0, i === 5 ? 1600 - 5 * 267 : 267, 590, fill)));
+    // Photo-led cover with test-card chrome as broadcast accents (not a full test pattern).
+    const card: El[] = [
+      photo("photo", 0, 0, 1600, 900, { zoom: 1.08 }),
+      rect("scrim", 0, 520, 1600, 380, "bg", { z: 2, opacity: 0.88 }),
+    ];
+    bars.forEach((fill, i) => card.push(rect("bar" + i, i * 267, 0, i === 5 ? 1600 - 5 * 267 : 267, 36, fill, { z: 3 })));
     const strip = ["line", "accent", "accent2", "surface"];
-    for (let i = 0; i < 16; i++) card.push(rect("strip" + i, i * 100, 590, 100, 60, i % 2 ? "bg" : strip[(i / 2) % 4]));
+    for (let i = 0; i < 16; i++) {
+      card.push(rect("strip" + i, i * 100, 520, 100, 18, i % 2 ? "bg" : strip[(i / 2) % 4], { z: 3 }));
+    }
     card.push(
-      circle("ringOuter", 590, 85, 420, "surface", { z: 3 }),
-      circle("ringInner", 610, 105, 380, "bg", { z: 4 }),
-      text("copy3", 610, 120, 380, 360, 260, "copy3", "surface", { ...stat, align: "center", z: 5 }),
-      rect("onair", 80, 60, 200, 60, "accent", { z: 3, radius: 30 }),
-      text("copy0", 80, 70, 200, 40, 26, "copy0", "surface", { ...kicker, align: "center", z: 5 }),
-      text("title", 80, 680, 900, 185, 130, "title", "ink", display),
-      text("copy1", 1000, 700, 520, 40, 28, "copy1", "accent2", { ...kicker, align: "right" }),
-      text("copy2", 1000, 760, 520, 44, 28, "copy2", "muted", { align: "right" })
+      rect("onair", 80, 70, 200, 60, "accent", { z: 4, radius: 30 }),
+      text("copy0", 80, 80, 200, 40, 26, "copy0", "surface", { ...kicker, align: "center", z: 5 }),
+      circle("ringOuter", 1380, 70, 140, "surface", { z: 4 }),
+      circle("ringInner", 1395, 85, 110, "bg", { z: 5 }),
+      text("copy3", 1395, 95, 110, 100, 72, "copy3", "surface", { ...stat, align: "center", z: 6 }),
+      text("title", 80, 580, 1100, 185, 120, "title", "ink", display),
+      text("copy1", 1000, 620, 520, 40, 28, "copy1", "accent2", { ...kicker, align: "right" }),
+      text("copy2", 1000, 680, 520, 44, 28, "copy2", "muted", { align: "right" })
     );
     kits.push(writeKit("cover", "channel-nine-testcard", f, card));
 

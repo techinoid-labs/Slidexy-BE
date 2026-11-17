@@ -1,0 +1,155 @@
+{
+  "id": "cover/pleat-house-1",
+  "role": "cover",
+  "variant": "pleat-house-1",
+  "family": "pleat-house",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 113,
+      "maxFont": 113,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 46,
+      "maxFont": 46,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 25,
+      "maxFont": 25,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "plate",
+        "type": "image",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "z": 2,
+        "slot": "photo",
+        "morphId": "hero"
+      },
+      {
+        "id": "yellow-wash",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 686,
+        "height": 900,
+        "tokenFill": "yellow",
+        "z": 3,
+        "gradient": {
+          "angle": 0,
+          "stops": [
+            {
+              "hex": "#FFD420",
+              "pos": 0,
+              "alpha": 0.35
+            },
+            {
+              "hex": "#FFD420",
+              "pos": 1,
+              "alpha": 0
+            }
+          ]
+        }
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 60,
+        "y": 170,
+        "width": 680,
+        "height": 342,
+        "fontSize": 113,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5,
+        "textStyleRole": "display",
+        "morphId": "title"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 72,
+        "y": 557,
+        "width": 622,
+        "height": 135,
+        "fontSize": 46,
+        "slot": "copy0",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5
+      },
+      {
+        "id": "copy1",
+        "type": "text",
+        "x": 73,
+        "y": 78,
+        "width": 580,
+        "height": 56,
+        "fontSize": 25,
+        "slot": "copy1",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5
+      }
+    ]
+  }
+}

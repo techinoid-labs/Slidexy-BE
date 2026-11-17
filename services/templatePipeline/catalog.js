@@ -123,47 +123,106 @@ async function exportDeckPptx(deck, file) {
     throw err;
   }
   const raw = await pptxBuffer(deck, (deck && deck.id) || "native");
-  const data = await paintGradientFills(raw);
+  const withGrad = await paintGradientFills(raw);
+  const data = await paintSoftEdges(withGrad);
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, data);
   return file;
 }
 
 function gradientName(gradient) {
-  const angle = Math.round(Number(gradient.angle) || 0);
   const parts = (gradient.stops || []).map((stop) => {
     const hex = String(stop.hex || stop.color || "").replace("#", "").toUpperCase();
     const pos = Math.round(Number(stop.pos) * 100);
-    return hex + "-" + pos;
+    const alpha =
+      stop.alpha != null && Number.isFinite(Number(stop.alpha))
+        ? "a" + Math.round(Number(stop.alpha) * 100)
+        : "a100";
+    return hex + "-" + pos + "-" + alpha;
   });
+  const isRadial = String(gradient.type || "").toLowerCase() === "radial";
+  if (isRadial) {
+    const cx = Math.round(Math.max(0, Math.min(100, (Number(gradient.cx) || 0.5) * 100)));
+    const cy = Math.round(Math.max(0, Math.min(100, (Number(gradient.cy) || 0.5) * 100)));
+    const r = Math.round(Math.max(1, Math.min(200, (Number(gradient.r) || 0.75) * 100)));
+    return "ngrad-rad-" + cx + "-" + cy + "-" + r + "-" + parts.join("-");
+  }
+  const angle = Math.round(Number(gradient.angle) || 0);
   return "ngrad-" + angle + "-" + parts.join("-");
 }
 
 function parseGradientName(name) {
-  const bits = String(name || "").split("-");
+  // Name may be embedded: el:spotlight|ngrad-…|softEdge:80
+  const raw = String(name || "");
+  const hit = raw.match(/ngrad-[^|"]+/);
+  if (!hit) return null;
+  const bits = hit[0].split("-");
   if (bits[0] !== "ngrad" || bits.length < 4) return null;
   const stops = [];
-  for (let index = 2; index + 1 < bits.length; index += 2) {
+  let index = 2;
+  let type = "linear";
+  let cx = 0.5;
+  let cy = 0.5;
+  let r = 0.75;
+  let angle = 0;
+  if (bits[1] === "rad") {
+    type = "radial";
+    cx = (Number(bits[2]) || 50) / 100;
+    cy = (Number(bits[3]) || 50) / 100;
+    r = (Number(bits[4]) || 75) / 100;
+    index = 5;
+  } else {
+    angle = Number(bits[1]) || 0;
+    index = 2;
+  }
+  while (index + 1 < bits.length) {
     const hex = bits[index];
     if (!/^[0-9A-F]{6}$/.test(hex)) return null;
-    stops.push({ hex, pos: Number(bits[index + 1]) / 100 });
+    const pos = Number(bits[index + 1]) / 100;
+    let alpha = 1;
+    let next = index + 2;
+    if (bits[next] && /^a\d+$/.test(bits[next])) {
+      alpha = Number(String(bits[next]).slice(1)) / 100;
+      next += 1;
+    }
+    stops.push({ hex, pos, alpha });
+    index = next;
   }
   if (stops.length < 2) return null;
-  return { angle: Number(bits[1]) || 0, stops };
+  return { type, angle, cx, cy, r, stops };
 }
 
 function gradientXml(spec) {
   const stops = spec.stops.map((stop) => {
     const pos = Math.max(0, Math.min(100000, Math.round(stop.pos * 100000)));
-    return `<a:gs pos="${pos}"><a:srgbClr val="${stop.hex}"/></a:gs>`;
+    const hex = String(stop.hex || "FFFFFF").replace("#", "").toUpperCase();
+    const alpha =
+      stop.alpha != null && Number(stop.alpha) < 1
+        ? `<a:alpha val="${Math.max(0, Math.min(100000, Math.round(Number(stop.alpha) * 100000)))}"/>`
+        : "";
+    return `<a:gs pos="${pos}"><a:srgbClr val="${hex}">${alpha}</a:srgbClr></a:gs>`;
   }).join("");
+  if (String(spec.type || "").toLowerCase() === "radial") {
+    // PowerPoint path fillToRect: equal insets collapse focus to a point.
+    // Map cx/cy (0..1) → edge insets (percent × 1000).
+    const cx = Math.max(0, Math.min(1, Number(spec.cx) || 0.5));
+    const cy = Math.max(0, Math.min(1, Number(spec.cy) || 0.5));
+    const l = Math.round(cx * 100000);
+    const t = Math.round(cy * 100000);
+    const r = Math.round((1 - cx) * 100000);
+    const b = Math.round((1 - cy) * 100000);
+    return (
+      `<a:gradFill rotWithShape="1"><a:gsLst>${stops}</a:gsLst>` +
+      `<a:path path="circle"><a:fillToRect l="${l}" t="${t}" r="${r}" b="${b}"/></a:path></a:gradFill>`
+    );
+  }
   let ang = Math.round((Number(spec.angle) || 0) * 60000);
   ang = ((ang % 21600000) + 21600000) % 21600000;
   return `<a:gradFill rotWithShape="1"><a:gsLst>${stops}</a:gsLst><a:lin ang="${ang}" scaled="1"/></a:gradFill>`;
 }
 
 function replaceShapeFill(block) {
-  const found = block.match(/name="(ngrad-[^"]+)"/);
+  const found = block.match(/name="([^"]*ngrad-[^"]*)"/);
   if (!found) return block;
   const spec = parseGradientName(found[1]);
   if (!spec) return block;
@@ -175,6 +234,45 @@ function replaceShapeFill(block) {
   }
   if (lineAt >= 0) return block.slice(0, lineAt) + paint + block.slice(lineAt);
   return block.replace("</p:spPr>", paint + "</p:spPr>");
+}
+
+/** Inject a:softEdge for shapes tagged softEdge:N (px) in cNvPr name. */
+function ensureSoftEdges(slideXml) {
+  return String(slideXml || "").replace(/<(p:sp|p:pic)\b[\s\S]*?<\/\1>/g, (block) => {
+    const hit = block.match(/softEdge:(\d+)/);
+    if (!hit) return block;
+    const rad = Math.max(12700, Math.round(Number(hit[1]) * 12700));
+    const soft = `<a:softEdge rad="${rad}"/>`;
+    if (/<a:softEdge\b/.test(block)) return block;
+    if (/<a:effectLst>/.test(block)) {
+      return block.replace(/<a:effectLst>/, `<a:effectLst>${soft}`);
+    }
+    const effect = `<a:effectLst>${soft}</a:effectLst>`;
+    if (/<\/p:spPr>/.test(block)) return block.replace(/<\/p:spPr>/, effect + "</p:spPr>");
+    if (/<\/p:pic>/.test(block) && /<\/p:blipFill>/.test(block)) {
+      // pictures: softEdge lives under p:spPr when present
+      if (/<\/p:spPr>/.test(block)) return block.replace(/<\/p:spPr>/, effect + "</p:spPr>");
+    }
+    return block;
+  });
+}
+
+async function paintSoftEdges(buffer) {
+  const zip = await JSZip.loadAsync(buffer);
+  const names = Object.keys(zip.files).filter((name) => /ppt\/slides\/slide\d+\.xml$/.test(name));
+  let changed = false;
+  for (let index = 0; index < names.length; index += 1) {
+    const name = names[index];
+    const xml = await zip.file(name).async("string");
+    if (xml.indexOf("softEdge:") < 0) continue;
+    const next = ensureSoftEdges(xml);
+    if (next !== xml) {
+      zip.file(name, next);
+      changed = true;
+    }
+  }
+  if (!changed) return buffer;
+  return Buffer.from(await zip.generateAsync({ type: "nodebuffer", compression: "DEFLATE" }));
 }
 
 async function paintGradientFills(buffer) {
@@ -512,10 +610,21 @@ function groupObjectName(element, maskTag) {
     parts.push("!!morph:" + String(element.morphId));
   } else if (element && element.pptxGroup) {
     parts.push("grp:" + String(element.pptxGroup) + ":" + String(element.id || "el"));
+  } else if (element && element.id) {
+    parts.push("el:" + String(element.id));
   }
   if (element && (element.shapeTreatment === "depth" || (element.shapeContent && element.shapeContent.depth))) {
     parts.push("depth:1");
   }
+  const blurPx = Number(
+    element && element.blur != null
+      ? element.blur
+      : element && element.shapeContent && element.shapeContent.blur
+  );
+  if (Number.isFinite(blurPx) && blurPx > 0) {
+    parts.push("softEdge:" + Math.round(blurPx));
+  }
+  if (element && element.foreground) parts.push("fg:1");
   if (maskTag) parts.push(maskTag);
   return parts.length ? parts.join("|") : undefined;
 }
@@ -631,9 +740,9 @@ function addText(slide, element, tokens, rotate) {
     const steps =
       treatment === "long-shadow"
         ? Math.min(10, Math.ceil((Number(style.shadowLength) || 48) / (Number(style.shadowStep) || 6)))
-        : Math.max(3, Math.min(8, Number(style.offsetSteps) || 6));
-    const dx = treatment === "long-shadow" ? 0.7 * (Number(style.shadowStep) || 6) : Number(style.offsetX) || 6;
-    const dy = treatment === "long-shadow" ? 0.7 * (Number(style.shadowStep) || 6) : Number(style.offsetY) || 6;
+        : Math.max(3, Math.min(18, Number(style.offsetSteps) || 12));
+    const dx = treatment === "long-shadow" ? 0.7 * (Number(style.shadowStep) || 6) : Number(style.offsetX) || 2;
+    const dy = treatment === "long-shadow" ? 0.7 * (Number(style.shadowStep) || 6) : Number(style.offsetY) || 2;
     for (let i = steps; i >= 1; i--) {
       // Near-black faces use pure black extrusion so the stack reads chunky, not muddy.
       const n = parseInt(String(baseColor).replace("#", ""), 16);
@@ -669,22 +778,28 @@ function addShape(slide, pptx, element, tokens) {
   const objectName = groupObjectName(element);
   const gradient = shape.gradient && Array.isArray(shape.gradient.stops) ? shape.gradient : null;
   if (gradient && gradient.stops.length > 1) {
-    // Prefer solid fills for non-designer PPTX; keep gradient name only if already present.
+    // Encode gradient (+ optional per-stop alpha) in objectName; paintGradientFills rewrites OOXML.
     const first = colorOf(gradient.stops[0].hex || gradient.stops[0].color, tokens) || fill;
-    options.fill = { color: first || "000000" };
-    options.objectName = gradientName(gradient);
+    options.fill = { color: first || "FFFFFF" };
+    options.objectName = [objectName, gradientName(gradient)].filter(Boolean).join("|");
   } else if (fill) {
     options.fill = { color: fill };
-    // Solid overlays at 60–80% for overlap plates — never frosted glass / blur.
+    // Translucent fills OK (glass plates / depth glow). Soft-edge blur via OOXML a:softEdge — not backdrop-filter.
     const opacity = Number(element.opacity);
     if (Number.isFinite(opacity) && opacity >= 0 && opacity < 1) {
       options.fill.transparency = Math.round((1 - opacity) * 100);
     }
   } else options.fill = { type: "none" };
   if (objectName && !options.objectName) options.objectName = objectName;
-  if (stroke && Number(shape.strokeWidth) > 0) options.line = { color: stroke, width: points(shape.strokeWidth) };
-  // Floating 3D cards / global card_shadow token
-  const shadow = shape.shadow || (element.card ? shape.shadow : null);
+  if (stroke && Number(shape.strokeWidth) > 0) {
+    options.line = { color: stroke, width: points(shape.strokeWidth) };
+    const strokeOpacity = Number(shape.strokeOpacity);
+    if (Number.isFinite(strokeOpacity) && strokeOpacity >= 0 && strokeOpacity < 1) {
+      options.line.transparency = Math.round((1 - strokeOpacity) * 100);
+    }
+  }
+  // Floating 3D cards / element.shadow / global card_shadow token
+  const shadow = shape.shadow || element.shadow || (element.card ? shape.shadow : null);
   if (element.shapeTreatment === "depth" || shape.depth) {
     options.shadow = {
       type: "outer",
@@ -698,7 +813,7 @@ function addShape(slide, pptx, element, tokens) {
       type: "outer",
       color: String(shadow.color || "#0F172A").replace(/^#/, ""),
       blur: Number(shadow.blur) || 24,
-      offset: Number(shadow.offset) || 8,
+      offset: shadow.offsetY != null ? Number(shadow.offsetY) : Number(shadow.offset) || 8,
       opacity: shadow.opacity != null ? Number(shadow.opacity) : 0.12,
     };
   }

@@ -1,0 +1,260 @@
+{
+  "id": "feature/night-tank-11",
+  "role": "feature",
+  "variant": "night-tank-11",
+  "family": "night-tank",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "copy2": {
+      "kind": "text",
+      "from": "items2"
+    },
+    "copy3": {
+      "kind": "text",
+      "from": "items3"
+    },
+    "copy4": {
+      "kind": "text",
+      "from": "items4"
+    },
+    "copy5": {
+      "kind": "text",
+      "from": "items5"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 82,
+      "maxFont": 82,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 42,
+      "maxFont": 42,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 32,
+      "maxFont": 32,
+      "lineClamp": 7,
+      "shrinkMin": 1
+    },
+    "copy2": {
+      "minFont": 42,
+      "maxFont": 42,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy3": {
+      "minFont": 32,
+      "maxFont": 32,
+      "lineClamp": 7,
+      "shrinkMin": 1
+    },
+    "copy4": {
+      "minFont": 42,
+      "maxFont": 42,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy5": {
+      "minFont": 32,
+      "maxFont": 32,
+      "lineClamp": 7,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    },
+    "copy3": {
+      "kind": "text"
+    },
+    "copy4": {
+      "kind": "text"
+    },
+    "copy5": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "headline",
+        "type": "text",
+        "x": 70,
+        "y": 70,
+        "width": 1450,
+        "height": 155,
+        "fontSize": 82,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "morphId": "title"
+      },
+      {
+        "id": "step-0",
+        "type": "shape",
+        "shape": "rect",
+        "x": 72,
+        "y": 255,
+        "width": 462,
+        "height": 9,
+        "tokenFill": "accent",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "copy-0",
+        "type": "text",
+        "x": 72,
+        "y": 290,
+        "width": 460,
+        "height": 90,
+        "fontSize": 42,
+        "slot": "copy0",
+        "tokenColor": "accent",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "copy-1",
+        "type": "text",
+        "x": 72,
+        "y": 412,
+        "width": 438,
+        "height": 262,
+        "fontSize": 32,
+        "slot": "copy1",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "step-1",
+        "type": "shape",
+        "shape": "rect",
+        "x": 566,
+        "y": 319,
+        "width": 462,
+        "height": 9,
+        "tokenFill": "muted",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "copy-2",
+        "type": "text",
+        "x": 566,
+        "y": 354,
+        "width": 460,
+        "height": 90,
+        "fontSize": 42,
+        "slot": "copy2",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "copy-3",
+        "type": "text",
+        "x": 566,
+        "y": 476,
+        "width": 438,
+        "height": 262,
+        "fontSize": 32,
+        "slot": "copy3",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "step-2",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1060,
+        "y": 383,
+        "width": 462,
+        "height": 9,
+        "tokenFill": "copper",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "copy-4",
+        "type": "text",
+        "x": 1060,
+        "y": 418,
+        "width": 460,
+        "height": 90,
+        "fontSize": 42,
+        "slot": "copy4",
+        "tokenColor": "copper",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "copy-5",
+        "type": "text",
+        "x": 1060,
+        "y": 540,
+        "width": 438,
+        "height": 262,
+        "fontSize": 32,
+        "slot": "copy5",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      }
+    ]
+  }
+}

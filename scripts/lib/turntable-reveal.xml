@@ -1,0 +1,179 @@
+<p:timing>
+<p:tnLst>
+<p:par>
+<p:cTn id="1" dur="indefinite" restart="never" nodeType="tmRoot">
+<p:childTnLst>
+<p:seq concurrent="1" nextAc="seek">
+<p:cTn id="2" dur="indefinite" nodeType="mainSeq">
+<p:childTnLst>
+<p:par>
+<p:cTn id="3" fill="hold">
+<p:stCondLst>
+<p:cond delay="indefinite"/>
+<p:cond evt="onBegin" delay="0">
+<p:tn val="2"/>
+</p:cond>
+</p:stCondLst>
+<p:childTnLst>
+<p:par>
+<p:cTn id="4" fill="hold">
+<p:stCondLst>
+<p:cond delay="0"/>
+</p:stCondLst>
+<p:childTnLst>
+<p:par>
+<p:cTn id="5" presetID="0" presetClass="entr" presetSubtype="0" accel="24000" decel="52000" fill="hold" nodeType="withEffect">
+<p:stCondLst>
+<p:cond delay="0"/>
+</p:stCondLst>
+<p:childTnLst>
+<p:set>
+<p:cBhvr>
+<p:cTn id="6" dur="1" fill="hold">
+<p:stCondLst>
+<p:cond delay="0"/>
+</p:stCondLst>
+</p:cTn>
+<p:tgtEl>
+<p:spTgt spid="DISC_ID"/>
+</p:tgtEl>
+<p:attrNameLst>
+<p:attrName>style.visibility</p:attrName>
+</p:attrNameLst>
+</p:cBhvr>
+<p:to>
+<p:strVal val="visible"/>
+</p:to>
+</p:set>
+<p:animMotion origin="layout" path="M -0.08625 0 L 0 0 E" pathEditMode="relative">
+<p:cBhvr from="" to="">
+<p:cTn id="7" dur="1250" fill="hold">
+<p:stCondLst>
+<p:cond delay="0"/>
+</p:stCondLst>
+</p:cTn>
+<p:tgtEl>
+<p:spTgt spid="DISC_ID"/>
+</p:tgtEl>
+<p:attrNameLst>
+<p:attrName>ppt_x</p:attrName>
+<p:attrName>ppt_y</p:attrName>
+</p:attrNameLst>
+</p:cBhvr>
+</p:animMotion>
+</p:childTnLst>
+</p:cTn>
+</p:par>
+<p:par>
+<p:cTn id="8" presetID="0" presetClass="entr" presetSubtype="0" accel="26000" decel="56000" fill="hold" nodeType="withEffect">
+<p:stCondLst>
+<p:cond delay="0"/>
+</p:stCondLst>
+<p:childTnLst>
+<p:set>
+<p:cBhvr>
+<p:cTn id="9" dur="1" fill="hold">
+<p:stCondLst>
+<p:cond delay="0"/>
+</p:stCondLst>
+</p:cTn>
+<p:tgtEl>
+<p:spTgt spid="DISC_ID"/>
+</p:tgtEl>
+<p:attrNameLst>
+<p:attrName>style.visibility</p:attrName>
+</p:attrNameLst>
+</p:cBhvr>
+<p:to>
+<p:strVal val="visible"/>
+</p:to>
+</p:set>
+<p:animRot by="480000" from="-480000" to="0">
+<p:cBhvr>
+<p:cTn id="10" dur="1340" fill="hold">
+<p:stCondLst>
+<p:cond delay="0"/>
+</p:stCondLst>
+</p:cTn>
+<p:tgtEl>
+<p:spTgt spid="DISC_ID"/>
+</p:tgtEl>
+<p:attrNameLst>
+<p:attrName>r</p:attrName>
+</p:attrNameLst>
+</p:cBhvr>
+</p:animRot>
+</p:childTnLst>
+</p:cTn>
+</p:par>
+<p:par>
+<p:cTn id="11" presetID="0" presetClass="entr" presetSubtype="0" accel="30000" decel="50000" fill="hold" nodeType="withEffect">
+<p:stCondLst>
+<p:cond delay="0"/>
+</p:stCondLst>
+<p:childTnLst>
+<p:set>
+<p:cBhvr>
+<p:cTn id="12" dur="1" fill="hold">
+<p:stCondLst>
+<p:cond delay="0"/>
+</p:stCondLst>
+</p:cTn>
+<p:tgtEl>
+<p:spTgt spid="SLEEVE_ID"/>
+</p:tgtEl>
+<p:attrNameLst>
+<p:attrName>style.visibility</p:attrName>
+</p:attrNameLst>
+</p:cBhvr>
+<p:to>
+<p:strVal val="visible"/>
+</p:to>
+</p:set>
+<p:animMotion origin="layout" path="M -0.00875 0 L 0 0 E" pathEditMode="relative">
+<p:cBhvr from="" to="">
+<p:cTn id="13" dur="700" fill="hold">
+<p:stCondLst>
+<p:cond delay="0"/>
+</p:stCondLst>
+</p:cTn>
+<p:tgtEl>
+<p:spTgt spid="SLEEVE_ID"/>
+</p:tgtEl>
+<p:attrNameLst>
+<p:attrName>ppt_x</p:attrName>
+<p:attrName>ppt_y</p:attrName>
+</p:attrNameLst>
+</p:cBhvr>
+</p:animMotion>
+</p:childTnLst>
+</p:cTn>
+</p:par>
+</p:childTnLst>
+</p:cTn>
+</p:par>
+</p:childTnLst>
+</p:cTn>
+</p:par>
+</p:childTnLst>
+</p:cTn>
+<p:prevCondLst>
+<p:cond evt="onPrev" delay="0">
+<p:tgtEl>
+<p:sldTgt/>
+</p:tgtEl>
+</p:cond>
+</p:prevCondLst>
+<p:nextCondLst>
+<p:cond evt="onNext" delay="0">
+<p:tgtEl>
+<p:sldTgt/>
+</p:tgtEl>
+</p:cond>
+</p:nextCondLst>
+</p:seq>
+</p:childTnLst>
+</p:cTn>
+</p:par>
+</p:tnLst>
+</p:timing>

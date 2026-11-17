@@ -1,0 +1,148 @@
+{
+  "name": "Parcel Mosaic • Cadastre kit",
+  "description": "Cadastral cartogram — irregular land parcels, neatline, legend. Map partitions, not orbs or cards.",
+  "brand": {
+    "colors": {
+      "bg": "#F0EBE0",
+      "surface": "#FFFDF8",
+      "surface_color": "#D6CFC2",
+      "ink": "#1C1914",
+      "muted": "#6B6458",
+      "accent": "#0B6E4F",
+      "line": "#1C1914"
+    },
+    "fonts": {
+      "display": "Georgia",
+      "body": "Consolas"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "parcel-mosaic"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "PARCEL",
+        "items": [
+          "CADASTRE KIT · BLOCK 4",
+          "Plot · bound · claim"
+        ],
+        "photoQuery": "ed2250ed0c"
+      },
+      {
+        "role": "feature",
+        "title": "Lots",
+        "items": [
+          "A1",
+          "Field",
+          "A2",
+          "Grove",
+          "B1",
+          "Yard",
+          "B2",
+          "Quay"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Bounds",
+        "items": [
+          "North",
+          "Stone",
+          "East",
+          "Ditch",
+          "South",
+          "Hedge",
+          "West",
+          "Road"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Tenure",
+        "items": [
+          "Free",
+          "Hold",
+          "Lease",
+          "99y",
+          "Common",
+          "Share"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Area",
+        "items": [
+          "Plot",
+          "2.4",
+          "Block",
+          "18",
+          "Ward",
+          "140"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Claim",
+        "items": [
+          "SURVEYED",
+          "Ink the bound before you plant."
+        ],
+        "photoQuery": "ed2250ed0c"
+      },
+      {
+        "role": "quote",
+        "title": "PLAT",
+        "items": [
+          "A parcel is a promise drawn in ink.",
+          "— Registry"
+        ]
+      },
+      {
+        "role": "closing",
+        "title": "Claim.",
+        "items": [
+          "Parcel Mosaic · cadastre kit"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "parcel-cover"
+    },
+    {
+      "role": "feature",
+      "variant": "parcel-lots"
+    },
+    {
+      "role": "feature",
+      "variant": "parcel-bounds"
+    },
+    {
+      "role": "feature",
+      "variant": "parcel-tenure"
+    },
+    {
+      "role": "feature",
+      "variant": "parcel-area"
+    },
+    {
+      "role": "feature",
+      "variant": "parcel-claim"
+    },
+    {
+      "role": "quote",
+      "variant": "parcel-quote"
+    },
+    {
+      "role": "closing",
+      "variant": "parcel-close"
+    }
+  ]
+}

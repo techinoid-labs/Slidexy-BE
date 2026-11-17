@@ -93,10 +93,16 @@ export function fitText(
   }
 ): FitSlotResult {
   const maxFont = rules.maxFont || 48;
-  // Hard floor: never below true 14pt (engine canvas units)
+  // Hard floor: never below true 14pt (engine canvas units), unless author locked micro-type
+  // (minFont === maxFont and both below floor → intentional caption / editorial scale).
   const floor = HARD_FLOOR_ENGINE;
   const requestedMin = rules.minFont != null ? rules.minFont : floor;
-  const minFont = Math.max(floor, requestedMin);
+  const lockedMicro =
+    rules.minFont != null &&
+    rules.maxFont != null &&
+    Number(rules.minFont) === Number(rules.maxFont) &&
+    Number(rules.minFont) < floor;
+  const minFont = lockedMicro ? Number(rules.minFont) : Math.max(floor, requestedMin);
   const lineClamp = rules.lineClamp || 4;
   const lineHeight = Number(rules.lineHeight) > 0 ? Number(rules.lineHeight) : 1.5;
   let fontSize = maxFont;

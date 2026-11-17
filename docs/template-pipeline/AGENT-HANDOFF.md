@@ -4,7 +4,9 @@
 North-star rules: [`DESIGN-DIRECTION.md`](./DESIGN-DIRECTION.md).  
 Fidelity / Flutter: [`FIDELITY-TIERS.md`](./FIDELITY-TIERS.md).
 
-Last updated: 2026-11-13 (glyph decks: facet / hive / bracket)
+For new premium pitch decks, see the [premium pitch handoff](PREMIUM-PITCH-HANDOFF.md) for recent family designs, cover layer order, typography, source files and a copyable agent brief.
+
+Last updated: 2026-11-13 (prune + channel-nine / play-lab / newsstand polish)
 
 ---
 
@@ -18,6 +20,13 @@ Last updated: 2026-11-13 (glyph decks: facet / hive / bracket)
 Flutter does **not** need BE beside it to *view* templates. BE is required to *create/regenerate* then sync.
 
 ---
+
+## Atelier premium pack (v1)
+
+Paid flagships — see [`ATELIER-PACK.md`](./ATELIER-PACK.md) + `scripts/lib/atelierPack.ts`.
+Atelier pack: `lumen-stage` only (`premium: true`). Wave 2 (`ferrotype` / `sumi-field` / `kiln-slab`) demoted to drafts until communication-first ship bar. Cosmic / Vellum stay in drafts.
+Drafts (not premium until unique geometry): noir-ledger, porcelain-brief, signal-atlas.
+PPTX radial spotlight fix: `catalog.js` `ngrad-rad` + `a:path path="circle"`.
 
 ## Current progress (what’s done)
 
@@ -46,6 +55,13 @@ Working tree on `engine-v1` still has geography + glyph work uncommitted (as of 
 | Primitives | `triangle`, `chevron`, `diamond`, `hexagon` in designKit → render → slideSvg → catalog |
 | Distinct photo keys | `geo-peak-*`, `geo-delta-*`, `orbit-space-*`, `glyph-facet-*`, `glyph-hive-*`, `glyph-bracket-*`, `paper-incipit-*` (also unused `glyph-spoke-*` cached for later) |
 | Sync pins | `sync-tier-b-to-flutter.ts` pins facet/hive/bracket/incipit after delta |
+
+**Session 2026-11-13 (prune / polish):**
+- Removed from `out/` (+ tier-b + review grids): mezzanine-cube, bracket-gate, orbit-meridian, prism-crypt, rhumb-chart, apiary-jar, peak-chain. Sync pins updated (orbit/peak/bracket/mezzanine dropped from `PINNED_ORDER`).
+- Flutter picker pruned the same set (except rhumb, never synced): decks + chrome + `index.json` v62 + `pubspec.yaml` chrome entries.
+- **channel-nine** cover rebuilt photo-led (edit timeline hero + test-card chrome strip; not full SMPTE field).
+- **play-lab** removed broken offset-3d on cover/close (solid type); PNG painter still fills extrusion volume for other decks.
+- **newsstand-rack** spines (photo + flat label baseline) and close (full-bleed spine wall + masthead plate) improved.
 
 **Next BE hygiene:** commit keepers on `engine-v1`; commit Flutter asset sync on `feat/be-template-catalog-sync`.
 

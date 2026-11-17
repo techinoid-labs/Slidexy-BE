@@ -1,0 +1,146 @@
+{
+  "name": "Contour Sheet • Survey kit",
+  "description": "Topographic deck — elevation bands, benchmarks, and contour labels. Map sheet, not cards.",
+  "brand": {
+    "colors": {
+      "bg": "#D7E2DA",
+      "surface": "#F3F7F2",
+      "surface_color": "#A8C0AE",
+      "ink": "#14241C",
+      "muted": "#4A6354",
+      "accent": "#C45C26",
+      "line": "#5F7A68"
+    },
+    "fonts": {
+      "display": "Georgia",
+      "body": "Consolas"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "contour-sheet"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "CONTOUR",
+        "items": [
+          "SURVEY KIT · SHEET 07",
+          "Rise · mark · descend"
+        ],
+        "photoQuery": "80346a24bf"
+      },
+      {
+        "role": "feature",
+        "title": "Elevations",
+        "items": [
+          "120m",
+          "Ridge",
+          "340m",
+          "Saddle",
+          "610m",
+          "Peak"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Benchmarks",
+        "items": [
+          "BM-A",
+          "True",
+          "BM-B",
+          "Hold",
+          "BM-C",
+          "Fix",
+          "BM-D",
+          "Lock"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Watershed",
+        "items": [
+          "North",
+          "Divide",
+          "South",
+          "Basin",
+          "Join",
+          "Mouth"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Spot heights",
+        "items": [
+          "P1",
+          "88",
+          "P2",
+          "142",
+          "P3",
+          "205"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Relief",
+        "items": [
+          "RIDGELINE",
+          "Hold the line until the saddle opens."
+        ],
+        "photoQuery": "80346a24bf"
+      },
+      {
+        "role": "quote",
+        "title": "FIELD",
+        "items": [
+          "Every line is a height you can stand on.",
+          "— Survey note"
+        ]
+      },
+      {
+        "role": "closing",
+        "title": "Descend.",
+        "items": [
+          "Contour Sheet · survey kit"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "contour-cover"
+    },
+    {
+      "role": "feature",
+      "variant": "contour-elev"
+    },
+    {
+      "role": "feature",
+      "variant": "contour-bm"
+    },
+    {
+      "role": "feature",
+      "variant": "contour-watershed"
+    },
+    {
+      "role": "feature",
+      "variant": "contour-spots"
+    },
+    {
+      "role": "feature",
+      "variant": "contour-relief"
+    },
+    {
+      "role": "quote",
+      "variant": "contour-quote"
+    },
+    {
+      "role": "closing",
+      "variant": "contour-close"
+    }
+  ]
+}

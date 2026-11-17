@@ -1,0 +1,165 @@
+{
+  "id": "cover/gatefold-cinema-1",
+  "role": "cover",
+  "variant": "gatefold-cinema-1",
+  "family": "gatefold-cinema",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 94,
+      "maxFont": 94,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 25,
+      "maxFont": 25,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 30,
+      "maxFont": 30,
+      "lineClamp": 4,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "reference",
+        "type": "image",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 610,
+        "z": 3,
+        "slot": "photo"
+      },
+      {
+        "id": "back-plane",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 84,
+        "tokenFill": "dark",
+        "z": 4,
+        "morphId": "back-plane",
+        "shadow": {
+          "offsetY": 8,
+          "blur": 16,
+          "opacity": 0.23,
+          "color": "#242324"
+        },
+        "keepFill": true
+      },
+      {
+        "id": "front-plane",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 570,
+        "width": 1600,
+        "height": 330,
+        "tokenFill": "dark",
+        "z": 4,
+        "morphId": "front-plane",
+        "shadow": {
+          "offsetY": 8,
+          "blur": 16,
+          "opacity": 0.23,
+          "color": "#242324"
+        },
+        "keepFill": true
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 55,
+        "y": 605,
+        "width": 940,
+        "height": 240,
+        "fontSize": 94,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5,
+        "morphId": "title"
+      },
+      {
+        "id": "body-0",
+        "type": "text",
+        "x": 65,
+        "y": 22,
+        "width": 1450,
+        "height": 52,
+        "fontSize": 25,
+        "slot": "copy0",
+        "tokenColor": "accent",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5
+      },
+      {
+        "id": "body-1",
+        "type": "text",
+        "x": 1080,
+        "y": 670,
+        "width": 460,
+        "height": 170,
+        "fontSize": 30,
+        "slot": "copy1",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5
+      }
+    ]
+  }
+}

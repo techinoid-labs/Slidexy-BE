@@ -1,0 +1,168 @@
+{
+  "name": "Carta Folio • Beige portfolio kit",
+  "description": "Warm paper, wine accents, condensed type, framed photography — creative portfolio decks.",
+  "brand": {
+    "lighting": "flat",
+    "colors": {
+      "bg": "#FBF3E4",
+      "surface": "#FBF3E4",
+      "surface_color": "#DFD8CA",
+      "ink": "#000000",
+      "muted": "#5A5348",
+      "accent": "#B91646",
+      "line": "#C8C0B2"
+    },
+    "fonts": {
+      "display": "Arial Black",
+      "body": "Poppins"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "carta-folio"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "FOLIO.",
+        "items": [
+          "carta",
+          "by Atelier",
+          "presentation template"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "presentation",
+        "items": [
+          "welcome",
+          "the studio",
+          "A quiet system for showing the work — type first, photo framed, one accent that fires."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "CONTENTS",
+        "items": [
+          "table of",
+          "01  About the studio",
+          "02  Selected work",
+          "03  Vision / mission",
+          "04  Craft skills",
+          "05  Contact",
+          "How the pages turn."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "ABOUT ME",
+        "items": [
+          "introduce",
+          "Studio lead",
+          "We design decks that feel printed — paper ground, heavy type, photographs that look chosen.",
+          "Atelier",
+          "Carta"
+        ],
+        "photoQuery": "carta-folio-portrait"
+      },
+      {
+        "role": "feature",
+        "title": "AT A GLANCE",
+        "items": [
+          "48",
+          "Decks shipped",
+          "12",
+          "Studios",
+          "6",
+          "Years",
+          "90%",
+          "Kept for finals"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "SKILLS",
+        "items": [
+          "personal",
+          "Type systems and photo frames that survive the projector.",
+          "Art direction",
+          "Lock type before decoration.",
+          "Photo edit",
+          "Crop for the frame, not the feed."
+        ],
+        "photoQuery": "carta-folio-still"
+      },
+      {
+        "role": "feature",
+        "title": "FOLIO",
+        "items": [
+          "selected",
+          "Three chapters from the latest book.",
+          "01  Room study",
+          "02  Still life",
+          "03  Desk notes"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "PROJECT 01",
+        "items": [
+          "A room that holds still — materials, light, and a single line of type.",
+          "Interior study",
+          "2026",
+          "Selected work"
+        ],
+        "photoQuery": "carta-folio-room"
+      },
+      {
+        "role": "closing",
+        "title": "work together.",
+        "items": [
+          "let's",
+          "Ready when you are."
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "carta-cover"
+    },
+    {
+      "role": "feature",
+      "variant": "carta-welcome"
+    },
+    {
+      "role": "feature",
+      "variant": "carta-contents"
+    },
+    {
+      "role": "feature",
+      "variant": "carta-about"
+    },
+    {
+      "role": "feature",
+      "variant": "carta-stats"
+    },
+    {
+      "role": "feature",
+      "variant": "carta-skills"
+    },
+    {
+      "role": "feature",
+      "variant": "carta-index"
+    },
+    {
+      "role": "feature",
+      "variant": "carta-project"
+    },
+    {
+      "role": "closing",
+      "variant": "carta-close"
+    }
+  ]
+}

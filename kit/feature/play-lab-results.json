@@ -155,7 +155,7 @@
         "fontSize": 124,
         "tokenColor": "ink",
         "textStyleRole": "stat",
-        "typeTreatment": "offset-3d",
+        "typeTreatment": "solid",
         "fontRole": "display",
         "lineHeight": 1.12,
         "fontWeight": 900,

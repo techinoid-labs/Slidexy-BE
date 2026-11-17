@@ -1,0 +1,151 @@
+{
+  "name": "Belt Latitudes • Climate kit",
+  "description": "Latitude climate belts — full-bleed horizontal strata. Geography as stacked zones, not orbs or cards.",
+  "brand": {
+    "colors": {
+      "bg": "#E6EFE8",
+      "surface": "#F7FBF6",
+      "surface_color": "#B7CDB8",
+      "ink": "#102018",
+      "muted": "#4E6556",
+      "accent": "#E85D04",
+      "line": "#6F8A74",
+      "deep": "#1B4332",
+      "mid": "#2D6A4F",
+      "pale": "#95D5B2",
+      "ice": "#D8F3DC",
+      "sand": "#E9C46A"
+    },
+    "fonts": {
+      "display": "Georgia",
+      "body": "Consolas"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "belt-latitudes"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "BELTS",
+        "items": [
+          "CLIMATE KIT · LAT BANDS",
+          "Stack · name · cross"
+        ],
+        "photoQuery": "80346a24bf"
+      },
+      {
+        "role": "feature",
+        "title": "Zones",
+        "items": [
+          "Polar",
+          "−30°",
+          "Temperate",
+          "12°",
+          "Tropic",
+          "28°"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Transect",
+        "items": [
+          "Coast",
+          "12m",
+          "Foothill",
+          "480m",
+          "Ridge",
+          "2100m",
+          "Plateau",
+          "1600m"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Seasons",
+        "items": [
+          "Wet",
+          "Nov–Mar",
+          "Dry",
+          "Apr–Oct",
+          "Monsoon",
+          "Peak Jul"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Isohyets",
+        "items": [
+          "Arid",
+          "120",
+          "Semi",
+          "480",
+          "Humid",
+          "1400"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Crossing",
+        "items": [
+          "CROSS",
+          "Leave the belt only when the wind turns."
+        ],
+        "photoQuery": "80346a24bf"
+      },
+      {
+        "role": "quote",
+        "title": "NOTE",
+        "items": [
+          "Latitude is a climate you walk through.",
+          "— Field atlas"
+        ]
+      },
+      {
+        "role": "closing",
+        "title": "Cross.",
+        "items": [
+          "Belt Latitudes · climate kit"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "belt-cover"
+    },
+    {
+      "role": "feature",
+      "variant": "belt-zones"
+    },
+    {
+      "role": "feature",
+      "variant": "belt-transect"
+    },
+    {
+      "role": "feature",
+      "variant": "belt-seasons"
+    },
+    {
+      "role": "feature",
+      "variant": "belt-isohyets"
+    },
+    {
+      "role": "feature",
+      "variant": "belt-crossing"
+    },
+    {
+      "role": "quote",
+      "variant": "belt-quote"
+    },
+    {
+      "role": "closing",
+      "variant": "belt-close"
+    }
+  ]
+}

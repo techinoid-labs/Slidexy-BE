@@ -1,0 +1,566 @@
+{
+  "id": "feature/turntable-reveal",
+  "role": "feature",
+  "variant": "turntable-reveal",
+  "family": "turntable",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy2": {
+      "kind": "text",
+      "from": "items2"
+    },
+    "copy3": {
+      "kind": "text",
+      "from": "items3"
+    },
+    "copy4": {
+      "kind": "text",
+      "from": "items4"
+    }
+  },
+  "fit": {
+    "copy0": {
+      "minFont": 57,
+      "maxFont": 57,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 27,
+      "maxFont": 27,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "title": {
+      "minFont": 51,
+      "maxFont": 51,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "copy2": {
+      "minFont": 28,
+      "maxFont": 28,
+      "lineClamp": 8,
+      "shrinkMin": 1
+    },
+    "copy3": {
+      "minFont": 24,
+      "maxFont": 24,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "copy4": {
+      "minFont": 25,
+      "maxFont": 25,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    },
+    "copy3": {
+      "kind": "text"
+    },
+    "copy4": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "vinyl",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 516,
+        "y": 138,
+        "width": 596,
+        "height": 596,
+        "tokenFill": "vinyl",
+        "z": 1,
+        "morphId": "vinyl",
+        "keepFill": true
+      },
+      {
+        "id": "groove-10",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 526,
+        "y": 148,
+        "width": 576,
+        "height": 576,
+        "tokenFill": "groove",
+        "z": 1.01,
+        "morphId": "groove-10",
+        "keepFill": true
+      },
+      {
+        "id": "land-10",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 528,
+        "y": 150,
+        "width": 572,
+        "height": 572,
+        "tokenFill": "vinyl",
+        "z": 1.02,
+        "morphId": "land-10",
+        "keepFill": true
+      },
+      {
+        "id": "groove-18",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 534,
+        "y": 156,
+        "width": 560,
+        "height": 560,
+        "tokenFill": "groove",
+        "z": 1.03,
+        "morphId": "groove-18",
+        "keepFill": true
+      },
+      {
+        "id": "land-18",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 536,
+        "y": 158,
+        "width": 556,
+        "height": 556,
+        "tokenFill": "vinyl",
+        "z": 1.04,
+        "morphId": "land-18",
+        "keepFill": true
+      },
+      {
+        "id": "groove-32",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 548,
+        "y": 170,
+        "width": 532,
+        "height": 532,
+        "tokenFill": "groove",
+        "z": 1.05,
+        "morphId": "groove-32",
+        "keepFill": true
+      },
+      {
+        "id": "land-32",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 550,
+        "y": 172,
+        "width": 528,
+        "height": 528,
+        "tokenFill": "vinyl",
+        "z": 1.06,
+        "morphId": "land-32",
+        "keepFill": true
+      },
+      {
+        "id": "groove-48",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 564,
+        "y": 186,
+        "width": 500,
+        "height": 500,
+        "tokenFill": "groove",
+        "z": 1.07,
+        "morphId": "groove-48",
+        "keepFill": true
+      },
+      {
+        "id": "land-48",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 566,
+        "y": 188,
+        "width": 496,
+        "height": 496,
+        "tokenFill": "vinyl",
+        "z": 1.08,
+        "morphId": "land-48",
+        "keepFill": true
+      },
+      {
+        "id": "groove-64",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 580,
+        "y": 202,
+        "width": 468,
+        "height": 468,
+        "tokenFill": "groove",
+        "z": 1.09,
+        "morphId": "groove-64",
+        "keepFill": true
+      },
+      {
+        "id": "land-64",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 582,
+        "y": 204,
+        "width": 464,
+        "height": 464,
+        "tokenFill": "vinyl",
+        "z": 1.1,
+        "morphId": "land-64",
+        "keepFill": true
+      },
+      {
+        "id": "groove-82",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 598,
+        "y": 220,
+        "width": 432,
+        "height": 432,
+        "tokenFill": "groove",
+        "z": 1.11,
+        "morphId": "groove-82",
+        "keepFill": true
+      },
+      {
+        "id": "land-82",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 600,
+        "y": 222,
+        "width": 428,
+        "height": 428,
+        "tokenFill": "vinyl",
+        "z": 1.12,
+        "morphId": "land-82",
+        "keepFill": true
+      },
+      {
+        "id": "groove-105",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 621,
+        "y": 243,
+        "width": 386,
+        "height": 386,
+        "tokenFill": "groove",
+        "z": 1.13,
+        "morphId": "groove-105",
+        "keepFill": true
+      },
+      {
+        "id": "land-105",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 623,
+        "y": 245,
+        "width": 382,
+        "height": 382,
+        "tokenFill": "vinyl",
+        "z": 1.1400000000000001,
+        "morphId": "land-105",
+        "keepFill": true
+      },
+      {
+        "id": "groove-132",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 648,
+        "y": 270,
+        "width": 332,
+        "height": 332,
+        "tokenFill": "groove",
+        "z": 1.15,
+        "morphId": "groove-132",
+        "keepFill": true
+      },
+      {
+        "id": "land-132",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 650,
+        "y": 272,
+        "width": 328,
+        "height": 328,
+        "tokenFill": "vinyl",
+        "z": 1.16,
+        "morphId": "land-132",
+        "keepFill": true
+      },
+      {
+        "id": "groove-155",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 671,
+        "y": 293,
+        "width": 286,
+        "height": 286,
+        "tokenFill": "groove",
+        "z": 1.17,
+        "morphId": "groove-155",
+        "keepFill": true
+      },
+      {
+        "id": "land-155",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 673,
+        "y": 295,
+        "width": 282,
+        "height": 282,
+        "tokenFill": "vinyl",
+        "z": 1.18,
+        "morphId": "land-155",
+        "keepFill": true
+      },
+      {
+        "id": "centre-label",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 715,
+        "y": 337,
+        "width": 198,
+        "height": 198,
+        "tokenFill": "label",
+        "z": 1.19,
+        "morphId": "centre-label",
+        "keepFill": true
+      },
+      {
+        "id": "label-stripe-0",
+        "type": "shape",
+        "shape": "rect",
+        "x": 839,
+        "y": 397,
+        "width": 41,
+        "height": 3,
+        "tokenFill": "ink",
+        "z": 1.2,
+        "morphId": "label-stripe-0",
+        "keepFill": true
+      },
+      {
+        "id": "label-stripe-1",
+        "type": "shape",
+        "shape": "rect",
+        "x": 839,
+        "y": 405,
+        "width": 29,
+        "height": 3,
+        "tokenFill": "ink",
+        "z": 1.21,
+        "morphId": "label-stripe-1",
+        "keepFill": true
+      },
+      {
+        "id": "label-stripe-2",
+        "type": "shape",
+        "shape": "rect",
+        "x": 839,
+        "y": 413,
+        "width": 18,
+        "height": 3,
+        "tokenFill": "ink",
+        "z": 1.22,
+        "morphId": "label-stripe-2",
+        "keepFill": true
+      },
+      {
+        "id": "spindle",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 806,
+        "y": 428,
+        "width": 16,
+        "height": 16,
+        "tokenFill": "ink",
+        "z": 1.23,
+        "morphId": "spindle",
+        "keepFill": true
+      },
+      {
+        "id": "inner",
+        "type": "shape",
+        "shape": "rect",
+        "x": 176,
+        "y": 132,
+        "width": 610,
+        "height": 610,
+        "tokenFill": "inner",
+        "z": 2,
+        "morphId": "inner",
+        "shadow": {
+          "offsetY": 8,
+          "blur": 12,
+          "opacity": 0.3,
+          "color": "#17191C"
+        }
+      },
+      {
+        "id": "jacket",
+        "type": "shape",
+        "shape": "rect",
+        "x": 98,
+        "y": 106,
+        "width": 620,
+        "height": 620,
+        "tokenFill": "surface",
+        "z": 3,
+        "morphId": "jacket",
+        "shadow": {
+          "offsetY": 8,
+          "blur": 12,
+          "opacity": 0.3,
+          "color": "#17191C"
+        }
+      },
+      {
+        "id": "cover-art",
+        "type": "image",
+        "x": 116,
+        "y": 124,
+        "width": 584,
+        "height": 330,
+        "z": 4,
+        "slot": "photo",
+        "morphId": "cover-art"
+      },
+      {
+        "id": "album",
+        "type": "text",
+        "x": 128,
+        "y": 465,
+        "width": 555,
+        "height": 155,
+        "fontSize": 57,
+        "slot": "copy0",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5,
+        "morphId": "album"
+      },
+      {
+        "id": "artist",
+        "type": "text",
+        "x": 131,
+        "y": 633,
+        "width": 520,
+        "height": 54,
+        "fontSize": 27,
+        "slot": "copy1",
+        "tokenColor": "accent",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "morphId": "artist"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 1150,
+        "y": 142,
+        "width": 412,
+        "height": 170,
+        "fontSize": 51,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "morphId": "title"
+      },
+      {
+        "id": "detail",
+        "type": "text",
+        "x": 1150,
+        "y": 342,
+        "width": 378,
+        "height": 280,
+        "fontSize": 28,
+        "slot": "copy2",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "edition",
+        "type": "text",
+        "x": 1150,
+        "y": 665,
+        "width": 380,
+        "height": 75,
+        "fontSize": 22,
+        "slot": "copy3",
+        "tokenColor": "accent",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4
+      },
+      {
+        "id": "caption",
+        "type": "text",
+        "x": 98,
+        "y": 805,
+        "width": 1450,
+        "height": 66,
+        "fontSize": 25,
+        "slot": "copy4",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "morphId": "caption"
+      }
+    ]
+  }
+}

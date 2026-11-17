@@ -1,0 +1,194 @@
+{
+  "id": "cover/motion-garden-1",
+  "role": "cover",
+  "variant": "motion-garden-1",
+  "family": "motion-garden",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "copy2": {
+      "kind": "text",
+      "from": "items2"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 125,
+      "maxFont": 125,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 122,
+      "maxFont": 122,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 39,
+      "maxFont": 39,
+      "lineClamp": 3,
+      "shrinkMin": 1
+    },
+    "copy2": {
+      "minFont": 24,
+      "maxFont": 24,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "ground",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "green",
+        "z": 0,
+        "keepFill": true
+      },
+      {
+        "id": "petal-a",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 809,
+        "y": 45,
+        "width": 690,
+        "height": 690,
+        "tokenFill": "lilac",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "petal-b",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 922,
+        "y": 289,
+        "width": 640,
+        "height": 640,
+        "tokenFill": "lime",
+        "z": 2,
+        "keepFill": true
+      },
+      {
+        "id": "object",
+        "type": "image",
+        "x": 595,
+        "y": 173,
+        "width": 975,
+        "height": 731,
+        "z": 5,
+        "slot": "photo"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 77,
+        "y": 63,
+        "width": 1440,
+        "height": 181,
+        "fontSize": 125,
+        "slot": "title",
+        "tokenColor": "paper",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8,
+        "textStyleRole": "display",
+        "morphId": "title"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 75,
+        "y": 239,
+        "width": 1440,
+        "height": 177,
+        "fontSize": 122,
+        "slot": "copy0",
+        "tokenColor": "paper",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8,
+        "textStyleRole": "display"
+      },
+      {
+        "id": "copy1",
+        "type": "text",
+        "x": 84,
+        "y": 502,
+        "width": 574,
+        "height": 145,
+        "fontSize": 39,
+        "slot": "copy1",
+        "tokenColor": "paper",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8
+      },
+      {
+        "id": "copy2",
+        "type": "text",
+        "x": 88,
+        "y": 793,
+        "width": 600,
+        "height": 61,
+        "fontSize": 24,
+        "slot": "copy2",
+        "tokenColor": "lime",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8
+      }
+    ]
+  }
+}

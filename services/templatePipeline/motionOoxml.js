@@ -19,6 +19,16 @@ const EASE = { accel: 50000, decel: 50000 };
 const AMBIENT_EASE = { accel: 100000, decel: 100000 };
 
 const STAGGER_MS = 200;
+/** Continuity blend: tiny cascade so settles read as one phrase after a short fade. */
+const BLEND_STAGGER_MS = 60;
+/** Shave long dissolves when entrances follow (PPT can't true-overlap). */
+const BLEND_TRANSITION_TRIM_MS = 250;
+/** Never lengthen an already-snappy fade; floor only applies when shortening. */
+const BLEND_TRANSITION_FLOOR_MS = 350;
+/** Soft entrance duration — longer than the fade so it feels like the dissolve tail. */
+const BLEND_ENTRANCE_DUR_MS = 750;
+/** Connected premium: few hosts so most of the slide arrives inside the fade. */
+const CONNECTED_MAX_ENTRANCES = 3;
 /** 20px rise on 900-tall design canvas → relative path units. */
 const FADE_UP_DY = (20 / 900).toFixed(5);
 /** Sticky slam: drop ~48px onto the wall. */
@@ -287,11 +297,15 @@ function bhvrCTn(id, dur, ease, extraAttrs) {
  * Never clickEffect / afterEffect: those become separate "Next" steps in
  * slideshow (nextAc=seek), so one arrow only advances one element.
  */
-function entranceParXml(templateKey, spid, cTnId, delayMs, index) {
+function entranceParXml(templateKey, spid, cTnId, delayMs, index, durOverrideMs) {
   const t = ENTRANCE_TEMPLATES[templateKey];
   if (!t || !spid) return { xml: "", nextId: cTnId };
   let id = cTnId;
   const delay = Math.max(0, Number(delayMs) || 0);
+  const dur =
+    durOverrideMs != null && Number(durOverrideMs) > 0
+      ? Math.max(200, Math.min(5000, Number(durOverrideMs)))
+      : t.dur;
   const rootId = id++;
   void index;
   const nodeType = "withEffect";
@@ -303,7 +317,7 @@ function entranceParXml(templateKey, spid, cTnId, delayMs, index) {
     child =
       `<p:animScale>` +
       `<p:cBhvr>` +
-      bhvrCTn(bhvrId, t.dur, ease, ` fill="hold"`) +
+      bhvrCTn(bhvrId, dur, ease, ` fill="hold"`) +
       `<p:tgtEl><p:spTgt spid="${spid}"/></p:tgtEl>` +
       `</p:cBhvr>` +
       `<p:from x="0" y="0"/><p:to x="100000" y="100000"/>` +
@@ -314,13 +328,13 @@ function entranceParXml(templateKey, spid, cTnId, delayMs, index) {
     child =
       `<p:animEffect transition="in" filter="fade">` +
       `<p:cBhvr>` +
-      bhvrCTn(fadeId, t.dur, ease) +
+      bhvrCTn(fadeId, dur, ease) +
       `<p:tgtEl><p:spTgt spid="${spid}"/></p:tgtEl>` +
       `</p:cBhvr>` +
       `</p:animEffect>` +
       `<p:animMotion origin="layout" path="M 0 ${FADE_UP_DY} L 0 0" pathEditMode="relative" ptsTypes="A" rCtr="0 0">` +
       `<p:cBhvr additive="base">` +
-      bhvrCTn(moveId, t.dur, ease, ` fill="hold"`) +
+      bhvrCTn(moveId, dur, ease, ` fill="hold"`) +
       `<p:tgtEl><p:spTgt spid="${spid}"/></p:tgtEl>` +
       `<p:attrNameLst><p:attrName>ppt_x</p:attrName><p:attrName>ppt_y</p:attrName></p:attrNameLst>` +
       `</p:cBhvr>` +
@@ -331,13 +345,13 @@ function entranceParXml(templateKey, spid, cTnId, delayMs, index) {
     child =
       `<p:animEffect transition="in" filter="fade">` +
       `<p:cBhvr>` +
-      bhvrCTn(fadeId, t.dur, ease) +
+      bhvrCTn(fadeId, dur, ease) +
       `<p:tgtEl><p:spTgt spid="${spid}"/></p:tgtEl>` +
       `</p:cBhvr>` +
       `</p:animEffect>` +
       `<p:animScale>` +
       `<p:cBhvr>` +
-      bhvrCTn(scaleId, t.dur, ease, ` fill="hold"`) +
+      bhvrCTn(scaleId, dur, ease, ` fill="hold"`) +
       `<p:tgtEl><p:spTgt spid="${spid}"/></p:tgtEl>` +
       `</p:cBhvr>` +
       `<p:from x="105000" y="105000"/><p:to x="100000" y="100000"/>` +
@@ -350,13 +364,13 @@ function entranceParXml(templateKey, spid, cTnId, delayMs, index) {
     child =
       `<p:animEffect transition="in" filter="fade">` +
       `<p:cBhvr>` +
-      bhvrCTn(fadeId, t.dur, slamEase) +
+      bhvrCTn(fadeId, dur, slamEase) +
       `<p:tgtEl><p:spTgt spid="${spid}"/></p:tgtEl>` +
       `</p:cBhvr>` +
       `</p:animEffect>` +
       `<p:animMotion origin="layout" path="M 0 -${SLAM_DY} L 0 0" pathEditMode="relative" ptsTypes="A" rCtr="0 0">` +
       `<p:cBhvr additive="base">` +
-      bhvrCTn(moveId, t.dur, slamEase, ` fill="hold"`) +
+      bhvrCTn(moveId, dur, slamEase, ` fill="hold"`) +
       `<p:tgtEl><p:spTgt spid="${spid}"/></p:tgtEl>` +
       `<p:attrNameLst><p:attrName>ppt_x</p:attrName><p:attrName>ppt_y</p:attrName></p:attrNameLst>` +
       `</p:cBhvr>` +
@@ -366,7 +380,7 @@ function entranceParXml(templateKey, spid, cTnId, delayMs, index) {
       child +=
         `<p:animScale>` +
         `<p:cBhvr>` +
-        bhvrCTn(scaleId, t.dur, slamEase, ` fill="hold"`) +
+        bhvrCTn(scaleId, dur, slamEase, ` fill="hold"`) +
         `<p:tgtEl><p:spTgt spid="${spid}"/></p:tgtEl>` +
         `</p:cBhvr>` +
         `<p:from x="118000" y="118000"/><p:to x="100000" y="100000"/>` +
@@ -380,13 +394,13 @@ function entranceParXml(templateKey, spid, cTnId, delayMs, index) {
     child =
       `<p:animEffect transition="in" filter="fade">` +
       `<p:cBhvr>` +
-      bhvrCTn(fadeId, t.dur, popEase) +
+      bhvrCTn(fadeId, dur, popEase) +
       `<p:tgtEl><p:spTgt spid="${spid}"/></p:tgtEl>` +
       `</p:cBhvr>` +
       `</p:animEffect>` +
       `<p:animScale>` +
       `<p:cBhvr>` +
-      bhvrCTn(scaleId, t.dur, popEase, ` fill="hold"`) +
+      bhvrCTn(scaleId, dur, popEase, ` fill="hold"`) +
       `<p:tgtEl><p:spTgt spid="${spid}"/></p:tgtEl>` +
       `</p:cBhvr>` +
       `<p:from x="40000" y="40000"/><p:to x="100000" y="100000"/>` +
@@ -396,7 +410,7 @@ function entranceParXml(templateKey, spid, cTnId, delayMs, index) {
     child =
       `<p:animEffect transition="in" filter="${t.filter}">` +
       `<p:cBhvr>` +
-      bhvrCTn(bhvrId, t.dur, ease) +
+      bhvrCTn(bhvrId, dur, ease) +
       `<p:tgtEl><p:spTgt spid="${spid}"/></p:tgtEl>` +
       `</p:cBhvr>` +
       `</p:animEffect>`;
@@ -516,7 +530,7 @@ function buildTimingXml(entrances, idMap, ambient) {
     const preset = ent.preset || ent.kind || "fadeIn";
     const spid = idMap[morphId];
     if (!spid) return;
-    const built = entranceParXml(preset, spid, cTnId, ent.delayMs, index);
+    const built = entranceParXml(preset, spid, cTnId, ent.delayMs, index, ent.durMs);
     if (built.xml) {
       entranceKids.push(built.xml);
       cTnId = built.nextId;
@@ -616,10 +630,28 @@ function sanitizeAmbientTarget(ambient, idMap, slideXml, layout) {
   return ambient;
 }
 
+/** Soft-edge for shapes tagged softEdge:N (px → EMUs) in cNvPr/@name. */
+function ensureSoftEdges(slideXml) {
+  return String(slideXml || "").replace(/<(p:sp|p:pic)\b[\s\S]*?<\/\1>/g, (block) => {
+    const hit = block.match(/softEdge:(\d+)/);
+    if (!hit) return block;
+    const rad = Math.max(12700, Math.round(Number(hit[1]) * 12700));
+    const soft = `<a:softEdge rad="${rad}"/>`;
+    if (/<a:softEdge\b/.test(block)) return block;
+    if (/<a:effectLst>/.test(block)) {
+      return block.replace(/<a:effectLst>/, `<a:effectLst>${soft}`);
+    }
+    const effect = `<a:effectLst>${soft}</a:effectLst>`;
+    if (/<\/p:spPr>/.test(block)) return block.replace(/<\/p:spPr>/, effect + "</p:spPr>");
+    return block;
+  });
+}
+
 function injectMotionIntoSlideXml(xml, motion) {
   if (!motion) return xml;
   let next = stripExistingTiming(stripExistingTransition(xml));
   next = ensureDepthShadows(next);
+  next = ensureSoftEdges(next);
 
   const transition = motion.transition || "none";
   const durationMs =
@@ -675,8 +707,8 @@ function filterEntrancesNewOnly(entrances, prevIds) {
 }
 
 /**
- * Continuity: keep expressive beat presets (slam / slamDrop / pop / fadeUp).
- * Only flatten harsh wipe/fly into fadeUp — never strip movement from notes/votes.
+ * Continuity soften: flatten harsh wipe/fly into fadeUp.
+ * Without blend, keep expressive slam/pop — Landscapes still wants beat energy.
  */
 function softenEntrancesForContinuity(entrances) {
   return (entrances || []).map((ent, index) => {
@@ -692,6 +724,49 @@ function softenEntrancesForContinuity(entrances) {
   });
 }
 
+/**
+ * Blend entrances into the dissolve handoff.
+ * PPT always finishes p:transition before mainSeq — we can't true-overlap.
+ * Instead: soft fade language, longer settle, tight stagger, first beat at delay 0.
+ */
+function blendEntrancesForContinuity(entrances) {
+  return (entrances || []).map((ent, index) => {
+    const raw = ent.preset || "fadeIn";
+    let preset = raw;
+    // Soften harsh entrances only — keep fadeUp / zoomSettle / pop as authored.
+    if (
+      raw === "wipeRight" ||
+      raw === "flyInFromBottom" ||
+      raw === "zoomIn" ||
+      raw === "slam" ||
+      raw === "slamDrop"
+    ) {
+      preset = "fadeUp";
+    }
+    if (raw === "pop") preset = "pop";
+    if (raw === "zoomSettle") preset = "zoomSettle";
+    const delayMs =
+      ent.delayMs != null ? ent.delayMs : index * BLEND_STAGGER_MS;
+    const next = Object.assign({}, ent, {
+      preset,
+      delayMs,
+    });
+    // Stretch soft entrances so they feel like the fade's settle tail.
+    if (preset === "fadeIn" || preset === "fadeUp") {
+      next.durMs = ent.durMs != null ? ent.durMs : BLEND_ENTRANCE_DUR_MS;
+    }
+    return next;
+  });
+}
+
+/** Trim long dissolves when beats enter after — never lengthen a short fade. */
+function blendTransitionDurationMs(durationMs, hasEntrances) {
+  if (!hasEntrances) return durationMs;
+  const dur = Number(durationMs) || 1400;
+  if (dur <= BLEND_TRANSITION_FLOOR_MS) return dur;
+  return Math.max(BLEND_TRANSITION_FLOOR_MS, dur - BLEND_TRANSITION_TRIM_MS);
+}
+
 async function applyMotionOoxml(buffer, deck) {
   const motionRoot = (deck && deck.engine && deck.engine.motion) || {};
   const deckMotion = (deck && deck.motion) || {};
@@ -701,6 +776,8 @@ async function applyMotionOoxml(buffer, deck) {
 
   const continuityDefault =
     deckMotion.continuityFade !== false && motionRoot.continuityFade !== false;
+  const blendDefault =
+    deckMotion.blendEntrances !== false && motionRoot.blendEntrances !== false;
 
   const zip = await JSZip.loadAsync(buffer);
   let changed = false;
@@ -720,6 +797,8 @@ async function applyMotionOoxml(buffer, deck) {
       per.continuityFade != null
         ? !!per.continuityFade
         : continuityDefault;
+    const blend =
+      per.blendEntrances != null ? !!per.blendEntrances : blendDefault;
     let ambient = per.ambient && per.ambient.effect ? per.ambient : null;
     // Static fallback state: ambient loops must declare resting geometry (no-op if missing)
     if (ambient) {
@@ -732,15 +811,30 @@ async function applyMotionOoxml(buffer, deck) {
     const isMorphStart = layout.morphKeyframe === "start";
 
     let entrances = [];
-    if (!isMorphStart) {
+    // Prefer per-slide stamp, then deck motion root. Continuity without an
+    // explicit mode keeps newOnly (sticky walls). Flagships stamp "none".
+    const mode =
+      per.entrancesMode ||
+      motionRoot.entrancesMode ||
+      (continuity ? "newOnly" : "all");
+    if (!isMorphStart && mode !== "none") {
       // Ensure pattern morphIds + intents exist even if deck was published before tagging
       tagMorphIds(layout.elements || [], layout.role);
-      const mode = per.entrancesMode || (continuity ? "newOnly" : "all");
+      const maxEntrances =
+        per.maxEntrances != null
+          ? Number(per.maxEntrances)
+          : motionRoot.maxEntrances != null
+            ? Number(motionRoot.maxEntrances)
+            : continuity && blend
+              ? CONNECTED_MAX_ENTRANCES
+              : undefined;
       const smart = pickEntranceTargets(layout, {
         continuity,
+        blend: continuity && blend,
         prevIds: prevMorphIds,
         prevGeom,
         newOnly: mode === "newOnly" && i > 0,
+        max: maxEntrances,
       });
       if (per.entrances && per.entrances.length) {
         entrances = per.entrances;
@@ -749,22 +843,21 @@ async function applyMotionOoxml(buffer, deck) {
         }
       } else if (smart.length) {
         entrances = smart;
+      } else if (mode === "newOnly" && i > 0) {
+        // Continuity: nothing new → nothing enters. Do NOT fall through to
+        // defaultEntrances (that re-animates shared title/plates and breaks the fade).
+        entrances = [];
       } else if (motionRoot.entrances && !isMorphDest) {
         entrances = motionRoot.entrances;
-        if (mode === "newOnly" && i > 0) {
-          entrances = filterEntrancesNewOnly(entrances, prevMorphIds);
-        }
       } else {
         entrances = defaultEntrancesForLayout(layout, {
           morphSafe: isMorphDest,
           continuity,
         });
-        if (mode === "newOnly" && i > 0) {
-          entrances = filterEntrancesNewOnly(entrances, prevMorphIds);
-        }
       }
       if (isMorphDest) entrances = filterEntrancesForMorph(entrances);
-      if (continuity) entrances = softenEntrancesForContinuity(entrances);
+      if (continuity && blend) entrances = blendEntrancesForContinuity(entrances);
+      else if (continuity) entrances = softenEntrancesForContinuity(entrances);
     }
 
     let transition =
@@ -773,13 +866,23 @@ async function applyMotionOoxml(buffer, deck) {
       motionRoot.defaultTransition ||
       (motionRoot.morph && i > 0 ? "morph" : "fade");
     transition = resolveTransitionWithFallback(transition, motionRoot, per);
+    // Cover lands fully formed — no transition, no entrances (Moodboard / EPK / premium).
+    if (i === 0 && (mode === "none" || mode === "newOnly") && !per.lockTransition && !isMorphDest) {
+      if (transition === "fade") transition = "none";
+      entrances = [];
+    }
+
+    let durationMs =
+      per.durationMs ||
+      motionRoot.durationMs ||
+      (transition === "morph" || isMorphDest ? 2000 : continuity ? (mode === "none" ? 600 : 1400) : 800);
+    if (continuity && blend && transition === "fade" && entrances.length) {
+      durationMs = blendTransitionDurationMs(durationMs, true);
+    }
 
     const slideMotion = {
       transition,
-      durationMs:
-        per.durationMs ||
-        motionRoot.durationMs ||
-        (transition === "morph" || isMorphDest ? 2000 : continuity ? 1600 : 800),
+      durationMs,
       entrances,
       ambient: isMorphStart || isMorphDest ? null : ambient,
       morphSafe: isMorphDest,

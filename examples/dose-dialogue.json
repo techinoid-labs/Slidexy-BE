@@ -1,0 +1,288 @@
+{
+  "name": "Dose Dialogue",
+  "description": "Illustrated pharmacy consultation deck with object prompts, action routes and editable service infographics.",
+  "brand": {
+    "fonts": {
+      "display": "Rockwell",
+      "body": "Calibri"
+    },
+    "colors": {
+      "bg": "#FFF2DC",
+      "ink": "#173F9D",
+      "blue": "#173F9D",
+      "orange": "#B84C2D",
+      "apricot": "#F4C59F",
+      "paper": "#FFF2DC",
+      "pale": "#DEE7FC",
+      "accent": "#9B3C24",
+      "line": "#9BAED9"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "dose-dialogue"
+    },
+    "slides": [
+      {
+        "title": "DOSE",
+        "items": [
+          "DIALOGUE",
+          "A clearer pharmacy\nconversation",
+          "Illustrative community pharmacy proposal"
+        ],
+        "photoQuery": "dose-hero",
+        "role": "cover"
+      },
+      {
+        "title": "Questions make the consultation useful",
+        "items": [
+          "A pharmacy conversation starts with the person’s questions and a clear record of what they currently use.",
+          "The proposed service",
+          "Arrange a consultation, record the agreed actions and make the follow-up contact visible to the person and the team."
+        ],
+        "photoQuery": "dose-hero",
+        "role": "feature"
+      },
+      {
+        "title": "A useful record has four parts",
+        "items": [
+          "Current list",
+          "Record what the person reports using, including non-prescription products.",
+          "Questions",
+          "Capture concerns in the person’s own words before the discussion.",
+          "Agreed actions",
+          "Document the advice or referral agreed with the pharmacist.",
+          "Follow-up",
+          "Record who will make contact and when the next review is due.",
+          "CONSULTATION"
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Objects can prompt the right questions",
+        "items": [
+          "Packaging",
+          "Helps the conversation identify the product being discussed.",
+          "A written list",
+          "Provides a starting point to check with the pharmacist.",
+          "Notes",
+          "Keep the person’s questions and agreed next steps together."
+        ],
+        "photoQuery": "dose-items",
+        "role": "feature"
+      },
+      {
+        "title": "Five stages keep the discussion focused",
+        "items": [
+          "Connect",
+          "Agree the purpose and what the person wants to discuss.",
+          "Review",
+          "Check the information available and clarify any gaps.",
+          "Discuss",
+          "The pharmacist responds to the person’s questions.",
+          "Agree",
+          "Record the next action and the responsible person.",
+          "Follow up",
+          "Confirm how the next contact will happen.",
+          "Clinical advice and referrals follow the pharmacy’s approved practice."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "The action can take different routes",
+        "items": [
+          "Question discussed",
+          "Information clarified",
+          "The pharmacist records the answer and checks understanding.",
+          "Another team involved",
+          "The record identifies the receiving service and how the handover will be confirmed."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "A follow-up is a planned conversation",
+        "items": [
+          "The person knows who will contact them and the purpose of the call.",
+          "A shared note",
+          "The team reviews the previous actions, records the discussion and agrees any further contact with the person."
+        ],
+        "photoQuery": "dose-followup",
+        "role": "feature"
+      },
+      {
+        "title": "The pilot follows 80 consultations",
+        "items": [
+          "52",
+          "Completed",
+          "Consultation and agreed actions recorded.",
+          "20",
+          "Booked",
+          "Appointment agreed and awaiting the conversation.",
+          "8",
+          "Awaiting contact",
+          "A named team member owns the next attempt.",
+          "Synthetic status snapshot. Categories sum to 80."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Understanding is worth measuring",
+        "items": [
+          "Synthetic survey results after consultation",
+          "“I know my next step”",
+          "Repeat the same question across review rounds. Record how many people replied so the team can interpret the result.",
+          "30 respondents in each sample round."
+        ],
+        "chart": {
+          "type": "bar",
+          "labels": [
+            "Round 1",
+            "Round 2",
+            "Round 3"
+          ],
+          "series": [
+            {
+              "name": "Positive responses / 30",
+              "values": [
+                21,
+                24,
+                27
+              ]
+            }
+          ],
+          "colors": [
+            "#B84C2D"
+          ],
+          "showLegend": false
+        },
+        "role": "feature"
+      },
+      {
+        "title": "The record travels with the action",
+        "items": [
+          "Person’s question",
+          "The record captures the concern as the person describes it.",
+          "Pharmacist’s action",
+          "The pharmacist records the discussion and the agreed next step.",
+          "Follow-up owner",
+          "A named role tracks the action until it is resolved or handed over.",
+          "Receiving service",
+          "The team records whether the handover has reached its destination."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "A small team needs clear ownership",
+        "items": [
+          "Pharmacist",
+          "Owns the consultation, clinical advice and referral decisions within the service.",
+          "Coordinator",
+          "Owns booking, contact attempts and the list of unresolved follow-up actions.",
+          "Weekly review",
+          "The team checks outstanding actions, appointment capacity and incomplete records."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "The pilot learns before it grows",
+        "items": [
+          "Prepare",
+          "Agree documentation and rehearse the handover with sample records.",
+          "Deliver",
+          "Open the initial appointment slots and review unresolved actions weekly.",
+          "Evaluate",
+          "Compare completed contacts, patient understanding and staff workload.",
+          "The expansion decision uses the pilot record and locally agreed service requirements."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "A £120k pilot funds the whole pathway",
+        "items": [
+          "£60k",
+          "Consultation capacity",
+          "Pharmacist time and supervised service training.",
+          "£36k",
+          "Coordination",
+          "Booking, contact attempts and follow-up administration.",
+          "£24k",
+          "Evaluation",
+          "Record review, patient feedback and rollout planning.",
+          "Illustrative three-month budget. Allocations sum to £120k."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "A clear conversation.\nAn agreed next step.",
+        "items": [
+          "Community pharmacy service proposal",
+          "The pilot makes questions, actions and follow-up visible to the person and the pharmacy team.",
+          "Fictional service and synthetic data. This template provides no dosing or treatment instructions."
+        ],
+        "photoQuery": "dose-followup",
+        "role": "closing"
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "dose-dialogue-1"
+    },
+    {
+      "role": "feature",
+      "variant": "dose-dialogue-2"
+    },
+    {
+      "role": "feature",
+      "variant": "dose-dialogue-3"
+    },
+    {
+      "role": "feature",
+      "variant": "dose-dialogue-4"
+    },
+    {
+      "role": "feature",
+      "variant": "dose-dialogue-5"
+    },
+    {
+      "role": "feature",
+      "variant": "dose-dialogue-6"
+    },
+    {
+      "role": "feature",
+      "variant": "dose-dialogue-7"
+    },
+    {
+      "role": "feature",
+      "variant": "dose-dialogue-8"
+    },
+    {
+      "role": "feature",
+      "variant": "dose-dialogue-9"
+    },
+    {
+      "role": "feature",
+      "variant": "dose-dialogue-10"
+    },
+    {
+      "role": "feature",
+      "variant": "dose-dialogue-11"
+    },
+    {
+      "role": "feature",
+      "variant": "dose-dialogue-12"
+    },
+    {
+      "role": "feature",
+      "variant": "dose-dialogue-13"
+    },
+    {
+      "role": "closing",
+      "variant": "dose-dialogue-14"
+    }
+  ]
+}

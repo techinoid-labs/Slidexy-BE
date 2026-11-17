@@ -5,16 +5,22 @@
   "family": "channel-nine",
   "status": "approved",
   "preserveLayout": true,
-  "requiresPhoto": false,
-  "photoSlots": [],
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
   "slots": {
-    "copy3": {
-      "kind": "text",
-      "from": "items3"
+    "photo": {
+      "kind": "image",
+      "from": "photo"
     },
     "copy0": {
       "kind": "text",
       "from": "items0"
+    },
+    "copy3": {
+      "kind": "text",
+      "from": "items3"
     },
     "title": {
       "kind": "text",
@@ -30,21 +36,21 @@
     }
   },
   "fit": {
-    "copy3": {
-      "minFont": 260,
-      "maxFont": 260,
-      "lineClamp": 1,
-      "shrinkMin": 1
-    },
     "copy0": {
       "minFont": 26,
       "maxFont": 26,
       "lineClamp": 1,
       "shrinkMin": 1
     },
+    "copy3": {
+      "minFont": 72,
+      "maxFont": 72,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
     "title": {
-      "minFont": 130,
-      "maxFont": 130,
+      "minFont": 120,
+      "maxFont": 120,
       "lineClamp": 1,
       "shrinkMin": 1
     },
@@ -62,10 +68,13 @@
     }
   },
   "pptxMapping": {
-    "copy3": {
-      "kind": "text"
+    "photo": {
+      "kind": "picture"
     },
     "copy0": {
+      "kind": "text"
+    },
+    "copy3": {
       "kind": "text"
     },
     "title": {
@@ -81,15 +90,28 @@
   "layout": {
     "elements": [
       {
-        "id": "bg",
-        "type": "shape",
-        "shape": "rect",
+        "id": "photo",
+        "type": "image",
         "x": 0,
         "y": 0,
         "width": 1600,
         "height": 900,
+        "z": 1,
+        "slot": "photo",
+        "zoom": 1.08,
+        "morphId": "hero"
+      },
+      {
+        "id": "scrim",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 520,
+        "width": 1600,
+        "height": 380,
         "tokenFill": "bg",
-        "z": 0
+        "z": 2,
+        "opacity": 0.88
       },
       {
         "id": "bar0",
@@ -98,9 +120,9 @@
         "x": 0,
         "y": 0,
         "width": 267,
-        "height": 590,
+        "height": 36,
         "tokenFill": "surface",
-        "z": 1
+        "z": 3
       },
       {
         "id": "bar1",
@@ -109,9 +131,9 @@
         "x": 267,
         "y": 0,
         "width": 267,
-        "height": 590,
+        "height": 36,
         "tokenFill": "surface_color",
-        "z": 1
+        "z": 3
       },
       {
         "id": "bar2",
@@ -120,9 +142,9 @@
         "x": 534,
         "y": 0,
         "width": 267,
-        "height": 590,
+        "height": 36,
         "tokenFill": "accent2",
-        "z": 1
+        "z": 3
       },
       {
         "id": "bar3",
@@ -131,9 +153,9 @@
         "x": 801,
         "y": 0,
         "width": 267,
-        "height": 590,
+        "height": 36,
         "tokenFill": "card_bg",
-        "z": 1
+        "z": 3
       },
       {
         "id": "bar4",
@@ -142,9 +164,9 @@
         "x": 1068,
         "y": 0,
         "width": 267,
-        "height": 590,
+        "height": 36,
         "tokenFill": "accent",
-        "z": 1
+        "z": 3
       },
       {
         "id": "bar5",
@@ -153,243 +175,203 @@
         "x": 1335,
         "y": 0,
         "width": 265,
-        "height": 590,
+        "height": 36,
         "tokenFill": "line",
-        "z": 1
+        "z": 3
       },
       {
         "id": "strip0",
         "type": "shape",
         "shape": "rect",
         "x": 0,
-        "y": 590,
+        "y": 520,
         "width": 100,
-        "height": 60,
+        "height": 18,
         "tokenFill": "line",
-        "z": 1
+        "z": 3
       },
       {
         "id": "strip1",
         "type": "shape",
         "shape": "rect",
         "x": 100,
-        "y": 590,
+        "y": 520,
         "width": 100,
-        "height": 60,
+        "height": 18,
         "tokenFill": "bg",
-        "z": 1
+        "z": 3
       },
       {
         "id": "strip2",
         "type": "shape",
         "shape": "rect",
         "x": 200,
-        "y": 590,
+        "y": 520,
         "width": 100,
-        "height": 60,
+        "height": 18,
         "tokenFill": "accent",
-        "z": 1
+        "z": 3
       },
       {
         "id": "strip3",
         "type": "shape",
         "shape": "rect",
         "x": 300,
-        "y": 590,
+        "y": 520,
         "width": 100,
-        "height": 60,
+        "height": 18,
         "tokenFill": "bg",
-        "z": 1
+        "z": 3
       },
       {
         "id": "strip4",
         "type": "shape",
         "shape": "rect",
         "x": 400,
-        "y": 590,
+        "y": 520,
         "width": 100,
-        "height": 60,
+        "height": 18,
         "tokenFill": "accent2",
-        "z": 1
+        "z": 3
       },
       {
         "id": "strip5",
         "type": "shape",
         "shape": "rect",
         "x": 500,
-        "y": 590,
+        "y": 520,
         "width": 100,
-        "height": 60,
+        "height": 18,
         "tokenFill": "bg",
-        "z": 1
+        "z": 3
       },
       {
         "id": "strip6",
         "type": "shape",
         "shape": "rect",
         "x": 600,
-        "y": 590,
+        "y": 520,
         "width": 100,
-        "height": 60,
+        "height": 18,
         "tokenFill": "surface",
-        "z": 1
+        "z": 3
       },
       {
         "id": "strip7",
         "type": "shape",
         "shape": "rect",
         "x": 700,
-        "y": 590,
+        "y": 520,
         "width": 100,
-        "height": 60,
+        "height": 18,
         "tokenFill": "bg",
-        "z": 1
+        "z": 3
       },
       {
         "id": "strip8",
         "type": "shape",
         "shape": "rect",
         "x": 800,
-        "y": 590,
+        "y": 520,
         "width": 100,
-        "height": 60,
+        "height": 18,
         "tokenFill": "line",
-        "z": 1
+        "z": 3
       },
       {
         "id": "strip9",
         "type": "shape",
         "shape": "rect",
         "x": 900,
-        "y": 590,
+        "y": 520,
         "width": 100,
-        "height": 60,
+        "height": 18,
         "tokenFill": "bg",
-        "z": 1
+        "z": 3
       },
       {
         "id": "strip10",
         "type": "shape",
         "shape": "rect",
         "x": 1000,
-        "y": 590,
+        "y": 520,
         "width": 100,
-        "height": 60,
+        "height": 18,
         "tokenFill": "accent",
-        "z": 1
+        "z": 3
       },
       {
         "id": "strip11",
         "type": "shape",
         "shape": "rect",
         "x": 1100,
-        "y": 590,
+        "y": 520,
         "width": 100,
-        "height": 60,
+        "height": 18,
         "tokenFill": "bg",
-        "z": 1
+        "z": 3
       },
       {
         "id": "strip12",
         "type": "shape",
         "shape": "rect",
         "x": 1200,
-        "y": 590,
+        "y": 520,
         "width": 100,
-        "height": 60,
+        "height": 18,
         "tokenFill": "accent2",
-        "z": 1
+        "z": 3
       },
       {
         "id": "strip13",
         "type": "shape",
         "shape": "rect",
         "x": 1300,
-        "y": 590,
+        "y": 520,
         "width": 100,
-        "height": 60,
+        "height": 18,
         "tokenFill": "bg",
-        "z": 1
+        "z": 3
       },
       {
         "id": "strip14",
         "type": "shape",
         "shape": "rect",
         "x": 1400,
-        "y": 590,
+        "y": 520,
         "width": 100,
-        "height": 60,
+        "height": 18,
         "tokenFill": "surface",
-        "z": 1
+        "z": 3
       },
       {
         "id": "strip15",
         "type": "shape",
         "shape": "rect",
         "x": 1500,
-        "y": 590,
+        "y": 520,
         "width": 100,
-        "height": 60,
+        "height": 18,
         "tokenFill": "bg",
-        "z": 1
-      },
-      {
-        "id": "ringOuter",
-        "type": "shape",
-        "shape": "ellipse",
-        "x": 590,
-        "y": 85,
-        "width": 420,
-        "height": 420,
-        "tokenFill": "surface",
         "z": 3
-      },
-      {
-        "id": "ringInner",
-        "type": "shape",
-        "shape": "ellipse",
-        "x": 610,
-        "y": 105,
-        "width": 380,
-        "height": 380,
-        "tokenFill": "bg",
-        "z": 4
-      },
-      {
-        "id": "copy3",
-        "type": "text",
-        "x": 610,
-        "y": 120,
-        "width": 380,
-        "height": 370,
-        "fontSize": 260,
-        "slot": "copy3",
-        "tokenColor": "surface",
-        "fontRole": "display",
-        "fontWeight": 700,
-        "lineHeight": 1.12,
-        "letterSpacing": 0,
-        "z": 5,
-        "textStyleRole": "stat",
-        "align": "center"
       },
       {
         "id": "onair",
         "type": "shape",
         "shape": "rect",
         "x": 80,
-        "y": 60,
+        "y": 70,
         "width": 200,
         "height": 60,
         "tokenFill": "accent",
-        "z": 3,
+        "z": 4,
         "radius": 30
       },
       {
         "id": "copy0",
         "type": "text",
         "x": 80,
-        "y": 70,
+        "y": 80,
         "width": 200,
         "height": 40,
         "fontSize": 26,
@@ -404,13 +386,53 @@
         "align": "center"
       },
       {
+        "id": "ringOuter",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 1380,
+        "y": 70,
+        "width": 140,
+        "height": 140,
+        "tokenFill": "surface",
+        "z": 4
+      },
+      {
+        "id": "ringInner",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 1395,
+        "y": 85,
+        "width": 110,
+        "height": 110,
+        "tokenFill": "bg",
+        "z": 5
+      },
+      {
+        "id": "copy3",
+        "type": "text",
+        "x": 1395,
+        "y": 95,
+        "width": 110,
+        "height": 103,
+        "fontSize": 72,
+        "slot": "copy3",
+        "tokenColor": "surface",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 6,
+        "textStyleRole": "stat",
+        "align": "center"
+      },
+      {
         "id": "title",
         "type": "text",
         "x": 80,
-        "y": 680,
-        "width": 900,
+        "y": 580,
+        "width": 1100,
         "height": 185,
-        "fontSize": 130,
+        "fontSize": 120,
         "slot": "title",
         "tokenColor": "ink",
         "fontRole": "display",
@@ -425,7 +447,7 @@
         "id": "copy1",
         "type": "text",
         "x": 1000,
-        "y": 700,
+        "y": 620,
         "width": 520,
         "height": 40,
         "fontSize": 28,
@@ -443,7 +465,7 @@
         "id": "copy2",
         "type": "text",
         "x": 1000,
-        "y": 760,
+        "y": 680,
         "width": 520,
         "height": 44,
         "fontSize": 28,

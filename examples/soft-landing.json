@@ -1,0 +1,229 @@
+{
+  "name": "Soft Landing",
+  "description": "Fictional biomaterials seed pitch for art logistics.",
+  "brand": {
+    "fonts": {
+      "display": "Georgia",
+      "body": "Calibri"
+    },
+    "colors": {
+      "bg": "#F8EFDC",
+      "ink": "#34281E",
+      "accent": "#1F409B",
+      "blue": "#203E95",
+      "terra": "#93452D",
+      "paper": "#FFF8E8",
+      "sand": "#DBBE98"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "soft-landing"
+    },
+    "slides": [
+      {
+        "title": "Soft Landing",
+        "items": [
+          "Grown-to-fit packaging for touring ceramics",
+          "Illustrative seed pitch"
+        ],
+        "photoQuery": "soft-landing-cover",
+        "role": "cover"
+      },
+      {
+        "title": "A new crate at every stop",
+        "items": [
+          "When an exhibition travels, a different crew often packs the same object again. The first crew’s hand-cut foam and handwritten notes rarely tell the next handler exactly where the weight should rest.",
+          "A handle is easy to see. The place where it can safely carry weight is harder to communicate.",
+          "We sell the repeatable fit to the art shipper who has to deliver the next leg."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Grow the negative space",
+        "items": [
+          "A handler approves the contact points on a digital model. Two complementary molds turn that approval into a pair of fitted cushions.",
+          "We grow a mycelium-bound fiber composite in the molds, dry the parts and check their dimensions. Each new pair uses the approved geometry."
+        ],
+        "photoQuery": "soft-landing-mold",
+        "role": "feature"
+      },
+      {
+        "title": "A packer can read the fit",
+        "items": [
+          "The rim and handles sit inside clearance pockets. The two inserts meet at the body, where the registrar approved support.",
+          "The packer checks the orientation mark, closes the lid and records the insert revision on the loan paperwork. A replacement can be ordered against that revision."
+        ],
+        "photoQuery": "soft-landing-crate",
+        "role": "feature"
+      },
+      {
+        "title": "The second order changes the economics",
+        "items": [
+          "$480",
+          "One-time fit and tooling fee per approved object. It covers the model review, first mold and registrar sign-off.",
+          "$96",
+          "Price per replacement pair. At $42 of direct material, labor and drying cost, one pair contributes $54 before overhead and freight."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Begin with repeat shippers",
+        "items": [
+          "40 art shippers",
+          "Assume each handles 25 suitable object families per year. At one new fit and four paid pairs per family, annual sales would be $864,000 across the initial group.",
+          "The sales list starts with shippers that service recurring ceramics exhibitions. Registrars approve object contact. The shipper owns the purchasing decision."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "A trial on the packing bench",
+        "items": [
+          "Packing time per object • illustrative rehearsal",
+          "Across three object types, the modeled average falls from 30 to 15 minutes. Repeat packers already have an approved fit sheet for the molded system.",
+          "Before live loans, test vibration, drop response and material compatibility with sacrificial objects. Faster packing alone does not qualify an insert."
+        ],
+        "chart": {
+          "type": "bar",
+          "labels": [
+            "Bowl",
+            "Vase",
+            "Pitcher"
+          ],
+          "series": [
+            {
+              "name": "Hand-cut foam",
+              "values": [
+                24,
+                30,
+                36
+              ]
+            },
+            {
+              "name": "Fitted inserts",
+              "values": [
+                12,
+                15,
+                18
+              ]
+            }
+          ],
+          "colors": [
+            "#A05A40",
+            "#274BB0"
+          ],
+          "showLegend": true
+        },
+        "role": "feature"
+      },
+      {
+        "title": "What the shipper can buy today",
+        "items": [
+          "Foam cut on site",
+          "Fast to source and easy to adjust. Each new crew has to reproduce the original support by hand.",
+          "A custom rigid case",
+          "A good choice for an object that travels in the same case for years. Storage and return freight remain part of the decision.",
+          "A fitted pair on file",
+          "Our first customers already own crates. They buy matched inserts and keep the approved geometry for the next tour."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "One tour opens the next",
+        "items": [
+          "First shipment",
+          "A shipper nominates three repeat objects. We quote the molds, produce a trial pair and sit with the lead handler for fit approval.",
+          "Repeat booking",
+          "Each object receives a revision number. The shipper reorders by number before the next leg, with a fresh inspection on arrival.",
+          "Portfolio agreement",
+          "Once the shipper has ten active fits, we offer reserved production slots tied to its exhibition calendar."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Two crafts under one roof",
+        "items": [
+          "Ada Voss, collections handling",
+          "Ada leads contact-point reviews and signs off packing instructions with each registrar. Her team owns the record of every approved revision.",
+          "Mika Lane, biomaterials production",
+          "Mika runs mold tooling, drying schedules and lot inspection. The next hire will own environmental testing and the release checklist."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "The next three shipments",
+        "items": [
+          "By month 4",
+          "Complete bench qualification for three vessel shapes. Document contact points, dimensional drift and impact response.",
+          "By month 9",
+          "Deliver paid trials to four shippers and track handling time, fit corrections and damage reports.",
+          "By month 15",
+          "Secure repeat orders from three shippers. Release a second mold set only after the first earns a repeat booking."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Give the next tour a softer landing",
+        "items": [
+          "$1.2M seed",
+          "$540k builds the mold and drying line. $360k funds qualification and handling trials. $300k funds shipper onboarding and repeat-order support.",
+          "The 15-month milestone is three paying repeat customers and one qualified production process. All venture details and figures in this pitch are fictional."
+        ],
+        "role": "closing"
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "soft-landing-1"
+    },
+    {
+      "role": "feature",
+      "variant": "soft-landing-2"
+    },
+    {
+      "role": "feature",
+      "variant": "soft-landing-3"
+    },
+    {
+      "role": "feature",
+      "variant": "soft-landing-4"
+    },
+    {
+      "role": "feature",
+      "variant": "soft-landing-5"
+    },
+    {
+      "role": "feature",
+      "variant": "soft-landing-6"
+    },
+    {
+      "role": "feature",
+      "variant": "soft-landing-7"
+    },
+    {
+      "role": "feature",
+      "variant": "soft-landing-8"
+    },
+    {
+      "role": "feature",
+      "variant": "soft-landing-9"
+    },
+    {
+      "role": "feature",
+      "variant": "soft-landing-10"
+    },
+    {
+      "role": "feature",
+      "variant": "soft-landing-11"
+    },
+    {
+      "role": "closing",
+      "variant": "soft-landing-12"
+    }
+  ]
+}

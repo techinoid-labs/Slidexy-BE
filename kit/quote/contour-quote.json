@@ -1,0 +1,286 @@
+{
+  "id": "quote/contour-quote",
+  "role": "quote",
+  "variant": "contour-quote",
+  "family": "contour-sheet",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 40,
+      "maxFont": 40,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 28,
+      "maxFont": 28,
+      "lineClamp": 5,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 24,
+      "maxFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "bg",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "bg",
+        "z": 0,
+        "motionKind": "stage",
+        "motion": "persist",
+        "morphId": "stage"
+      },
+      {
+        "id": "q0",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 390,
+        "y": 50,
+        "width": 820,
+        "height": 820,
+        "tokenFill": "line",
+        "z": 1,
+        "opacity": 0.28,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-q0"
+      },
+      {
+        "id": "q1",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 426,
+        "y": 80,
+        "width": 772,
+        "height": 772,
+        "tokenFill": "line",
+        "z": 1,
+        "opacity": 0.28,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-q1"
+      },
+      {
+        "id": "q2",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 438,
+        "y": 110,
+        "width": 724,
+        "height": 724,
+        "tokenFill": "accent",
+        "z": 1,
+        "opacity": 0.35,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-q2"
+      },
+      {
+        "id": "q3",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 474,
+        "y": 140,
+        "width": 676,
+        "height": 676,
+        "tokenFill": "line",
+        "z": 1,
+        "opacity": 0.28,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-q3"
+      },
+      {
+        "id": "q4",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 486,
+        "y": 170,
+        "width": 628,
+        "height": 628,
+        "tokenFill": "line",
+        "z": 1,
+        "opacity": 0.28,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-q4"
+      },
+      {
+        "id": "q5",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 522,
+        "y": 200,
+        "width": 580,
+        "height": 580,
+        "tokenFill": "line",
+        "z": 1,
+        "opacity": 0.28,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-q5"
+      },
+      {
+        "id": "q6",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 534,
+        "y": 230,
+        "width": 532,
+        "height": 532,
+        "tokenFill": "line",
+        "z": 1,
+        "opacity": 0.28,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-q6"
+      },
+      {
+        "id": "q7",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 570,
+        "y": 260,
+        "width": 484,
+        "height": 484,
+        "tokenFill": "line",
+        "z": 1,
+        "opacity": 0.28,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-q7"
+      },
+      {
+        "id": "q8",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 582,
+        "y": 290,
+        "width": 436,
+        "height": 436,
+        "tokenFill": "line",
+        "z": 1,
+        "opacity": 0.28,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-q8"
+      },
+      {
+        "id": "note",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 480,
+        "y": 220,
+        "width": 640,
+        "height": 640,
+        "tokenFill": "surface",
+        "z": 3,
+        "motionKind": "beat",
+        "motion": "enter",
+        "motionPreset": "slam",
+        "morphId": "note-quote"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 560,
+        "y": 300,
+        "width": 480,
+        "height": 50,
+        "fontSize": 20,
+        "slot": "title",
+        "tokenColor": "accent",
+        "fontRole": "label",
+        "fontWeight": 600,
+        "lineHeight": 1.12,
+        "letterSpacing": 2.2,
+        "z": 4,
+        "align": "center",
+        "motionKind": "title",
+        "motion": "enter",
+        "motionPreset": "fadeUp",
+        "morphId": "title"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 540,
+        "y": 370,
+        "width": 520,
+        "height": 180,
+        "fontSize": 28,
+        "slot": "copy0",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.3,
+        "letterSpacing": 0,
+        "z": 4,
+        "align": "center",
+        "motionKind": "label",
+        "motion": "enter",
+        "motionHost": "note",
+        "morphId": "label-0"
+      },
+      {
+        "id": "copy1",
+        "type": "text",
+        "x": 580,
+        "y": 580,
+        "width": 440,
+        "height": 40,
+        "fontSize": 18,
+        "slot": "copy1",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 4,
+        "align": "center",
+        "motionKind": "label",
+        "motion": "enter",
+        "motionHost": "note",
+        "morphId": "label-1"
+      }
+    ]
+  }
+}

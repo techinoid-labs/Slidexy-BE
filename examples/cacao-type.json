@@ -1,0 +1,236 @@
+{
+  "name": "Cacao Type",
+  "description": "Custom confectionery pitch with sculptural chocolate letters and folded order sheets.",
+  "brand": {
+    "fonts": {
+      "display": "Bookman Old Style",
+      "body": "Trebuchet MS"
+    },
+    "colors": {
+      "bg": "#F9F1DE",
+      "ink": "#531F31",
+      "berry": "#531F31",
+      "red": "#AB284A",
+      "mint": "#D6E8BD",
+      "paper": "#F9F1DE",
+      "pink": "#EFC0CA",
+      "accent": "#9B2343"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "cacao-type"
+    },
+    "slides": [
+      {
+        "title": "CACAO",
+        "items": [
+          "TYPE",
+          "Make the message edible.",
+          "CUSTOM CHOCOLATE / ILLUSTRATIVE PITCH"
+        ],
+        "photoQuery": "cacao-cover",
+        "role": "cover"
+      },
+      {
+        "title": "The gift should\nsay something.",
+        "items": [
+          "A name. A date. A small thank-you.",
+          "Event planners repeatedly coordinate artwork, packaging and delivery across separate suppliers. A late wording change can trigger three new approvals.",
+          "Cacao Type puts the chocolate message, box and dispatch date into one approved order."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "A box with a point of view",
+        "items": [
+          "Choose the letter set, filling and sleeve. Approve a proof with the exact contents before production starts.",
+          "One order number follows the batch through packing and dispatch."
+        ],
+        "photoQuery": "cacao-box",
+        "role": "feature"
+      },
+      {
+        "title": "Built in the mold",
+        "items": [
+          "Reusable letter forms",
+          "A stable alphabet gives planners custom wording without a new tool for every event.",
+          "Batch discipline",
+          "Approved recipes and a retained batch record keep repeat orders consistent."
+        ],
+        "photoQuery": "cacao-mold",
+        "role": "feature"
+      },
+      {
+        "title": "The order has four decisions",
+        "items": [
+          "MESSAGE",
+          "Names, initials or a short phrase. The proof locks spelling and piece count.",
+          "FILLING",
+          "Choose from the current production menu. Ingredient information travels with the proof.",
+          "SLEEVE",
+          "Match the event artwork and confirm the delivery contact on the same sheet.",
+          "DATE",
+          "Reserve the batch slot after approval. Dispatch follows the agreed delivery window."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "A 100-box order",
+        "items": [
+          "£2,400",
+          "100 six-piece boxes at £24 each",
+          "£600",
+          "Ingredients and sleeves",
+          "£800",
+          "Production and dispatch",
+          "£1,000",
+          "Contribution before overhead"
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "The batch gets more efficient",
+        "items": [
+          "Illustrative production minutes per six-piece box",
+          "One proof. One setup.",
+          "Larger approved batches spread mold preparation and packing setup across more boxes. Track labor separately from ingredients."
+        ],
+        "chart": {
+          "type": "bar",
+          "labels": [
+            "25 boxes",
+            "50 boxes",
+            "100 boxes",
+            "200 boxes"
+          ],
+          "series": [
+            {
+              "name": "Minutes / box",
+              "values": [
+                14,
+                10,
+                7,
+                6
+              ]
+            }
+          ],
+          "colors": [
+            "#AB284A"
+          ],
+          "showLegend": false
+        },
+        "role": "feature"
+      },
+      {
+        "title": "Meet planners where\nthe brief begins",
+        "items": [
+          "Tasting → proof → reorder",
+          "Offer a paid tasting kit to boutique event agencies. The kit includes the available alphabet, filling menu and a proof example.",
+          "Twelve agencies placing six £2,400 orders a year would produce £172,800 in annual sales."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "The production calendar is the promise",
+        "items": [
+          "DAY 1",
+          "Proof approved",
+          "Spelling, allergens, quantity and address are confirmed together.",
+          "DAY 4",
+          "Batch released",
+          "The production lead checks the recipe record and retained sample.",
+          "DAY 7",
+          "Boxes dispatched",
+          "Packing counts and the courier handover are logged to the order."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Two signatures on every batch",
+        "items": [
+          "Nadia Cole",
+          "Chocolate & production",
+          "Owns the menu, batch release and packing standards. Trains the first two production hires.",
+          "Jules Hart",
+          "Orders & agency partners",
+          "Owns proofs, agency accounts and delivery promises. Keeps changes tied to the approved order."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Earn the repeat order",
+        "items": [
+          "First season",
+          "Complete thirty paid orders. Record actual labor minutes, breakage and delivery performance for every batch.",
+          "Next season",
+          "Target twelve active agencies, a 40% reorder rate and fewer than 2% damaged boxes at handover.",
+          "Expansion follows repeat demand and measured kitchen capacity."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "A sweeter way\nto leave a mark.",
+        "items": [
+          "£350k seed",
+          "£150k kitchen and molds\n£120k production team\n£80k tasting kits and working capital",
+          "Twelve months to twelve active agency partners. Fictional business and financial model. AI-generated artwork."
+        ],
+        "role": "closing"
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "cacao-type-1"
+    },
+    {
+      "role": "feature",
+      "variant": "cacao-type-2"
+    },
+    {
+      "role": "feature",
+      "variant": "cacao-type-3"
+    },
+    {
+      "role": "feature",
+      "variant": "cacao-type-4"
+    },
+    {
+      "role": "feature",
+      "variant": "cacao-type-5"
+    },
+    {
+      "role": "feature",
+      "variant": "cacao-type-6"
+    },
+    {
+      "role": "feature",
+      "variant": "cacao-type-7"
+    },
+    {
+      "role": "feature",
+      "variant": "cacao-type-8"
+    },
+    {
+      "role": "feature",
+      "variant": "cacao-type-9"
+    },
+    {
+      "role": "feature",
+      "variant": "cacao-type-10"
+    },
+    {
+      "role": "feature",
+      "variant": "cacao-type-11"
+    },
+    {
+      "role": "closing",
+      "variant": "cacao-type-12"
+    }
+  ]
+}

@@ -39,7 +39,7 @@ const slides = [
   { role: "cover", variant: "play-lab-poster", elements: [
     box("rail", 0, 0, 24, 900, "accent"),
     t("brand", 75, 55, 900, 50, 28, "PLAY / LAB     —     IDEAS IN MOTION", "ink", { textStyleRole: "kicker" }),
-    t("title", 65, 250, 1000, 210, 150, "WHAT IF?", "ink", { textStyleRole: "display", typeTreatment: "offset-3d", fontWeight: 900 }),
+    t("title", 65, 250, 1000, 210, 150, "WHAT IF?", "ink", { textStyleRole: "display", typeTreatment: "solid", fontWeight: 900 }),
     box("disc", 990, 130, 530, 530, "ink", "ellipse"),
     icon("rocket", "rocket", 1070, 210, 370),
     box("label", 1020, 690, 470, 78, "accent"),
@@ -132,7 +132,7 @@ const results = feature("results", [
   t("title", 70, 65, 1400, 125, 94, "Keep the evidence visible."),
   t("label", 80, 210, 1400, 50, 26, "EXAMPLE FINDINGS / REPLACE AFTER YOUR TEST"),
   box("stat", 70, 330, 520, 480, "accent"),
-  t("number", 100, 390, 470, 180, 124, "2 OF 3", "ink", { textStyleRole: "stat", typeTreatment: "offset-3d", fontWeight: 900 }),
+  t("number", 100, 390, 470, 180, 124, "2 OF 3", "ink", { textStyleRole: "stat", typeTreatment: "solid", fontWeight: 900 }),
   t("meaning", 115, 625, 420, 135, 34, "started without asking for help in this example test."),
   t("observed", 690, 350, 790, 160, 39, "OBSERVED\nTwo people found the first task. One searched for a contact."),
   box("line", 690, 550, 800, 3, "ink"),
@@ -145,7 +145,7 @@ const next = feature("next", [
 ]);
 const closing = feature("closing", [
   box("orange", 0, 0, 1600, 900, "accent"),
-  t("title", 75, 150, 1450, 300, 150, "START SMALL.", "ink", { textStyleRole: "display", typeTreatment: "offset-3d" }),
+  t("title", 75, 150, 1450, 300, 150, "START SMALL.", "ink", { textStyleRole: "display", typeTreatment: "solid" }),
   box("band", 0, 580, 1600, 320, "ink"),
   t("body", 80, 630, 1140, 130, 46, "Choose one idea. Name one owner. Put the first test on the calendar.", "bg", { textStyleRole: "headline" }),
   t("brand", 80, 815, 1420, 45, 26, "PLAY / LAB     —     YOUR NEXT EXPERIMENT STARTS HERE", "bg", { textStyleRole: "kicker" })

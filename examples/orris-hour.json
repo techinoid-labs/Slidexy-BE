@@ -1,0 +1,234 @@
+{
+  "name": "Orris Hour",
+  "description": "A fictional fragrance development and launch presentation.",
+  "brand": {
+    "fonts": {
+      "display": "Garamond",
+      "body": "Calibri"
+    },
+    "colors": {
+      "bg": "#F7ECF0",
+      "ink": "#382143",
+      "accent": "#7C446E",
+      "rose": "#E8C4D5",
+      "paper": "#FFF8F4",
+      "violet": "#A48BC9",
+      "amber": "#CF874B"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "orris-hour"
+    },
+    "slides": [
+      {
+        "title": "Orris Hour",
+        "items": [
+          "EAU DE PARFUM",
+          "Bitter orange, iris and cedar"
+        ],
+        "photoQuery": "orris-hour-still-life",
+        "role": "cover"
+      },
+      {
+        "title": "The brief",
+        "items": [
+          "An iris for the hour before dusk.",
+          "The studio wanted the cool, powdery impression of iris to arrive slowly. An orange-peel opening gives the wearer a distinct first impression, then recedes as the floral body settles.",
+          "The sample was assessed on paper at application, at thirty minutes and again after four hours. Each reading answers a different question about the same composition."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "The peel",
+        "items": [
+          "At application",
+          "The perfumer chose the bitterness of the rind as the opening impression. A sweeter orange trial lingered into the middle and made the iris harder to pick out.",
+          "The selected trial has a bright first minute and a clean exit. Its role is to mark the start of the wear, leaving space for the powdery centre."
+        ],
+        "photoQuery": "green mandarin citrus peel",
+        "role": "feature"
+      },
+      {
+        "title": "Three readings on paper",
+        "items": [
+          "Relative impression in the studio trial, scored from 0 to 5.",
+          "Orange falls from five to one by the second reading. Iris reaches its highest score at thirty minutes, then gives way to cedar. The last strip still carries a faint floral impression."
+        ],
+        "chart": {
+          "type": "line",
+          "labels": [
+            "First minute",
+            "30 minutes",
+            "4 hours"
+          ],
+          "series": [
+            {
+              "name": "Orange",
+              "values": [
+                5,
+                1,
+                0
+              ]
+            },
+            {
+              "name": "Iris",
+              "values": [
+                1,
+                5,
+                2
+              ]
+            },
+            {
+              "name": "Cedar",
+              "values": [
+                0,
+                2,
+                4
+              ]
+            }
+          ],
+          "colors": [
+            "#B15C16",
+            "#775599",
+            "#466D55"
+          ],
+          "showLegend": true
+        },
+        "role": "feature"
+      },
+      {
+        "title": "The heart",
+        "items": [
+          "Thirty minutes",
+          "“I noticed the iris when I picked the strip up again. The orange had gone, but I could still remember where it had been.”",
+          "From the studio’s second blotter reading"
+        ],
+        "photoQuery": "purple iris petals macro",
+        "role": "feature"
+      },
+      {
+        "title": "A bottle for the hand",
+        "items": [
+          "Orris Hour",
+          "50 mL",
+          "The broad base sits flat on a dressing table. Rounded shoulders leave a smooth edge where the palm rests, and a short stopper keeps the silhouette low.",
+          "The pale label leaves the fill line visible on both sides. A single dark cap gives the bottle a clear outline against the light paper carton."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "At the counter",
+        "items": [
+          "One strip for now. One for later.",
+          "A guest smells the first strip at the counter. The second goes into a dated paper sleeve, with the time written on its flap so the guest can revisit the scent that afternoon.",
+          "The tester stays beside the strips. Take-home samples sit farther along the counter, where the guest can stop and speak to the host."
+        ],
+        "photoQuery": "perfume glass bottle sunlight",
+        "role": "feature"
+      },
+      {
+        "title": "The first filling",
+        "items": [
+          "240 bottles",
+          "180 for the opening release",
+          "The counter receives three trays of sixty. Staff open one tray at a time so unopened stock remains in its carton.",
+          "48 for partner shops",
+          "Four stockists receive twelve bottles each, with enough blotters for two weekends of sampling.",
+          "12 held by the studio",
+          "The studio keeps twelve for photography, display replacements and comparisons with the next filling."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Two trial strips",
+        "items": [
+          "Trial A",
+          "A sweeter orange opening stayed prominent at thirty minutes. Two readers described the middle as soft, but neither named the iris until the final reading.",
+          "Trial B",
+          "The leaner peel note cleared sooner. Both readers picked out the iris at the second reading. The studio chose this version for the first filling."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "The wrap",
+        "items": [
+          "A carton the colour of the blotter",
+          "The name sits on the front face. The side panel carries the volume and composition details. A narrow plum fold is visible only when the top flap opens.",
+          "The first paper mock-up was folded around a filled bottle. The studio widened the base tuck so the carton could stand square on the counter."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "The studio appointment",
+        "items": [
+          "A twenty-minute visit",
+          "The host opens with the fresh strip and offers a second strip prepared half an hour earlier. Smelling them together makes the change in emphasis easy to follow in the guest’s own description.",
+          "At the end of the visit, the guest selects a sample and writes down the time. The studio asks for one observation after the final reading that evening."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Four hours later",
+        "items": [
+          "By evening, cedar is the clearest note on the strip. The iris sits close to it, and the orange has disappeared.",
+          "The guest takes home the whole progression in a single bottle. The card in the carton gives the three reading times for a second wear."
+        ],
+        "role": "closing"
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "orris-hour-1"
+    },
+    {
+      "role": "feature",
+      "variant": "orris-hour-2"
+    },
+    {
+      "role": "feature",
+      "variant": "orris-hour-3"
+    },
+    {
+      "role": "feature",
+      "variant": "orris-hour-4"
+    },
+    {
+      "role": "feature",
+      "variant": "orris-hour-5"
+    },
+    {
+      "role": "feature",
+      "variant": "orris-hour-6"
+    },
+    {
+      "role": "feature",
+      "variant": "orris-hour-7"
+    },
+    {
+      "role": "feature",
+      "variant": "orris-hour-8"
+    },
+    {
+      "role": "feature",
+      "variant": "orris-hour-9"
+    },
+    {
+      "role": "feature",
+      "variant": "orris-hour-10"
+    },
+    {
+      "role": "feature",
+      "variant": "orris-hour-11"
+    },
+    {
+      "role": "closing",
+      "variant": "orris-hour-12"
+    }
+  ]
+}

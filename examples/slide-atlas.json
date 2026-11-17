@@ -1,0 +1,322 @@
+{
+  "name": "Slide Atlas",
+  "description": "Pathology operations proposal with floating glass, specimen lineage and editable laboratory infographics.",
+  "brand": {
+    "fonts": {
+      "display": "Bodoni MT",
+      "body": "Gill Sans MT"
+    },
+    "colors": {
+      "bg": "#F7F3E8",
+      "ink": "#382953",
+      "purple": "#382953",
+      "lavender": "#DACCF0",
+      "pink": "#DCA5BD",
+      "paper": "#F7F3E8",
+      "accent": "#76465E",
+      "line": "#B6A4CA"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "slide-atlas"
+    },
+    "slides": [
+      {
+        "title": "SLIDE",
+        "items": [
+          "ATLAS",
+          "Pathology operations\nFrom specimen to signed report",
+          "Illustrative laboratory transformation proposal"
+        ],
+        "photoQuery": "atlas-slides",
+        "role": "cover"
+      },
+      {
+        "title": "The specimen carries a chain of evidence",
+        "items": [
+          "A complete report depends on a traceable route through the laboratory. Every transfer must preserve the link to the original request.",
+          "Identity",
+          "The specimen, request and laboratory identifier remain connected.",
+          "Material",
+          "Blocks and slides retain their relationship to the parent case.",
+          "Decision",
+          "The authorized report returns through the agreed clinical channel."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "One case can create several tracked objects",
+        "items": [
+          "CASE 024",
+          "Block A",
+          "Block B",
+          "A1 · A2 · A3",
+          "B1 · B2 · B3",
+          "Illustrative lineage of one case, two blocks and six slides. Local preparation determines the actual number of objects."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Preparation makes the material readable",
+        "items": [
+          "The laboratory records the work performed on each case and links the resulting slides to the reporting record.",
+          "Conceptual laboratory illustration. The tissue artwork has no diagnostic meaning."
+        ],
+        "photoQuery": "atlas-lab",
+        "role": "feature"
+      },
+      {
+        "title": "The route from receipt to authorization",
+        "items": [
+          "Receive",
+          "Reconcile the specimen and request. Record discrepancies through the local process.",
+          "Prepare",
+          "Create and track the required blocks and slides under the approved laboratory procedure.",
+          "Examine",
+          "The reporting professional reviews the prepared material and requests further work when needed.",
+          "Authorize and communicate",
+          "The report reaches the requesting team with its identity and status intact."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "The queue has several kinds of work",
+        "items": [
+          "Synthetic snapshot of 200 open cases",
+          "Different work, different owners",
+          "The coordinator reviews the stage of each case before assigning capacity. Cases awaiting information remain visible in the same review.",
+          "Stage counts sum to 200 cases."
+        ],
+        "chart": {
+          "type": "bar",
+          "labels": [
+            "Preparation",
+            "Reporting",
+            "Further work",
+            "Information"
+          ],
+          "series": [
+            {
+              "name": "Open cases",
+              "values": [
+                70,
+                84,
+                30,
+                16
+              ]
+            }
+          ],
+          "colors": [
+            "#76538F"
+          ],
+          "showLegend": false
+        },
+        "role": "feature"
+      },
+      {
+        "title": "Turnaround has several components",
+        "items": [
+          "Illustrative median stage intervals, working days",
+          "Receipt → preparation",
+          "Preparation → reporting",
+          "Reporting → authorization",
+          "2.0 days",
+          "3.0 days",
+          "1.0 day",
+          "These stage medians describe separate distributions. The end-to-end median must be measured directly from case timestamps."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Exceptions need a visible return path",
+        "items": [
+          "Case reaches review",
+          "The reviewer checks the material and information required for the report.",
+          "Further work requested",
+          "The request records the responsible team and the next review point.",
+          "Returned to the reporting queue"
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Workload changes with the case mix",
+        "items": [
+          "Synthetic weekly case counts by local workload group",
+          "Counts support planning",
+          "A count of cases alone cannot describe reporting effort. Review the local workload mix alongside staff availability and open exceptions.",
+          "Groups A and B are fictional planning categories."
+        ],
+        "chart": {
+          "type": "line",
+          "labels": [
+            "W1",
+            "W2",
+            "W3",
+            "W4",
+            "W5"
+          ],
+          "series": [
+            {
+              "name": "Group A",
+              "values": [
+                80,
+                85,
+                78,
+                92,
+                88
+              ]
+            },
+            {
+              "name": "Group B",
+              "values": [
+                30,
+                32,
+                40,
+                38,
+                45
+              ]
+            }
+          ],
+          "colors": [
+            "#382953",
+            "#BA6A90"
+          ],
+          "showLegend": true
+        },
+        "role": "feature"
+      },
+      {
+        "title": "Quality measures keep the handovers visible",
+        "items": [
+          "Receipt checks",
+          "198 / 200",
+          "Cases with a complete receipt record in the synthetic audit.",
+          "Report routing",
+          "196 / 200",
+          "Authorized reports with a recorded destination in the synthetic audit.",
+          "The pilot also records corrections and repeat work so throughput gains can be reviewed with quality."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "The case record connects five roles",
+        "items": [
+          "CASE RECORD",
+          "Reception",
+          "Identity and receipt",
+          "Preparation team",
+          "Material and slide lineage",
+          "Reporter",
+          "Review and further work",
+          "Coordinator",
+          "Queue and outstanding actions",
+          "Requesting team",
+          "Receives the authorized report"
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "A staged rollout protects traceability",
+        "items": [
+          "Weeks 1–2",
+          "Map the identifiers",
+          "Test the relationship between case, block, slide and report in sample records.",
+          "Weeks 3–6",
+          "Run one laboratory section",
+          "Review every exception and correction with the staff who handle the handover.",
+          "Weeks 7–12",
+          "Decide on expansion"
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "The pilot has a £240k planning envelope",
+        "items": [
+          "£96k",
+          "Laboratory capacity",
+          "Backfill and supervised training during the pilot.",
+          "£84k",
+          "Tracking and integration",
+          "Identifier mapping and the interfaces needed for the case record.",
+          "£60k",
+          "Evaluation and support",
+          "Audit time, issue resolution and rollout coordination.",
+          "Illustrative budget for service planning; actual procurement and staffing costs require local estimates."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "A clear record behind every report",
+        "items": [
+          "The pilot decision rests on traceability, workload and the quality of each handover.",
+          "The proposed review joins open-case counts, stage intervals, correction records and staff feedback before another laboratory section joins.",
+          "Fictional laboratory and synthetic data. All laboratory images are conceptual AI artwork, with no diagnostic interpretation.",
+          "Reference · NHS Scientist Training Programme, Histopathology sample journey. Link in template sources."
+        ],
+        "role": "closing"
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "slide-atlas-1"
+    },
+    {
+      "role": "feature",
+      "variant": "slide-atlas-2"
+    },
+    {
+      "role": "feature",
+      "variant": "slide-atlas-3"
+    },
+    {
+      "role": "feature",
+      "variant": "slide-atlas-4"
+    },
+    {
+      "role": "feature",
+      "variant": "slide-atlas-5"
+    },
+    {
+      "role": "feature",
+      "variant": "slide-atlas-6"
+    },
+    {
+      "role": "feature",
+      "variant": "slide-atlas-7"
+    },
+    {
+      "role": "feature",
+      "variant": "slide-atlas-8"
+    },
+    {
+      "role": "feature",
+      "variant": "slide-atlas-9"
+    },
+    {
+      "role": "feature",
+      "variant": "slide-atlas-10"
+    },
+    {
+      "role": "feature",
+      "variant": "slide-atlas-11"
+    },
+    {
+      "role": "feature",
+      "variant": "slide-atlas-12"
+    },
+    {
+      "role": "feature",
+      "variant": "slide-atlas-13"
+    },
+    {
+      "role": "closing",
+      "variant": "slide-atlas-14"
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "name": "Porcelain Brief • Luxury kit",
+  "description": "Draft — ceramic whites; not Atelier until silhouette is unique vs Vellum.",
+  "brand": {
+    "depthBackground": true,
+    "colors": {
+      "bg": "#E8E2D8",
+      "surface": "#FFFEFB",
+      "surface_color": "#F0EBE3",
+      "ink": "#2A2420",
+      "muted": "#8A8078",
+      "accent": "#9C6B4A",
+      "line": "#D4CCC0"
+    },
+    "fonts": {
+      "display": "Georgia",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "porcelain-brief"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Porcelain Brief.",
+        "items": [
+          "ATELIER · LUXURY",
+          "Quiet type on ceramic white — the room hears the pause before the claim.",
+          "Volume 01 · Soft series"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Speak softly.",
+        "items": [
+          "THE BRIEF",
+          "Luxury decks fail when they shout. Porcelain keeps the plate empty enough that one sentence can ring.",
+          "01 Leave air",
+          "Whitespace is the product. Do not fill it with chrome.",
+          "02 Emboss the edge",
+          "A soft rim holds the plate without a hard card border.",
+          "03 One material",
+          "Ceramic white, warm ink, a single clay accent."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Four finishes",
+        "items": [
+          "01",
+          "Bisque",
+          "Matte ground that absorbs light instead of fighting it.",
+          "02",
+          "Glaze",
+          "A thin sheen on the plate — never a glass widget.",
+          "03",
+          "Rim",
+          "Emboss that frames without boxing the copy.",
+          "04",
+          "Mark",
+          "One clay accent. Then stop."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "The kiln",
+        "items": [
+          "Clay",
+          "Warm accent",
+          "Used once per page — never as a theme wash.",
+          "White",
+          "Ceramic field",
+          "The plate is the stage. Protect its quiet.",
+          "Ink",
+          "Soft charcoal",
+          "Type that sits in the glaze, not on a sticker."
+        ]
+      },
+      {
+        "role": "quote",
+        "title": "Quiet is the luxury.",
+        "items": [
+          "STUDIO NOTE",
+          "If the plate looks busy, the brand already lost.",
+          "— Porcelain Brief"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "At a glance",
+        "items": [
+          "8",
+          "Plates",
+          "Cover to close",
+          "3",
+          "Finishes",
+          "Bisque, glaze, rim",
+          "1",
+          "Mark",
+          "Clay, used once"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Studio light.",
+        "items": [
+          "FIELD RECORD 07",
+          "Morning on the bench — unfired plates catching the only soft window in the room.",
+          "North bench · atelier",
+          "Plate 07 of 12"
+        ],
+        "photoQuery": "porcelain-brief-field"
+      },
+      {
+        "role": "closing",
+        "title": "Set the plate.",
+        "items": [
+          "READY TO PRESENT",
+          "One sentence. One rim. Leave the rest of the clay unworked.",
+          "Book a fitting · Request the set"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "porc-cover"
+    },
+    {
+      "role": "feature",
+      "variant": "porc-brief"
+    },
+    {
+      "role": "feature",
+      "variant": "porc-finishes"
+    },
+    {
+      "role": "feature",
+      "variant": "porc-kiln"
+    },
+    {
+      "role": "quote",
+      "variant": "porc-quote"
+    },
+    {
+      "role": "feature",
+      "variant": "porc-glance"
+    },
+    {
+      "role": "feature",
+      "variant": "porc-photo"
+    },
+    {
+      "role": "closing",
+      "variant": "porc-close"
+    }
+  ]
+}

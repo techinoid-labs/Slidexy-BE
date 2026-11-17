@@ -1,0 +1,231 @@
+{
+  "name": "Cueglass",
+  "description": "A touring opera surtitling pitch.",
+  "brand": {
+    "fonts": {
+      "display": "Bodoni MT",
+      "body": "Consolas"
+    },
+    "colors": {
+      "bg": "#151318",
+      "ink": "#FFF6ED",
+      "accent": "#FF776E",
+      "red": "#A52132",
+      "paper": "#F3E8D7",
+      "black": "#151318",
+      "ash": "#C8C2BF",
+      "line": "#5A5356"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "cueglass"
+    },
+    "slides": [
+      {
+        "title": "Cueglass",
+        "items": [
+          "Live surtitles for touring opera",
+          "Illustrative seed pitch"
+        ],
+        "photoQuery": "cueglass-cover",
+        "role": "cover"
+      },
+      {
+        "title": "A breath changes the cue.",
+        "items": [
+          "Wait.",
+          "Now.",
+          "When a singer holds a note, the translation must wait. An operator follows the performance, watches the conductor and releases one prepared line at a time."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "From the last row",
+        "items": [
+          "I left the lamp burning.",
+          "A single translation sits above the action. The operator clears it when the singer finishes the phrase."
+        ],
+        "photoQuery": "cueglass-house",
+        "role": "feature"
+      },
+      {
+        "title": "Inside the prompt book",
+        "items": [
+          "014   STANDBY",
+          "The door is still open.",
+          "015   ON AIR",
+          "I left the lamp burning.",
+          "016   NEXT",
+          "Will you come home?"
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "A human has the button",
+        "items": [
+          "The stage manager approves the running order. The operator rehearses the triggers and sees the current and next lines at once.",
+          "If the cast skips ahead, the operator can jump to a cue or clear the display. A local copy travels with the touring company."
+        ],
+        "photoQuery": "cueglass-desk",
+        "role": "feature"
+      },
+      {
+        "title": "Book once for the tour",
+        "items": [
+          "$1,200",
+          "Production setup",
+          "Covers script import, one approved language track and a technical rehearsal with the house operator.",
+          "$180",
+          "Per performance",
+          "A ten-show run would invoice $3,000. Additional translation is quoted separately."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "The first buyer is a touring producer",
+        "items": [
+          "A company translating the same production for multiple houses already has approved text. Its producer buys the setup; each venue receives a display test and handover.",
+          "Planning case: 40 producers × 3 tours × $3,000 yields $360,000 in annual bookings at full adoption."
+        ],
+        "photoQuery": "cueglass-rehearsal",
+        "role": "feature"
+      },
+      {
+        "title": "What a rehearsal can prove",
+        "items": [
+          "Cue edits carried into opening night, illustrative test",
+          "Compare two runs of the same excerpt. Count missed, late and incorrect lines from the stage manager’s annotated score. The figures illustrate the pilot method."
+        ],
+        "chart": {
+          "type": "bar",
+          "labels": [
+            "Missed",
+            "Late",
+            "Incorrect"
+          ],
+          "series": [
+            {
+              "name": "First run",
+              "values": [
+                4,
+                8,
+                3
+              ]
+            },
+            {
+              "name": "After rehearsal",
+              "values": [
+                1,
+                3,
+                1
+              ]
+            }
+          ],
+          "showLegend": true,
+          "colors": [
+            "#AB2631",
+            "#292530"
+          ]
+        },
+        "role": "feature"
+      },
+      {
+        "title": "The alternatives on the desk",
+        "items": [
+          "Slides",
+          "Easy to prepare. A last-minute cut means checking slide order and the operator’s separate notes.",
+          "Venue systems",
+          "A strong fit for resident companies. A tour must confirm what every host can import and display.",
+          "Cueglass",
+          "The company carries a reviewed cue file and a local playback copy. Every host signs off on the same excerpt."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Two desks, one sign-off",
+        "items": [
+          "Ada Fenn / dramaturgy",
+          "Ada owns translations, approvals and line breaks. She signs off on readability from the last row before the first paid performance.",
+          "Eli Moss / show control",
+          "Eli owns playback and recovery. Every tour leaves rehearsal with a tested spare machine and an operator who has practiced a restart."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Before the curtain rises",
+        "items": [
+          "Call 1",
+          "Commission three paid productions and test the same scene from three seating positions.",
+          "Call 2",
+          "Complete thirty shows. Log every manual recovery and rehearse the common failure modes again.",
+          "Call 3",
+          "Secure two repeat bookings and publish a standard venue handover packet."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Hold for opening night.",
+        "items": [
+          "$750k seed",
+          "$330k for local playback, $240k for tour onboarding and $180k for rehearsal support. The 15-month target is thirty performances and two repeat producers.",
+          "Illustrative company and financial model."
+        ],
+        "role": "closing"
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "cueglass-1"
+    },
+    {
+      "role": "feature",
+      "variant": "cueglass-2"
+    },
+    {
+      "role": "feature",
+      "variant": "cueglass-3"
+    },
+    {
+      "role": "feature",
+      "variant": "cueglass-4"
+    },
+    {
+      "role": "feature",
+      "variant": "cueglass-5"
+    },
+    {
+      "role": "feature",
+      "variant": "cueglass-6"
+    },
+    {
+      "role": "feature",
+      "variant": "cueglass-7"
+    },
+    {
+      "role": "feature",
+      "variant": "cueglass-8"
+    },
+    {
+      "role": "feature",
+      "variant": "cueglass-9"
+    },
+    {
+      "role": "feature",
+      "variant": "cueglass-10"
+    },
+    {
+      "role": "feature",
+      "variant": "cueglass-11"
+    },
+    {
+      "role": "closing",
+      "variant": "cueglass-12"
+    }
+  ]
+}

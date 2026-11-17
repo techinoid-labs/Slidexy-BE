@@ -1,0 +1,237 @@
+{
+  "name": "Night Tank",
+  "description": "Fictional thermal-storage seed pitch with modeled site economics.",
+  "brand": {
+    "fonts": {
+      "display": "Bahnschrift",
+      "body": "Calibri"
+    },
+    "colors": {
+      "bg": "#071C35",
+      "ink": "#F2FAFF",
+      "accent": "#68E7F7",
+      "muted": "#A6BDCD",
+      "ice": "#E2F6F9",
+      "marine": "#07386A",
+      "copper": "#E7A575"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "night-tank"
+    },
+    "slides": [
+      {
+        "title": "NIGHT TANK",
+        "items": [
+          "Cooling storage for commercial buildings",
+          "Illustrative seed pitch"
+        ],
+        "photoQuery": "night-tank-cover",
+        "role": "cover"
+      },
+      {
+        "title": "The expensive hour is short",
+        "items": [
+          "A building can pay for a peak it reaches only briefly. Our first customer is a facilities director with chilled-water cooling, an afternoon demand charge and spare chiller capacity overnight.",
+          "Charge overnight",
+          "Discharge at peak",
+          "In this example the tank charges before 07:00 and supplies cooling from 14:00 to 18:00. The chiller handles the rest of the day."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Cold goes into the tank at night",
+        "items": [
+          "An existing chiller freezes water around a submerged coil. During the peak window, the building loop draws cooling from the tank as the ice melts.",
+          "A bypass allows the operator to isolate storage and return to normal chiller operation. The retrofit starts with a site survey of valves, available space and overnight load."
+        ],
+        "photoQuery": "night-tank-coil",
+        "role": "feature"
+      },
+      {
+        "title": "The peak falls by 80 kW",
+        "items": [
+          "Illustrative site model • electrical load in kW",
+          "At 16:00, modeled chiller draw drops from 240 to 160 kW. Night charging adds load earlier. The tariff and the timing of the monthly peak determine the actual saving."
+        ],
+        "chart": {
+          "type": "line",
+          "labels": [
+            "02:00",
+            "06:00",
+            "10:00",
+            "14:00",
+            "16:00",
+            "20:00"
+          ],
+          "series": [
+            {
+              "name": "Baseline",
+              "values": [
+                75,
+                90,
+                145,
+                205,
+                240,
+                125
+              ]
+            },
+            {
+              "name": "With storage",
+              "values": [
+                130,
+                135,
+                145,
+                155,
+                160,
+                125
+              ]
+            }
+          ],
+          "colors": [
+            "#A95C2C",
+            "#006F91"
+          ],
+          "showLegend": true
+        },
+        "role": "feature"
+      },
+      {
+        "title": "One contract per plant",
+        "items": [
+          "$900 / month",
+          "The owner buys the installed equipment separately. The subscription covers forecasting, dispatch and monthly reporting. Mechanical contractors earn installation and service revenue.",
+          "At an assumed $22 per kW per month, an 80 kW reduction is worth $1,760 in gross monthly demand savings. After our fee, $860 remains before energy costs, financing and maintenance."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Start with 300 plants",
+        "items": [
+          "$3.24M",
+          "Annual subscription opportunity in the initial territory if all 300 qualified sites adopt at $10,800 per year. This is a planning scenario.",
+          "Screen for a central loop, sufficient tank space and a rate schedule with a meaningful demand charge. Remove sites that fail any one of those tests."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Sell through the plant room",
+        "items": [
+          "A contractor brings a year of interval data to the first meeting. We model the peak, then price a paid survey if the customer’s tariff supports the case.",
+          "The first installation includes a metered baseline and an agreed comparison period. The owner sees both peak reduction and overnight electricity use before signing a portfolio rollout."
+        ],
+        "photoQuery": "night-tank-plant",
+        "role": "feature"
+      },
+      {
+        "title": "A pilot with an exit test",
+        "items": [
+          "Baseline",
+          "Four weeks of meter and weather data establish a comparison for similar operating days.",
+          "Dispatch",
+          "The operator can override dispatch. Every override and the reason for it appear in the site log.",
+          "Decision",
+          "Advance only if peak reduction exceeds 60 kW on ten eligible days and occupied rooms stay within the owner’s agreed temperature range."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Where storage earns its space",
+        "items": [
+          "Load scheduling",
+          "Useful where the operator can shift the activity itself. A hotel still needs occupied rooms cooled through check-in.",
+          "Battery storage",
+          "Serves many electrical loads. Our proposal targets a narrower cooling job and requires an accessible chilled-water plant.",
+          "The deciding test",
+          "Compare installed cost and annual net savings for all three options using the same site data. A poor payback ends our sales process."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Who commissions the system?",
+        "items": [
+          "Thermal engineering",
+          "Lea Moreno owns sizing, coil design and acceptance testing. Her first hire is a commissioning engineer to shorten the time between survey and sign-off.",
+          "Controls and delivery",
+          "Sam Iqbal owns dispatch software and contractor training. Each installation leaves a local operator with a tested bypass and a documented handover."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Eighteen months to six sites",
+        "items": [
+          "Months 1–6",
+          "Commission two pilots and verify the meter baseline with each owner.",
+          "Months 7–12",
+          "Build the installation kit. Train two contractor crews and complete the third and fourth sites.",
+          "Months 13–18",
+          "Commission the last two sites. Seek renewals from the first cohort with a full season of billing evidence."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Fund the first cooling season",
+        "items": [
+          "$2.4M seed",
+          "$1.2M for equipment and commissioning, $720k for controls and measurement, and $480k for contractor support and sales.",
+          "The round targets six metered installations and two renewal decisions within 18 months. All venture details and figures in this pitch are fictional."
+        ],
+        "role": "closing"
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "night-tank-1"
+    },
+    {
+      "role": "feature",
+      "variant": "night-tank-2"
+    },
+    {
+      "role": "feature",
+      "variant": "night-tank-3"
+    },
+    {
+      "role": "feature",
+      "variant": "night-tank-4"
+    },
+    {
+      "role": "feature",
+      "variant": "night-tank-5"
+    },
+    {
+      "role": "feature",
+      "variant": "night-tank-6"
+    },
+    {
+      "role": "feature",
+      "variant": "night-tank-7"
+    },
+    {
+      "role": "feature",
+      "variant": "night-tank-8"
+    },
+    {
+      "role": "feature",
+      "variant": "night-tank-9"
+    },
+    {
+      "role": "feature",
+      "variant": "night-tank-10"
+    },
+    {
+      "role": "feature",
+      "variant": "night-tank-11"
+    },
+    {
+      "role": "closing",
+      "variant": "night-tank-12"
+    }
+  ]
+}

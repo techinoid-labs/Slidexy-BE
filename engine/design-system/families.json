@@ -17,13 +17,13 @@
       "name": "PLAY / LAB",
       "character": "Oversized symbols, asymmetric fields and rising steps",
       "brand": {"colors":{"bg":"#F4F0E8","surface":"#F4F0E8","surface_color":"#E8E2D8","ink":"#191919","muted":"#605B55","accent":"#FF5A24","line":"#D4CEC4"},"fonts":{"display":"Archivo Black","body":"Arial"}},
-      "defaultTitleTreatment": "offset-3d",
+      "defaultTitleTreatment": "solid",
       "textStyles": {
-        "display": {"fontWeight": 900, "letterSpacing": -1.0, "lineHeight": 0.95, "typeTreatment": "solid", "offsetSteps": 6, "offsetX": 6, "offsetY": 6},
+        "display": {"fontWeight": 900, "letterSpacing": -1.0, "lineHeight": 0.95, "typeTreatment": "solid", "offsetSteps": 4, "offsetX": 5, "offsetY": 5},
         "headline": {"fontWeight": 800, "letterSpacing": -0.3, "lineHeight": 1.08},
         "kicker": {"fontWeight": 700, "letterSpacing": 1.2, "uppercase": true},
         "body": {"fontWeight": 400, "letterSpacing": 0, "lineHeight": 1.3},
-        "stat": {"fontWeight": 900, "letterSpacing": -1.0, "lineHeight": 0.95, "typeTreatment": "solid", "offsetSteps": 5, "offsetX": 5, "offsetY": 5},
+        "stat": {"fontWeight": 900, "letterSpacing": -1.0, "lineHeight": 0.95, "typeTreatment": "solid", "offsetSteps": 3, "offsetX": 4, "offsetY": 4},
         "quote": {"fontWeight": 700, "letterSpacing": -0.2, "lineHeight": 1.1}
       },
       "assets": {"provider":"iconify","approvedIds":["material-symbols:rocket","material-symbols:fingerprint","mdi:flask"],"treatment":"monochrome accent","maximumIconsPerSlide":1},

@@ -1,0 +1,56 @@
+{
+  "name": "Sumi Field • Draft",
+  "description": "Demoted draft — rebuild to communication-first bar before pack.",
+  "brand": {
+    "colors": {
+      "bg": "#F3EFE6",
+      "surface": "#FAF7F0",
+      "surface_color": "#E5DFD2",
+      "ink": "#1A2744",
+      "muted": "#5C6678",
+      "accent": "#C43B2C",
+      "line": "#D0C8B8"
+    },
+    "fonts": {
+      "display": "Georgia",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "sumi-field"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Sumi Field.",
+        "items": [
+          "DRAFT",
+          "Not in paid pack.",
+          "Rebuild pending"
+        ]
+      },
+      {
+        "role": "closing",
+        "title": "Draft only.",
+        "items": [
+          "Do not ship.",
+          "Communication-first rebuild next."
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "sumi-draft-cover"
+    },
+    {
+      "role": "closing",
+      "variant": "sumi-draft-close"
+    }
+  ]
+}

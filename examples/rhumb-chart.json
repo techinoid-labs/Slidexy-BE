@@ -1,0 +1,148 @@
+{
+  "name": "Rhumb Chart • Passage kit",
+  "description": "Nautical chart deck — compass rose, rhumb trails, latitude rails. Navigation marks, not cards.",
+  "brand": {
+    "colors": {
+      "bg": "#0B1C28",
+      "surface": "#E7F2F4",
+      "surface_color": "#1E3A4A",
+      "ink": "#E7F2F4",
+      "muted": "#7FA3B3",
+      "accent": "#3DDC97",
+      "line": "#2A4A5A"
+    },
+    "fonts": {
+      "display": "Georgia",
+      "body": "Consolas"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "rhumb-chart"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "RHUMB",
+        "items": [
+          "PASSAGE KIT · CHART 12",
+          "Bear · plot · pass"
+        ],
+        "photoQuery": "ed2250ed0c"
+      },
+      {
+        "role": "feature",
+        "title": "Bearings",
+        "items": [
+          "N",
+          "000°",
+          "NE",
+          "045°",
+          "E",
+          "090°"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Latitudes",
+        "items": [
+          "60N",
+          "Ice",
+          "40N",
+          "Trade",
+          "20N",
+          "Calm",
+          "0",
+          "Line"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Waypoints",
+        "items": [
+          "WP1",
+          "Depart",
+          "WP2",
+          "Reach",
+          "WP3",
+          "Fix",
+          "WP4",
+          "Harbor"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Soundings",
+        "items": [
+          "Shallow",
+          "12",
+          "Channel",
+          "48",
+          "Deep",
+          "210"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Fix",
+        "items": [
+          "HOLD",
+          "Stay on rhumb until abeam."
+        ],
+        "photoQuery": "ed2250ed0c"
+      },
+      {
+        "role": "quote",
+        "title": "LOG",
+        "items": [
+          "Chart lines curve at sea.",
+          "— Pilot book"
+        ]
+      },
+      {
+        "role": "closing",
+        "title": "Make fast.",
+        "items": [
+          "Rhumb Chart · passage kit"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "rhumb-cover"
+    },
+    {
+      "role": "feature",
+      "variant": "rhumb-bearings"
+    },
+    {
+      "role": "feature",
+      "variant": "rhumb-lats"
+    },
+    {
+      "role": "feature",
+      "variant": "rhumb-waypoints"
+    },
+    {
+      "role": "feature",
+      "variant": "rhumb-soundings"
+    },
+    {
+      "role": "feature",
+      "variant": "rhumb-fix"
+    },
+    {
+      "role": "quote",
+      "variant": "rhumb-quote"
+    },
+    {
+      "role": "closing",
+      "variant": "rhumb-close"
+    }
+  ]
+}

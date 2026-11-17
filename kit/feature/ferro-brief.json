@@ -1,0 +1,227 @@
+{
+  "id": "feature/ferro-brief",
+  "role": "feature",
+  "variant": "ferro-brief",
+  "family": "ferrotype",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 48,
+      "maxFont": 48,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 28,
+      "maxFont": 28,
+      "lineClamp": 8,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 28,
+      "maxFont": 28,
+      "lineClamp": 8,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "bg",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "bg",
+        "z": 0,
+        "motionKind": "stage",
+        "motion": "persist",
+        "morphId": "stage"
+      },
+      {
+        "id": "photo",
+        "type": "image",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "z": 1,
+        "slot": "photo",
+        "mask": "rect",
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-photo"
+      },
+      {
+        "id": "plate",
+        "type": "shape",
+        "shape": "rect",
+        "x": 120,
+        "y": 140,
+        "width": 1360,
+        "height": 620,
+        "tokenFill": "surface_color",
+        "z": 3,
+        "radius": 18,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-plate"
+      },
+      {
+        "id": "stroke",
+        "type": "shape",
+        "shape": "rect",
+        "x": 120,
+        "y": 140,
+        "width": 1360,
+        "height": 620,
+        "tokenFill": "line",
+        "z": 4,
+        "radius": 18,
+        "opacity": 0.35,
+        "ignoreContrast": true,
+        "strokeColor": "#C2B8A8",
+        "strokeWidth": 1.5,
+        "strokeOpacity": 0.55,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-stroke"
+      },
+      {
+        "id": "brand",
+        "type": "text",
+        "x": 80,
+        "y": 36,
+        "width": 520,
+        "height": 32,
+        "fontSize": 20,
+        "slot": "",
+        "tokenColor": "surface",
+        "fontRole": "label",
+        "fontWeight": 600,
+        "lineHeight": 1.12,
+        "letterSpacing": 1.6,
+        "z": 8,
+        "lockFont": true,
+        "literal": "FERROTYPE",
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-brand"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 180,
+        "y": 220,
+        "width": 900,
+        "height": 70,
+        "fontSize": 48,
+        "slot": "title",
+        "tokenColor": "surface",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 6,
+        "lockFont": true,
+        "motionKind": "title",
+        "motion": "enter",
+        "motionPreset": "fadeUp",
+        "morphId": "title"
+      },
+      {
+        "id": "dot",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 1400,
+        "y": 200,
+        "width": 36,
+        "height": 36,
+        "tokenFill": "accent",
+        "z": 5,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-dot"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 180,
+        "y": 340,
+        "width": 560,
+        "height": 280,
+        "fontSize": 28,
+        "slot": "copy0",
+        "tokenColor": "surface",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.4,
+        "letterSpacing": 0,
+        "z": 6,
+        "lockFont": true,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-copy0"
+      },
+      {
+        "id": "copy1",
+        "type": "text",
+        "x": 800,
+        "y": 340,
+        "width": 560,
+        "height": 280,
+        "fontSize": 28,
+        "slot": "copy1",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.4,
+        "letterSpacing": 0,
+        "z": 6,
+        "lockFont": true,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-copy1"
+      }
+    ]
+  }
+}

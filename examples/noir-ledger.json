@@ -1,0 +1,164 @@
+{
+  "name": "Noir Ledger • Board kit",
+  "description": "Atelier premium — carbon paper, ledger rules, stamped numerals for finance and board decks.",
+  "brand": {
+    "depthBackground": true,
+    "colors": {
+      "bg": "#1C1A17",
+      "surface": "#F3EFE6",
+      "surface_color": "#2A2620",
+      "ink": "#141210",
+      "muted": "#6E6558",
+      "accent": "#C4A35A",
+      "line": "#4A4338"
+    },
+    "fonts": {
+      "display": "Georgia",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "noir-ledger"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Noir Ledger.",
+        "items": [
+          "ATELIER · FINANCE",
+          "Carbon rules and stamped figures for rooms that decide with ink, not slides.",
+          "Volume 01 · Board series"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Open the book.",
+        "items": [
+          "THE BRIEF",
+          "A board deck should feel like a ledger already in use — ruled, stamped, and weighted. No empty cards pretending to be seriousness.",
+          "01 Rule the page",
+          "Ledgers hold the argument in columns the eye can audit.",
+          "02 Stamp the figure",
+          "One number carries the room — quiet proof around it.",
+          "03 Close the book",
+          "One line of judgment. Then file."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Four entries",
+        "items": [
+          "01",
+          "Open",
+          "State the position before the chart arrives.",
+          "02",
+          "Line",
+          "Rule the page so every claim can be audited.",
+          "03",
+          "Stamp",
+          "One figure. One source. No decoration.",
+          "04",
+          "File",
+          "Close with a decision, not a summary slide."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Three inks",
+        "items": [
+          "Carbon",
+          "Under-sheet memory",
+          "A faint second plate so the page never feels alone.",
+          "Gold",
+          "Board accent",
+          "Reserved for the figure that must hold the room.",
+          "Rule",
+          "Ledger line",
+          "Thin horizontal law across every working page."
+        ]
+      },
+      {
+        "role": "quote",
+        "title": "One figure. One room.",
+        "items": [
+          "BOARD NOTE",
+          "If every number shouts, none of them decide.",
+          "— Noir Ledger"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "At a glance",
+        "items": [
+          "12",
+          "Lines",
+          "Ruled working pages",
+          "3",
+          "Inks",
+          "Carbon, gold, rule",
+          "1",
+          "Stamp",
+          "The figure that carries"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Night audit.",
+        "items": [
+          "FIELD RECORD 07",
+          "After hours on the floor — the only light left is the desk lamp and the last open ledger.",
+          "East wing · trading floor",
+          "Plate 07 of 12"
+        ],
+        "photoQuery": "noir-ledger-field"
+      },
+      {
+        "role": "closing",
+        "title": "File the ledger.",
+        "items": [
+          "READY FOR BOARD",
+          "Stamp the figure. Close the book. Keep the carbon with the packet.",
+          "Book the review · Send the brief"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "noir-cover"
+    },
+    {
+      "role": "feature",
+      "variant": "noir-brief"
+    },
+    {
+      "role": "feature",
+      "variant": "noir-entries"
+    },
+    {
+      "role": "feature",
+      "variant": "noir-inks"
+    },
+    {
+      "role": "quote",
+      "variant": "noir-quote"
+    },
+    {
+      "role": "feature",
+      "variant": "noir-pulse"
+    },
+    {
+      "role": "feature",
+      "variant": "noir-photo"
+    },
+    {
+      "role": "closing",
+      "variant": "noir-close"
+    }
+  ]
+}

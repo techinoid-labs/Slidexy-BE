@@ -1,0 +1,220 @@
+{
+  "name": "Chorus Ledger",
+  "description": "An illustrated wetland monitoring seed pitch.",
+  "brand": {
+    "fonts": {
+      "display": "Perpetua",
+      "body": "Constantia"
+    },
+    "colors": {
+      "bg": "#F4EFD9",
+      "ink": "#1E382A",
+      "accent": "#805027",
+      "green": "#214736",
+      "mint": "#D6E5BF",
+      "paper": "#FAF5DF",
+      "gold": "#DBAC61",
+      "line": "#A7AD8B"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "chorus-ledger"
+    },
+    "slides": [
+      {
+        "title": "Chorus Ledger",
+        "items": [
+          "A listening service for wetland restoration",
+          "Illustrative seed pitch"
+        ],
+        "photoQuery": "chorus-cover",
+        "role": "cover"
+      },
+      {
+        "title": "Who heard the pond last night?",
+        "items": [
+          "Restoration teams visit a site a few times each season. Calling can start between visits. A quiet survey sheet leaves the project ecologist with little evidence about the intervening nights.",
+          "Chorus Ledger rents listening stations and returns a season of recordings with clips a biologist can check."
+        ],
+        "photoQuery": "chorus-wetland",
+        "role": "feature"
+      },
+      {
+        "title": "Leave a listener at the waterline",
+        "items": [
+          "The station records short windows after dusk. A field technician swaps the card on a planned visit and checks the microphone against a reference tone.",
+          "The lab proposes candidate calls. A reviewer listens to each retained clip, attaches a confidence note and returns uncertain calls for follow-up."
+        ],
+        "photoQuery": "chorus-sensor",
+        "role": "feature"
+      },
+      {
+        "title": "Seven nights in the ledger",
+        "items": [
+          "Candidate calls confirmed by a reviewer, in a fictional three-station record",
+          "Inner ring   /   Reed bed",
+          "Middle ring   /   North pool",
+          "Outer ring   /   Drain inlet",
+          "Dark marks indicate a confirmed call. Pale marks indicate a reviewed recording with no confirmed call. Read clockwise from the top, one mark per night."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "From raw audio to an evening’s review",
+        "items": [
+          "Review hours per station-week • modeled workflow",
+          "8 → 2 hours",
+          "For the same sample week, the reviewer spends two hours checking flagged clips and a random sample of quiet intervals. The pilot measures missed calls against a fully reviewed subset."
+        ],
+        "chart": {
+          "type": "bar",
+          "labels": [
+            "Full manual pass",
+            "Assisted review"
+          ],
+          "series": [
+            {
+              "name": "Review hours",
+              "values": [
+                8,
+                2
+              ]
+            }
+          ],
+          "colors": [
+            "#397054"
+          ],
+          "showLegend": false
+        },
+        "role": "feature"
+      },
+      {
+        "title": "A season, priced per station",
+        "items": [
+          "$1,800",
+          "For a twelve-week season, the customer receives a loaned recorder, candidate clips, human review and a signed evidence file.",
+          "$720 direct cost",
+          "The example assigns $320 to review, $220 to equipment wear and $180 to logistics. That leaves $1,080 per station-season before overhead."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "The first buyer already writes the report",
+        "items": [
+          "We sell to ecology consultancies that prepare annual monitoring reports for restoration clients. One approved subcontract can serve several sites under the same project lead.",
+          "The evidence file includes dates, station locations, reviewed clips and an explicit list of recording gaps."
+        ],
+        "photoQuery": "chorus-field",
+        "role": "feature"
+      },
+      {
+        "title": "A focused first territory",
+        "items": [
+          "30 practices",
+          "Four projects per practice, three station-seasons per project. At $1,800 each, full adoption would yield $648,000 in annual sales.",
+          "How we qualify a project",
+          "The buyer has site permission, a named reviewer and a reporting deadline within the season. We decline work where the recording plan cannot answer the client’s question."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "What the pilot must prove",
+        "items": [
+          "Coverage",
+          "At least 90% of scheduled recording windows should yield usable audio. Reviewers log wind, flooding and equipment faults separately.",
+          "Agreement",
+          "A second ecologist reviews a blind sample. Species-level disagreements stay visible in the evidence file until adjudicated.",
+          "Renewal",
+          "The project lead signs off on the exported record and requests a priced deployment for the following season."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Two people sign the record",
+        "items": [
+          "Nell Hart · field ecology",
+          "Nell designs the sampling plan with the project ecologist. She owns permits, station placement and the list of conditions that make a night unusable.",
+          "Idris Vale · acoustic systems",
+          "Idris owns recorder uptime, detection software and clip provenance. The first hire is a reviewer who can reproduce a decision from the archived recording."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "One season to earn the next",
+        "items": [
+          "Before dusk",
+          "Sign four paid pilots. Check the field plan and reference recording with each buyer.",
+          "During the season",
+          "Deploy 24 stations and audit a sample weekly. Replace failing hardware on the next field visit.",
+          "At handover",
+          "Deliver the evidence files and price renewals. Expand only after two buyers commit to another season."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Back the first full chorus",
+        "items": [
+          "$900k seed",
+          "$390k for field hardware and operations, $310k for acoustic review tools and $200k for customer pilots. The round funds a 15-month plan.",
+          "The test at month 15",
+          "Twenty-four deployed stations, four paid pilots and two renewal commitments. All venture details and figures are illustrative."
+        ],
+        "role": "closing"
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "chorus-ledger-1"
+    },
+    {
+      "role": "feature",
+      "variant": "chorus-ledger-2"
+    },
+    {
+      "role": "feature",
+      "variant": "chorus-ledger-3"
+    },
+    {
+      "role": "feature",
+      "variant": "chorus-ledger-4"
+    },
+    {
+      "role": "feature",
+      "variant": "chorus-ledger-5"
+    },
+    {
+      "role": "feature",
+      "variant": "chorus-ledger-6"
+    },
+    {
+      "role": "feature",
+      "variant": "chorus-ledger-7"
+    },
+    {
+      "role": "feature",
+      "variant": "chorus-ledger-8"
+    },
+    {
+      "role": "feature",
+      "variant": "chorus-ledger-9"
+    },
+    {
+      "role": "feature",
+      "variant": "chorus-ledger-10"
+    },
+    {
+      "role": "feature",
+      "variant": "chorus-ledger-11"
+    },
+    {
+      "role": "closing",
+      "variant": "chorus-ledger-12"
+    }
+  ]
+}

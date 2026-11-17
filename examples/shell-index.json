@@ -1,0 +1,224 @@
+{
+  "name": "Shell Index",
+  "description": "Illustrative oyster-shell collection seed pitch.",
+  "brand": {
+    "fonts": {
+      "display": "Baskerville Old Face",
+      "body": "Gill Sans MT"
+    },
+    "colors": {
+      "bg": "#F6F1E7",
+      "ink": "#123C3B",
+      "jade": "#164F49",
+      "deep": "#0D3532",
+      "sea": "#A4CCBE",
+      "brass": "#D5BB83",
+      "paper": "#FAF4E5",
+      "accent": "#77552E"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "shell-index"
+    },
+    "slides": [
+      {
+        "title": "Shell Index",
+        "items": [
+          "An oyster-shell collection network",
+          "Illustrative seed pitch"
+        ],
+        "photoQuery": "shell-cover",
+        "role": "cover"
+      },
+      {
+        "title": "After the dinner rush",
+        "items": [
+          "At closing time, shells from dozens of plates end up in a bin. Across the harbor, a nursery needs suitable material and a record of where it came from.",
+          "Shell Index coordinates the pickups, storage lots and signed transfers between them."
+        ],
+        "photoQuery": "shell-dock",
+        "role": "feature"
+      },
+      {
+        "title": "A shell needs a record",
+        "items": [
+          "LOT 042",
+          "North Quay / Tuesday pickup",
+          "A venue receives a lidded tote. The driver logs the source, pickup time and gross weight; the yard records empty-bin weight and a photograph.",
+          "Lots stay separate until a partner accepts the paperwork and its material checks."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "The receiving nursery signs",
+        "items": [
+          "The nursery sets the receiving conditions. Shell Index records what passes inspection, what needs further holding and what must leave the restoration stream.",
+          "A signed transfer closes the lot. The originating restaurant receives a receipt for the accepted quantity."
+        ],
+        "photoQuery": "shell-return",
+        "role": "feature"
+      },
+      {
+        "title": "Follow a tonne through the yard",
+        "items": [
+          "1,000 kg",
+          "Collected shell mass after deducting bin tare.",
+          "920 kg",
+          "Eligible after sorting. The other 80 kg are logged as unsuitable for this lot.",
+          "900 kg",
+          "Accepted at transfer. A further 20 kg remain in holding pending review."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Venues pay for collection",
+        "items": [
+          "$160 / month",
+          "One scheduled weekly bin exchange, a pickup log and accepted-weight receipts. A missed or contaminated bin is documented on site.",
+          "$94 direct cost",
+          "Route labor and fuel account for $62, bins and washing for $18, and yard handling for $14. Contribution is $66 per venue-month."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Density changes the route",
+        "items": [
+          "Illustrative route labor and fuel per venue-month, dollars",
+          "A compact route spreads a shift over more stops. The pilot records actual drive time, bin-change time and kilograms accepted per venue."
+        ],
+        "chart": {
+          "type": "line",
+          "labels": [
+            "6 stops",
+            "10 stops",
+            "14 stops",
+            "18 stops"
+          ],
+          "series": [
+            {
+              "name": "Route cost ($)",
+              "values": [
+                96,
+                76,
+                62,
+                57
+              ]
+            }
+          ],
+          "colors": [
+            "#20665B"
+          ],
+          "showLegend": false
+        },
+        "role": "feature"
+      },
+      {
+        "title": "Start around one harbor",
+        "items": [
+          "80 venues",
+          "At $160 per month, eighty subscribing restaurants would produce $153,600 in annual collection revenue. Receiving-yard capacity limits the rollout.",
+          "First customers",
+          "Start with restaurant groups that can commit three nearby kitchens. Enroll a route only after a receiving partner signs off on expected volume."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Why keep the lots separate?",
+        "items": [
+          "General waste",
+          "Easy to arrange. The venue loses the recovery record when shells enter a mixed bin.",
+          "Volunteer runs",
+          "Valuable local capacity. Weekly continuity depends on people and storage being available.",
+          "Booked route",
+          "A named driver, a retained lot number and a receiving signature give both ends a record to reconcile."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "The people at each end",
+        "items": [
+          "Iris Hart / collection",
+          "Iris designs the pickup runs and kitchen training. Her team can trace a disputed bin weight to the driver, time and original receipt.",
+          "Mara Quinn / receiving",
+          "Mara owns yard inspections and partner handovers. She holds a lot when the paperwork or condition falls short of the receiver’s requirements."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "A pilot with three gates",
+        "items": [
+          "Pickup",
+          "Eight kitchens complete six consecutive weekly exchanges, each with a time and weight record.",
+          "Receiving",
+          "The yard reconciles every kilogram as held, rejected or transferred. A partner signs for each accepted lot.",
+          "Renewal",
+          "At least six kitchens renew at full price before the second route opens."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Fund the first harbor route",
+        "items": [
+          "$540k seed",
+          "$230k for bins and the receiving yard, $190k for collection staff and $120k for records and restaurant onboarding. The round funds a 15-month pilot.",
+          "Target: two signed receivers and 40 paying venues. Illustrative company and figures."
+        ],
+        "role": "closing"
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "shell-index-1"
+    },
+    {
+      "role": "feature",
+      "variant": "shell-index-2"
+    },
+    {
+      "role": "feature",
+      "variant": "shell-index-3"
+    },
+    {
+      "role": "feature",
+      "variant": "shell-index-4"
+    },
+    {
+      "role": "feature",
+      "variant": "shell-index-5"
+    },
+    {
+      "role": "feature",
+      "variant": "shell-index-6"
+    },
+    {
+      "role": "feature",
+      "variant": "shell-index-7"
+    },
+    {
+      "role": "feature",
+      "variant": "shell-index-8"
+    },
+    {
+      "role": "feature",
+      "variant": "shell-index-9"
+    },
+    {
+      "role": "feature",
+      "variant": "shell-index-10"
+    },
+    {
+      "role": "feature",
+      "variant": "shell-index-11"
+    },
+    {
+      "role": "closing",
+      "variant": "shell-index-12"
+    }
+  ]
+}

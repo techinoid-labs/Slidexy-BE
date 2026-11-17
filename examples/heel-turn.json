@@ -1,0 +1,223 @@
+{
+  "name": "Heel Turn",
+  "description": "Illustrative climbing-shoe repair seed pitch.",
+  "brand": {
+    "fonts": {
+      "display": "Impact",
+      "body": "Trebuchet MS"
+    },
+    "colors": {
+      "bg": "#E8DEFD",
+      "ink": "#211B37",
+      "blue": "#2537A5",
+      "lilac": "#C5ACF1",
+      "orange": "#FF803D",
+      "white": "#FFFAF3",
+      "accent": "#8E310D"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "heel-turn"
+    },
+    "slides": [
+      {
+        "title": "HEEL",
+        "items": [
+          "TURN",
+          "Climbing-shoe repair through the gym desk",
+          "Illustrative seed pitch"
+        ],
+        "photoQuery": "heel-cover",
+        "role": "cover"
+      },
+      {
+        "title": "The rubber goes first.",
+        "items": [
+          "The upper still fits.",
+          "Climbers break in a pair over months. Once the toe rubber thins, a familiar shoe can sit in a bag while its owner tries to find a repairer who will take it.",
+          "The gym already sees the shoe, the wear and the climber in the same visit."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "The desk takes the pair",
+        "items": [
+          "Gym staff photograph the toe and heel and attach a numbered bag tag. The repairer accepts the job or sends a revised quote before cutting rubber.",
+          "A weekly collection consolidates the bags. The desk can look up the return date without calling the workshop."
+        ],
+        "photoQuery": "heel-bench",
+        "role": "feature"
+      },
+      {
+        "title": "Keep the shape that fits",
+        "items": [
+          "The cobbler removes worn rubber, checks the underlying rand and fits the agreed sole. A second person checks the bond and the pair number before dispatch.",
+          "The climber collects at the gym. A fit issue goes back under the same job number with a photograph and notes."
+        ],
+        "photoQuery": "heel-fit",
+        "role": "feature"
+      },
+      {
+        "title": "One pair through the queue",
+        "items": [
+          "MON",
+          "Desk intake and a photographed condition check. The climber approves the quote.",
+          "WED",
+          "Batch repair. A second check catches mismatched tags and unfinished edges.",
+          "FRI",
+          "Return to the original desk with care notes and a pickup message."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "A standard resole",
+        "items": [
+          "$68",
+          "Paid by the climber for a standard pair. Rand repairs are quoted separately after inspection.",
+          "$42 direct cost",
+          "Labor and materials cost $32, the gym receives $6 and bag handling costs $4. The remaining $26 funds fixed overhead and growth."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Which route pays for itself?",
+        "items": [
+          "Weekly contribution after a $260 fixed driver cost • illustrative dollars",
+          "Ten pairs cover the weekly route cost. At twenty pairs the route contributes $260 after that cost. The model excludes head-office overhead."
+        ],
+        "chart": {
+          "type": "bar",
+          "labels": [
+            "5 pairs",
+            "10 pairs",
+            "15 pairs",
+            "20 pairs"
+          ],
+          "series": [
+            {
+              "name": "Contribution ($)",
+              "values": [
+                -130,
+                0,
+                130,
+                260
+              ]
+            }
+          ],
+          "colors": [
+            "#3847A5"
+          ],
+          "showLegend": false
+        },
+        "role": "feature"
+      },
+      {
+        "title": "Start with one climbing district",
+        "items": [
+          "24 gyms",
+          "Assume twelve pairs a week at each desk for 48 weeks. At $68 per pair, full adoption represents $940,032 in annual sales.",
+          "The route test",
+          "Sign neighboring desks before expanding the map. A gym that cannot fill a weekly bag joins a fortnightly pickup route."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Why the gym holds the bag",
+        "items": [
+          "Mail-in",
+          "Wide coverage, but every climber packs and tracks their own parcel.",
+          "Local cobbler",
+          "A direct relationship works for regulars. The climber still makes two separate trips.",
+          "Gym desk",
+          "A pickup on a normal climbing night. The workshop receives enough pairs to plan the batch."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "A bench lead and a route lead",
+        "items": [
+          "Alex Tan / repair",
+          "Alex owns the bond check, rubber stock and training. The first workshop hire must complete a supervised batch before handling customer pairs.",
+          "Lou Finch / gym operations",
+          "Lou owns desk onboarding and weekly collections. Each gym gets one named contact and a shared list of jobs awaiting approval."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Earn the next route",
+        "items": [
+          "First 90 days",
+          "Open four desks. Follow the first hundred pairs from drop-off to collection.",
+          "By month six",
+          "Reach ten pairs a week per route and keep the proposed rework rate below 3%.",
+          "By month twelve",
+          "Operate twelve desks and renew at least three of the first four gym partnerships."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Resole the first pair.",
+        "items": [
+          "$620k seed",
+          "$260k equips two benches, $200k hires and trains repair staff, and $160k funds pickup routes and gym onboarding.",
+          "Twelve desks in twelve months. Illustrative company and financial model."
+        ],
+        "role": "closing"
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "heel-turn-1"
+    },
+    {
+      "role": "feature",
+      "variant": "heel-turn-2"
+    },
+    {
+      "role": "feature",
+      "variant": "heel-turn-3"
+    },
+    {
+      "role": "feature",
+      "variant": "heel-turn-4"
+    },
+    {
+      "role": "feature",
+      "variant": "heel-turn-5"
+    },
+    {
+      "role": "feature",
+      "variant": "heel-turn-6"
+    },
+    {
+      "role": "feature",
+      "variant": "heel-turn-7"
+    },
+    {
+      "role": "feature",
+      "variant": "heel-turn-8"
+    },
+    {
+      "role": "feature",
+      "variant": "heel-turn-9"
+    },
+    {
+      "role": "feature",
+      "variant": "heel-turn-10"
+    },
+    {
+      "role": "feature",
+      "variant": "heel-turn-11"
+    },
+    {
+      "role": "closing",
+      "variant": "heel-turn-12"
+    }
+  ]
+}

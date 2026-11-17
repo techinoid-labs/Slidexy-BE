@@ -1,0 +1,164 @@
+{
+  "name": "Lumen Stage • Keynote kit",
+  "description": "Atelier premium — light beams, hard shadow type, and stage floor for launches and keynotes.",
+  "brand": {
+    "lighting": "spotlight",
+    "colors": {
+      "bg": "#08080C",
+      "surface": "#FFFFFF",
+      "surface_color": "#5C5C70",
+      "ink": "#FFFEF8",
+      "muted": "#E8E4EE",
+      "accent": "#FFC857",
+      "line": "#7A7A8C"
+    },
+    "fonts": {
+      "display": "Georgia",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "lumen-stage"
+    },
+    "slides": [
+      {
+        "role": "cover",
+        "title": "Lumen Stage.",
+        "items": [
+          "ATELIER · KEYNOTE",
+          "Hard light. Hard shadow. Type that holds under a beam.",
+          "Volume 01 · Launch series"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Hold the beam.",
+        "items": [
+          "THE BRIEF",
+          "A keynote is not a dashboard. One beam, one line, one proof — then advance before the room cools.",
+          "01 Cue the light",
+          "Atmosphere before argument. The beam finds the title.",
+          "02 Drop the line",
+          "One sentence the room can repeat in the lobby.",
+          "03 Cut to black",
+          "Leave them with the afterimage, not a wall of bullets."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Four cues",
+        "items": [
+          "01",
+          "House",
+          "Dim the room. Warm the floor. Let silence work.",
+          "02",
+          "Beam",
+          "A single cone of light — never a wash of chrome.",
+          "03",
+          "Line",
+          "Type hard enough to cast a shadow on the stage.",
+          "04",
+          "Exit",
+          "Black. Applause. No appendix slides."
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Stage craft",
+        "items": [
+          "Beam",
+          "Cone of attention",
+          "One spotlight. Everything else falls away.",
+          "Floor",
+          "Ground plane",
+          "A dark stage that makes type feel standing, not floating.",
+          "Cue",
+          "Gold tick",
+          "The only accent that fires when the line lands."
+        ]
+      },
+      {
+        "role": "quote",
+        "title": "Leave the afterimage.",
+        "items": [
+          "STAGE NOTE",
+          "If they remember the slide, the line was too long.",
+          "— Lumen Stage"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Call sheet",
+        "items": [
+          "8",
+          "Cues",
+          "Cover to blackout",
+          "3",
+          "Beams",
+          "House, key, cue",
+          "1",
+          "Line",
+          "The sentence that travels"
+        ]
+      },
+      {
+        "role": "feature",
+        "title": "Warm-up.",
+        "items": [
+          "FIELD RECORD 07",
+          "Empty hall an hour before doors — the beam already finds center stage.",
+          "Main hall · FOH",
+          "Cue 07 of 12"
+        ],
+        "photoQuery": "lumen-stage-field"
+      },
+      {
+        "role": "closing",
+        "title": "Go to black.",
+        "items": [
+          "READY TO OPEN",
+          "Cue the beam. Drop the line. Leave the afterimage.",
+          "Open the house · Run the cue"
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "lumen-cover"
+    },
+    {
+      "role": "feature",
+      "variant": "lumen-brief"
+    },
+    {
+      "role": "feature",
+      "variant": "lumen-cues"
+    },
+    {
+      "role": "feature",
+      "variant": "lumen-craft"
+    },
+    {
+      "role": "quote",
+      "variant": "lumen-quote"
+    },
+    {
+      "role": "feature",
+      "variant": "lumen-call"
+    },
+    {
+      "role": "feature",
+      "variant": "lumen-photo"
+    },
+    {
+      "role": "closing",
+      "variant": "lumen-close"
+    }
+  ]
+}

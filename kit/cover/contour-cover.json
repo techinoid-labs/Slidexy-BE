@@ -1,0 +1,373 @@
+{
+  "id": "cover/contour-cover",
+  "role": "cover",
+  "variant": "contour-cover",
+  "family": "contour-sheet",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": true,
+  "photoSlots": [
+    "photo"
+  ],
+  "slots": {
+    "photo": {
+      "kind": "image",
+      "from": "photo"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    }
+  },
+  "fit": {
+    "copy0": {
+      "minFont": 24,
+      "maxFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "title": {
+      "minFont": 56,
+      "maxFont": 56,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 24,
+      "maxFont": 24,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "photo": {
+      "kind": "picture"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "title": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "photo",
+        "type": "image",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "z": 1,
+        "slot": "photo",
+        "morphId": "hero"
+      },
+      {
+        "id": "veil",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "ink",
+        "z": 2,
+        "opacity": 0.4,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-veil"
+      },
+      {
+        "id": "cc0",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 620,
+        "y": 60,
+        "width": 720,
+        "height": 720,
+        "tokenFill": "line",
+        "z": 1,
+        "opacity": 0.28,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-cc0"
+      },
+      {
+        "id": "cc1",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 656,
+        "y": 90,
+        "width": 672,
+        "height": 672,
+        "tokenFill": "line",
+        "z": 1,
+        "opacity": 0.28,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-cc1"
+      },
+      {
+        "id": "cc2",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 668,
+        "y": 120,
+        "width": 624,
+        "height": 624,
+        "tokenFill": "accent",
+        "z": 1,
+        "opacity": 0.35,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-cc2"
+      },
+      {
+        "id": "cc3",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 704,
+        "y": 150,
+        "width": 576,
+        "height": 576,
+        "tokenFill": "line",
+        "z": 1,
+        "opacity": 0.28,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-cc3"
+      },
+      {
+        "id": "cc4",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 716,
+        "y": 180,
+        "width": 528,
+        "height": 528,
+        "tokenFill": "line",
+        "z": 1,
+        "opacity": 0.28,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-cc4"
+      },
+      {
+        "id": "cc5",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 752,
+        "y": 210,
+        "width": 480,
+        "height": 480,
+        "tokenFill": "line",
+        "z": 1,
+        "opacity": 0.28,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-cc5"
+      },
+      {
+        "id": "cc6",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 764,
+        "y": 240,
+        "width": 432,
+        "height": 432,
+        "tokenFill": "line",
+        "z": 1,
+        "opacity": 0.28,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-cc6"
+      },
+      {
+        "id": "cc7",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 800,
+        "y": 270,
+        "width": 384,
+        "height": 384,
+        "tokenFill": "line",
+        "z": 1,
+        "opacity": 0.28,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-cc7"
+      },
+      {
+        "id": "cc8",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 812,
+        "y": 300,
+        "width": 336,
+        "height": 336,
+        "tokenFill": "line",
+        "z": 1,
+        "opacity": 0.28,
+        "motionKind": "chrome",
+        "motion": "persist",
+        "morphId": "chrome-cc8"
+      },
+      {
+        "id": "note",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 120,
+        "y": 220,
+        "width": 420,
+        "height": 420,
+        "tokenFill": "surface",
+        "z": 4,
+        "motionKind": "beat",
+        "motion": "enter",
+        "motionPreset": "slam",
+        "morphId": "note-0"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 170,
+        "y": 300,
+        "width": 320,
+        "height": 36,
+        "fontSize": 16,
+        "slot": "copy0",
+        "tokenColor": "accent",
+        "fontRole": "label",
+        "fontWeight": 600,
+        "lineHeight": 1.12,
+        "letterSpacing": 2.2,
+        "z": 5,
+        "align": "center",
+        "motionKind": "label",
+        "motion": "enter",
+        "motionHost": "note",
+        "morphId": "label-0"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 150,
+        "y": 360,
+        "width": 360,
+        "height": 120,
+        "fontSize": 56,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5,
+        "align": "center",
+        "motionKind": "title",
+        "motion": "enter",
+        "motionPreset": "fadeUp",
+        "morphId": "title"
+      },
+      {
+        "id": "copy1",
+        "type": "text",
+        "x": 170,
+        "y": 520,
+        "width": 320,
+        "height": 40,
+        "fontSize": 18,
+        "slot": "copy1",
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5,
+        "align": "center",
+        "motionKind": "label",
+        "motion": "enter",
+        "motionHost": "note",
+        "morphId": "label-1"
+      },
+      {
+        "id": "note1",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 1280,
+        "y": 640,
+        "width": 120,
+        "height": 120,
+        "tokenFill": "accent",
+        "z": 4,
+        "motionKind": "beat",
+        "motion": "enter",
+        "motionPreset": "slam",
+        "morphId": "note-1"
+      },
+      {
+        "id": "bm0",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 900,
+        "y": 200,
+        "width": 28,
+        "height": 28,
+        "tokenFill": "accent",
+        "z": 1,
+        "motionKind": "dot",
+        "motion": "enter",
+        "motionPreset": "pop",
+        "motionRow": 0,
+        "motionCol": 0,
+        "morphId": "vote-0-0"
+      },
+      {
+        "id": "bm1",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 1100,
+        "y": 520,
+        "width": 28,
+        "height": 28,
+        "tokenFill": "surface",
+        "z": 1,
+        "motionKind": "dot",
+        "motion": "enter",
+        "motionPreset": "pop",
+        "motionRow": 0,
+        "motionCol": 1,
+        "morphId": "vote-0-1"
+      },
+      {
+        "id": "bm2",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 700,
+        "y": 640,
+        "width": 28,
+        "height": 28,
+        "tokenFill": "accent",
+        "z": 1,
+        "motionKind": "dot",
+        "motion": "enter",
+        "motionPreset": "pop",
+        "motionRow": 0,
+        "motionCol": 2,
+        "morphId": "vote-0-2"
+      }
+    ]
+  }
+}

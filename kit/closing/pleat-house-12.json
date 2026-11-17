@@ -1,0 +1,632 @@
+{
+  "id": "closing/pleat-house-12",
+  "role": "closing",
+  "variant": "pleat-house-12",
+  "family": "pleat-house",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "copy2": {
+      "kind": "text",
+      "from": "items2"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 91,
+      "maxFont": 91,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 133,
+      "maxFont": 133,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 36,
+      "maxFont": 36,
+      "lineClamp": 5,
+      "shrinkMin": 1
+    },
+    "copy2": {
+      "minFont": 24,
+      "maxFont": 24,
+      "lineClamp": 4,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "stock",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "purple",
+        "z": 0,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-0",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 526,
+        "width": 41,
+        "height": 38,
+        "tokenFill": "purple",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-1",
+        "type": "shape",
+        "shape": "rect",
+        "x": 40,
+        "y": 538,
+        "width": 41,
+        "height": 26,
+        "tokenFill": "red",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-2",
+        "type": "shape",
+        "shape": "rect",
+        "x": 80,
+        "y": 526,
+        "width": 41,
+        "height": 38,
+        "tokenFill": "purple",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-3",
+        "type": "shape",
+        "shape": "rect",
+        "x": 120,
+        "y": 538,
+        "width": 41,
+        "height": 26,
+        "tokenFill": "red",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-4",
+        "type": "shape",
+        "shape": "rect",
+        "x": 160,
+        "y": 526,
+        "width": 41,
+        "height": 38,
+        "tokenFill": "purple",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-5",
+        "type": "shape",
+        "shape": "rect",
+        "x": 200,
+        "y": 538,
+        "width": 41,
+        "height": 26,
+        "tokenFill": "red",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-6",
+        "type": "shape",
+        "shape": "rect",
+        "x": 240,
+        "y": 526,
+        "width": 41,
+        "height": 38,
+        "tokenFill": "purple",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-7",
+        "type": "shape",
+        "shape": "rect",
+        "x": 280,
+        "y": 538,
+        "width": 41,
+        "height": 26,
+        "tokenFill": "red",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-8",
+        "type": "shape",
+        "shape": "rect",
+        "x": 320,
+        "y": 526,
+        "width": 41,
+        "height": 38,
+        "tokenFill": "purple",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-9",
+        "type": "shape",
+        "shape": "rect",
+        "x": 360,
+        "y": 538,
+        "width": 41,
+        "height": 26,
+        "tokenFill": "red",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-10",
+        "type": "shape",
+        "shape": "rect",
+        "x": 400,
+        "y": 526,
+        "width": 41,
+        "height": 38,
+        "tokenFill": "purple",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-11",
+        "type": "shape",
+        "shape": "rect",
+        "x": 440,
+        "y": 538,
+        "width": 41,
+        "height": 26,
+        "tokenFill": "red",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-12",
+        "type": "shape",
+        "shape": "rect",
+        "x": 480,
+        "y": 526,
+        "width": 41,
+        "height": 38,
+        "tokenFill": "purple",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-13",
+        "type": "shape",
+        "shape": "rect",
+        "x": 520,
+        "y": 538,
+        "width": 41,
+        "height": 26,
+        "tokenFill": "red",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-14",
+        "type": "shape",
+        "shape": "rect",
+        "x": 560,
+        "y": 526,
+        "width": 41,
+        "height": 38,
+        "tokenFill": "purple",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-15",
+        "type": "shape",
+        "shape": "rect",
+        "x": 600,
+        "y": 538,
+        "width": 41,
+        "height": 26,
+        "tokenFill": "red",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-16",
+        "type": "shape",
+        "shape": "rect",
+        "x": 640,
+        "y": 526,
+        "width": 41,
+        "height": 38,
+        "tokenFill": "purple",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-17",
+        "type": "shape",
+        "shape": "rect",
+        "x": 680,
+        "y": 538,
+        "width": 41,
+        "height": 26,
+        "tokenFill": "red",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-18",
+        "type": "shape",
+        "shape": "rect",
+        "x": 720,
+        "y": 526,
+        "width": 41,
+        "height": 38,
+        "tokenFill": "purple",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-19",
+        "type": "shape",
+        "shape": "rect",
+        "x": 760,
+        "y": 538,
+        "width": 41,
+        "height": 26,
+        "tokenFill": "red",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-20",
+        "type": "shape",
+        "shape": "rect",
+        "x": 800,
+        "y": 526,
+        "width": 41,
+        "height": 38,
+        "tokenFill": "purple",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-21",
+        "type": "shape",
+        "shape": "rect",
+        "x": 840,
+        "y": 538,
+        "width": 41,
+        "height": 26,
+        "tokenFill": "red",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-22",
+        "type": "shape",
+        "shape": "rect",
+        "x": 880,
+        "y": 526,
+        "width": 41,
+        "height": 38,
+        "tokenFill": "purple",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-23",
+        "type": "shape",
+        "shape": "rect",
+        "x": 920,
+        "y": 538,
+        "width": 41,
+        "height": 26,
+        "tokenFill": "red",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-24",
+        "type": "shape",
+        "shape": "rect",
+        "x": 960,
+        "y": 526,
+        "width": 41,
+        "height": 38,
+        "tokenFill": "purple",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-25",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1000,
+        "y": 538,
+        "width": 41,
+        "height": 26,
+        "tokenFill": "red",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-26",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1040,
+        "y": 526,
+        "width": 41,
+        "height": 38,
+        "tokenFill": "purple",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-27",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1080,
+        "y": 538,
+        "width": 41,
+        "height": 26,
+        "tokenFill": "red",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-28",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1120,
+        "y": 526,
+        "width": 41,
+        "height": 38,
+        "tokenFill": "purple",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-29",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1160,
+        "y": 538,
+        "width": 41,
+        "height": 26,
+        "tokenFill": "red",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-30",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1200,
+        "y": 526,
+        "width": 41,
+        "height": 38,
+        "tokenFill": "purple",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-31",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1240,
+        "y": 538,
+        "width": 41,
+        "height": 26,
+        "tokenFill": "red",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-32",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1280,
+        "y": 526,
+        "width": 41,
+        "height": 38,
+        "tokenFill": "purple",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-33",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1320,
+        "y": 538,
+        "width": 41,
+        "height": 26,
+        "tokenFill": "red",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-34",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1360,
+        "y": 526,
+        "width": 41,
+        "height": 38,
+        "tokenFill": "purple",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-35",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1400,
+        "y": 538,
+        "width": 41,
+        "height": 26,
+        "tokenFill": "red",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-36",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1440,
+        "y": 526,
+        "width": 41,
+        "height": 38,
+        "tokenFill": "purple",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-37",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1480,
+        "y": 538,
+        "width": 41,
+        "height": 26,
+        "tokenFill": "red",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-38",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1520,
+        "y": 526,
+        "width": 41,
+        "height": 38,
+        "tokenFill": "purple",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "pleat-39",
+        "type": "shape",
+        "shape": "rect",
+        "x": 1560,
+        "y": 538,
+        "width": 41,
+        "height": 26,
+        "tokenFill": "red",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 71,
+        "y": 67,
+        "width": 1430,
+        "height": 163,
+        "fontSize": 91,
+        "slot": "title",
+        "tokenColor": "paper",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5,
+        "textStyleRole": "display",
+        "morphId": "title"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 63,
+        "y": 274,
+        "width": 1480,
+        "height": 226,
+        "fontSize": 133,
+        "slot": "copy0",
+        "tokenColor": "yellow",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 1.4,
+        "z": 5,
+        "typeTreatment": "outline",
+        "textStyleRole": "display"
+      },
+      {
+        "id": "copy1",
+        "type": "text",
+        "x": 75,
+        "y": 611,
+        "width": 1025,
+        "height": 211,
+        "fontSize": 36,
+        "slot": "copy1",
+        "tokenColor": "paper",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5
+      },
+      {
+        "id": "copy2",
+        "type": "text",
+        "x": 1170,
+        "y": 699,
+        "width": 345,
+        "height": 130,
+        "fontSize": 24,
+        "slot": "copy2",
+        "tokenColor": "paper",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 5
+      }
+    ]
+  }
+}

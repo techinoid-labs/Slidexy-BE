@@ -1,0 +1,226 @@
+{
+  "name": "Plate River",
+  "description": "Illustrative reusable-plate float seed pitch for food halls.",
+  "brand": {
+    "fonts": {
+      "display": "Georgia",
+      "body": "Calibri"
+    },
+    "colors": {
+      "bg": "#F7EFE4",
+      "ink": "#2A1F1A",
+      "terra": "#C4785A",
+      "glaze": "#FFF8F0",
+      "river": "#1F6F6A",
+      "sand": "#E8D5C4",
+      "muted": "#6A5648",
+      "accent": "#1F6F6A",
+      "deep": "#3A241C"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "plate-river"
+    },
+    "slides": [
+      {
+        "title": "PLATE",
+        "items": [
+          "RIVER",
+          "Reusable ceramic float for food halls",
+          "Illustrative seed pitch"
+        ],
+        "photoQuery": "plate-cover",
+        "role": "cover"
+      },
+      {
+        "title": "A plate should come back.",
+        "items": [
+          "Food halls burn through single-use ware at lunch and again at dinner. Guests leave trays; nobody owns the return path.",
+          "Plate River floats a shared ceramic set through wash, rack and service so the next guest inherits a clean plate, not a new one."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Wash is the choke point",
+        "items": [
+          "Plates enter a sealed rack at the tray return. The wash line releases a counted stack to the next service window.",
+          "A cracked rim is tagged out of the float. The hall sees available covers before the rush, not after."
+        ],
+        "photoQuery": "plate-wash",
+        "role": "feature"
+      },
+      {
+        "title": "Service → return → wash → rack",
+        "items": [
+          "Service",
+          "Hosts pull a counted stack. The float number rides on the rack card.",
+          "Return",
+          "Guests leave trays at a single mouth. Mixed ware is sorted before the belt.",
+          "Wash",
+          "A sealed cycle. Cracked rims exit to the cull bin with a photo tag.",
+          "Rack",
+          "Clean stacks return to the window with a live cover count."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Cost per 100 servings",
+        "items": [
+          "Illustrative hall model • dollars for plate ware across 100 guest servings",
+          "Single-use ware stays flat. The float drops after wash labor is absorbed. At 8 washes per plate-life, modeled cost is $4.20 per 100 servings."
+        ],
+        "chart": {
+          "type": "line",
+          "labels": [
+            "1 wash",
+            "2",
+            "4",
+            "8",
+            "12"
+          ],
+          "series": [
+            {
+              "name": "Single-use ($)",
+              "values": [
+                18,
+                18,
+                18,
+                18,
+                18
+              ]
+            },
+            {
+              "name": "Plate float ($)",
+              "values": [
+                22,
+                12,
+                7,
+                4.2,
+                3.1
+              ]
+            }
+          ],
+          "colors": [
+            "#C4785A",
+            "#1F6F6A"
+          ],
+          "showLegend": true
+        },
+        "role": "feature"
+      },
+      {
+        "title": "What a hall pays to float",
+        "items": [
+          "$2,400 / month",
+          "Covers 2,000 active plates, wash SLAs, cull replacement and a weekly cover report.",
+          "$1,480 direct",
+          "Wash labor share $820, cull replacements $360, logistics $300. Contribution $920 before overhead."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Begin with one food hall",
+        "items": [
+          "12 halls",
+          "At $2,400 per month, twelve halls produce $345,600 in annual float revenue before cull overages.",
+          "Entry test",
+          "Enroll a hall only if tray return is single-mouth and the wash line can release a counted stack in under twelve minutes."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "What halls buy today",
+        "items": [
+          "Single-use",
+          "Simple purchasing. Guests leave a pile that never returns to service.",
+          "Owned ceramics",
+          "Beautiful when staffed. Breakage and wash labor sit on the hall with no shared float.",
+          "Plate River",
+          "A counted float with a wash SLA and a live cover number before the rush."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Two crafts, one float",
+        "items": [
+          "June Park / ceramics ops",
+          "June owns cull standards, glaze lots and replacement lead times. A cracked rim never re-enters a guest stack.",
+          "Omar Ruiz / hall logistics",
+          "Omar owns tray-mouth design and wash-window SLAs. His team publishes the cover count thirty minutes before service."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "A pilot with three gates",
+        "items": [
+          "Return",
+          "90% of trays hit the single mouth for ten consecutive lunch services.",
+          "Wash",
+          "Counted stacks release in under twelve minutes with fewer than 2% cull tags.",
+          "Renew",
+          "The hall renews at full price after six weeks of live cover reports."
+        ],
+        "role": "feature"
+      },
+      {
+        "title": "Keep the plates in motion.",
+        "items": [
+          "$3.6M seed",
+          "$1.6M for ceramic inventory, $1.1M for wash tooling and logistics, $900k for hall onboarding. Illustrative company and figures.",
+          "Target: 12 halls and three renewals inside 15 months."
+        ],
+        "role": "closing"
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "plate-river-1"
+    },
+    {
+      "role": "feature",
+      "variant": "plate-river-2"
+    },
+    {
+      "role": "feature",
+      "variant": "plate-river-3"
+    },
+    {
+      "role": "feature",
+      "variant": "plate-river-4"
+    },
+    {
+      "role": "feature",
+      "variant": "plate-river-5"
+    },
+    {
+      "role": "feature",
+      "variant": "plate-river-6"
+    },
+    {
+      "role": "feature",
+      "variant": "plate-river-7"
+    },
+    {
+      "role": "feature",
+      "variant": "plate-river-8"
+    },
+    {
+      "role": "feature",
+      "variant": "plate-river-9"
+    },
+    {
+      "role": "feature",
+      "variant": "plate-river-10"
+    },
+    {
+      "role": "closing",
+      "variant": "plate-river-11"
+    }
+  ]
+}

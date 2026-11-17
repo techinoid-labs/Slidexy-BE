@@ -1,0 +1,169 @@
+{
+  "id": "feature/floating-glass-card",
+  "role": "feature",
+  "variant": "floating-glass-card",
+  "family": "cosmic-depth",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "designReview": "Frosted look = cyan orb behind + translucent plate + white rim + diagonal sheen. Not CSS backdrop-filter.",
+  "slots": {
+    "title": { "kind": "text", "from": "title" },
+    "copy0": { "kind": "text", "from": "items0" },
+    "copy1": { "kind": "text", "from": "items1" }
+  },
+  "fit": {
+    "title": { "minFont": 42, "maxFont": 42, "lineClamp": 3, "shrinkMin": 1 },
+    "copy0": { "minFont": 16, "maxFont": 16, "lineClamp": 2, "shrinkMin": 1 },
+    "copy1": { "minFont": 20, "maxFont": 20, "lineClamp": 4, "shrinkMin": 1 }
+  },
+  "pptxMapping": {
+    "title": { "kind": "text" },
+    "copy0": { "kind": "text" },
+    "copy1": { "kind": "text" }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "bg",
+        "type": "shape",
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900,
+        "tokenFill": "bg",
+        "z": 0
+      },
+      {
+        "id": "glass-orb-outer",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 120,
+        "y": -80,
+        "width": 1360,
+        "height": 1060,
+        "tokenFill": "accent",
+        "opacity": 0.14,
+        "blur": 70,
+        "ignoreContrast": true,
+        "z": 1
+      },
+      {
+        "id": "glass-orb",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 300,
+        "y": 60,
+        "width": 1000,
+        "height": 780,
+        "tokenFill": "accent",
+        "opacity": 0.22,
+        "blur": 50,
+        "ignoreContrast": true,
+        "z": 1.1
+      },
+      {
+        "id": "glass-orb-core",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 480,
+        "y": 180,
+        "width": 640,
+        "height": 520,
+        "tokenFill": "accent",
+        "opacity": 0.2,
+        "blur": 28,
+        "ignoreContrast": true,
+        "z": 1.2
+      },
+      {
+        "id": "glass",
+        "type": "shape",
+        "shape": "rect",
+        "x": 200,
+        "y": 160,
+        "width": 1200,
+        "height": 580,
+        "tokenFill": "surface",
+        "opacity": 0.1,
+        "radius": 32,
+        "blur": 0,
+        "shadow": { "offsetY": 18, "blur": 40, "opacity": 0.5, "color": "#000000" },
+        "strokeColor": "#FFFFFF",
+        "strokeWidth": 1.5,
+        "strokeOpacity": 0.45,
+        "ignoreContrast": true,
+        "z": 3
+      },
+      {
+        "id": "glass-sheen",
+        "type": "shape",
+        "shape": "rect",
+        "x": 200,
+        "y": 160,
+        "width": 1200,
+        "height": 580,
+        "tokenFill": "surface",
+        "opacity": 1,
+        "radius": 32,
+        "ignoreContrast": true,
+        "gradient": {
+          "angle": 135,
+          "stops": [
+            { "hex": "#FFFFFF", "pos": 0, "alpha": 0 },
+            { "hex": "#FFFFFF", "pos": 0.35, "alpha": 0.03 },
+            { "hex": "#FFFFFF", "pos": 0.7, "alpha": 0.06 },
+            { "hex": "#FFFFFF", "pos": 1, "alpha": 0.14 }
+          ]
+        },
+        "z": 4
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "slot": "copy0",
+        "x": 280,
+        "y": 220,
+        "width": 1040,
+        "height": 40,
+        "fontSize": 16,
+        "tokenColor": "accent",
+        "fontRole": "label",
+        "letterSpacing": 2.5,
+        "fontWeight": 600,
+        "z": 6
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "slot": "title",
+        "x": 280,
+        "y": 290,
+        "width": 1040,
+        "height": 160,
+        "fontSize": 42,
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "z": 6
+      },
+      {
+        "id": "copy1",
+        "type": "text",
+        "slot": "copy1",
+        "x": 280,
+        "y": 500,
+        "width": 1040,
+        "height": 160,
+        "fontSize": 20,
+        "tokenColor": "muted",
+        "fontRole": "body",
+        "lineHeight": 1.4,
+        "z": 6
+      }
+    ]
+  }
+}

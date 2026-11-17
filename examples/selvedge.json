@@ -1,0 +1,217 @@
+{
+  "name": "Selvedge",
+  "description": "Room Cloth, a fictional textile collection and commissioning book",
+  "brand": {
+    "colors": {
+      "bg": "#F3EDDF",
+      "ink": "#292E2A",
+      "accent": "#9E3F32",
+      "surface": "#B3BC9D",
+      "line": "#C7B8A4",
+      "paper": "#FFFDF3",
+      "dark": "#292E2A"
+    },
+    "fonts": {
+      "display": "Garamond",
+      "body": "Calibri"
+    }
+  },
+  "spec": {
+    "style": {
+      "palette": "ink-night",
+      "typePair": "modern-segoe",
+      "motif": "bar-accent",
+      "family": "selvedge"
+    },
+    "slides": [
+      {
+        "title": "Selvedge",
+        "role": "cover",
+        "items": [
+          "ROOM CLOTH / COLLECTION 03",
+          "A woven collection for rooms that change with the light."
+        ],
+        "photoQuery": "linen fabric texture folds"
+      },
+      {
+        "title": "A room in three weights",
+        "role": "feature",
+        "items": [
+          "A curtain, a cushion and a bench cover catch the same afternoon light differently. This collection starts with that observation. The lightest weave lets the window frame show through. The middle weight takes a clean fold. The heaviest gives the bench a continuous line.",
+          "The collection shares a narrow palette so a designer can put all three weights in one room. Each sample is large enough to hang, gather and view from across a table."
+        ]
+      },
+      {
+        "title": "The open weave",
+        "role": "feature",
+        "items": [
+          "Seen from across the room, the curtain reads as a pale field. Up close, the gaps between yarns let the wall colour enter the cloth. That small shift is most apparent where two folds cross.",
+          "In the sample room we hang one width flat beside a gathered length. The pair shows a client how much the appearance changes once the cloth takes on volume."
+        ],
+        "photoQuery": "sheer linen curtain sunlight window"
+      },
+      {
+        "title": "A colour card for daylight",
+        "role": "feature",
+        "items": [
+          "Chalk",
+          "A pale ground for the sheer. Hang it against the actual wall before selecting a lining.",
+          "Silt",
+          "A muted olive for the middle weight. Its darker cross thread brings out the ridge of each fold.",
+          "Madder",
+          "A warm red used on binding and small upholstered pieces. A narrow edge is enough to carry it across a room."
+        ]
+      },
+      {
+        "title": "Notes from the loom",
+        "role": "feature",
+        "items": [
+          "Each trial starts with a short length of warp and a numbered weft. The weaver saves a cutting before finishing and a second cutting afterwards. Both stay on the same sheet, so the difference in handle can be discussed alongside the change in colour.",
+          "For the next trial we change one thread or one finishing step. That makes the sample book a record of decisions a second weaver can follow."
+        ],
+        "photoQuery": "hands weaving loom textile"
+      },
+      {
+        "title": "Weight by application",
+        "role": "feature",
+        "items": [
+          "Three trial cloths use the same family of colours. The example weights are 120, 240 and 420 grams per square metre. The gap between them matters when a length hangs from a narrow rail or wraps a curved corner.",
+          "These sample specifications guide the first mock-up. The studio confirms the finished lot and tests it for the intended application before a production order."
+        ],
+        "chart": {
+          "type": "bar",
+          "labels": [
+            "Sheer",
+            "Fold",
+            "Upholstery"
+          ],
+          "series": [
+            {
+              "name": "Grams per square metre",
+              "values": [
+                120,
+                240,
+                420
+              ]
+            }
+          ],
+          "colors": [
+            "#9E3F32"
+          ],
+          "showLegend": false
+        }
+      },
+      {
+        "title": "A corner in section",
+        "role": "feature",
+        "items": [
+          "Face cloth",
+          "Turn the visible face around the edge so the front reads as one continuous surface.",
+          "Binding",
+          "A narrow madder binding catches the seam and gives the upholsterer a visible reference line.",
+          "Backing",
+          "Keep a separate cutting of the backing with the prototype so later repairs can match the assembly."
+        ]
+      },
+      {
+        "title": "The fold test",
+        "role": "feature",
+        "items": [
+          "A flat swatch hides the way a curtain breaks where it meets the floor. For this trial two equal lengths share one rail. One is gathered tightly and one loosely, with the window behind both.",
+          "The buyer can move the cloth and see the difference in shadow. Notes on the back of the sample card record the spacing used in the room."
+        ],
+        "photoQuery": "folded linen fabric stack"
+      },
+      {
+        "title": "First sampling run",
+        "role": "feature",
+        "items": [
+          "Cuttings",
+          "Cut one flat reference and one handling swatch from each finished trial. Mark the warp direction on the reverse.",
+          "Room trials",
+          "Hang the sheer and fit the heavy cloth to one bench corner. Photograph both in morning and afternoon light.",
+          "Sign-off",
+          "Keep the chosen pieces with the order sheet. Send the workroom a matched set before cutting the first roll."
+        ]
+      },
+      {
+        "title": "A working sample library",
+        "role": "feature",
+        "items": [
+          "The archive keeps a handling piece at the front and a protected reference behind it. Each card carries the trial number, finish and date. A client can take the handling piece to site while the studio retains a comparison for the next delivery.",
+          "Return notes matter most when they name a condition: direct window light, a curved seat or a seam under tension. Those details make the next consultation more precise."
+        ]
+      },
+      {
+        "title": "The commission",
+        "role": "feature",
+        "items": [
+          "One room",
+          "Confirm the window, furniture and light conditions with a simple survey and a photograph taken from the entrance.",
+          "One trial",
+          "Approve a hung length and a finished corner with the people who will make the final pieces.",
+          "One record",
+          "File the approved swatches, confirmed quantities and workroom notes under a single commission number."
+        ]
+      },
+      {
+        "title": "Take the cloth into the room",
+        "role": "closing",
+        "items": [
+          "Collection 03",
+          "Choose one weight to hang, one to fold and one to wrap. Compare them under the light the finished pieces will live in."
+        ]
+      }
+    ]
+  },
+  "selections": [
+    {
+      "role": "cover",
+      "variant": "selvedge-1"
+    },
+    {
+      "role": "feature",
+      "variant": "selvedge-2"
+    },
+    {
+      "role": "feature",
+      "variant": "selvedge-3"
+    },
+    {
+      "role": "feature",
+      "variant": "selvedge-4"
+    },
+    {
+      "role": "feature",
+      "variant": "selvedge-5"
+    },
+    {
+      "role": "feature",
+      "variant": "selvedge-6"
+    },
+    {
+      "role": "feature",
+      "variant": "selvedge-7"
+    },
+    {
+      "role": "feature",
+      "variant": "selvedge-8"
+    },
+    {
+      "role": "feature",
+      "variant": "selvedge-9"
+    },
+    {
+      "role": "feature",
+      "variant": "selvedge-10"
+    },
+    {
+      "role": "feature",
+      "variant": "selvedge-11"
+    },
+    {
+      "role": "closing",
+      "variant": "selvedge-12"
+    }
+  ]
+}

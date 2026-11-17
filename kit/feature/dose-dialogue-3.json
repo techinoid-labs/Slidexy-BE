@@ -1,0 +1,768 @@
+{
+  "id": "feature/dose-dialogue-3",
+  "role": "feature",
+  "variant": "dose-dialogue-3",
+  "family": "dose-dialogue",
+  "status": "approved",
+  "preserveLayout": true,
+  "requiresPhoto": false,
+  "photoSlots": [],
+  "slots": {
+    "title": {
+      "kind": "text",
+      "from": "title"
+    },
+    "copy0": {
+      "kind": "text",
+      "from": "items0"
+    },
+    "copy1": {
+      "kind": "text",
+      "from": "items1"
+    },
+    "copy2": {
+      "kind": "text",
+      "from": "items2"
+    },
+    "copy3": {
+      "kind": "text",
+      "from": "items3"
+    },
+    "copy4": {
+      "kind": "text",
+      "from": "items4"
+    },
+    "copy5": {
+      "kind": "text",
+      "from": "items5"
+    },
+    "copy6": {
+      "kind": "text",
+      "from": "items6"
+    },
+    "copy7": {
+      "kind": "text",
+      "from": "items7"
+    },
+    "copy8": {
+      "kind": "text",
+      "from": "items8"
+    }
+  },
+  "fit": {
+    "title": {
+      "minFont": 62,
+      "maxFont": 62,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    },
+    "copy0": {
+      "minFont": 41,
+      "maxFont": 41,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy1": {
+      "minFont": 31,
+      "maxFont": 31,
+      "lineClamp": 4,
+      "shrinkMin": 1
+    },
+    "copy2": {
+      "minFont": 41,
+      "maxFont": 41,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy3": {
+      "minFont": 31,
+      "maxFont": 31,
+      "lineClamp": 4,
+      "shrinkMin": 1
+    },
+    "copy4": {
+      "minFont": 41,
+      "maxFont": 41,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy5": {
+      "minFont": 31,
+      "maxFont": 31,
+      "lineClamp": 3,
+      "shrinkMin": 1
+    },
+    "copy6": {
+      "minFont": 41,
+      "maxFont": 41,
+      "lineClamp": 1,
+      "shrinkMin": 1
+    },
+    "copy7": {
+      "minFont": 31,
+      "maxFont": 31,
+      "lineClamp": 3,
+      "shrinkMin": 1
+    },
+    "copy8": {
+      "minFont": 34,
+      "maxFont": 34,
+      "lineClamp": 2,
+      "shrinkMin": 1
+    }
+  },
+  "pptxMapping": {
+    "title": {
+      "kind": "text"
+    },
+    "copy0": {
+      "kind": "text"
+    },
+    "copy1": {
+      "kind": "text"
+    },
+    "copy2": {
+      "kind": "text"
+    },
+    "copy3": {
+      "kind": "text"
+    },
+    "copy4": {
+      "kind": "text"
+    },
+    "copy5": {
+      "kind": "text"
+    },
+    "copy6": {
+      "kind": "text"
+    },
+    "copy7": {
+      "kind": "text"
+    },
+    "copy8": {
+      "kind": "text"
+    }
+  },
+  "layout": {
+    "elements": [
+      {
+        "id": "record-center",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 536,
+        "y": 276,
+        "width": 530,
+        "height": 530,
+        "tokenFill": "blue",
+        "z": 2,
+        "keepFill": true,
+        "shadow": {
+          "blur": 14,
+          "offsetY": 7,
+          "opacity": 0.12,
+          "color": "#263329"
+        }
+      },
+      {
+        "id": "record-left0",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 452,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left1",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 472,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left2",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 492,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left3",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 512,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left4",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 532,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left5",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 552,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left6",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 572,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left7",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 592,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left8",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 612,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left9",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 632,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left10",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 652,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left11",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 672,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left12",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 692,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left13",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 712,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left14",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 732,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left15",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 752,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left16",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 772,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left17",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 792,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left18",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 812,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left19",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 832,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left20",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 852,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left21",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 872,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left22",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 892,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left23",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 912,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left24",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 932,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left25",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 952,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left26",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 972,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left27",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 992,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left28",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 1012,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left29",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 1032,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left30",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 1052,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left31",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 1072,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left32",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 1092,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left33",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 1112,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-left34",
+        "type": "shape",
+        "shape": "ellipse",
+        "x": 1132,
+        "y": 571,
+        "width": 5,
+        "height": 5,
+        "tokenFill": "line",
+        "z": 1,
+        "keepFill": true
+      },
+      {
+        "id": "record-ribbon",
+        "type": "shape",
+        "shape": "rect",
+        "x": 535,
+        "y": 397,
+        "width": 531,
+        "height": 113,
+        "tokenFill": "blue",
+        "z": 3,
+        "keepFill": true
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "x": 75,
+        "y": 61,
+        "width": 1440,
+        "height": 144,
+        "fontSize": 62,
+        "slot": "title",
+        "tokenColor": "ink",
+        "fontRole": "display",
+        "fontWeight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8,
+        "textStyleRole": "display",
+        "morphId": "title"
+      },
+      {
+        "id": "copy0",
+        "type": "text",
+        "x": 90,
+        "y": 273,
+        "width": 435,
+        "height": 91,
+        "fontSize": 41,
+        "slot": "copy0",
+        "tokenColor": "blue",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8,
+        "textStyleRole": "display"
+      },
+      {
+        "id": "copy1",
+        "type": "text",
+        "x": 92,
+        "y": 393,
+        "width": 421,
+        "height": 158,
+        "fontSize": 31,
+        "slot": "copy1",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8
+      },
+      {
+        "id": "copy2",
+        "type": "text",
+        "x": 1084,
+        "y": 273,
+        "width": 435,
+        "height": 91,
+        "fontSize": 41,
+        "slot": "copy2",
+        "tokenColor": "blue",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8,
+        "textStyleRole": "display"
+      },
+      {
+        "id": "copy3",
+        "type": "text",
+        "x": 1086,
+        "y": 393,
+        "width": 421,
+        "height": 158,
+        "fontSize": 31,
+        "slot": "copy3",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8
+      },
+      {
+        "id": "copy4",
+        "type": "text",
+        "x": 90,
+        "y": 629,
+        "width": 435,
+        "height": 91,
+        "fontSize": 41,
+        "slot": "copy4",
+        "tokenColor": "blue",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8,
+        "textStyleRole": "display"
+      },
+      {
+        "id": "copy5",
+        "type": "text",
+        "x": 92,
+        "y": 749,
+        "width": 421,
+        "height": 113,
+        "fontSize": 31,
+        "slot": "copy5",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8
+      },
+      {
+        "id": "copy6",
+        "type": "text",
+        "x": 1084,
+        "y": 629,
+        "width": 435,
+        "height": 91,
+        "fontSize": 41,
+        "slot": "copy6",
+        "tokenColor": "blue",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8,
+        "textStyleRole": "display"
+      },
+      {
+        "id": "copy7",
+        "type": "text",
+        "x": 1086,
+        "y": 749,
+        "width": 421,
+        "height": 113,
+        "fontSize": 31,
+        "slot": "copy7",
+        "tokenColor": "ink",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8
+      },
+      {
+        "id": "copy8",
+        "type": "text",
+        "x": 575,
+        "y": 405,
+        "width": 450,
+        "height": 83,
+        "fontSize": 34,
+        "slot": "copy8",
+        "tokenColor": "paper",
+        "fontRole": "body",
+        "fontWeight": 400,
+        "lineHeight": 1.12,
+        "letterSpacing": 0,
+        "z": 8,
+        "textStyleRole": "display",
+        "align": "center"
+      }
+    ]
+  }
+}
