@@ -56,5 +56,6 @@ SEL unit tiers are marked in [`sel-catalog.json`](../../engine/design-system/sel
    npm run publish:firestore-templates          # dry-run payload
    FIRESTORE_PUBLISH=1 npm run publish:firestore-templates
    ```
+   Offline Flutter sync (`sync:tier-b-flutter`) defaults to **lean chrome**: `cover.png` + `preview_1..3` + authored photos — not every `slide_XX.png`. Use `--full-chrome` only when you need exact full-deck frames in-repo. Strip legacy fat chrome with `--leanize-existing`.
 5. Flutter branch `feat/be-template-catalog-sync` consumes Firestore; do not merge to `enhance-slides` until verified.
 6. Refuse Firestore publish unless `tierB.baked === true` and `mobileTier === "B"`.

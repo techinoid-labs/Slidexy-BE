@@ -5,6 +5,12 @@
  *   FLUTTER_ROOT=... node -r ts-node/register/transpile-only scripts/sync-tier-b-to-flutter.ts --all
  *   FLUTTER_ROOT=... node -r ts-node/register/transpile-only scripts/sync-tier-b-to-flutter.ts --remaining
  *   FLUTTER_ROOT=... node -r ts-node/register/transpile-only scripts/sync-tier-b-to-flutter.ts --only=dossier-clip
+ *
+ * Chrome modes (git size):
+ *   default / --lean-chrome  → cover + preview_1..3 + authored photos (no full slide_XX set)
+ *   --full-chrome            → every rendered slide frame (exact picker, large pushes)
+ *   --leanize-existing       → strip slide_XX.png from Flutter chrome + rewrite deck preview refs
+ *   --preview-count=3        → how many exact preview frames to keep in lean mode
  */
 import * as fs from "fs";
 import * as path from "path";
@@ -221,9 +227,34 @@ function stagePublished(id: string) {
   console.log("STAGED", id, "→ published");
 }
 
+function previewCount(): number {
+  const raw = arg("preview-count");
+  const n = raw ? Number(raw) : 3;
+  if (!Number.isFinite(n) || n < 1) return 3;
+  return Math.min(Math.floor(n), 12);
+}
+
+function wantFullChrome(): boolean {
+  return hasFlag("full-chrome");
+}
+
+/** Remove full slide_XX.png frames; keep cover / preview_* / authored photos. */
+function pruneFullSlideFrames(chromeDir: string): number {
+  if (!fs.existsSync(chromeDir)) return 0;
+  let removed = 0;
+  for (const name of fs.readdirSync(chromeDir)) {
+    if (!/^slide_\d+\.png$/i.test(name)) continue;
+    fs.unlinkSync(path.join(chromeDir, name));
+    removed += 1;
+  }
+  return removed;
+}
+
 function collectChromeFiles(id: string, chromeDir: string): string[] {
   fs.mkdirSync(chromeDir, { recursive: true });
   const copied: string[] = [];
+  const full = wantFullChrome();
+  const previews = previewCount();
 
   const photoDirs = [
     path.join(PUBLISHED, id, "photos"),
@@ -253,9 +284,10 @@ function collectChromeFiles(id: string, chromeDir: string): string[] {
     }
   }
 
-  // Copy every rendered slide frame so the mobile picker can show the
-  // exact BE catalog look (not a Tier-B reconstruction).
-  for (let i = 1; i <= 24; i++) {
+  // Lean (default): only the first N exact frames as preview_*.png — keeps git pushes small.
+  // Full: every slide_XX.png for exact catalog fidelity in the picker.
+  const limit = full ? 24 : previews;
+  for (let i = 1; i <= limit; i++) {
     const padded = `slide-${String(i).padStart(2, "0")}.png`;
     const plain = `slide-${i}.png`;
     const src =
@@ -263,16 +295,29 @@ function collectChromeFiles(id: string, chromeDir: string): string[] {
         (p) => fs.existsSync(p)
       ) || null;
     if (!src) continue;
-    const slideName = `slide_${String(i).padStart(2, "0")}.png`;
-    fs.copyFileSync(src, path.join(chromeDir, slideName));
-    copied.push(slideName);
-    if (i <= 3) {
-      const destName = `preview_${i}.png`;
-      fs.copyFileSync(src, path.join(chromeDir, destName));
-      copied.push(destName);
+
+    const destName = `preview_${i}.png`;
+    fs.copyFileSync(src, path.join(chromeDir, destName));
+    copied.push(destName);
+
+    if (full) {
+      const slideName = `slide_${String(i).padStart(2, "0")}.png`;
+      fs.copyFileSync(src, path.join(chromeDir, slideName));
+      copied.push(slideName);
     }
   }
 
+  // Re-sync in lean mode must drop previously shipped full frames.
+  if (!full) {
+    const removed = pruneFullSlideFrames(chromeDir);
+    if (removed) console.log("  pruned", removed, "full slide frame(s)");
+  }
+
+  console.log(
+    full
+      ? `  chrome mode=full (${copied.length} files)`
+      : `  chrome mode=lean (cover + ${previews} previews + photos)`
+  );
   return copied;
 }
 
@@ -325,10 +370,10 @@ function buildPreviewSlides(deck: any, flutterDeckId: string, chromePrefix: stri
     const slideName = `slide_${String(i + 1).padStart(2, "0")}.png`;
     const slidePath = path.join(chromeDir, slideName);
     const previewPath = path.join(chromeDir, `preview_${i + 1}.png`);
-    // Exact BE render wins — this is what makes mobile match the catalog.
+    // Prefer lean preview_* frames; fall back to full slide_XX when --full-chrome shipped them.
     let exact = "";
-    if (fs.existsSync(slidePath)) exact = chromePrefix + slideName;
-    else if (fs.existsSync(previewPath)) exact = chromePrefix + `preview_${i + 1}.png`;
+    if (fs.existsSync(previewPath)) exact = chromePrefix + `preview_${i + 1}.png`;
+    else if (fs.existsSync(slidePath)) exact = chromePrefix + slideName;
     else if (i === 0 && fs.existsSync(path.join(chromeDir, "cover.png"))) exact = cover;
 
     const titleEl = (layoutObj?.elements || []).find(
@@ -352,6 +397,54 @@ function buildPreviewSlides(deck: any, flutterDeckId: string, chromePrefix: stri
   deck.previewSlides = slides;
   // Generation must walk the same order the picker shows.
   deck.fixedSequence = true;
+}
+
+/** Strip legacy full-frame chrome from the Flutter tree and retarget deck preview refs. */
+function leanizeExistingFlutterAssets(): { dirs: number; removed: number; decks: number } {
+  const flutterRoot = resolveFlutterRoot();
+  const chromeRoot = path.join(flutterRoot, "assets", "templates", "chrome");
+  const decksDir = path.join(flutterRoot, "assets", "templates", "decks");
+  let dirs = 0;
+  let removed = 0;
+  let decks = 0;
+
+  if (fs.existsSync(chromeRoot)) {
+    for (const name of fs.readdirSync(chromeRoot)) {
+      if (!name.startsWith("be_")) continue;
+      const dir = path.join(chromeRoot, name);
+      if (!fs.statSync(dir).isDirectory()) continue;
+      const n = pruneFullSlideFrames(dir);
+      if (n) {
+        dirs += 1;
+        removed += n;
+      }
+    }
+  }
+
+  if (fs.existsSync(decksDir)) {
+    for (const file of fs.readdirSync(decksDir)) {
+      if (!file.endsWith(".json")) continue;
+      const full = path.join(decksDir, file);
+      const deck = JSON.parse(fs.readFileSync(full, "utf8"));
+      const fid = String(deck.id || file.replace(/\.json$/, ""));
+      const chromePrefix = `assets/templates/chrome/be_${fid}/`;
+      const chromeDir = path.join(chromeRoot, `be_${fid}`);
+      if (!fs.existsSync(chromeDir)) continue;
+      buildPreviewSlides(deck, fid, chromePrefix, chromeDir);
+      fs.writeFileSync(full, JSON.stringify(deck, null, 2) + "\n");
+      decks += 1;
+    }
+  }
+
+  const indexPath = path.join(flutterRoot, "assets", "templates", "index.json");
+  if (fs.existsSync(indexPath)) {
+    const index = JSON.parse(fs.readFileSync(indexPath, "utf8"));
+    index.version = (Number(index.version) || 0) + 1;
+    index.chromeMode = "lean";
+    fs.writeFileSync(indexPath, JSON.stringify(index, null, 2) + "\n");
+  }
+
+  return { dirs, removed, decks };
 }
 
 function installIntoFlutter(id: string) {
@@ -400,6 +493,14 @@ function rewriteIndex(beIds: string[]) {
 }
 
 async function main() {
+  if (hasFlag("leanize-existing")) {
+    const result = leanizeExistingFlutterAssets();
+    console.log(
+      `Leanized Flutter chrome: removed ${result.removed} slide_XX frame(s) across ${result.dirs} deck(s); rewrote ${result.decks} deck JSON preview refs.`
+    );
+    return;
+  }
+
   const only = arg("only");
   const ready = listReadyPublishedIds();
   let ids: string[];
@@ -421,7 +522,9 @@ async function main() {
     return;
   }
 
-  console.log(`Syncing ${ids.length} deck(s)…`);
+  console.log(
+    `Syncing ${ids.length} deck(s)… chrome=${wantFullChrome() ? "full" : "lean"} previewCount=${previewCount()}`
+  );
   for (const id of ids) stagePublished(id);
 
   const failed: string[] = [];

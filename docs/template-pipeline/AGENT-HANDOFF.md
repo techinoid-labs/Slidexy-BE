@@ -90,11 +90,14 @@ Working tree on `engine-v1` still has geography + glyph work uncommitted (as of 
 5. Sync to Flutter when mobile should see it:
    ```powershell
    $env:FLUTTER_ROOT="C:\Users\SP Grid\Desktop\Techinoid\slidesX-Flutter-POC"
+   # Default is lean chrome (cover + 3 previews + photos) — keeps git pushes small.
    node -r ts-node/register/transpile-only scripts/sync-tier-b-to-flutter.ts --only=peak-chain
+   # Exact every-slide frames (large): add --full-chrome
+   # One-shot strip of legacy slide_XX.png from Flutter: --leanize-existing
    ```
 6. Commit **BE** (source of truth) and **Flutter** (shipped assets) separately.
 
-Single-deck sync / pins / names: see top of `scripts/sync-tier-b-to-flutter.ts` (`PINNED_ORDER`, `DISPLAY_NAMES`).
+Single-deck sync / pins / names / chrome modes: see top of `scripts/sync-tier-b-to-flutter.ts` (`PINNED_ORDER`, `DISPLAY_NAMES`, `--lean-chrome` / `--full-chrome`).
 
 ---
 
